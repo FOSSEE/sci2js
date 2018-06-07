@@ -10,7 +10,14 @@ brackets = 0
 qstring = ''
 dqstring = ''
 
-tokens = (
+predefinedvariables = {
+    't': 'PREVAR_BOOLEAN',
+    'f': 'PREVAR_BOOLEAN',
+    'i': 'PREVAR_COMPLEX',
+    'pi': 'PREVAR_FLOAT',
+}
+
+tokens = [
     'EOL',
     'NUMBER',
     'LASTINDEX',
@@ -24,15 +31,14 @@ tokens = (
     'OPENBRACKET',
     'CLOSEBRACKET',
     'SEMICOLON',
-    'TRUE',
-    'FALSE',
     'NOT',
     'LOGICAL',
     'ASSIGNMENT',
     'COLON',
     'QSTRING',
     'DQSTRING',
-)
+    'PREVAR',
+] + list(set(predefinedvariables.values()))
 
 def t_COMMENT(t):
     r'\.\.+[ \t]*(//.*)?(\n|$)|//.*'
@@ -86,9 +92,12 @@ def t_CLOSEBRACKET(t):
     t.value = t.lexer.lexmatch.group()
     return t
 
+def t_PREVAR(t):
+    r'%[a-zA-Z0-9_]+'
+    t.type = predefinedvariables.get(t.value[1:], 'PREVAR')
+    return t
+
 t_SEMICOLON       = r';'
-t_TRUE            = r'%t'
-t_FALSE           = r'%f'
 t_NOT             = r'~'
 t_LOGICAL         = r'[&|]'
 t_ASSIGNMENT      = r'='
