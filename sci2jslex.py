@@ -13,10 +13,10 @@ dqstring = ''
 tokens = (
     'EOL',
     'NUMBER',
+    'LASTINDEX',
     'VAR',
     'DOT',
     'OPERATOR',
-    'NOTEQUALTO',
     'COMPARISON',
     'COMMA',
     'OPENSQBRACKET',
@@ -27,7 +27,7 @@ tokens = (
     'TRUE',
     'FALSE',
     'NOT',
-    'AND',
+    'LOGICAL',
     'ASSIGNMENT',
     'COLON',
     'QSTRING',
@@ -47,11 +47,11 @@ def t_EOL(t):
         return t
 
 t_NUMBER          = r'-?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
-t_VAR             = r'[a-zA-Z][a-zA-Z0-9_]*'
+t_LASTINDEX       = r'\$'
+t_VAR             = r'[a-zA-Z_][a-zA-Z0-9_]*'
 t_DOT             = r'\.'
-t_OPERATOR        = r'[+\-*/]'
-t_NOTEQUALTO      = r'<>'
-t_COMPARISON      = r'[<>]=?|=='
+t_OPERATOR        = r'[+\-*/^\\]'
+t_COMPARISON      = r'<>|[<>]=|==|[<>]'
 t_COMMA           = r','
 
 def t_OPENSQBRACKET(t):
@@ -90,7 +90,7 @@ t_SEMICOLON       = r';'
 t_TRUE            = r'%t'
 t_FALSE           = r'%f'
 t_NOT             = r'~'
-t_AND             = r'&'
+t_LOGICAL         = r'[&|]'
 t_ASSIGNMENT      = r'='
 t_COLON           = r':'
 
