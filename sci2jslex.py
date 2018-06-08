@@ -9,6 +9,27 @@ brackets = 0
 ''' keep current string in memory '''
 qstring = ''
 dqstring = ''
+afterarray = False
+
+syntaxtokens = {
+    'break': 'BREAK',
+    'case': 'CASE',
+    'clear': 'CLEAR',
+    'do': 'DO',
+    'else': 'ELSE',
+    'elseif': 'ELSEIF',
+    'end': 'END',
+    'endfunction': 'ENDFUNCTION',
+    'for': 'FOR',
+    'function': 'FUNCTION',
+    'if': 'IF',
+    'resume': 'RESUME',
+    'return': 'RETURN',
+    'select': 'SELECT',
+    'then': 'THEN',
+    'where': 'WHERE',
+    'while': 'WHILE',
+}
 
 predefinedvariables = {
     't': 'PREVAR_BOOLEAN',
@@ -38,7 +59,17 @@ tokens = [
     'QSTRING',
     'DQSTRING',
     'PREVAR',
-] + list(set(predefinedvariables.values()))
+    'TRANSPOSE',
+] + list(syntaxtokens.values()) + list(set(predefinedvariables.values()))
+
+states = (
+    ('qstring', 'exclusive'),
+    ('dqstring', 'exclusive'),
+)
+
+t_ignore = ' \t'
+t_qstring_ignore = ''
+t_dqstring_ignore = ''
 
 def t_COMMENT(t):
     r'\.\.+[ \t]*(//.*)?(\n|$)|//.*'
@@ -46,85 +77,120 @@ def t_COMMENT(t):
 
 def t_EOL(t):
     r'\n'
-    global brackets
+    global afterarray, brackets
     if brackets == 0:
+        afterarray = False
         t.state = 'EOL'
-        t.value = t.lexer.lexmatch.group()
         return t
 
 t_NUMBER          = r'-?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
 t_LASTINDEX       = r'\$'
-t_VAR             = r'[a-zA-Z_][a-zA-Z0-9_]*'
 t_DOT             = r'\.'
 t_OPERATOR        = r'[+\-*/^\\]'
-t_COMPARISON      = r'<>|[<>]=|==|[<>]'
+t_COMPARISON      = r'<>|[<>~=]=|[<>]'
 t_COMMA           = r','
 
 def t_OPENSQBRACKET(t):
     r'\['
-    global brackets
+    global afterarray, brackets
+    afterarray = False
     brackets += 1
     t.state = 'OPENSQBRACKET'
-    t.value = t.lexer.lexmatch.group()
     return t
 
 def t_CLOSESQBRACKET(t):
     r'\]'
-    global brackets
+    global afterarray, brackets
+    afterarray = True
     brackets -= 1
     t.state = 'CLOSESQBRACKET'
-    t.value = t.lexer.lexmatch.group()
     return t
 
 def t_OPENBRACKET(t):
     r'\('
-    global brackets
+    global afterarray, brackets
+    afterarray = False
     brackets += 1
     t.state = 'OPENBRACKET'
-    t.value = t.lexer.lexmatch.group()
     return t
 
 def t_CLOSEBRACKET(t):
     r'\)'
-    global brackets
+    global afterarray, brackets
+    afterarray = True
     brackets -= 1
     t.state = 'CLOSEBRACKET'
-    t.value = t.lexer.lexmatch.group()
+    return t
+
+def t_VAR(t):
+    r'[a-zA-Z_][a-zA-Z0-9_]*'
+    global afterarray
+    afterarray = True
+    t.type = syntaxtokens.get(t.value, 'VAR')
     return t
 
 def t_PREVAR(t):
-    r'%[a-zA-Z0-9_]+'
+    r'%[a-zA-Z_][a-zA-Z0-9_]*'
+    global afterarray
+    afterarray = False
     t.type = predefinedvariables.get(t.value[1:], 'PREVAR')
     return t
 
-t_SEMICOLON       = r';'
-t_NOT             = r'~'
-t_LOGICAL         = r'[&|]'
-t_ASSIGNMENT      = r'='
-t_COLON           = r':'
+def t_SEMICOLON(t):
+    r';'
+    global afterarray
+    afterarray = False
+    t.state = 'SEMICOLON'
+    return t
 
-t_ignore = ' \t'
+def t_NOT(t):
+    r'~'
+    global afterarray
+    afterarray = False
+    t.state = 'NOT'
+    return t
+
+def t_LOGICAL(t):
+    r'[&|]'
+    global afterarray
+    afterarray = False
+    t.state = 'LOGICAL'
+    return t
+
+def t_ASSIGNMENT(t):
+    r'='
+    global afterarray
+    afterarray = False
+    t.state = 'ASSIGNMENT'
+    return t
+
+def t_COLON(t):
+    r':'
+    global afterarray
+    afterarray = False
+    t.state = 'COLON'
+    return t
 
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
-states = (
-    ('qstring', 'exclusive'),
-    ('dqstring', 'exclusive'),
-)
-
-def t_begin_qstring(t):
+def t_TRANSPOSE(t):
     r"'"
-    global qstring
+    global afterarray, qstring
+    if afterarray:
+        afterarray = False
+        t.state = 'TRANSPOSE'
+        return t
     t.lexer.begin('qstring')
-    qstring = t.lexer.lexmatch.group()
+    qstring = t.value
 
 def t_begin_dqstring(t):
     r'"'
-    global dqstring
+    global afterarray, dqstring
+    afterarray = False
     t.lexer.begin('dqstring')
-    dqstring = t.lexer.lexmatch.group()
+    dqstring = t.value
 
 def t_qstring_COMMENT(t):
     r'\.\.+[ \t]*(//.*)?\n'
@@ -134,11 +200,21 @@ def t_dqstring_COMMENT(t):
     r'\.\.+[ \t]*(//.*)?\n'
     pass
 
+def t_qstring_quote(t):
+    r'\'\'|""'
+    global qstring
+    qstring += '\\' + t.value[0]
+
+def t_dqstring_quote(t):
+    r'\'\'|""'
+    global dqstring
+    dqstring += '\\' + t.value[0]
+
 def t_qstring_end(t):
     r"'"
     global qstring
     t.lexer.begin('INITIAL')
-    qstring += t.lexer.lexmatch.group()
+    qstring += t.value
     t.type = 'QSTRING'
     t.value = qstring
     return t
@@ -147,24 +223,20 @@ def t_dqstring_end(t):
     r'"'
     global dqstring
     t.lexer.begin('INITIAL')
-    dqstring += t.lexer.lexmatch.group()
+    dqstring += t.value
     t.type = 'DQSTRING'
     t.value = dqstring
     return t
 
 def t_qstring_char(t):
-    r"\\.|\.|[^'\\.]+"
+    r'\.|[^\'".]+'
     global qstring
-    qstring += t.lexer.lexmatch.group()
+    qstring += t.value
 
 def t_dqstring_char(t):
-    r'\\.|\.|[^"\\.]+'
+    r'\.|[^\'".]+'
     global dqstring
-    dqstring += t.lexer.lexmatch.group()
-
-t_qstring_ignore = ''
-
-t_dqstring_ignore = ''
+    dqstring += t.value
 
 def t_qstring_error(t):
     print("Illegal character '%s' in qstring" % t.value[0])
