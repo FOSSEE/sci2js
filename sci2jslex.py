@@ -25,6 +25,16 @@ syntaxtokens = {
     'if': 'IF',
     'resume': 'RESUME',
     'return': 'RETURN',
+    'scicos': 'SCICOS',
+    'scicos_block': 'SCICOS_BLOCK',
+    'scicos_context': 'SCICOS_CONTEXT',
+    'scicos_debug': 'SCICOS_DEBUG',
+    'scicos_diagram': 'SCICOS_DIAGRAM',
+    'scicos_getvalue': 'SCICOS_GETVALUE',
+    'scicos_graphics': 'SCICOS_GRAPHICS',
+    'scicos_link': 'SCICOS_LINK',
+    'scicos_model': 'SCICOS_MODEL',
+    'scicos_params': 'SCICOS_PARAMS',
     'select': 'SELECT',
     'then': 'THEN',
     'where': 'WHERE',
@@ -75,19 +85,32 @@ def t_COMMENT(t):
     r'\.\.+[ \t]*(//.*)?(\n|$)|//.*'
     pass
 
-def t_EOL(t):
-    r'\n'
-    global afterarray, brackets
-    if brackets == 0:
-        afterarray = False
-        t.state = 'EOL'
-        return t
-
 def t_NUMBER(t):
     r'-?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
     global afterarray
     afterarray = False
     t.state = 'NUMBER'
+    return t
+
+def t_PREVAR(t):
+    r'%[a-zA-Z_][a-zA-Z0-9_]*'
+    global afterarray
+    afterarray = False
+    t.type = predefinedvariables.get(t.value[1:], 'PREVAR')
+    return t
+
+def t_VAR(t):
+    r'[a-zA-Z_][a-zA-Z0-9_]*'
+    global afterarray
+    afterarray = True
+    t.type = syntaxtokens.get(t.value, 'VAR')
+    return t
+
+def t_COMPARISON(t):
+    r'<>|[<>~=]=|[<>]'
+    global afterarray
+    afterarray = False
+    t.state = 'COMPARISON'
     return t
 
 def t_LASTINDEX(t):
@@ -96,6 +119,14 @@ def t_LASTINDEX(t):
     afterarray = False
     t.state = 'LASTINDEX'
     return t
+
+def t_EOL(t):
+    r'\n'
+    global afterarray, brackets
+    if brackets == 0:
+        afterarray = False
+        t.state = 'EOL'
+        return t
 
 def t_DOT(t):
     r'\.'
@@ -109,13 +140,6 @@ def t_OPERATOR(t):
     global afterarray
     afterarray = False
     t.state = 'OPERATOR'
-    return t
-
-def t_COMPARISON(t):
-    r'<>|[<>~=]=|[<>]'
-    global afterarray
-    afterarray = False
-    t.state = 'COMPARISON'
     return t
 
 def t_COMMA(t):
@@ -155,20 +179,6 @@ def t_CLOSEBRACKET(t):
     afterarray = True
     brackets -= 1
     t.state = 'CLOSEBRACKET'
-    return t
-
-def t_VAR(t):
-    r'[a-zA-Z_][a-zA-Z0-9_]*'
-    global afterarray
-    afterarray = True
-    t.type = syntaxtokens.get(t.value, 'VAR')
-    return t
-
-def t_PREVAR(t):
-    r'%[a-zA-Z_][a-zA-Z0-9_]*'
-    global afterarray
-    afterarray = False
-    t.type = predefinedvariables.get(t.value[1:], 'PREVAR')
     return t
 
 def t_SEMICOLON(t):
@@ -235,6 +245,16 @@ def t_dqstring_COMMENT(t):
     r'\.\.+[ \t]*(//.*)?\n'
     pass
 
+def t_qstring_char(t):
+    r'\.|[^\'".]+'
+    global qstring
+    qstring += t.value
+
+def t_dqstring_char(t):
+    r'\.|[^\'".]+'
+    global dqstring
+    dqstring += t.value
+
 def t_qstring_quote(t):
     r'\'\'|""'
     global qstring
@@ -262,16 +282,6 @@ def t_dqstring_end(t):
     t.type = 'DQSTRING'
     t.value = dqstring
     return t
-
-def t_qstring_char(t):
-    r'\.|[^\'".]+'
-    global qstring
-    qstring += t.value
-
-def t_dqstring_char(t):
-    r'\.|[^\'".]+'
-    global dqstring
-    dqstring += t.value
 
 def t_qstring_error(t):
     print("Illegal character '%s' in qstring" % t.value[0])
