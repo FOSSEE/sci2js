@@ -83,12 +83,47 @@ def t_EOL(t):
         t.state = 'EOL'
         return t
 
-t_NUMBER          = r'-?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
-t_LASTINDEX       = r'\$'
-t_DOT             = r'\.'
-t_OPERATOR        = r'[+\-*/^\\]'
-t_COMPARISON      = r'<>|[<>~=]=|[<>]'
-t_COMMA           = r','
+def t_NUMBER(t):
+    r'-?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
+    global afterarray
+    afterarray = False
+    t.state = 'NUMBER'
+    return t
+
+def t_LASTINDEX(t):
+    r'\$'
+    global afterarray
+    afterarray = False
+    t.state = 'LASTINDEX'
+    return t
+
+def t_DOT(t):
+    r'\.'
+    global afterarray
+    afterarray = False
+    t.state = 'DOT'
+    return t
+
+def t_OPERATOR(t):
+    r'[+\-*/^\\]'
+    global afterarray
+    afterarray = False
+    t.state = 'OPERATOR'
+    return t
+
+def t_COMPARISON(t):
+    r'<>|[<>~=]=|[<>]'
+    global afterarray
+    afterarray = False
+    t.state = 'COMPARISON'
+    return t
+
+def t_COMMA(t):
+    r','
+    global afterarray
+    afterarray = False
+    t.state = 'COMMA'
+    return t
 
 def t_OPENSQBRACKET(t):
     r'\['
