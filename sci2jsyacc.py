@@ -5,6 +5,8 @@ import ply.yacc as yacc
 
 from sci2jslex import tokens
 
+start = 'statement'
+
 def p_expression_operator(p):
     'expression : expression OPERATOR term'
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
@@ -25,6 +27,34 @@ def p_term_prevar(p):
     'term : PREVAR'
     p[0] = str(p[1])
 
+def p_term_lastindex(p):
+    'term : LASTINDEX'
+    p[0] = str(p[1])
+
+def p_term_slice(p):
+    '''term : VAR OPENBRACKET expression COLON expression CLOSEBRACKET
+            | VAR OPENSQBRACKET expression COLON expression CLOSESQBRACKET'''
+    p[0] = str(p[1]) + '[' + str(p[3]) + str(p[4]) + str(p[5]) + ']'
+
+def p_term_index(p):
+    '''term : VAR OPENBRACKET expression CLOSEBRACKET
+            | VAR OPENSQBRACKET expression CLOSESQBRACKET'''
+    p[0] = str(p[1]) + '[' + str(p[3]) + ']'
+
+def p_lterm_var(p):
+    'lterm : VAR '
+    p[0] = str(p[1])
+
+def p_lterm_slice(p):
+    '''lterm : VAR OPENBRACKET expression COLON expression CLOSEBRACKET
+            | VAR OPENSQBRACKET expression COLON expression CLOSESQBRACKET'''
+    p[0] = str(p[1]) + '[' + str(p[3]) + str(p[4]) + str(p[5]) + ']'
+
+def p_lterm_index(p):
+    '''lterm : VAR OPENBRACKET expression CLOSEBRACKET
+            | VAR OPENSQBRACKET expression CLOSESQBRACKET'''
+    p[0] = str(p[1]) + '[' + str(p[3]) + ']'
+
 def p_term_expression(p):
     'term : OPENBRACKET expression CLOSEBRACKET'
     p[0] = str(p[1])
@@ -37,13 +67,21 @@ def p_list_list_expression(p):
     'list : list COMMA expression'
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
-def p_list_expression(p):
-    'list : expression'
-    p[0] = str(p[1])
-
 def p_list_empty(p):
     'list : '
     p[0] = ''
+
+def p_expression_term_transpose(p):
+    'expression : term TRANSPOSE'
+    p[0] = 'transpose(' + p[1] + ')'
+
+def p_assignment_expression(p):
+    'assignment : lterm ASSIGNMENT expression'
+    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+
+def p_statement_assignment(p):
+    'statement : assignment EOL'
+    p[0] = str(p[1]) + str(p[2])
 
 def p_error(p):
     print("Syntax error in input")

@@ -13,3 +13,6 @@ $(JSFILES): | $(JSDIRS)
 
 $(JSDIRS):
 	mkdir -p $@
+
+yacc: macros/Sinks/CSCOPE.sci
+	./sci2jsyacc.py $<

@@ -42,34 +42,34 @@ syntaxtokens = {
 }
 
 predefinedvariables = {
-    't': 'PREVAR_BOOLEAN',
     'f': 'PREVAR_BOOLEAN',
     'i': 'PREVAR_COMPLEX',
     'pi': 'PREVAR_FLOAT',
+    't': 'PREVAR_BOOLEAN',
 }
 
 tokens = [
-    'EOL',
-    'NUMBER',
-    'LASTINDEX',
-    'VAR',
-    'DOT',
-    'OPERATOR',
-    'COMPARISON',
-    'COMMA',
-    'OPENSQBRACKET',
-    'CLOSESQBRACKET',
-    'OPENBRACKET',
-    'CLOSEBRACKET',
-    'SEMICOLON',
-    'NOT',
-    'LOGICAL',
     'ASSIGNMENT',
+    'CLOSEBRACKET',
+    'CLOSESQBRACKET',
     'COLON',
-    'QSTRING',
+    'COMMA',
+    'COMPARISON',
+    'DOT',
     'DQSTRING',
+    'EOL',
+    'LASTINDEX',
+    'LOGICAL',
+    'NOT',
+    'NUMBER',
+    'OPENBRACKET',
+    'OPENSQBRACKET',
+    'OPERATOR',
     'PREVAR',
+    'QSTRING',
+    'SEMICOLON',
     'TRANSPOSE',
+    'VAR',
 ] + list(syntaxtokens.values()) + list(set(predefinedvariables.values()))
 
 states = (
