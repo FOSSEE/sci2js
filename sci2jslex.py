@@ -293,17 +293,18 @@ def t_dqstring_error(t):
 
 lexer = lex.lex()
 
-if len(sys.argv) <= 1:
-    print("Usage: %s filename" % sys.argv[0])
-    sys.exit(1)
+if __name__ == '__main__':
+    if len(sys.argv) <= 1:
+        print("Usage: %s filename" % sys.argv[0])
+        sys.exit(1)
 
-filename = sys.argv[1]
-data = ''
-with open(filename, 'r') as infile:
-    for line in infile:
-        data += line
+    filename = sys.argv[1]
+    data = ''
+    with open(filename, 'r') as infile:
+        for line in infile:
+            data += line
 
-    lexer.input(data)
+        lexer.input(data)
 
-    for tok in lexer:
-        print(tok)
+        for tok in lexer:
+            print(tok)
