@@ -24,7 +24,7 @@ def p_statementblock_statement(p):
 def p_statement_assignment(p):
     '''statement : assignment EOL
                  | assignment SEMICOLON EOL'''
-    p[0] = str(p[1]) + str(p[2])
+    p[0] = str(p[1]) + str(p[2]) + '\n'
 
 def p_statement_eol(p):
     'statement : EOL'
@@ -44,20 +44,14 @@ def p_assignment_expression(p):
 
 def p_ltermarraylist_ltermarraylist_semicolon_var(p):
     '''ltermarraylist : ltermarraylist SEMICOLON VAR
-                     | ltermarraylist COMMA VAR'''
-    p[0] = str(p[1]) + ',' + str(p[3])
-
-def p_ltermarraylist_ltermarraylist_var(p):
-    'ltermarraylist : ltermarraylist VAR'
-    p[0] = str(p[1]) + ',' + str(p[2])
-
-def p_ltermarraylist_var_semicolon_var(p):
-    '''ltermarraylist : VAR SEMICOLON VAR
+                     | ltermarraylist COMMA VAR
+                     | VAR SEMICOLON VAR
                      | VAR COMMA VAR'''
     p[0] = str(p[1]) + ',' + str(p[3])
 
-def p_ltermarraylist_var_var(p):
-    'ltermarraylist : VAR VAR'
+def p_ltermarraylist_ltermarraylist_var(p):
+    '''ltermarraylist : ltermarraylist VAR
+                      | VAR VAR'''
     p[0] = str(p[1]) + ',' + str(p[2])
 
 # end define ltermarraylist
@@ -66,20 +60,14 @@ def p_ltermarraylist_var_var(p):
 
 def p_termarraylist_termarraylist_semicolon_expression(p):
     '''termarraylist : termarraylist SEMICOLON expression
-                     | termarraylist COMMA expression'''
-    p[0] = str(p[1]) + ',' + str(p[3])
-
-def p_termarraylist_termarraylist_expression(p):
-    'termarraylist : termarraylist expression'
-    p[0] = str(p[1]) + ',' + str(p[2])
-
-def p_termarraylist_expression_semicolon_expression(p):
-    '''termarraylist : expression SEMICOLON expression
+                     | termarraylist COMMA expression
+                     | expression SEMICOLON expression
                      | expression COMMA expression'''
     p[0] = str(p[1]) + ',' + str(p[3])
 
-def p_termarraylist_expression_expression(p):
-    'termarraylist : expression expression'
+def p_termarraylist_termarraylist_expression(p):
+    '''termarraylist : termarraylist expression
+                     | expression expression'''
     p[0] = str(p[1]) + ',' + str(p[2])
 
 # end define termarraylist
@@ -87,11 +75,8 @@ def p_termarraylist_expression_expression(p):
 # define list
 
 def p_list_list_expression(p):
-    'list : list COMMA expression'
-    p[0] = str(p[1]) + str(p[2]) + str(p[3])
-
-def p_list_expression_expression(p):
-    'list : expression COMMA expression'
+    '''list : list COMMA expression
+            | expression COMMA expression'''
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
 # end define list
