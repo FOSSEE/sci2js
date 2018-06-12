@@ -24,7 +24,7 @@ def p_statementblock_statement(p):
 def p_statement_assignment(p):
     '''statement : assignment EOL
                  | assignment SEMICOLON EOL'''
-    p[0] = str(p[1]) + str(p[2]) + '\n'
+    p[0] = str(p[1]) + '\n'
 
 def p_statement_eol(p):
     'statement : EOL'
@@ -115,7 +115,7 @@ def p_lterm_index(p):
 
 # [A,B,C]
 def p_lterm_ltermarraylist(p):
-    'term : OPENSQBRACKET ltermarraylist CLOSESQBRACKET'
+    'lterm : OPENSQBRACKET ltermarraylist CLOSESQBRACKET'
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
 def p_lterm_prevar(p):
@@ -140,6 +140,27 @@ def p_term_slice(p):
     '''term : VAR OPENBRACKET expression COLON expression CLOSEBRACKET
             | VAR OPENSQBRACKET expression COLON expression CLOSESQBRACKET'''
     p[0] = str(p[1]) + '[' + str(p[3]) + str(p[4]) + str(p[5]) + ']'
+
+# A[:3]
+# B(:$-1)
+def p_term_left_slice(p):
+    '''term : VAR OPENBRACKET COLON expression CLOSEBRACKET
+            | VAR OPENSQBRACKET COLON expression CLOSESQBRACKET'''
+    p[0] = str(p[1]) + '[' + str(p[3]) + str(p[4]) + ']'
+
+# A[1:]
+# B(2:)
+def p_term_right_slice(p):
+    '''term : VAR OPENBRACKET expression COLON CLOSEBRACKET
+            | VAR OPENSQBRACKET expression COLON CLOSESQBRACKET'''
+    p[0] = str(p[1]) + '[' + str(p[3]) + str(p[4]) + ']'
+
+# A[:]
+# B(:)
+def p_term_full_slice(p):
+    '''term : VAR OPENBRACKET COLON CLOSEBRACKET
+            | VAR OPENSQBRACKET COLON CLOSESQBRACKET'''
+    p[0] = str(p[1]) + '[' + str(p[3]) + ']'
 
 # A[3]
 # B($-2)
@@ -188,7 +209,10 @@ def p_term_lastindex(p):
 
 # %f
 def p_term_prevar(p):
-    'term : PREVAR'
+    '''term : PREVAR
+            | PREVAR_BOOLEAN
+            | PREVAR_COMPLEX
+            | PREVAR_FLOAT'''
     p[0] = str(p[1])
 
 # A.B
