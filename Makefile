@@ -15,4 +15,4 @@ $(JSDIRS):
 	mkdir -p $@
 
 yacc: macros/Sinks/CSCOPE.sci
-	./sci2jsyacc.py $<
+	./sci2jslex.py $< 2>&1 && ./sci2jsyacc.py $< 2>&1
