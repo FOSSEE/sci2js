@@ -29,7 +29,8 @@ def p_statementblock_statement(p):
 
 def p_statement_assignment(p):
     '''statement : assignment EOL
-                 | assignment SEMICOLON EOL'''
+                 | assignment SEMICOLON EOL
+                 | function EOL'''
     p[0] = str(p[1]) + '\n'
 
 def p_statement_eol(p):
@@ -89,6 +90,23 @@ def p_list_list_expression(p):
 
 # define expression
 
+# (2+3)
+def p_expression_expression(p):
+    'expression : OPENBRACKET expression CLOSEBRACKET'
+    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+
+# [2 3 4]
+# [2,3,4]
+# [2+1;3-1;4-1]
+def p_expression_termarraylist(p):
+    'expression : OPENSQBRACKET termarraylist CLOSESQBRACKET'
+    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+
+# []
+def p_expression_empty(p):
+    'expression : OPENSQBRACKET CLOSESQBRACKET'
+    p[0] = str(p[1]) + str(p[2])
+
 def p_expression_term_transpose(p):
     'expression : term TRANSPOSE'
     p[0] = 'transpose(' + str(p[1]) + ')'
@@ -110,6 +128,25 @@ def p_expression_term(p):
     p[0] = str(p[1])
 
 # end define expression
+
+# define function
+
+# C('function parameter')
+def p_function_function_parameter(p):
+    '''function : VAR OPENBRACKET expression CLOSEBRACKET'''
+    p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
+
+# A(2,3)
+def p_function_function_parameters(p):
+    '''function : VAR OPENBRACKET list CLOSEBRACKET'''
+    p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
+
+# A()
+def p_function_function(p):
+    '''function : VAR OPENBRACKET CLOSEBRACKET'''
+    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+
+# end define function
 
 # define lterm
 
@@ -178,6 +215,7 @@ def p_term_full_slice(p):
 
 # A[3]
 # B($-2)
+# C('function parameter')
 def p_term_index(p):
     '''term : VAR OPENBRACKET expression CLOSEBRACKET
             | VAR OPENSQBRACKET expression CLOSESQBRACKET'''
@@ -198,23 +236,6 @@ def p_term_function_parameters(p):
 def p_term_function(p):
     '''term : VAR OPENBRACKET CLOSEBRACKET'''
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
-
-# (2+3)
-def p_term_expression(p):
-    'term : OPENBRACKET expression CLOSEBRACKET'
-    p[0] = str(p[1]) + str(p[2]) + str(p[3])
-
-# [2 3 4]
-# [2,3,4]
-# [2;3;4]
-def p_term_termarraylist(p):
-    'term : OPENSQBRACKET termarraylist CLOSESQBRACKET'
-    p[0] = str(p[1]) + str(p[2]) + str(p[3])
-
-# []
-def p_term_termarraylist_empty(p):
-    'term : OPENSQBRACKET CLOSESQBRACKET'
-    p[0] = str(p[1]) + str(p[2])
 
 # $
 def p_term_lastindex(p):
