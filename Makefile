@@ -6,8 +6,12 @@ JSDIRS := $(sort $(dir $(JSFILES)))
 
 all: $(JSFILES)
 
-js/%.js: macros/%.sci sci2jslex.py
+js/%.js: macros/%.sci sci2jsyacc.py parsetab.py sci2jslex.py Makefile
 	./sci2jslex.py $< > $@
+
+parsetab.py: sci2jsyacc.py sci2jslex.py Makefile
+	@rm -f $@* parser.out
+	./sci2jsyacc.py /dev/null > /dev/null
 
 $(JSFILES): | $(JSDIRS)
 
@@ -16,3 +20,5 @@ $(JSDIRS):
 
 yacc: macros/Sinks/CSCOPE.sci
 	./sci2jslex.py $< 2>&1 && ./sci2jsyacc.py $< 2>&1
+
+.SECONDARY:

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 import sys
 import ply.yacc as yacc
@@ -51,9 +51,9 @@ def p_assignment_expression(p):
 
 def p_ltermarraylist_ltermarraylist_semicolon_var(p):
     '''ltermarraylist : ltermarraylist SEMICOLON VAR
-                     | ltermarraylist COMMA VAR
-                     | VAR SEMICOLON VAR
-                     | VAR COMMA VAR'''
+                      | ltermarraylist COMMA VAR
+                      | VAR SEMICOLON VAR
+                      | VAR COMMA VAR'''
     p[0] = str(p[1]) + ',' + str(p[3])
 
 def p_ltermarraylist_ltermarraylist_var(p):
@@ -137,17 +137,17 @@ def p_expression_term(p):
 
 # C('function parameter')
 def p_function_function_parameter(p):
-    '''function : VAR OPENBRACKET expression CLOSEBRACKET'''
+    'function : VAR OPENBRACKET expression CLOSEBRACKET'
     p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
 
 # A(2,3)
 def p_function_function_parameters(p):
-    '''function : VAR OPENBRACKET list CLOSEBRACKET'''
+    'function : VAR OPENBRACKET list CLOSEBRACKET'
     p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
 
 # A()
 def p_function_function(p):
-    '''function : VAR OPENBRACKET CLOSEBRACKET'''
+    'function : VAR OPENBRACKET CLOSEBRACKET'
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
 # end define function
@@ -158,13 +158,13 @@ def p_function_function(p):
 # B(2:$-1)
 def p_lterm_slice(p):
     '''lterm : VAR OPENBRACKET expression COLON expression CLOSEBRACKET
-            | VAR OPENSQBRACKET expression COLON expression CLOSESQBRACKET'''
+             | VAR OPENSQBRACKET expression COLON expression CLOSESQBRACKET'''
     addtoarray(p[1])
     p[0] = str(p[1]) + '[' + str(p[3]) + str(p[4]) + str(p[5]) + ']'
 
 def p_lterm_index(p):
     '''lterm : VAR OPENBRACKET expression CLOSEBRACKET
-            | VAR OPENSQBRACKET expression CLOSESQBRACKET'''
+             | VAR OPENSQBRACKET expression CLOSESQBRACKET'''
     addtoarray(p[1])
     p[0] = str(p[1]) + '[' + str(p[3]) + ']'
 
@@ -238,7 +238,8 @@ def p_term_function_parameters(p):
 
 # A()
 def p_term_function(p):
-    '''term : VAR OPENBRACKET CLOSEBRACKET'''
+    '''term : VAR OPENBRACKET CLOSEBRACKET
+            | SCICOS_MODEL OPENBRACKET CLOSEBRACKET'''
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
 # $
@@ -269,8 +270,8 @@ def p_term_var(p):
 # "abc"
 def p_term_constant(p):
     '''term : NUMBER
-          | QSTRING
-          | DQSTRING'''
+            | QSTRING
+            | DQSTRING'''
     p[0] = str(p[1])
 
 # end define term
@@ -292,18 +293,18 @@ def isfunction(s):
     return False
 
 if __name__ == '__main__':
-    parser = yacc.yacc()
-
     if len(sys.argv) <= 1:
         print("Usage: %s filename" % sys.argv[0])
         sys.exit(1)
 
     filename = sys.argv[1]
+
     data = ''
     with open(filename, 'r') as infile:
         for line in infile:
             data += line
 
+        parser = yacc.yacc()
         result = parser.parse(data)
 
         print(result)
