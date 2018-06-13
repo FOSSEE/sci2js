@@ -72,10 +72,14 @@ def p_termarraylist_termarraylist_semicolon_expression(p):
                      | expression COMMA expression'''
     p[0] = str(p[1]) + ',' + str(p[3])
 
-def p_termarraylist_termarraylist_expression(p):
+def p_termarraylist_termarraylist_term(p):
     '''termarraylist : termarraylist term
                      | term term'''
     p[0] = str(p[1]) + ',' + str(p[2])
+
+def p_termarraylist_addition_term_term(p):
+    'termarraylist : ADDITION term term'
+    p[0] = str(p[1]) + str(p[2]) + ',' + str(p[3])
 
 # end define termarraylist
 
