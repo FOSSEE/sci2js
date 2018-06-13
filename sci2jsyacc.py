@@ -5,6 +5,12 @@ import ply.yacc as yacc
 
 from sci2jslex import tokens
 
+precedence = (
+    ('left', 'ADDITION'),
+    ('left', 'MULTIPLICATION'),
+    ('right', 'UNARYADDITION'),
+)
+
 start = 'statementblock'
 
 # define statementblock
@@ -66,8 +72,8 @@ def p_termarraylist_termarraylist_semicolon_expression(p):
     p[0] = str(p[1]) + ',' + str(p[3])
 
 def p_termarraylist_termarraylist_expression(p):
-    '''termarraylist : termarraylist expression
-                     | expression expression'''
+    '''termarraylist : termarraylist term
+                     | term term'''
     p[0] = str(p[1]) + ',' + str(p[2])
 
 # end define termarraylist
@@ -87,9 +93,17 @@ def p_expression_term_transpose(p):
     'expression : term TRANSPOSE'
     p[0] = 'transpose(' + str(p[1]) + ')'
 
-def p_expression_operator_term(p):
-    'expression : expression OPERATOR term'
+def p_expression_expression_multiplication_expression(p):
+    'expression : expression MULTIPLICATION expression'
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
+
+def p_expression_expression_addition_expression(p):
+    'expression : expression ADDITION expression'
+    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+
+def p_expression_addition_term(p):
+    'expression : ADDITION term %prec UNARYADDITION'
+    p[0] = str(p[1]) + str(p[2])
 
 def p_expression_term(p):
     'expression : term'

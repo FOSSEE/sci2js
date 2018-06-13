@@ -64,7 +64,8 @@ tokens = [
     'NUMBER',
     'OPENBRACKET',
     'OPENSQBRACKET',
-    'OPERATOR',
+    'MULTIPLICATION',
+    'ADDITION',
     'PREVAR',
     'QSTRING',
     'SEMICOLON',
@@ -86,7 +87,7 @@ def t_COMMENT(t):
     pass
 
 def t_NUMBER(t):
-    r'-?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
+    r'(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
     global afterarray
     afterarray = False
     t.state = 'NUMBER'
@@ -135,11 +136,18 @@ def t_DOT(t):
     t.state = 'DOT'
     return t
 
-def t_OPERATOR(t):
-    r'[+\-*/^\\]'
+def t_MULTIPLICATION(t):
+    r'[*/^\\]'
     global afterarray
     afterarray = False
-    t.state = 'OPERATOR'
+    t.state = 'MULTIPLICATION'
+    return t
+
+def t_ADDITION(t):
+    r'[+\-]'
+    global afterarray
+    afterarray = False
+    t.state = 'ADDITION'
     return t
 
 def t_COMMA(t):
