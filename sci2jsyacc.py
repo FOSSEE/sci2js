@@ -6,8 +6,11 @@ import ply.yacc as yacc
 from sci2jslex import tokens
 
 precedence = (
+    ('left', 'LOGICAL'),
+    ('left', 'COMPARISON'),
     ('left', 'ADDITION'),
     ('left', 'MULTIPLICATION'),
+    ('right', 'NOT'),
     ('right', 'UNARYADDITION'),
 )
 
@@ -45,6 +48,10 @@ def p_statement_assignment(p):
                  | assignment SEMICOLON EOL
                  | function EOL'''
     p[0] = str(p[1]) + '\n'
+
+def p_statement_if(p):
+    'statement : IF expression THEN EOL statementblock END EOL'
+    p[0] = 'if (' + p[2] + ') {\n' + p[5] + '}\n'
 
 def p_statement_eol(p):
     'statement : EOL'
@@ -136,9 +143,29 @@ def p_expression_expression_addition_expression(p):
     'expression : expression ADDITION expression'
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
+def p_expression_expression_comparison_expression(p):
+    'expression : expression COMPARISON expression'
+    o = p[2]
+    if (o == '<>' or o == '~='):
+        o = '!='
+    p[0] = str(p[1]) + o + str(p[3])
+
+def p_expression_expression_logical_expression(p):
+    'expression : expression LOGICAL expression'
+    o = p[2]
+    if (o == '&'):
+        o = '&&'
+    elif (o == '|'):
+        o = '||'
+    p[0] = str(p[1]) + o + str(p[3])
+
 def p_expression_addition_term(p):
     'expression : ADDITION term %prec UNARYADDITION'
     p[0] = str(p[1]) + str(p[2])
+
+def p_expression_not_expression(p):
+    'expression : NOT expression'
+    p[0] = '!' + str(p[2])
 
 def p_expression_term(p):
     'expression : term'
