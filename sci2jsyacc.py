@@ -19,7 +19,7 @@ start = 'functionblock'
 # define functionblock
 
 def p_functionblock_function_statementblock_endfunction(p):
-    'functionblock : emptystatementblock FUNCTION lterm ASSIGNMENT VAR OPENBRACKET list CLOSEBRACKET EOL statementblock ENDFUNCTION EOL'
+    'functionblock : emptystatementblock FUNCTION lterm ASSIGNMENT VAR OPENBRACKET list CLOSEBRACKET EOL statementblock ENDFUNCTION emptystatementblock'
     p[0] = str(p[5])
 
 # end define functionblock
@@ -45,6 +45,7 @@ def p_emptystatementblock_eol(p):
 
 def p_statement_assignment(p):
     '''statement : assignment EOL
+                 | assignment SEMICOLON
                  | function EOL'''
     p[0] = str(p[1]) + '\n'
 
@@ -163,15 +164,16 @@ def p_assignment_expression(p):
 
 def p_ltermarraylist_ltermarraylist_semicolon_var(p):
     '''ltermarraylist : ltermarraylist SEMICOLON VAR
-                      | ltermarraylist COMMA VAR
-                      | VAR SEMICOLON VAR
-                      | VAR COMMA VAR'''
+                      | ltermarraylist COMMA VAR'''
     p[0] = str(p[1]) + ',' + str(p[3])
 
 def p_ltermarraylist_ltermarraylist_var(p):
-    '''ltermarraylist : ltermarraylist VAR
-                      | VAR VAR'''
+    'ltermarraylist : ltermarraylist VAR'
     p[0] = str(p[1]) + ',' + str(p[2])
+
+def p_ltermarraylist_var(p):
+    'ltermarraylist : VAR'
+    p[0] = str(p[1])
 
 # end define ltermarraylist
 
@@ -377,6 +379,11 @@ def p_term_index(p):
         p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
 
 # A(2,3)
+def p_term_part_parameters(p):
+    'term : PART OPENBRACKET expression COMMA expression COLON expression CLOSEBRACKET'
+    p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + ',' + p[7] + p[8]
+
+# A(2,3)
 def p_term_function_parameters(p):
     '''term : termvar OPENBRACKET list CLOSEBRACKET
             | SCICOS_GETVALUE OPENBRACKET list CLOSEBRACKET'''
@@ -401,7 +408,6 @@ def p_term_prevar(p):
             | PREVAR_FLOAT'''
     p[0] = str(p[1])
 
-# A
 def p_term_termvar(p):
     'term : termvar'
     p[0] = str(p[1])

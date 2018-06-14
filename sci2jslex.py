@@ -23,6 +23,7 @@ syntaxtokens = {
     'for': 'FOR',
     'function': 'FUNCTION',
     'if': 'IF',
+    'part': 'PART',
     'resume': 'RESUME',
     'return': 'RETURN',
     'scicos': 'SCICOS',
@@ -259,14 +260,14 @@ def t_TRANSPOSE(t):
     if afterarray:
         afterarray = False
         return t
-    t.lexer.begin('qstring')
+    t.lexer.push_state('qstring')
     qstring = t.value
 
 def t_begin_dqstring(t):
     r'"'
     global afterarray, dqstring
     afterarray = False
-    t.lexer.begin('dqstring')
+    t.lexer.push_state('dqstring')
     dqstring = t.value
 
 def t_qstring_COMMENT(t):
@@ -300,7 +301,7 @@ def t_dqstring_quote(t):
 def t_qstring_end(t):
     r"'"
     global qstring
-    t.lexer.begin('INITIAL')
+    t.lexer.pop_state()
     qstring += t.value
     t.type = 'QSTRING'
     t.value = qstring
@@ -309,7 +310,7 @@ def t_qstring_end(t):
 def t_dqstring_end(t):
     r'"'
     global dqstring
-    t.lexer.begin('INITIAL')
+    t.lexer.pop_state()
     dqstring += t.value
     t.type = 'DQSTRING'
     t.value = dqstring
