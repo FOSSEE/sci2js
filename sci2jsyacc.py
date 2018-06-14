@@ -49,6 +49,18 @@ def p_statement_assignment(p):
                  | function EOL'''
     p[0] = str(p[1]) + '\n'
 
+def p_statement_resume(p):
+    'statement : lterm ASSIGNMENT RESUME OPENBRACKET expression CLOSEBRACKET EOL'
+    p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6] + p[7]
+
+def p_statement_where(p):
+    'statement : lterm ASSIGNMENT WHERE OPENBRACKET CLOSEBRACKET EOL'
+    p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
+
+def p_statement_forstatement_forstatementblock(p):
+    'statement : forstatementblock END EOL'
+    p[0] = p[1] + '}\n'
+
 def p_statement_selectstatement_selectstatement_casestatementblock(p):
     'statement : selectstatement casestatementblock END EOL'
     p[0] = p[1] + p[2] + '}\n'
@@ -87,7 +99,11 @@ def p_statement_eol(p):
 
 # end define statement
 
-# define case, while, if, elseif, else statement block
+# define for, case, while, if, elseif, else statement block
+
+def p_forstatementblock_forstatement(p):
+    'forstatementblock : forstatement statementblock'
+    p[0] = p[1] + p[2]
 
 def p_casestatementblock_casestatementblock_casestatement(p):
     'casestatementblock : casestatementblock casestatement statementblock'
@@ -117,9 +133,41 @@ def p_elsestatementblock_elsestatement(p):
     'elsestatementblock : elsestatement statementblock'
     p[0] = p[1] + p[2]
 
-# end define case, if, elseif, else statement block
+# end define for, case, if, elseif, else statement block
 
-# define select, case, while, if, elseif, else
+# define for, select, case, while, if, elseif, else
+
+def p_forstatement_for_start_step_end(p):
+    '''forstatement : FOR VAR ASSIGNMENT expression COLON expression COLON expression EOL
+                    | FOR VAR ASSIGNMENT expression COLON expression COLON expression DO EOL'''
+    var = p[2]
+    start = p[4]
+    step = int(p[6])
+    end = p[8]
+    if step > 0:
+        endop = '<='
+        stepop = '+='
+    else:
+        endop = '>='
+        stepop = '-='
+    p[0] = p[1] + '(' + var + p[3] + start + ';' + var + endop + end + ';' + var + stepop + str(step) + ') {'
+
+def p_forstatement_for_start_end(p):
+    '''forstatement : FOR VAR ASSIGNMENT expression COLON expression EOL
+                    | FOR VAR ASSIGNMENT expression COLON expression DO EOL'''
+    var = p[2]
+    start = p[4]
+    step = 1
+    end = p[6]
+    endop = '<='
+    stepop = '+='
+    p[0] = p[1] + '(' + var + p[3] + start + ';' + var + endop + end + ';' + var + stepop + str(step) + ') {'
+
+def p_forstatement_for_list(p):
+    '''forstatement : FOR VAR ASSIGNMENT VAR EOL
+                    | FOR VAR ASSIGNMENT VAR DO EOL'''
+    var = p[2]
+    p[0] = p[1] + '(' + var + ' in ' + p[4] + ') {'
 
 def p_selectstatement_select(p):
     'selectstatement : SELECT expression emptystatementblock'
@@ -150,7 +198,7 @@ def p_elsestatement_else(p):
     '''elsestatement : ELSE EOL'''
     p[0] = '} else {\n'
 
-# end define select, case, while, if, elseif, else
+# end define for, select, case, while, if, elseif, else
 
 # define assignment
 
