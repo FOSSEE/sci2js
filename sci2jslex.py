@@ -90,7 +90,6 @@ def t_NUMBER(t):
     r'(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
     global afterarray
     afterarray = False
-    t.state = 'NUMBER'
     return t
 
 def t_PREVAR(t):
@@ -111,14 +110,12 @@ def t_COMPARISON(t):
     r'<>|[<>~=]=|[<>]'
     global afterarray
     afterarray = False
-    t.state = 'COMPARISON'
     return t
 
 def t_LASTINDEX(t):
     r'\$'
     global afterarray
     afterarray = False
-    t.state = 'LASTINDEX'
     return t
 
 def t_EOL(t):
@@ -126,35 +123,43 @@ def t_EOL(t):
     global afterarray, brackets
     if brackets == 0:
         afterarray = False
-        t.state = 'EOL'
         return t
 
 def t_DOT(t):
     r'\.'
     global afterarray
     afterarray = False
-    t.state = 'DOT'
     return t
 
 def t_MULTIPLICATION(t):
     r'[*/^\\]'
     global afterarray
     afterarray = False
-    t.state = 'MULTIPLICATION'
     return t
 
 def t_ADDITION(t):
     r'[+\-]'
     global afterarray
     afterarray = False
-    t.state = 'ADDITION'
+    return t
+
+def t_COMMA_EOL(t):
+    r',\n'
+    global afterarray, brackets
+    if brackets == 0:
+        afterarray = False
+        t.type = 'EOL'
+        t.value = '\n'
+        return t
+
+    afterarray = False
+    t.type = 'COMMA'
     return t
 
 def t_COMMA(t):
     r','
     global afterarray
     afterarray = False
-    t.state = 'COMMA'
     return t
 
 def t_OPENSQBRACKET(t):
@@ -162,7 +167,6 @@ def t_OPENSQBRACKET(t):
     global afterarray, brackets
     afterarray = False
     brackets += 1
-    t.state = 'OPENSQBRACKET'
     return t
 
 def t_CLOSESQBRACKET(t):
@@ -170,7 +174,6 @@ def t_CLOSESQBRACKET(t):
     global afterarray, brackets
     afterarray = True
     brackets -= 1
-    t.state = 'CLOSESQBRACKET'
     return t
 
 def t_OPENBRACKET(t):
@@ -178,7 +181,6 @@ def t_OPENBRACKET(t):
     global afterarray, brackets
     afterarray = False
     brackets += 1
-    t.state = 'OPENBRACKET'
     return t
 
 def t_CLOSEBRACKET(t):
@@ -186,42 +188,49 @@ def t_CLOSEBRACKET(t):
     global afterarray, brackets
     afterarray = True
     brackets -= 1
-    t.state = 'CLOSEBRACKET'
+    return t
+
+def t_SEMICOLON_EOL(t):
+    r';\n'
+    global afterarray, brackets
+    if brackets == 0:
+        afterarray = False
+        t.type = 'EOL'
+        t.value = '\n'
+        return t
+
+    afterarray = False
+    t.type = 'SEMICOLON'
     return t
 
 def t_SEMICOLON(t):
     r';'
     global afterarray
     afterarray = False
-    t.state = 'SEMICOLON'
     return t
 
 def t_NOT(t):
     r'~'
     global afterarray
     afterarray = False
-    t.state = 'NOT'
     return t
 
 def t_LOGICAL(t):
     r'[&|]'
     global afterarray
     afterarray = False
-    t.state = 'LOGICAL'
     return t
 
 def t_ASSIGNMENT(t):
     r'='
     global afterarray
     afterarray = False
-    t.state = 'ASSIGNMENT'
     return t
 
 def t_COLON(t):
     r':'
     global afterarray
     afterarray = False
-    t.state = 'COLON'
     return t
 
 def t_error(t):
@@ -233,7 +242,6 @@ def t_TRANSPOSE(t):
     global afterarray, qstring
     if afterarray:
         afterarray = False
-        t.state = 'TRANSPOSE'
         return t
     t.lexer.begin('qstring')
     qstring = t.value

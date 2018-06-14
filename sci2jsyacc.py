@@ -45,7 +45,6 @@ def p_emptystatementblock_eol(p):
 
 def p_statement_assignment(p):
     '''statement : assignment EOL
-                 | assignment SEMICOLON EOL
                  | function EOL'''
     p[0] = str(p[1]) + '\n'
 
@@ -78,8 +77,7 @@ def p_statement_ifstatement_ifstatementblock_elseifstatementblock_elsestatementb
     p[0] = p[1] + p[2] + p[3] + '}\n'
 
 def p_statement_break(p):
-    '''statement : BREAK EOL
-                 | BREAK COMMA EOL'''
+    'statement : BREAK EOL'
     p[0] = str(p[1]) + '\n'
 
 def p_statement_eol(p):
@@ -123,8 +121,7 @@ def p_elsestatementblock_elsestatement(p):
 # define select, case, while, if, elseif, else
 
 def p_selectstatement_select(p):
-    '''selectstatement : SELECT expression EOL
-                       | SELECT expression COMMA EOL'''
+    'selectstatement : SELECT expression EOL'
     p[0] = 'switch (' + p[2] + ') {\n'
 
 def p_casestatement_case(p):
