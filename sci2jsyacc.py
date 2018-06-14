@@ -49,6 +49,10 @@ def p_statement_assignment(p):
                  | function EOL'''
     p[0] = str(p[1]) + '\n'
 
+def p_statement_selectstatement_selectstatement_casestatementblock(p):
+    'statement : selectstatement casestatementblock END EOL'
+    p[0] = p[1] + p[2] + '}\n'
+
 def p_statement_whilestatement_whilestatementblock(p):
     'statement : whilestatementblock END EOL'
     p[0] = p[1] + '}\n'
@@ -84,7 +88,15 @@ def p_statement_eol(p):
 
 # end define statement
 
-# define while, if, elseif, else statement block
+# define case, while, if, elseif, else statement block
+
+def p_casestatementblock_casestatementblock_casestatement(p):
+    'casestatementblock : casestatementblock casestatement statementblock'
+    p[0] = p[1] + p[2] + p[3]
+
+def p_casestatementblock_casestatement(p):
+    'casestatementblock : casestatement statementblock'
+    p[0] = p[1] + p[2]
 
 def p_whilestatementblock_whilestatement(p):
     'whilestatementblock : whilestatement statementblock'
@@ -106,9 +118,20 @@ def p_elsestatementblock_elsestatement(p):
     'elsestatementblock : elsestatement statementblock'
     p[0] = p[1] + p[2]
 
-# end define if, elseif, else statement block
+# end define case, if, elseif, else statement block
 
-# define while, if, elseif, else
+# define select, case, while, if, elseif, else
+
+def p_selectstatement_select(p):
+    '''selectstatement : SELECT expression EOL
+                       | SELECT expression COMMA EOL'''
+    p[0] = 'switch (' + p[2] + ') {\n'
+
+def p_casestatement_case(p):
+    '''casestatement : CASE expression THEN EOL
+                       | CASE expression EOL
+                       | CASE expression THEN COMMA'''
+    p[0] = 'case ' + p[2] + ':\n'
 
 def p_whilestatement_while_do(p):
     '''whilestatement : WHILE expression DO EOL
@@ -128,7 +151,7 @@ def p_elsestatement_else(p):
     '''elsestatement : ELSE EOL'''
     p[0] = '} else {\n'
 
-# end define while, if, elseif, else
+# end define select, case, while, if, elseif, else
 
 # define assignment
 
