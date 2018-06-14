@@ -49,18 +49,29 @@ def p_statement_assignment(p):
                  | function EOL'''
     p[0] = str(p[1]) + '\n'
 
-def p_statement_while_do(p):
-    '''statement : WHILE expression DO EOL statementblock END EOL
-                 | WHILE expression THEN EOL statementblock END EOL'''
-    p[0] = 'while (' + p[2] + ') {\n' + p[5] + '}\n'
+def p_statement_whilestatement_whilestatementblock(p):
+    'statement : whilestatementblock END EOL'
+    p[0] = p[1] + '}\n'
 
-def p_statement_while(p):
-    'statement : WHILE expression EOL statementblock END EOL'
-    p[0] = 'while (' + p[2] + ') {\n' + p[4] + '}\n'
+def p_statement_whilestatement_whilestatementblock_elsestatementblock(p):
+    'statement : whilestatementblock elsestatementblock END EOL'
+    p[0] = p[1] + p[2] + p[3] + '}\n'
 
-def p_statement_if(p):
-    'statement : IF expression THEN EOL statementblock END EOL'
-    p[0] = 'if (' + p[2] + ') {\n' + p[5] + '}\n'
+def p_statement_ifstatement_ifstatementblock(p):
+    'statement : ifstatementblock END EOL'
+    p[0] = p[1] + '}\n'
+
+def p_statement_ifstatement_ifstatementblock_elsestatementblock(p):
+    'statement : ifstatementblock elsestatementblock END EOL'
+    p[0] = p[1] + p[2] + '}\n'
+
+def p_statement_ifstatement_ifstatementblock_elseifstatementblock(p):
+    'statement : ifstatementblock elseifstatementblock END EOL'
+    p[0] = p[1] + p[2] + '}\n'
+
+def p_statement_ifstatement_ifstatementblock_elseifstatementblock_elsestatementblock(p):
+    'statement : ifstatementblock elseifstatementblock elsestatementblock END EOL'
+    p[0] = p[1] + p[2] + p[3] + '}\n'
 
 def p_statement_break(p):
     '''statement : BREAK EOL
@@ -72,6 +83,52 @@ def p_statement_eol(p):
     p[0] = ''
 
 # end define statement
+
+# define while, if, elseif, else statement block
+
+def p_whilestatementblock_whilestatement(p):
+    'whilestatementblock : whilestatement statementblock'
+    p[0] = p[1] + p[2]
+
+def p_ifstatementblock_ifstatement(p):
+    'ifstatementblock : ifstatement statementblock'
+    p[0] = p[1] + p[2]
+
+def p_elseifstatementblock_elseifstatementblock_elseifstatement(p):
+    'elseifstatementblock : elseifstatementblock elseifstatement statementblock'
+    p[0] = p[1] + p[2] + p[3]
+
+def p_elseifstatementblock_elseifstatement(p):
+    'elseifstatementblock : elseifstatement statementblock'
+    p[0] = p[1] + p[2]
+
+def p_elsestatementblock_elsestatement(p):
+    'elsestatementblock : elsestatement statementblock'
+    p[0] = p[1] + p[2]
+
+# end define if, elseif, else statement block
+
+# define while, if, elseif, else
+
+def p_whilestatement_while_do(p):
+    '''whilestatement : WHILE expression DO EOL
+                      | WHILE expression THEN EOL
+                      | WHILE expression EOL'''
+    p[0] = 'while (' + p[2] + ') {\n'
+
+def p_ifstatement_if_then(p):
+    '''ifstatement : IF expression THEN EOL'''
+    p[0] = 'if (' + p[2] + ') {\n'
+
+def p_elseifstatement_elseif_then(p):
+    '''elseifstatement : ELSEIF expression THEN EOL'''
+    p[0] = '} else if (' + p[2] + ') {\n'
+
+def p_elsestatement_else(p):
+    '''elsestatement : ELSE EOL'''
+    p[0] = '} else {\n'
+
+# end define while, if, elseif, else
 
 # define assignment
 
