@@ -217,6 +217,14 @@ def p_expression_termarraylist(p):
     'expression : OPENSQBRACKET termarraylist CLOSESQBRACKET'
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
+def p_expression_sqbracket_addition_term_sqbracket(p):
+    'expression : OPENSQBRACKET ADDITION term CLOSESQBRACKET'
+    p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
+
+def p_expression_sqbracket_term_sqbracket(p):
+    'expression : OPENSQBRACKET term CLOSESQBRACKET'
+    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+
 # []
 def p_expression_empty(p):
     'expression : OPENSQBRACKET CLOSESQBRACKET'
