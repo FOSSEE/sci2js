@@ -63,7 +63,8 @@ def p_statement_if(p):
     p[0] = 'if (' + p[2] + ') {\n' + p[5] + '}\n'
 
 def p_statement_break(p):
-    'statement : BREAK EOL'
+    '''statement : BREAK EOL
+                 | BREAK COMMA EOL'''
     p[0] = str(p[1]) + '\n'
 
 def p_statement_eol(p):
