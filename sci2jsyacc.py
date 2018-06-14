@@ -49,9 +49,22 @@ def p_statement_assignment(p):
                  | function EOL'''
     p[0] = str(p[1]) + '\n'
 
+def p_statement_while_do(p):
+    '''statement : WHILE expression DO EOL statementblock END EOL
+                 | WHILE expression THEN EOL statementblock END EOL'''
+    p[0] = 'while (' + p[2] + ') {\n' + p[5] + '}\n'
+
+def p_statement_while(p):
+    'statement : WHILE expression EOL statementblock END EOL'
+    p[0] = 'while (' + p[2] + ') {\n' + p[4] + '}\n'
+
 def p_statement_if(p):
     'statement : IF expression THEN EOL statementblock END EOL'
     p[0] = 'if (' + p[2] + ') {\n' + p[5] + '}\n'
+
+def p_statement_break(p):
+    'statement : BREAK EOL'
+    p[0] = str(p[1]) + '\n'
 
 def p_statement_eol(p):
     'statement : EOL'
