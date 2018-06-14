@@ -121,7 +121,7 @@ def p_elsestatementblock_elsestatement(p):
 # define select, case, while, if, elseif, else
 
 def p_selectstatement_select(p):
-    'selectstatement : SELECT expression EOL'
+    'selectstatement : SELECT expression emptystatementblock'
     p[0] = 'switch (' + p[2] + ') {\n'
 
 def p_casestatement_case(p):
@@ -137,7 +137,8 @@ def p_whilestatement_while_do(p):
     p[0] = 'while (' + p[2] + ') {\n'
 
 def p_ifstatement_if_then(p):
-    '''ifstatement : IF expression THEN EOL'''
+    '''ifstatement : IF expression THEN EOL
+                   | IF expression EOL'''
     p[0] = 'if (' + p[2] + ') {\n'
 
 def p_elseifstatement_elseif_then(p):
@@ -214,7 +215,9 @@ def p_expression_expression(p):
 # [2,3,4]
 # [2+1;3-1;4-1]
 def p_expression_termarraylist(p):
-    'expression : OPENSQBRACKET termarraylist CLOSESQBRACKET'
+    '''expression : OPENSQBRACKET termarraylist CLOSESQBRACKET
+                  | OPENSQBRACKET termarraylist SEMICOLON CLOSESQBRACKET
+                  | OPENSQBRACKET termarraylist COMMA CLOSESQBRACKET'''
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
 def p_expression_sqbracket_addition_term_sqbracket(p):
@@ -276,17 +279,17 @@ def p_expression_term(p):
 
 # C('function parameter')
 def p_function_function_parameter(p):
-    'function : VAR OPENBRACKET expression CLOSEBRACKET'
+    'function : ltermvar OPENBRACKET expression CLOSEBRACKET'
     p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
 
 # A(2,3)
 def p_function_function_parameters(p):
-    'function : VAR OPENBRACKET list CLOSEBRACKET'
+    'function : ltermvar OPENBRACKET list CLOSEBRACKET'
     p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
 
 # A()
 def p_function_function(p):
-    'function : VAR OPENBRACKET CLOSEBRACKET'
+    'function : ltermvar OPENBRACKET CLOSEBRACKET'
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
 # end define function
@@ -296,14 +299,14 @@ def p_function_function(p):
 # A[1:3]
 # B(2:$-1)
 def p_lterm_slice(p):
-    '''lterm : VAR OPENBRACKET expression COLON expression CLOSEBRACKET
-             | VAR OPENSQBRACKET expression COLON expression CLOSESQBRACKET'''
+    '''lterm : ltermvar OPENBRACKET expression COLON expression CLOSEBRACKET
+             | ltermvar OPENSQBRACKET expression COLON expression CLOSESQBRACKET'''
     addtoarray(p[1])
     p[0] = str(p[1]) + '[' + str(p[3]) + str(p[4]) + str(p[5]) + ']'
 
 def p_lterm_index(p):
-    '''lterm : VAR OPENBRACKET expression CLOSEBRACKET
-             | VAR OPENSQBRACKET expression CLOSESQBRACKET'''
+    '''lterm : ltermvar OPENBRACKET expression CLOSEBRACKET
+             | ltermvar OPENSQBRACKET expression CLOSESQBRACKET'''
     addtoarray(p[1])
     p[0] = str(p[1]) + '[' + str(p[3]) + ']'
 
@@ -316,12 +319,16 @@ def p_lterm_prevar(p):
     'lterm : PREVAR'
     p[0] = str(p[1])
 
-def p_lterm_var_dot_var(p):
-    'lterm : VAR DOT VAR'
+def p_lterm_ltermvar(p):
+    'lterm : ltermvar'
+    p[0] = str(p[1])
+
+def p_ltermvar_ltermvar_dot_var(p):
+    'ltermvar : ltermvar DOT VAR'
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
-def p_lterm_var(p):
-    'lterm : VAR'
+def p_ltermvar_var(p):
+    'ltermvar : VAR'
     p[0] = str(p[1])
 
 # end define lterm
@@ -331,37 +338,37 @@ def p_lterm_var(p):
 # A[1:3]
 # B(2:$-1)
 def p_term_slice(p):
-    '''term : VAR OPENBRACKET expression COLON expression CLOSEBRACKET
-            | VAR OPENSQBRACKET expression COLON expression CLOSESQBRACKET'''
+    '''term : termvar OPENBRACKET expression COLON expression CLOSEBRACKET
+            | termvar OPENSQBRACKET expression COLON expression CLOSESQBRACKET'''
     p[0] = str(p[1]) + '[' + str(p[3]) + str(p[4]) + str(p[5]) + ']'
 
 # A[:3]
 # B(:$-1)
 def p_term_left_slice(p):
-    '''term : VAR OPENBRACKET COLON expression CLOSEBRACKET
-            | VAR OPENSQBRACKET COLON expression CLOSESQBRACKET'''
+    '''term : termvar OPENBRACKET COLON expression CLOSEBRACKET
+            | termvar OPENSQBRACKET COLON expression CLOSESQBRACKET'''
     p[0] = str(p[1]) + '[' + str(p[3]) + str(p[4]) + ']'
 
 # A[1:]
 # B(2:)
 def p_term_right_slice(p):
-    '''term : VAR OPENBRACKET expression COLON CLOSEBRACKET
-            | VAR OPENSQBRACKET expression COLON CLOSESQBRACKET'''
+    '''term : termvar OPENBRACKET expression COLON CLOSEBRACKET
+            | termvar OPENSQBRACKET expression COLON CLOSESQBRACKET'''
     p[0] = str(p[1]) + '[' + str(p[3]) + str(p[4]) + ']'
 
 # A[:]
 # B(:)
 def p_term_full_slice(p):
-    '''term : VAR OPENBRACKET COLON CLOSEBRACKET
-            | VAR OPENSQBRACKET COLON CLOSESQBRACKET'''
+    '''term : termvar OPENBRACKET COLON CLOSEBRACKET
+            | termvar OPENSQBRACKET COLON CLOSESQBRACKET'''
     p[0] = str(p[1]) + '[' + str(p[3]) + ']'
 
 # A[3]
 # B($-2)
 # C('function parameter')
 def p_term_index(p):
-    '''term : VAR OPENBRACKET expression CLOSEBRACKET
-            | VAR OPENSQBRACKET expression CLOSESQBRACKET'''
+    '''term : termvar OPENBRACKET expression CLOSEBRACKET
+            | termvar OPENSQBRACKET expression CLOSESQBRACKET'''
     if isarray(p[1]):
         p[0] = str(p[1]) + '[' + str(p[3]) + ']'
     elif isfunction(p[1]):
@@ -371,13 +378,13 @@ def p_term_index(p):
 
 # A(2,3)
 def p_term_function_parameters(p):
-    '''term : VAR OPENBRACKET list CLOSEBRACKET
+    '''term : termvar OPENBRACKET list CLOSEBRACKET
             | SCICOS_GETVALUE OPENBRACKET list CLOSEBRACKET'''
     p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
 
 # A()
 def p_term_function(p):
-    '''term : VAR OPENBRACKET CLOSEBRACKET
+    '''term : termvar OPENBRACKET CLOSEBRACKET
             | SCICOS_MODEL OPENBRACKET CLOSEBRACKET'''
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
@@ -394,14 +401,19 @@ def p_term_prevar(p):
             | PREVAR_FLOAT'''
     p[0] = str(p[1])
 
+# A
+def p_term_termvar(p):
+    'term : termvar'
+    p[0] = str(p[1])
+
 # A.B
-def p_term_var_dot_var(p):
-    'term : VAR DOT VAR'
+def p_termvar_termvar_dot_var(p):
+    'termvar : termvar DOT VAR'
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
 # A
-def p_term_var(p):
-    'term : VAR'
+def p_termvar_var(p):
+    'termvar : VAR'
     p[0] = str(p[1])
 
 # 3.4
