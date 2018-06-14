@@ -82,6 +82,22 @@ t_ignore = ' \t'
 t_qstring_ignore = ''
 t_dqstring_ignore = ''
 
+def t_COMMA_COMMENT(t):
+    r',[ \t]*//.*'
+    global afterarray, brackets
+    if brackets != 0:
+        afterarray = False
+        t.type = 'COMMA'
+        return t
+
+def t_SEMICOLON_COMMENT(t):
+    r';[ \t]*//.*'
+    global afterarray, brackets
+    if brackets != 0:
+        afterarray = False
+        t.type = 'SEMICOLON'
+        return t
+
 def t_COMMENT(t):
     r'\.\.+[ \t]*(//.*)?(\n|$)|//.*'
     pass
