@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+from __future__ import print_function
+
 import ply.lex as lex
 import sys
 
@@ -23,6 +25,8 @@ syntaxtokens = {
     'for': 'FOR',
     'function': 'FUNCTION',
     'if': 'IF',
+    'in': 'IN',
+    'job': 'JOB',
     'part': 'PART',
     'resume': 'RESUME',
     'return': 'RETURN',
@@ -251,7 +255,7 @@ def t_COLON(t):
     return t
 
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
+    print("Illegal character '", t.value[0], "'", sep='')
     t.lexer.skip(1)
 
 def t_TRANSPOSE(t):
@@ -317,18 +321,18 @@ def t_dqstring_end(t):
     return t
 
 def t_qstring_error(t):
-    print("Illegal character '%s' in qstring" % t.value[0])
+    print("Illegal character '", t.value[0], "' in qstring", sep='')
     t.lexer.skip(1)
 
 def t_dqstring_error(t):
-    print("Illegal character '%s' in dqstring" % t.value[0])
+    print("Illegal character '", t.value[0], "' in dqstring", sep='')
     t.lexer.skip(1)
 
 lexer = lex.lex()
 
 if __name__ == '__main__':
     if len(sys.argv) <= 1:
-        print("Usage: %s filename" % sys.argv[0])
+        print('Usage:', sys.argv[0], 'filename')
         sys.exit(1)
 
     filename = sys.argv[1]
