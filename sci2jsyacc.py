@@ -11,7 +11,15 @@ precedence = (
     ('right', 'UNARYADDITION'),
 )
 
-start = 'statementblock'
+start = 'functionblock'
+
+# define functionblock
+
+def p_functionblock_function_statementblock_endfunction(p):
+    'functionblock : emptystatementblock FUNCTION lterm ASSIGNMENT VAR OPENBRACKET list CLOSEBRACKET EOL statementblock ENDFUNCTION EOL'
+    p[0] = str(p[5])
+
+# end define functionblock
 
 # define statementblock
 
@@ -21,6 +29,11 @@ def p_statementblock_statementblock_statement(p):
 
 def p_statementblock_statement(p):
     'statementblock : statement'
+    p[0] = str(p[1])
+
+def p_emptystatementblock_eol(p):
+    '''emptystatementblock : emptystatementblock EOL
+                           | EOL'''
     p[0] = str(p[1])
 
 # end define statementblock
@@ -35,7 +48,7 @@ def p_statement_assignment(p):
 
 def p_statement_eol(p):
     'statement : EOL'
-    pass
+    p[0] = ''
 
 # end define statement
 
