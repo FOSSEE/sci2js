@@ -22,7 +22,7 @@ ok=None;
 }
 it=typ;
 ot=typ;
-in1=[model.in,model.in2];
+in1=[model.in1,model.in2];
 out=[model.out,model.out2];
 funtyp=4;
 if (ok) {
@@ -40,7 +40,7 @@ break
 SQRT.prototype.define = function SQRT() {
 model=scicos_model();
 model.sim=list("mat_sqrt",4);
-model.in=-1;
+model.in1=-1;
 model.in2=-2;
 model.intyp=1;
 model.outtyp=1;

@@ -48,7 +48,7 @@ ok=None;
 }
 }
 model.ipar=[a,b,ma,mb];
-in1=[model.in,model.in2];
+in1=[model.in1,model.in2];
 out=[ma,mb];
 funtyp=4;
 if (ok) {
@@ -68,7 +68,7 @@ model=scicos_model();
 function_name="extract";
 funtyp=4;
 model.sim=list(function_name,funtyp);
-model.in=-1;
+model.in1=-1;
 model.in2=-2;
 model.intyp=1;
 model.out=1;

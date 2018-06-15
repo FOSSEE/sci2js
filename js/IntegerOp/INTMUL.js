@@ -8,14 +8,14 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,Datatype,np,exprs]=scicos_getvalue( [msprintf(gettext("Set %s block parameters"),"INTMUL")," ",gettext("Integer matrix multiplication")," "],[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)"),gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")],list("vec",1,"vec",1),exprs);
+[ok,Datatype,np,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"INTMUL")," ",gettext("Integer matrix multiplication")," "],[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)"),gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break
 }
 it=Datatype*ones(1,2);
 ot=Datatype;
 if ((np!=0&&np!=1&&np!=2)) {
-block_parameter_error(msprintf( gettext("Wrong value for \'%s\' parameter: %d."),gettext("Do on Overflow"),np),msprintf( gettext("Must be in the interval %s."),"[0, 2]"));
+block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Do on Overflow"),np),msprintf(gettext("Must be in the interval %s."),"[0, 2]"));
 ok=None;
 } else if (Datatype==3) {
 if (np==0) {
@@ -69,7 +69,7 @@ model.sim=list("matmul_ui8e",4);
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),ot),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
 ok=None;
 }
-in1=[model.in,model.in2];
+in1=[model.in1,model.in2];
 out=[model.out,model.out2];
 if (ok) {
 [model,graphics,ok]=set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
@@ -87,7 +87,7 @@ INTMUL.prototype.define = function INTMUL() {
 sgn=0;
 model=scicos_model();
 model.sim=list("matmul_i32",4);
-model.in=[-1,-2];
+model.in1=[-1,-2];
 model.out=-1;
 model.in2=[-2,-3];
 model.out2=-3;

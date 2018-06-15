@@ -27,7 +27,7 @@ in1=out;
 if (ok) {
 graphics.exprs=exprs;
 model.rpar=a;
-model.in=in1;
+model.in1=in1;
 model.out=out;
 x.graphics=graphics;
 x.model=model;
@@ -41,7 +41,7 @@ in1=1;
 exprs=[string(z),string(1)];
 model=scicos_model();
 model.sim="memo";
-model.in=in1;
+model.in1=in1;
 model.out=in1;
 model.evtin=1;
 model.dstate=0;

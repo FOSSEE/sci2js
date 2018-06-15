@@ -15,7 +15,7 @@ while (true) {
 if (!ok) {
 break
 }
-in1=[model.in,model.in2];
+in1=[model.in1,model.in2];
 out=[model.out,model.out2];
 it=[1,1,1];
 ot=1;
@@ -36,7 +36,7 @@ model=scicos_model();
 function_name="ricc_m";
 funtyp=4;
 model.sim=list(function_name,funtyp);
-model.in=[-1,-1,-1];
+model.in1=[-1,-1,-1];
 model.in2=[-1,-1,-1];
 model.intyp=[1,1,1];
 model.out=-1;

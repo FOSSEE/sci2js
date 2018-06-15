@@ -22,7 +22,7 @@ break
 }
 SineVoltage.prototype.define = function SineVoltage() {
 model=scicos_model();
-model.in=[1];
+model.in1=[1];
 model.out=[1];
 V=1;
 ph=0;

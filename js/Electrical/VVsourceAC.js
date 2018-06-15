@@ -22,7 +22,7 @@ break
 }
 VVsourceAC.prototype.define = function VVsourceAC() {
 model=scicos_model();
-model.in=[1,1];
+model.in1=[1,1];
 model.out=[1];
 VA=220;
 FR=50;

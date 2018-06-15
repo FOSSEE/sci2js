@@ -34,7 +34,7 @@ ipar=[length(fname1),_str2code(frmt1),N,swap,_str2code(fname1)];
 if (prod(size(dstate))!=(nin+1)*N+2) {
 dstate=[-1,lunit,zeros((nin+1)*N,1)];
 }
-model.in=1;
+model.in1=1;
 model.dstate=dstate;
 model.ipar=ipar;
 graphics.exprs=exprs;
@@ -54,7 +54,7 @@ lunit=0;
 N=2;
 model=scicos_model();
 model.sim=list("writeau",2);
-model.in=in1;
+model.in1=in1;
 model.evtin=1;
 model.dstate=[-1,lunit,zeros((nin+1)*N,1)];
 model.ipar=[length(fname),_str2code(frmt),N,swap,_str2code(fname)];

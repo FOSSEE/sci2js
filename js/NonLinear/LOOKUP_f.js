@@ -37,7 +37,7 @@ break
 LOOKUP_f.prototype.define = function LOOKUP_f() {
 model=scicos_model();
 model.sim="lookup";
-model.in=1;
+model.in1=1;
 model.out=1;
 model.rpar=[-2,-1,1,2,-1,1,-1,1];
 model.blocktype="c";

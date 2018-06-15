@@ -43,7 +43,7 @@ if (!ask_again) {
 graphics.exprs=exprs;
 model.state=[x0,xd0];
 model.out=[N,N];
-model.in=N;
+model.in1=N;
 model.ipar=id;
 x.graphics=graphics;
 x.model=model;
@@ -57,7 +57,7 @@ xd0=[0];
 id=[0];
 model=scicos_model();
 model.sim=list("constraint_c",10004);
-model.in=1;
+model.in1=1;
 model.out=[1,1];
 model.state=[x0,xd0];
 model.ipar=id;

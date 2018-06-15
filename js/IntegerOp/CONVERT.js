@@ -334,7 +334,7 @@ model.ipar=37;
 }
 }
 }
-in1=[model.in,model.in2];
+in1=[model.in1,model.in2];
 out=[model.out,model.out2];
 if (ok) {
 [model,graphics,ok]=set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
@@ -351,7 +351,7 @@ CONVERT.prototype.define = function CONVERT() {
 sgn=2;
 model=scicos_model();
 model.sim=list("convert",4);
-model.in=-1;
+model.in1=-1;
 model.out=-1;
 model.in2=-2;
 model.out2=-2;

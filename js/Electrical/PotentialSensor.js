@@ -7,7 +7,7 @@ x=arg1;
 }
 PotentialSensor.prototype.define = function PotentialSensor() {
 model=scicos_model();
-model.in=[1];
+model.in1=[1];
 model.out=[1];
 model.rpar=[];
 model.sim="PotentialSensor";

@@ -22,7 +22,7 @@ break
 }
 VanneReglante.prototype.define = function VanneReglante() {
 model=scicos_model();
-model.in=[1,1];
+model.in1=[1,1];
 model.out=[1];
 Cvmax=8005.42;
 p_rho=0;
@@ -36,7 +36,7 @@ mo.inputs=["C1","Ouv"];
 mo.outputs="C2";
 mo.parameters=list(["Cvmax","p_rho"],[Cvmax,p_rho]);
 model.equations=mo;
-model.in=ones(size(mo.inputs,"*"),1);
+model.in1=ones(size(mo.inputs,"*"),1);
 model.out=ones(size(mo.outputs,"*"),1);
 exprs=[string(Cvmax),string(p_rho)];
 gr_i=[];

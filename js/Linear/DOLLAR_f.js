@@ -26,7 +26,7 @@ if (ok) {
 if (ok) {
 graphics.exprs=exprs;
 model.dstate=a;
-model.in=in1;
+model.in1=in1;
 model.out=out;
 x.graphics=graphics;
 x.model=model;
@@ -41,7 +41,7 @@ in1=1;
 exprs=string([z,inh]);
 model=scicos_model();
 model.sim="dollar";
-model.in=in1;
+model.in1=in1;
 model.out=in1;
 model.evtin=1-inh;
 model.dstate=z;

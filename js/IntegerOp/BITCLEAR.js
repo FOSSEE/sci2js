@@ -12,7 +12,7 @@ while (true) {
 if (!ok) {
 break
 }
-in1=[model.in,model.in2];
+in1=[model.in1,model.in2];
 if (floor(bit)!=bit) {
 block_parameter_error(msprintf(gettext("Wrong type for \'%s\' parameter: %5.1f."),gettext("Index of Bit"),bit),gettext("Must be integer."));
 ok=None;
@@ -68,7 +68,7 @@ break
 BITCLEAR.prototype.define = function BITCLEAR() {
 model=scicos_model();
 model.sim=list("bit_clear_32",4);
-model.in=1;
+model.in1=1;
 model.in2=1;
 model.out=1;
 model.out2=1;

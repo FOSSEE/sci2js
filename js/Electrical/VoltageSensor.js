@@ -7,7 +7,7 @@ x=arg1;
 }
 VoltageSensor.prototype.define = function VoltageSensor() {
 model=scicos_model();
-model.in=1;
+model.in1=1;
 model.out=[1,1];
 model.sim="VoltageSensor";
 model.blocktype="c";

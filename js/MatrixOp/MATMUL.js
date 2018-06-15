@@ -136,7 +136,7 @@ break
 MATMUL.prototype.define = function MATMUL() {
 model=scicos_model();
 model.sim=list("matmul_m",4);
-model.in=[-1,-2];
+model.in1=[-1,-2];
 model.in2=[-2,-3];
 model.out=-1;
 model.out2=-3;

@@ -31,7 +31,7 @@ it=2;
 message("Datatype is not supported");
 ok=None;
 }
-in1=[model.in,model.in2];
+in1=[model.in1,model.in2];
 out=[model.out,model.out2];
 funtyp=4;
 if (ok) {
@@ -49,7 +49,7 @@ break
 MATTRAN.prototype.define = function MATTRAN() {
 model=scicos_model();
 model.sim=list("mattran_m",4);
-model.in=-1;
+model.in1=-1;
 model.in2=-2;
 model.out=-2;
 model.out2=-1;

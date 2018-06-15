@@ -33,7 +33,7 @@ break
 }
 OUTIMPL_f.prototype.define = function OUTIMPL_f() {
 model=scicos_model();
-model.in=[-1];
+model.in1=[-1];
 model.in2=[1];
 prt=1;
 model.sim="outimpl";

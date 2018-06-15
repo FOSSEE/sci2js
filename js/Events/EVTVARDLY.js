@@ -22,7 +22,7 @@ break
 EVTVARDLY.prototype.define = function EVTVARDLY() {
 model=scicos_model();
 model.sim=list("evtvardly",4);
-model.in=1;
+model.in1=1;
 model.evtin=1;
 model.evtout=1;
 model.blocktype="d";

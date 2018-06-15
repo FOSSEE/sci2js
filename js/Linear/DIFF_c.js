@@ -29,7 +29,7 @@ if (!ask_again) {
 graphics.exprs=exprs;
 model.state=[x0,xd0];
 model.out=[N];
-model.in=N;
+model.in1=N;
 x.graphics=graphics;
 x.model=model;
 break
@@ -41,7 +41,7 @@ DIFF_c.prototype.define = function DIFF_c() {
 x0=[0,0];
 model=scicos_model();
 model.sim=list("diffblk_c",10004);
-model.in=1;
+model.in1=1;
 model.out=1;
 model.state=x0;
 model.blocktype="c";

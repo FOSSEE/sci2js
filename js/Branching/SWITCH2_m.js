@@ -37,7 +37,7 @@ if (ok) {
 it[1-1]=ot;
 it[2-1]=1;
 it[3-1]=ot;
-in1=[model.in,model.in2];
+in1=[model.in1,model.in2];
 out=[model.out,model.out2];
 [model,graphics,ok]=set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
 }
@@ -54,7 +54,7 @@ nzz=1;
 rpar=0;
 model=scicos_model();
 model.sim=list("switch2_m",4);
-model.in=[-1,1,-1];
+model.in1=[-1,1,-1];
 model.in2=[-2,1,-2];
 model.intyp=1;
 model.out=-1;

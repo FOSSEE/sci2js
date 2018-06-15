@@ -22,7 +22,7 @@ if (ok) {
 graphics.exprs=exprs;
 model.state=[x0,zeros(N,1)];
 model.out=N;
-model.in=N;
+model.in1=N;
 model.ipar=-1*ones(N,1);
 x.graphics=graphics;
 x.model=model;
@@ -35,7 +35,7 @@ CONSTRAINT_c.prototype.define = function CONSTRAINT_c() {
 x0=[0,0];
 model=scicos_model();
 model.sim=list("constraint_c",10004);
-model.in=1;
+model.in1=1;
 model.out=1;
 model.ipar=0;
 model.state=x0;

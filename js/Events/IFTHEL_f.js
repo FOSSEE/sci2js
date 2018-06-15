@@ -41,7 +41,7 @@ break
 IFTHEL_f.prototype.define = function IFTHEL_f() {
 model=scicos_model();
 model.sim=list("ifthel",-1);
-model.in=1;
+model.in1=1;
 model.in2=1;
 model.intyp=-1;
 model.evtin=1;
@@ -52,7 +52,7 @@ model.dep_ut=[true,None];
 model.nmode=1;
 model.nzcross=1;
 gr_i=[];
-exprs=[string(model.in),string(model.nmode)];
+exprs=[string(model.in1),string(model.nmode)];
 x=standard_define([3,3],model,exprs,gr_i);
 }
 IFTHEL_f.prototype.details = function IFTHEL_f() {

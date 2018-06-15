@@ -27,7 +27,7 @@ it=[2,2];
 message("Datatype is not supported");
 ok=None;
 }
-in1=[model.in,model.in2];
+in1=[model.in1,model.in2];
 out=[model.out,model.out2];
 funtyp=4;
 if (ok) {
@@ -47,7 +47,7 @@ model=scicos_model();
 function_name="mat_div";
 funtyp=4;
 model.sim=list(function_name,funtyp);
-model.in=[-1,-2];
+model.in1=[-1,-2];
 model.in2=[-3,-3];
 model.intyp=[1,1];
 model.out=-1;

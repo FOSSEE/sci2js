@@ -7,7 +7,7 @@ x=arg1;
 }
 Ground.prototype.define = function Ground() {
 model=scicos_model();
-model.in=[1];
+model.in1=[1];
 model.out=[];
 model.sim="Ground";
 model.blocktype="c";

@@ -7,7 +7,7 @@ x=arg1;
 }
 CurrentSensor.prototype.define = function CurrentSensor() {
 model=scicos_model();
-model.in=1;
+model.in1=1;
 model.out=[1,1];
 model.sim="CurrentSensor";
 model.blocktype="c";

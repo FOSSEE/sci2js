@@ -22,7 +22,7 @@ ni=size(i,1);
 o=int(o.slice());
 no=size(o,1);
 tt=label[2-1];
-if (model.sim(1)!=funam||size(model.in,"*")!=size(i,"*")||size(model.out,"*")!=size(o,"*")) {
+if (model.sim(1)!=funam||size(model.in1,"*")!=size(i,"*")||size(model.out,"*")!=size(o,"*")) {
 tt=[];
 }
 [ok,tt]=FORTR(funam,tt,i,o);
@@ -44,7 +44,7 @@ break
 fortran_block.prototype.define = function fortran_block() {
 model=scicos_model();
 model.sim=list(" ",1001);
-model.in=1;
+model.in1=1;
 model.out=1;
 model.evtin=[];
 model.evtout=[];
@@ -56,7 +56,7 @@ model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,None];
 funam="forty";
-label=list([sci2exp(model.in),sci2exp(model.out),strcat(sci2exp(model.rpar)),funam],list([]));
+label=list([sci2exp(model.in1),sci2exp(model.out),strcat(sci2exp(model.rpar)),funam],list([]));
 gr_i=[];
 x=standard_define([4,2],model,label,gr_i);
 }

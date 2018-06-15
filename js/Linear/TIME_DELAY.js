@@ -7,7 +7,7 @@ x=arg1;
 graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
-nin=model.in(1);
+nin=model.in1(1);
 while (true) {
 [ok,T,init,N,exprs]=scicos_getvalue("Set delay parameters",["Delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
@@ -42,7 +42,7 @@ init=0;
 N=1024;
 model=scicos_model();
 model.sim=list("time_delay",4);
-model.in=[nin];
+model.in1=[nin];
 model.out=nin;
 model.rpar=[T,init];
 model.ipar=N;

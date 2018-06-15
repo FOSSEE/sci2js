@@ -256,18 +256,23 @@ def p_assignment_expression(p):
 
 # define ltermarraylist
 
-def p_ltermarraylist_ltermarraylist_semicolon_var(p):
+def p_ltermarraylist_ltermarraylist_comma_var(p):
     '''ltermarraylist : ltermarraylist COMMA VAR
                       | ltermarraylist SPACE VAR'''
-    p[0] = str(p[1]) + ',' + str(p[3])
+    p[0] = p[1] + ',' + p[3]
 
-def p_ltermarraylist_ltermarraylist_var(p):
-    'ltermarraylist : ltermarraylist VAR'
-    p[0] = str(p[1]) + ',' + str(p[2])
+def p_ltermarraylist_ltermarraylist_comma_in(p):
+    '''ltermarraylist : ltermarraylist COMMA IN
+                      | ltermarraylist SPACE IN'''
+    p[0] = p[1] + ',' + p[3] + '1'
 
 def p_ltermarraylist_var(p):
     'ltermarraylist : VAR'
-    p[0] = str(p[1])
+    p[0] = p[1]
+
+def p_ltermarraylist_in(p):
+    'ltermarraylist : IN'
+    p[0] = p[1] + '1'
 
 # end define ltermarraylist
 
@@ -368,7 +373,8 @@ def p_expression_term(p):
 
 # C('function parameter')
 def p_function_function_parameter(p):
-    'function : ltermvar OPENBRACKET expression CLOSEBRACKET'
+    '''function : ltermvar OPENBRACKET expression CLOSEBRACKET
+                | SCICOS_DEBUG OPENBRACKET expression CLOSEBRACKET'''
     p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
 
 # A(2,3)
@@ -411,9 +417,12 @@ def p_lterm_ltermvar(p):
     p[0] = str(p[1])
 
 def p_ltermvar_ltermvar_dot_var(p):
-    '''ltermvar : ltermvar DOT VAR
-                | ltermvar DOT IN'''
+    'ltermvar : ltermvar DOT VAR'
     p[0] = p[1] + p[2] + p[3]
+
+def p_ltermvar_ltermvar_dot_in(p):
+    'ltermvar : ltermvar DOT IN'
+    p[0] = p[1] + p[2] + p[3] + '1'
 
 def p_ltermvar_var(p):
     'ltermvar : VAR'
@@ -465,14 +474,21 @@ def p_term_part_parameters(p):
 # A(2,3)
 def p_term_function_parameters(p):
     '''term : termvar OPENBRACKET list CLOSEBRACKET
-            | SCICOS_GETVALUE OPENBRACKET list CLOSEBRACKET'''
-    p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
+            | SCICOS_DIAGRAM OPENBRACKET list CLOSEBRACKET
+            | SCICOS_GETVALUE OPENBRACKET list CLOSEBRACKET
+            | SCICOS_GRAPHICS OPENBRACKET list CLOSEBRACKET
+            | SCICOS_LINK OPENBRACKET list CLOSEBRACKET'''
+    p[0] = str(p[1]) + '(' + str(p[3]) + ')'
 
 # A()
 def p_term_function(p):
     '''term : termvar OPENBRACKET CLOSEBRACKET
+            | SCICOS_DEBUG OPENBRACKET CLOSEBRACKET
+            | SCICOS_DIAGRAM OPENBRACKET CLOSEBRACKET
+            | SCICOS_GRAPHICS OPENBRACKET CLOSEBRACKET
+            | SCICOS_LINK OPENBRACKET CLOSEBRACKET
             | SCICOS_MODEL OPENBRACKET CLOSEBRACKET'''
-    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+    p[0] = str(p[1]) + '()'
 
 # $
 def p_term_lastindex(p):
@@ -527,9 +543,12 @@ def p_term_termvar(p):
 
 # A.B
 def p_termvar_termvar_dot_var(p):
-    '''termvar : termvar DOT VAR
-               | termvar DOT IN'''
+    'termvar : termvar DOT VAR'
     p[0] = p[1] + p[2] + p[3]
+
+def p_termvar_termvar_dot_in(p):
+    'termvar : termvar DOT IN'
+    p[0] = p[1] + p[2] + p[3] + '1'
 
 # A
 def p_termvar_var(p):

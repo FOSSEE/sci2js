@@ -22,7 +22,7 @@ break
 }
 PerteDP.prototype.define = function PerteDP() {
 model=scicos_model();
-model.in=[1];
+model.in1=[1];
 model.out=[1];
 L=10;
 D=0.2;
@@ -40,7 +40,7 @@ mo.inputs="C1";
 mo.outputs="C2";
 mo.parameters=list(["L","D","lambda","z1","z2","p_rho"],[L,D,lambda,z1,z2,p_rho]);
 model.equations=mo;
-model.in=ones(size(mo.inputs,"*"),1);
+model.in1=ones(size(mo.inputs,"*"),1);
 model.out=ones(size(mo.outputs,"*"),1);
 exprs=[string(L),string(D),string(lambda),string(z1),string(z2),string(p_rho)];
 gr_i=[];

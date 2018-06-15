@@ -28,7 +28,7 @@ message("Datatype is not supported");
 ok=None;
 }
 if (ok) {
-[model,graphics,ok]=set_io(model,graphics,list([model.in,model.in2],it),list([model.out,model.out2],ot),[],[]);
+[model,graphics,ok]=set_io(model,graphics,list([model.in1,model.in2],it),list([model.out,model.out2],ot),[],[]);
 }
 if (ok) {
 funtyp=4;
@@ -45,7 +45,7 @@ model=scicos_model();
 function_name="mat_lu";
 funtyp=4;
 model.sim=list(function_name,funtyp);
-model.in=-1;
+model.in1=-1;
 model.in2=-1;
 model.intyp=1;
 model.out=[-1,-1];

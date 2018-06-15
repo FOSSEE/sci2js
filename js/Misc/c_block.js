@@ -22,7 +22,7 @@ ni=size(i,1);
 o=int(o.slice());
 no=size(o,1);
 tt=label[2-1];
-if (model.sim(1)!=funam||size(model.in,"*")!=size(i,"*")||size(model.out,"*")!=size(o,"*")) {
+if (model.sim(1)!=funam||size(model.in1,"*")!=size(i,"*")||size(model.out,"*")!=size(o,"*")) {
 tt=[];
 }
 [ok,tt]=CFORTR(funam,tt,i,o);
@@ -54,7 +54,7 @@ rpar=[];
 funam="toto";
 model=scicos_model();
 model.sim=list(" ",2001);
-model.in=in1;
+model.in1=in1;
 model.out=out;
 model.evtin=clkin;
 model.evtout=clkout;

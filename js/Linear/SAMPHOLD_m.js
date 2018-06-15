@@ -18,7 +18,7 @@ message("Datatype is not supported");
 ok=None;
 }
 if (ok) {
-in1=[model.in,model.in2];
+in1=[model.in1,model.in2];
 [model,graphics,ok]=set_io(model,graphics,list(in1,it),list(in1,it),1,[]);
 if (ok) {
 graphics.exprs=exprs;
@@ -33,7 +33,7 @@ break
 SAMPHOLD_m.prototype.define = function SAMPHOLD_m() {
 model=scicos_model();
 model.sim=list("samphold4_m",4);
-model.in=-1;
+model.in1=-1;
 model.in2=-2;
 model.intyp=1;
 model.outtyp=1;
