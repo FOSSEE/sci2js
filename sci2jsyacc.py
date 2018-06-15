@@ -301,6 +301,14 @@ def p_list_list_expression(p):
             | expression COMMA expression'''
     p[0] = str(p[1]) + ',' + str(p[3])
 
+def p_list_list_var_expression(p):
+    'list : list COMMA VAR ASSIGNMENT expression'
+    p[0] = str(p[1]) + ',' + str(p[3]) + '=' + str(p[5])
+
+def p_list_var_expression(p):
+    'list : VAR ASSIGNMENT expression'
+    p[0] = str(p[1]) + '=' + str(p[3])
+
 # end define list
 
 # define expression
@@ -478,15 +486,18 @@ def p_term_part_parameters(p):
 # A(2,3)
 def p_term_function_parameters(p):
     '''term : termvar OPENBRACKET list CLOSEBRACKET
+            | SCICOS_BLOCK OPENBRACKET list CLOSEBRACKET
             | SCICOS_DIAGRAM OPENBRACKET list CLOSEBRACKET
             | SCICOS_GETVALUE OPENBRACKET list CLOSEBRACKET
             | SCICOS_GRAPHICS OPENBRACKET list CLOSEBRACKET
-            | SCICOS_LINK OPENBRACKET list CLOSEBRACKET'''
+            | SCICOS_LINK OPENBRACKET list CLOSEBRACKET
+            | SCICOS_PARAMS OPENBRACKET list CLOSEBRACKET'''
     p[0] = str(p[1]) + '(' + str(p[3]) + ')'
 
 # A()
 def p_term_function(p):
     '''term : termvar OPENBRACKET CLOSEBRACKET
+            | SCICOS_BLOCK OPENBRACKET CLOSEBRACKET
             | SCICOS_DEBUG OPENBRACKET CLOSEBRACKET
             | SCICOS_DIAGRAM OPENBRACKET CLOSEBRACKET
             | SCICOS_GRAPHICS OPENBRACKET CLOSEBRACKET

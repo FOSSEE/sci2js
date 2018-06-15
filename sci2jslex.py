@@ -3,6 +3,7 @@
 from __future__ import print_function
 
 import ply.lex as lex
+import re
 import sys
 
 ''' keep track of how many open brackets have been encountered so far '''
@@ -109,9 +110,10 @@ def t_COMMENT(t):
     pass
 
 def t_NUMBER(t):
-    r'(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?'
+    r'(\d+(\.\d*)?|\.\d+)([dDeE][+-]?\d+)?'
     global afterarray
     afterarray = False
+    t.value = re.sub(r'[de]', r'e', t.value, flags=re.IGNORECASE)
     return t
 
 def t_PREVAR(t):
