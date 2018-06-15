@@ -13,7 +13,7 @@ if (!ok) {
 break
 }
 model.rpar=[V,ph,frq,offset,start];
-model.equations.parameters[2]=list(V,ph,frq,offset,start);
+model.equations.parameters[2-1]=list(V,ph,frq,offset,start);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;

@@ -13,7 +13,7 @@ if (!ok) {
 break
 }
 model.rpar=[VA,FR];
-model.equations.parameters[2]=list(VA,FR);
+model.equations.parameters[2-1]=list(VA,FR);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;

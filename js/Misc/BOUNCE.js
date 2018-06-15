@@ -8,8 +8,8 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,"*")<9) {
-exprs[8]="9.81";
-exprs[9]="0";
+exprs[8-1]="9.81";
+exprs[9-1]="0";
 }
 while (true) {
 [ok,rpar1,rpar2,walls,xt,xd,y,yd,g,C,exprs]=scicos_getvalue(["Set Bounce Block"],["Mass","Radius","[xmin,xmax,ymin,ymax]","xpos","xdpos","ypos","ydpos","g (gravity)","C (aerodynamic coeff"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
@@ -46,9 +46,9 @@ k=1;
 ipar=[];
 for(i=1;i<=n;i+=1) {
 for(j=i+1;j<=n;j+=1) {
-ipar[k]=i;
+ipar[k-1]=i;
 k=k+1;
-ipar[k]=j;
+ipar[k-1]=j;
 k=k+1;
 }
 }
@@ -71,9 +71,9 @@ k=1;
 ipar=[];
 for(i=1;i<=n;i+=1) {
 for(j=i+1;j<=n;j+=1) {
-ipar[k]=i;
+ipar[k-1]=i;
 k=k+1;
-ipar[k]=j;
+ipar[k-1]=j;
 k=k+1;
 }
 }

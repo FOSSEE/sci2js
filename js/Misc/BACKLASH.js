@@ -15,8 +15,8 @@ break
 }
 if (ok) {
 graphics.exprs=exprs;
-rpar[1]=ini;
-rpar[2]=gap;
+rpar[1-1]=ini;
+rpar[2-1]=gap;
 if (zcr!=0) {
 model.nzcross=2;
 } else {

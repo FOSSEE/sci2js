@@ -12,7 +12,7 @@ if (ok) {
 model.ipar=nn;
 model.rpar=dt;
 hh=model.firing;
-hh[2]=0;
+hh[2-1]=0;
 model.firing=hh;
 graphics.exprs=exprs;
 x.graphics=graphics;

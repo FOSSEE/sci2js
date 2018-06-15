@@ -35,7 +35,7 @@ x_message(["Id(i) must be either","0 when x\'(i) is not present in the feedback"
 break
 }
 if ((id(i)==0)) {
-id[i]=-1;
+id[i-1]=-1;
 }
 }
 }

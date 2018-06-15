@@ -13,7 +13,7 @@ if (!ok) {
 break
 }
 model.rpar=[P0,T0,H0,option_temperature];
-model.equations.parameters[2]=list(P0,T0,H0,option_temperature);
+model.equations.parameters[2-1]=list(P0,T0,H0,option_temperature);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;

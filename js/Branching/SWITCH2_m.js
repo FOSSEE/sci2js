@@ -34,9 +34,9 @@ message("Datatype is not supported");
 ok=None;
 }
 if (ok) {
-it[1]=ot;
-it[2]=1;
-it[3]=ot;
+it[1-1]=ot;
+it[2-1]=1;
+it[3-1]=ot;
 in1=[model.in,model.in2];
 out=[model.out,model.out2];
 [model,graphics,ok]=set_io(model,graphics,list(in1,it),list(out,ot),[],[]);

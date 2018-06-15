@@ -13,7 +13,7 @@ if (!ok) {
 break
 }
 model.rpar=[P0,T0,H0,option_temperature];
-model.equations.parameters[2]=list(P0,T0,H0,option_temperature);
+model.equations.parameters[2-1]=list(P0,T0,H0,option_temperature);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -62,7 +62,7 @@ while (None) {
 if (!ok) {
 break
 }
-x.model.equations.parameters[2]=list(Qini);
+x.model.equations.parameters[2-1]=list(Qini);
 x.graphics.exprs=exprs;
 break
 }
@@ -133,7 +133,7 @@ if (!ok) {
 break
 }
 model.rpar=[Cvmax,p_rho];
-model.equations.parameters[2]=list(Cvmax,p_rho);
+model.equations.parameters[2-1]=list(Cvmax,p_rho);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -182,7 +182,7 @@ if (!ok) {
 break
 }
 model.rpar=[L,D,lambda,z1,z2,p_rho];
-model.equations.parameters[2]=list(L,D,lambda,z1,z2,p_rho);
+model.equations.parameters[2-1]=list(L,D,lambda,z1,z2,p_rho);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -235,7 +235,7 @@ if (!ok) {
 break
 }
 model.rpar=[P0,T0,H0,option_temperature];
-model.equations.parameters[2]=list(P0,T0,H0,option_temperature);
+model.equations.parameters[2-1]=list(P0,T0,H0,option_temperature);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -631,7 +631,7 @@ if (ok) {
 model.ipar=nn;
 model.rpar=dt;
 hh=model.firing;
-hh[2]=0;
+hh[2-1]=0;
 model.firing=hh;
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -892,7 +892,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,"*")<2) {
-exprs[2]="0";
+exprs[2-1]="0";
 }
 while (true) {
 [ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("vec",-1,"vec",-1),exprs);
@@ -2128,7 +2128,7 @@ if (size(clrs,"*")>8) {
 clrs=clrs.slice(1-1,8);
 }
 if (size(clrs,"*")<8) {
-clrs[8]=0;
+clrs[8-1]=0;
 }
 ipar=[win,1,N,clrs.slice(),wpos.slice(),wdim.slice(),size(wu,"*"),wu.slice()];
 model.rpar=rpar;
@@ -2740,9 +2740,9 @@ message("Datatype is not supported");
 ok=None;
 }
 if (ok) {
-it[1]=ot;
-it[2]=1;
-it[3]=ot;
+it[1-1]=ot;
+it[2-1]=1;
+it[3-1]=ot;
 in1=[model.in,model.in2];
 out=[model.out,model.out2];
 [model,graphics,ok]=set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
@@ -2976,10 +2976,10 @@ x=arg1;
 graphics=arg1.graphics;
 exprs=graphics.exprs;
 if (size(exprs,"*")==1) {
-exprs[2]=string(1);
+exprs[2-1]=string(1);
 }
 if (size(exprs,"*")==2) {
-exprs[3]=string(0);
+exprs[3-1]=string(0);
 }
 model=arg1.model;
 while (true) {
@@ -4577,7 +4577,7 @@ graphics=arg1.graphics;
 label=graphics.exprs;
 model=arg1.model;
 if (size(label,"*")==14) {
-label[9]=[];
+label[9-1]=[];
 }
 while (true) {
 [ok,typ,exprs]=scicos_getvalue("Set EXPM Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
@@ -4648,7 +4648,7 @@ graphics=arg1.graphics;
 label=graphics.exprs;
 model=arg1.model;
 if (size(label,"*")==14) {
-label[9]=[];
+label[9-1]=[];
 }
 while (true) {
 [ok,typ,exprs]=scicos_getvalue("Set MATPINV Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
@@ -4719,7 +4719,7 @@ graphics=arg1.graphics;
 label=graphics.exprs;
 model=arg1.model;
 if (size(label,"*")==14) {
-label[9]=[];
+label[9-1]=[];
 }
 while (true) {
 [ok,typ,exprs]=scicos_getvalue("Set MATDIAG Block",["Datatype (1=real double  2=Complex)"],list("vec",1),label);
@@ -4824,7 +4824,7 @@ graphics=arg1.graphics;
 label=graphics.exprs;
 model=arg1.model;
 if (size(label,"*")==14) {
-label[9]=[];
+label[9-1]=[];
 }
 while (true) {
 [ok,typ,exprs]=scicos_getvalue("Set MATINV Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
@@ -4895,7 +4895,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 label=graphics.exprs;
 if (size(label,"*")==14) {
-label[9]=[];
+label[9-1]=[];
 }
 while (true) {
 [ok,typ,lab]=scicos_getvalue("Set MATLU block parameters",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
@@ -4964,7 +4964,7 @@ graphics=arg1.graphics;
 label=graphics.exprs;
 model=arg1.model;
 if (size(label,"*")==14) {
-label[9]=[];
+label[9-1]=[];
 }
 while (true) {
 [ok,typ,exprs]=scicos_getvalue("Set MATBKSL Block",["Datatype (1=real double  2=Complex)"],list("vec",1),label);
@@ -5035,7 +5035,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 label=graphics.exprs;
 if (size(label,"*")==14) {
-label[9]=[];
+label[9-1]=[];
 }
 while (true) {
 [ok,typ,l1,out,lab]=scicos_getvalue("Set MATRESH block parameters",["Datatype(1=real double  2=Complex)","input size","output size desired"],list("vec",-1,"vec",-1,"vec",-1),label);
@@ -5131,7 +5131,7 @@ graphics=arg1.graphics;
 label=graphics.exprs;
 model=arg1.model;
 if (size(label,"*")==1) {
-label[2]=sci2exp(1);
+label[2-1]=sci2exp(1);
 }
 while (true) {
 [ok,typ,rule,exprs]=scicos_getvalue("Set MATTRAN Block",["Datatype(1=real double 2=Complex)","rule (1=.\' 2=\')"],list("vec",1,"vec",1),label);
@@ -5194,7 +5194,7 @@ graphics=arg1.graphics;
 label=graphics.exprs;
 model=arg1.model;
 if (size(label,"*")==14) {
-label[9]=[];
+label[9-1]=[];
 }
 while (true) {
 [ok,tpe,mod,exprs]=scicos_getvalue("Set RICC Block",["Type (1=Cont  2=Disc)","Model(1=Schr  2=sign(cont) inv(disc))"],list("vec",1,"vec",1),label);
@@ -5254,7 +5254,7 @@ graphics=arg1.graphics;
 label=graphics.exprs;
 model=arg1.model;
 if (size(label,"*")==14) {
-label[9]=[];
+label[9-1]=[];
 }
 while (true) {
 [ok,typ,exprs]=scicos_getvalue("Set MATDET Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
@@ -5325,7 +5325,7 @@ graphics=arg1.graphics;
 label=graphics.exprs;
 model=arg1.model;
 if (size(label,"*")==14) {
-label[9]=[];
+label[9-1]=[];
 }
 while (true) {
 [ok,typ,exprs]=scicos_getvalue("Set MATDIV Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
@@ -5396,7 +5396,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 label=graphics.exprs;
 if (size(label,"*")==14) {
-label[9]=[];
+label[9-1]=[];
 }
 while (true) {
 [ok,typ,decomptyp,lab]=scicos_getvalue("Set EXTTRI block parameters",["Datatype(1=real double  2=Complex)","extraction type (1=lower  2=upper  3=diagonal)"],list("vec",1,"vec",1),label);
@@ -5569,7 +5569,7 @@ if (!ok) {
 break
 }
 model.rpar=[V,ph,frq,offset,start];
-model.equations.parameters[2]=list(V,ph,frq,offset,start);
+model.equations.parameters[2-1]=list(V,ph,frq,offset,start);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -5680,7 +5680,7 @@ while (true) {
 if (!ok) {
 break
 }
-model.equations.parameters[2]=list(W,L,Beta,Vt,K2,K5,dW,dL,RDS);
+model.equations.parameters[2-1]=list(W,L,Beta,Vt,K2,K5,dW,dL,RDS);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -5783,7 +5783,7 @@ while (true) {
 if (!ok) {
 break
 }
-x.model.equations.parameters[2]=list(N);
+x.model.equations.parameters[2-1]=list(N);
 x.graphics.exprs=exprs;
 break
 }
@@ -5943,7 +5943,7 @@ if (!ok) {
 break
 }
 model.rpar=R;
-model.equations.parameters[2]=list(R);
+model.equations.parameters[2-1]=list(R);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -6017,7 +6017,7 @@ if (!ok) {
 break
 }
 model.rpar=V;
-model.equations.parameters[2]=list(V);
+model.equations.parameters[2-1]=list(V);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -6063,7 +6063,7 @@ if (!ok) {
 break
 }
 model.rpar=[FR];
-model.equations.parameters[2]=list(FR);
+model.equations.parameters[2-1]=list(FR);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -6165,7 +6165,7 @@ while (true) {
 if (!ok) {
 break
 }
-model.equations.parameters[2]=list(Ron,Roff);
+model.equations.parameters[2-1]=list(Ron,Roff);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -6236,7 +6236,7 @@ while (true) {
 if (!ok) {
 break
 }
-model.equations.parameters[2]=list(W,L,Beta,Vt,K2,K5,dW,dL,RDS);
+model.equations.parameters[2-1]=list(W,L,Beta,Vt,K2,K5,dW,dL,RDS);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -6289,7 +6289,7 @@ if (!ok) {
 break
 }
 model.rpar=[VA,FR];
-model.equations.parameters[2]=list(VA,FR);
+model.equations.parameters[2-1]=list(VA,FR);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -6335,7 +6335,7 @@ while (None) {
 if (!ok) {
 break
 }
-model.equations.parameters[2]=list(OLGain,SatH,SatL);
+model.equations.parameters[2-1]=list(OLGain,SatH,SatL);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -6383,7 +6383,7 @@ while (true) {
 if (!ok) {
 break
 }
-x.model.equations.parameters[2]=list(G1,G2);
+x.model.equations.parameters[2-1]=list(G1,G2);
 x.graphics.exprs=exprs;
 break
 }
@@ -6509,13 +6509,13 @@ break
 if (funam==" ") {
 break
 }
-label[1]=lab;
+label[1-1]=lab;
 rpar=rpar.slice();
 i=int(i.slice());
 ni=size(i,1);
 o=int(o.slice());
 no=size(o,1);
-tt=label.slice(2-1);
+tt=label[2-1];
 if (model.sim(1)!=funam||size(model.in,"*")!=size(i,"*")||size(model.out,"*")!=size(o,"*")) {
 tt=[];
 }
@@ -6525,9 +6525,9 @@ break
 }
 [model,graphics,ok]=check_io(model,graphics,i,o,[],[]);
 if (ok) {
-model.sim[1]=funam;
+model.sim[1-1]=funam;
 model.rpar=rpar;
-label[2]=tt;
+label[2-1]=tt;
 x.model=model;
 graphics.exprs=label;
 x.graphics=graphics;
@@ -6605,8 +6605,8 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,"*")<9) {
-exprs[8]="9.81";
-exprs[9]="0";
+exprs[8-1]="9.81";
+exprs[9-1]="0";
 }
 while (true) {
 [ok,rpar1,rpar2,walls,xt,xd,y,yd,g,C,exprs]=scicos_getvalue(["Set Bounce Block"],["Mass","Radius","[xmin,xmax,ymin,ymax]","xpos","xdpos","ypos","ydpos","g (gravity)","C (aerodynamic coeff"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
@@ -6643,9 +6643,9 @@ k=1;
 ipar=[];
 for(i=1;i<=n;i+=1) {
 for(j=i+1;j<=n;j+=1) {
-ipar[k]=i;
+ipar[k-1]=i;
 k=k+1;
-ipar[k]=j;
+ipar[k-1]=j;
 k=k+1;
 }
 }
@@ -6668,9 +6668,9 @@ k=1;
 ipar=[];
 for(i=1;i<=n;i+=1) {
 for(j=i+1;j<=n;j+=1) {
-ipar[k]=i;
+ipar[k-1]=i;
 k=k+1;
-ipar[k]=j;
+ipar[k-1]=j;
 k=k+1;
 }
 }
@@ -6717,7 +6717,7 @@ while (true) {
 if (!ok) {
 break
 }
-exprs[1]=lab;
+exprs[1-1]=lab;
 xx=xx.slice();
 z=z.slice();
 rpar=rpar.slice();
@@ -6730,8 +6730,8 @@ ci=int(ci.slice());
 nci=size(ci,1);
 co=int(co.slice());
 nco=size(co,1);
-[ok,tt,dep_ut]=genfunc2(exprs.slice(2-1),i,o,nci,nco,size(xx,1),size(z,1),nrp,"c");
-dep_ut[2]=(1==deptime);
+[ok,tt,dep_ut]=genfunc2(exprs[2-1],i,o,nci,nco,size(xx,1),size(z,1),nrp,"c");
+dep_ut[2-1]=(1==deptime);
 if (!ok) {
 break
 }
@@ -6752,7 +6752,7 @@ model.opar=tt;
 model.firing=auto;
 model.dep_ut=dep_ut;
 x.model=model;
-exprs[2]=tt;
+exprs[2-1]=tt;
 graphics.exprs=exprs;
 x.graphics=graphics;
 break
@@ -6813,13 +6813,13 @@ break
 if (funam==" ") {
 break
 }
-label[1]=lab;
+label[1-1]=lab;
 rpar=rpar.slice();
 i=int(i.slice());
 ni=size(i,1);
 o=int(o.slice());
 no=size(o,1);
-tt=label.slice(2-1);
+tt=label[2-1];
 if (model.sim(1)!=funam||size(model.in,"*")!=size(i,"*")||size(model.out,"*")!=size(o,"*")) {
 tt=[];
 }
@@ -6829,9 +6829,9 @@ break
 }
 [model,graphics,ok]=check_io(model,graphics,i,o,[],[]);
 if (ok) {
-model.sim[1]=funam;
+model.sim[1-1]=funam;
 model.rpar=rpar;
-label[2]=tt;
+label[2-1]=tt;
 x.model=model;
 graphics.exprs=label;
 x.graphics=graphics;
@@ -6907,7 +6907,7 @@ x_message(["Id(i) must be either","0 when x\'(i) is not present in the feedback"
 break
 }
 if ((id(i)==0)) {
-id[i]=-1;
+id[i-1]=-1;
 }
 }
 }
@@ -7152,12 +7152,12 @@ rpar=[xmin,xmax,ymin,ymax];
 ipar=[win,imode,clrs.slice()];
 z=[];
 for(i=1;i<=size(clrs,"*");i+=1) {
-z[6*(i-1)+1]=0;
-z[6*(i-1)+2]=0;
-z[6*(i-1)+3]=2*siz(i);
-z[6*(i-1)+4]=2*siz(i);
-z[6*(i-1)+5]=0.000;
-z[6*(i-1)+6]=64.0*360.000;
+z[6*(i-1)+1-1]=0;
+z[6*(i-1)+2-1]=0;
+z[6*(i-1)+3-1]=2*siz(i);
+z[6*(i-1)+4-1]=2*siz(i);
+z[6*(i-1)+5-1]=0.000;
+z[6*(i-1)+6-1]=64.0*360.000;
 }
 model.dstate=z;
 model.rpar=rpar;
@@ -7186,12 +7186,12 @@ model.intyp=[1,1];
 model.evtin=1;
 z=[];
 for(i=1;i<=size(clrs,"*");i+=1) {
-z[6*(i-1)+1]=0;
-z[6*(i-1)+2]=0;
-z[6*(i-1)+3]=2*siz(i);
-z[6*(i-1)+4]=2*siz(i);
-z[6*(i-1)+5]=0.000;
-z[6*(i-1)+6]=64.0*360.000;
+z[6*(i-1)+1-1]=0;
+z[6*(i-1)+2-1]=0;
+z[6*(i-1)+3-1]=2*siz(i);
+z[6*(i-1)+4-1]=2*siz(i);
+z[6*(i-1)+5-1]=0.000;
+z[6*(i-1)+6-1]=64.0*360.000;
 }
 model.dstate=z;
 model.rpar=[xmin,xmax,ymin,ymax];
@@ -7223,8 +7223,8 @@ break
 }
 if (ok) {
 graphics.exprs=exprs;
-rpar[1]=ini;
-rpar[2]=gap;
+rpar[1-1]=ini;
+rpar[2-1]=gap;
 if (zcr!=0) {
 model.nzcross=2;
 } else {

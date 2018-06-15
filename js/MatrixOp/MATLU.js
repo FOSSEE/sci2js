@@ -8,7 +8,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 label=graphics.exprs;
 if (size(label,"*")==14) {
-label[9]=[];
+label[9-1]=[];
 }
 while (true) {
 [ok,typ,lab]=scicos_getvalue("Set MATLU block parameters",["Datatype(1=real double  2=Complex)"],list("vec",1),label);

@@ -12,7 +12,7 @@ while (true) {
 if (!ok) {
 break
 }
-model.equations.parameters[2]=list(W,L,Beta,Vt,K2,K5,dW,dL,RDS);
+model.equations.parameters[2-1]=list(W,L,Beta,Vt,K2,K5,dW,dL,RDS);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;

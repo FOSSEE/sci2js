@@ -12,7 +12,7 @@ while (None) {
 if (!ok) {
 break
 }
-model.equations.parameters[2]=list(OLGain,SatH,SatL);
+model.equations.parameters[2-1]=list(OLGain,SatH,SatL);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;

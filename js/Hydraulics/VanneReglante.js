@@ -13,7 +13,7 @@ if (!ok) {
 break
 }
 model.rpar=[Cvmax,p_rho];
-model.equations.parameters[2]=list(Cvmax,p_rho);
+model.equations.parameters[2-1]=list(Cvmax,p_rho);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;

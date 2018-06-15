@@ -12,7 +12,7 @@ while (true) {
 if (!ok) {
 break
 }
-model.equations.parameters[2]=list(Ron,Roff);
+model.equations.parameters[2-1]=list(Ron,Roff);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;

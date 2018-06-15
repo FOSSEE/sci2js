@@ -8,7 +8,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,"*")<2) {
-exprs[2]="0";
+exprs[2-1]="0";
 }
 while (true) {
 [ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("vec",-1,"vec",-1),exprs);

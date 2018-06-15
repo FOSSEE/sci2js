@@ -8,7 +8,7 @@ graphics=arg1.graphics;
 label=graphics.exprs;
 model=arg1.model;
 if (size(label,"*")==1) {
-label[2]=sci2exp(1);
+label[2-1]=sci2exp(1);
 }
 while (true) {
 [ok,typ,rule,exprs]=scicos_getvalue("Set MATTRAN Block",["Datatype(1=real double 2=Complex)","rule (1=.\' 2=\')"],list("vec",1,"vec",1),label);

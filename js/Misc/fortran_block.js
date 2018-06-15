@@ -15,13 +15,13 @@ break
 if (funam==" ") {
 break
 }
-label[1]=lab;
+label[1-1]=lab;
 rpar=rpar.slice();
 i=int(i.slice());
 ni=size(i,1);
 o=int(o.slice());
 no=size(o,1);
-tt=label.slice(2-1);
+tt=label[2-1];
 if (model.sim(1)!=funam||size(model.in,"*")!=size(i,"*")||size(model.out,"*")!=size(o,"*")) {
 tt=[];
 }
@@ -31,9 +31,9 @@ break
 }
 [model,graphics,ok]=check_io(model,graphics,i,o,[],[]);
 if (ok) {
-model.sim[1]=funam;
+model.sim[1-1]=funam;
 model.rpar=rpar;
-label[2]=tt;
+label[2-1]=tt;
 x.model=model;
 graphics.exprs=label;
 x.graphics=graphics;

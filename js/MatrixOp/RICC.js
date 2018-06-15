@@ -8,7 +8,7 @@ graphics=arg1.graphics;
 label=graphics.exprs;
 model=arg1.model;
 if (size(label,"*")==14) {
-label[9]=[];
+label[9-1]=[];
 }
 while (true) {
 [ok,tpe,mod,exprs]=scicos_getvalue("Set RICC Block",["Type (1=Cont  2=Disc)","Model(1=Schr  2=sign(cont) inv(disc))"],list("vec",1,"vec",1),label);

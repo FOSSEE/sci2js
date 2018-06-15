@@ -13,7 +13,7 @@ while (true) {
 if (!ok) {
 break
 }
-exprs[1]=lab;
+exprs[1-1]=lab;
 xx=xx.slice();
 z=z.slice();
 rpar=rpar.slice();
@@ -26,8 +26,8 @@ ci=int(ci.slice());
 nci=size(ci,1);
 co=int(co.slice());
 nco=size(co,1);
-[ok,tt,dep_ut]=genfunc2(exprs.slice(2-1),i,o,nci,nco,size(xx,1),size(z,1),nrp,"c");
-dep_ut[2]=(1==deptime);
+[ok,tt,dep_ut]=genfunc2(exprs[2-1],i,o,nci,nco,size(xx,1),size(z,1),nrp,"c");
+dep_ut[2-1]=(1==deptime);
 if (!ok) {
 break
 }
@@ -48,7 +48,7 @@ model.opar=tt;
 model.firing=auto;
 model.dep_ut=dep_ut;
 x.model=model;
-exprs[2]=tt;
+exprs[2-1]=tt;
 graphics.exprs=exprs;
 x.graphics=graphics;
 break

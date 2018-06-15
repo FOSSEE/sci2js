@@ -392,19 +392,17 @@ def p_function_function(p):
 
 # define lterm
 
-# A[1:3]
 # B(2:$-1)
 def p_lterm_slice(p):
-    '''lterm : ltermvar OPENBRACKET expression COLON expression CLOSEBRACKET
-             | ltermvar OPENSQBRACKET expression COLON expression CLOSESQBRACKET'''
+    'lterm : ltermvar OPENBRACKET expression COLON expression CLOSEBRACKET'
     addtoarray(p[1])
-    p[0] = str(p[1]) + '[' + str(p[3]) + str(p[4]) + str(p[5]) + ']'
+    p[0] = p[1] + '.slice(' + str(p[3]) + '-1,' + str(p[5]) + ')'
 
+# B(2)
 def p_lterm_index(p):
-    '''lterm : ltermvar OPENBRACKET expression CLOSEBRACKET
-             | ltermvar OPENSQBRACKET expression CLOSESQBRACKET'''
+    'lterm : ltermvar OPENBRACKET expression CLOSEBRACKET'
     addtoarray(p[1])
-    p[0] = str(p[1]) + '[' + str(p[3]) + ']'
+    p[0] = str(p[1]) + '[' + str(p[3]) + '-1]'
 
 # [A,B,C]
 def p_lterm_ltermarraylist(p):
@@ -437,46 +435,32 @@ def p_ltermvar_in(p):
 
 # define term
 
-# A[1:3]
 # B(2:$-1)
 def p_term_slice(p):
-    '''term : termvar OPENBRACKET expression COLON expression CLOSEBRACKET
-            | termvar OPENSQBRACKET expression COLON expression CLOSESQBRACKET'''
+    'term : termvar OPENBRACKET expression COLON expression CLOSEBRACKET'
     p[0] = p[1] + '.slice(' + str(p[3]) + '-1,' + str(p[5]) + ')'
 
-# A[:3]
 # B(:$-1)
 def p_term_left_slice(p):
-    '''term : termvar OPENBRACKET COLON expression CLOSEBRACKET
-            | termvar OPENSQBRACKET COLON expression CLOSESQBRACKET'''
+    'term : termvar OPENBRACKET COLON expression CLOSEBRACKET'
     p[0] = p[1] + '.slice(' + str(p[3]) + '-1)'
 
-# A[1:]
 # B(2:)
 def p_term_right_slice(p):
-    '''term : termvar OPENBRACKET expression COLON CLOSEBRACKET
-            | termvar OPENSQBRACKET expression COLON CLOSESQBRACKET'''
+    'term : termvar OPENBRACKET expression COLON CLOSEBRACKET'
     p[0] = str(p[1]) + '.slice(0,' + str(p[4]) + ')'
 
-# A[:]
 # B(:)
 def p_term_full_slice(p):
-    '''term : termvar OPENBRACKET COLON CLOSEBRACKET
-            | termvar OPENSQBRACKET COLON CLOSESQBRACKET'''
+    'term : termvar OPENBRACKET COLON CLOSEBRACKET'
     p[0] = p[1] + '.slice()'
 
-# A[3]
 # B($-2)
 # C('function parameter')
 def p_term_index(p):
-    '''term : termvar OPENBRACKET expression CLOSEBRACKET
-            | termvar OPENSQBRACKET expression CLOSESQBRACKET'''
+    'term : termvar OPENBRACKET expression CLOSEBRACKET'
     if isarray(p[1]):
-        p[0] = p[1] + '.slice(' + str(p[3]) + '-1)'
-    elif isfunction(p[1]):
-        p[0] = p[1] + '(' + str(p[3]) + ')'
-    elif p[2] == '[':
-        p[0] = p[1] + '.slice(' + str(p[3]) + '-1)'
+        p[0] = p[1] + '[' + str(p[3]) + '-1]'
     else:
         p[0] = p[1] + '(' + str(p[3]) + ')'
 

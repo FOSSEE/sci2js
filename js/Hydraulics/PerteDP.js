@@ -13,7 +13,7 @@ if (!ok) {
 break
 }
 model.rpar=[L,D,lambda,z1,z2,p_rho];
-model.equations.parameters[2]=list(L,D,lambda,z1,z2,p_rho);
+model.equations.parameters[2-1]=list(L,D,lambda,z1,z2,p_rho);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;

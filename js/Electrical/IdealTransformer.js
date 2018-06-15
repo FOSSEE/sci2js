@@ -14,7 +14,7 @@ while (true) {
 if (!ok) {
 break
 }
-x.model.equations.parameters[2]=list(N);
+x.model.equations.parameters[2-1]=list(N);
 x.graphics.exprs=exprs;
 break
 }

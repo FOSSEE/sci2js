@@ -56,7 +56,7 @@ if (size(clrs,"*")>8) {
 clrs=clrs.slice(1-1,8);
 }
 if (size(clrs,"*")<8) {
-clrs[8]=0;
+clrs[8-1]=0;
 }
 ipar=[win,1,N,clrs.slice(),wpos.slice(),wdim.slice(),size(wu,"*"),wu.slice()];
 model.rpar=rpar;

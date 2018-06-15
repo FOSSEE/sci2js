@@ -14,7 +14,7 @@ while (None) {
 if (!ok) {
 break
 }
-x.model.equations.parameters[2]=list(Qini);
+x.model.equations.parameters[2-1]=list(Qini);
 x.graphics.exprs=exprs;
 break
 }

@@ -7,10 +7,10 @@ x=arg1;
 graphics=arg1.graphics;
 exprs=graphics.exprs;
 if (size(exprs,"*")==1) {
-exprs[2]=string(1);
+exprs[2-1]=string(1);
 }
 if (size(exprs,"*")==2) {
-exprs[3]=string(0);
+exprs[3-1]=string(0);
 }
 model=arg1.model;
 while (true) {
