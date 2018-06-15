@@ -154,7 +154,7 @@ def t_DOT(t):
     return t
 
 def t_MULTIPLICATION(t):
-    r'[*/^\\]'
+    r'\*\*|[*/^\\]'
     global afterarray
     afterarray = False
     return t

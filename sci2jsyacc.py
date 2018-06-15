@@ -335,7 +335,13 @@ def p_expression_term_transpose(p):
 
 def p_expression_expression_multiplication_expression(p):
     'expression : expression MULTIPLICATION expression'
-    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+    if p[2] == '**':
+        op = '^'
+    elif p[2] == '\\':
+        op = '\\'
+    else:
+        op = p[2]
+    p[0] = str(p[1]) + op + str(p[3])
 
 def p_expression_expression_addition_expression(p):
     'expression : expression ADDITION expression'
