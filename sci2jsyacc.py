@@ -71,11 +71,11 @@ def p_statement_assignment(p):
 
 def p_statement_resume(p):
     'statement : lterm ASSIGNMENT RESUME OPENBRACKET expression CLOSEBRACKET EOL'
-    p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6] + p[7]
+    p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6] + '\n'
 
 def p_statement_where(p):
     'statement : lterm ASSIGNMENT WHERE OPENBRACKET CLOSEBRACKET EOL'
-    p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
+    p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + '\n'
 
 def p_statement_forstatement_forstatementblock(p):
     'statement : forstatementblock END EOL'
@@ -257,8 +257,8 @@ def p_assignment_expression(p):
 # define ltermarraylist
 
 def p_ltermarraylist_ltermarraylist_semicolon_var(p):
-    '''ltermarraylist : ltermarraylist SEMICOLON VAR
-                      | ltermarraylist COMMA VAR'''
+    '''ltermarraylist : ltermarraylist COMMA VAR
+                      | ltermarraylist SPACE VAR'''
     p[0] = str(p[1]) + ',' + str(p[3])
 
 def p_ltermarraylist_ltermarraylist_var(p):
@@ -276,18 +276,11 @@ def p_ltermarraylist_var(p):
 def p_termarraylist_termarraylist_semicolon_expression(p):
     '''termarraylist : termarraylist SEMICOLON expression
                      | termarraylist COMMA expression
+                     | termarraylist SPACE expression
                      | expression SEMICOLON expression
-                     | expression COMMA expression'''
+                     | expression COMMA expression
+                     | expression SPACE expression'''
     p[0] = str(p[1]) + ',' + str(p[3])
-
-def p_termarraylist_termarraylist_term(p):
-    '''termarraylist : termarraylist term
-                     | term term'''
-    p[0] = str(p[1]) + ',' + str(p[2])
-
-def p_termarraylist_addition_term_term(p):
-    'termarraylist : ADDITION term term'
-    p[0] = str(p[1]) + str(p[2]) + ',' + str(p[3])
 
 # end define termarraylist
 
@@ -296,7 +289,7 @@ def p_termarraylist_addition_term_term(p):
 def p_list_list_expression(p):
     '''list : list COMMA expression
             | expression COMMA expression'''
-    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+    p[0] = str(p[1]) + ',' + str(p[3])
 
 # end define list
 
@@ -313,7 +306,8 @@ def p_expression_expression(p):
 def p_expression_termarraylist(p):
     '''expression : OPENSQBRACKET termarraylist CLOSESQBRACKET
                   | OPENSQBRACKET termarraylist SEMICOLON CLOSESQBRACKET
-                  | OPENSQBRACKET termarraylist COMMA CLOSESQBRACKET'''
+                  | OPENSQBRACKET termarraylist COMMA CLOSESQBRACKET
+                  | OPENSQBRACKET termarraylist SPACE CLOSESQBRACKET'''
     p[0] = '[' + str(p[2]) + ']'
 
 def p_expression_sqbracket_addition_term_sqbracket(p):
@@ -473,7 +467,7 @@ def p_term_index(p):
 # A(2,3)
 def p_term_part_parameters(p):
     'term : PART OPENBRACKET expression COMMA expression COLON expression CLOSEBRACKET'
-    p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + ',' + p[7] + p[8]
+    p[0] = p[1] + p[2] + p[3] + ',' + p[5] + ',' + p[7] + p[8]
 
 # A(2,3)
 def p_term_function_parameters(p):

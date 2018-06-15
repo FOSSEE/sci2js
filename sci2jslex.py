@@ -7,6 +7,7 @@ import sys
 
 ''' keep track of how many open brackets have been encountered so far '''
 brackets = 0
+sqbrackets = 0
 
 ''' keep current string in memory '''
 qstring = ''
@@ -63,6 +64,7 @@ tokens = [
     'COMPARISON',
     'DOT',
     'DQSTRING',
+    'SPACE',
     'EOL',
     'LASTINDEX',
     'LOGICAL',
@@ -84,28 +86,26 @@ states = (
     ('dqstring', 'exclusive'),
 )
 
-t_ignore = ' \t'
-t_qstring_ignore = ''
-t_dqstring_ignore = ''
-
-def t_COMMA_COMMENT(t):
-    r',[ \t]*//.*'
+def t_COMMA(t):
+    r'[ \t]*,([ \t]*(//.*)?\n?)*'
     global afterarray, brackets
+    afterarray = False
     if brackets != 0:
-        afterarray = False
-        t.type = 'COMMA'
         return t
+    t.type = 'EOL'
+    return t
 
-def t_SEMICOLON_COMMENT(t):
-    r';[ \t]*//.*'
+def t_SEMICOLON(t):
+    r'[ \t]*;([ \t]*(//.*)?\n?)*'
     global afterarray, brackets
+    afterarray = False
     if brackets != 0:
-        afterarray = False
-        t.type = 'SEMICOLON'
         return t
+    t.type = 'EOL'
+    return t
 
 def t_COMMENT(t):
-    r'\.\.+[ \t]*(//.*)?(\n|$)|//.*'
+    r'\.\.+[ \t]*(//.*)?(\n[ \t]*|$)|//.*'
     pass
 
 def t_NUMBER(t):
@@ -141,10 +141,13 @@ def t_LASTINDEX(t):
     return t
 
 def t_EOL(t):
-    r'\n'
+    r'[ \t]*\n([ \t]*(//.*)?\n?)*'
     global afterarray, brackets
     if brackets == 0:
         afterarray = False
+        return t
+    if sqbrackets != 0:
+        t.type = 'SPACE'
         return t
 
 def t_DOT(t):
@@ -165,70 +168,34 @@ def t_ADDITION(t):
     afterarray = False
     return t
 
-def t_COMMA_EOL(t):
-    r',\n'
-    global afterarray, brackets
-    if brackets == 0:
-        afterarray = False
-        t.type = 'EOL'
-        t.value = '\n'
-        return t
-
-    afterarray = False
-    t.type = 'COMMA'
-    return t
-
-def t_COMMA(t):
-    r','
-    global afterarray
-    afterarray = False
-    return t
-
 def t_OPENSQBRACKET(t):
-    r'\['
-    global afterarray, brackets
+    r'\[([ \t]*(//.*)?\n?)*'
+    global afterarray, brackets, sqbrackets
     afterarray = False
     brackets += 1
+    sqbrackets += 1
     return t
 
 def t_CLOSESQBRACKET(t):
-    r'\]'
-    global afterarray, brackets
+    r'[ \t]*\]'
+    global afterarray, brackets, sqbrackets
     afterarray = True
     brackets -= 1
+    sqbrackets -= 1
     return t
 
 def t_OPENBRACKET(t):
-    r'\('
+    r'\(([ \t]*(//.*)?\n?)*'
     global afterarray, brackets
     afterarray = False
     brackets += 1
     return t
 
 def t_CLOSEBRACKET(t):
-    r'\)'
+    r'[ \t]*\)'
     global afterarray, brackets
     afterarray = True
     brackets -= 1
-    return t
-
-def t_SEMICOLON_EOL(t):
-    r';\n'
-    global afterarray, brackets
-    if brackets == 0:
-        afterarray = False
-        t.type = 'EOL'
-        t.value = '\n'
-        return t
-
-    afterarray = False
-    t.type = 'SEMICOLON'
-    return t
-
-def t_SEMICOLON(t):
-    r';'
-    global afterarray
-    afterarray = False
     return t
 
 def t_NOT(t):
@@ -254,6 +221,12 @@ def t_COLON(t):
     global afterarray
     afterarray = False
     return t
+
+def t_SPACE(t):
+    r'[ \t]+'
+    global sqbrackets
+    if sqbrackets != 0:
+        return t
 
 def t_error(t):
     print("Illegal character '", t.value[0], "'", sep='')

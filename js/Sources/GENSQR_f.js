@@ -11,7 +11,8 @@ if (size(exprs,"*")==2) {
 exprs=exprs(2);
 }
 while (true) {
-[ok,Amplitude,exprs]=scicos_getvalue(["Set Square generator block parameters"],["Amplitude"],list("vec",1),exprs);
+[ok,Amplitude,exprs]=scicos_getvalue([
+            "Set Square generator block parameters"],["Amplitude"],list("vec",1),exprs);
 if (!ok) {
 break
 }
