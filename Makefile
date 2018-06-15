@@ -15,6 +15,8 @@ combined.js: $(JSFILES) Makefile
 	    cat $$f; \
 	    count=$$(( count+1 )); \
 	done > $@; \
+	echo >> $@; \
+	echo "/* made from $$count/$$totalcount files */" >> $@; \
 	echo "made $@ from $$count/$$totalcount files"
 
 js/%.js: macros/%.sci sci2jsyacc.py parsetab.py sci2jslex.py

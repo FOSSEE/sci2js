@@ -288,6 +288,10 @@ def p_termarraylist_expression(p):
     'termarraylist : expression'
     p[0] = str(p[1])
 
+def p_termarraylist_expression_colon_expression(p):
+    'termarraylist : expression COLON expression'
+    p[0] = str(p[1]) + ':' + str(p[3])
+
 # end define termarraylist
 
 # define list
