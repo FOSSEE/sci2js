@@ -48,6 +48,7 @@ syntaxtokens = {
 
 predefinedvariables = {
     'f': 'PREVAR_BOOLEAN',
+    'e': 'PREVAR_FLOAT',
     'i': 'PREVAR_COMPLEX',
     'pi': 'PREVAR_FLOAT',
     't': 'PREVAR_BOOLEAN',

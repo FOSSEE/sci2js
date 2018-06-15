@@ -34,7 +34,7 @@ break
 DLRADAPT_f.prototype.define = function DLRADAPT_f() {
 p=[0,1];
 rn=[];
-rd=[math.complex("0.2+0.8i"),math.complex("0.2-0.8i"),math.complex("0.3+0.7i"),math.complex("0.3-0.7i")];
+rd=[math.complex(0.2,0.8),math.complex(0.2,-0.8),math.complex(0.3,0.7),math.complex(0.3,-0.7)];
 g=[1,1];
 last_u=[];
 last_y=[0,0];

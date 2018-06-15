@@ -28,7 +28,7 @@ break
 }
 EXPBLK_m.prototype.define = function EXPBLK_m() {
 in1=1;
-a=%e;
+a=math.E;
 model=scicos_model();
 model.sim=list("expblk_m",4);
 model.in=-1;

@@ -504,8 +504,7 @@ def p_term_lastindex(p):
 
 # %f
 def p_term_prevar(p):
-    '''term : PREVAR
-            | PREVAR_FLOAT'''
+    'term : PREVAR'
     p[0] = str(p[1])
 
 # %f
@@ -517,9 +516,33 @@ def p_term_prevar_boolean(p):
         p[0] == 'false'
 
 # 1+2*%i
-def p_term_prevar_complex(p):
+def p_term_prevar_complex1(p):
     'expression : expression ADDITION expression MULTIPLICATION PREVAR_COMPLEX'
-    p[0] = 'math.complex("' + p[1] + p[2] + p[3] + 'i")'
+    if p[2] == '-':
+        imag = str(p[2]) + str(p[3])
+    else:
+        imag = str(p[3])
+    p[0] = 'math.complex(' + p[1] + ',' + imag + ')'
+
+# 1+2*%i
+def p_term_prevar_complex2(p):
+    'expression : expression ADDITION PREVAR_COMPLEX MULTIPLICATION expression'
+    if p[2] == '-':
+        imag = str(p[2]) + str(p[5])
+    else:
+        imag = str(p[5])
+    p[0] = 'math.complex(' + p[1] + ',' + imag + ')'
+
+# %e %pi
+def p_term_prevar_float(p):
+    'term : PREVAR_FLOAT'
+    if p[1] == '%e':
+        flt = 'math.E'
+    elif p[1] == '%pi':
+        flt = 'math.PI'
+    else:
+        flt = p[1]
+    p[0] = flt
 
 def p_term_termvar(p):
     'term : termvar'

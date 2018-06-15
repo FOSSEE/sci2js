@@ -30,7 +30,7 @@ break
 }
 LOGBLK_f.prototype.define = function LOGBLK_f() {
 in1=1;
-a=%e;
+a=math.E;
 model=scicos_model();
 model.sim="logblk";
 model.in=-1;
