@@ -276,11 +276,12 @@ def p_ltermarraylist_var(p):
 def p_termarraylist_termarraylist_semicolon_expression(p):
     '''termarraylist : termarraylist SEMICOLON expression
                      | termarraylist COMMA expression
-                     | termarraylist SPACE expression
-                     | expression SEMICOLON expression
-                     | expression COMMA expression
-                     | expression SPACE expression'''
+                     | termarraylist SPACE expression'''
     p[0] = str(p[1]) + ',' + str(p[3])
+
+def p_termarraylist_expression(p):
+    'termarraylist : expression'
+    p[0] = str(p[1])
 
 # end define termarraylist
 
@@ -309,14 +310,6 @@ def p_expression_termarraylist(p):
                   | OPENSQBRACKET termarraylist COMMA CLOSESQBRACKET
                   | OPENSQBRACKET termarraylist SPACE CLOSESQBRACKET'''
     p[0] = '[' + str(p[2]) + ']'
-
-def p_expression_sqbracket_addition_term_sqbracket(p):
-    'expression : OPENSQBRACKET ADDITION term CLOSESQBRACKET'
-    p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
-
-def p_expression_sqbracket_term_sqbracket(p):
-    'expression : OPENSQBRACKET term CLOSESQBRACKET'
-    p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
 # []
 def p_expression_empty(p):
@@ -358,7 +351,7 @@ def p_expression_expression_logical_expression(p):
     p[0] = str(p[1]) + o + str(p[3])
 
 def p_expression_addition_term(p):
-    'expression : ADDITION term %prec UNARYADDITION'
+    'expression : ADDITION expression %prec UNARYADDITION'
     p[0] = str(p[1]) + str(p[2])
 
 def p_expression_not_expression(p):
