@@ -486,10 +486,15 @@ def p_term_index(p):
     else:
         p[0] = p[1] + '(' + str(p[3]) + ')'
 
-# A(2,3)
-def p_term_part_parameters(p):
+# part(x,1:10)
+def p_term_part_parameter_range(p):
     'term : PART OPENBRACKET expression COMMA expression COLON expression CLOSEBRACKET'
     p[0] = p[1] + p[2] + p[3] + ',' + p[5] + ',' + p[7] + p[8]
+
+# part(x,1)
+def p_term_part_parameter_parameter(p):
+    'term : PART OPENBRACKET expression COMMA expression CLOSEBRACKET'
+    p[0] = p[1] + p[2] + p[3] + ',' + p[5] + p[6]
 
 # A(2,3)
 def p_term_function_parameters(p):
