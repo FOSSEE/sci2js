@@ -477,6 +477,11 @@ def p_term_full_slice_expression(p):
     'term : termvar OPENBRACKET COLON COMMA expression CLOSEBRACKET'
     p[0] = p[1] + '.slice()[' + str(p[5]) + '-1]'
 
+# (1:10)
+def p_term_range(p):
+    'term : OPENBRACKET expression COLON expression CLOSEBRACKET'
+    p[0] = '[%s:%s]' % (p[2], p[4])
+
 # B($-2)
 # C('function parameter')
 def p_term_index(p):
