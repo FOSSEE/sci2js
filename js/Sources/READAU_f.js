@@ -13,7 +13,7 @@ ipar=model.ipar;
 imask=9+ipar(1);
 tmask=ipar(imask);
 lunit=dstate(3);
-fname=exprs(1);
+fname=exprs[1-1];
 while (true) {
 [ok,fname1,N,swap,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"READAU_f")," ",gettext("(Read Audio File)")," ",gettext("Read is done on a binary \'.au\' file")],[gettext("Input File Name"),gettext("Buffer size"),gettext("Swap Mode (0:No, 1:Yes)")],list("str",1,"vec",1,"vec",1),exprs);
 tmask1=[];

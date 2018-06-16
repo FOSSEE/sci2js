@@ -8,7 +8,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,"*")==2) {
-exprs=exprs(2);
+exprs=exprs[2-1];
 }
 while (true) {
 [ok,a,exprs]=scicos_getvalue("Set a^u  block parameters","a (>0)",list("vec",1),exprs);

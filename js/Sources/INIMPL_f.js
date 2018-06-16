@@ -8,7 +8,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,"*")==2) {
-exprs=exprs(1);
+exprs=exprs[1-1];
 }
 while (true) {
 [ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"INIMPL_f")," ",gettext("Implicit input port")," "],"Port Number",list("vec",1),exprs);

@@ -13,8 +13,8 @@ ipar=model.ipar;
 imask=9+ipar(1);
 tmask=ipar(imask);
 lunit=dstate(3);
-fname=exprs(3);
-frmt=exprs(4);
+fname=exprs[3-1];
+frmt=exprs[4-1];
 while (true) {
 [ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"READC_f")," ",gettext("Read from C binary file")],[gettext("Time Record Selection"),gettext("Outputs Record Selection"),gettext("Input File Name"),gettext("Input Format"),gettext("Record Size"),gettext("Buffer Size"),gettext("Initial Record Index"),gettext("Swap Mode (0:No, 1:Yes)")],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {

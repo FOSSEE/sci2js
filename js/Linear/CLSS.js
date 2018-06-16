@@ -7,7 +7,7 @@ x=arg1;
 graphics=arg1.graphics;
 exprs=graphics.exprs;
 if (size(exprs,"*")==7) {
-exprs=exprs([1:4,7]);
+exprs=exprs[[1:4,7]-1];
 }
 model=arg1.model;
 while (true) {

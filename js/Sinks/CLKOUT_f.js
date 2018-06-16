@@ -7,7 +7,7 @@ x=arg1;
 graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
-exprs=exprs(1);
+exprs=exprs[1-1];
 while (true) {
 [ok,prt,exprs]=scicos_getvalue("Set Event Output block parameters","Port number",list("vec",1),exprs);
 if (!ok) {

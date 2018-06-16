@@ -8,7 +8,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,"*")==2) {
-exprs=exprs(2);
+exprs=exprs[2-1];
 }
 while (true) {
 [ok,Amplitude,exprs]=scicos_getvalue(["Set Square generator block parameters"],["Amplitude"],list("vec",1),exprs);

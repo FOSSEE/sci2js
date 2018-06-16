@@ -6,7 +6,7 @@ DEBUG.prototype.set = function DEBUG() {
 x=arg1;
 graphics=arg1.graphics;
 exprs=graphics.exprs;
-textmp=exprs(2);
+textmp=exprs[2-1];
 ok=true;
 while (1==1) {
 [txt]=dialog(["Enter scilab instructions for debugging."," Inputs are block and flag, output is block"],textmp);

@@ -8,7 +8,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,gain,exprs]=scicos_getvalue("Set gain block parameters",["Gain"],list("mat",[-1,-1]),exprs(1));
+[ok,gain,exprs]=scicos_getvalue("Set gain block parameters",["Gain"],list("mat",[-1,-1]),exprs[1-1]);
 if (!ok) {
 break
 }

@@ -237,7 +237,8 @@ def p_ifstatement_if_then(p):
     p[0] = 'if (' + p[2] + ') {\n'
 
 def p_elseifstatement_elseif_then(p):
-    '''elseifstatement : ELSEIF expression THEN EOL'''
+    '''elseifstatement : ELSEIF expression THEN EOL
+                       | ELSEIF expression EOL'''
     p[0] = '} else if (' + p[2] + ') {\n'
 
 def p_elsestatement_else(p):
@@ -480,11 +481,20 @@ def p_term_full_slice(p):
 # B($-2)
 # C('function parameter')
 def p_term_index(p):
-    'term : termvar OPENBRACKET expression CLOSEBRACKET'
+    'termfunc : termvar OPENBRACKET expression CLOSEBRACKET'
     if isarray(p[1]):
         p[0] = p[1] + '[' + str(p[3]) + '-1]'
     else:
         p[0] = p[1] + '(' + str(p[3]) + ')'
+
+# B($-2)('function parameter')
+def p_term_termfunc_parameter(p):
+    'term : termfunc OPENBRACKET expression CLOSEBRACKET'
+    p[0] = p[1] + '(' + str(p[3]) + ')'
+
+def p_term_termfunc(p):
+    'term : termfunc'
+    p[0] = p[1]
 
 # part(x,1:10)
 def p_term_part_parameter_range(p):
@@ -627,6 +637,8 @@ if __name__ == '__main__':
     with open(filename, 'r') as infile:
         for line in infile:
             data += line
+
+        addtoarray('exprs')
 
         parser = yacc.yacc()
         result = parser.parse(data, debug=True)

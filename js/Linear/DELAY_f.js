@@ -40,13 +40,13 @@ ok=None;
 if (!ok) {
 message(mess);
 } else {
-evtdly.graphics.exprs[1-1]=exprs(1);
+evtdly.graphics.exprs[1-1]=exprs[1-1];
 if (evtdly.model.rpar!=dt) {
 evtdly.model.rpar=dt;
 newpar[$+1-1]=ppath[2-1];
 }
 x.model.rpar.objs[ppath[2-1]-1]=evtdly;
-register.graphics.exprs=exprs(2);
+register.graphics.exprs=exprs[2-1];
 if (or(register.model.dstate!=z0.slice())) {
 register.model.dstate=z0.slice();
 newpar[$+1-1]=ppath[1-1];

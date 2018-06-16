@@ -8,7 +8,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 if (size(exprs,"*")==2) {
-exprs=exprs(2);
+exprs=exprs[2-1];
 }
 if (size(exprs,"*")!=3) {
 exprs=string(model.rpar);
