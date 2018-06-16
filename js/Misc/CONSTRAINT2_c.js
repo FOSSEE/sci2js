@@ -28,7 +28,7 @@ x_message("number of states (constraints) must be > 0 ");
 ask_again=true;
 }
 if ((!ask_again)) {
-for(i=1;i<=N;i+=1) {
+for (i=1;i<=N;i+=1) {
 if (!((id(i)==0)||(id(i)==1))) {
 ask_again=true;
 x_message(["Id(i) must be either","0 when x\'(i) is not present in the feedback","1: when x\'(i) is present in the feedback"]);

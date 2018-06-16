@@ -4,7 +4,7 @@ PID.prototype.get = function PID() {
 }
 PID.prototype.set = function PID() {
 ppath=list(0,0,0);
-for(i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Link") {
 from=arg1.model.rpar.objs(o.from(1));

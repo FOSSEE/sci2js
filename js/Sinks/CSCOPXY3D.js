@@ -38,7 +38,7 @@ mess=[mess,"Buffer size must be at least 1"," "];
 ok=None;
 }
 if (N<2) {
-for(i=1;i<=size(clrs,"*");i+=1) {
+for (i=1;i<=size(clrs,"*");i+=1) {
 if (clrs(i)>0) {
 mess=[mess,"Buffer size must be at least 2 or Change a color (must be >0)"," "];
 ok=None;

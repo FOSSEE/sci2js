@@ -44,8 +44,8 @@ break
 if (ok) {
 k=1;
 ipar=[];
-for(i=1;i<=n;i+=1) {
-for(j=i+1;j<=n;j+=1) {
+for (i=1;i<=n;i+=1) {
+for (j=i+1;j<=n;j+=1) {
 ipar[k-1]=i;
 k=k+1;
 ipar[k-1]=j;
@@ -69,8 +69,8 @@ BOUNCE.prototype.define = function BOUNCE() {
 n=2;
 k=1;
 ipar=[];
-for(i=1;i<=n;i+=1) {
-for(j=i+1;j<=n;j+=1) {
+for (i=1;i<=n;i+=1) {
+for (j=i+1;j<=n;j+=1) {
 ipar[k-1]=i;
 k=k+1;
 ipar[k-1]=j;

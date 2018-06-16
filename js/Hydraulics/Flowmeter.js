@@ -30,7 +30,7 @@ MI=[];
 MO=[];
 P=[50,105,-1,90,0,10,2,0,101,10,-2,0];
 PortName=["Mesure","C1","C2"];
-for(i=1;i<=size(P,"r");i+=1) {
+for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
 Typein=[Typein,"E"];
 MI=[MI,PortName(i)];

@@ -24,22 +24,21 @@ jobblocks = {}
 
 def p_functionblock_function_statementblock_endfunction(p):
     'functionblock : emptystatementblock FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION emptystatementblock'
-    global jobblocks
     f = str(p[5])
     p[0] = ('function ' + f + '() {\n' +
-        f + '.prototype.get = function ' + f + '() {\n' +
-        (jobblocks['"get"'] if '"get"' in jobblocks else '') +
-        '}\n' +
-        f + '.prototype.set = function ' + f + '() {\n' +
-        (jobblocks['"set"'] if '"set"' in jobblocks else '') +
-        '}\n' +
-        f + '.prototype.define = function ' + f + '() {\n' +
-        (jobblocks['"define"'] if '"define"' in jobblocks else '') +
-        '}\n' +
-        f + '.prototype.details = function ' + f + '() {\n' +
-        (jobblocks['"details"'] if '"details"' in jobblocks else '') +
-        '}\n' +
-        '}')
+            f + '.prototype.get = function ' + f + '() {\n' +
+            (jobblocks['"get"'] if '"get"' in jobblocks else '') +
+            '}\n' +
+            f + '.prototype.set = function ' + f + '() {\n' +
+            (jobblocks['"set"'] if '"set"' in jobblocks else '') +
+            '}\n' +
+            f + '.prototype.define = function ' + f + '() {\n' +
+            (jobblocks['"define"'] if '"define"' in jobblocks else '') +
+            '}\n' +
+            f + '.prototype.details = function ' + f + '() {\n' +
+            (jobblocks['"details"'] if '"details"' in jobblocks else '') +
+            '}\n' +
+            '}')
 
 
 # end define functionblock
@@ -139,13 +138,11 @@ def p_casestatementblock_casestatement(p):
 
 def p_casejobstatementblock_casejobstatementblock_casejobstatement(p):
     'casejobstatementblock : casejobstatementblock casejobstatement statementblock'
-    global jobblocks
     jobblocks[p[2]] = p[3]
     p[0] = ''
 
 def p_casejobstatementblock_casejobstatement(p):
     'casejobstatementblock : casejobstatement statementblock'
-    global jobblocks
     jobblocks[p[1]] = p[2]
     p[0] = ''
 
@@ -186,7 +183,7 @@ def p_forstatement_for_start_step_end(p):
     else:
         endop = '>='
         stepop = '-='
-    p[0] = p[1] + '(' + var + p[3] + start + ';' + var + endop + end + ';' + var + stepop + str(step) + ') {\n'
+    p[0] = 'for (%s=%s;%s%s%s;%s%s%s) {\n' % (var, start, var, endop, end, var, stepop, step)
 
 def p_forstatement_for_start_end(p):
     '''forstatement : FOR VAR ASSIGNMENT expression COLON expression EOL
@@ -197,13 +194,13 @@ def p_forstatement_for_start_end(p):
     end = p[6]
     endop = '<='
     stepop = '+='
-    p[0] = p[1] + '(' + var + p[3] + start + ';' + var + endop + end + ';' + var + stepop + str(step) + ') {\n'
+    p[0] = 'for (%s=%s;%s%s%s;%s%s%s) {\n' % (var, start, var, endop, end, var, stepop, step)
 
 def p_forstatement_for_list(p):
     '''forstatement : FOR VAR ASSIGNMENT VAR EOL
                     | FOR VAR ASSIGNMENT VAR DO EOL'''
     var = p[2]
-    p[0] = p[1] + '(' + var + ' in ' + p[4] + ') {\n'
+    p[0] = 'for (%s in %s) {\n' % (var, p[4])
 
 def p_selectstatement_select(p):
     'selectstatement : SELECT expression emptystatementblock'
@@ -215,14 +212,14 @@ def p_selectjobstatement_select(p):
 
 def p_casestatement_case(p):
     '''casestatement : CASE expression THEN EOL
-                       | CASE expression EOL
-                       | CASE expression THEN COMMA'''
+                     | CASE expression EOL
+                     | CASE expression THEN COMMA'''
     p[0] = 'case ' + p[2] + ':\n'
 
 def p_casejobstatement_case(p):
     '''casejobstatement : CASE expression THEN EOL
-                       | CASE expression EOL
-                       | CASE expression THEN COMMA'''
+                        | CASE expression EOL
+                        | CASE expression THEN COMMA'''
     p[0] = p[2]
 
 def p_whilestatement_while_do(p):
@@ -363,16 +360,16 @@ def p_expression_expression_addition_expression(p):
 def p_expression_expression_comparison_expression(p):
     'expression : expression COMPARISON expression'
     o = p[2]
-    if (o == '<>' or o == '~='):
+    if o == '<>' or o == '~=':
         o = '!='
     p[0] = str(p[1]) + o + str(p[3])
 
 def p_expression_expression_logical_expression(p):
     'expression : expression LOGICAL expression'
     o = p[2]
-    if (o == '&'):
+    if o == '&':
         o = '&&'
-    elif (o == '|'):
+    elif o == '|':
         o = '||'
     p[0] = str(p[1]) + o + str(p[3])
 

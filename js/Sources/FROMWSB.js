@@ -3,7 +3,7 @@ function FROMWSB() {
 FROMWSB.prototype.get = function FROMWSB() {
 }
 FROMWSB.prototype.set = function FROMWSB() {
-for(i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="FROMWS_c") {
 ppath=list(i);
@@ -12,10 +12,10 @@ break
 }
 newpar=list();
 y=0;
-for(path in ppath) {
+for (path in ppath) {
 np=size(path,"*");
 spath=list();
-for(k=1;k<=np;k+=1) {
+for (k=1;k<=np;k+=1) {
 spath[$+1-1]="model";
 spath[$+1-1]="rpar";
 spath[$+1-1]="objs";

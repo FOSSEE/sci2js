@@ -17,7 +17,7 @@ if (in1<=0) {
 message("Block must have at least one input");
 } else {
 kk=0;
-for(jj=1;jj<=in1;jj+=1) {
+for (jj=1;jj<=in1;jj+=1) {
 kk=kk+2^(in1+jj-1);
 }
 model.rpar=[-ones(kk,1),zeros(2^(2*in1)-kk,1)];

@@ -78,7 +78,7 @@ MI=[];
 MO=[];
 P=[50,105,-1,90,0,10,2,0,101,10,-2,0];
 PortName=["Mesure","C1","C2"];
-for(i=1;i<=size(P,"r");i+=1) {
+for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
 Typein=[Typein,"E"];
 MI=[MI,PortName(i)];
@@ -653,7 +653,7 @@ function MCLOCK_f() {
 MCLOCK_f.prototype.get = function MCLOCK_f() {
 }
 MCLOCK_f.prototype.set = function MCLOCK_f() {
-for(i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="MFCLCK_f") {
 path=i;
@@ -1455,7 +1455,7 @@ DELAY_f.prototype.get = function DELAY_f() {
 }
 DELAY_f.prototype.set = function DELAY_f() {
 ppath=list(0,0);
-for(i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="REGISTER_f") {
 ppath[1-1]=i;
@@ -2967,7 +2967,7 @@ PID.prototype.get = function PID() {
 }
 PID.prototype.set = function PID() {
 ppath=list(0,0,0);
-for(i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Link") {
 from=arg1.model.rpar.objs(o.from(1));
@@ -3468,7 +3468,7 @@ mess=[mess,"Buffer size must be at least 1"," "];
 ok=None;
 }
 if (N<2) {
-for(i=1;i<=nbr_curves;i+=1) {
+for (i=1;i<=nbr_curves;i+=1) {
 if (clrs(i)>0) {
 mess=[mess,"Buffer size must be at least 2 or Change a color (must be <0)"," "];
 ok=None;
@@ -3647,7 +3647,7 @@ mess=[mess,"Buffer size must be at least 1"," "];
 ok=None;
 }
 if (N<2) {
-for(i=1;i<=size(clrs,"*");i+=1) {
+for (i=1;i<=size(clrs,"*");i+=1) {
 if (clrs(i)>0) {
 mess=[mess,"Buffer size must be at least 2 or Change a color (must be >0)"," "];
 ok=None;
@@ -4211,7 +4211,7 @@ if (size(per,"*")!=size(ymin,"*")) {
 mess=[mess,"Size of Refresh Period must equal size of Ymin/Ymax vector"," "];
 ok=None;
 }
-for(i=1;i<=size(per,"*");i+=1) {
+for (i=1;i<=size(per,"*");i+=1) {
 if ((per(i)<=0)) {
 mess=[mess,"Refresh Period must be positive"," "];
 ok=None;
@@ -6320,7 +6320,7 @@ function CLOCK_c() {
 CLOCK_c.prototype.get = function CLOCK_c() {
 }
 CLOCK_c.prototype.set = function CLOCK_c() {
-for(i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="EVTDLY_c") {
 path=i;
@@ -6994,7 +6994,7 @@ function CLOCK_f() {
 CLOCK_f.prototype.get = function CLOCK_f() {
 }
 CLOCK_f.prototype.set = function CLOCK_f() {
-for(i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
 path=i;
@@ -7298,7 +7298,7 @@ function FROMWSB() {
 FROMWSB.prototype.get = function FROMWSB() {
 }
 FROMWSB.prototype.set = function FROMWSB() {
-for(i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="FROMWS_c") {
 ppath=list(i);
@@ -7307,10 +7307,10 @@ break
 }
 newpar=list();
 y=0;
-for(path in ppath) {
+for (path in ppath) {
 np=size(path,"*");
 spath=list();
-for(k=1;k<=np;k+=1) {
+for (k=1;k<=np;k+=1) {
 spath[$+1-1]="model";
 spath[$+1-1]="rpar";
 spath[$+1-1]="objs";
@@ -8923,13 +8923,13 @@ if ((ma==0||mb==0)) {
 message("empty field");
 ok=None;
 }
-for(i=1;i<=ma;i+=1) {
+for (i=1;i<=ma;i+=1) {
 if ((a(i)<=0)) {
 message("invalid index");
 ok=None;
 }
 }
-for(j=1;j<=mb;j+=1) {
+for (j=1;j<=mb;j+=1) {
 if ((b(j)<=0)) {
 message("invalid index");
 ok=None;
@@ -9369,7 +9369,7 @@ if (in1<=0) {
 message("Block must have at least one input");
 } else {
 kk=0;
-for(jj=1;jj<=in1;jj+=1) {
+for (jj=1;jj<=in1;jj+=1) {
 kk=kk+2^(in1+jj-1);
 }
 model.rpar=[-ones(kk,1),zeros(2^(2*in1)-kk,1)];
@@ -9527,7 +9527,7 @@ MI=[];
 MO=[];
 P=[2,50,1,0,70,98,2,0,70,2,-2,0];
 PortName=["Iin","p","n"];
-for(i=1;i<=size(P,"r");i+=1) {
+for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
 Typein=[Typein,"E"];
 MI=[MI,PortName(i)];
@@ -9746,7 +9746,7 @@ MI=[];
 MO=[];
 P=[2.5,90,2,0,2.5,10,2,0,97.5,90,-2,0,97.5,10,-2,0];
 PortName=["p1","n1","p2","n2"];
-for(i=1;i<=size(P,"r");i+=1) {
+for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
 Typein=[Typein,"E"];
 MI=[MI,PortName(i)];
@@ -9835,7 +9835,7 @@ MI=[];
 MO=[];
 P=[2,50,1,0,70,98,2,0,70,2,-2,0];
 PortName=["vin","p","n"];
-for(i=1;i<=size(P,"r");i+=1) {
+for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
 Typein=[Typein,"E"];
 MI=[MI,PortName(i)];
@@ -9953,7 +9953,7 @@ MI=[];
 MO=[];
 P=[100,90,-2,0,0,50,2,0,100,10,-2,0];
 PortName=["C","B","E"];
-for(i=1;i<=size(P,"r");i+=1) {
+for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
 Typein=[Typein,"E"];
 MI=[MI,PortName(i)];
@@ -10025,7 +10025,7 @@ MI=[];
 MO=[];
 P=[100,90,-2,0,0,50,2,0,100,10,-2,0];
 PortName=["C","B","E"];
-for(i=1;i<=size(P,"r");i+=1) {
+for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
 Typein=[Typein,"E"];
 MI=[MI,PortName(i)];
@@ -10537,7 +10537,7 @@ MI=[];
 MO=[];
 P=[2.5,90,2,0,2.5,10,2,0,97.5,90,-2,0,97.5,10,-2,0];
 PortName=["p1","n1","p2","n2"];
-for(i=1;i<=size(P,"r");i+=1) {
+for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
 Typein=[Typein,"E"];
 MI=[MI,PortName(i)];
@@ -10810,8 +10810,8 @@ break
 if (ok) {
 k=1;
 ipar=[];
-for(i=1;i<=n;i+=1) {
-for(j=i+1;j<=n;j+=1) {
+for (i=1;i<=n;i+=1) {
+for (j=i+1;j<=n;j+=1) {
 ipar[k-1]=i;
 k=k+1;
 ipar[k-1]=j;
@@ -10835,8 +10835,8 @@ BOUNCE.prototype.define = function BOUNCE() {
 n=2;
 k=1;
 ipar=[];
-for(i=1;i<=n;i+=1) {
-for(j=i+1;j<=n;j+=1) {
+for (i=1;i<=n;i+=1) {
+for (j=i+1;j<=n;j+=1) {
 ipar[k-1]=i;
 k=k+1;
 ipar[k-1]=j;
@@ -11069,7 +11069,7 @@ x_message("number of states (constraints) must be > 0 ");
 ask_again=true;
 }
 if ((!ask_again)) {
-for(i=1;i<=N;i+=1) {
+for (i=1;i<=N;i+=1) {
 if (!((id(i)==0)||(id(i)==1))) {
 ask_again=true;
 x_message(["Id(i) must be either","0 when x\'(i) is not present in the feedback","1: when x\'(i) is present in the feedback"]);
@@ -11936,7 +11936,7 @@ message(mess);
 rpar=[xmin,xmax,ymin,ymax];
 ipar=[win,imode,clrs.slice()];
 z=[];
-for(i=1;i<=size(clrs,"*");i+=1) {
+for (i=1;i<=size(clrs,"*");i+=1) {
 z[6*(i-1)+1-1]=0;
 z[6*(i-1)+2-1]=0;
 z[6*(i-1)+3-1]=2*siz(i);
@@ -11970,7 +11970,7 @@ model.in2=[1,1];
 model.intyp=[1,1];
 model.evtin=1;
 z=[];
-for(i=1;i<=size(clrs,"*");i+=1) {
+for (i=1;i<=size(clrs,"*");i+=1) {
 z[6*(i-1)+1-1]=0;
 z[6*(i-1)+2-1]=0;
 z[6*(i-1)+3-1]=2*siz(i);
@@ -12388,7 +12388,7 @@ function ENDBLK() {
 ENDBLK.prototype.get = function ENDBLK() {
 }
 ENDBLK.prototype.set = function ENDBLK() {
-for(i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="END_c") {
 ppath=list(i);
@@ -12397,10 +12397,10 @@ break
 }
 newpar=list();
 y=0;
-for(path in ppath) {
+for (path in ppath) {
 np=size(path,"*");
 spath=list();
-for(k=1;k<=np;k+=1) {
+for (k=1;k<=np;k+=1) {
 spath[$+1-1]="model";
 spath[$+1-1]="rpar";
 spath[$+1-1]="objs";
@@ -12948,7 +12948,7 @@ function SRFLIPFLOP() {
 SRFLIPFLOP.prototype.get = function SRFLIPFLOP() {
 }
 SRFLIPFLOP.prototype.set = function SRFLIPFLOP() {
-for(i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
 path=i;
@@ -13110,7 +13110,7 @@ function JKFLIPFLOP() {
 JKFLIPFLOP.prototype.get = function JKFLIPFLOP() {
 }
 JKFLIPFLOP.prototype.set = function JKFLIPFLOP() {
-for(i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
 path=i;

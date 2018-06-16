@@ -3,7 +3,7 @@ function CLOCK_c() {
 CLOCK_c.prototype.get = function CLOCK_c() {
 }
 CLOCK_c.prototype.set = function CLOCK_c() {
-for(i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="EVTDLY_c") {
 path=i;

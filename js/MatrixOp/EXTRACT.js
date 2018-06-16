@@ -35,13 +35,13 @@ if ((ma==0||mb==0)) {
 message("empty field");
 ok=None;
 }
-for(i=1;i<=ma;i+=1) {
+for (i=1;i<=ma;i+=1) {
 if ((a(i)<=0)) {
 message("invalid index");
 ok=None;
 }
 }
-for(j=1;j<=mb;j+=1) {
+for (j=1;j<=mb;j+=1) {
 if ((b(j)<=0)) {
 message("invalid index");
 ok=None;

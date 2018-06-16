@@ -36,7 +36,7 @@ message(mess);
 rpar=[xmin,xmax,ymin,ymax];
 ipar=[win,imode,clrs.slice()];
 z=[];
-for(i=1;i<=size(clrs,"*");i+=1) {
+for (i=1;i<=size(clrs,"*");i+=1) {
 z[6*(i-1)+1-1]=0;
 z[6*(i-1)+2-1]=0;
 z[6*(i-1)+3-1]=2*siz(i);
@@ -70,7 +70,7 @@ model.in2=[1,1];
 model.intyp=[1,1];
 model.evtin=1;
 z=[];
-for(i=1;i<=size(clrs,"*");i+=1) {
+for (i=1;i<=size(clrs,"*");i+=1) {
 z[6*(i-1)+1-1]=0;
 z[6*(i-1)+2-1]=0;
 z[6*(i-1)+3-1]=2*siz(i);

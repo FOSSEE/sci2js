@@ -20,7 +20,7 @@ MI=[];
 MO=[];
 P=[2,50,1,0,70,98,2,0,70,2,-2,0];
 PortName=["Iin","p","n"];
-for(i=1;i<=size(P,"r");i+=1) {
+for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
 Typein=[Typein,"E"];
 MI=[MI,PortName(i)];
