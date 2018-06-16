@@ -28,7 +28,7 @@ function_name="mat_sumc";
 out=[1,-2];
 } else {
 message("decomposition type is not supported");
-ok=None;
+ok=false;
 }
 it=1;
 ot=1;
@@ -44,13 +44,13 @@ function_name="matz_sumc";
 out=[1,-2];
 } else {
 message("decomposition type is not supported");
-ok=None;
+ok=false;
 }
 it=2;
 ot=2;
 } else {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 in1=[model.in1,model.in2];
 funtyp=4;
@@ -86,7 +86,7 @@ model.rpar=[];
 model.ipar=[];
 model.blocktype="c";
 model.firing=[];
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 label=[sci2exp(1),sci2exp(0)];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);

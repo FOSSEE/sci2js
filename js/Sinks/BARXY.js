@@ -15,15 +15,15 @@ break
 mess=[];
 if (ymin>=ymax) {
 mess=[mess,"Ymax must be greater than Ymin"," "];
-ok=None;
+ok=false;
 }
 if (xmin>=xmax) {
 mess=[mess,"Xmax must be greater than Xmin"," "];
-ok=None;
+ok=false;
 }
 if (thickness<=0) {
 mess=[mess,"Thickness must be strictly positive."];
-ok=None;
+ok=false;
 }
 if (!ok) {
 message(mess);
@@ -45,7 +45,7 @@ ymin=-15;
 ymax=15;
 model.sim=list("BARXY_sim",5);
 model.blocktype="d";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 model.in1=[-1,-1];
 model.intyp=[1];
 model.out=[];

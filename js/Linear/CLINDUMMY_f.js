@@ -12,7 +12,7 @@ model.sim=list("cdummy",4);
 model.state=x0;
 model.blocktype="c";
 model.firing=[];
-model.dep_ut=[None,true];
+model.dep_ut=[false,true];
 gr_i=[];
 x=standard_define([3,2],model,[],gr_i);
 }

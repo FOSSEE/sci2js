@@ -24,11 +24,11 @@ break
 rule=int(rule);
 if ((dtype<1||dtype>8)) {
 message("type is not supported");
-ok=None;
+ok=false;
 }
 if ((rule<1||rule>3)) {
 message("Multiplication rule must be only 1,2 or 3");
-ok=None;
+ok=false;
 }
 if ((dtype==1||dtype==2)) {
 np=0;
@@ -140,7 +140,7 @@ model.in1=[-1,-2];
 model.in2=[-2,-3];
 model.out=-1;
 model.out2=-3;
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 model.ipar=1;
 label=[sci2exp(model.ipar)];
 gr_i=[];

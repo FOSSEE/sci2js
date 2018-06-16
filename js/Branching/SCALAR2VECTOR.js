@@ -15,7 +15,7 @@ break
 nout=int(nout);
 if ((nout!=-1&&(nout<=0))) {
 message("size of output must be -1 or >0");
-ok=None;
+ok=false;
 }
 if (ok) {
 [model,graphics,ok]=check_io(model,graphics,[1],nout,[],[]);
@@ -35,7 +35,7 @@ model.sim=list("scalar2vector",4);
 model.out=nout;
 model.in1=1;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[string([nout])];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);

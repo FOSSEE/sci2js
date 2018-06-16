@@ -15,12 +15,12 @@ break
 in1=[model.in1,model.in2];
 if (floor(bit)!=bit) {
 block_parameter_error(msprintf(gettext("Wrong type for \'%s\' parameter: %5.1f."),gettext("Index of Bit"),bit),gettext("Must be integer."));
-ok=None;
+ok=false;
 }
 if ((Datatype==3)||(Datatype==6)) {
 if (bit>31||bit<0) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),bit),msprintf(gettext("Must be in the interval %s."),"[0, 31]"));
-ok=None;
+ok=false;
 }
 bit=uint32(bit);
 n=2^bit;
@@ -29,7 +29,7 @@ model.sim=list("bit_set_32",4);
 } else if ((Datatype==4)||(Datatype==7)) {
 if (bit>15||bit<0) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),bit),msprintf(gettext("Must be in the interval %s."),"[0, 15]"));
-ok=None;
+ok=false;
 }
 bit=uint16(bit);
 n=2^bit;
@@ -38,7 +38,7 @@ model.sim=list("bit_set_16",4);
 } else if ((Datatype==5)||(Datatype==8)) {
 if (bit>7||bit<0) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),bit),msprintf(gettext("Must be in the interval %s."),"[0, 7]"));
-ok=None;
+ok=false;
 }
 bit=uint8(bit);
 n=2^bit;
@@ -46,7 +46,7 @@ n=uint8(n);
 model.sim=list("bit_set_8",4);
 } else {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
-ok=None;
+ok=false;
 }
 if (ok) {
 it=Datatype;
@@ -74,7 +74,7 @@ model.intyp=3;
 model.outtyp=3;
 model.opar=list(uint32(0));
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[sci2exp(3),sci2exp(0)];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);

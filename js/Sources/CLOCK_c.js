@@ -24,7 +24,7 @@ break
 }
 if (dt<=0) {
 block_parameter_error(msprintf(gettext("Wrong values for \'%s\' parameter: %5.1e."),gettext("Period"),dt),gettext("Strictly positive number expected."));
-ok=None;
+ok=false;
 }
 if (ok) {
 xx.graphics.exprs=exprs0;
@@ -84,8 +84,8 @@ x.graphics.peout=0;
 x.model.sim="csuper";
 x.model.evtout=1;
 x.model.blocktype="h";
-x.model.firing=None;
-x.model.dep_ut=[None,None];
+x.model.firing=false;
+x.model.dep_ut=[false,false];
 x.model.rpar=diagram;
 }
 CLOCK_c.prototype.details = function CLOCK_c() {

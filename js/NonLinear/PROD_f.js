@@ -11,7 +11,7 @@ model.sim=list("prod",2);
 model.in1=[-1,-1];
 model.out=-1;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 x=standard_define([1,1],model,[],[]);
 }
 PROD_f.prototype.details = function PROD_f() {

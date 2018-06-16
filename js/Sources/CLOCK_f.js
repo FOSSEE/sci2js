@@ -24,7 +24,7 @@ break
 }
 if (dt<=0) {
 message("period must be positive");
-ok=None;
+ok=false;
 }
 if (ok) {
 xx.graphics.exprs=exprs0;
@@ -84,8 +84,8 @@ x.graphics.peout=0;
 x.model.sim="csuper";
 x.model.evtout=1;
 x.model.blocktype="h";
-x.model.firing=None;
-x.model.dep_ut=[None,None];
+x.model.firing=false;
+x.model.dep_ut=[false,false];
 x.model.rpar=diagram;
 }
 CLOCK_f.prototype.details = function CLOCK_f() {

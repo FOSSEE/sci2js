@@ -38,7 +38,7 @@ model.out=1;
 model.rpar=[0,1];
 model.nzcross=2;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }

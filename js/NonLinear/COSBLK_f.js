@@ -12,7 +12,7 @@ model.sim="cosblk";
 model.in1=-1;
 model.out=-1;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 gr_i=[];
 x=standard_define([2,2],model,[],gr_i);
 }

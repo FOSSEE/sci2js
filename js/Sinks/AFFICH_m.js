@@ -15,26 +15,26 @@ break
 mess=[];
 if (font<=0) {
 mess=[mess,"Font number must be positive"," "];
-ok=None;
+ok=false;
 }
 if (fontsize<=0) {
 mess=[mess,"Font size must be positive"," "];
-ok=None;
+ok=false;
 }
 if (nt<=3) {
 mess=[mess,"Total number of digits must be greater than 3"," "];
-ok=None;
+ok=false;
 }
 if (nd<0) {
 mess=[mess,"Number of rational part digits must be ","greater or equal 0"," "];
-ok=None;
+ok=false;
 }
 if (!ok) {
 message(["Some specified values are inconsistent:"," ",mess]);
 }
 if (!or(herit==[0,1])) {
 mess=[mess,"Accept inherited values are 0 and 1"," "];
-ok=None;
+ok=false;
 }
 if (!ok) {
 message(["Some specified values are inconsistent:"," ",mess]);
@@ -69,7 +69,7 @@ model.dstate=[-1,0,0,1,1,0,zeros(in1(1,1)*in1(1,2),1)];
 model.ipar=[font,fontsize,colr,1000,nt,nd,in1(1,1)];
 model.blocktype="c";
 model.firing=[];
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 model.label="";
 exprs=[sci2exp([model.in1,model.in2]),string(font),string(fontsize),string(colr),string(nt),string(nd),string(0)];
 gr_i=[];

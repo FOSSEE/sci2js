@@ -14,7 +14,7 @@ break
 }
 if (dt<=0) {
 message("Delay must be positive");
-ok=None;
+ok=false;
 }
 if (ok) {
 graphics.exprs=exprs;
@@ -36,7 +36,7 @@ model.evtout=1;
 model.rpar=dt;
 model.blocktype="d";
 model.firing=ff;
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=[string(dt),sci2exp(ff)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

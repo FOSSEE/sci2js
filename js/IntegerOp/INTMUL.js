@@ -16,7 +16,7 @@ it=Datatype*ones(1,2);
 ot=Datatype;
 if ((np!=0&&np!=1&&np!=2)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Do on Overflow"),np),msprintf(gettext("Must be in the interval %s."),"[0, 2]"));
-ok=None;
+ok=false;
 } else if (Datatype==3) {
 if (np==0) {
 model.sim=list("matmul_i32n",4);
@@ -67,7 +67,7 @@ model.sim=list("matmul_ui8e",4);
 }
 } else {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),ot),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
-ok=None;
+ok=false;
 }
 in1=[model.in1,model.in2];
 out=[model.out,model.out2];
@@ -96,7 +96,7 @@ model.outtyp=3;
 model.rpar=[];
 model.ipar=sgn;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[sci2exp(3),sci2exp(0)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

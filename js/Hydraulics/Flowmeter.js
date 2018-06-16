@@ -9,7 +9,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 x=arg1;
 exprs=x.graphics.exprs;
-while (None) {
+while (false) {
 [ok,Qini,exprs]=scicos_getvalue(["Set Flowmeter block parameters:","","Qini: "],"Qini",list("vec",1),exprs);
 if (!ok) {
 break
@@ -58,7 +58,7 @@ mo.parameters=list(ParametersName,PrametersValue,zeros(ParametersName));
 exprs="1";
 gr_i=[];
 model.blocktype="c";
-model.dep_ut=[None,true];
+model.dep_ut=[false,true];
 mo.model=ModelName;
 model.equations=mo;
 model.in1=ones(size(MI,"*"),1);

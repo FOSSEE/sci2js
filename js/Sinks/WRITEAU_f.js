@@ -20,14 +20,14 @@ fname1="/dev/audio";
 frmt1="uc ";
 if (alreadyran&&(N!=ipar(5))) {
 block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
-ok=None;
+ok=false;
 } else if (N<1) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),N),gettext("Strictly positive integer expected."));
-ok=None;
+ok=false;
 }
 if (swap!=0&&swap!=1) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Swap Mode"),swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
-ok=None;
+ok=false;
 }
 if (ok) {
 ipar=[length(fname1),_str2code(frmt1),N,swap,_str2code(fname1)];
@@ -59,7 +59,7 @@ model.evtin=1;
 model.dstate=[-1,lunit,zeros((nin+1)*N,1)];
 model.ipar=[length(fname),_str2code(frmt),N,swap,_str2code(fname)];
 model.blocktype="d";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[string(N),string(swap)];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);

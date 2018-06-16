@@ -27,24 +27,24 @@ ot=2;
 it=2;
 } else {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 ma=size(a,1);
 mb=size(b,1);
 if ((ma==0||mb==0)) {
 message("empty field");
-ok=None;
+ok=false;
 }
 for (i=1;i<=ma;i+=1) {
 if ((a(i)<=0)) {
 message("invalid index");
-ok=None;
+ok=false;
 }
 }
 for (j=1;j<=mb;j+=1) {
 if ((b(j)<=0)) {
 message("invalid index");
-ok=None;
+ok=false;
 }
 }
 model.ipar=[a,b,ma,mb];
@@ -82,7 +82,7 @@ model.rpar=[];
 model.ipar=[1,1,1,1];
 model.blocktype="c";
 model.firing=[];
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 label=[sci2exp(1),sci2exp([1]),sci2exp([1])];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);

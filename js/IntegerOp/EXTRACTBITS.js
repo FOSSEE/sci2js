@@ -15,10 +15,10 @@ break
 bitstr=strcat(string(bit.slice())," ");
 if ((rule<1)||(rule>5)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Bits to Extract"),rule),msprintf(gettext("Must be in the interval %s."),"[1, 5]"));
-ok=None;
+ok=false;
 } else if (scal<0||scal>1) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Treat Bit Field as an Integer"),scal),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
-ok=None;
+ok=false;
 } else {
 in1=[model.in1,model.in2];
 bit=int(bit);
@@ -26,17 +26,17 @@ rule=int(rule);
 if ((rule==3)||(rule==4)) {
 if ((size(bit,"*")!=1)) {
 block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),gettext("Must be a single value."));
-ok=None;
+ok=false;
 } else {
 numb=bit;
 }
 } else if ((rule==5)) {
 if ((size(bit,"*")!=2)) {
 block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),gettext("Must have this form: [Start, End]."));
-ok=None;
+ok=false;
 } else if (bit(1)>bit(2)) {
 block_parameter_error(msprintf(gettext("Wrong values for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("\'Start\' must be less than \'End\'.")));
-ok=None;
+ok=false;
 } else {
 numb=bit(2)-bit(1);
 }
@@ -49,7 +49,7 @@ if (ok) {
 if ((Datatype==3||Datatype==6)) {
 if (or(bit.slice()>31)||or(bit.slice()<0)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("Indexes must be in the interval %s."),"[0, 31]"));
-ok=None;
+ok=false;
 }
 switch (rule) {
 case 1:
@@ -96,7 +96,7 @@ model.sim=list("extract_bit_u32_RB1",4);
 } else if ((Datatype==4||Datatype==7)) {
 if (or(bit.slice()>15)||or(bit.slice()<0)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("Indexes must be in the interval %s."),"[0, 15]"));
-ok=None;
+ok=false;
 }
 switch (rule) {
 case 1:
@@ -143,7 +143,7 @@ model.sim=list("extract_bit_u16_RB1",4);
 } else if ((Datatype==5||Datatype==8)) {
 if (or(bit.slice()>7)||or(bit.slice()<0)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("Indexes must be in the interval %s."),"[0, 7]"));
-ok=None;
+ok=false;
 }
 switch (rule) {
 case 1:
@@ -189,7 +189,7 @@ model.sim=list("extract_bit_u8_RB1",4);
 }
 } else {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
-ok=None;
+ok=false;
 }
 }
 if (ok) {
@@ -219,7 +219,7 @@ model.intyp=3;
 model.outtyp=3;
 model.ipar=[0,numb];
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[sci2exp(3),sci2exp(1),sci2exp(0),sci2exp(0)];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);

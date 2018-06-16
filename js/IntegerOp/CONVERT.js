@@ -20,13 +20,13 @@ ot=1;
 }
 if ((np!=0&&np!=1&&np!=2)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Do on Overflow"),np),msprintf(gettext("Must be in the interval %s."),"[0, 2]"));
-ok=None;
+ok=false;
 } else if ((it>8||it<1)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Input Type"),it),msprintf(gettext("Must be in the interval %s."),"[1, 8]"));
-ok=None;
+ok=false;
 } else if ((ot>8||ot<1)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Output Type"),ot),msprintf(gettext("Must be in the interval %s."),"[1, 8]"));
-ok=None;
+ok=false;
 }
 model.sim=list("convert",4);
 if ((it==ot)) {
@@ -360,7 +360,7 @@ model.outtyp=3;
 model.rpar=[];
 model.ipar=sgn;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[sci2exp(1),sci2exp(3),sci2exp(0)];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);

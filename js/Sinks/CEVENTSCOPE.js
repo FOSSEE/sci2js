@@ -18,27 +18,27 @@ break
 mess=[];
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
 mess=[mess,"Window position must be [] or a 2 vector"," "];
-ok=None;
+ok=false;
 }
 if (size(wdim,"*")!=0&&size(wdim,"*")!=2) {
 mess=[mess,"Window dim must be [] or a 2 vector"," "];
-ok=None;
+ok=false;
 }
 if (nclock<=0) {
 mess=[mess,"Block must have at least one input event"," "];
-ok=None;
+ok=false;
 }
 if (size(clrs,"*")!=nclock) {
 mess=[mess,"Inputs color c size must be equal to Number of inputs"," "];
-ok=None;
+ok=false;
 }
 if (win<-1) {
 mess=[mess,"Window number cannot be inferior than -1"," "];
-ok=None;
+ok=false;
 }
 if (per<=0) {
 mess=[mess,"Refresh period must be positive"," "];
-ok=None;
+ok=false;
 }
 if (ok) {
 [model,graphics,ok]=set_io(model,graphics,list(),list(),ones(nclock,1),[]);
@@ -76,7 +76,7 @@ model.evtin=1;
 model.rpar=per;
 model.ipar=[win,1,clrs(nclock),wpos.slice(),wdim.slice()];
 model.blocktype="d";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=[sci2exp(nclock),strcat(sci2exp(clrs(nclock))," "),string(win),sci2exp([]),sci2exp(wdim),string(per)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

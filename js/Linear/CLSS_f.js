@@ -35,13 +35,13 @@ if (D!=[]) {
 if (norm(D,1)!=0) {
 mmm=[true,true];
 } else {
-mmm=[None,true];
+mmm=[false,true];
 }
 if (or(model.dep_ut!=mmm)) {
 model.dep_ut=mmm;
 }
 } else {
-model.dep_ut=[None,true];
+model.dep_ut=[false,true];
 }
 model.state=x0.slice();
 model.rpar=rpar;
@@ -67,7 +67,7 @@ model.out=out;
 model.state=x0;
 model.rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
 model.blocktype="c";
-model.dep_ut=[None,true];
+model.dep_ut=[false,true];
 exprs=[strcat(sci2exp(A)),strcat(sci2exp(B)),strcat(sci2exp(C)),strcat(sci2exp(D)),strcat(sci2exp(x0))];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);

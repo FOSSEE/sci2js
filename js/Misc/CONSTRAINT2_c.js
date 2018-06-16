@@ -8,7 +8,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-ask_again=None;
+ask_again=false;
 [ok,x0,xd0,id,exprs]=scicos_getvalue("Set Constraint block parameters",["Initial guess values of states x","Initial guess values of derivative x\'","Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0"],list("vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break
@@ -62,7 +62,7 @@ model.out=[1,1];
 model.state=[x0,xd0];
 model.ipar=id;
 model.blocktype="c";
-model.dep_ut=[None,true];
+model.dep_ut=[false,true];
 exprs=list(strcat(sci2exp(x0)),strcat(sci2exp(xd0)),strcat(sci2exp(id)));
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);

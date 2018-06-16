@@ -14,13 +14,13 @@ break
 }
 if ((nz<=0)) {
 message("Size of buffer must be positive");
-ok=None;
+ok=false;
 }
-r=None;
+r=false;
 ierr=execstr("r = validvar(varnam)","errcatch");
 if (!r||ierr!=0||length(varnam)>19) {
 message(["Invalid variable name.","Please choose another variable name."]);
-ok=None;
+ok=false;
 }
 execstr("if type("+varnam+") <> 17 | or(fieldnames("+varnam+") <> [\"values\"; \"time\"]) then"+" message([\"Protected variable name.\"; \"Please choose another variable name.\"]);"+" ok = %f;"+" end","errcatch");
 if (ok) {
@@ -55,7 +55,7 @@ model.rpar=[];
 model.ipar=[nz,length(varnam),transpose(ascii(varnam))];
 model.blocktype="d";
 model.firing=[];
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 gr_i=[];
 exprs=[string(nz),string(varnam),string(herit)];
 x=standard_define([4,2],model,exprs,gr_i);

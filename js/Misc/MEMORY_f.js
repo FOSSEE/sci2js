@@ -20,7 +20,7 @@ inh=1;
 [model,graphics,ok]=check_io(model,graphics,-1,-1,inh,[]);
 out=size(a,"*");
 if (out==0) {
-ok=None;
+ok=false;
 messagebox("Initial condition empty","modal","error");
 }
 in1=out;
@@ -47,7 +47,7 @@ model.evtin=1;
 model.dstate=0;
 model.rpar=z;
 model.blocktype="m";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }

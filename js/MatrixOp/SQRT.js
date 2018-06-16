@@ -18,7 +18,7 @@ function_name="mat_sqrt";
 function_name="matz_sqrt";
 } else {
 message("type is not supported");
-ok=None;
+ok=false;
 }
 it=typ;
 ot=typ;
@@ -46,7 +46,7 @@ model.intyp=1;
 model.outtyp=1;
 model.out=-1;
 model.out2=-2;
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 label=[sci2exp(1)];
 gr_i=[];
 x=standard_define([2,2],model,label,gr_i);

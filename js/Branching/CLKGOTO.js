@@ -14,7 +14,7 @@ break
 }
 if (((tagvis<1)||(tagvis>3))) {
 message("Tag Visibility must be between 1 and 3");
-ok=None;
+ok=false;
 }
 tagvis=int(tagvis);
 if (ok) {
@@ -42,7 +42,7 @@ model.opar=list("A");
 model.ipar=int(1);
 model.blocktype="d";
 model.firing=-1;
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=["A",sci2exp(1)];
 x=standard_define([2,1],model,exprs," ");
 x.graphics.id="Goto";

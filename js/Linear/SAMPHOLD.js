@@ -14,7 +14,7 @@ model.in1=-1;
 model.out=-1;
 model.evtin=1;
 model.blocktype="d";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 gr_i=[];
 x=standard_define([2,2],model," ",gr_i);
 }

@@ -15,7 +15,7 @@ model.evtout=1;
 model.rpar=[-1,-1,0,-1];
 model.blocktype="z";
 model.firing=-1;
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 gr_i=[];
 x=standard_define([2,2],model,[],gr_i);
 }

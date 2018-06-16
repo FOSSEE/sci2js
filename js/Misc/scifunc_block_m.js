@@ -84,7 +84,7 @@ model.ipar=0;
 model.opar=list();
 model.blocktype=typ;
 model.firing=auto;
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=list([sci2exp([in1,in1]),sci2exp([out,out]),sci2exp(clkin),sci2exp(clkout),strcat(sci2exp(x0)),strcat(sci2exp(z0)),strcat(sci2exp(rpar)),sci2exp(auto),sci2exp(0)],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);

@@ -18,11 +18,11 @@ break
 }
 if (font<=0||font>6) {
 message("Font number must be greater than 0 and less than 7");
-ok=None;
+ok=false;
 }
 if (siz<0) {
 message("Font size must be positive");
-ok=None;
+ok=false;
 }
 if (ok) {
 graphics.exprs=exprs;

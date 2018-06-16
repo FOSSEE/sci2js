@@ -15,11 +15,11 @@ break
 mess=[];
 if (size(vec_x,"*")!=size(vec_y,"*")) {
 mess=[mess,"Vector X and Vector Y must have the same size"," "];
-ok=None;
+ok=false;
 }
 if (cmax<=cmin) {
 mess=[mess,"Error with minimum and maximum value"," "];
-ok=None;
+ok=false;
 }
 if (!ok) {
 message(["Some specified values are inconsistent:"," ",mess]);
@@ -56,7 +56,7 @@ model.evtin=1;
 model.ipar=[cmin,cmax,size_c,size_x,size_y];
 model.rpar=[colormap.slice(),x,y];
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[strcat(string(x)," "),strcat(string(y)," "),string("jetcolormap(25)"),string(cmin),string(cmax)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

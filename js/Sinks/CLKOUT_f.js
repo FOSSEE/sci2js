@@ -35,7 +35,7 @@ model.evtin=1;
 model.ipar=prt;
 model.blocktype="d";
 model.firing=[];
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=string(prt);
 x=standard_define([1,1],model,exprs," ");
 }

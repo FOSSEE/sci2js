@@ -25,7 +25,7 @@ ot=2;
 it=[2,2];
 } else {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 in1=[model.in1,model.in2];
 out=[model.out,model.out2];
@@ -61,7 +61,7 @@ model.rpar=[];
 model.ipar=[];
 model.blocktype="c";
 model.firing=[];
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 label=[sci2exp(1)];
 gr_i=[];
 x=standard_define([2,2],model,label,gr_i);

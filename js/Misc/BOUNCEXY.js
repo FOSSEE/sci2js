@@ -16,19 +16,19 @@ break
 mess=[];
 if (size(clrs,"*")!=size(siz,"*")) {
 mess=[mess,"colors and radii must have equal size (number of balls)"," "];
-ok=None;
+ok=false;
 }
 if (win<-1) {
 mess=[mess,"Window number cannot be inferior than -1"," "];
-ok=None;
+ok=false;
 }
 if (ymin>=ymax) {
 mess=[mess,"Ymax must be greater than Ymin"," "];
-ok=None;
+ok=false;
 }
 if (xmin>=xmax) {
 mess=[mess,"Xmax must be greater than Xmin"," "];
-ok=None;
+ok=false;
 }
 if (!ok) {
 message(mess);
@@ -83,7 +83,7 @@ model.rpar=[xmin,xmax,ymin,ymax];
 model.ipar=[win,imode,clrs.slice()];
 model.blocktype="d";
 model.firing=[];
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=[strcat(sci2exp(clrs)),strcat(sci2exp(siz)),strcat(sci2exp(win)),strcat(sci2exp(1)),strcat(sci2exp(xmin)),strcat(sci2exp(xmax)),strcat(sci2exp(ymin)),strcat(sci2exp(ymax))];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

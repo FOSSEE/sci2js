@@ -18,11 +18,11 @@ break
 }
 if (size(zz0,"*")<2) {
 message("Register length must be at least 2");
-ok=None;
+ok=false;
 }
 if (T<=0) {
 message("Delay must be positive");
-ok=None;
+ok=false;
 }
 if (ok) {
 [model,graphics,ok]=check_io(model,graphics,[nin,1],nin,1,[1,1]);
@@ -52,7 +52,7 @@ model.dstate=z0;
 model.rpar=T/(size(zz0,"*"));
 model.blocktype="d";
 model.firing=[0,-1];
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[string(nin),strcat(string(z0.slice(1-1,$-1)),";"),string(T)];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);

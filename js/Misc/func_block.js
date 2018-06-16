@@ -22,7 +22,7 @@ model.sim=" ";
 model.in1=1;
 model.out=1;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs="v=sin(u);y=u*v";
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

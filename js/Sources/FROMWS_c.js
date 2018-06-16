@@ -14,21 +14,21 @@ break
 }
 if (!(Method==0||Method==1||Method==2||Method==3)) {
 message("Interpolation method should be chosen in [0,1,2,3]");
-ok=None;
+ok=false;
 }
 if (!(ZC==0||ZC==1)) {
 message("Zero crossing should be either 0 or 1");
-ok=None;
+ok=false;
 }
 if (!(OutEnd==0||OutEnd==1||OutEnd==2)) {
 message("Output at end option should be either 0 or 1");
-ok=None;
+ok=false;
 }
-r=None;
+r=false;
 ierr=execstr("r=validvar(varnam)","errcatch");
 if (!r) {
 message(["Invalid variable name.","Please choose another variable name."]);
-ok=None;
+ok=false;
 }
 if (ok) {
 model.ipar=[length(varnam),_str2code(varnam),Method,ZC,OutEnd];
@@ -57,7 +57,7 @@ model.evtin=[1];
 model.evtout=[1];
 model.firing=[0];
 model.blocktype="d";
-model.dep_ut=[None,true];
+model.dep_ut=[false,true];
 gr_i=[];
 exprs=[string(varnam),string(Method),string(ZC),string(OutEnd)];
 x=standard_define([3.5,2],model,exprs,gr_i);

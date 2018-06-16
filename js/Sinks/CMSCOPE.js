@@ -15,49 +15,49 @@ break
 mess=[];
 if (size(in1,"*")<=0) {
 mess=[mess,"Block must have at least one input port"," "];
-ok=None;
+ok=false;
 }
 if (min(in1)<=0) {
 mess=[mess,"Port sizes must be positive"," "];
-ok=None;
+ok=false;
 }
 if (size(clrs,"*")<sum(in1)) {
 mess=[mess,"Not enough colors defined (at least "+string(sum(in1))+")"," "];
-ok=None;
+ok=false;
 }
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
 mess=[mess,"Window position must be [] or a 2 vector"," "];
-ok=None;
+ok=false;
 }
 if (size(wdim,"*")!=0&&size(wdim,"*")!=2) {
 mess=[mess,"Window dim must be [] or a 2 vector"," "];
-ok=None;
+ok=false;
 }
 if (win<-1) {
 mess=[mess,"Window number can\'t be  < -1"," "];
-ok=None;
+ok=false;
 }
 if (size(per,"*")!=size(ymin,"*")) {
 mess=[mess,"Size of Refresh Period must equal size of Ymin/Ymax vector"," "];
-ok=None;
+ok=false;
 }
 for (i=1;i<=size(per,"*");i+=1) {
 if ((per(i)<=0)) {
 mess=[mess,"Refresh Period must be positive"," "];
-ok=None;
+ok=false;
 }
 }
 if (N<2) {
 mess=[mess,"Buffer size must be at least 2"," "];
-ok=None;
+ok=false;
 }
 if (or(ymin>=ymax)) {
 mess=[mess,"Ymax must be greater than Ymin"," "];
-ok=None;
+ok=false;
 }
 if (!or(heritance==[0,1])) {
 mess=[mess,"Accept herited events must be 0 or 1"," "];
-ok=None;
+ok=false;
 }
 if (!ok) {
 message(["Some specified values are inconsistent:"," ",mess]);
@@ -116,7 +116,7 @@ model.evtin=1;
 model.rpar=[0,period.slice(),yy.slice()];
 model.ipar=[win,size(in1,"*"),N,wpos.slice(),wdim.slice(),in1.slice(),clrs.slice(1-1,sum(in1))];
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[strcat(string(in1)," "),strcat(string(clrs)," "),string(win),sci2exp([]),sci2exp([]),strcat(string(ymin)," "),strcat(string(ymax)," "),strcat(string(per)," "),string(N),string(0),emptystr()];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

@@ -25,7 +25,7 @@ break
 n=size(xx,"*");
 if (or(xx.slice(2-1,n)-xx.slice(1-1,n-1)<0)) {
 message("You have not defined a function");
-ok=None;
+ok=false;
 }
 if (ok) {
 model.sim="intplt";
@@ -54,7 +54,7 @@ model.out=1;
 model.rpar=[xx,yy,rect.slice()];
 model.ipar=[size(xx,1),axisdata.slice()];
 model.blocktype="c";
-model.dep_ut=[None,true];
+model.dep_ut=[false,true];
 gr_i=[];
 x=standard_define([2,2],model,[],gr_i);
 }

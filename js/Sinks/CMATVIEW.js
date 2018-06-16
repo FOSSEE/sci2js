@@ -15,7 +15,7 @@ break
 mess=[];
 if (cmax<=cmin) {
 mess=[mess,"Error with minimum and maximum value"," "];
-ok=None;
+ok=false;
 }
 if (!ok) {
 message(["Some specified values are inconsistent:"," ",mess]);
@@ -52,7 +52,7 @@ model.evtin=1;
 model.ipar=[cmin,cmax,size_c];
 model.rpar=[alpha_c,beta_c,colormap.slice()];
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[string("jetcolormap(25)"),string(cmin),string(cmax)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

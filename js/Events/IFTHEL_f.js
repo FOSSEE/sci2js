@@ -18,7 +18,7 @@ while (true) {
 if (!ok) {
 break
 }
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 if (nmod!=0) {
 nmod=1;
 }
@@ -48,7 +48,7 @@ model.evtin=1;
 model.evtout=[1,1];
 model.blocktype="l";
 model.firing=[-1,-1];
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 model.nmode=1;
 model.nzcross=1;
 gr_i=[];

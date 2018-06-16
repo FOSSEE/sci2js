@@ -16,7 +16,7 @@ if (z0>nin||z0<=0) {
 message("initial connected input is not a valid input port number");
 } else if (((typ<1)||(typ>8))&&(typ!=-1)) {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 } else {
 it=typ*ones(1,nin);
 ot=typ;
@@ -54,7 +54,7 @@ model.firing=[];
 model.evtin=ones(nin,1);
 model.dstate=z0;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[sci2exp(1),sci2exp(nin),sci2exp(z0)];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);

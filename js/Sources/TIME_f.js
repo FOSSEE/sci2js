@@ -10,7 +10,7 @@ model=scicos_model();
 model.sim="timblk";
 model.out=1;
 model.blocktype="c";
-model.dep_ut=[None,true];
+model.dep_ut=[false,true];
 gr_i=[];
 x=standard_define([2,2],model,[],gr_i);
 }

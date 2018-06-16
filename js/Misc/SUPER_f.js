@@ -22,7 +22,7 @@ model.in1=1;
 model.out=1;
 model.rpar=scs;
 model.blocktype="h";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 gr_i=[];
 x=standard_define([2,2],model,[],gr_i);
 }

@@ -15,31 +15,31 @@ break
 mess=[];
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
 mess=[mess,"Window position must be [] or a 2 vector"," "];
-ok=None;
+ok=false;
 }
 if (size(wdim,"*")!=0&&size(wdim,"*")!=2) {
 mess=[mess,"Window dim must be [] or a 2 vector"," "];
-ok=None;
+ok=false;
 }
 if (win<-1) {
 mess=[mess,"Window number cannot be inferior than -1"," "];
-ok=None;
+ok=false;
 }
 if (per<=0) {
 mess=[mess,"Refresh period must be positive"," "];
-ok=None;
+ok=false;
 }
 if (N<2) {
 mess=[mess,"Buffer size must be at least 2"," "];
-ok=None;
+ok=false;
 }
 if (ymin>=ymax) {
 mess=[mess,"Ymax must be greater than Ymin"," "];
-ok=None;
+ok=false;
 }
 if (wu<0) {
 mess=[mess,"Link to view must be positive"," "];
-ok=None;
+ok=false;
 }
 if (!ok) {
 message(["Some specified values are inconsistent:"," ",mess]);
@@ -62,7 +62,7 @@ ipar=[win,1,N,clrs.slice(),wpos.slice(),wdim.slice(),size(wu,"*"),wu.slice()];
 model.rpar=rpar;
 model.ipar=ipar;
 model.firing=[];
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -85,7 +85,7 @@ model.evtin=1;
 model.rpar=[0,ymin,ymax,per];
 model.ipar=[win,1,N,clrs,wpos,wdim,1,1];
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[strcat(string(clrs)," "),string(win),sci2exp([]),sci2exp(wdim),string(ymin),string(ymax),string(per),string(N),string([1])];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

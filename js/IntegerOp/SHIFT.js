@@ -14,7 +14,7 @@ break
 }
 if ((np!=0&&np!=1)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Shift Type"),np),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
-ok=None;
+ok=false;
 }
 it=Datatype;
 ot=Datatype;
@@ -83,7 +83,7 @@ model.sim=list("shift_8_RC",4);
 }
 } else {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
-ok=None;
+ok=false;
 }
 if (ok) {
 [model,graphics,ok]=set_io(model,graphics,list([-1,-2],it),list([-1,-2],ot),[],[]);
@@ -111,7 +111,7 @@ model.outtyp=3;
 model.rpar=[];
 model.ipar=sgn;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[sci2exp(3),sci2exp(0),sci2exp(0)];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);

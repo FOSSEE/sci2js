@@ -26,7 +26,7 @@ break
 message(["Error in the instructions",lasterror()]);
 }
 } else {
-ok=None;
+ok=false;
 break
 }
 }

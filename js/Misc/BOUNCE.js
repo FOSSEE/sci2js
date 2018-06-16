@@ -32,10 +32,10 @@ walls=walls([3,4]);
 }
 if (n!=size(y,"*")||n!=size(rpar1,"*")||n!=size(rpar2,"*")||n!=size(xd,"*")||n!=size(yd,"*")) {
 message("All vectors must have equal size");
-ok=None;
+ok=false;
 } else if (!(min([rpar1,rpar2])>0)) {
 message("Mass and radius must be >0");
-ok=None;
+ok=false;
 }
 if (!ok) {
 break
@@ -97,7 +97,7 @@ model.rpar=[rpar1,rpar2,walls,g,C];
 model.ipar=ipar;
 model.nzcross=n*(n-1)/2+4*n;
 model.blocktype="c";
-model.dep_ut=[None,true];
+model.dep_ut=[false,true];
 exprs=[strcat(sci2exp(rpar1)),strcat(sci2exp(rpar2)),strcat(sci2exp(walls)),strcat(sci2exp(x)),strcat(sci2exp(xd)),strcat(sci2exp(y)),strcat(sci2exp(yd))];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);

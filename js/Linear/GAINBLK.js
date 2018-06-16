@@ -27,7 +27,7 @@ model.rpar=gain.slice();
 model.opar=list();
 } else {
 message("type is not supported");
-ok=None;
+ok=false;
 }
 } else {
 if ((over==0)) {
@@ -51,7 +51,7 @@ ot=8;
 model.sim=list("gainblk_ui8n",4);
 } else {
 message("type is not supported.");
-ok=None;
+ok=false;
 }
 } else if ((over==1)) {
 if ((typeof(gain)=="int32")) {
@@ -74,7 +74,7 @@ ot=8;
 model.sim=list("gainblk_ui8s",4);
 } else {
 message("type is not supported.");
-ok=None;
+ok=false;
 }
 } else if ((over==2)) {
 if ((typeof(gain)=="int32")) {
@@ -97,11 +97,11 @@ ot=8;
 model.sim=list("gainblk_ui8e",4);
 } else {
 message("type is not an integer.");
-ok=None;
+ok=false;
 }
 } else {
 message("Do on Overflow must be 0,1,2");
-ok=None;
+ok=false;
 }
 model.rpar=[];
 model.opar=list(gain.slice());
@@ -137,7 +137,7 @@ model.in2=in2;
 model.out2=out2;
 model.rpar=gain;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[strcat(sci2exp(gain))];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

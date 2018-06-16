@@ -19,24 +19,24 @@ nout=size(out);
 nin=size(l1);
 if (nout==0) {
 message("output must have at least one element");
-ok=None;
+ok=false;
 }
 if (nin==0) {
 message("input must have at least one element");
-ok=None;
+ok=false;
 }
 if (ok) {
 if (((out(1)>(l1(1)*l1(2))))) {
 message("the first dimension of the output is too big");
-ok=None;
+ok=false;
 }
 if (((out(2)>(l1(1)*l1(2))))) {
 message("the second dimension of the output is too big");
-ok=None;
+ok=false;
 }
 if ((((out(2)*out(1))>(l1(1)*l1(2))))) {
 message("the dimensions of the output are too big");
-ok=None;
+ok=false;
 }
 }
 if ((typ==1)) {
@@ -49,7 +49,7 @@ ot=2;
 it=2;
 } else {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 if (ok) {
 label=lab;
@@ -86,7 +86,7 @@ model.rpar=[];
 model.ipar=[];
 model.blocktype="c";
 model.firing=[];
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 label=[sci2exp(1),sci2exp([1,1]),sci2exp([1,1])];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);

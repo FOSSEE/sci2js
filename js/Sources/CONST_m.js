@@ -38,7 +38,7 @@ ot=7;
 ot=8;
 } else {
 block_parameter_error(msprintf(gettext("Wrong type for \'%s\' parameter"),gettext("Constant Value")),gettext("Value type must be a numeric type (double, complex, int, int8, ...)."));
-ok=None;
+ok=false;
 }
 if (ok) {
 model.rpar=[];
@@ -62,7 +62,7 @@ model.out2=size(C,2);
 model.rpar=C;
 model.opar=list();
 model.blocktype="d";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=sci2exp(C);
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

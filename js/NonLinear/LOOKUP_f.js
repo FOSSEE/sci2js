@@ -24,7 +24,7 @@ break
 n=size(xx,"*");
 if (or(xx.slice(2-1,n)-xx.slice(1-1,n-1)<=0)) {
 message("You have not defined a function");
-ok=None;
+ok=false;
 }
 if (ok) {
 model.rpar=[xx.slice(),yy.slice()];
@@ -41,7 +41,7 @@ model.in1=1;
 model.out=1;
 model.rpar=[-2,-1,1,2,-1,1,-1,1];
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 gr_i=[];
 x=standard_define([2,2],model,[],gr_i);
 }

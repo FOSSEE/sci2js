@@ -16,15 +16,15 @@ break
 mess=[];
 if (plen<=0||csiz<=0) {
 mess=[mess,"Pendulum length and cart size must be positive."," "];
-ok=None;
+ok=false;
 }
 if (ymin>=ymax) {
 mess=[mess,"Ymax must be greater than Ymin"," "];
-ok=None;
+ok=false;
 }
 if (xmin>=xmax) {
 mess=[mess,"Xmax must be greater than Xmin"," "];
-ok=None;
+ok=false;
 }
 if (!ok) {
 message(mess);
@@ -53,7 +53,7 @@ model.evtin=1;
 model.dstate=0;
 model.rpar=[plen,csiz,phi,xmin,xmax,ymin,ymax];
 model.blocktype="d";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=string(model.rpar);
 gr_i=[];
 x=standard_define([3,3],model,exprs,gr_i);

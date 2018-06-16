@@ -31,13 +31,13 @@ lowp=lowp*ones(x0);
 }
 if ((size(x0)!=size(maxp)||size(x0)!=size(lowp))) {
 message("x0 and Upper limit and Lower limit must have same size");
-ok=None;
+ok=false;
 } else if (or(maxp<=lowp)) {
 message("Upper limits must be > Lower limits");
-ok=None;
+ok=false;
 } else if (or(x0>maxp)||or(x0<lowp)) {
 message("Initial condition x0 should be inside the limits");
-ok=None;
+ok=false;
 } else {
 rpar=[real(maxp.slice()),real(lowp.slice())];
 model.nzcross=size(x0,"*");
@@ -52,13 +52,13 @@ lowp=math.complex(lowp*ones(x0),(lowp*ones(x0)));
 }
 if ((size(x0)!=size(maxp)||size(x0)!=size(lowp))) {
 message("x0 and Upper limit and Lower limit must have same size");
-ok=None;
+ok=false;
 } else if (or(real(maxp)<=real(lowp))||or(imag(maxp)<=imag(lowp))) {
 message("Upper limits must be > Lower limits");
-ok=None;
+ok=false;
 } else if (or(real(x0)>real(maxp))||or(real(x0)<real(lowp))||or(imag(x0)>imag(maxp))||or(imag(x0)<imag(lowp))) {
 message("Initial condition x0 should be inside the limits");
-ok=None;
+ok=false;
 } else {
 rpar=[real(maxp.slice()),real(lowp.slice()),imag(maxp.slice()),imag(lowp.slice())];
 model.nzcross=2*size(x0,"*");
@@ -84,7 +84,7 @@ it=[2,2*ones(reinit,1)];
 ot=2;
 } else {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 if (ok) {
 in1=[size(x0,1)*[1,ones(reinit,1)],size(x0,2)*[1,ones(reinit,1)]];
@@ -113,7 +113,7 @@ model.in2=1;
 model.out2=1;
 model.rpar=rpar;
 model.blocktype="c";
-model.dep_ut=[None,true];
+model.dep_ut=[false,true];
 exprs=string([0,0,0,maxp,minp]);
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

@@ -11,8 +11,8 @@ model.sim="split";
 model.evtin=1;
 model.evtout=[1,1];
 model.blocktype="d";
-model.firing=[None,None,None];
-model.dep_ut=[None,None];
+model.firing=[false,false,false];
+model.dep_ut=[false,false];
 x=standard_define([1,1]/3,model,[],[]);
 }
 CLKSPLIT_f.prototype.details = function CLKSPLIT_f() {

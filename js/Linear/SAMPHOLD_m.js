@@ -15,7 +15,7 @@ break
 }
 if (((it<1)||(it>8))) {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 if (ok) {
 in1=[model.in1,model.in2];
@@ -41,7 +41,7 @@ model.out=-1;
 model.out2=-2;
 model.evtin=1;
 model.blocktype="d";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 label=[sci2exp(1)];
 gr_i=[];
 x=standard_define([2,2],model,label,gr_i);

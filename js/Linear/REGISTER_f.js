@@ -14,7 +14,7 @@ break
 }
 if (prod(size(z0))<1) {
 message("Register length must be at least 1");
-ok=None;
+ok=false;
 }
 if (ok) {
 graphics.exprs=exprs;
@@ -34,7 +34,7 @@ model.out=1;
 model.evtin=1;
 model.dstate=z0;
 model.blocktype="d";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=strcat(string(z0),";");
 gr_i=[];
 x=standard_define([2.5,2.5],model,exprs,gr_i);

@@ -17,7 +17,7 @@ break
 }
 if (prod(size(z0))<1) {
 message("Register length must be at least 1");
-ok=None;
+ok=false;
 }
 if (it==1) {
 model.sim=list("delay4",4);
@@ -45,7 +45,7 @@ model.sim=list("delay4_ui8",4);
 z0=uint8(z0);
 } else {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 model.odstate=list(z0);
 model.dstate=[];
@@ -71,7 +71,7 @@ model.out=1;
 model.evtin=1;
 model.dstate=z0;
 model.blocktype="d";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=strcat(string(z0),";");
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);

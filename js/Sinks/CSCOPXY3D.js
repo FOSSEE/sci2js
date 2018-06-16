@@ -15,47 +15,47 @@ break
 mess=[];
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
 mess=[mess,"Window position must be [] or a 2 vector"," "];
-ok=None;
+ok=false;
 }
 if (size(wdim,"*")!=0&&size(wdim,"*")!=2) {
 mess=[mess,"Window dim must be [] or a 2 vector"," "];
-ok=None;
+ok=false;
 }
 if (size(clrs,"*")!=size(siz,"*")) {
 mess=[mess,"Colors and Size must have same size"," "];
-ok=None;
+ok=false;
 }
 if (nbr_curves<=0) {
 mess=[mess,"Number of curves cannot be negative or null"," "];
-ok=None;
+ok=false;
 }
 if (win<-1) {
 mess=[mess,"Window number cannot be inferior than -1"," "];
-ok=None;
+ok=false;
 }
 if (N<1) {
 mess=[mess,"Buffer size must be at least 1"," "];
-ok=None;
+ok=false;
 }
 if (N<2) {
 for (i=1;i<=size(clrs,"*");i+=1) {
 if (clrs(i)>0) {
 mess=[mess,"Buffer size must be at least 2 or Change a color (must be >0)"," "];
-ok=None;
+ok=false;
 }
 }
 }
 if (vec_y(1)>=vec_y(2)) {
 mess=[mess,"Ymax must be higher than Ymin"," "];
-ok=None;
+ok=false;
 }
 if (vec_x(1)>=vec_x(2)) {
 mess=[mess,"Xmax must be higher than Xmin"," "];
-ok=None;
+ok=false;
 }
 if (vec_z(1)>=vec_z(2)) {
 mess=[mess,"Zmax must be higher than Zmin"," "];
-ok=None;
+ok=false;
 }
 if (ok) {
 in1=nbr_curves*ones(3,1);
@@ -102,7 +102,7 @@ model.evtin=1;
 model.rpar=[vec_x.slice(),vec_y.slice(),vec_z.slice(),param3ds.slice()];
 model.ipar=[win,8,N,clrs.slice(),siz.slice(),8,wpos.slice(),wdim.slice(),nbr_curves];
 model.blocktype="d";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=[string(nbr_curves),strcat(string(clrs)," "),strcat(string(siz)," "),string(win),sci2exp([]),sci2exp(wdim),strcat(string(vec_x)," "),strcat(string(vec_y)," "),strcat(string(vec_z)," "),strcat(string(param3ds)," "),string(N)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

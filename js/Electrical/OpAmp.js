@@ -7,7 +7,7 @@ x=arg1;
 graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
-while (None) {
+while (false) {
 [ok,OLGain,SatH,SatL,exprs]=scicos_getvalue("Set the Operational Amplifier parameters",["Open Loop Gain","Positive saturation voltage","Negative saturation voltage"],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break
@@ -25,7 +25,7 @@ Z=[];
 model=scicos_model();
 model.sim="OpAmp";
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 mo=modelica();
 mo.model=model.sim;
 mo.inputs=["in_p","in_n"];

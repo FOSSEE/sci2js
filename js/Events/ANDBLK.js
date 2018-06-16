@@ -67,8 +67,8 @@ x.model.sim="csuper";
 x.model.evtin=[1,1];
 x.model.evtout=1;
 x.model.blocktype="h";
-x.model.firing=None;
-x.model.dep_ut=[None,None];
+x.model.firing=false;
+x.model.dep_ut=[false,false];
 x.model.rpar=diagram;
 }
 ANDBLK.prototype.details = function ANDBLK() {

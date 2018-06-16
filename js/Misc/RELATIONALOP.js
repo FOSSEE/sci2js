@@ -21,7 +21,7 @@ zcr=1;
 }
 if ((rule<0)||(rule>5)) {
 message("Incorrect operator "+string(rule)+" ; must be 0 to 5.");
-ok=None;
+ok=false;
 }
 if ((Datatype==1)) {
 model.sim=list("relational_op",4);
@@ -39,7 +39,7 @@ model.sim=list("relational_op_ui16",4);
 model.sim=list("relational_op_ui8",4);
 } else {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 if (ok) {
 it=Datatype*ones(1,2);
@@ -82,7 +82,7 @@ model.in1=[1,1];
 model.out=1;
 model.ipar=ipar;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[string(ipar),string(0)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

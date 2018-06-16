@@ -25,27 +25,27 @@ ot=2;
 it=2;
 } else {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 if ((a<=0)||(b<=0)||(c<=0)||(d<=0)) {
 message("invalid index");
-ok=None;
+ok=false;
 }
 if (b<a) {
 message("ending row must be greater than starting row");
-ok=None;
+ok=false;
 }
 if (d<c) {
 message("ending column must be greater than starting column");
-ok=None;
+ok=false;
 }
 if (b>inp(1)) {
 message("index of ending row is out of range");
-ok=None;
+ok=false;
 }
 if (d>inp(2)) {
 message("index of ending column is out of range");
-ok=None;
+ok=false;
 }
 model.ipar=[a,b,c,d];
 in1=[inp(1),inp(2)];
@@ -82,7 +82,7 @@ model.rpar=[];
 model.ipar=[1,1,1,1];
 model.blocktype="c";
 model.firing=[];
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 label=[sci2exp(1),sci2exp(1),sci2exp(1),sci2exp(1),sci2exp(1)];
 gr_i=[];
 x=standard_define([2.5,2],model,label,gr_i);

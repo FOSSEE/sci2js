@@ -26,33 +26,33 @@ co=int(co.slice());
 funtyp=funtyp;
 if (funtyp<0) {
 message("function type cannot be negative");
-ok=None;
+ok=false;
 }
 if ([ci,co]!=[]) {
 if (max([ci,co])>1) {
 message("vector event links not supported");
-ok=None;
+ok=false;
 }
 }
 if (type(opar)!=15) {
 message("object parameter must be a list");
-ok=None;
+ok=false;
 }
 if (type(oz)!=15) {
 message("discrete object state must be a list");
-ok=None;
+ok=false;
 }
 depu=stripblanks(depu);
 if (part(depu,1)=="y") {
 depu=true;
 } else {
-depu=None;
+depu=false;
 }
 dept=stripblanks(dept);
 if (part(dept,1)=="y") {
 dept=true;
 } else {
-dept=None;
+dept=false;
 }
 dep_ut=[depu,dept];
 if (ok) {
@@ -93,7 +93,7 @@ model.intyp=1;
 model.out=1;
 model.out2=1;
 model.outtyp=1;
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 label=[function_name,sci2exp(funtyp),sci2exp([model.in1,model.in2]),sci2exp(model.intyp),sci2exp([model.out,model.out2]),sci2exp(model.outtyp),sci2exp(model.evtin),sci2exp(model.evtout),sci2exp(model.state),sci2exp(model.dstate),sci2exp(model.odstate),sci2exp(model.rpar),sci2exp(model.ipar),sci2exp(model.opar),sci2exp(model.nmode),sci2exp(model.nzcross),sci2exp(model.firing),"y","n"];
 gr_i=[];
 x=standard_define([4,2],model,label,gr_i);

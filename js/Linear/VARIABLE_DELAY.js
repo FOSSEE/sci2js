@@ -15,11 +15,11 @@ break
 }
 if (N<2) {
 message("Buffer must be larger than 2");
-ok=None;
+ok=false;
 }
 if (T<=0) {
 message("Delay must be positive");
-ok=None;
+ok=false;
 }
 if (ok) {
 [model,graphics,ok]=check_io(model,graphics,[-1,1],-1,[],[]);
@@ -46,7 +46,7 @@ model.out=nin;
 model.rpar=[T,init];
 model.ipar=N;
 model.blocktype="d";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=[string(T),string(init),string(N)];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);

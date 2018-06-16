@@ -13,7 +13,7 @@ model.opar=list();
 model.ipar=[];
 model.blocktype="d";
 model.firing=-1;
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=[];
 x=standard_define([2,2],model,exprs," ");
 }

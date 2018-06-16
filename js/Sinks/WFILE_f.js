@@ -23,32 +23,32 @@ break
 }
 in1=int(in1);
 nin=in1;
-fname1=pathconvert(stripblanks(fname1),None,true);
+fname1=pathconvert(stripblanks(fname1),false,true);
 frmt1=stripblanks(frmt1);
 if (lunit>0&&min(length(frmt),1)!=min(length(frmt1),1)) {
 block_parameter_error(gettext("Simulation running !!! You cannot switch<br />between formatted and unformatted when running"),gettext("End current simulation first."));
-ok=None;
+ok=false;
 } else if (lunit>0&&fname1!=fname) {
 block_parameter_error(gettext("You cannot modify \'Output File Name\' when running."),gettext("End current simulation first."));
-ok=None;
+ok=false;
 } else if (fname1=="") {
 block_parameter_error(gettext("Wrong value for \'Output File Name\' parameter"),gettext("You must provide a filename."));
-ok=None;
+ok=false;
 } else if (fileparts(fname1)!="") {
 [pa,fn,ex]=fileparts(fname1);
 if (!isdir(pa)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Output File Name")),msprintf(gettext("Directory \'%s\' does not exist"),pa));
-ok=None;
+ok=false;
 }
 } else if (frmt1!=""&&(part(frmt1,1)!="("||part(frmt1,length(frmt1))!=")")) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Input Format"),frmt1),gettext("You must enclose the format\'s string between parentheses."));
-ok=None;
+ok=false;
 } else if (N<2) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),N),gettext("Must be greater than 1."));
-ok=None;
+ok=false;
 } else if (in1<=0) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Input Size"),in1),gettext("Strictly positive integer expected."));
-ok=None;
+ok=false;
 }
 if (ok) {
 ipar=[length(fname1),length(frmt1),0,N,_str2code(fname1),_str2code(frmt1)];
@@ -58,7 +58,7 @@ dstate=[-1,lunit,zeros((nin+1)*N,1)];
 model.in1=nin;
 model.dstate=dstate;
 model.ipar=ipar;
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -80,7 +80,7 @@ model.evtin=1;
 model.dstate=[-1,lunit,zeros((nin+1)*N,1)];
 model.ipar=[length(fname),length(frmt),0,N,_str2code(fname),_str2code(frmt)];
 model.blocktype="d";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[sci2exp(in1),fname,frmt,string(N)];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);

@@ -14,11 +14,11 @@ break
 }
 if (frequ<0) {
 message("Frequency must be a positif number");
-ok=None;
+ok=false;
 }
 if (abs(offset)>frequ) {
 message("The |Offset| must be less than the Frequency");
-ok=None;
+ok=false;
 }
 if (ok) {
 if (or(model.rpar.slice()!=[frequ,offset])) {
@@ -43,7 +43,7 @@ model.evtout=1;
 model.rpar=[1,0];
 model.blocktype="d";
 model.firing=-1;
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=[sci2exp(1),sci2exp(0)];
 x=standard_define([2,2],model,exprs," ");
 }

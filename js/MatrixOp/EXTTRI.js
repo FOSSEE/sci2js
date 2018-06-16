@@ -25,7 +25,7 @@ function_name="exttriu";
 function_name="extdiag";
 } else {
 message("decomposition type is not supported");
-ok=None;
+ok=false;
 }
 it=1;
 ot=1;
@@ -38,13 +38,13 @@ function_name="exttriuz";
 function_name="extdiagz";
 } else {
 message("decomposition type is not supported");
-ok=None;
+ok=false;
 }
 it=2;
 ot=2;
 } else {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 in1=[model.in1,model.in2];
 out=[model.out,model.out2];
@@ -81,7 +81,7 @@ model.rpar=[];
 model.ipar=[];
 model.blocktype="c";
 model.firing=[];
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 label=[sci2exp(1),sci2exp(1)];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);

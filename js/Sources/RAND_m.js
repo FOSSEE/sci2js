@@ -31,7 +31,7 @@ model.rpar=[real(a.slice()),imag(a.slice()),real(b.slice()),imag(b.slice())];
 model.dstate=[seed_c.slice(),0*[real(a.slice()),imag(a.slice())]];
 } else {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 if (ok) {
 [model,graphics,ok]=set_io(model,graphics,list([],[]),list(out,ot),1,[]);
@@ -70,7 +70,7 @@ model.rpar=[a.slice(),b.slice()];
 model.ipar=flag;
 model.blocktype="d";
 model.firing=[];
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=[sci2exp(1),string(flag),sci2exp([a]),sci2exp([b]),sci2exp([model.dstate(1),int(rand()*(10^7-1))])];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);

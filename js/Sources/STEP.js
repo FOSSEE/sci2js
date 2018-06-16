@@ -21,7 +21,7 @@ in1=in1*ones(fi);
 fi=fi*ones(in1);
 } else {
 block_parameter_error(msprintf(gettext("\'Initial Value\' and \'Final Value\': incompatible sizes: %d and %d."),size(in1,"*"),size(fi,"*")),gettext("Same sizes expected."));
-ok=None;
+ok=false;
 }
 }
 if (ok) {
@@ -56,7 +56,7 @@ model.outtyp=1;
 model.firing=1;
 model.rpar=rpar;
 model.blocktype="c";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=[string(1),string(rpar)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

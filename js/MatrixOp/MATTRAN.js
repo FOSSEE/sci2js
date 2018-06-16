@@ -29,7 +29,7 @@ ot=2;
 it=2;
 } else {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 in1=[model.in1,model.in2];
 out=[model.out,model.out2];
@@ -53,7 +53,7 @@ model.in1=-1;
 model.in2=-2;
 model.out=-2;
 model.out2=-1;
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 label=[sci2exp(1)];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);

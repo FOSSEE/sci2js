@@ -19,35 +19,35 @@ break
 }
 in1=int(in1);
 nin=in1;
-fname1=pathconvert(stripblanks(fname1),None,true);
+fname1=pathconvert(stripblanks(fname1),false,true);
 frmt1=stripblanks(frmt1);
 fmts=["s","l","d","f","c","us","ul","uc","ull","uls","ubl","ubs","dl","fl","ll","sl","db","fb","lb","sb"];
 if (and(frmt1!=fmts)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Input Format"),frmt1),gettext("Valid formats are: "+strcat(fmts,", ")));
-ok=None;
+ok=false;
 } else if (alreadyran&&fname1!=fname) {
 block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running"),gettext("Input Format")),gettext("End current simulation first."));
-ok=None;
+ok=false;
 } else if (alreadyran&&N!=ipar(5)) {
 block_parameter_error(msprintf(gettext("You cannot modify \'Buffer Size\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
-ok=None;
+ok=false;
 } else if (fname1=="") {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Output File Name")),gettext("You must provide a filename."));
 } else if (fileparts(fname1)!="") {
 [pa,fn,ex]=fileparts(fname1);
 if (!isdir(pa)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Output File Name")),msprintf(gettext("Directory \'%s\' does not exist"),pa));
-ok=None;
+ok=false;
 }
 } else if (N<1) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),N),gettext("Strictly positive integer expected."));
-ok=None;
+ok=false;
 } else if (in1<=0) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Input Size"),in1),gettext("Strictly positive integer expected."));
-ok=None;
+ok=false;
 } else if (swap!=0&&swap!=1) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Swap Mode"),swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
-ok=None;
+ok=false;
 }
 frmt1=part(frmt1,1,3);
 if (ok) {
@@ -80,7 +80,7 @@ model.evtin=1;
 model.dstate=[-1,lunit,zeros((nin+1)*N,1)];
 model.ipar=[length(fname),_str2code(frmt),N,swap,_str2code(fname)];
 model.blocktype="d";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[sci2exp(in1),fname,frmt,string(N),string(swap)];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);

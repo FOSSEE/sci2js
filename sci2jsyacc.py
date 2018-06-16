@@ -18,25 +18,25 @@ precedence = (
 
 start = 'functionblock'
 
-jobblocks = {}
+JOB_BLOCKS = {}
 
 # define functionblock
 
 def p_functionblock_function_statementblock_endfunction(p):
     'functionblock : emptystatementblock FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION emptystatementblock'
-    f = str(p[5])
-    p[0] = ('function ' + f + '() {\n' +
-            f + '.prototype.get = function ' + f + '() {\n' +
-            (jobblocks['"get"'] if '"get"' in jobblocks else '') +
+    fname = str(p[5])
+    p[0] = ('function ' + fname + '() {\n' +
+            fname + '.prototype.get = function ' + fname + '() {\n' +
+            (JOB_BLOCKS['"get"'] if '"get"' in JOB_BLOCKS else '') +
             '}\n' +
-            f + '.prototype.set = function ' + f + '() {\n' +
-            (jobblocks['"set"'] if '"set"' in jobblocks else '') +
+            fname + '.prototype.set = function ' + fname + '() {\n' +
+            (JOB_BLOCKS['"set"'] if '"set"' in JOB_BLOCKS else '') +
             '}\n' +
-            f + '.prototype.define = function ' + f + '() {\n' +
-            (jobblocks['"define"'] if '"define"' in jobblocks else '') +
+            fname + '.prototype.define = function ' + fname + '() {\n' +
+            (JOB_BLOCKS['"define"'] if '"define"' in JOB_BLOCKS else '') +
             '}\n' +
-            f + '.prototype.details = function ' + f + '() {\n' +
-            (jobblocks['"details"'] if '"details"' in jobblocks else '') +
+            fname + '.prototype.details = function ' + fname + '() {\n' +
+            (JOB_BLOCKS['"details"'] if '"details"' in JOB_BLOCKS else '') +
             '}\n' +
             '}')
 
@@ -138,12 +138,12 @@ def p_casestatementblock_casestatement(p):
 
 def p_casejobstatementblock_casejobstatementblock_casejobstatement(p):
     'casejobstatementblock : casejobstatementblock casejobstatement statementblock'
-    jobblocks[p[2]] = p[3]
+    JOB_BLOCKS[p[2]] = p[3]
     p[0] = ''
 
 def p_casejobstatementblock_casejobstatement(p):
     'casejobstatementblock : casejobstatement statementblock'
-    jobblocks[p[1]] = p[2]
+    JOB_BLOCKS[p[1]] = p[2]
     p[0] = ''
 
 def p_whilestatementblock_whilestatement(p):
@@ -174,27 +174,27 @@ def p_forstatement_for_start_step_end(p):
     '''forstatement : FOR VAR ASSIGNMENT expression COLON expression COLON expression EOL
                     | FOR VAR ASSIGNMENT expression COLON expression COLON expression DO EOL'''
     var = p[2]
-    start = p[4]
-    step = int(p[6])
-    end = p[8]
-    if step > 0:
+    lstart = p[4]
+    lstep = int(p[6])
+    lend = p[8]
+    if lstep > 0:
         endop = '<='
         stepop = '+='
     else:
         endop = '>='
         stepop = '-='
-    p[0] = 'for (%s=%s;%s%s%s;%s%s%s) {\n' % (var, start, var, endop, end, var, stepop, step)
+    p[0] = 'for (%s=%s;%s%s%s;%s%s%s) {\n' % (var, lstart, var, endop, lend, var, stepop, lstep)
 
 def p_forstatement_for_start_end(p):
     '''forstatement : FOR VAR ASSIGNMENT expression COLON expression EOL
                     | FOR VAR ASSIGNMENT expression COLON expression DO EOL'''
     var = p[2]
-    start = p[4]
-    step = 1
-    end = p[6]
+    lstart = p[4]
+    lstep = 1
+    lend = p[6]
     endop = '<='
     stepop = '+='
-    p[0] = 'for (%s=%s;%s%s%s;%s%s%s) {\n' % (var, start, var, endop, end, var, stepop, step)
+    p[0] = 'for (%s=%s;%s%s%s;%s%s%s) {\n' % (var, lstart, var, endop, lend, var, stepop, lstep)
 
 def p_forstatement_for_list(p):
     '''forstatement : FOR VAR ASSIGNMENT VAR EOL
@@ -346,12 +346,12 @@ def p_expression_term_transpose(p):
 def p_expression_expression_multiplication_expression(p):
     'expression : expression MULTIPLICATION expression'
     if p[2] == '**':
-        op = '^'
+        operator = '^'
     elif p[2] == '\\':
-        op = '\\'
+        operator = '\\'
     else:
-        op = p[2]
-    p[0] = str(p[1]) + op + str(p[3])
+        operator = p[2]
+    p[0] = str(p[1]) + operator + str(p[3])
 
 def p_expression_expression_addition_expression(p):
     'expression : expression ADDITION expression'
@@ -359,19 +359,19 @@ def p_expression_expression_addition_expression(p):
 
 def p_expression_expression_comparison_expression(p):
     'expression : expression COMPARISON expression'
-    o = p[2]
-    if o == '<>' or o == '~=':
-        o = '!='
-    p[0] = str(p[1]) + o + str(p[3])
+    operator = p[2]
+    if operator == '<>' or operator == '~=':
+        operator = '!='
+    p[0] = str(p[1]) + operator + str(p[3])
 
 def p_expression_expression_logical_expression(p):
     'expression : expression LOGICAL expression'
-    o = p[2]
-    if o == '&':
-        o = '&&'
-    elif o == '|':
-        o = '||'
-    p[0] = str(p[1]) + o + str(p[3])
+    operator = p[2]
+    if operator == '&':
+        operator = '&&'
+    elif operator == '|':
+        operator = '||'
+    p[0] = str(p[1]) + operator + str(p[3])
 
 def p_expression_addition_term(p):
     'expression : ADDITION expression %prec UNARYADDITION'
@@ -419,7 +419,7 @@ def p_lterm_slice(p):
 def p_lterm_index(p):
     'lterm : ltermvar OPENBRACKET expression CLOSEBRACKET'
     addtoarray(p[1])
-    p[0] = str(p[1]) + '[' + str(p[3]) + '-1]'
+    p[0] = '%s[%s-1]' % (p[1], p[3])
 
 # [A,B,C]
 def p_lterm_ltermarraylist(p):
@@ -476,6 +476,11 @@ def p_term_full_slice(p):
 def p_term_full_slice_expression(p):
     'term : termvar OPENBRACKET COLON COMMA expression CLOSEBRACKET'
     p[0] = p[1] + '.slice()[' + str(p[5]) + '-1]'
+
+# B(:,1)
+def p_term_full_slice_full_slice(p):
+    'term : termvar OPENBRACKET COLON COMMA COLON CLOSEBRACKET'
+    p[0] = p[1] + '.slice().slice()'
 
 # (1:10)
 def p_term_range(p):
@@ -549,7 +554,7 @@ def p_term_prevar_boolean(p):
     if p[1] == '%t':
         p[0] = 'true'
     elif p[1] == '%f':
-        p[0] == 'false'
+        p[0] = 'false'
 
 # 1+2*%i
 def p_term_prevar_complex1(p):
@@ -617,18 +622,18 @@ def p_term_constant(p):
 def p_error(p):
     print("Syntax error in input", p)
 
-arraylist = set()
+ARRAY_LIST = set()
 
-def addtoarray(s):
-    global arraylist
-    arraylist.add(s)
+def addtoarray(name):
+    ARRAY_LIST.add(name)
 
-def isarray(s):
-    global arraylist
-    return s in arraylist
+def isarray(name):
+    return name in ARRAY_LIST
 
-def isfunction(s):
-    return False
+FUNCTION_LIST = set()
+
+def isfunction(name):
+    return name in FUNCTION_LIST
 
 if __name__ == '__main__':
     if len(sys.argv) <= 1:

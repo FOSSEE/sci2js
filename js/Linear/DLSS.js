@@ -31,7 +31,7 @@ D=D*ones(C*B);
 } else if (size(D,"*")==0) {
 D=zeros(C*B);
 } else {
-okD=None;
+okD=false;
 }
 }
 if (ms!=ns||!okD) {
@@ -43,15 +43,15 @@ graphics.exprs=exprs;
 rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
 if (D!=[]) {
 if (norm(D,1)!=0) {
-mmm=[true,None];
+mmm=[true,false];
 } else {
-mmm=[None,None];
+mmm=[false,false];
 }
 if (or(model.dep_ut!=mmm)) {
 model.dep_ut=mmm;
 }
 } else {
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 }
 model.dstate=x0.slice();
 model.rpar=rpar;
@@ -76,7 +76,7 @@ model.evtin=1;
 model.dstate=x0.slice();
 model.rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
 model.blocktype="d";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=[strcat(sci2exp(A)),strcat(sci2exp(B)),strcat(sci2exp(C)),strcat(sci2exp(D)),strcat(sci2exp(x0))];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);

@@ -16,7 +16,7 @@ sgn=sgn.slice();
 if (size(sgn,1)==1) {
 if (sgn<1) {
 message("Number of inputs must be > 0");
-ok=None;
+ok=false;
 } else if (sgn==1) {
 in1=-1;
 sgn=[];
@@ -29,7 +29,7 @@ nout=-1;
 } else {
 if (!and(abs(sgn)==1)) {
 message("Signs can only be +1 or -1");
-ok=None;
+ok=false;
 } else {
 in1=-ones(size(sgn,1),1);
 nout=-1;
@@ -55,7 +55,7 @@ model.in1=[-1,-1];
 model.out=-1;
 model.ipar=sgn;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=sci2exp(sgn);
 gr_i=[];
 x=standard_define([2,3],model,exprs,gr_i);

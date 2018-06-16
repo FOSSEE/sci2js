@@ -46,7 +46,7 @@ model.out=in1;
 model.evtin=1-inh;
 model.dstate=z;
 model.blocktype="d";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }

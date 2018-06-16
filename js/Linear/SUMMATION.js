@@ -20,12 +20,12 @@ break
 sgn=sgn.slice();
 if ((satur!=0&&satur!=1&&satur!=2)) {
 message("Do on overflow must be 0,1,2");
-ok=None;
+ok=false;
 }
 if (size(sgn,1)==1) {
 if (sgn<1) {
 message("Number of inputs must be > 0");
-ok=None;
+ok=false;
 } else if (sgn==1) {
 in1=-1;
 in2=-2;
@@ -42,7 +42,7 @@ nout2=-2;
 } else {
 if (!and(abs(sgn)==1)) {
 message("Signs can only be +1 or -1");
-ok=None;
+ok=false;
 } else {
 in1=-ones(size(sgn,1),1);
 in2=2*in1;
@@ -58,7 +58,7 @@ model.sim=list("summation",4);
 model.sim=list("summation_z",4);
 } else if (((Datatype<1)||(Datatype>8))) {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 } else {
 if (satur==0) {
 if (Datatype==3) {
@@ -127,7 +127,7 @@ model.in2=[-2,-2];
 model.out2=-2;
 model.ipar=sgn;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=sci2exp(sgn);
 gr_i=[];
 x=standard_define([2,3],model,exprs,gr_i);

@@ -20,16 +20,16 @@ rule=int(rule);
 tp=int(tp);
 if (nin<1) {
 message("Number of inputs must be >=1 ");
-ok=None;
+ok=false;
 } else if ((rule<0)||(rule>5)) {
 message("Incorrect operator "+string(rule)+" ; must be 0 to 5.");
-ok=None;
+ok=false;
 } else if ((rule==5)&&(nin>1)) {
 message("Only one input allowed for NOT operation");
 nin=1;
 } else if (((Datatype==1)&&(tp!=0))) {
 message("Bitwise Rule is only activated when Data type is integer");
-ok=None;
+ok=false;
 }
 if (ok) {
 if ((tp!=0)) {
@@ -53,7 +53,7 @@ model.sim=list("logicalop_ui16",4);
 model.sim=list("logicalop_ui8",4);
 } else {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 model.ipar=[rule,tp];
 }
@@ -102,7 +102,7 @@ model.in1=in1;
 model.out=-1;
 model.ipar=ipar;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[string(nin),string(ipar)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

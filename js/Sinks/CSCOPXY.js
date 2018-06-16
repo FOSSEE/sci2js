@@ -15,35 +15,35 @@ break
 mess=[];
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
 mess=[mess,"Window position must be [] or a 2 vector"," "];
-ok=None;
+ok=false;
 }
 if (size(wdim,"*")!=0&&size(wdim,"*")!=2) {
 mess=[mess,"Window dim must be [] or a 2 vector"," "];
-ok=None;
+ok=false;
 }
 if (nbr_curves<=0) {
 mess=[mess,"Number of Curves cannot be negative or null"," "];
-ok=None;
+ok=false;
 }
 if (win<-1) {
 mess=[mess,"Window number cannot be inferior than -1"," "];
-ok=None;
+ok=false;
 }
 if (N<1) {
 mess=[mess,"Buffer size must be at least 1"," "];
-ok=None;
+ok=false;
 }
 if (N==1&&clrs>0) {
 mess=[mess,"Buffer size must be at least 2"," "];
-ok=None;
+ok=false;
 }
 if (ymin>=ymax) {
 mess=[mess,"Ymax must be greater than Ymin"," "];
-ok=None;
+ok=false;
 }
 if (xmin>=xmax) {
 mess=[mess,"Xmax must be greater than Xmin"," "];
-ok=None;
+ok=false;
 }
 if (!ok) {
 message(mess);
@@ -89,7 +89,7 @@ model.evtin=1;
 model.rpar=[xmin,xmax,ymin,ymax];
 model.ipar=[win,1,N,clrs,siz,1,wpos.slice(),wdim.slice(),nbr_curves];
 model.blocktype="d";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=[string(nbr_curves),sci2exp(clrs),sci2exp(siz),string(win),sci2exp([]),sci2exp(wdim),string(xmin),string(xmax),string(ymin),string(ymax),string(N)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

@@ -31,7 +31,7 @@ model.nzcross=0;
 }
 if (((ot<1)||(ot>8))&&(ot!=-1)) {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 if (ok) {
 it[1-1]=ot;
@@ -65,7 +65,7 @@ model.rpar=rpar;
 model.nzcross=nzz;
 model.nmode=1;
 model.blocktype="c";
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 exprs=[sci2exp(1),string(ipar),string(rpar),string(nzz)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

@@ -28,13 +28,13 @@ lowp=lowp*ones(x0);
 }
 if ((size(x0,1)!=size(maxp,1)||size(x0,1)!=size(lowp,1))) {
 message("x0 and Upper limit and Lower limit must have same size");
-ok=None;
+ok=false;
 } else if (or(maxp<=lowp)) {
 message("Upper limits must be > Lower limits");
-ok=None;
+ok=false;
 } else if (or(x0>maxp)||or(x0<lowp)) {
 message("Initial condition x0 should be inside the limits");
-ok=None;
+ok=false;
 } else {
 rpar=[maxp,lowp];
 model.nzcross=size(x0,1);
@@ -69,7 +69,7 @@ model.in1=1;
 model.out=1;
 model.rpar=rpar;
 model.blocktype="c";
-model.dep_ut=[None,true];
+model.dep_ut=[false,true];
 exprs=string([0,0,0,maxp,minp]);
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

@@ -56,7 +56,7 @@ it=8;
 ot=8;
 } else {
 message("type is not recognized");
-ok=None;
+ok=false;
 }
 if (ok) {
 [model,graphics,ok]=set_io(model,graphics,list(in1,it),list(out,ot),ones(1-inh,1),[]);
@@ -81,7 +81,7 @@ model.out=in1;
 model.evtin=1-inh;
 model.dstate=z;
 model.blocktype="d";
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }

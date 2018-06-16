@@ -8,7 +8,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-ask_again=None;
+ask_again=false;
 [ok,x0,xd0,exprs]=scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",-1,"vec",-1),exprs);
 if (!ok) {
 break
@@ -45,7 +45,7 @@ model.in1=1;
 model.out=1;
 model.state=x0;
 model.blocktype="c";
-model.dep_ut=[None,true];
+model.dep_ut=[false,true];
 exprs=[strcat(sci2exp(x0(1))),strcat(sci2exp(x0(2)))];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

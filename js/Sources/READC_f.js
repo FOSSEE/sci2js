@@ -20,7 +20,7 @@ while (true) {
 if (!ok) {
 break
 }
-fname1=pathconvert(stripblanks(fname1),None,true);
+fname1=pathconvert(stripblanks(fname1),false,true);
 frmt1=stripblanks(frmt1);
 fmts=["s","l","d","f","c","us","ul","uc","ull","uls","ubl","ubs","dl","fl","ll","sl","db","fb","lb","sb"];
 nout=size(outmask,"*");
@@ -107,7 +107,7 @@ model.dstate=[1,1,lunit,zeros(N*M,1)];
 model.ipar=[length(fname),_str2code(frmt),ievt,N,M,swap,offset,_str2code(fname),tmask,outmask];
 model.blocktype="d";
 model.firing=-1;
-model.dep_ut=[None,None];
+model.dep_ut=[false,false];
 exprs=["[]",sci2exp(outmask),fname,frmt,string(M),string(N),string(offset),string(swap)];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);

@@ -29,7 +29,7 @@ out=[-1,-1,-1,-2,-2,-2];
 ot=[1,1,1];
 } else {
 message("decomposition type is not supported");
-ok=None;
+ok=false;
 }
 it=1;
 } else if ((typ==2)) {
@@ -45,12 +45,12 @@ out=[-1,-1,-1,-2,-2,-2];
 ot=[2,1,2];
 } else {
 message("decomposition type is not supported");
-ok=None;
+ok=false;
 }
 it=2;
 } else {
 message("Datatype is not supported");
-ok=None;
+ok=false;
 }
 funtyp=4;
 if (ok) {
@@ -85,7 +85,7 @@ model.rpar=[];
 model.ipar=[];
 model.blocktype="c";
 model.firing=[];
-model.dep_ut=[true,None];
+model.dep_ut=[true,false];
 label=[sci2exp(1),sci2exp(1)];
 gr_i=[];
 x=standard_define([2,2],model,label,gr_i);

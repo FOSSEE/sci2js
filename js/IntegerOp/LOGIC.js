@@ -17,13 +17,13 @@ nin=(log(size(mat,1))/log(2));
 u1=floor(nin);
 if ((u1!=nin)) {
 block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter: %d."),gettext("Truth Table"),size(mat,1)),gettext("Number of rows must be a power of two."));
-ok=None;
+ok=false;
 } else if ((find(mat.slice()!=0&&mat.slice()!=1)!=[])) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Truth Table")),msprintf(gettext("Elements must be in the interval %s."),"[0, 1]"));
-ok=None;
+ok=false;
 } else if (herit<0||herit>1) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Accepts Inherited Events"),herit),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
-ok=None;
+ok=false;
 }
 if (ok) {
 in1=[ones(nin,1),ones(nin,1)];
@@ -55,8 +55,8 @@ model.intyp=[5,5];
 model.outtyp=5;
 model.opar=list(int8(mat));
 model.blocktype="c";
-model.firing=None;
-model.dep_ut=[true,None];
+model.firing=false;
+model.dep_ut=[true,false];
 exprs=[sci2exp(mat),sci2exp(0)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);

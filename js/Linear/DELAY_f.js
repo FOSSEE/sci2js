@@ -31,11 +31,11 @@ break
 mess=[];
 if (prod(size(z0))<1) {
 mess=[mess,"Register length must be at least 1"," "];
-ok=None;
+ok=false;
 }
 if (dt<=0) {
 mess=[mess,"Discretization time step must be positive"," "];
-ok=None;
+ok=false;
 }
 if (!ok) {
 message(mess);
@@ -116,7 +116,7 @@ x.model.sim="csuper";
 x.model.in1=1;
 x.model.out=1;
 x.model.blocktype="h";
-x.model.dep_ut=[None,None];
+x.model.dep_ut=[false,false];
 x.model.rpar=diagram;
 x.graphics.in_implicit=["E"];
 x.graphics.in_style="";
