@@ -429,10 +429,6 @@ def p_lterm_ltermarraylist(p):
     'lterm : OPENSQBRACKET ltermarraylist CLOSESQBRACKET'
     p[0] = str(p[1]) + str(p[2]) + str(p[3])
 
-def p_lterm_prevar(p):
-    'lterm : PREVAR'
-    p[0] = str(p[1])
-
 def p_lterm_ltermvar(p):
     'lterm : ltermvar'
     p[0] = str(p[1])
@@ -446,7 +442,8 @@ def p_ltermvar_ltermvar_dot_in(p):
     p[0] = p[1] + p[2] + p[3] + '1'
 
 def p_ltermvar_var(p):
-    'ltermvar : VAR'
+    '''ltermvar : VAR
+                | PREVAR'''
     p[0] = p[1]
 
 # in
