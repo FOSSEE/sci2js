@@ -32,22 +32,19 @@ JOB_BLOCKS = {}
 # define functionblock
 
 def p_functionblock_function_statementblock_endfunction(p):
-    'functionblock : emptystatementblock FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION emptystatementblock'
+    'functionblock : EOL FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION EOL'
     fname = str(p[5])
-    p[0] = ('function ' + fname + '() {\n' +
-            fname + '.prototype.get = function ' + fname + '() {\n' +
-            (JOB_BLOCKS['"get"'] if '"get"' in JOB_BLOCKS else '') +
-            '}\n' +
-            fname + '.prototype.set = function ' + fname + '() {\n' +
-            (JOB_BLOCKS['"set"'] if '"set"' in JOB_BLOCKS else '') +
-            '}\n' +
-            fname + '.prototype.define = function ' + fname + '() {\n' +
-            (JOB_BLOCKS['"define"'] if '"define"' in JOB_BLOCKS else '') +
-            '}\n' +
-            fname + '.prototype.details = function ' + fname + '() {\n' +
-            (JOB_BLOCKS['"details"'] if '"details"' in JOB_BLOCKS else '') +
-            '}\n' +
-            '}')
+    p[0] = ('function %s() {\n' +
+            '%s.prototype.get = function %s() {\n%s}\n' +
+            '%s.prototype.set = function %s() {\n%s}\n' +
+            '%s.prototype.define = function %s() {\n%s}\n' +
+            '%s.prototype.details = function %s() {\n%s}\n' +
+            '}') % (fname,
+                    fname, fname, (JOB_BLOCKS['"get"'] if '"get"' in JOB_BLOCKS else ''),
+                    fname, fname, (JOB_BLOCKS['"set"'] if '"set"' in JOB_BLOCKS else ''),
+                    fname, fname, (JOB_BLOCKS['"define"'] if '"define"' in JOB_BLOCKS else ''),
+                    fname, fname, (JOB_BLOCKS['"details"'] if '"details"' in JOB_BLOCKS else ''),
+                   )
 
 
 # end define functionblock
@@ -56,16 +53,11 @@ def p_functionblock_function_statementblock_endfunction(p):
 
 def p_statementblock_statementblock_statement(p):
     'statementblock : statementblock statement'
-    p[0] = str(p[1]) + str(p[2])
+    p[0] = '%s%s' % (p[1], p[2])
 
 def p_statementblock_statement(p):
     'statementblock : statement'
-    p[0] = str(p[1])
-
-def p_emptystatementblock_eol(p):
-    '''emptystatementblock : emptystatementblock EOL
-                           | EOL'''
-    p[0] = str(p[1])
+    p[0] = '%s' % (p[1])
 
 # end define statementblock
 
@@ -212,11 +204,11 @@ def p_forstatement_for_list(p):
     p[0] = 'for (%s in %s) {\n' % (var, p[4])
 
 def p_selectstatement_select(p):
-    'selectstatement : SELECT expression emptystatementblock'
+    'selectstatement : SELECT expression EOL'
     p[0] = 'switch (' + p[2] + ') {\n'
 
 def p_selectjobstatement_select(p):
-    'selectjobstatement : SELECT JOB emptystatementblock'
+    'selectjobstatement : SELECT JOB EOL'
     p[0] = ''
 
 def p_casestatement_case(p):
