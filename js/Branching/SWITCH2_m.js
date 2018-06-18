@@ -6,8 +6,8 @@ nzz=1;
 rpar=0;
 model=scicos_model();
 model.sim=list("switch2_m",4);
-model.in1=[-1,1,-1];
-model.in2=[-2,1,-2];
+model.in1=[[-1],[1],[-1]];
+model.in2=[[-2],[1],[-2]];
 model.intyp=1;
 model.out=-1;
 model.out2=-2;
@@ -18,7 +18,7 @@ model.nzcross=nzz;
 model.nmode=1;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(1),string(ipar),string(rpar),string(nzz)];
+exprs=[[sci2exp(1)],[string(ipar)],[string(rpar)],[string(nzz)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -32,7 +32,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,ot,rule,thra,nzz,exprs]=scicos_getvalue("Set parameters",["Datatype (1=real double  2=complex 3=int32 ...)","pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,ot,rule,thra,nzz,exprs]=scicos_getvalue("Set parameters",[["Datatype (1=real double  2=complex 3=int32 ...)"],["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)"],["threshold a"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }

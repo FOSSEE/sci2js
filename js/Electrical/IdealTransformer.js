@@ -9,24 +9,24 @@ Typein=[];
 Typeout=[];
 MI=[];
 MO=[];
-P=[2.5,90,2,0,2.5,10,2,0,97.5,90,-2,0,97.5,10,-2,0];
-PortName=["p1","n1","p2","n2"];
+P=[[2.5,90,2,0],[2.5,10,2,0],[97.5,90,-2,0],[97.5,10,-2,0]];
+PortName=[["p1"],["n1"],["p2"],["n2"]];
 for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
-Typein=[Typein,"E"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["E"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==2) {
-Typein=[Typein,"I"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["I"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==-1) {
-Typeout=[Typeout,"E"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["E"]];
+MO=[[MO],[PortName(i)]];
 }
 if (P(i,3)==-2) {
-Typeout=[Typeout,"I"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["I"]];
+MO=[[MO],[PortName(i)]];
 }
 }
 model=scicos_model();
@@ -60,7 +60,7 @@ model=arg1.model;
 x=arg1;
 exprs=x.graphics.exprs;
 while (true) {
-[ok,N,exprs]=scicos_getvalue(["Set Transformer block parameters:","","N:"+" Turn ratio (N1/N2)"],["N"],list("vec",1),exprs);
+[ok,N,exprs]=scicos_getvalue([["Set Transformer block parameters:"],[""],["N:"+" Turn ratio (N1/N2)"]],["N"],list("vec",1),exprs);
 if (!ok) {
 break;
 }

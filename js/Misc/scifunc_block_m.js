@@ -29,7 +29,7 @@ model.opar=list();
 model.blocktype=typ;
 model.firing=auto;
 model.dep_ut=[true,false];
-exprs=list([sci2exp([in1,in1]),sci2exp([out,out]),sci2exp(clkin),sci2exp(clkout),strcat(sci2exp(x0)),strcat(sci2exp(z0)),strcat(sci2exp(rpar)),sci2exp(auto),sci2exp(0)],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
+exprs=list([[sci2exp([in1,in1])],[sci2exp([out,out])],[sci2exp(clkin)],[sci2exp(clkout)],[strcat(sci2exp(x0))],[strcat(sci2exp(z0))],[strcat(sci2exp(rpar))],[sci2exp(auto)],[sci2exp(0)]],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -44,7 +44,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 exprs=graphics.exprs;
 while (true) {
-[ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=scicos_getvalue(["Set scifunc_block parameters","only regular blocks supported"],["input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","System parameters vector","initial firing vector (<0 for no firing)","is block always active (0:no, 1:yes)"],list("mat",[-1,2],"mat",[-2,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs[1-1]);
+[ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],[["input ports sizes"],["output port sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["initial discrete state"],["System parameters vector"],["initial firing vector (<0 for no firing)"],["is block always active (0:no, 1:yes)"]],list("mat",[-1,2],"mat",[-2,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs[1-1]);
 if (!ok) {
 break;
 }

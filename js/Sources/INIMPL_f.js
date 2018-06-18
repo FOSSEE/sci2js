@@ -31,7 +31,7 @@ if (size(exprs,"*")==2) {
 exprs=exprs[1-1];
 }
 while (true) {
-[ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"INIMPL_f")," ",gettext("Implicit input port")," "],"Port Number",list("vec",1),exprs);
+[ok,prt,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INIMPL_f")],[" "],[gettext("Implicit input port")],[" "]],"Port Number",list("vec",1),exprs);
 if (!ok) {
 break;
 }

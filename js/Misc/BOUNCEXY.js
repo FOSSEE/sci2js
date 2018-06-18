@@ -3,17 +3,17 @@ function BOUNCEXY() {
 BOUNCEXY.prototype.define = function BOUNCEXY() {
 win=-1;
 imode=1;
-clrs=[1,2];
-siz=[1,1];
+clrs=[[1],[2]];
+siz=[[1],[1]];
 xmin=-5;
 xmax=5;
 ymin=0;
 ymax=15;
 model=scicos_model();
 model.sim=list("bouncexy",4);
-model.in1=[-1,-1];
-model.in2=[1,1];
-model.intyp=[1,1];
+model.in1=[[-1],[-1]];
+model.in2=[[1],[1]];
+model.intyp=[[1],[1]];
 model.evtin=1;
 z=[];
 for (i=1;i<=size(clrs,"*");i+=1) {
@@ -25,12 +25,12 @@ z[6*(i-1)+5-1]=0.000;
 z[6*(i-1)+6-1]=64.0*360.000;
 }
 model.dstate=z;
-model.rpar=[xmin,xmax,ymin,ymax];
-model.ipar=[win,imode,clrs.slice()];
+model.rpar=[[xmin],[xmax],[ymin],[ymax]];
+model.ipar=[[win],[imode],[clrs.slice()]];
 model.blocktype="d";
 model.firing=[];
 model.dep_ut=[false,false];
-exprs=[strcat(sci2exp(clrs)),strcat(sci2exp(siz)),strcat(sci2exp(win)),strcat(sci2exp(1)),strcat(sci2exp(xmin)),strcat(sci2exp(xmax)),strcat(sci2exp(ymin)),strcat(sci2exp(ymax))];
+exprs=[[strcat(sci2exp(clrs))],[strcat(sci2exp(siz))],[strcat(sci2exp(win))],[strcat(sci2exp(1))],[strcat(sci2exp(xmin))],[strcat(sci2exp(xmax))],[strcat(sci2exp(ymin))],[strcat(sci2exp(ymax))]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -45,32 +45,32 @@ exprs=graphics.exprs;
 model=arg1.model;
 dstate=model.dstate;
 while (true) {
-[ok,clrs,siz,win,imode,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue("Set Scope parameters",["colors","radii","window number (-1 for automatic)","animation mode (0,1)","Xmin","Xmax","Ymin","Ymax"],list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,clrs,siz,win,imode,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue("Set Scope parameters",[["colors"],["radii"],["window number (-1 for automatic)"],["animation mode (0,1)"],["Xmin"],["Xmax"],["Ymin"],["Ymax"]],list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (size(clrs,"*")!=size(siz,"*")) {
-mess=[mess,"colors and radii must have equal size (number of balls)"," "];
+mess=[[mess],["colors and radii must have equal size (number of balls)"],[" "]];
 ok=false;
 }
 if (win<-1) {
-mess=[mess,"Window number cannot be inferior than -1"," "];
+mess=[[mess],["Window number cannot be inferior than -1"],[" "]];
 ok=false;
 }
 if (ymin>=ymax) {
-mess=[mess,"Ymax must be greater than Ymin"," "];
+mess=[[mess],["Ymax must be greater than Ymin"],[" "]];
 ok=false;
 }
 if (xmin>=xmax) {
-mess=[mess,"Xmax must be greater than Xmin"," "];
+mess=[[mess],["Xmax must be greater than Xmin"],[" "]];
 ok=false;
 }
 if (!ok) {
 message(mess);
 } else {
-rpar=[xmin,xmax,ymin,ymax];
-ipar=[win,imode,clrs.slice()];
+rpar=[[xmin],[xmax],[ymin],[ymax]];
+ipar=[[win],[imode],[clrs.slice()]];
 z=[];
 for (i=1;i<=size(clrs,"*");i+=1) {
 z[6*(i-1)+1-1]=0;

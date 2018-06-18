@@ -8,8 +8,8 @@ model.sim=list(function_name,funtyp);
 model.in1=-1;
 model.in2=-2;
 model.intyp=2;
-model.out=[-1,-1];
-model.out2=[-2,-2];
+model.out=[[-1],[-1]];
+model.out2=[[-2],[-2]];
 model.outtyp=[1,1];
 model.evtin=[];
 model.evtout=[];
@@ -46,11 +46,11 @@ if ((decomptyp==1)) {
 function_name="matz_abs";
 in1=[-1,-2];
 it=2;
-out=[-1,-2,-1,-2];
+out=[[-1,-2],[-1,-2]];
 ot=[1,1];
 } else if ((decomptyp==2)) {
 function_name="matz_absc";
-in1=[-1,-2,-1,-2];
+in1=[[-1,-2],[-1,-2]];
 it=[1,1];
 out=[-1,-2];
 ot=2;

@@ -4,16 +4,16 @@ SAT_f.prototype.define = function SAT_f() {
 minp=-1;
 maxp=1;
 slope=1;
-rpar=[minp,maxp,slope];
+rpar=[[minp],[maxp],[slope]];
 model=scicos_model();
 model.sim=list("lusat",1);
 model.in1=1;
 model.nzcross=2;
 model.out=1;
-model.rpar=[minp,maxp,slope];
+model.rpar=[[minp],[maxp],[slope]];
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(minp),string(maxp),string(slope)];
+exprs=[[string(minp)],[string(maxp)],[string(slope)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -27,7 +27,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,minp,maxp,pente,exprs]=scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,minp,maxp,pente,exprs]=scicos_getvalue("Set Saturation parameters",[["Min"],["Max"],["Slope"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -36,7 +36,7 @@ message("Max must be strictly positive");
 } else if (pente<=0) {
 message("Slope must be strictly positive");
 } else {
-rpar=[minp/pente,maxp/pente,pente];
+rpar=[[minp/pente],[maxp/pente],[pente]];
 model.rpar=rpar;
 model.firing=[];
 graphics.exprs=exprs;

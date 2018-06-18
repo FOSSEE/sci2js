@@ -16,11 +16,11 @@ model=scicos_model();
 model.sim=list("readau",2);
 model.out=nout;
 model.evtin=1;
-model.dstate=[1,1,lunit,zeros(N*M,1)];
-model.ipar=[length(fname),_str2code(frmt),ievt,N,M,swap,offset,_str2code(fname),tmask,outmask];
+model.dstate=[[1],[1],[lunit],[zeros(N*M,1)]];
+model.ipar=[[length(fname)],[_str2code(frmt)],[ievt],[N],[M],[swap],[offset],[_str2code(fname)],[tmask],[outmask]];
 model.blocktype="d";
 model.dep_ut=[false,false];
-exprs=[fname,string(N),string(swap)];
+exprs=[[fname],[string(N)],[string(swap)]];
 gr_i=[];
 x=standard_define([5,2],model,exprs,gr_i);
 }
@@ -41,7 +41,7 @@ tmask=ipar(imask);
 lunit=dstate(3);
 fname=exprs[1-1];
 while (true) {
-[ok,fname1,N,swap,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"READAU_f")," ",gettext("(Read Audio File)")," ",gettext("Read is done on a binary \'.au\' file")],[gettext("Input File Name"),gettext("Buffer size"),gettext("Swap Mode (0:No, 1:Yes)")],list("str",1,"vec",1,"vec",1),exprs);
+[ok,fname1,N,swap,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"READAU_f")],[" "],[gettext("(Read Audio File)")],[" "],[gettext("Read is done on a binary \'.au\' file")]],[[gettext("Input File Name")],[gettext("Buffer size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("str",1,"vec",1,"vec",1),exprs);
 tmask1=[];
 outmask=1;
 frmt1="uc";
@@ -66,9 +66,9 @@ block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),
 [model,graphics,ok]=check_io(model,graphics,[],1,1,[]);
 frmt1=part(frmt1,1,3);
 if (ok) {
-ipar=[length(fname1),_str2code(frmt1),0,N,M,swap,offset,_str2code(fname1),tmask1,outmask.slice()];
+ipar=[[length(fname1)],[_str2code(frmt1)],[0],[N],[M],[swap],[offset,_str2code(fname1)],[tmask1,outmask.slice()]];
 if (prod(size(dstate))!=(N*M)+3) {
-dstate=[-1,-1,lunit,zeros(N*M,1)];
+dstate=[[-1],[-1],[lunit],[zeros(N*M,1)]];
 }
 model.dstate=dstate;
 model.ipar=ipar;

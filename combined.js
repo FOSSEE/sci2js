@@ -15,7 +15,7 @@ zs2=0;
 z0=30;
 T0=290;
 p_rho=0;
-model.rpar=[Patm,A,ze1,ze2,zs1,zs2,z0,T0,p_rho];
+model.rpar=[[Patm],[A],[ze1],[ze2],[zs1],[zs2],[z0],[T0],[p_rho]];
 model.sim="Bache";
 model.blocktype="c";
 model.dep_ut=[true,false];
@@ -23,15 +23,15 @@ mo=modelica();
 mo.model="Bache";
 mo.inputs=["Ce1","Ce2"];
 mo.outputs=["Cs1","Cs2","yNiveau"];
-mo.parameters=list(["Patm","A","ze1","ze2","zs1","zs2","z0","T0","p_rho"],[Patm,A,ze1,ze2,zs1,zs2,z0,T0,p_rho]);
+mo.parameters=list([["Patm"],["A"],["ze1"],["ze2"],["zs1"],["zs2"],["z0"],["T0"],["p_rho"]],[[Patm],[A],[ze1],[ze2],[zs1],[zs2],[z0],[T0],[p_rho]]);
 model.equations=mo;
 model.in1=ones(size(mo.inputs,"*"),1);
 model.out=ones(size(mo.outputs,"*"),1);
-exprs=[string(Patm),string(A),string(ze1),string(ze2),string(zs1),string(zs2),string(z0),string(T0),string(p_rho)];
+exprs=[[string(Patm)],[string(A)],[string(ze1)],[string(ze2)],[string(zs1)],[string(zs2)],[string(z0)],[string(T0)],[string(p_rho)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,list(gr_i,0));
-x.graphics.in_implicit=["I","I"];
-x.graphics.out_implicit=["I","I","E"];
+x.graphics.in_implicit=[["I"],["I"]];
+x.graphics.out_implicit=[["I"],["I"],["E"]];
 }
 Bache.prototype.details = function Bache() {
 }
@@ -43,11 +43,11 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,Patm,A,ze1,ze2,zs1,zs2,z0,T0,p_rho,exprs]=scicos_getvalue("Parametres de la bache",["Pression dans le ciel de la bache : Patm (Pa)","Section de la bache : A (m2)","Altitude du piquage d entrée 1: ze1 (m)","Altitude du piquage d entrée 2: ze2 (m)","Altitude du piquage de sortie 1: zs1 (m)","Altitude du piquage de sortie 2: zs2 (m)","Altitude initiale du fluide : z0 (m)","Température initiale du fluide : T0 (K)","Si >0, masse volumique imposée du fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+[ok,Patm,A,ze1,ze2,zs1,zs2,z0,T0,p_rho,exprs]=scicos_getvalue("Parametres de la bache",[["Pression dans le ciel de la bache : Patm (Pa)"],["Section de la bache : A (m2)"],["Altitude du piquage d entrée 1: ze1 (m)"],["Altitude du piquage d entrée 2: ze2 (m)"],["Altitude du piquage de sortie 1: zs1 (m)"],["Altitude du piquage de sortie 2: zs2 (m)"],["Altitude initiale du fluide : z0 (m)"],["Température initiale du fluide : T0 (K)"],["Si >0, masse volumique imposée du fluide : p_rho (kg/m3)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
-model.rpar=[Patm,A,ze1,ze2,zs1,zs2,z0,T0,p_rho];
+model.rpar=[[Patm],[A],[ze1],[ze2],[zs1],[zs2],[z0],[T0],[p_rho]];
 model.equations.parameters[2-1]=list(Patm,A,ze1,ze2,zs1,zs2,z0,T0,p_rho);
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -64,7 +64,7 @@ P0=300000;
 T0=290;
 H0=100000;
 option_temperature=1;
-model.rpar=[P0,T0,H0,option_temperature];
+model.rpar=[[P0],[T0],[H0],[option_temperature]];
 model.sim="Source";
 model.blocktype="c";
 model.dep_ut=[true,false];
@@ -72,11 +72,11 @@ mo=modelica();
 mo.model="Source";
 mo.inputs=[];
 mo.outputs=["C"];
-mo.parameters=list(["P0","T0","H0","option_temperature"],[P0,T0,H0,option_temperature]);
+mo.parameters=list([["P0"],["T0"],["H0"],["option_temperature"]],[[P0],[T0],[H0],[option_temperature]]);
 model.equations=mo;
 model.in1=ones(size(mo.inputs,"*"),1);
 model.out=ones(size(mo.outputs,"*"),1);
-exprs=[string(P0),string(T0),string(H0),string(option_temperature)];
+exprs=[[string(P0)],[string(T0)],[string(H0)],[string(option_temperature)]];
 gr_i=[];
 x=standard_define([2.5,2],model,exprs,list(gr_i,0));
 x.graphics.out_implicit=["I"];
@@ -91,11 +91,11 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,P0,T0,H0,option_temperature,exprs]=scicos_getvalue("Paramètres du puits",["Pression de la source : P0 (Pa)","Temperature de la source : T0 (K)","Enthalpie spécifique de la source : H0 (J/kg)","1:température fixée - 2:enthalpie fixée : option_temperature"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+[ok,P0,T0,H0,option_temperature,exprs]=scicos_getvalue("Paramètres du puits",[["Pression de la source : P0 (Pa)"],["Temperature de la source : T0 (K)"],["Enthalpie spécifique de la source : H0 (J/kg)"],["1:température fixée - 2:enthalpie fixée : option_temperature"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
-model.rpar=[P0,T0,H0,option_temperature];
+model.rpar=[[P0],[T0],[H0],[option_temperature]];
 model.equations.parameters[2-1]=list(P0,T0,H0,option_temperature);
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -115,24 +115,24 @@ Typein=[];
 Typeout=[];
 MI=[];
 MO=[];
-P=[50,105,-1,90,0,10,2,0,101,10,-2,0];
-PortName=["Mesure","C1","C2"];
+P=[[50,105,-1,90],[0,10,2,0],[101,10,-2,0]];
+PortName=[["Mesure"],["C1"],["C2"]];
 for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
-Typein=[Typein,"E"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["E"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==2) {
-Typein=[Typein,"I"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["I"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==-1) {
-Typeout=[Typeout,"E"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["E"]];
+MO=[[MO],[PortName(i)]];
 }
 if (P(i,3)==-2) {
-Typeout=[Typeout,"I"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["I"]];
+MO=[[MO],[PortName(i)]];
 }
 }
 model=scicos_model();
@@ -166,7 +166,7 @@ model=arg1.model;
 x=arg1;
 exprs=x.graphics.exprs;
 while (false) {
-[ok,Qini,exprs]=scicos_getvalue(["Set Flowmeter block parameters:","","Qini: "],"Qini",list("vec",1),exprs);
+[ok,Qini,exprs]=scicos_getvalue([["Set Flowmeter block parameters:"],[""],["Qini: "]],"Qini",list("vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -180,11 +180,11 @@ break;
 function VanneReglante() {
 VanneReglante.prototype.define = function VanneReglante() {
 model=scicos_model();
-model.in1=[1,1];
+model.in1=[[1],[1]];
 model.out=[1];
 Cvmax=8005.42;
 p_rho=0;
-model.rpar=[Cvmax,p_rho];
+model.rpar=[[Cvmax],[p_rho]];
 model.sim="VanneReglante";
 model.blocktype="c";
 model.dep_ut=[true,false];
@@ -192,14 +192,14 @@ mo=modelica();
 mo.model="VanneReglante";
 mo.inputs=["C1","Ouv"];
 mo.outputs="C2";
-mo.parameters=list(["Cvmax","p_rho"],[Cvmax,p_rho]);
+mo.parameters=list([["Cvmax"],["p_rho"]],[[Cvmax],[p_rho]]);
 model.equations=mo;
 model.in1=ones(size(mo.inputs,"*"),1);
 model.out=ones(size(mo.outputs,"*"),1);
-exprs=[string(Cvmax),string(p_rho)];
+exprs=[[string(Cvmax)],[string(p_rho)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,list(gr_i,0));
-x.graphics.in_implicit=["I","E"];
+x.graphics.in_implicit=[["I"],["E"]];
 x.graphics.out_implicit=["I"];
 }
 VanneReglante.prototype.details = function VanneReglante() {
@@ -212,11 +212,11 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,Cvmax,p_rho,exprs]=scicos_getvalue("Paramètres de la vanne reglante",["Cvmax","p_rho"],list("vec",-1,"vec",-1),exprs);
+[ok,Cvmax,p_rho,exprs]=scicos_getvalue("Paramètres de la vanne reglante",[["Cvmax"],["p_rho"]],list("vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
-model.rpar=[Cvmax,p_rho];
+model.rpar=[[Cvmax],[p_rho]];
 model.equations.parameters[2-1]=list(Cvmax,p_rho);
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -237,7 +237,7 @@ lambda=0.03;
 z1=0;
 z2=0;
 p_rho=0;
-model.rpar=[L,D,lambda,z1,z2,p_rho];
+model.rpar=[[L],[D],[lambda],[z1],[z2],[p_rho]];
 model.sim="PerteDP";
 model.blocktype="c";
 model.dep_ut=[true,false];
@@ -245,11 +245,11 @@ mo=modelica();
 mo.model="PerteDP";
 mo.inputs="C1";
 mo.outputs="C2";
-mo.parameters=list(["L","D","lambda","z1","z2","p_rho"],[L,D,lambda,z1,z2,p_rho]);
+mo.parameters=list([["L"],["D"],["lambda"],["z1"],["z2"],["p_rho"]],[[L],[D],[lambda],[z1],[z2],[p_rho]]);
 model.equations=mo;
 model.in1=ones(size(mo.inputs,"*"),1);
 model.out=ones(size(mo.outputs,"*"),1);
-exprs=[string(L),string(D),string(lambda),string(z1),string(z2),string(p_rho)];
+exprs=[[string(L)],[string(D)],[string(lambda)],[string(z1)],[string(z2)],[string(p_rho)]];
 gr_i=[];
 x=standard_define([2,1],model,exprs,list(gr_i,0));
 x.graphics.in_implicit=["I"];
@@ -265,11 +265,11 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,L,D,lambda,z1,z2,p_rho,exprs]=scicos_getvalue("Parametres du tuyau",["Longueur du tube : L (m)","Diamètre interne du tube : D (m)","Coefficient de perte de charge-frottement(S.U) : lambda","Altitude entrée tuyauterie : z1 (m)","Altitude sortie tuyauterie : z2 (m)","Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+[ok,L,D,lambda,z1,z2,p_rho,exprs]=scicos_getvalue("Parametres du tuyau",[["Longueur du tube : L (m)"],["Diamètre interne du tube : D (m)"],["Coefficient de perte de charge-frottement(S.U) : lambda"],["Altitude entrée tuyauterie : z1 (m)"],["Altitude sortie tuyauterie : z2 (m)"],["Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
-model.rpar=[L,D,lambda,z1,z2,p_rho];
+model.rpar=[[L],[D],[lambda],[z1],[z2],[p_rho]];
 model.equations.parameters[2-1]=list(L,D,lambda,z1,z2,p_rho);
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -286,17 +286,17 @@ P0=100000;
 T0=290;
 H0=100000;
 option_temperature=1;
-model.rpar=[P0,T0,H0,option_temperature];
+model.rpar=[[P0],[T0],[H0],[option_temperature]];
 model.sim="Puits";
 model.blocktype="c";
 model.dep_ut=[true,false];
 mo=modelica();
 mo.model="Puits";
 mo.inputs=["C"];
-mo.parameters=list(["P0","T0","H0","option_temperature"],[P0,T0,H0,option_temperature]);
+mo.parameters=list([["P0"],["T0"],["H0"],["option_temperature"]],[[P0],[T0],[H0],[option_temperature]]);
 model.equations=mo;
 model.in1=ones(size(mo.inputs,"*"),1);
-exprs=[string(P0),string(T0),string(H0),string(option_temperature)];
+exprs=[[string(P0)],[string(T0)],[string(H0)],[string(option_temperature)]];
 gr_i=[];
 x=standard_define([2.5,2],model,exprs,list(gr_i,0));
 x.graphics.in_implicit=["I"];
@@ -311,11 +311,11 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,P0,T0,H0,option_temperature,exprs]=scicos_getvalue("Paramètres du puits",["Pression de la source : P0 (Pa)","Temperature de la source : T0 (K)","Enthalpie spécifique de la source : H0 (J/kg)","1:température fixée - 2:enthalpie fixée : option_temperature"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+[ok,P0,T0,H0,option_temperature,exprs]=scicos_getvalue("Paramètres du puits",[["Pression de la source : P0 (Pa)"],["Temperature de la source : T0 (K)"],["Enthalpie spécifique de la source : H0 (J/kg)"],["1:température fixée - 2:enthalpie fixée : option_temperature"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
-model.rpar=[P0,T0,H0,option_temperature];
+model.rpar=[[P0],[T0],[H0],[option_temperature]];
 model.equations.parameters[2-1]=list(P0,T0,H0,option_temperature);
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -333,11 +333,11 @@ model=scicos_model();
 model.sim=list("evtdly4",4);
 model.evtin=1;
 model.evtout=1;
-model.rpar=[dt,ff];
+model.rpar=[[dt],[ff]];
 model.blocktype="d";
 model.firing=ff;
 model.dep_ut=[false,false];
-exprs=[string(dt),sci2exp(ff)];
+exprs=[[string(dt)],[sci2exp(ff)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -351,7 +351,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,dt,ff,exprs]=scicos_getvalue(["Set Event Delay block parameters","Delay  is the delay between an input event ","       and the generated output event","Block may initially generate an output event before ","       any input event. \"Date of initial output event\"","       gives the date of this event. Set a negative value","       to disable any output event."],["Delay","Date of initial output event"],list("vec",1,"vec",1),exprs);
+[ok,dt,ff,exprs]=scicos_getvalue([["Set Event Delay block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       to disable any output event."]],[["Delay"],["Date of initial output event"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -361,7 +361,7 @@ ok=false;
 }
 if (ok) {
 graphics.exprs=exprs;
-model.rpar=[dt,ff];
+model.rpar=[[dt],[ff]];
 model.firing=ff;
 x.graphics=graphics;
 x.model=model;
@@ -376,7 +376,7 @@ CLKSPLIT_f.prototype.define = function CLKSPLIT_f() {
 model=scicos_model();
 model.sim="split";
 model.evtin=1;
-model.evtout=[1,1];
+model.evtout=[[1],[1]];
 model.blocktype="d";
 model.firing=[false,false,false];
 model.dep_ut=[false,false];
@@ -396,7 +396,7 @@ ANDLOG_f.prototype.define = function ANDLOG_f() {
 model=scicos_model();
 model.sim="andlog";
 model.out=1;
-model.evtin=[1,1];
+model.evtin=[[1],[1]];
 model.blocktype="d";
 model.firing=[];
 model.dep_ut=[false,false];
@@ -419,7 +419,7 @@ andlog.graphics.orig=[194,133];
 andlog.graphics.sz=[60,60];
 andlog.graphics.flip=true;
 andlog.graphics.pout=9;
-andlog.graphics.pein=[4,11];
+andlog.graphics.pein=[[4],[11]];
 input_port1=CLKIN_f("define");
 input_port1.graphics.orig=[149,287];
 input_port1.graphics.sz=[20,20];
@@ -447,32 +447,32 @@ ifthel.graphics.sz=[60,60];
 ifthel.graphics.flip=true;
 ifthel.graphics.pin=9;
 ifthel.graphics.pein=12;
-ifthel.graphics.peout=[8,0];
+ifthel.graphics.peout=[[8],[0]];
 split=CLKSPLIT_f("define");
-split.graphics.orig=[234,275.78348];
+split.graphics.orig=[[234],[275.78348]];
 split.graphics.pein=6;
-split.graphics.peout=[11,12];
+split.graphics.peout=[[11],[12]];
 diagram=scicos_diagram();
 diagram.objs[1-1]=andlog;
 diagram.objs[2-1]=input_port1;
 diagram.objs[3-1]=output_port;
-diagram.objs[4-1]=scicos_link(xx=[169,214,214],yy=[297,297,198.71],ct=[5,-1],from=[2,1],to=[1,1]);
+diagram.objs[4-1]=scicos_link(xx=[[169],[214],[214]],yy=[[297],[297],[198.71]],ct=[5,-1],from=[2,1],to=[1,1]);
 diagram.objs[5-1]=input_port2;
-diagram.objs[6-1]=scicos_link(xx=[161,234,234],yy=[340,340,275.78],ct=[5,-1],from=[5,1],to=[10,1]);
+diagram.objs[6-1]=scicos_link(xx=[[161],[234],[234]],yy=[[340],[340],[275.78]],ct=[5,-1],from=[5,1],to=[10,1]);
 diagram.objs[7-1]=ifthel;
-diagram.objs[8-1]=scicos_link(xx=[351,351,450],yy=[131.29,93,93],ct=[5,-1],from=[7,1],to=[3,1]);
-diagram.objs[9-1]=scicos_link(xx=[262.57,322.43],yy=[163,167],ct=[1,1],from=[1,1],to=[7,1]);
+diagram.objs[8-1]=scicos_link(xx=[[351],[351],[450]],yy=[[131.29],[93],[93]],ct=[5,-1],from=[7,1],to=[3,1]);
+diagram.objs[9-1]=scicos_link(xx=[[262.57],[322.43]],yy=[[163],[167]],ct=[1,1],from=[1,1],to=[7,1]);
 diagram.objs[10-1]=split;
-diagram.objs[11-1]=scicos_link(xx=[234,234],yy=[275.78,198.71],ct=[5,-1],from=[10,1],to=[1,2]);
-diagram.objs[12-1]=scicos_link(xx=[234,361,361],yy=[275.78,275.78,202.71],ct=[5,-1],from=[10,2],to=[7,1]);
+diagram.objs[11-1]=scicos_link(xx=[[234],[234]],yy=[[275.78],[198.71]],ct=[5,-1],from=[10,1],to=[1,2]);
+diagram.objs[12-1]=scicos_link(xx=[[234],[361],[361]],yy=[[275.78],[275.78],[202.71]],ct=[5,-1],from=[10,2],to=[7,1]);
 x=scicos_block();
 x.gui="ANDBLK";
 x.graphics.sz=[2,2];
 x.graphics.gr_i=[];
-x.graphics.pein=[0,0];
+x.graphics.pein=[[0],[0]];
 x.graphics.peout=0;
 x.model.sim="csuper";
-x.model.evtin=[1,1];
+x.model.evtin=[[1],[1]];
 x.model.evtout=1;
 x.model.blocktype="h";
 x.model.firing=false;
@@ -535,14 +535,14 @@ model.in1=1;
 model.in2=1;
 model.intyp=-1;
 model.evtin=1;
-model.evtout=[1,1];
+model.evtout=[[1],[1]];
 model.blocktype="l";
 model.firing=[-1,-1];
 model.dep_ut=[true,false];
 model.nmode=1;
 model.nzcross=1;
 gr_i=[];
-exprs=[string(model.in1),string(model.nmode)];
+exprs=[[string(model.in1)],[string(model.nmode)]];
 x=standard_define([3,3],model,exprs,gr_i);
 }
 IFTHEL_f.prototype.details = function IFTHEL_f() {
@@ -561,7 +561,7 @@ if (size(exprs,"*")==1) {
 exprs[2-1]=string(1);
 }
 while (true) {
-[ok,inh,nmod,exprs]=scicos_getvalue("Set parameters",["Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1),exprs);
+[ok,inh,nmod,exprs]=scicos_getvalue("Set parameters",[["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -572,7 +572,7 @@ nmod=1;
 if (inh!=1) {
 inh=[];
 }
-[model,graphics,ok]=check_io(model,graphics,1,[],inh,[1,1]);
+[model,graphics,ok]=check_io(model,graphics,1,[],inh,[[1],[1]]);
 if (ok) {
 graphics.exprs=exprs;
 model.evtin=inh;
@@ -652,7 +652,7 @@ function CLKSOMV_f() {
 CLKSOMV_f.prototype.define = function CLKSOMV_f() {
 model=scicos_model();
 model.sim="sum";
-model.evtin=[1,1,1];
+model.evtin=[[1],[1],[1]];
 model.evtout=1;
 model.blocktype="d";
 model.firing=-1;
@@ -711,14 +711,14 @@ function MCLOCK_f() {
 MCLOCK_f.prototype.define = function MCLOCK_f() {
 nn=2;
 dt=0.1;
-exprs=[string(dt),string(nn)];
+exprs=[[string(dt)],[string(nn)]];
 mfclck=MFCLCK_f("define");
 mfclck.graphics.orig=[334,199];
 mfclck.graphics.sz=[40,40];
 mfclck.graphics.flip=true;
 mfclck.graphics.exprs=exprs;
 mfclck.graphics.pein=12;
-mfclck.graphics.peout=[4,3];
+mfclck.graphics.peout=[[4],[3]];
 mfclck.model.rpar=0.1;
 mfclck.model.ipar=nn;
 mfclck.model.firing=[-1,0];
@@ -726,8 +726,8 @@ clksom=CLKSOM_f("define");
 clksom.graphics.orig=[457,161];
 clksom.graphics.sz=[16.666667,16.666667];
 clksom.graphics.flip=true;
-clksom.graphics.exprs=["0.1","0.1"];
-clksom.graphics.pein=[4,9,0];
+clksom.graphics.exprs=[["0.1"],["0.1"]];
+clksom.graphics.pein=[[4],[9],[0]];
 clksom.graphics.peout=5;
 output_port1=CLKOUT_f("define");
 output_port1.graphics.orig=[509,261];
@@ -744,37 +744,37 @@ output_port2.graphics.exprs="2";
 output_port2.graphics.pein=13;
 output_port2.model.ipar=2;
 split1=CLKSPLIT_f("define");
-split1.graphics.orig=[411.92504,169.33333];
+split1.graphics.orig=[[411.92504],[169.33333]];
 split1.graphics.pein=3;
-split1.graphics.peout=[9,10];
+split1.graphics.peout=[[9],[10]];
 split2=CLKSPLIT_f("define");
-split2.graphics.orig=[482.45315,169.33333];
+split2.graphics.orig=[[482.45315],[169.33333]];
 split2.graphics.pein=5;
-split2.graphics.peout=[12,13];
+split2.graphics.peout=[[12],[13]];
 gr_i=[];
 diagram=scicos_diagram();
 diagram.objs[1-1]=mfclck;
 diagram.objs[2-1]=clksom;
-diagram.objs[3-1]=scicos_link(xx=[360.7,360.7,411.9],yy=[193.3,169.3,169.3],ct=[10,-1],from=[1,2],to=[8,1]);
-diagram.objs[4-1]=scicos_link(xx=[347.3,347.3,461.8,461.8],yy=[193.3,155.5,155.5,161],ct=[10,-1],from=[1,1],to=[2,1]);
-diagram.objs[5-1]=scicos_link(xx=[468.9,482.5],yy=[169.3,169.3],ct=[10,-1],from=[2,1],to=[11,1]);
+diagram.objs[3-1]=scicos_link(xx=[[360.7],[360.7],[411.9]],yy=[[193.3],[169.3],[169.3]],ct=[10,-1],from=[1,2],to=[8,1]);
+diagram.objs[4-1]=scicos_link(xx=[[347.3],[347.3],[461.8],[461.8]],yy=[[193.3],[155.5],[155.5],[161]],ct=[10,-1],from=[1,1],to=[2,1]);
+diagram.objs[5-1]=scicos_link(xx=[[468.9],[482.5]],yy=[[169.3],[169.3]],ct=[10,-1],from=[2,1],to=[11,1]);
 diagram.objs[6-1]=output_port1;
 diagram.objs[7-1]=output_port2;
 diagram.objs[8-1]=split1;
-diagram.objs[9-1]=scicos_link(xx=[411.9,457],yy=[169.3,169.3],ct=[10,-1],from=[8,1],to=[2,2]);
-diagram.objs[10-1]=scicos_link(xx=[411.9,411.9,509],yy=[169.3,271,271],ct=[10,-1],from=[8,2],to=[6,1]);
+diagram.objs[9-1]=scicos_link(xx=[[411.9],[457]],yy=[[169.3],[169.3]],ct=[10,-1],from=[8,1],to=[2,2]);
+diagram.objs[10-1]=scicos_link(xx=[[411.9],[411.9],[509]],yy=[[169.3],[271],[271]],ct=[10,-1],from=[8,2],to=[6,1]);
 diagram.objs[11-1]=split2;
-diagram.objs[12-1]=scicos_link(xx=[482.5,489.6,489.6,354,354],yy=[169.3,169.3,338.3,338.3,244.7],ct=[10,-1],from=[11,1],to=[1,1]);
-diagram.objs[13-1]=scicos_link(xx=[482.4,482.4,509],yy=[169.3,152,152],ct=[10,-1],from=[11,2],to=[7,1]);
+diagram.objs[12-1]=scicos_link(xx=[[482.5],[489.6],[489.6],[354],[354]],yy=[[169.3],[169.3],[338.3],[338.3],[244.7]],ct=[10,-1],from=[11,1],to=[1,1]);
+diagram.objs[13-1]=scicos_link(xx=[[482.4],[482.4],[509]],yy=[[169.3],[152],[152]],ct=[10,-1],from=[11,2],to=[7,1]);
 x=scicos_block();
 x.gui="MCLOCK_f";
 x.graphics.sz=[3,2];
 x.graphics.gr_i=gr_i;
 x.model.sim="csuper";
-x.model.evtout=[1,1];
+x.model.evtout=[[1],[1]];
 x.model.blocktype="h";
 x.model.rpar=diagram;
-x.graphics.peout=[0,0];
+x.graphics.peout=[[0],[0]];
 }
 MCLOCK_f.prototype.details = function MCLOCK_f() {
 }
@@ -852,7 +852,7 @@ model.rpar=dt;
 model.blocktype="d";
 model.firing=ff;
 model.dep_ut=[false,false];
-exprs=[string(dt),sci2exp(ff)];
+exprs=[[string(dt)],[sci2exp(ff)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -866,7 +866,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,dt,ff,exprs]=scicos_getvalue(["Set Event Delay  block parameters","Delay  is the delay between an input event ","       and the generated output event","Block may initially generate an output event before ","       any input event. \"Date of initial output event\"","       gives the date of this event. Set a negative value","       if no initial event required"],["Delay","Date of initial output event"],list("vec",1,"vec",1),exprs);
+[ok,dt,ff,exprs]=scicos_getvalue([["Set Event Delay  block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       if no initial event required"]],[["Delay"],["Date of initial output event"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -890,7 +890,7 @@ function CLKSOM_f() {
 CLKSOM_f.prototype.define = function CLKSOM_f() {
 model=scicos_model();
 model.sim="sum";
-model.evtin=[1,1,1];
+model.evtin=[[1],[1],[1]];
 model.evtout=1;
 model.blocktype="d";
 model.firing=-1;
@@ -914,14 +914,14 @@ dt=0.1;
 model=scicos_model();
 model.sim="mfclck";
 model.evtin=1;
-model.evtout=[1,1];
+model.evtout=[[1],[1]];
 model.dstate=0;
 model.rpar=dt;
 model.ipar=nn;
 model.blocktype="d";
 model.firing=[-1,0];
 model.dep_ut=[false,false];
-exprs=[string(dt),string(nn)];
+exprs=[[string(dt)],[string(nn)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -934,7 +934,7 @@ x=arg1;
 graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
-[ok,dt,nn,exprs]=scicos_getvalue("Set Multifrequency clock parameters",["basic period (1/f)","multiply by (n)"],list("vec",1,"vec",1),exprs);
+[ok,dt,nn,exprs]=scicos_getvalue("Set Multifrequency clock parameters",[["basic period (1/f)"],["multiply by (n)"]],list("vec",1,"vec",1),exprs);
 if (ok) {
 model.ipar=nn;
 model.rpar=dt;
@@ -994,12 +994,12 @@ break;
 /* autogenerated from "macros/Linear/SUMMATION.sci" */
 function SUMMATION() {
 SUMMATION.prototype.define = function SUMMATION() {
-sgn=[1,-1];
+sgn=[[1],[-1]];
 model=scicos_model();
 model.sim=list("summation",4);
-model.in1=[-1,-1];
+model.in1=[[-1],[-1]];
 model.out=-1;
-model.in2=[-2,-2];
+model.in2=[[-2],[-2]];
 model.out2=-2;
 model.ipar=sgn;
 model.blocktype="c";
@@ -1018,12 +1018,12 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 if (size(exprs,1)==1) {
-exprs=[sci2exp(1),exprs,sci2exp(0)];
+exprs=[[sci2exp(1)],[exprs],[sci2exp(0)]];
 } else if (size(exprs,1)==2) {
-exprs=[exprs,sci2exp(0)];
+exprs=[[exprs],[sci2exp(0)]];
 }
 while (true) {
-[ok,Datatype,sgn,satur,exprs]=scicos_getvalue("Set sum block parameters",["Datatype (1=real double  2=complex 3=int32 ...)","Number of inputs or sign vector (of +1, -1)","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",-1,"vec",1),exprs);
+[ok,Datatype,sgn,satur,exprs]=scicos_getvalue("Set sum block parameters",[["Datatype (1=real double  2=complex 3=int32 ...)"],["Number of inputs or sign vector (of +1, -1)"],["Do on Overflow(0=Nothing 1=Saturate 2=Error)"]],list("vec",1,"vec",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -1201,10 +1201,10 @@ x.model.firing=[];
 /* autogenerated from "macros/Linear/BIGSOM_f.sci" */
 function BIGSOM_f() {
 BIGSOM_f.prototype.define = function BIGSOM_f() {
-sgn=[1,1];
+sgn=[[1],[1]];
 model=scicos_model();
 model.sim=list("sum",2);
-model.in1=[-1,-1];
+model.in1=[[-1],[-1]];
 model.out=-1;
 model.rpar=sgn;
 model.blocktype="c";
@@ -1265,7 +1265,7 @@ x.model.firing=[];
 /* autogenerated from "macros/Linear/DIFF_c.sci" */
 function DIFF_c() {
 DIFF_c.prototype.define = function DIFF_c() {
-x0=[0,0];
+x0=[[0],[0]];
 model=scicos_model();
 model.sim=list("diffblk_c",10004);
 model.in1=1;
@@ -1273,7 +1273,7 @@ model.out=1;
 model.state=x0;
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[strcat(sci2exp(x0[1-1])),strcat(sci2exp(x0[2-1]))];
+exprs=[[strcat(sci2exp(x0[1-1]))],[strcat(sci2exp(x0[2-1]))]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -1288,7 +1288,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
 ask_again=false;
-[ok,x0,xd0,exprs]=scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",-1,"vec",-1),exprs);
+[ok,x0,xd0,exprs]=scicos_getvalue("Set continuous linear system parameters",[["Initial state"],["Initial Derivative"]],list("vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -1306,7 +1306,7 @@ ask_again=true;
 }
 if (!ask_again) {
 graphics.exprs=exprs;
-model.state=[x0,xd0];
+model.state=[[x0],[xd0]];
 model.out=[N];
 model.in1=N;
 x.graphics=graphics;
@@ -1331,10 +1331,10 @@ model.in1=1;
 model.out=1;
 model.evtin=1;
 model.dstate=x0.slice();
-model.rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+model.rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 model.blocktype="d";
 model.dep_ut=[false,false];
-exprs=[strcat(sci2exp(A)),strcat(sci2exp(B)),strcat(sci2exp(C)),strcat(sci2exp(D)),strcat(sci2exp(x0))];
+exprs=[[strcat(sci2exp(A))],[strcat(sci2exp(B))],[strcat(sci2exp(C))],[strcat(sci2exp(D))],[strcat(sci2exp(x0))]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -1351,7 +1351,7 @@ exprs=exprs[[1:4,7]-1];
 }
 model=arg1.model;
 while (true) {
-[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set discrete linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set discrete linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
 if (!ok) {
 break;
 }
@@ -1370,7 +1370,7 @@ message("A matrix must be square");
 [model,graphics,ok]=check_io(model,graphics,in1,out,1,[]);
 if (ok) {
 graphics.exprs=exprs;
-rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 if (D!=[]) {
 if (norm(D,1)!=0) {
 mmm=[true,false];
@@ -1437,7 +1437,7 @@ DOLLAR_f.prototype.define = function DOLLAR_f() {
 z=0;
 inh=0;
 in1=1;
-exprs=string([z,inh]);
+exprs=string([[z],[inh]]);
 model=scicos_model();
 model.sim="dollar";
 model.in1=in1;
@@ -1462,7 +1462,7 @@ if (size(exprs,"*")<2) {
 exprs[2-1]="0";
 }
 while (true) {
-[ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("vec",-1,"vec",-1),exprs);
+[ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",[["initial condition"],["Inherit (no:0, yes:1)"]],list("vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -1514,7 +1514,7 @@ evtdly=EVTDLY_f("define");
 evtdly.graphics.orig=[243,296];
 evtdly.graphics.sz=[40,40];
 evtdly.graphics.flip=true;
-evtdly.graphics.exprs=["0.1","0"];
+evtdly.graphics.exprs=[["0.1"],["0"]];
 evtdly.graphics.pein=10;
 evtdly.graphics.peout=7;
 evtdly.model.rpar=0.1;
@@ -1531,31 +1531,31 @@ input_port=IN_f("define");
 input_port.graphics.orig=[92,210];
 input_port.graphics.sz=[20,20];
 input_port.graphics.flip=true;
-input_port.graphics.exprs=["1","1"];
+input_port.graphics.exprs=[["1"],["1"]];
 input_port.graphics.pout=6;
 input_port.model.ipar=1;
 output_port=OUT_f("define");
 output_port.graphics.orig=[440,210];
 output_port.graphics.sz=[20,20];
 output_port.graphics.flip=true;
-output_port.graphics.exprs=["1","1"];
+output_port.graphics.exprs=[["1"],["1"]];
 output_port.graphics.pin=5;
 output_port.model.ipar=1;
 split=CLKSPLIT_f("define");
-split.graphics.orig=[263,271.2];
+split.graphics.orig=[[263],[271.2]];
 split.graphics.pein=7;
-split.graphics.peout=[9,10];
+split.graphics.peout=[[9],[10]];
 diagram=scicos_diagram();
 diagram.objs[1-1]=input_port;
 diagram.objs[2-1]=output_port;
 diagram.objs[3-1]=register;
 diagram.objs[4-1]=evtdly;
-diagram.objs[5-1]=scicos_link(xx=[296.6,440],yy=[220,220],from=[3,1],to=[2,1]);
-diagram.objs[6-1]=scicos_link(xx=[112,229.4],yy=[220,220],from=[1,1],to=[3,1]);
-diagram.objs[7-1]=scicos_link(xx=[263,263],yy=[290.3,271.2],ct=[5,-1],from=[4,1],to=[8,1]);
+diagram.objs[5-1]=scicos_link(xx=[[296.6],[440]],yy=[[220],[220]],from=[3,1],to=[2,1]);
+diagram.objs[6-1]=scicos_link(xx=[[112],[229.4]],yy=[[220],[220]],from=[1,1],to=[3,1]);
+diagram.objs[7-1]=scicos_link(xx=[[263],[263]],yy=[[290.3],[271.2]],ct=[5,-1],from=[4,1],to=[8,1]);
 diagram.objs[8-1]=split;
-diagram.objs[9-1]=scicos_link(xx=[263,263],yy=[271.2,250.7],ct=[5,-1],from=[8,1],to=[3,1]);
-diagram.objs[10-1]=scicos_link(xx=[263,308.6,308.6,263,263],yy=[271.2,271.2,367,367,341.7],ct=[5,-1],from=[8,2],to=[4,1]);
+diagram.objs[9-1]=scicos_link(xx=[[263],[263]],yy=[[271.2],[250.7]],ct=[5,-1],from=[8,1],to=[3,1]);
+diagram.objs[10-1]=scicos_link(xx=[[263],[308.6],[308.6],[263],[263]],yy=[[271.2],[271.2],[367],[367],[341.7]],ct=[5,-1],from=[8,2],to=[4,1]);
 x=scicos_block();
 x.gui="DELAY_f";
 x.graphics.sz=[2,2];
@@ -1597,19 +1597,19 @@ register=x.model.rpar.objs(ppath[1-1]);
 evtdly=x.model.rpar.objs(ppath[2-1]);
 register_exprs=register.graphics.exprs;
 evtdly_exprs=evtdly.graphics.exprs;
-exprs=[evtdly_exprs(1),register_exprs];
+exprs=[[evtdly_exprs(1)],[register_exprs]];
 while (true) {
-[ok,dt,z0,exprs]=scicos_getvalue(["This block implements as a discretized delay","it is consist of a shift register and a clock","value of the delay is given by;","the discretization time step multiplied by the","number-1 of state of the register"],["Discretization time step","Register initial state"],list("vec",1,"vec",-1),exprs);
+[ok,dt,z0,exprs]=scicos_getvalue([["This block implements as a discretized delay"],["it is consist of a shift register and a clock"],["value of the delay is given by;","the discretization time step multiplied by the"],["number-1 of state of the register"]],[["Discretization time step"],["Register initial state"]],list("vec",1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (prod(size(z0))<1) {
-mess=[mess,"Register length must be at least 1"," "];
+mess=[[mess],["Register length must be at least 1"],[" "]];
 ok=false;
 }
 if (dt<=0) {
-mess=[mess,"Discretization time step must be positive"," "];
+mess=[[mess],["Discretization time step must be positive"],[" "]];
 ok=false;
 }
 if (!ok) {
@@ -1648,14 +1648,14 @@ nx=size(x0,"*");
 out=1;
 model=scicos_model();
 model.sim=list("tcslti",1);
-model.in1=[in1,nx];
+model.in1=[[in1],[nx]];
 model.out=out;
 model.evtin=1;
 model.state=x0;
-model.rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+model.rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[strcat(sci2exp(A)),strcat(sci2exp(B)),strcat(sci2exp(C)),strcat(sci2exp(D)),strcat(sci2exp(x0))];
+exprs=[[strcat(sci2exp(A))],[strcat(sci2exp(B))],[strcat(sci2exp(C))],[strcat(sci2exp(D))],[strcat(sci2exp(x0))]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -1672,7 +1672,7 @@ if (size(exprs,"*")==7) {
 exprs=exprs[[1:4,7]-1];
 }
 while (true) {
-[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
 if (!ok) {
 break;
 }
@@ -1688,10 +1688,10 @@ in1=[];
 if (ms!=ns) {
 message("A matrix must be square");
 } else {
-[model,graphics,ok]=check_io(model,graphics,[in1,ms],out,1,[]);
+[model,graphics,ok]=check_io(model,graphics,[[in1],[ms]],out,1,[]);
 if (ok) {
 graphics.exprs=exprs;
-rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 if (D!=[]) {
 if (norm(D,1)!=0) {
 mmm=[true,true];
@@ -1749,13 +1749,13 @@ init=0;
 N=1024;
 model=scicos_model();
 model.sim=list("variable_delay",4);
-model.in1=[nin,1];
+model.in1=[[nin],[1]];
 model.out=nin;
 model.rpar=[T,init];
 model.ipar=N;
 model.blocktype="d";
 model.dep_ut=[false,false];
-exprs=[string(T),string(init),string(N)];
+exprs=[[string(T)],[string(init)],[string(N)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -1770,7 +1770,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 nin=model.in1(1);
 while (true) {
-[ok,T,init,N,exprs]=scicos_getvalue("Set delay parameters",["Max delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,T,init,N,exprs]=scicos_getvalue("Set delay parameters",[["Max delay"],["initial input"],["Buffer size"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -1783,11 +1783,11 @@ message("Delay must be positive");
 ok=false;
 }
 if (ok) {
-[model,graphics,ok]=check_io(model,graphics,[-1,1],-1,[],[]);
+[model,graphics,ok]=check_io(model,graphics,[[-1],[1]],-1,[],[]);
 }
 if (ok) {
 graphics.exprs=exprs;
-model.rpar=[T,init];
+model.rpar=[[T],[init]];
 model.ipar=N;
 x.graphics=graphics;
 x.model=model;
@@ -1822,10 +1822,10 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,1)==1) {
-exprs=[exprs,sci2exp(1)];
+exprs=[[exprs],[sci2exp(1)]];
 }
 while (true) {
-[ok,z0,it,exprs]=scicos_getvalue("Set delay parameters",["Register initial condition","Datatype (1=double 3=int32 ...)"],list("vec",-1,"vec",1),exprs);
+[ok,z0,it,exprs]=scicos_getvalue("Set delay parameters",[["Register initial condition"],["Datatype (1=double 3=int32 ...)"]],list("vec",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -1891,7 +1891,7 @@ model.out=1;
 model.rpar=rpar;
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=string([0,0,0,maxp,minp]);
+exprs=string([[0],[0],[0],[maxp],[minp]]);
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 x.graphics.id="1/s";
@@ -1906,7 +1906,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),exprs);
+[ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue("Set Integral block parameters",[["Initial Condition"],["With re-intialization (1:yes, 0:no)"],["With saturation (1:yes, 0:no)"],["Upper limit"],["Lower limit"]],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -1934,7 +1934,7 @@ ok=false;
 message("Initial condition x0 should be inside the limits");
 ok=false;
 } else {
-rpar=[maxp,lowp];
+rpar=[[maxp],[lowp]];
 model.nzcross=size(x0,1);
 model.nmode=size(x0,1);
 }
@@ -1946,7 +1946,7 @@ model.nmode=0;
 if (ok) {
 model.rpar=rpar;
 model.state=x0;
-[model,graphics,ok]=check_io(model,graphics,size(x0,1)*[1,ones(reinit,1)],size(x0,1),ones(reinit,1),[]);
+[model,graphics,ok]=check_io(model,graphics,size(x0,1)*[[1],[ones(reinit,1)]],size(x0,1),ones(reinit,1),[]);
 }
 if (ok) {
 graphics.exprs=exprs;
@@ -1988,10 +1988,10 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,"*")==1) {
-exprs=[exprs,sci2exp(0)];
+exprs=[[exprs],[sci2exp(0)]];
 }
 while (true) {
-[ok,gain,over,exprs]=scicos_getvalue("Set gain block parameters",["Gain","Do On Overflow(0=Nothing 1=Saturate 2=Error)"],list("mat",[-1,-1],"vec",1),exprs);
+[ok,gain,over,exprs]=scicos_getvalue("Set gain block parameters",[["Gain"],["Do On Overflow(0=Nothing 1=Saturate 2=Error)"]],list("mat",[-1,-1],"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -2107,15 +2107,15 @@ break;
 /* autogenerated from "macros/Linear/SOM_f.sci" */
 function SOM_f() {
 SOM_f.prototype.define = function SOM_f() {
-sgn=[1,1,1];
+sgn=[[1],[1],[1]];
 model=scicos_model();
 model.sim=list("sum",2);
-model.in1=[-1,-1,-1];
+model.in1=[[-1],[-1],[-1]];
 model.out=-1;
 model.rpar=sgn;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(1),sci2exp(sgn)];
+exprs=[[sci2exp(1)],[sci2exp(sgn)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -2139,8 +2139,8 @@ labs=["down","left","up"];
 } else {
 labs=["down","right","up"];
 }
-str=["This sum block is obsolete","parameters cannot be modified. Please replace it with new sum block","and gain blocks in the linear palette"," ","Input ports are located at up, side and  down positions.","Current gains are:"];
-str=[str,(part(labs.slice(),1,7)+exprs.slice())];
+str=[["This sum block is obsolete","parameters cannot be modified. Please replace it with new sum block"],["and gain blocks in the linear palette"," ","Input ports are located at up, side and  down positions.","Current gains are:"]];
+str=[[str],[(part(labs.slice(),1,7)+exprs.slice())]];
 message(str);
 }
 }
@@ -2150,7 +2150,7 @@ DOLLAR_m.prototype.define = function DOLLAR_m() {
 z=0;
 inh=0;
 in1=1;
-exprs=string([z,inh]);
+exprs=string([[z],[inh]]);
 model=scicos_model();
 model.sim=list("dollar4",4);
 model.in1=in1;
@@ -2175,7 +2175,7 @@ if (size(exprs,"*")<2) {
 exprs[2-1]="0";
 }
 while (true) {
-[ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("mat",[-1,-2],"vec",-1),exprs);
+[ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",[["initial condition"],["Inherit (no:0, yes:1)"]],list("mat",[-1,-2],"vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -2243,16 +2243,16 @@ zz0=z0.slice(1-1,$-1);
 T=1;
 model=scicos_model();
 model.sim=list("delayv",1);
-model.in1=[nin,1];
+model.in1=[[nin],[1]];
 model.out=nin;
 model.evtin=1;
-model.evtout=[1,1];
+model.evtout=[[1],[1]];
 model.dstate=z0;
 model.rpar=T/(size(zz0,"*"));
 model.blocktype="d";
 model.firing=[0,-1];
 model.dep_ut=[true,false];
-exprs=[string(nin),strcat(string(z0.slice(1-1,$-1)),";"),string(T)];
+exprs=[[string(nin)],[strcat(string(z0.slice(1-1,$-1)),";")],[string(T)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -2270,7 +2270,7 @@ z0=model.dstate;
 zz0=z0.slice(1-1,$-1);
 told=z0[$-1];
 while (true) {
-[ok,nin,zz0,T,exprs]=scicos_getvalue("Set delay parameters",["Number of inputs","Register initial condition","Max delay"],list("vec",1,"vec",-1,"vec",1),exprs);
+[ok,nin,zz0,T,exprs]=scicos_getvalue("Set delay parameters",[["Number of inputs"],["Register initial condition"],["Max delay"]],list("vec",1,"vec",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -2283,11 +2283,11 @@ message("Delay must be positive");
 ok=false;
 }
 if (ok) {
-[model,graphics,ok]=check_io(model,graphics,[nin,1],nin,1,[1,1]);
+[model,graphics,ok]=check_io(model,graphics,[[nin],[1]],nin,1,[[1],[1]]);
 }
 if (ok) {
 graphics.exprs=exprs;
-model.dstate=[zz0.slice(),told];
+model.dstate=[[zz0.slice()],[told]];
 model.rpar=T/(size(zz0,"*"));
 x.graphics=graphics;
 x.model=model;
@@ -2311,10 +2311,10 @@ model.sim=list("csslti",1);
 model.in1=in1;
 model.out=out;
 model.state=x0;
-model.rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+model.rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[strcat(sci2exp(A)),strcat(sci2exp(B)),strcat(sci2exp(C)),strcat(sci2exp(D)),strcat(sci2exp(x0))];
+exprs=[[strcat(sci2exp(A))],[strcat(sci2exp(B))],[strcat(sci2exp(C))],[strcat(sci2exp(D))],[strcat(sci2exp(x0))]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -2331,7 +2331,7 @@ exprs=exprs[[1:4,7]-1];
 }
 model=arg1.model;
 while (true) {
-[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
 if (!ok) {
 break;
 }
@@ -2350,7 +2350,7 @@ message("A matrix must be square");
 [model,graphics,ok]=check_io(model,graphics,in1,out,[],[]);
 if (ok) {
 graphics.exprs=exprs;
-rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 if (D!=[]) {
 if (norm(D,1)!=0) {
 mmm=[true,true];
@@ -2388,10 +2388,10 @@ model.sim=list("csslti4",4);
 model.in1=in1;
 model.out=out;
 model.state=x0;
-model.rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+model.rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[strcat(sci2exp(A)),strcat(sci2exp(B)),strcat(sci2exp(C)),strcat(sci2exp(D)),strcat(sci2exp(x0))];
+exprs=[[strcat(sci2exp(A))],[strcat(sci2exp(B))],[strcat(sci2exp(C))],[strcat(sci2exp(D))],[strcat(sci2exp(x0))]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -2408,7 +2408,7 @@ exprs=exprs[[1:4,7]-1];
 }
 model=arg1.model;
 while (true) {
-[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
 if (!ok) {
 break;
 }
@@ -2437,7 +2437,7 @@ message(_("Matrix A is not square or D has wrong dimension"));
 [model,graphics,ok]=check_io(model,graphics,in1,out,[],[]);
 if (ok) {
 graphics.exprs=exprs;
-rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 if (D!=[]) {
 if (norm(D,1)!=0) {
 mmm=[true,true];
@@ -2526,7 +2526,7 @@ model.rpar=[T,init];
 model.ipar=N;
 model.blocktype="x";
 model.dep_ut=[false,true];
-exprs=[string(T),string(init),string(N)];
+exprs=[[string(T)],[string(init)],[string(N)]];
 gr_i=[];
 x=standard_define([3.5,2],model,exprs,gr_i);
 }
@@ -2541,7 +2541,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 nin=model.in1(1);
 while (true) {
-[ok,T,init,N,exprs]=scicos_getvalue("Set delay parameters",["Delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,T,init,N,exprs]=scicos_getvalue("Set delay parameters",[["Delay"],["initial input"],["Buffer size"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -2558,7 +2558,7 @@ if (ok) {
 }
 if (ok) {
 graphics.exprs=exprs;
-model.rpar=[T,init];
+model.rpar=[[T],[init]];
 model.ipar=N;
 model.dep_ut=[false,true];
 x.graphics=graphics;
@@ -2582,10 +2582,10 @@ model.in1=1;
 model.out=1;
 model.evtin=1;
 model.dstate=x0.slice();
-model.rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+model.rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 model.blocktype="d";
 model.dep_ut=[false,false];
-exprs=[strcat(sci2exp(A)),strcat(sci2exp(B)),strcat(sci2exp(C)),strcat(sci2exp(D)),strcat(sci2exp(x0))];
+exprs=[[strcat(sci2exp(A))],[strcat(sci2exp(B))],[strcat(sci2exp(C))],[strcat(sci2exp(D))],[strcat(sci2exp(x0))]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -2602,7 +2602,7 @@ exprs=exprs[[1:4,7]-1];
 }
 model=arg1.model;
 while (true) {
-[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set discrete linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set discrete linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
 if (!ok) {
 break;
 }
@@ -2631,7 +2631,7 @@ message(_("Matrix A is not square or D has wrong dimension"));
 [model,graphics,ok]=check_io(model,graphics,in1,out,1,[]);
 if (ok) {
 graphics.exprs=exprs;
-rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 if (D!=[]) {
 if (norm(D,1)!=0) {
 mmm=[true,false];
@@ -2670,7 +2670,7 @@ model.out2=1;
 model.rpar=rpar;
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=string([0,0,0,maxp,minp]);
+exprs=string([[0],[0],[0],[maxp],[minp]]);
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -2684,7 +2684,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("mat",[-1,-1],"vec",1,"vec",1,"mat",[-1,-1],"mat",[-1,-1]),exprs);
+[ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue("Set Integral block parameters",[["Initial Condition"],["With re-intialization (1:yes, 0:no)"],["With saturation (1:yes, 0:no)"],["Upper limit"],["Lower limit"]],list("mat",[-1,-1],"vec",1,"vec",1,"mat",[-1,-1],"mat",[-1,-1]),exprs);
 if (!ok) {
 break;
 }
@@ -2715,7 +2715,7 @@ ok=false;
 message("Initial condition x0 should be inside the limits");
 ok=false;
 } else {
-rpar=[real(maxp.slice()),real(lowp.slice())];
+rpar=[[real(maxp.slice())],[real(lowp.slice())]];
 model.nzcross=size(x0,"*");
 model.nmode=size(x0,"*");
 }
@@ -2736,7 +2736,7 @@ ok=false;
 message("Initial condition x0 should be inside the limits");
 ok=false;
 } else {
-rpar=[real(maxp.slice()),real(lowp.slice()),imag(maxp.slice()),imag(lowp.slice())];
+rpar=[[real(maxp.slice())],[real(lowp.slice())],[imag(maxp.slice())],[imag(lowp.slice())]];
 model.nzcross=2*size(x0,"*");
 model.nmode=2*size(x0,"*");
 }
@@ -2751,19 +2751,19 @@ model.rpar=rpar;
 if ((Datatype==1)) {
 model.state=real(x0.slice());
 model.sim=list("integral_func",4);
-it=[1,ones(reinit,1)];
+it=[[1],[ones(reinit,1)]];
 ot=1;
 } else if ((Datatype==2)) {
-model.state=[real(x0.slice()),imag(x0.slice())];
+model.state=[[real(x0.slice())],[imag(x0.slice())]];
 model.sim=list("integralz_func",4);
-it=[2,2*ones(reinit,1)];
+it=[[2],[2*ones(reinit,1)]];
 ot=2;
 } else {
 message("Datatype is not supported");
 ok=false;
 }
 if (ok) {
-in1=[size(x0,1)*[1,ones(reinit,1)],size(x0,2)*[1,ones(reinit,1)]];
+in1=[size(x0,1)*[[1],[ones(reinit,1)]],size(x0,2)*[[1],[ones(reinit,1)]]];
 out=size(x0);
 [model,graphics,ok]=set_io(model,graphics,list(in1,it),list(out,ot),ones(reinit,1),[]);
 }
@@ -2783,7 +2783,7 @@ DOLLAR.prototype.define = function DOLLAR() {
 z=0;
 inh=0;
 in1=1;
-exprs=string([z,inh]);
+exprs=string([[z],[inh]]);
 model=scicos_model();
 model.sim=list("dollar4",4);
 model.in1=in1;
@@ -2808,7 +2808,7 @@ if (size(exprs,"*")<2) {
 exprs[2-1]="0";
 }
 while (true) {
-[ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("mat",[-1,-2],"vec",-1),exprs);
+[ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",[["initial condition"],["Inherit (no:0, yes:1)"]],list("mat",[-1,-2],"vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -2880,14 +2880,14 @@ nx=size(x0,"*");
 out=1;
 model=scicos_model();
 model.sim=list("tcslti4",4);
-model.in1=[in1,nx];
+model.in1=[[in1],[nx]];
 model.out=out;
 model.evtin=1;
 model.state=x0;
-model.rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+model.rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[strcat(sci2exp(A)),strcat(sci2exp(B)),strcat(sci2exp(C)),strcat(sci2exp(D)),strcat(sci2exp(x0))];
+exprs=[[strcat(sci2exp(A))],[strcat(sci2exp(B))],[strcat(sci2exp(C))],[strcat(sci2exp(D))],[strcat(sci2exp(x0))]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -2904,7 +2904,7 @@ if (size(exprs,"*")==7) {
 exprs=exprs[[1:4,7]-1];
 }
 while (true) {
-[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
 if (!ok) {
 break;
 }
@@ -2920,10 +2920,10 @@ in1=[];
 if (ms!=ns) {
 message("A matrix must be square");
 } else {
-[model,graphics,ok]=check_io(model,graphics,[in1,ms],out,1,[]);
+[model,graphics,ok]=check_io(model,graphics,[[in1],[ms]],out,1,[]);
 if (ok) {
 graphics.exprs=exprs;
-rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 if (D!=[]) {
 if (norm(D,1)!=0) {
 mmm=[true,true];
@@ -2956,7 +2956,7 @@ function SUM_f() {
 SUM_f.prototype.define = function SUM_f() {
 model=scicos_model();
 model.sim=list("plusblk",2);
-model.in1=[-1,-1,-1];
+model.in1=[[-1],[-1],[-1]];
 model.out=-1;
 model.blocktype="c";
 model.dep_ut=[true,false];
@@ -2985,7 +2985,7 @@ model.out=1;
 model.rpar=gain;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[strcat(sci2exp(gain)),strcat(sci2exp(in1)),strcat(sci2exp(out))];
+exprs=[[strcat(sci2exp(gain))],[strcat(sci2exp(in1))],[strcat(sci2exp(out))]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -3023,27 +3023,27 @@ break;
 function PID() {
 PID.prototype.define = function PID() {
 scs_m=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title=["PID"],tol=[0.0001,0.000001,1.000e-10,100001,0,0],tf=100000,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
-scs_m.objs[1-1]=scicos_block(gui="INTEGRAL_m",graphics=scicos_graphics(orig=[318.304,183.11733],sz=[40,40],flip=true,theta=0,exprs=["0","0","0","1","-1"],pin=7,pout=9,pein=[],peout=[],gr_i=[],id="1/s",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("integral_func",4),in1=1,in2=1,intyp=1,out=1,out2=1,outtyp=1,evtin=[],evtout=[],state=0,dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[false,true],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[2-1]=scicos_block(gui="SUMMATION",graphics=scicos_graphics(orig=[387.97067,172.85067],sz=[40,60],flip=true,theta=0,exprs=["1","[1;1;1]"],pin=[10,9,11],pout=19,pein=[],peout=[],gr_i=[],id="",in_implicit=["E","E","E"],out_implicit="E"),model=scicos_model(sim=list("summation",4),in1=[-1,-1,-1],in2=[-2,-2,-2],intyp=[1,1,1],out=-1,out2=-2,outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[1,1,1],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[1-1]=scicos_block(gui="INTEGRAL_m",graphics=scicos_graphics(orig=[318.304,183.11733],sz=[40,40],flip=true,theta=0,exprs=[["0"],["0"],["0"],["1"],["-1"]],pin=7,pout=9,pein=[],peout=[],gr_i=[],id="1/s",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("integral_func",4),in1=1,in2=1,intyp=1,out=1,out2=1,outtyp=1,evtin=[],evtout=[],state=0,dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[false,true],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[2-1]=scicos_block(gui="SUMMATION",graphics=scicos_graphics(orig=[387.97067,172.85067],sz=[40,60],flip=true,theta=0,exprs=[["1"],["[1;1;1]"]],pin=[[10],[9],[11]],pout=19,pein=[],peout=[],gr_i=[],id="",in_implicit=[["E"],["E"],["E"]],out_implicit="E"),model=scicos_model(sim=list("summation",4),in1=[[-1],[-1],[-1]],in2=[[-2],[-2],[-2]],intyp=[[1],[1],[1]],out=-1,out2=-2,outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[[1],[1],[1]],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
 scs_m.objs[3-1]=scicos_block(gui="GAINBLK",graphics=scicos_graphics(orig=[321.23733,235.91733],sz=[40,40],flip=true,theta=0,exprs="1",pin=17,pout=10,pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("gainblk",4),in1=-1,in2=-2,intyp=1,out=-1,out2=-2,outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=1,ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
 scs_m.objs[4-1]=scicos_block(gui="DERIV",graphics=scicos_graphics(orig=[319.03733,135.45067],sz=[40,40],flip=true,theta=0,exprs=[],pin=8,pout=11,pein=[],peout=[],gr_i=[],id="s",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("deriv",4),in1=-1,in2=-2,intyp=1,out=-1,out2=-2,outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="x",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
 scs_m.objs[5-1]=scicos_block(gui="GAINBLK",graphics=scicos_graphics(orig=[255.23733,183.11733],sz=[40,40],flip=true,theta=0,exprs="1",pin=13,pout=7,pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("gainblk",4),in1=-1,in2=-2,intyp=1,out=-1,out2=-2,outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=1,ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
 scs_m.objs[6-1]=scicos_block(gui="GAINBLK",graphics=scicos_graphics(orig=[255.23733,135.45067],sz=[40,40],flip=true,theta=0,exprs="1",pin=14,pout=8,pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("gainblk",4),in1=-1,in2=-2,intyp=1,out=-1,out2=-2,outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=1,ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[7-1]=scicos_link(xx=[303.80876,309.73257],yy=[203.11733,203.11733],id="drawlink",thick=[0,0],ct=[1,1],from=[5,1,0],to=[1,1,1]);
-scs_m.objs[8-1]=scicos_link(xx=[303.80876,310.4659],yy=[155.45067,155.45067],id="drawlink",thick=[0,0],ct=[1,1],from=[6,1,0],to=[4,1,1]);
-scs_m.objs[9-1]=scicos_link(xx=[366.87543,379.39924],yy=[203.11733,202.85067],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[2,2,1]);
-scs_m.objs[10-1]=scicos_link(xx=[369.80876,379.39924,379.39924],yy=[255.91733,255.91733,217.85067],id="drawlink",thick=[0,0],ct=[1,1],from=[3,1,0],to=[2,1,1]);
-scs_m.objs[11-1]=scicos_link(xx=[367.60876,379.39924,379.39924],yy=[155.45067,155.45067,187.85067],id="drawlink",thick=[0,0],ct=[1,1],from=[4,1,0],to=[2,3,1]);
-scs_m.objs[12-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[234.704,203.11733],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=16,pout=[13,14],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=["E","E","E"]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[-1,-1,-1],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[13-1]=scicos_link(xx=[234.704,246.6659],yy=[203.11733,203.11733],id="drawlink",thick=[0,0],ct=[1,1],from=[12,1,0],to=[5,1,1]);
-scs_m.objs[14-1]=scicos_link(xx=[234.704,234.704,246.6659],yy=[203.11733,155.45067,155.45067],id="drawlink",thick=[0,0],ct=[1,1],from=[12,2,0],to=[6,1,1]);
-scs_m.objs[15-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[233.97067,203.11733],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=21,pout=[16,17],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=["E","E","E"]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[-1,-1,-1],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[16-1]=scicos_link(xx=[233.97067,234.704],yy=[203.11733,203.11733],id="drawlink",thick=[0,0],ct=[1,1],from=[15,1,0],to=[12,1,1]);
-scs_m.objs[17-1]=scicos_link(xx=[233.97067,233.97067,312.6659],yy=[203.11733,255.91733,255.91733],id="drawlink",thick=[0,0],ct=[1,1],from=[15,2,0],to=[3,1,1]);
+scs_m.objs[7-1]=scicos_link(xx=[[303.80876],[309.73257]],yy=[[203.11733],[203.11733]],id="drawlink",thick=[0,0],ct=[1,1],from=[5,1,0],to=[1,1,1]);
+scs_m.objs[8-1]=scicos_link(xx=[[303.80876],[310.4659]],yy=[[155.45067],[155.45067]],id="drawlink",thick=[0,0],ct=[1,1],from=[6,1,0],to=[4,1,1]);
+scs_m.objs[9-1]=scicos_link(xx=[[366.87543],[379.39924]],yy=[[203.11733],[202.85067]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[2,2,1]);
+scs_m.objs[10-1]=scicos_link(xx=[[369.80876],[379.39924],[379.39924]],yy=[[255.91733],[255.91733],[217.85067]],id="drawlink",thick=[0,0],ct=[1,1],from=[3,1,0],to=[2,1,1]);
+scs_m.objs[11-1]=scicos_link(xx=[[367.60876],[379.39924],[379.39924]],yy=[[155.45067],[155.45067],[187.85067]],id="drawlink",thick=[0,0],ct=[1,1],from=[4,1,0],to=[2,3,1]);
+scs_m.objs[12-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[[234.704],[203.11733]],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=16,pout=[[13],[14]],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[["E"],["E"],["E"]]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[[-1],[-1],[-1]],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[13-1]=scicos_link(xx=[[234.704],[246.6659]],yy=[[203.11733],[203.11733]],id="drawlink",thick=[0,0],ct=[1,1],from=[12,1,0],to=[5,1,1]);
+scs_m.objs[14-1]=scicos_link(xx=[[234.704],[234.704],[246.6659]],yy=[[203.11733],[155.45067],[155.45067]],id="drawlink",thick=[0,0],ct=[1,1],from=[12,2,0],to=[6,1,1]);
+scs_m.objs[15-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[[233.97067],[203.11733]],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=21,pout=[[16],[17]],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[["E"],["E"],["E"]]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[[-1],[-1],[-1]],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[16-1]=scicos_link(xx=[[233.97067],[234.704]],yy=[[203.11733],[203.11733]],id="drawlink",thick=[0,0],ct=[1,1],from=[15,1,0],to=[12,1,1]);
+scs_m.objs[17-1]=scicos_link(xx=[[233.97067],[233.97067],[312.6659]],yy=[[203.11733],[255.91733],[255.91733]],id="drawlink",thick=[0,0],ct=[1,1],from=[15,2,0],to=[3,1,1]);
 scs_m.objs[18-1]=scicos_block(gui="OUT_f",graphics=scicos_graphics(orig=[456.5421,192.85067],sz=[20,20],flip=true,theta=0,exprs="1",pin=19,pout=[],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="output",in1=-1,in2=[],intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[19-1]=scicos_link(xx=[436.5421,456.5421],yy=[202.85067,202.85067],id="drawlink",thick=[0,0],ct=[1,1],from=[2,1,0],to=[18,1,1]);
+scs_m.objs[19-1]=scicos_link(xx=[[436.5421],[456.5421]],yy=[[202.85067],[202.85067]],id="drawlink",thick=[0,0],ct=[1,1],from=[2,1,0],to=[18,1,1]);
 scs_m.objs[20-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[193.97067,193.11733],sz=[20,20],flip=true,theta=0,exprs="1",pin=[],pout=21,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=-1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[21-1]=scicos_link(xx=[213.97067,233.97067],yy=[203.11733,203.11733],id="drawlink",thick=[0,0],ct=[1,1],from=[20,1,0],to=[15,1,1]);
+scs_m.objs[21-1]=scicos_link(xx=[[213.97067],[233.97067]],yy=[[203.11733],[203.11733]],id="drawlink",thick=[0,0],ct=[1,1],from=[20,1,0],to=[15,1,1]);
 model=scicos_model();
 model.sim="csuper";
 model.in1=-1;
@@ -3106,7 +3106,7 @@ exprs[3-1]=xx3.graphics.exprs(1);
 d_old=xx3.model.rpar;
 y=0;
 while (true) {
-[ok,p,i,d,exprs0]=scicos_getvalue("Set PID parameters",["Proportional","Integral","Derivation"],list("vec",-1,"vec",-1,"vec",-1),exprs);
+[ok,p,i,d,exprs0]=scicos_getvalue("Set PID parameters",[["Proportional"],["Integral"],["Derivation"]],list("vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -3146,16 +3146,16 @@ ymax=15;
 model.sim=list("BARXY_sim",5);
 model.blocktype="d";
 model.dep_ut=[true,false];
-model.in1=[-1,-1];
+model.in1=[[-1],[-1]];
 model.intyp=[1];
 model.out=[];
 model.evtin=[1];
-model.rpar=[xmin,xmax,ymin,ymax];
+model.rpar=[[xmin],[xmax],[ymin],[ymax]];
 model.ipar=1;
 x=standard_define([2,2],model,[],[]);
 x.graphics.in_implicit=["E","E"];
 x.graphics.out_implicit=[];
-x.graphics.exprs=["-15","15","-15","15","1"];
+x.graphics.exprs=[["-15"],["15"],["-15"],["15"],["1"]];
 }
 BARXY.prototype.details = function BARXY() {
 }
@@ -3167,27 +3167,27 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,xmin,xmax,ymin,ymax,thickness,exprs]=scicos_getvalue("Set Scope parameters",["Xmin","Xmax","Ymin","Ymax","Segs Thickness"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,xmin,xmax,ymin,ymax,thickness,exprs]=scicos_getvalue("Set Scope parameters",[["Xmin"],["Xmax"],["Ymin"],["Ymax"],["Segs Thickness"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (ymin>=ymax) {
-mess=[mess,"Ymax must be greater than Ymin"," "];
+mess=[[mess],["Ymax must be greater than Ymin"],[" "]];
 ok=false;
 }
 if (xmin>=xmax) {
-mess=[mess,"Xmax must be greater than Xmin"," "];
+mess=[[mess],["Xmax must be greater than Xmin"],[" "]];
 ok=false;
 }
 if (thickness<=0) {
-mess=[mess,"Thickness must be strictly positive."];
+mess=[[mess],["Thickness must be strictly positive."]];
 ok=false;
 }
 if (!ok) {
 message(mess);
 } else {
-model.rpar=[xmin,xmax,ymin,ymax];
+model.rpar=[[xmin],[xmax],[ymin],[ymax]];
 model.ipar=thickness;
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -3204,8 +3204,8 @@ win=-1;
 clrs=-4;
 N=2;
 siz=1;
-wpos=[-1,-1];
-wdim=[-1,-1];
+wpos=[[-1],[-1]];
+wdim=[[-1],[-1]];
 xmin=-15;
 xmax=15;
 ymin=-15;
@@ -3213,16 +3213,16 @@ ymax=+15;
 nbr_curves=1;
 model=scicos_model();
 model.sim=list("canimxy",4);
-model.in1=[1,1];
-model.in2=[1,1];
-model.intyp=[1,1];
+model.in1=[[1],[1]];
+model.in2=[[1],[1]];
+model.intyp=[[1],[1]];
 model.evtin=1;
-model.rpar=[xmin,xmax,ymin,ymax];
-model.ipar=[win,1,N,clrs,siz,0,wpos.slice(),wdim.slice(),nbr_curves];
+model.rpar=[[xmin],[xmax],[ymin],[ymax]];
+model.ipar=[[win],[1],[N],[clrs],[siz],[0],[wpos.slice()],[wdim.slice()],[nbr_curves]];
 model.blocktype="d";
 model.firing=[];
 model.dep_ut=[false,false];
-exprs=[string(nbr_curves),string(clrs),string(siz),string(win),"[]","[]",string(xmin),string(xmax),string(ymin),string(ymax),string(N)];
+exprs=[[string(nbr_curves)],[string(clrs)],[string(siz)],[string(win)],["[]"],["[]"],[string(xmin)],[string(xmax)],[string(ymin)],[string(ymax)],[string(N)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -3236,41 +3236,41 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,nbr_curves,clrs,siz,win,wpos,wdim,xmin,xmax,ymin,ymax,N,exprs]=scicos_getvalue("Set Scope parameters",["Number of Curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin","Xmax","Ymin","Ymax","Buffer size"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,nbr_curves,clrs,siz,win,wpos,wdim,xmin,xmax,ymin,ymax,N,exprs]=scicos_getvalue("Set Scope parameters",[["Number of Curves"],["color (>0) or mark (<0)"],["line or mark size"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Xmin"],["Xmax"],["Ymin"],["Ymax"],["Buffer size"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
-mess=[mess,"Window position must be [] or a 2 vector"," "];
+mess=[[mess],["Window position must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (size(wdim,"*")!=0&&size(wdim,"*")!=2) {
-mess=[mess,"Window dim must be [] or a 2 vector"," "];
+mess=[[mess],["Window dim must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (win<-1) {
-mess=[mess,"Window number cannot be inferior than -1"," "];
+mess=[[mess],["Window number cannot be inferior than -1"],[" "]];
 ok=false;
 }
 if (nbr_curves<=0) {
-mess=[mess,"Number of curves cannot be negative or null"," "];
+mess=[[mess],["Number of curves cannot be negative or null"],[" "]];
 ok=false;
 }
 if (N<1) {
-mess=[mess,"Buffer size must be at least 1"," "];
+mess=[[mess],["Buffer size must be at least 1"],[" "]];
 ok=false;
 }
 if (N==1&&clrs>0) {
-mess=[mess,"Buffer size must be at least 2"," "];
+mess=[[mess],["Buffer size must be at least 2"],[" "]];
 ok=false;
 }
 if (ymin>=ymax) {
-mess=[mess,"Ymax must be greater than Ymin"," "];
+mess=[[mess],["Ymax must be greater than Ymin"],[" "]];
 ok=false;
 }
 if (xmin>=xmax) {
-mess=[mess,"Xmax must be greater than Xmin"," "];
+mess=[[mess],["Xmax must be greater than Xmin"],[" "]];
 ok=false;
 }
 if (!ok) {
@@ -3280,13 +3280,13 @@ in1=nbr_curves*ones(2,1);
 in2=ones(2,1);
 [model,graphics,ok]=set_io(model,graphics,list([in1,in2],ones(2,1)),list(),ones(1,1),[]);
 if (wpos==[]) {
-wpos=[-1,-1];
+wpos=[[-1],[-1]];
 }
 if (wdim==[]) {
-wdim=[-1,-1];
+wdim=[[-1],[-1]];
 }
-rpar=[xmin,xmax,ymin,ymax];
-ipar=[win,1,N,clrs,siz,0,wpos.slice(),wdim.slice(),nbr_curves];
+rpar=[[xmin],[xmax],[ymin],[ymax]];
+ipar=[[win],[1],[N],[clrs],[siz],[0],[wpos.slice()],[wdim.slice()],[nbr_curves]];
 model.rpar=rpar;
 model.ipar=ipar;
 graphics.exprs=exprs;
@@ -3310,11 +3310,11 @@ model=scicos_model();
 model.sim="writef";
 model.in1=in1;
 model.evtin=1;
-model.dstate=[-1,lunit,zeros((nin+1)*N,1)];
-model.ipar=[length(fname),length(frmt),0,N,_str2code(fname),_str2code(frmt)];
+model.dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
+model.ipar=[[length(fname)],[length(frmt)],[0],[N],[_str2code(fname)],[_str2code(frmt)]];
 model.blocktype="d";
 model.dep_ut=[true,false];
-exprs=[sci2exp(in1),fname,frmt,string(N)];
+exprs=[[sci2exp(in1)],[fname],[frmt],[string(N)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -3337,7 +3337,7 @@ lunit=dstate(2);
 fname=exprs[2-1];
 frmt=exprs[3-1];
 while (true) {
-[ok,in1,fname1,frmt1,N,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"WFILE_f")," ",gettext("Write to output file")," ",gettext("Write is done on:"),gettext("&nbsp; - A binary file if no format given"),gettext("&nbsp; - A formatted text file if a  format (Fortran type) is given")],[gettext("Input Size"),gettext("Output File Name"),gettext("Output Format"),gettext("Buffer Size")],list("vec",1,"str",1,"str",1,"vec",1),exprs);
+[ok,in1,fname1,frmt1,N,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WFILE_f")],[" "],[gettext("Write to output file")],[" "],[gettext("Write is done on:")],[gettext("&nbsp; - A binary file if no format given")],[gettext("&nbsp; - A formatted text file if a  format (Fortran type) is given")]],[[gettext("Input Size")],[gettext("Output File Name")],[gettext("Output Format")],[gettext("Buffer Size")]],list("vec",1,"str",1,"str",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -3371,9 +3371,9 @@ block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),
 ok=false;
 }
 if (ok) {
-ipar=[length(fname1),length(frmt1),0,N,_str2code(fname1),_str2code(frmt1)];
+ipar=[[length(fname1)],[length(frmt1)],[0],[N],[_str2code(fname1)],[_str2code(frmt1)]];
 if (prod(size(dstate))!=(nin+1)*N+2) {
-dstate=[-1,lunit,zeros((nin+1)*N,1)];
+dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
 }
 model.in1=nin;
 model.dstate=dstate;
@@ -3391,9 +3391,9 @@ break;
 function CSCOPE() {
 CSCOPE.prototype.define = function CSCOPE() {
 win=-1;
-wdim=[600,400];
-wpos=[-1,-1];
-clrs=[1,3,5,7,9,11,13,15];
+wdim=[[600],[400]];
+wpos=[[-1],[-1]];
+clrs=[[1],[3],[5],[7],[9],[11],[13],[15]];
 N=20;
 ymin=-15;
 ymax=+15;
@@ -3403,11 +3403,11 @@ model.sim=list("cscope",4);
 model.in1=-1;
 model.in2=1;
 model.evtin=1;
-model.rpar=[0,ymin,ymax,per];
-model.ipar=[win,1,N,clrs,wpos,wdim];
+model.rpar=[[0],[ymin],[ymax],[per]];
+model.ipar=[[win],[1],[N],[clrs],[wpos],[wdim]];
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[strcat(string(clrs)," "),string(win),sci2exp([]),sci2exp(wdim),string(ymin),string(ymax),string(per),string(N),transpose(string(0)),emptystr()];
+exprs=[[strcat(string(clrs)," ")],[string(win)],[sci2exp([])],[sci2exp(wdim)],[string(ymin)],[string(ymax)],[string(per)],[string(N)],[transpose(string(0))],[emptystr()]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -3421,54 +3421,54 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"str",1),exprs);
+[ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=scicos_getvalue("Set Scope parameters",[["Color (>0) or mark (<0) vector (8 entries)"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Ymin"],["Ymax"],["Refresh period"],["Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"]],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"str",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
-mess=[mess,"Window position must be [] or a 2 vector"," "];
+mess=[[mess],["Window position must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (size(wdim,"*")!=0&&size(wdim,"*")!=2) {
-mess=[mess,"Window dim must be [] or a 2 vector"," "];
+mess=[[mess],["Window dim must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (win<-1) {
-mess=[mess,"Window number can\'t be  < -1"," "];
+mess=[[mess],["Window number can\'t be  < -1"],[" "]];
 ok=false;
 }
 if (per<=0) {
-mess=[mess,"Refresh period must be positive"," "];
+mess=[[mess],["Refresh period must be positive"],[" "]];
 ok=false;
 }
 if (N<2) {
-mess=[mess,"Buffer size must be at least 2"," "];
+mess=[[mess],["Buffer size must be at least 2"],[" "]];
 ok=false;
 }
 if (ymin>=ymax) {
-mess=[mess,"Ymax must be greater than Ymin"," "];
+mess=[[mess],["Ymax must be greater than Ymin"],[" "]];
 ok=false;
 }
 if (!or(heritance==[0,1])) {
-mess=[mess,"Accept herited events must be 0 or 1"," "];
+mess=[[mess],["Accept herited events must be 0 or 1"],[" "]];
 ok=false;
 }
 if (!ok) {
-message(["Some specified values are inconsistent:"," ",mess]);
+message([["Some specified values are inconsistent:"],[" "],[mess]]);
 }
 if (ok) {
 [model,graphics,ok]=set_io(model,graphics,list([-1,1],1),list(),ones(1-heritance,1),[]);
 }
 if (ok) {
 if (wpos==[]) {
-wpos=[-1,-1];
+wpos=[[-1],[-1]];
 }
 if (wdim==[]) {
-wdim=[-1,-1];
+wdim=[[-1],[-1]];
 }
-rpar=[0,ymin,ymax,per];
-ipar=[win,1,N,clrs.slice(),wpos.slice(),wdim.slice()];
+rpar=[[0],[ymin],[ymax],[per]];
+ipar=[[win],[1],[N],[clrs.slice()],[wpos.slice()],[wdim.slice()]];
 model.rpar=rpar;
 model.ipar=ipar;
 model.evtin=ones(1-heritance,1);
@@ -3487,27 +3487,27 @@ function CANIMXY3D() {
 CANIMXY3D.prototype.define = function CANIMXY3D() {
 win=-1;
 N=2;
-clrs=[1,2,3,4,5,6,7,13];
-siz=[1,1,1,1,1,1,1,1];
-wpos=[-1,-1];
-wdim=[-1,-1];
-param3ds=[50,280];
-vec_x=[-15,15];
-vec_y=[-15,15];
-vec_z=[-15,15];
+clrs=[[1],[2],[3],[4],[5],[6],[7],[13]];
+siz=[[1],[1],[1],[1],[1],[1],[1],[1]];
+wpos=[[-1],[-1]];
+wdim=[[-1],[-1]];
+param3ds=[[50],[280]];
+vec_x=[[-15],[15]];
+vec_y=[[-15],[15]];
+vec_z=[[-15],[15]];
 nbr_curves=1;
 model=scicos_model();
 model.sim=list("canimxy3d",4);
-model.in1=[1,1,1];
+model.in1=[[1],[1],[1]];
 model.evtin=1;
-model.in2=[1,1,1];
-model.intyp=[1,1,1];
-model.rpar=[vec_x.slice(),vec_y.slice(),vec_z.slice(),param3ds.slice()];
-model.ipar=[win,8,N,clrs.slice(),siz.slice(),8,wpos.slice(),wdim.slice(),nbr_curves];
+model.in2=[[1],[1],[1]];
+model.intyp=[[1],[1],[1]];
+model.rpar=[[vec_x.slice()],[vec_y.slice()],[vec_z.slice()],[param3ds.slice()]];
+model.ipar=[[win],[8],[N],[clrs.slice()],[siz.slice()],[8],[wpos.slice()],[wdim.slice()],[nbr_curves]];
 model.blocktype="d";
 model.firing=[];
 model.dep_ut=[false,false];
-exprs=[string(nbr_curves),strcat(string(clrs)," "),strcat(string(siz)," "),string(win),"[]","[]",strcat(string(vec_x)," "),strcat(string(vec_y)," "),strcat(string(vec_z)," "),strcat(string(param3ds)," "),string(N)];
+exprs=[[string(nbr_curves)],[strcat(string(clrs)," ")],[strcat(string(siz)," ")],[string(win)],["[]"],["[]"],[strcat(string(vec_x)," ")],[strcat(string(vec_y)," ")],[strcat(string(vec_z)," ")],[strcat(string(param3ds)," ")],[string(N)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -3521,57 +3521,57 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,nbr_curves,clrs,siz,win,wpos,wdim,vec_x,vec_y,vec_z,param3ds,N,exprs]=scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs);
+[ok,nbr_curves,clrs,siz,win,wpos,wdim,vec_x,vec_y,vec_z,param3ds,N,exprs]=scicos_getvalue("Set Scope parameters",[["Number of curves"],["color (>0) or mark (<0)"],["line or mark size"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Xmin and Xmax"],["Ymin and Ymax"],["Zmin and Zmax"],["Alpha and Theta"],["Buffer size"]],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
-mess=[mess,"Window position must be [] or a 2 vector"," "];
+mess=[[mess],["Window position must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (size(wdim,"*")!=0&&size(wdim,"*")!=2) {
-mess=[mess,"Window dim must be [] or a 2 vector"," "];
+mess=[[mess],["Window dim must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (win<-1) {
-mess=[mess,"Window number cannot be inferior than -1"," "];
+mess=[[mess],["Window number cannot be inferior than -1"],[" "]];
 ok=false;
 }
 if (size(clrs,"*")!=size(siz,"*")) {
-mess=[mess,"Colors and Size must have same size"," "];
+mess=[[mess],["Colors and Size must have same size"],[" "]];
 ok=false;
 }
 if (nbr_curves<=0) {
-mess=[mess,"Number of curves cannot be negative or null"," "];
+mess=[[mess],["Number of curves cannot be negative or null"],[" "]];
 ok=false;
 }
 if (size(clrs,"*")<nbr_curves) {
-mess=[mess,"You must have at least same size for clrs and the number of curves"," "];
+mess=[[mess],["You must have at least same size for clrs and the number of curves"],[" "]];
 ok=false;
 }
 if (N<1) {
-mess=[mess,"Buffer size must be at least 1"," "];
+mess=[[mess],["Buffer size must be at least 1"],[" "]];
 ok=false;
 }
 if (N<2) {
 for (i=1;i<=nbr_curves;i+=1) {
 if (clrs(i)>0) {
-mess=[mess,"Buffer size must be at least 2 or Change a color (must be <0)"," "];
+mess=[[mess],["Buffer size must be at least 2 or Change a color (must be <0)"],[" "]];
 ok=false;
 }
 }
 }
 if (vec_y(1)>=vec_y(2)) {
-mess=[mess,"Ymax must be higher than Ymin"," "];
+mess=[[mess],["Ymax must be higher than Ymin"],[" "]];
 ok=false;
 }
 if (vec_x(1)>=vec_x(2)) {
-mess=[mess,"Xmax must be higher than Xmin"," "];
+mess=[[mess],["Xmax must be higher than Xmin"],[" "]];
 ok=false;
 }
 if (vec_z(1)>=vec_z(2)) {
-mess=[mess,"Zmax must be higher than Zmin"," "];
+mess=[[mess],["Zmax must be higher than Zmin"],[" "]];
 ok=false;
 }
 if (!ok) {
@@ -3581,14 +3581,14 @@ in1=nbr_curves*ones(3,1);
 in2=ones(3,1);
 [model,graphics,ok]=set_io(model,graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[]);
 if (wpos==[]) {
-wpos=[-1,-1];
+wpos=[[-1],[-1]];
 }
 if (wdim==[]) {
-wdim=[-1,-1];
+wdim=[[-1],[-1]];
 }
-rpar=[vec_x.slice(),vec_y.slice(),vec_z.slice(),param3ds.slice()];
+rpar=[[vec_x.slice()],[vec_y.slice()],[vec_z.slice()],[param3ds.slice()]];
 size_siz=size(siz,"*");
-ipar=[win,size_siz,N,clrs.slice(),siz.slice(),1,wpos.slice(),wdim.slice(),nbr_curves];
+ipar=[[win],[size_siz],[N],[clrs.slice()],[siz.slice()],[1],[wpos.slice()],[wdim.slice()],[nbr_curves]];
 model.rpar=rpar;
 model.ipar=ipar;
 graphics.exprs=exprs;
@@ -3616,11 +3616,11 @@ model.in1=-1;
 model.in2=-2;
 model.intyp=1;
 model.evtin=1;
-model.ipar=[cmin,cmax,size_c,size_x,size_y];
-model.rpar=[colormap.slice(),x,y];
+model.ipar=[[cmin],[cmax],[size_c],[size_x],[size_y]];
+model.rpar=[[colormap.slice()],[x],[y]];
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[strcat(string(x)," "),strcat(string(y)," "),string("jetcolormap(25)"),string(cmin),string(cmax)];
+exprs=[[strcat(string(x)," ")],[strcat(string(y)," ")],[string("jetcolormap(25)")],[string(cmin)],[string(cmax)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -3634,27 +3634,27 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,vec_x,vec_y,colormap,cmin,cmax,exprs]=scicos_getvalue("Set Scope parameters",["Bounds Vector X (-1 for standard)","Bounds Vector Y (-1 for standard)","ColorMap","Zmin","Zmax"],list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
+[ok,vec_x,vec_y,colormap,cmin,cmax,exprs]=scicos_getvalue("Set Scope parameters",[["Bounds Vector X (-1 for standard)"],["Bounds Vector Y (-1 for standard)"],["ColorMap"],["Zmin"],["Zmax"]],list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (size(vec_x,"*")!=size(vec_y,"*")) {
-mess=[mess,"Vector X and Vector Y must have the same size"," "];
+mess=[[mess],["Vector X and Vector Y must have the same size"],[" "]];
 ok=false;
 }
 if (cmax<=cmin) {
-mess=[mess,"Error with minimum and maximum value"," "];
+mess=[[mess],["Error with minimum and maximum value"],[" "]];
 ok=false;
 }
 if (!ok) {
-message(["Some specified values are inconsistent:"," ",mess]);
+message([["Some specified values are inconsistent:"],[" "],[mess]]);
 }
 if (ok) {
 size_x=size(vec_x,"*");
 size_c=size(colormap.slice(),1);
-ipar=[cmin,cmax,size_c,size_x];
-rpar=[colormap.slice(),vec_x.slice(),vec_y.slice()];
+ipar=[[cmin],[cmax],[size_c],[size_x]];
+rpar=[[colormap.slice()],[vec_x.slice()],[vec_y.slice()]];
 model.ipar=ipar;
 model.rpar=rpar;
 graphics.exprs=exprs;
@@ -3669,27 +3669,27 @@ break;
 function CSCOPXY3D() {
 CSCOPXY3D.prototype.define = function CSCOPXY3D() {
 win=-1;
-clrs=[1,2,3,4,5,6,7,13];
-siz=[1,1,1,1,1,1,1,1];
-wdim=[600,400];
-wpos=[-1,-1];
+clrs=[[1],[2],[3],[4],[5],[6],[7],[13]];
+siz=[[1],[1],[1],[1],[1],[1],[1],[1]];
+wdim=[[600],[400]];
+wpos=[[-1],[-1]];
 N=2;
-param3ds=[50,280];
-vec_x=[-15,15];
-vec_y=[-15,15];
-vec_z=[-15,15];
+param3ds=[[50],[280]];
+vec_x=[[-15],[15]];
+vec_y=[[-15],[15]];
+vec_z=[[-15],[15]];
 nbr_curves=1;
 model=scicos_model();
 model.sim=list("cscopxy3d",4);
-model.in1=[1,1,1];
-model.in2=[1,1,1];
-model.intyp=[1,1,1];
+model.in1=[[1],[1],[1]];
+model.in2=[[1],[1],[1]];
+model.intyp=[[1],[1],[1]];
 model.evtin=1;
-model.rpar=[vec_x.slice(),vec_y.slice(),vec_z.slice(),param3ds.slice()];
-model.ipar=[win,8,N,clrs.slice(),siz.slice(),8,wpos.slice(),wdim.slice(),nbr_curves];
+model.rpar=[[vec_x.slice()],[vec_y.slice()],[vec_z.slice()],[param3ds.slice()]];
+model.ipar=[[win],[8],[N],[clrs.slice()],[siz.slice()],[8],[wpos.slice()],[wdim.slice()],[nbr_curves]];
 model.blocktype="d";
 model.dep_ut=[false,false];
-exprs=[string(nbr_curves),strcat(string(clrs)," "),strcat(string(siz)," "),string(win),sci2exp([]),sci2exp(wdim),strcat(string(vec_x)," "),strcat(string(vec_y)," "),strcat(string(vec_z)," "),strcat(string(param3ds)," "),string(N)];
+exprs=[[string(nbr_curves)],[strcat(string(clrs)," ")],[strcat(string(siz)," ")],[string(win)],[sci2exp([])],[sci2exp(wdim)],[strcat(string(vec_x)," ")],[strcat(string(vec_y)," ")],[strcat(string(vec_z)," ")],[strcat(string(param3ds)," ")],[string(N)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -3703,53 +3703,53 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,nbr_curves,clrs,siz,win,wpos,wdim,vec_x,vec_y,vec_z,param3ds,N,exprs]=scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","Line or Mark Size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",2,"vec",2,"vec",2,"vec",2,"vec",1),exprs);
+[ok,nbr_curves,clrs,siz,win,wpos,wdim,vec_x,vec_y,vec_z,param3ds,N,exprs]=scicos_getvalue("Set Scope parameters",[["Number of curves"],["color (>0) or mark (<0)"],["Line or Mark Size"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Xmin and Xmax"],["Ymin and Ymax"],["Zmin and Zmax"],["Alpha and Theta"],["Buffer size"]],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",2,"vec",2,"vec",2,"vec",2,"vec",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
-mess=[mess,"Window position must be [] or a 2 vector"," "];
+mess=[[mess],["Window position must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (size(wdim,"*")!=0&&size(wdim,"*")!=2) {
-mess=[mess,"Window dim must be [] or a 2 vector"," "];
+mess=[[mess],["Window dim must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (size(clrs,"*")!=size(siz,"*")) {
-mess=[mess,"Colors and Size must have same size"," "];
+mess=[[mess],["Colors and Size must have same size"],[" "]];
 ok=false;
 }
 if (nbr_curves<=0) {
-mess=[mess,"Number of curves cannot be negative or null"," "];
+mess=[[mess],["Number of curves cannot be negative or null"],[" "]];
 ok=false;
 }
 if (win<-1) {
-mess=[mess,"Window number cannot be inferior than -1"," "];
+mess=[[mess],["Window number cannot be inferior than -1"],[" "]];
 ok=false;
 }
 if (N<1) {
-mess=[mess,"Buffer size must be at least 1"," "];
+mess=[[mess],["Buffer size must be at least 1"],[" "]];
 ok=false;
 }
 if (N<2) {
 for (i=1;i<=size(clrs,"*");i+=1) {
 if (clrs(i)>0) {
-mess=[mess,"Buffer size must be at least 2 or Change a color (must be >0)"," "];
+mess=[[mess],["Buffer size must be at least 2 or Change a color (must be >0)"],[" "]];
 ok=false;
 }
 }
 }
 if (vec_y(1)>=vec_y(2)) {
-mess=[mess,"Ymax must be higher than Ymin"," "];
+mess=[[mess],["Ymax must be higher than Ymin"],[" "]];
 ok=false;
 }
 if (vec_x(1)>=vec_x(2)) {
-mess=[mess,"Xmax must be higher than Xmin"," "];
+mess=[[mess],["Xmax must be higher than Xmin"],[" "]];
 ok=false;
 }
 if (vec_z(1)>=vec_z(2)) {
-mess=[mess,"Zmax must be higher than Zmin"," "];
+mess=[[mess],["Zmax must be higher than Zmin"],[" "]];
 ok=false;
 }
 if (ok) {
@@ -3757,14 +3757,14 @@ in1=nbr_curves*ones(3,1);
 in2=ones(3,1);
 [model,graphics,ok]=set_io(model,graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[]);
 if (wpos==[]) {
-wpos=[-1,-1];
+wpos=[[-1],[-1]];
 }
 if (wdim==[]) {
-wdim=[-1,-1];
+wdim=[[-1],[-1]];
 }
-rpar=[vec_x.slice(),vec_y.slice(),vec_z.slice(),param3ds.slice()];
+rpar=[[vec_x.slice()],[vec_y.slice()],[vec_z.slice()],[param3ds.slice()]];
 size_siz=size(siz,"*");
-ipar=[win,size_siz,N,clrs.slice(),siz.slice(),1,wpos.slice(),wdim.slice(),nbr_curves];
+ipar=[[win],[size_siz],[N],[clrs.slice()],[siz.slice()],[1],[wpos.slice()],[wdim.slice()],[nbr_curves]];
 model.rpar=rpar;
 model.ipar=ipar;
 graphics.exprs=exprs;
@@ -3783,8 +3783,8 @@ CSCOPXY.prototype.define = function CSCOPXY() {
 win=-1;
 clrs=4;
 siz=1;
-wdim=[600,400];
-wpos=[-1,-1];
+wdim=[[600],[400]];
+wpos=[[-1],[-1]];
 N=2;
 xmin=-15;
 xmax=15;
@@ -3793,15 +3793,15 @@ ymax=+15;
 nbr_curves=1;
 model=scicos_model();
 model.sim=list("cscopxy",4);
-model.in1=[1,1];
-model.in2=[1,1];
-model.intyp=[1,1];
+model.in1=[[1],[1]];
+model.in2=[[1],[1]];
+model.intyp=[[1],[1]];
 model.evtin=1;
-model.rpar=[xmin,xmax,ymin,ymax];
-model.ipar=[win,1,N,clrs,siz,1,wpos.slice(),wdim.slice(),nbr_curves];
+model.rpar=[[xmin],[xmax],[ymin],[ymax]];
+model.ipar=[[win],[1],[N],[clrs],[siz],[1],[wpos.slice()],[wdim.slice()],[nbr_curves]];
 model.blocktype="d";
 model.dep_ut=[false,false];
-exprs=[string(nbr_curves),sci2exp(clrs),sci2exp(siz),string(win),sci2exp([]),sci2exp(wdim),string(xmin),string(xmax),string(ymin),string(ymax),string(N)];
+exprs=[[string(nbr_curves)],[sci2exp(clrs)],[sci2exp(siz)],[string(win)],[sci2exp([])],[sci2exp(wdim)],[string(xmin)],[string(xmax)],[string(ymin)],[string(ymax)],[string(N)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -3815,41 +3815,41 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,nbr_curves,clrs,siz,win,wpos,wdim,xmin,xmax,ymin,ymax,N,exprs]=scicos_getvalue("Set Scope parameters",["Number of Curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin","Xmax","Ymin","Ymax","Buffer size"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,nbr_curves,clrs,siz,win,wpos,wdim,xmin,xmax,ymin,ymax,N,exprs]=scicos_getvalue("Set Scope parameters",[["Number of Curves"],["color (>0) or mark (<0)"],["line or mark size"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Xmin"],["Xmax"],["Ymin"],["Ymax"],["Buffer size"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
-mess=[mess,"Window position must be [] or a 2 vector"," "];
+mess=[[mess],["Window position must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (size(wdim,"*")!=0&&size(wdim,"*")!=2) {
-mess=[mess,"Window dim must be [] or a 2 vector"," "];
+mess=[[mess],["Window dim must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (nbr_curves<=0) {
-mess=[mess,"Number of Curves cannot be negative or null"," "];
+mess=[[mess],["Number of Curves cannot be negative or null"],[" "]];
 ok=false;
 }
 if (win<-1) {
-mess=[mess,"Window number cannot be inferior than -1"," "];
+mess=[[mess],["Window number cannot be inferior than -1"],[" "]];
 ok=false;
 }
 if (N<1) {
-mess=[mess,"Buffer size must be at least 1"," "];
+mess=[[mess],["Buffer size must be at least 1"],[" "]];
 ok=false;
 }
 if (N==1&&clrs>0) {
-mess=[mess,"Buffer size must be at least 2"," "];
+mess=[[mess],["Buffer size must be at least 2"],[" "]];
 ok=false;
 }
 if (ymin>=ymax) {
-mess=[mess,"Ymax must be greater than Ymin"," "];
+mess=[[mess],["Ymax must be greater than Ymin"],[" "]];
 ok=false;
 }
 if (xmin>=xmax) {
-mess=[mess,"Xmax must be greater than Xmin"," "];
+mess=[[mess],["Xmax must be greater than Xmin"],[" "]];
 ok=false;
 }
 if (!ok) {
@@ -3859,13 +3859,13 @@ in1=nbr_curves*ones(2,1);
 in2=ones(2,1);
 [model,graphics,ok]=set_io(model,graphics,list([in1,in2],ones(2,1)),list(),ones(1,1),[]);
 if (wpos==[]) {
-wpos=[-1,-1];
+wpos=[[-1],[-1]];
 }
 if (wdim==[]) {
-wdim=[-1,-1];
+wdim=[[-1],[-1]];
 }
-rpar=[xmin,xmax,ymin,ymax];
-ipar=[win,1,N,clrs,siz,1,wpos.slice(),wdim.slice(),nbr_curves];
+rpar=[[xmin],[xmax],[ymin],[ymax]];
+ipar=[[win],[1],[N],[clrs],[siz],[1],[wpos.slice()],[wdim.slice()],[nbr_curves]];
 model.rpar=rpar;
 model.ipar=ipar;
 graphics.exprs=exprs;
@@ -3909,7 +3909,7 @@ if (size(exprs,"*")==2) {
 exprs=exprs[1-1];
 }
 while (true) {
-[ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"OUTIMPL_f")," ",gettext("Implicit output port")],gettext("Port number"),list("vec",1),exprs);
+[ok,prt,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"OUTIMPL_f")],[" "],[gettext("Implicit output port")]],gettext("Port number"),list("vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -3954,7 +3954,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CLKOUTV_f")," ",gettext("Event output port")],gettext("Port number"),list("vec",1),exprs);
+[ok,prt,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLKOUTV_f")],[" "],[gettext("Event output port")]],gettext("Port number"),list("vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -3976,9 +3976,9 @@ break;
 function CFSCOPE() {
 CFSCOPE.prototype.define = function CFSCOPE() {
 win=-1;
-wdim=[600,400];
-wpos=[-1,-1];
-clrs=[1,3,5,7,9,11,13,15];
+wdim=[[600],[400]];
+wpos=[[-1],[-1]];
+clrs=[[1],[3],[5],[7],[9],[11],[13],[15]];
 N=2;
 ymin=-15;
 ymax=+15;
@@ -3986,11 +3986,11 @@ per=30;
 model=scicos_model();
 model.sim=list("cfscope",4);
 model.evtin=1;
-model.rpar=[0,ymin,ymax,per];
-model.ipar=[win,1,N,clrs,wpos,wdim,1,1];
+model.rpar=[[0],[ymin],[ymax],[per]];
+model.ipar=[[win],[1],[N],[clrs],[wpos],[wdim],[1],[1]];
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[strcat(string(clrs)," "),string(win),sci2exp([]),sci2exp(wdim),string(ymin),string(ymax),string(per),string(N),string([1])];
+exprs=[[strcat(string(clrs)," ")],[string(win)],[sci2exp([])],[sci2exp(wdim)],[string(ymin)],[string(ymax)],[string(per)],[string(N)],[string([1])]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -4004,57 +4004,57 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,clrs,win,wpos,wdim,ymin,ymax,per,N,wu,exprs]=scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Links to view"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",-1),exprs);
+[ok,clrs,win,wpos,wdim,ymin,ymax,per,N,wu,exprs]=scicos_getvalue("Set Scope parameters",[["Color (>0) or mark (<0) vector (8 entries)"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Ymin"],["Ymax"],["Refresh period"],["Buffer size","Links to view"]],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
-mess=[mess,"Window position must be [] or a 2 vector"," "];
+mess=[[mess],["Window position must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (size(wdim,"*")!=0&&size(wdim,"*")!=2) {
-mess=[mess,"Window dim must be [] or a 2 vector"," "];
+mess=[[mess],["Window dim must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (win<-1) {
-mess=[mess,"Window number cannot be inferior than -1"," "];
+mess=[[mess],["Window number cannot be inferior than -1"],[" "]];
 ok=false;
 }
 if (per<=0) {
-mess=[mess,"Refresh period must be positive"," "];
+mess=[[mess],["Refresh period must be positive"],[" "]];
 ok=false;
 }
 if (N<2) {
-mess=[mess,"Buffer size must be at least 2"," "];
+mess=[[mess],["Buffer size must be at least 2"],[" "]];
 ok=false;
 }
 if (ymin>=ymax) {
-mess=[mess,"Ymax must be greater than Ymin"," "];
+mess=[[mess],["Ymax must be greater than Ymin"],[" "]];
 ok=false;
 }
 if (wu<0) {
-mess=[mess,"Link to view must be positive"," "];
+mess=[[mess],["Link to view must be positive"],[" "]];
 ok=false;
 }
 if (!ok) {
-message(["Some specified values are inconsistent:"," ",mess]);
+message([["Some specified values are inconsistent:"],[" "],[mess]]);
 }
 if (ok) {
 if (wpos==[]) {
-wpos=[-1,-1];
+wpos=[[-1],[-1]];
 }
 if (wdim==[]) {
-wdim=[-1,-1];
+wdim=[[-1],[-1]];
 }
-rpar=[0,ymin,ymax,per];
+rpar=[[0],[ymin],[ymax],[per]];
 if (size(clrs,"*")>8) {
 clrs=clrs.slice(1-1,8);
 }
 if (size(clrs,"*")<8) {
 clrs[8-1]=0;
 }
-ipar=[win,1,N,clrs.slice(),wpos.slice(),wdim.slice(),size(wu,"*"),wu.slice()];
+ipar=[[win],[1],[N],[clrs.slice()],[wpos.slice()],[wdim.slice()],[size(wu,"*")],[wu.slice()]];
 model.rpar=rpar;
 model.ipar=ipar;
 model.firing=[];
@@ -4081,8 +4081,8 @@ model=scicos_model();
 model.sim=list("writeau",2);
 model.in1=in1;
 model.evtin=1;
-model.dstate=[-1,lunit,zeros((nin+1)*N,1)];
-model.ipar=[length(fname),_str2code(frmt),N,swap,_str2code(fname)];
+model.dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
+model.ipar=[[length(fname)],[_str2code(frmt)],[N],[swap],[_str2code(fname)]];
 model.blocktype="d";
 model.dep_ut=[true,false];
 exprs=[string(N),string(swap)];
@@ -4102,7 +4102,7 @@ ipar=model.ipar;
 dstate=model.dstate;
 lunit=dstate(2);
 while (true) {
-[ok,N,swap,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"WRITEAU_f")," ",gettext("Write \'.au\' sound file on audio device")],[gettext("Buffer Size"),gettext("Swap Mode (0:No, 1:Yes)")],list("vec",1,"vec",1),exprs);
+[ok,N,swap,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WRITEAU_f")],[" "],[gettext("Write \'.au\' sound file on audio device")]],[[gettext("Buffer Size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -4121,9 +4121,9 @@ block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),
 ok=false;
 }
 if (ok) {
-ipar=[length(fname1),_str2code(frmt1),N,swap,_str2code(fname1)];
+ipar=[[length(fname1)],[_str2code(frmt1)],[N],[swap],[_str2code(fname1)]];
 if (prod(size(dstate))!=(nin+1)*N+2) {
-dstate=[-1,lunit,zeros((nin+1)*N,1)];
+dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
 }
 model.in1=1;
 model.dstate=dstate;
@@ -4150,11 +4150,11 @@ model=scicos_model();
 model.sim=list("writec",2);
 model.in1=in1;
 model.evtin=1;
-model.dstate=[-1,lunit,zeros((nin+1)*N,1)];
-model.ipar=[length(fname),_str2code(frmt),N,swap,_str2code(fname)];
+model.dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
+model.ipar=[[length(fname)],[_str2code(frmt)],[N],[swap],[_str2code(fname)]];
 model.blocktype="d";
 model.dep_ut=[true,false];
-exprs=[sci2exp(in1),fname,frmt,string(N),string(swap)];
+exprs=[[sci2exp(in1)],[fname],[frmt],[string(N),string(swap)]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -4173,7 +4173,7 @@ lunit=dstate(2);
 fname=exprs[2-1];
 frmt=exprs[3-1];
 while (true) {
-[ok,in1,fname1,frmt1,N,swap,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"WRITEC_f")," ",gettext("Write to C binary file")],[gettext("Input Size"),gettext("Output File Name"),gettext("Output Format"),gettext("Buffer Size"),gettext("Swap Mode (0:No, 1:Yes)")],list("vec",1,"str",1,"str",1,"vec",1,"vec",1),exprs);
+[ok,in1,fname1,frmt1,N,swap,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WRITEC_f")],[" "],[gettext("Write to C binary file")]],[[gettext("Input Size")],[gettext("Output File Name")],[gettext("Output Format")],[gettext("Buffer Size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",1,"str",1,"str",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -4211,9 +4211,9 @@ ok=false;
 }
 frmt1=part(frmt1,1,3);
 if (ok) {
-ipar=[length(fname1),_str2code(frmt1),N,swap,_str2code(fname1)];
+ipar=[[length(fname1)],[_str2code(frmt1)],[N],[swap],[_str2code(fname1)]];
 if (prod(size(dstate))!=(nin+1)*N+2) {
-dstate=[-1,lunit,zeros((nin+1)*N,1)];
+dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
 }
 model.in1=nin;
 model.dstate=dstate;
@@ -4230,27 +4230,27 @@ break;
 function CMSCOPE() {
 CMSCOPE.prototype.define = function CMSCOPE() {
 win=-1;
-in1=[1,1];
-wdim=[-1,-1];
-wpos=[-1,-1];
-clrs=[1,3,5,7,9,11,13,15];
+in1=[[1],[1]];
+wdim=[[-1],[-1]];
+wpos=[[-1],[-1]];
+clrs=[[1],[3],[5],[7],[9],[11],[13],[15]];
 N=20;
-ymin=[-1,-5];
-ymax=[1,5];
-per=[30,30];
-yy=[transpose(ymin.slice()),transpose(ymax.slice())];
+ymin=[[-1],[-5]];
+ymax=[[1],[5]];
+per=[[30],[30]];
+yy=[[transpose(ymin.slice())],[transpose(ymax.slice())]];
 period=transpose(per.slice());
 model=scicos_model();
 model.sim=list("cmscope",4);
 model.in1=in1;
-model.in2=[1,1];
-model.intyp=[1,1];
+model.in2=[[1],[1]];
+model.intyp=[[1],[1]];
 model.evtin=1;
-model.rpar=[0,period.slice(),yy.slice()];
-model.ipar=[win,size(in1,"*"),N,wpos.slice(),wdim.slice(),in1.slice(),clrs.slice(1-1,sum(in1))];
+model.rpar=[[0],[period.slice()],[yy.slice()]];
+model.ipar=[[win],[size(in1,"*")],[N],[wpos.slice()],[wdim.slice()],[in1.slice()],[clrs.slice(1-1,sum(in1))]];
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[strcat(string(in1)," "),strcat(string(clrs)," "),string(win),sci2exp([]),sci2exp([]),strcat(string(ymin)," "),strcat(string(ymax)," "),strcat(string(per)," "),string(N),string(0),emptystr()];
+exprs=[[strcat(string(in1)," ")],[strcat(string(clrs)," ")],[string(win)],[sci2exp([])],[sci2exp([])],[strcat(string(ymin)," ")],[strcat(string(ymax)," ")],[strcat(string(per)," ")],[string(N)],[string(0)],[emptystr()]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -4264,59 +4264,59 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,in1,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=scicos_getvalue("Set Scope parameters",["Input ports sizes","Drawing colors (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin vector","Ymax vector","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec",1,"vec",1,"str",1),exprs);
+[ok,in1,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=scicos_getvalue("Set Scope parameters",[["Input ports sizes"],["Drawing colors (>0) or mark (<0)"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Ymin vector"],["Ymax vector"],["Refresh period"],["Buffer size"],["Accept herited events 0/1","Name of Scope (label&Id)"]],list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec",1,"vec",1,"str",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (size(in1,"*")<=0) {
-mess=[mess,"Block must have at least one input port"," "];
+mess=[[mess],["Block must have at least one input port"],[" "]];
 ok=false;
 }
 if (min(in1)<=0) {
-mess=[mess,"Port sizes must be positive"," "];
+mess=[[mess],["Port sizes must be positive"],[" "]];
 ok=false;
 }
 if (size(clrs,"*")<sum(in1)) {
-mess=[mess,"Not enough colors defined (at least "+string(sum(in1))+")"," "];
+mess=[[mess],["Not enough colors defined (at least "+string(sum(in1))+")"],[" "]];
 ok=false;
 }
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
-mess=[mess,"Window position must be [] or a 2 vector"," "];
+mess=[[mess],["Window position must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (size(wdim,"*")!=0&&size(wdim,"*")!=2) {
-mess=[mess,"Window dim must be [] or a 2 vector"," "];
+mess=[[mess],["Window dim must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (win<-1) {
-mess=[mess,"Window number can\'t be  < -1"," "];
+mess=[[mess],["Window number can\'t be  < -1"],[" "]];
 ok=false;
 }
 if (size(per,"*")!=size(ymin,"*")) {
-mess=[mess,"Size of Refresh Period must equal size of Ymin/Ymax vector"," "];
+mess=[[mess],["Size of Refresh Period must equal size of Ymin/Ymax vector"],[" "]];
 ok=false;
 }
 for (i=1;i<=size(per,"*");i+=1) {
 if ((per(i)<=0)) {
-mess=[mess,"Refresh Period must be positive"," "];
+mess=[[mess],["Refresh Period must be positive"],[" "]];
 ok=false;
 }
 }
 if (N<2) {
-mess=[mess,"Buffer size must be at least 2"," "];
+mess=[[mess],["Buffer size must be at least 2"],[" "]];
 ok=false;
 }
 if (or(ymin>=ymax)) {
-mess=[mess,"Ymax must be greater than Ymin"," "];
+mess=[[mess],["Ymax must be greater than Ymin"],[" "]];
 ok=false;
 }
 if (!or(heritance==[0,1])) {
-mess=[mess,"Accept herited events must be 0 or 1"," "];
+mess=[[mess],["Accept herited events must be 0 or 1"],[" "]];
 ok=false;
 }
 if (!ok) {
-message(["Some specified values are inconsistent:"," ",mess]);
+message([["Some specified values are inconsistent:"],[" "],[mess]]);
 }
 if (ok) {
 in1=in1.slice();
@@ -4326,17 +4326,17 @@ in2=ones(a,1);
 }
 if (ok) {
 if (wpos==[]) {
-wpos=[-1,-1];
+wpos=[[-1],[-1]];
 }
 if (wdim==[]) {
-wdim=[-1,-1];
+wdim=[[-1],[-1]];
 }
 if (ok) {
 period=transpose(per.slice());
-yy=[transpose(ymin.slice()),transpose(ymax.slice())];
-rpar=[0,period.slice(),yy.slice()];
+yy=[[transpose(ymin.slice())],[transpose(ymax.slice())]];
+rpar=[[0],[period.slice()],[yy.slice()]];
 clrs=clrs.slice(1-1,sum(in1));
-ipar=[win,size(in1,"*"),N,wpos.slice(),wdim.slice(),in1.slice(),clrs.slice(),heritance];
+ipar=[[win],[size(in1,"*")],[N],[wpos.slice()],[wdim.slice()],[in1.slice()],[clrs.slice()],[heritance]];
 model.evtin=ones(1-heritance,1);
 model.dstate=[];
 model.rpar=rpar;
@@ -4367,11 +4367,11 @@ model.in1=-1;
 model.in2=-2;
 model.intyp=1;
 model.evtin=1;
-model.ipar=[cmin,cmax,size_c];
-model.rpar=[alpha_c,beta_c,colormap.slice()];
+model.ipar=[[cmin],[cmax],[size_c]];
+model.rpar=[[alpha_c],[beta_c],[colormap.slice()]];
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string("jetcolormap(25)"),string(cmin),string(cmax)];
+exprs=[[string("jetcolormap(25)")],[string(cmin)],[string(cmax)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -4385,25 +4385,25 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,colormap,cmin,cmax,exprs]=scicos_getvalue("Set Scope parameters",["ColorMap","Minimum level range","Maximum level range"],list("vec",-1,"vec",1,"vec",1),exprs);
+[ok,colormap,cmin,cmax,exprs]=scicos_getvalue("Set Scope parameters",[["ColorMap"],["Minimum level range"],["Maximum level range"]],list("vec",-1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (cmax<=cmin) {
-mess=[mess,"Error with minimum and maximum value"," "];
+mess=[[mess],["Error with minimum and maximum value"],[" "]];
 ok=false;
 }
 if (!ok) {
-message(["Some specified values are inconsistent:"," ",mess]);
+message([["Some specified values are inconsistent:"],[" "],[mess]]);
 }
 if (ok) {
 size_c=size(colormap.slice(),1);
-sol=inv([cmin,1,cmax,1])*[1,size_c/3];
+sol=inv([[cmin,1],[cmax,1]])*[[1],[size_c/3]];
 alpha_c=sol(1);
 beta_c=sol(2);
-ipar=[cmin,cmax,size_c];
-rpar=[alpha_c,beta_c,colormap.slice()];
+ipar=[[cmin],[cmax],[size_c]];
+rpar=[[alpha_c],[beta_c],[colormap.slice()]];
 model.ipar=ipar;
 model.rpar=rpar;
 graphics.exprs=exprs;
@@ -4419,18 +4419,18 @@ function CEVENTSCOPE() {
 CEVENTSCOPE.prototype.define = function CEVENTSCOPE() {
 nclock=1;
 win=-1;
-clrs=[1,3,5,7,9,11,13,15];
-wdim=[600,400];
-wpos=[-1,-1];
+clrs=[[1],[3],[5],[7],[9],[11],[13],[15]];
+wdim=[[600],[400]];
+wpos=[[-1],[-1]];
 per=30;
 model=scicos_model();
 model.sim=list("cevscpe",4);
 model.evtin=1;
 model.rpar=per;
-model.ipar=[win,1,clrs[nclock-1],wpos.slice(),wdim.slice()];
+model.ipar=[[win],[1],[clrs[nclock-1]],[wpos.slice()],[wdim.slice()]];
 model.blocktype="d";
 model.dep_ut=[false,false];
-exprs=[sci2exp(nclock),strcat(sci2exp(clrs[nclock-1])," "),string(win),sci2exp([]),sci2exp(wdim),string(per)];
+exprs=[[sci2exp(nclock)],[strcat(sci2exp(clrs[nclock-1])," ")],[string(win)],[sci2exp([])],[sci2exp(wdim)],[string(per)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -4444,7 +4444,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,nclock,clrs,win,wpos,wdim,per,exprs]=scicos_getvalue("Set Scope parameters",["Number of event inputs","colors c (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Refresh period"],list("vec",1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",1),exprs);
+[ok,nclock,clrs,win,wpos,wdim,per,exprs]=scicos_getvalue("Set Scope parameters",[["Number of event inputs"],["colors c (>0) or mark (<0)"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Refresh period"]],list("vec",1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",1),exprs);
 nclock=int(nclock);
 clrs=int(clrs);
 win=int(win);
@@ -4453,43 +4453,43 @@ break;
 }
 mess=[];
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
-mess=[mess,"Window position must be [] or a 2 vector"," "];
+mess=[[mess],["Window position must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (size(wdim,"*")!=0&&size(wdim,"*")!=2) {
-mess=[mess,"Window dim must be [] or a 2 vector"," "];
+mess=[[mess],["Window dim must be [] or a 2 vector"],[" "]];
 ok=false;
 }
 if (nclock<=0) {
-mess=[mess,"Block must have at least one input event"," "];
+mess=[[mess],["Block must have at least one input event"],[" "]];
 ok=false;
 }
 if (size(clrs,"*")!=nclock) {
-mess=[mess,"Inputs color c size must be equal to Number of inputs"," "];
+mess=[[mess],["Inputs color c size must be equal to Number of inputs"],[" "]];
 ok=false;
 }
 if (win<-1) {
-mess=[mess,"Window number cannot be inferior than -1"," "];
+mess=[[mess],["Window number cannot be inferior than -1"],[" "]];
 ok=false;
 }
 if (per<=0) {
-mess=[mess,"Refresh period must be positive"," "];
+mess=[[mess],["Refresh period must be positive"],[" "]];
 ok=false;
 }
 if (ok) {
 [model,graphics,ok]=set_io(model,graphics,list(),list(),ones(nclock,1),[]);
 } else {
-message(["Some specified values are inconsistent:"," ",mess]);
+message([["Some specified values are inconsistent:"],[" "],[mess]]);
 }
 if (ok) {
 if (wpos==[]) {
-wpos=[-1,-1];
+wpos=[[-1],[-1]];
 }
 if (wdim==[]) {
-wdim=[-1,-1];
+wdim=[[-1],[-1]];
 }
 rpar=per;
-ipar=[win,1,clrs.slice(),wpos.slice(),wdim.slice()];
+ipar=[[win],[1],[clrs.slice()],[wpos.slice()],[wdim.slice()]];
 model.rpar=rpar;
 model.ipar=ipar;
 graphics.exprs=exprs;
@@ -4536,13 +4536,13 @@ model.sim=list("affich2",4);
 model.in1=in1(1,1);
 model.in2=in1(1,2);
 model.evtin=1;
-model.dstate=[-1,0,0,1,1,0,zeros(in1(1,1)*in1(1,2),1)];
-model.ipar=[font,fontsize,colr,1000,nt,nd,in1(1,1)];
+model.dstate=[[-1],[0],[0],[1],[1],[0],[zeros(in1(1,1)*in1(1,2),1)]];
+model.ipar=[[font],[fontsize],[colr],[1000],[nt],[nd],[in1(1,1)]];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
 model.label="";
-exprs=[sci2exp([model.in1,model.in2]),string(font),string(fontsize),string(colr),string(nt),string(nd),string(0)];
+exprs=[[sci2exp([model.in1,model.in2])],[string(font)],[string(fontsize)],[string(colr)],[string(nt)],[string(nd)],[string(0)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -4556,43 +4556,43 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,in1,font,fontsize,colr,nt,nd,herit,exprs]=scicos_getvalue("Set  parameters",["Input Size","Font number","Font size","Color","Total number of digits","Number of rational part digits","Block inherits (1) or not (0)"],list("mat",[1,2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,in1,font,fontsize,colr,nt,nd,herit,exprs]=scicos_getvalue("Set  parameters",[["Input Size","Font number"],["Font size"],["Color"],["Total number of digits"],["Number of rational part digits"],["Block inherits (1) or not (0)"]],list("mat",[1,2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (font<=0) {
-mess=[mess,"Font number must be positive"," "];
+mess=[[mess],["Font number must be positive"],[" "]];
 ok=false;
 }
 if (fontsize<=0) {
-mess=[mess,"Font size must be positive"," "];
+mess=[[mess],["Font size must be positive"],[" "]];
 ok=false;
 }
 if (nt<=3) {
-mess=[mess,"Total number of digits must be greater than 3"," "];
+mess=[[mess],["Total number of digits must be greater than 3"],[" "]];
 ok=false;
 }
 if (nd<0) {
-mess=[mess,"Number of rational part digits must be ","greater or equal 0"," "];
+mess=[[mess],["Number of rational part digits must be ","greater or equal 0"],[" "]];
 ok=false;
 }
 if (!ok) {
-message(["Some specified values are inconsistent:"," ",mess]);
+message([["Some specified values are inconsistent:"],[" "],[mess]]);
 }
 if (!or(herit==[0,1])) {
-mess=[mess,"Accept inherited values are 0 and 1"," "];
+mess=[[mess],["Accept inherited values are 0 and 1"],[" "]];
 ok=false;
 }
 if (!ok) {
-message(["Some specified values are inconsistent:"," ",mess]);
+message([["Some specified values are inconsistent:"],[" "],[mess]]);
 }
 if (ok) {
 [model,graphics,ok]=set_io(model,graphics,list(in1,1),list(),ones(1-herit,1),[]);
 }
 if (ok) {
-model.ipar=[font,fontsize,colr,nt,nd,in1(1,1)];
-model.dstate=[-1,0,0,1,1,0,zeros(in1(1,1)*in1(1,2),1)];
+model.ipar=[[font],[fontsize],[colr],[nt],[nd],[in1(1,1)]];
+model.dstate=[[-1],[0],[0],[1],[1],[0],[zeros(in1(1,1)*in1(1,2),1)]];
 model.evtin=ones(1-herit,1);
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -4618,12 +4618,12 @@ model.out=[];
 model.evtin=[1];
 model.evtout=[];
 model.rpar=[];
-model.ipar=[nz,length(varnam),transpose(ascii(varnam))];
+model.ipar=[[nz],[length(varnam)],[transpose(ascii(varnam))]];
 model.blocktype="d";
 model.firing=[];
 model.dep_ut=[false,false];
 gr_i=[];
-exprs=[string(nz),string(varnam),string(herit)];
+exprs=[[string(nz)],[string(varnam)],[string(herit)]];
 x=standard_define([4,2],model,exprs,gr_i);
 }
 TOWS_c.prototype.details = function TOWS_c() {
@@ -4636,7 +4636,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,nz,varnam,herit,exprs]=scicos_getvalue("Set Xcos buffer block",["Size of buffer","Scilab variable name","Inherit (no:0, yes:1)"],list("vec",1,"str",1,"vec",1),exprs);
+[ok,nz,varnam,herit,exprs]=scicos_getvalue("Set Xcos buffer block",[["Size of buffer"],["Scilab variable name"],["Inherit (no:0, yes:1)"]],list("vec",1,"str",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -4647,7 +4647,7 @@ ok=false;
 r=false;
 ierr=execstr("r = validvar(varnam)","errcatch");
 if (!r||ierr!=0||length(varnam)>19) {
-message(["Invalid variable name.","Please choose another variable name."]);
+message([["Invalid variable name."],["Please choose another variable name."]]);
 ok=false;
 }
 execstr("if type("+varnam+") <> 17 | or(fieldnames("+varnam+") <> [\"values\"; \"time\"]) then"+" message([\"Protected variable name.\"; \"Please choose another variable name.\"]);"+" ok = %f;"+" end","errcatch");
@@ -4658,7 +4658,7 @@ model.blocktype="x";
 } else {
 model.blocktype="d";
 }
-model.ipar=[nz,length(varnam),transpose(ascii(varnam))];
+model.ipar=[[nz],[length(varnam)],[transpose(ascii(varnam))]];
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -4741,7 +4741,7 @@ if (size(exprs,"*")==2) {
 exprs=exprs[1-1];
 }
 while (true) {
-[ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"OUT_f")," ",gettext("Regular output port")],gettext("Port number"),list("vec",1),exprs);
+[ok,prt,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"OUT_f")],[" "],[gettext("Regular output port")]],gettext("Port number"),list("vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -4762,7 +4762,7 @@ break;
 function SWITCH_f() {
 SWITCH_f.prototype.define = function SWITCH_f() {
 i0=0;
-in1=[-1,-1];
+in1=[[-1],[-1]];
 nin=2;
 model=scicos_model();
 model.sim=list("switchn",2);
@@ -4772,7 +4772,7 @@ model.ipar=i0;
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,true];
-exprs=[string(nin),string(i0+1)];
+exprs=[[string(nin)],[string(i0+1)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -4787,7 +4787,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 ipar=model.ipar;
 while (true) {
-[ok,nin,z0,exprs]=scicos_getvalue("Set switch parameters",["number of inputs","connected input"],list("vec",1,"vec",1),exprs);
+[ok,nin,z0,exprs]=scicos_getvalue("Set switch parameters",[["number of inputs"],["connected input"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -4862,8 +4862,8 @@ z0=1;
 nout=2;
 model=scicos_model();
 model.sim=list("selector_m",4);
-model.out=[-1,-1];
-model.out2=[-2,-2];
+model.out=[[-1],[-1]];
+model.out2=[[-2],[-2]];
 model.outtyp=1;
 model.in1=-1;
 model.in2=-2;
@@ -4877,7 +4877,7 @@ model.evtin=ones(nout,1);
 model.dstate=z0;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(1),sci2exp(nout),sci2exp(z0)];
+exprs=[[sci2exp(1)],[sci2exp(nout)],[sci2exp(z0)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -4891,7 +4891,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,typ,nout,z0,exprs]=scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ...)","number of outputs","initial connected output"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,typ,nout,z0,exprs]=scicos_getvalue("Set parameters",[["Datatype(1= real double  2=Complex 3=int32 ...)"],["number of outputs"],["initial connected output"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -4923,7 +4923,7 @@ break;
 function SELECT_f() {
 SELECT_f.prototype.define = function SELECT_f() {
 z0=0;
-in1=[-1,-1];
+in1=[[-1],[-1]];
 nin=2;
 model=scicos_model();
 model.sim=list("selector",2);
@@ -4933,7 +4933,7 @@ model.evtin=ones(in1);
 model.dstate=z0;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(nin),string(z0+1)];
+exprs=[[string(nin)],[string(z0+1)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -4947,7 +4947,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,nin,z0,exprs]=scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),exprs);
+[ok,nin,z0,exprs]=scicos_getvalue("Set parameters",[["number of inputs"],["initial connected input"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -4984,7 +4984,7 @@ model.dep_ut=[false,false];
 mo=modelica();
 mo.model="gotomo";
 mo.inputs="p";
-exprs=["A",sci2exp(1)];
+exprs=[["A"],[sci2exp(1)]];
 gr_i=[];
 x=standard_define([2,1],model,exprs,gr_i);
 x.graphics.in_implicit=["I"];
@@ -4999,7 +4999,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,tag,tagvis,exprs]=scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),exprs);
+[ok,tag,tagvis,exprs]=scicos_getvalue("Set parameters",[["Tag"],["Tag Visibility(1=Local 2=scoped 3= global)"]],list("str",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -5064,7 +5064,7 @@ ok=false;
 }
 } else {
 if (size(out,"*")<2||size(out,"*")>8||or(out==0)) {
-message(["Block must have at least 2 and at most 8 output ports","and size 0 is not allowed"]   );
+message([["Block must have at least 2 and at most 8 output ports"],["and size 0 is not allowed"]]);
 ok=false;
 } else {
 if (min(out)<0) {
@@ -5096,8 +5096,8 @@ nzz=1;
 rpar=0;
 model=scicos_model();
 model.sim=list("switch2_m",4);
-model.in1=[-1,1,-1];
-model.in2=[-2,1,-2];
+model.in1=[[-1],[1],[-1]];
+model.in2=[[-2],[1],[-2]];
 model.intyp=1;
 model.out=-1;
 model.out2=-2;
@@ -5108,7 +5108,7 @@ model.nzcross=nzz;
 model.nmode=1;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(1),string(ipar),string(rpar),string(nzz)];
+exprs=[[sci2exp(1)],[string(ipar)],[string(rpar)],[string(nzz)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -5122,7 +5122,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,ot,rule,thra,nzz,exprs]=scicos_getvalue("Set parameters",["Datatype (1=real double  2=complex 3=int32 ...)","pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,ot,rule,thra,nzz,exprs]=scicos_getvalue("Set parameters",[["Datatype (1=real double  2=complex 3=int32 ...)"],["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)"],["threshold a"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -5216,7 +5216,7 @@ model.ipar=int(1);
 model.blocktype="d";
 model.firing=-1;
 model.dep_ut=[false,false];
-exprs=["A",sci2exp(1)];
+exprs=[["A"],[sci2exp(1)]];
 x=standard_define([2,1],model,exprs," ");
 x.graphics.id="Goto";
 }
@@ -5230,7 +5230,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,tag,tagvis,exprs]=scicos_getvalue("Set block parameters",["Tag","Tag Visibility (1=Local 2=Scoped 3=Global)"],list("str",-1,"vec",1),exprs);
+[ok,tag,tagvis,exprs]=scicos_getvalue("Set block parameters",[["Tag"],["Tag Visibility (1=Local 2=Scoped 3=Global)"]],list("str",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -5295,7 +5295,7 @@ ok=false;
 }
 } else {
 if (size(in1,"*")<2||size(in1,"*")>8||or(in1==0)) {
-message(["Block must have at least two input ports","and at most eight, and size 0 is not allowed. "]);
+message([["Block must have at least two input ports"],["and at most eight, and size 0 is not allowed. "]]);
 ok=false;
 } else {
 if (min(in1)<0) {
@@ -5377,7 +5377,7 @@ model.ipar=int(1);
 model.opar=list("A");
 model.blocktype="c";
 model.dep_ut=[false,false];
-exprs=["A",sci2exp(1)];
+exprs=[["A"],[sci2exp(1)]];
 gr_i=[];
 x=standard_define([2,1],model,exprs,gr_i);
 x.graphics.id="Goto";
@@ -5392,7 +5392,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,tag,tagvis,exprs]=scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),exprs);
+[ok,tag,tagvis,exprs]=scicos_getvalue("Set parameters",[["Tag"],["Tag Visibility(1=Local 2=scoped 3= global)"]],list("str",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -5466,7 +5466,7 @@ break;
 /* autogenerated from "macros/Branching/SWITCH2.sci" */
 function SWITCH2() {
 SWITCH2.prototype.define = function SWITCH2() {
-in1=[-1,1,-1];
+in1=[[-1],[1],[-1]];
 ipar=[0];
 nzz=1;
 rpar=0;
@@ -5480,7 +5480,7 @@ model.nzcross=nzz;
 model.nmode=1;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(ipar),string(rpar),string(nzz)];
+exprs=[[string(ipar)],[string(rpar)],[string(nzz)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -5494,7 +5494,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,rule,thra,nzz,exprs]=scicos_getvalue("Set parameters",["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,rule,thra,nzz,exprs]=scicos_getvalue("Set parameters",[["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)"],["threshold a"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -5559,7 +5559,7 @@ ok=false;
 }
 } else {
 if (size(in1,"*")<2||or(in1==0)||size(in1,"*")>31) {
-message(["Block must have at least two input ports","and at most 31. Size 0 is not allowed. "]);
+message([["Block must have at least two input ports"],["and at most 31. Size 0 is not allowed. "]]);
 ok=false;
 } else {
 if (min(in1)<0) {
@@ -5600,7 +5600,7 @@ model.dep_ut=[true,false];
 model.nmode=0;
 model.nzcross=0;
 gr_i=[];
-exprs=[string(out),string(1),string(model.nmode)];
+exprs=[[string(out)],[string(1)],[string(model.nmode)]];
 x=standard_define([4,2],model,exprs,gr_i);
 }
 ESELECT_f.prototype.details = function ESELECT_f() {
@@ -5619,7 +5619,7 @@ exprs[3-1]=string(0);
 }
 model=arg1.model;
 while (true) {
-[ok,out,inh,nmod,exprs]=scicos_getvalue("Set ESELECT block parameters",["number of output event ports","Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,out,inh,nmod,exprs]=scicos_getvalue("Set ESELECT block parameters",[["number of output event ports"],["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -5703,7 +5703,7 @@ needcompile=resume(needcompile)
 function ISELECT_f() {
 ISELECT_f.prototype.define = function ISELECT_f() {
 z0=0;
-out=[-1,-1];
+out=[[-1],[-1]];
 nout=2;
 model=scicos_model();
 model.sim=list("selector",2);
@@ -5713,7 +5713,7 @@ model.evtin=ones(out);
 model.dstate=z0;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(nout),string(z0+1)];
+exprs=[[string(nout)],[string(z0+1)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -5727,7 +5727,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,nout,z0,exprs]=scicos_getvalue("Set parameters",["number of outputs","initial connected output"],list("vec",1,"vec",1),exprs);
+[ok,nout,z0,exprs]=scicos_getvalue("Set parameters",[["number of outputs"],["initial connected output"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -5753,8 +5753,8 @@ z0=1;
 nin=2;
 model=scicos_model();
 model.sim=list("selector_m",4);
-model.in1=[-1,-1];
-model.in2=[-2,-2];
+model.in1=[[-1],[-1]];
+model.in2=[[-2],[-2]];
 model.intyp=1;
 model.out=-1;
 model.out2=-2;
@@ -5768,7 +5768,7 @@ model.evtin=ones(nin,1);
 model.dstate=z0;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(1),sci2exp(nin),sci2exp(z0)];
+exprs=[[sci2exp(1)],[sci2exp(nin)],[sci2exp(z0)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -5782,7 +5782,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,typ,nin,z0,exprs]=scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ..)","number of inputs","initial connected input"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,typ,nin,z0,exprs]=scicos_getvalue("Set parameters",[["Datatype(1= real double  2=Complex 3=int32 ..)"],["number of inputs"],["initial connected input"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -5862,8 +5862,8 @@ needcompile=resume(needcompile)
 /* autogenerated from "macros/Branching/M_SWITCH.sci" */
 function M_SWITCH() {
 M_SWITCH.prototype.define = function M_SWITCH() {
-in1=[1,-1,-1];
-ipar=[1,3];
+in1=[[1],[-1],[-1]];
+ipar=[[1],[3]];
 nin=2;
 model=scicos_model();
 model.sim=list("mswitch",4);
@@ -5872,7 +5872,7 @@ model.out=-1;
 model.ipar=ipar;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(nin),string(ipar)];
+exprs=[[string(nin)],[string(ipar)]];
 gr_i=[];
 x=standard_define([2.5,2],model,exprs,gr_i);
 }
@@ -5886,7 +5886,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,nin,base,rule,exprs]=scicos_getvalue("Set parameters",["number of inputs","zero base indexing (0), otherwise 1","rounding rule: int (0), round (1), ceil (2), floor (3)"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,nin,base,rule,exprs]=scicos_getvalue("Set parameters",[["number of inputs"],["zero base indexing (0), otherwise 1"],["rounding rule: int (0), round (1), ceil (2), floor (3)"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -5900,20 +5900,20 @@ message("base indexing must be 1 or 0");
 message("incorrect rounding rule");
 } else {
 if (nin==1) {
-in1=[1,1,-1,1];
+in1=[[1,1],[-1,1]];
 out=[1,1];
 } else {
-in1=[1,-ones(nin,1)];
-in2=[1,-2*ones(nin,1)];
+in1=[[1],[-ones(nin,1)]];
+in2=[[1],[-2*ones(nin,1)]];
 in1=[in1,in2];
 out=[-1,-2];
 }
-it=[-1,-2*ones(nin,1)];
+it=[[-1],[-2*ones(nin,1)]];
 ot=-2;
 [model,graphics,ok]=set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
 if (ok) {
 graphics.exprs=exprs;
-model.ipar=[base,rule];
+model.ipar=[[base],[rule]];
 x.graphics=graphics;
 x.model=model;
 break;
@@ -6062,7 +6062,7 @@ ok=false;
 }
 } else {
 if (size(out,"*")<2||or(out==0)||size(out,"*")>31) {
-message(["Block must have at least 2 and at most 31 output ports","size 0 is not allowed"]);
+message([["Block must have at least 2 and at most 31 output ports"],["size 0 is not allowed"]]);
 ok=false;
 } else {
 if (min(out)<0) {
@@ -6090,7 +6090,7 @@ break;
 function RELAY_f() {
 RELAY_f.prototype.define = function RELAY_f() {
 i0=0;
-in1=[-1,-1];
+in1=[[-1],[-1]];
 nin=2;
 model=scicos_model();
 model.sim=list("relay",2);
@@ -6101,7 +6101,7 @@ model.dstate=i0;
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,true];
-exprs=[string(nin),string(i0+1)];
+exprs=[[string(nin)],[string(i0+1)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -6116,7 +6116,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 ipar=model.ipar;
 while (true) {
-[ok,nin,z0,exprs]=scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),exprs);
+[ok,nin,z0,exprs]=scicos_getvalue("Set parameters",[["number of inputs"],["initial connected input"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -6138,7 +6138,7 @@ break;
 /* autogenerated from "macros/Branching/NRMSOM_f.sci" */
 function NRMSOM_f() {
 NRMSOM_f.prototype.define = function NRMSOM_f() {
-in1=[-1,-1];
+in1=[[-1],[-1]];
 nin=2;
 model=scicos_model();
 model.sim="junk";
@@ -6207,7 +6207,7 @@ if (size(exprs,"*")==2) {
 exprs=exprs[1-1];
 }
 while (true) {
-[ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"INIMPL_f")," ",gettext("Implicit input port")," "],"Port Number",list("vec",1),exprs);
+[ok,prt,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INIMPL_f")],[" "],[gettext("Implicit input port")],[" "]],"Port Number",list("vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -6248,13 +6248,13 @@ model.outtyp=1;
 model.evtin=1;
 model.evtout=[];
 model.state=[];
-model.dstate=[int(rand()*(10^7-1)),0*a.slice()];
+model.dstate=[[int(rand()*(10^7-1))],[0*a.slice()]];
 model.rpar=[a.slice(),b.slice()];
 model.ipar=flag;
 model.blocktype="d";
 model.firing=[];
 model.dep_ut=[false,false];
-exprs=[sci2exp(1),string(flag),sci2exp([a]),sci2exp([b]),sci2exp([model.dstate(1),int(rand()*(10^7-1))])];
+exprs=[[sci2exp(1)],[string(flag)],[sci2exp([a])],[sci2exp([b])],[sci2exp([model.dstate(1),int(rand()*(10^7-1))])]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -6271,7 +6271,7 @@ if (size(exprs,"*")==14) {
 exprs[9-1]=[];
 }
 while (true) {
-[ok,typ,flag,a,b,seed_c,exprs]=scicos_getvalue(["Set Random generator block parameters","flag = 0 : Uniform distribution A is min and A+B max","flag = 1 : Normal distribution A is mean and B deviation"," ","A and B must be matrix with equal sizes"],["Datatype(1=real double  2=complex)","flag","A","B","SEED"],list("vec",1,"vec",1,"mat",[-1,-2],"mat","[-1 -2]","mat",[1,2]),exprs);
+[ok,typ,flag,a,b,seed_c,exprs]=scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be matrix with equal sizes"]],[["Datatype(1=real double  2=complex)"],["flag"],["A"],["B"],["SEED"]],list("vec",1,"vec",1,"mat",[-1,-2],"mat","[-1 -2]","mat",[1,2]),exprs);
 if (!ok) {
 break;
 }
@@ -6281,14 +6281,14 @@ message("flag must be equal to 1 or 0");
 out=size(a);
 if (typ==1) {
 function_name="rndblk_m";
-model.rpar=[real(a.slice()),real(b.slice())];
-model.dstate=[seed_c(1),0*real(a.slice())];
+model.rpar=[[real(a.slice())],[real(b.slice())]];
+model.dstate=[[seed_c(1)],[0*real(a.slice())]];
 ot=1;
 } else if (typ==2) {
 function_name="rndblkz_m";
 ot=2;
-model.rpar=[real(a.slice()),imag(a.slice()),real(b.slice()),imag(b.slice())];
-model.dstate=[seed_c.slice(),0*[real(a.slice()),imag(a.slice())]];
+model.rpar=[[real(a.slice())],[imag(a.slice())],[real(b.slice())],[imag(b.slice())]];
+model.dstate=[[seed_c.slice()],[0*[[real(a.slice())],[imag(a.slice())]]]];
 } else {
 message("Datatype is not supported");
 ok=false;
@@ -6381,10 +6381,10 @@ if (size(exprs,"*")==2) {
 exprs=exprs[1-1];
 }
 if (size(exprs,"*")==1) {
-exprs=[exprs[1-1],"[-1 -2]","-1"];
+exprs=[[exprs[1-1]],["[-1 -2]"],["-1"]];
 }
 while (true) {
-[ok,prt,otsz,ot,exprs]=getvalue(_("Set Input block parameters"),[_("Port number"),_("Outport size ([-1 -2] for inherit)"),_("Outport Type (-1 for inherit)")],list("vec",1,"vec",-1,"vec",1),exprs);
+[ok,prt,otsz,ot,exprs]=getvalue(_("Set Input block parameters"),[[_("Port number")],[_("Outport size ([-1 -2] for inherit)")],[_("Outport Type (-1 for inherit)")]],list("vec",1,"vec",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -6423,10 +6423,10 @@ model=scicos_model();
 model.sim=list("tkscaleblk",5);
 model.out=1;
 model.evtin=1;
-model.rpar=[a,b,f];
+model.rpar=[[a],[b],[f]];
 model.blocktype="d";
 model.dep_ut=[false,false];
-exprs=[sci2exp(a),sci2exp(b),sci2exp(f)];
+exprs=[[sci2exp(a)],[sci2exp(b)],[sci2exp(f)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -6439,10 +6439,10 @@ x=arg1;
 graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
-[ok,a,b,f,exprs]=scicos_getvalue("Set scale block parameters",["Min value","Max value","Normalization"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,a,b,f,exprs]=scicos_getvalue("Set scale block parameters",[["Min value"],["Max value"],["Normalization"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (ok) {
 graphics.exprs=exprs;
-model.rpar=[a,b,f];
+model.rpar=[[a],[b],[f]];
 x.graphics=graphics;
 x.model=model;
 }
@@ -6451,7 +6451,7 @@ x.model=model;
 /* autogenerated from "macros/Sources/STEP.sci" */
 function STEP() {
 STEP.prototype.define = function STEP() {
-rpar=[0,1];
+rpar=[[0],[1]];
 model=scicos_model();
 model.sim=list("step_func",4);
 model.evtin=1;
@@ -6463,7 +6463,7 @@ model.firing=1;
 model.rpar=rpar;
 model.blocktype="c";
 model.dep_ut=[false,false];
-exprs=[string(1),string(rpar)];
+exprs=[[string(1)],[string(rpar)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -6477,7 +6477,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,temps,in1,fi,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"STEP_FUNCTION")," ",gettext("Step Function")," "],[gettext("Step Time"),gettext("Initial Value"),gettext("Final Value")],list("vec",1,"vec",-1,"vec",-1),exprs);
+[ok,temps,in1,fi,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"STEP_FUNCTION")],[" "],[gettext("Step Function")],[" "]],[[gettext("Step Time")],[gettext("Initial Value")],[gettext("Final Value")]],list("vec",1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -6501,9 +6501,9 @@ model.outtyp=1;
 if (ok) {
 model.firing=temps;
 if (temps==0) {
-rpar=[fi,fi];
+rpar=[[fi],[fi]];
 } else {
-rpar=[in1,fi];
+rpar=[[in1],[fi]];
 }
 model.rpar=rpar;
 graphics.exprs=exprs;
@@ -6517,18 +6517,18 @@ break;
 /* autogenerated from "macros/Sources/CURV_f.sci" */
 function CURV_f() {
 CURV_f.prototype.define = function CURV_f() {
-xx=[0,1,2];
-yy=[-5,5,0];
+xx=[[0],[1],[2]];
+yy=[[-5],[5],[0]];
 rect=[0,-5,2,5];
-axisdata=[2,10,2,10];
-ipar=[size(xx,1),axisdata.slice()];
-rpar=[xx,yy,rect.slice()];
+axisdata=[[2],[10],[2],[10]];
+ipar=[[size(xx,1)],[axisdata.slice()]];
+rpar=[[xx],[yy],[rect.slice()]];
 model=scicos_model();
 model.sim="intplt";
 model.in1=[];
 model.out=1;
-model.rpar=[xx,yy,rect.slice()];
-model.ipar=[size(xx,1),axisdata.slice()];
+model.rpar=[[xx],[yy],[rect.slice()]];
+model.ipar=[[size(xx,1)],[axisdata.slice()]];
 model.blocktype="c";
 model.dep_ut=[false,true];
 gr_i=[];
@@ -6567,9 +6567,9 @@ if (ok) {
 model.sim="intplt";
 model.firing=[];
 rect=gc(1);
-model.rpar=[xx.slice(),yy.slice(),rect.slice()];
+model.rpar=[[xx.slice()],[yy.slice()],[rect.slice()]];
 axisdata=gc(2);
-model.ipar=[size(xx,"*"),axisdata.slice()];
+model.ipar=[[size(xx,"*")],[axisdata.slice()]];
 x.graphics=graphics;
 x.model=model;
 break;
@@ -6583,7 +6583,7 @@ RAMP.prototype.define = function RAMP() {
 slope=0;
 iout=0;
 stt=0;
-rpar=[slope,stt,iout];
+rpar=[[slope],[stt],[iout]];
 model=scicos_model();
 model.sim=list("ramp",4);
 model.in1=[];
@@ -6607,14 +6607,14 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,slope,stt,iout,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"RAMP")," ",gettext("Ramp function")," "],[gettext("Slope"),gettext("Start Time"),gettext("Initial Value")],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,slope,stt,iout,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"RAMP")],[" "],[gettext("Ramp function")],[" "]],[[gettext("Slope")],[gettext("Start Time")],[gettext("Initial Value")]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 if (stt<0) {
 block_parameter_error(msprintf(gettext("Wrong value for \'Start Time\' parameter: %e."),stt),gettext("Null or positive integer expected."));
 } else {
-model.rpar=[slope,stt,iout];
+model.rpar=[[slope],[stt],[iout]];
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
@@ -6630,10 +6630,10 @@ evtdly=EVTDLY_c("define");
 evtdly.graphics.orig=[320,232];
 evtdly.graphics.sz=[40,40];
 evtdly.graphics.flip=true;
-evtdly.graphics.exprs=["0.1","0.1"];
+evtdly.graphics.exprs=[["0.1"],["0.1"]];
 evtdly.graphics.pein=6;
 evtdly.graphics.peout=3;
-evtdly.model.rpar=[0.1,0.1];
+evtdly.model.rpar=[[0.1],[0.1]];
 evtdly.model.firing=0.1;
 output_port=CLKOUT_f("define");
 output_port.graphics.orig=[399,162];
@@ -6643,17 +6643,17 @@ output_port.graphics.exprs="1";
 output_port.graphics.pein=5;
 output_port.model.ipar=1;
 split=CLKSPLIT_f("define");
-split.graphics.orig=[380.71066,172];
+split.graphics.orig=[[380.71066],[172]];
 split.graphics.pein=3;
-split.graphics.peout=[5,6];
+split.graphics.peout=[[5],[6]];
 gr_i=[];
 diagram=scicos_diagram();
 diagram.objs[1-1]=output_port;
 diagram.objs[2-1]=evtdly;
-diagram.objs[3-1]=scicos_link(xx=[340,340,380.71],yy=[226.29,172,172],ct=[5,-1],from=[2,1],to=[4,1]);
+diagram.objs[3-1]=scicos_link(xx=[[340],[340],[380.71]],yy=[[226.29],[172],[172]],ct=[5,-1],from=[2,1],to=[4,1]);
 diagram.objs[4-1]=split;
-diagram.objs[5-1]=scicos_link(xx=[380.71,399],yy=[172,172],ct=[5,-1],from=[4,1],to=[1,1]);
-diagram.objs[6-1]=scicos_link(xx=[380.71,380.71,340,340],yy=[172,302,302,277.71],ct=[5,-1],from=[4,2],to=[2,1]);
+diagram.objs[5-1]=scicos_link(xx=[[380.71],[399]],yy=[[172],[172]],ct=[5,-1],from=[4,1],to=[1,1]);
+diagram.objs[6-1]=scicos_link(xx=[[380.71],[380.71],[340],[340]],yy=[[172],[302],[302],[277.71]],ct=[5,-1],from=[4,2],to=[2,1]);
 x=scicos_block();
 x.gui="CLOCK_c";
 x.graphics.sz=[2,2];
@@ -6686,7 +6686,7 @@ t0_old=model.firing;
 dt_old=model.rpar(1);
 model_n=model;
 while (true) {
-[ok,dt,t0,exprs0]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CLOCK_c")," ",gettext("Event clock generator")," ",gettext("&nbsp; Do not start if \'Initialisation Time\' is negative")," "],[gettext("Period"),gettext("Initialisation Time")],list("vec",1,"vec",1),exprs);
+[ok,dt,t0,exprs0]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLOCK_c")],[" "],[gettext("Event clock generator")],[" "],[gettext("&nbsp; Do not start if \'Initialisation Time\' is negative")],[" "]],[[gettext("Period")],[gettext("Initialisation Time")]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -6696,7 +6696,7 @@ ok=false;
 }
 if (ok) {
 xx.graphics.exprs=exprs0;
-model.rpar=[dt,t0];
+model.rpar=[[dt],[t0]];
 model.firing=t0;
 xx.model=model;
 arg1.model.rpar.objs[path-1]=xx;
@@ -6798,10 +6798,10 @@ model.evtin=1;
 model.out=1;
 model.out2=1;
 model.dstate=0;
-model.ipar=[rule,maxim,minim];
+model.ipar=[[rule],[maxim],[minim]];
 model.blocktype="c";
 model.dep_ut=[false,false];
-exprs=[string(minim),string(maxim),string(rule)];
+exprs=[[string(minim)],[string(maxim)],[string(rule)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -6815,7 +6815,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,minim,maxim,rule,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"Counter")," ",gettext("Integer counter generator")," "],[gettext("Minimum"),gettext("Maximum"),gettext("Rule (1:Increment, 2:Decrement)")],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,minim,maxim,rule,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"Counter")],[" "],[gettext("Integer counter generator")],[" "]],[[gettext("Minimum")],[gettext("Maximum")],[gettext("Rule (1:Increment, 2:Decrement)")]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -6828,7 +6828,7 @@ block_parameter_error(msprintf(gettext("Wrong value for \'Rule\' parameter: %d")
 } else {
 graphics.exprs=exprs;
 model.dstate=0;
-model.ipar=[rule,maxim,minim];
+model.ipar=[[rule],[maxim],[minim]];
 x.graphics=graphics;
 x.model=model;
 break;
@@ -6848,14 +6848,14 @@ model.sim=list("fromws_c",4);
 model.out=-1;
 model.out2=-2;
 model.outtyp=-1;
-model.ipar=[length(varnam),_str2code(varnam),Method,ZC,OutEnd];
+model.ipar=[[length(varnam)],[_str2code(varnam)],[Method],[ZC],[OutEnd]];
 model.evtin=[1];
 model.evtout=[1];
 model.firing=[0];
 model.blocktype="d";
 model.dep_ut=[false,true];
 gr_i=[];
-exprs=[string(varnam),string(Method),string(ZC),string(OutEnd)];
+exprs=[[string(varnam)],[string(Method)],[string(ZC)],[string(OutEnd)]];
 x=standard_define([3.5,2],model,exprs,gr_i);
 }
 FROMWS_c.prototype.details = function FROMWS_c() {
@@ -6868,7 +6868,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,varnam,Method,ZC,OutEnd,exprs]=scicos_getvalue("Set From_Workspace block parameters",["Variable name","Interpolation Method","Enable zero crossing(0:No, 1:Yes)?","Output at end(0:Zero, 1:Hold, 2:Repeat)"],list("str",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,varnam,Method,ZC,OutEnd,exprs]=scicos_getvalue("Set From_Workspace block parameters",[["Variable name"],["Interpolation Method"],["Enable zero crossing(0:No, 1:Yes)?"],["Output at end(0:Zero, 1:Hold, 2:Repeat)"]],list("str",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -6887,11 +6887,11 @@ ok=false;
 r=false;
 ierr=execstr("r=validvar(varnam)","errcatch");
 if (!r) {
-message(["Invalid variable name.","Please choose another variable name."]);
+message([["Invalid variable name."],["Please choose another variable name."]]);
 ok=false;
 }
 if (ok) {
-model.ipar=[length(varnam),_str2code(varnam),Method,ZC,OutEnd];
+model.ipar=[[length(varnam)],[_str2code(varnam)],[Method],[ZC],[OutEnd]];
 [model,graphics,ok]=set_io(model,graphics,list(),list([-1,-2],-1),1,1);
 if (ok) {
 graphics.exprs=exprs;
@@ -6937,12 +6937,12 @@ model=scicos_model();
 model.sim="rndblk";
 model.out=out;
 model.evtin=1;
-model.dstate=[int(rand()*(10^7-1)),0*a.slice()];
-model.rpar=[a.slice(),b.slice()];
+model.dstate=[[int(rand()*(10^7-1))],[0*a.slice()]];
+model.rpar=[[a.slice()],[b.slice()]];
 model.ipar=flag;
 model.blocktype="d";
 model.dep_ut=[false,false];
-exprs=[string(flag),sci2exp(a.slice()),sci2exp(b.slice()),string(model.dstate(1))];
+exprs=[[string(flag)],[sci2exp(a.slice())],[sci2exp(b.slice())],[string(model.dstate(1))]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -6959,10 +6959,10 @@ if (size(exprs,"*")==5) {
 exprs=exprs.slice(1-1,3);
 }
 if (size(exprs,"*")==3) {
-exprs=[exprs,string(model.dstate(1))];
+exprs=[[exprs],[string(model.dstate(1))]];
 }
 while (true) {
-[ok,flag,a,b,seed_c,exprs]=scicos_getvalue(["Set Random generator block parameters","flag = 0 : Uniform distribution A is min and A+B max","flag = 1 : Normal distribution A is mean and B deviation"," ","A and B must be vector with equal sizes","seed is the seed of random number generator (integer<2**31)"],["flag","A","B","seed"],list("vec",1,"vec",-1,"vec","size(%2,\'*\')","vec",1),exprs);
+[ok,flag,a,b,seed_c,exprs]=scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be vector with equal sizes"],["seed is the seed of random number generator (integer<2**31)"]],[["flag"],["A"],["B"],["seed"]],list("vec",1,"vec",-1,"vec","size(%2,\'*\')","vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -6973,8 +6973,8 @@ nout=size(a,"*");
 graphics.exprs=exprs;
 model.out=nout;
 model.ipar=flag;
-model.rpar=[a.slice(),b.slice()];
-model.dstate=[seed_c,0*a.slice()];
+model.rpar=[[a.slice()],[b.slice()]];
+model.dstate=[[seed_c],[0*a.slice()]];
 x.graphics=graphics;
 x.model=model;
 break;
@@ -7000,11 +7000,11 @@ model=scicos_model();
 model.sim=list("readau",2);
 model.out=nout;
 model.evtin=1;
-model.dstate=[1,1,lunit,zeros(N*M,1)];
-model.ipar=[length(fname),_str2code(frmt),ievt,N,M,swap,offset,_str2code(fname),tmask,outmask];
+model.dstate=[[1],[1],[lunit],[zeros(N*M,1)]];
+model.ipar=[[length(fname)],[_str2code(frmt)],[ievt],[N],[M],[swap],[offset],[_str2code(fname)],[tmask],[outmask]];
 model.blocktype="d";
 model.dep_ut=[false,false];
-exprs=[fname,string(N),string(swap)];
+exprs=[[fname],[string(N)],[string(swap)]];
 gr_i=[];
 x=standard_define([5,2],model,exprs,gr_i);
 }
@@ -7025,7 +7025,7 @@ tmask=ipar(imask);
 lunit=dstate(3);
 fname=exprs[1-1];
 while (true) {
-[ok,fname1,N,swap,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"READAU_f")," ",gettext("(Read Audio File)")," ",gettext("Read is done on a binary \'.au\' file")],[gettext("Input File Name"),gettext("Buffer size"),gettext("Swap Mode (0:No, 1:Yes)")],list("str",1,"vec",1,"vec",1),exprs);
+[ok,fname1,N,swap,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"READAU_f")],[" "],[gettext("(Read Audio File)")],[" "],[gettext("Read is done on a binary \'.au\' file")]],[[gettext("Input File Name")],[gettext("Buffer size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("str",1,"vec",1,"vec",1),exprs);
 tmask1=[];
 outmask=1;
 frmt1="uc";
@@ -7050,9 +7050,9 @@ block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),
 [model,graphics,ok]=check_io(model,graphics,[],1,1,[]);
 frmt1=part(frmt1,1,3);
 if (ok) {
-ipar=[length(fname1),_str2code(frmt1),0,N,M,swap,offset,_str2code(fname1),tmask1,outmask.slice()];
+ipar=[[length(fname1)],[_str2code(frmt1)],[0],[N],[M],[swap],[offset,_str2code(fname1)],[tmask1,outmask.slice()]];
 if (prod(size(dstate))!=(N*M)+3) {
-dstate=[-1,-1,lunit,zeros(N*M,1)];
+dstate=[[-1],[-1],[lunit],[zeros(N*M,1)]];
 }
 model.dstate=dstate;
 model.ipar=ipar;
@@ -7138,7 +7138,7 @@ model.rpar=[1,0];
 model.blocktype="d";
 model.firing=-1;
 model.dep_ut=[false,false];
-exprs=[sci2exp(1),sci2exp(0)];
+exprs=[[sci2exp(1)],[sci2exp(0)]];
 x=standard_define([2,2],model,exprs," ");
 }
 SampleCLK.prototype.details = function SampleCLK() {
@@ -7151,7 +7151,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,frequ,offset,exprs]=scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",1,"vec",1),exprs);
+[ok,frequ,offset,exprs]=scicos_getvalue("Set block parameters",[["Sample time"],["Offset"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -7164,11 +7164,11 @@ message("The |Offset| must be less than the Frequency");
 ok=false;
 }
 if (ok) {
-if (or(model.rpar.slice()!=[frequ,offset])) {
+if (or(model.rpar.slice()!=[[frequ],[offset]])) {
 needcompile=4;
 y=needcompile;
 }
-model.rpar=[frequ,offset];
+model.rpar=[[frequ],[offset]];
 model.evtout=1;
 model.firing=-1;
 graphics.exprs=exprs;
@@ -7195,18 +7195,18 @@ offset=1;
 outmask=1;
 ievt=0;
 nout=size(outmask,"*");
-ipar=[length(fname),_str2code(frmt),ievt,N,M,swap,offset,_str2code(fname),tmask,outmask];
+ipar=[[length(fname)],[_str2code(frmt)],[ievt],[N],[M],[swap],[offset],[_str2code(fname)],[tmask],[outmask]];
 model=scicos_model();
 model.sim=list("readc",2);
 model.out=nout;
 model.evtin=1;
 model.evtout=[];
-model.dstate=[1,1,lunit,zeros(N*M,1)];
-model.ipar=[length(fname),_str2code(frmt),ievt,N,M,swap,offset,_str2code(fname),tmask,outmask];
+model.dstate=[[1],[1],[lunit],[zeros(N*M,1)]];
+model.ipar=[[length(fname)],[_str2code(frmt)],[ievt],[N],[M],[swap],[offset],[_str2code(fname)],[tmask],[outmask]];
 model.blocktype="d";
 model.firing=-1;
 model.dep_ut=[false,false];
-exprs=["[]",sci2exp(outmask),fname,frmt,string(M),string(N),string(offset),string(swap)];
+exprs=[["[]"],[sci2exp(outmask)],[fname],[frmt],[string(M)],[string(N)],[string(offset)],[string(swap)]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -7228,7 +7228,7 @@ lunit=dstate(3);
 fname=exprs[3-1];
 frmt=exprs[4-1];
 while (true) {
-[ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"READC_f")," ",gettext("Read from C binary file")],[gettext("Time Record Selection"),gettext("Outputs Record Selection"),gettext("Input File Name"),gettext("Input Format"),gettext("Record Size"),gettext("Buffer Size"),gettext("Initial Record Index"),gettext("Swap Mode (0:No, 1:Yes)")],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"READC_f")],[" "],[gettext("Read from C binary file")]],[[gettext("Time Record Selection")],[gettext("Outputs Record Selection")],[gettext("Input File Name")],[gettext("Input Format")],[gettext("Record Size")],[gettext("Buffer Size")],[gettext("Initial Record Index")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -7282,9 +7282,9 @@ model.firing=-1;
 } else {
 model.firing=0;
 }
-ipar=[length(fname1),_str2code(frmt1),ievt,N,M,swap,offset,_str2code(fname1),tmask1,outmask.slice()];
+ipar=[[length(fname1)],[_str2code(frmt1)],[ievt],[N],[M],[swap],[offset],[_str2code(fname1)],[tmask1],[outmask.slice()]];
 if (prod(size(dstate))!=(N*M)+3) {
-dstate=[-1,-1,lunit,zeros(N*M,1)];
+dstate=[[-1],[-1],[lunit],[zeros(N*M,1)]];
 }
 model.dstate=dstate;
 model.ipar=ipar;
@@ -7304,7 +7304,7 @@ evtdly=EVTDLY_f("define");
 evtdly.graphics.orig=[320,232];
 evtdly.graphics.sz=[40,40];
 evtdly.graphics.flip=true;
-evtdly.graphics.exprs=["0.1","0.1"];
+evtdly.graphics.exprs=[["0.1"],["0.1"]];
 evtdly.graphics.pein=6;
 evtdly.graphics.peout=3;
 evtdly.model.rpar=0.1;
@@ -7317,17 +7317,17 @@ output_port.graphics.exprs="1";
 output_port.graphics.pein=5;
 output_port.model.ipar=1;
 split=CLKSPLIT_f("define");
-split.graphics.orig=[380.71066,172];
+split.graphics.orig=[[380.71066],[172]];
 split.graphics.pein=3;
-split.graphics.peout=[5,6];
+split.graphics.peout=[[5],[6]];
 gr_i=[];
 diagram=scicos_diagram();
 diagram.objs[1-1]=output_port;
 diagram.objs[2-1]=evtdly;
-diagram.objs[3-1]=scicos_link(xx=[340,340,380.71],yy=[226.29,172,172],ct=[5,-1],from=[2,1],to=[4,1]);
+diagram.objs[3-1]=scicos_link(xx=[[340],[340],[380.71]],yy=[[226.29],[172],[172]],ct=[5,-1],from=[2,1],to=[4,1]);
 diagram.objs[4-1]=split;
-diagram.objs[5-1]=scicos_link(xx=[380.71,399],yy=[172,172],ct=[5,-1],from=[4,1],to=[1,1]);
-diagram.objs[6-1]=scicos_link(xx=[380.71,380.71,340,340],yy=[172,302,302,277.71],ct=[5,-1],from=[4,2],to=[2,1]);
+diagram.objs[5-1]=scicos_link(xx=[[380.71],[399]],yy=[[172],[172]],ct=[5,-1],from=[4,1],to=[1,1]);
+diagram.objs[6-1]=scicos_link(xx=[[380.71],[380.71],[340],[340]],yy=[[172],[302],[302],[277.71]],ct=[5,-1],from=[4,2],to=[2,1]);
 x=scicos_block();
 x.gui="CLOCK_f";
 x.graphics.sz=[2,2];
@@ -7360,7 +7360,7 @@ t0_old=model.firing;
 dt_old=model.rpar;
 model_n=model;
 while (true) {
-[ok,dt,t0,exprs0]=scicos_getvalue("Set Clock  block parameters",["Period","Init time"],list("vec",1,"vec",1),exprs);
+[ok,dt,t0,exprs0]=scicos_getvalue("Set Clock  block parameters",[["Period"],["Init time"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -7449,7 +7449,7 @@ model.dstate=ini_c;
 model.ipar=base;
 model.blocktype="c";
 model.dep_ut=[false,false];
-exprs=[string(ini_c),string(base)];
+exprs=[[string(ini_c)],[string(base)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -7463,7 +7463,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,ini_c,base,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"Modulo_Count")," ",gettext("Modulo counter (0 to N counter)")," "],[gettext("Initial State (zero or positive number)"),gettext("Upper Limit (positive number)")],list("vec",1,"vec",1),exprs);
+[ok,ini_c,base,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"Modulo_Count")],[" "],[gettext("Modulo counter (0 to N counter)")],[" "]],[[gettext("Initial State (zero or positive number)")],[gettext("Upper Limit (positive number)")]],list("vec",1,"vec",1),exprs);
 ini_c=int(ini_c);
 base=int(base);
 if (!ok) {
@@ -7512,7 +7512,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,C,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CONST_m")," ",gettext("Constant value generator")," "],gettext("Constant Value"),list("vec",-1),exprs);
+[ok,C,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CONST_m")],[" "],[gettext("Constant value generator")],[" "]],gettext("Constant Value"),list("vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -7582,7 +7582,7 @@ model=arg1.model;
 exprs=graphics.exprs;
 exprs=exprs[1-1];
 while (true) {
-[ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CLKINV_f")," ",gettext("Event input port")," "],"Port Number",list("vec",1),exprs);
+[ok,prt,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLKINV_f")],[" "],[gettext("Event input port")],[" "]],"Port Number",list("vec",1),exprs);
 prt=int(prt);
 if (!ok) {
 break;
@@ -7605,10 +7605,10 @@ break;
 function FROMWSB() {
 FROMWSB.prototype.define = function FROMWSB() {
 scs_m_1=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[-159.096,811.104,-121.216,617.984,1323,1008,331,284,630,480,1426,231,1.4],Title="FROMWSB",tol=[0.0001,0.000001,1.000e-10,100001,0,0],tf=100000,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
-scs_m_1.objs[1-1]=scicos_block(gui="FROMWS_c",graphics=scicos_graphics(orig=[260.37067,261.584],sz=[70,40],flip=true,theta=0,exprs=["V","1","1","0"],pin=[],pout=4,pein=2,peout=2,gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim=list("fromws_c",4),in1=[],in2=[],intyp=1,out=-1,out2=-2,outtyp=-1,evtin=1,evtout=1,state=[],dstate=[],odstate=list(),rpar=[],ipar=[1,-31,1,1,0],opar=list(),blocktype="d",firing=0,dep_ut=[false,true],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[2-1]=scicos_link(xx=[295.37067,295.37067,233.23733,233.23733,295.37067,295.37067],yy=[255.86971,223.45067,223.45067,337.85067,337.85067,307.29829],id="drawlink",thick=[0,0],ct=[5,-1],from=[1,1,0],to=[1,1,1]);
+scs_m_1.objs[1-1]=scicos_block(gui="FROMWS_c",graphics=scicos_graphics(orig=[260.37067,261.584],sz=[70,40],flip=true,theta=0,exprs=[["V"],["1"],["1"],["0"]],pin=[],pout=4,pein=2,peout=2,gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim=list("fromws_c",4),in1=[],in2=[],intyp=1,out=-1,out2=-2,outtyp=-1,evtin=1,evtout=1,state=[],dstate=[],odstate=list(),rpar=[],ipar=[[1],[-31],[1],[1],[0]],opar=list(),blocktype="d",firing=0,dep_ut=[false,true],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m_1.objs[2-1]=scicos_link(xx=[[295.37067],[295.37067],[233.23733],[233.23733],[295.37067],[295.37067]],yy=[[255.86971],[223.45067],[223.45067],[337.85067],[337.85067],[307.29829]],id="drawlink",thick=[0,0],ct=[5,-1],from=[1,1,0],to=[1,1,1]);
 scs_m_1.objs[3-1]=scicos_block(gui="OUT_f",graphics=scicos_graphics(orig=[358.9421,271.584],sz=[20,20],flip=true,theta=0,exprs="1",pin=4,pout=[],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="output",in1=-1,in2=-2,intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[4-1]=scicos_link(xx=[338.9421,358.9421],yy=[281.584,281.584],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[3,1,1]);
+scs_m_1.objs[4-1]=scicos_link(xx=[[338.9421],[358.9421]],yy=[[281.584],[281.584]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[3,1,1]);
 model=scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=-1,out2=-2,outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list());
 gr_i=[];
 x=standard_define([5,2],model,[],gr_i);
@@ -7690,17 +7690,17 @@ typ=newpar;
 /* autogenerated from "macros/Sources/GENSIN_f.sci" */
 function GENSIN_f() {
 GENSIN_f.prototype.define = function GENSIN_f() {
-rpar=[1,1,0];
+rpar=[[1],[1],[0]];
 model=scicos_model();
 model.sim="gensin";
 model.in1=[];
 model.out=1;
 model.out2=1;
 model.outtyp=1;
-model.rpar=[1,1,0];
+model.rpar=[[1],[1],[0]];
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[string(rpar(1)),string(rpar(2)),string(rpar(3))];
+exprs=[[string(rpar(1))],[string(rpar(2))],[string(rpar(3))]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -7714,7 +7714,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,M,F,P,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"GENSIN_f")," ",gettext("Sine wave generator")," "],[gettext("Magnitude"),gettext("Frequency (rad/s)"),gettext("Phase (rad)")],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,M,F,P,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"GENSIN_f")],[" "],[gettext("Sine wave generator")],[" "]],[[gettext("Magnitude")],[gettext("Frequency (rad/s)")],[gettext("Phase (rad)")]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -7724,7 +7724,7 @@ ok=false;
 }
 if (ok) {
 [model,graphics,ok]=check_io(model,graphics,[],1,[],[]);
-model.rpar=[M,F,P];
+model.rpar=[[M],[F],[P]];
 model.out2=1;
 model.outtyp=1;
 graphics.exprs=exprs;
@@ -7740,8 +7740,8 @@ function MATMUL() {
 MATMUL.prototype.define = function MATMUL() {
 model=scicos_model();
 model.sim=list("matmul_m",4);
-model.in1=[-1,-2];
-model.in2=[-2,-3];
+model.in1=[[-1],[-2]];
+model.in2=[[-2],[-3]];
 model.out=-1;
 model.out2=-3;
 model.dep_ut=[true,false];
@@ -7769,7 +7769,7 @@ if (size(label,"*")==2) {
 label[3-1]=sci2exp(1);
 }
 while (true) {
-[ok,dtype,rule,np,exprs]=scicos_getvalue(["Set MATMUL parameter","For the Multipication rule:","    1= Matrix by Matrix","    2= Matrix by Matrix element wise ","    3= Matrix by Scalar","In the third case the second input will be the scalar"],["Datatype(1=real double 2=Complex 3=int32 ...)","Multiplication rule","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",1,"vec",1),label);
+[ok,dtype,rule,np,exprs]=scicos_getvalue([["Set MATMUL parameter"],["For the Multipication rule:"],["    1= Matrix by Matrix"],["    2= Matrix by Matrix element wise "],["    3= Matrix by Scalar"],["In the third case the second input will be the scalar"]],[["Datatype(1=real double 2=Complex 3=int32 ...)"],["Multiplication rule"],["Do on Overflow(0=Nothing 1=Saturate 2=Error)"]],list("vec",1,"vec",1,"vec",1),label);
 if (!ok) {
 break;
 }
@@ -7785,8 +7785,8 @@ ok=false;
 if ((dtype==1||dtype==2)) {
 np=0;
 }
-TABMIN=[0,0,-(2^31),-(2^15),-(2^7),0,0,0];
-TABMAX=[0,0,(2^31)-1,(2^15)-1,(2^7)-1,(2^32)-1,(2^16)-1,(2^8)-1];
+TABMIN=[[0],[0],[-(2^31)],[-(2^15)],[-(2^7)],[0],[0],[0]];
+TABMAX=[[0],[0],[(2^31)-1],[(2^15)-1],[(2^7)-1],[(2^32)-1],[(2^16)-1],[(2^8)-1]];
 if (rule==2) {
 if (np==0) {
 model.sim=list("matmul2_m",4);
@@ -7863,20 +7863,20 @@ kmax=TABMAX(dtype);
 it=dtype*ones(1,2);
 ot=dtype;
 if (rule==1) {
-in1=[-1,-2,-2,-3];
+in1=[[-1,-2],[-2,-3]];
 out=[-1,-3];
 } else if (rule==2) {
-in1=[-1,-2,-1,-2];
+in1=[[-1,-2],[-1,-2]];
 out=[-1,-2];
 } else {
-in1=[-1,-2,1,1];
+in1=[[-1,-2],[1,1]];
 out=[-1,-2];
 }
 [model,graphics,ok]=set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
 if (ok) {
 label=exprs;
 model.ipar=rule;
-model.rpar=[kmin,kmax];
+model.rpar=[[kmin],[kmax]];
 graphics.exprs=label;
 x.graphics=graphics;
 x.model=model;
@@ -7896,8 +7896,8 @@ model.sim=list(function_name,funtyp);
 model.in1=-1;
 model.in2=-2;
 model.intyp=2;
-model.out=[-1,-1];
-model.out2=[-2,-2];
+model.out=[[-1],[-1]];
+model.out2=[[-2],[-2]];
 model.outtyp=[1,1];
 model.evtin=[];
 model.evtout=[];
@@ -7934,11 +7934,11 @@ if ((decomptyp==1)) {
 function_name="matz_abs";
 in1=[-1,-2];
 it=2;
-out=[-1,-2,-1,-2];
+out=[[-1,-2],[-1,-2]];
 ot=[1,1];
 } else if ((decomptyp==2)) {
 function_name="matz_absc";
-in1=[-1,-2,-1,-2];
+in1=[[-1,-2],[-1,-2]];
 it=[1,1];
 out=[-1,-2];
 ot=2;
@@ -8345,8 +8345,8 @@ model.sim=list(function_name,funtyp);
 model.in1=-1;
 model.in2=-1;
 model.intyp=1;
-model.out=[-1,-1];
-model.out2=[-1,-1];
+model.out=[[-1],[-1]];
+model.out2=[[-1],[-1]];
 model.outtyp=[1,1];
 model.evtin=[];
 model.evtout=[];
@@ -8426,7 +8426,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp(0)];
+label=[[sci2exp(1)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);
 }
@@ -8443,7 +8443,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,typ,decomptyp,lab]=scicos_getvalue("Set MATSUM block parameters",["Datatype(1=real double  2=Complex)","Sum along (0=all 1=lines  2=Columns)"],list("vec",1,"vec",1),label);
+[ok,typ,decomptyp,lab]=scicos_getvalue("Set MATSUM block parameters",[["Datatype(1=real double  2=Complex)"],["Sum along (0=all 1=lines  2=Columns)"]],list("vec",1,"vec",1),label);
 if (!ok) {
 break;
 }
@@ -8507,8 +8507,8 @@ model=scicos_model();
 function_name="mat_bksl";
 funtyp=4;
 model.sim=list(function_name,funtyp);
-model.in1=[-1,-1];
-model.in2=[-2,-3];
+model.in1=[[-1],[-1]];
+model.in2=[[-2],[-3]];
 model.intyp=[1,1];
 model.out=-2;
 model.out2=-3;
@@ -8593,7 +8593,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp([1,1]),sci2exp([1,1])];
+label=[[sci2exp(1)],[sci2exp([1,1])],[sci2exp([1,1])]];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);
 }
@@ -8610,7 +8610,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,typ,l1,out,lab]=scicos_getvalue("Set MATRESH block parameters",["Datatype(1=real double  2=Complex)","input size","output size desired"],list("vec",-1,"vec",-1,"vec",-1),label);
+[ok,typ,l1,out,lab]=scicos_getvalue("Set MATRESH block parameters",[["Datatype(1=real double  2=Complex)","input size"],["output size desired"]],list("vec",-1,"vec",-1,"vec",-1),label);
 if (!ok) {
 break;
 }
@@ -8670,13 +8670,13 @@ needcompile=resume(needcompile)
 /* autogenerated from "macros/MatrixOp/MATCATV.sci" */
 function MATCATV() {
 MATCATV.prototype.define = function MATCATV() {
-l1=[2,2];
+l1=[[2],[2]];
 model=scicos_model();
 function_name="mat_catv";
 funtyp=4;
 model.sim=list(function_name,funtyp);
-model.in2=[-1,-1];
-model.in1=[-2,-3];
+model.in2=[[-1],[-1]];
+model.in1=[[-2],[-3]];
 model.intyp=[-1,-1];
 model.out=0;
 model.out2=-1;
@@ -8756,7 +8756,7 @@ if (size(label,"*")==1) {
 label[2-1]=sci2exp(1);
 }
 while (true) {
-[ok,typ,rule,exprs]=scicos_getvalue("Set MATTRAN Block",["Datatype(1=real double 2=Complex)","rule (1=.\' 2=\')"],list("vec",1,"vec",1),label);
+[ok,typ,rule,exprs]=scicos_getvalue("Set MATTRAN Block",[["Datatype(1=real double 2=Complex)"],["rule (1=.\' 2=\')"]],list("vec",1,"vec",1),label);
 if (!ok) {
 break;
 }
@@ -8799,8 +8799,8 @@ model=scicos_model();
 function_name="ricc_m";
 funtyp=4;
 model.sim=list(function_name,funtyp);
-model.in1=[-1,-1,-1];
-model.in2=[-1,-1,-1];
+model.in1=[[-1],[-1],[-1]];
+model.in2=[[-1],[-1],[-1]];
 model.intyp=[1,1,1];
 model.out=-1;
 model.out2=-1;
@@ -8810,11 +8810,11 @@ model.evtout=[];
 model.state=[];
 model.dstate=[];
 model.rpar=[];
-model.ipar=[1,1];
+model.ipar=[[1],[1]];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp(1)];
+label=[[sci2exp(1)],[sci2exp(1)]];
 gr_i=[];
 x=standard_define([2,2],model,label,gr_i);
 }
@@ -8831,7 +8831,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,tpe,mod,exprs]=scicos_getvalue("Set RICC Block",["Type (1=Cont  2=Disc)","Model(1=Schr  2=sign(cont) inv(disc))"],list("vec",1,"vec",1),label);
+[ok,tpe,mod,exprs]=scicos_getvalue("Set RICC Block",[["Type (1=Cont  2=Disc)"],["Model(1=Schr  2=sign(cont) inv(disc))"]],list("vec",1,"vec",1),label);
 if (!ok) {
 break;
 }
@@ -8842,7 +8842,7 @@ ot=1;
 label=exprs;
 [model,graphics,ok]=set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
 if (ok) {
-model.ipar=[tpe,mod];
+model.ipar=[[tpe],[mod]];
 graphics.exprs=label;
 arg1.graphics=graphics;
 arg1.model=model;
@@ -8862,8 +8862,8 @@ model.sim=list(function_name,funtyp);
 model.in1=-1;
 model.in2=-2;
 model.intyp=2;
-model.out=[-1,-1];
-model.out2=[-2,-2];
+model.out=[[-1],[-1]];
+model.out2=[[-2],[-2]];
 model.outtyp=[1,1];
 model.evtin=[];
 model.evtout=[];
@@ -8900,11 +8900,11 @@ if ((decomptyp==1)) {
 function_name="matz_reim";
 in1=[-1,-2];
 it=2;
-out=[-1,-2,-1,-2];
+out=[[-1,-2],[-1,-2]];
 ot=[1,1];
 } else if ((decomptyp==2)) {
 function_name="matz_reimc";
-in1=[-1,-2,-1,-2];
+in1=[[-1,-2],[-1,-2]];
 it=[1,1];
 out=[-1,-2];
 ot=2;
@@ -8934,8 +8934,8 @@ model=scicos_model();
 function_name="mat_cath";
 funtyp=4;
 model.sim=list(function_name,funtyp);
-model.in1=[-1,-1];
-model.in2=[-2,-3];
+model.in1=[[-1],[-1]];
+model.in2=[[-2],[-3]];
 model.intyp=[1,1];
 model.out=-1;
 model.out2=0;
@@ -9010,7 +9010,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp(1)];
+label=[[sci2exp(1)],[sci2exp(1)]];
 gr_i=[];
 x=standard_define([2,2],model,label,gr_i);
 }
@@ -9027,7 +9027,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,typ,decomptyp,lab]=scicos_getvalue("Set MATSVD block parameters",["Datatype(1=real double  2=Complex)","decomposition type (1=singular values  2=sing values+matrix U & V)"],list("vec",1,"vec",1),label);
+[ok,typ,decomptyp,lab]=scicos_getvalue("Set MATSVD block parameters",[["Datatype(1=real double  2=Complex)"],["decomposition type (1=singular values  2=sing values+matrix U & V)"]],list("vec",1,"vec",1),label);
 if (!ok) {
 break;
 }
@@ -9041,7 +9041,7 @@ ot=1;
 } else if ((decomptyp==2)) {
 function_name="mat_svd";
 in1=[-1,-2];
-out=[-1,-1,-1,-2,-2,-2];
+out=[[-1,-1],[-1,-2],[-2,-2]];
 ot=[1,1,1];
 } else {
 message("decomposition type is not supported");
@@ -9057,7 +9057,7 @@ ot=1;
 } else if ((decomptyp==2)) {
 function_name="matz_svd";
 in1=[-1,-2];
-out=[-1,-1,-1,-2,-2,-2];
+out=[[-1,-1],[-1,-2],[-2,-2]];
 ot=[2,1,2];
 } else {
 message("decomposition type is not supported");
@@ -9172,11 +9172,11 @@ model.evtout=[];
 model.state=[];
 model.dstate=[];
 model.rpar=[];
-model.ipar=[1,1,1,1];
+model.ipar=[[1],[1],[1],[1]];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp(1),sci2exp(1),sci2exp(1),sci2exp(1)];
+label=[[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)]];
 gr_i=[];
 x=standard_define([2.5,2],model,label,gr_i);
 }
@@ -9193,7 +9193,7 @@ if (size(label,"*")==5) {
 label[6-1]=sci2exp([1,1]);
 }
 while (true) {
-[ok,typ,a,b,c,d,inp,exprs]=scicos_getvalue("Set SUBMAT Block",["Datatype (1=real double  2=Complex)","Starting Row Index","Ending Row Index","Starting Column Index","Ending Column Index","Input Dimensions"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label);
+[ok,typ,a,b,c,d,inp,exprs]=scicos_getvalue("Set SUBMAT Block",[["Datatype (1=real double  2=Complex)"],["Starting Row Index"],["Ending Row Index"],["Starting Column Index"],["Ending Column Index"],["Input Dimensions"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label);
 if (!ok) {
 break;
 }
@@ -9229,7 +9229,7 @@ if (d>inp(2)) {
 message("index of ending column is out of range");
 ok=false;
 }
-model.ipar=[a,b,c,d];
+model.ipar=[[a],[b],[c],[d]];
 in1=[inp(1),inp(2)];
 out=[(b-a)+1,(d-c)+1];
 funtyp=4;
@@ -9268,7 +9268,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp(1)];
+label=[[sci2exp(1)],[sci2exp(1)]];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);
 }
@@ -9285,7 +9285,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,typ,inp,exprs]=scicos_getvalue("Set ROOTCOEF Block",["Datatype(1=real double  2=Complex)","input row size"],list("vec",1,"vec",1),label);
+[ok,typ,inp,exprs]=scicos_getvalue("Set ROOTCOEF Block",[["Datatype(1=real double  2=Complex)"],["input row size"]],list("vec",1,"vec",1),label);
 if (!ok) {
 break;
 }
@@ -9339,7 +9339,7 @@ model.ipar=[1,1,1,1];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp([1]),sci2exp([1])];
+label=[[sci2exp(1)],[sci2exp([1])],[sci2exp([1])]];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);
 }
@@ -9356,7 +9356,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,typ,a,b,exprs]=scicos_getvalue("Set EXTRACT Block",["Datatype (1=real double  2=Complex)","Lines to extract","Columns to extract"],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
+[ok,typ,a,b,exprs]=scicos_getvalue("Set EXTRACT Block",[["Datatype (1=real double  2=Complex)"],["Lines to extract"],["Columns to extract"]],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
 a=a.slice();
 b=b.slice();
 if (!ok) {
@@ -9392,7 +9392,7 @@ message("invalid index");
 ok=false;
 }
 }
-model.ipar=[a,b,ma,mb];
+model.ipar=[[a],[b],[ma],[mb]];
 in1=[model.in1,model.in2];
 out=[ma,mb];
 funtyp=4;
@@ -9431,7 +9431,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp(1)];
+label=[[sci2exp(1)],[sci2exp(1)]];
 gr_i=[];
 x=standard_define([2,2],model,label,gr_i);
 }
@@ -9448,7 +9448,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,typ,decomptyp,lab]=scicos_getvalue("Set MATEIG block parameters",["Datatype(1=real double  2=Complex)","decomposition type (1=eig values  2=eig values+eig vectors"],list("vec",1,"vec",1),label);
+[ok,typ,decomptyp,lab]=scicos_getvalue("Set MATEIG block parameters",[["Datatype(1=real double  2=Complex)"],["decomposition type (1=eig values  2=eig values+eig vectors"]],list("vec",1,"vec",1),label);
 if (!ok) {
 break;
 }
@@ -9460,7 +9460,7 @@ out=[-1,1];
 ot=2;
 } else if ((decomptyp==2)) {
 function_name="mat_vpv";
-out=[-1,-1,-1,-1];
+out=[[-1,-1],[-1,-1]];
 ot=[2,2];
 } else {
 message("decomposition type is not supported");
@@ -9474,7 +9474,7 @@ out=[-1,1];
 ot=2;
 } else if ((decomptyp==2)) {
 function_name="matz_vpv";
-out=[-1,-1,-1,-1];
+out=[[-1,-1],[-1,-1]];
 ot=[2,2];
 } else {
 message("decomposition type is not supported");
@@ -9523,7 +9523,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp(0)];
+label=[[sci2exp(1)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);
 }
@@ -9540,7 +9540,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,typ,decomptyp,lab]=scicos_getvalue("Set CUMSUM block parameters",["Datatype(1=real double  2=Complex)","Sum along (0=the first non singleton dimension  1=Rows  2=Columns)"],list("vec",1,"vec",1),label);
+[ok,typ,decomptyp,lab]=scicos_getvalue("Set CUMSUM block parameters",[["Datatype(1=real double  2=Complex)"],["Sum along (0=the first non singleton dimension  1=Rows  2=Columns)"]],list("vec",1,"vec",1),label);
 if (!ok) {
 break;
 }
@@ -9602,8 +9602,8 @@ model=scicos_model();
 function_name="mat_div";
 funtyp=4;
 model.sim=list(function_name,funtyp);
-model.in1=[-1,-2];
-model.in2=[-3,-3];
+model.in1=[[-1],[-2]];
+model.in2=[[-3],[-3]];
 model.intyp=[1,1];
 model.out=-1;
 model.out2=-2;
@@ -9688,7 +9688,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp(1)];
+label=[[sci2exp(1)],[sci2exp(1)]];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);
 }
@@ -9705,7 +9705,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,typ,decomptyp,lab]=scicos_getvalue("Set EXTTRI block parameters",["Datatype(1=real double  2=Complex)","extraction type (1=lower  2=upper  3=diagonal)"],list("vec",1,"vec",1),label);
+[ok,typ,decomptyp,lab]=scicos_getvalue("Set EXTTRI block parameters",[["Datatype(1=real double  2=Complex)"],["extraction type (1=lower  2=upper  3=diagonal)"]],list("vec",1,"vec",1),label);
 if (!ok) {
 break;
 }
@@ -9765,7 +9765,7 @@ model.sim=list("zcross",1);
 model.nzcross=1;
 model.in1=1;
 model.evtout=1;
-model.rpar=[-1,-1,0,-1];
+model.rpar=[[-1],[-1],[0],[-1]];
 model.blocktype="z";
 model.firing=-1;
 model.dep_ut=[true,false];
@@ -9784,14 +9784,14 @@ x.model.firing=-1;
 /* autogenerated from "macros/Threshold/ZCROSS_f.sci" */
 function ZCROSS_f() {
 ZCROSS_f.prototype.define = function ZCROSS_f() {
-rpar=[-1,-1,0,0];
+rpar=[[-1],[-1],[0],[0]];
 in1=1;
 model=scicos_model();
 model.sim=list("zcross",1);
 model.in1=in1;
 model.nzcross=in1;
 model.evtout=1;
-model.rpar=[-1,-1,0,0];
+model.rpar=[[-1],[-1],[0],[0]];
 model.blocktype="z";
 model.firing=-1;
 model.dep_ut=[true,false];
@@ -9809,7 +9809,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,in1,exprs]=scicos_getvalue(["Set Zero-Crossing parameters","All surfaces must cross together"],"Input size",list("vec",1),exprs);
+[ok,in1,exprs]=scicos_getvalue([["Set Zero-Crossing parameters"],["All surfaces must cross together"]],"Input size",list("vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -9821,7 +9821,7 @@ kk=0;
 for (jj=1;jj<=in1;jj+=1) {
 kk=kk+2^(in1+jj-1);
 }
-model.rpar=[-ones(kk,1),zeros(2^(2*in1)-kk,1)];
+model.rpar=[[-ones(kk,1)],[zeros(2^(2*in1)-kk,1)]];
 graphics.exprs=exprs;
 model.in1=in1;
 model.nzcross=in1;
@@ -9836,13 +9836,13 @@ break;
 /* autogenerated from "macros/Threshold/POSTONEG_f.sci" */
 function POSTONEG_f() {
 POSTONEG_f.prototype.define = function POSTONEG_f() {
-rpar=[-1,-1,-1,0];
+rpar=[[-1],[-1],[-1],[0]];
 model=scicos_model();
 model.sim=list("zcross",1);
 model.nzcross=1;
 model.in1=1;
 model.evtout=1;
-model.rpar=[-1,-1,-1,0];
+model.rpar=[[-1],[-1],[-1],[0]];
 model.blocktype="z";
 model.dep_ut=[true,false];
 model.firing=[-1];
@@ -9897,7 +9897,7 @@ ph=0;
 frq=1;
 offset=0;
 start=0;
-model.rpar=[V,ph,frq,offset,start];
+model.rpar=[[V],[ph],[frq],[offset],[start]];
 model.sim="SineVoltage";
 model.blocktype="c";
 model.dep_ut=[true,false];
@@ -9905,9 +9905,9 @@ mo=modelica();
 mo.model="SineVoltage";
 mo.inputs="p";
 mo.outputs="n";
-mo.parameters=list(["V","phase","freqHz","offset","startTime"],list(V,ph,frq,offset,start));
+mo.parameters=list([["V"],["phase"],["freqHz"],["offset"],["startTime"]],list(V,ph,frq,offset,start));
 model.equations=mo;
-exprs=[string(V),string(ph),string(frq),string(offset),string(start)];
+exprs=[[string(V)],[string(ph)],[string(frq)],[string(offset)],[string(start)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 x.graphics.in_implicit=["I"];
@@ -9923,11 +9923,11 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,V,ph,frq,offset,start,exprs]=scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","phase (rad)","Frequency (Hz)","Voltageoffset (V)","Timeoffset (s)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,V,ph,frq,offset,start,exprs]=scicos_getvalue("Set voltage source parameter",[["Amplitude (Volt)"],["phase (rad)"],["Frequency (Hz)"],["Voltageoffset (V)"],["Timeoffset (s)"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
-model.rpar=[V,ph,frq,offset,start];
+model.rpar=[[V],[ph],[frq],[offset],[start]];
 model.equations.parameters[2-1]=list(V,ph,frq,offset,start);
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -9947,24 +9947,24 @@ Typein=[];
 Typeout=[];
 MI=[];
 MO=[];
-P=[2,50,1,0,70,98,2,0,70,2,-2,0];
-PortName=["Iin","p","n"];
+P=[[2,50,1,0],[70,98,2,0],[70,2,-2,0]];
+PortName=[["Iin"],["p"],["n"]];
 for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
-Typein=[Typein,"E"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["E"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==2) {
-Typein=[Typein,"I"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["I"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==-1) {
-Typeout=[Typeout,"E"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["E"]];
+MO=[[MO],[PortName(i)]];
 }
 if (P(i,3)==-2) {
-Typeout=[Typeout,"I"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["I"]];
+MO=[[MO],[PortName(i)]];
 }
 }
 model=scicos_model();
@@ -10016,17 +10016,17 @@ model.blocktype="c";
 model.dep_ut=[true,false];
 mo=modelica();
 mo.model="PMOS";
-mo.outputs=["D","B","S"];
+mo.outputs=[["D"],["B"],["S"]];
 mo.inputs="G";
-mo.parameters=list(["W","L","Beta","Vt","K2","K5","dW","dL","RDS"],[W,L,Beta,Vt,K2,K5,dW,dL,RDS]);
+mo.parameters=list([["W"],["L"],["Beta"],["Vt"],["K2"],["K5"],["dW"],["dL"],["RDS"]],[[W],[L],[Beta],[Vt],[K2],[K5],[dW],[dL],[RDS]]);
 model.equations=mo;
 model.in1=ones(size(mo.inputs,"*"),1);
 model.out=ones(size(mo.outputs,"*"),1);
-exprs=[string(W),string(L),string(Beta),string(Vt),string(K2),string(K5),string(dW),string(dL),string(RDS)];
+exprs=[[string(W)],[string(L)],[string(Beta)],[string(Vt)],[string(K2)],[string(K5)],[string(dW)],[string(dL)],[string(RDS)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 x.graphics.in_implicit=["I"];
-x.graphics.out_implicit=["I","I","I"];
+x.graphics.out_implicit=[["I"],["I"],["I"]];
 }
 PMOS.prototype.details = function PMOS() {
 }
@@ -10038,7 +10038,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,W,L,Beta,Vt,K2,K5,dW,dL,RDS,exprs]=scicos_getvalue("Set PMOS Transistor parameters",["Width [m]","Length [m]","Transconductance parameter [A/(V*V)]","Zero bias threshold voltage [V]","Bulk threshold parameter","Reduction of pinch-off region","Narrowing of channel [m]","Shortening of channel [m]","Drain-Source-Resistance [Ohm]"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+[ok,W,L,Beta,Vt,K2,K5,dW,dL,RDS,exprs]=scicos_getvalue("Set PMOS Transistor parameters",[["Width [m]"],["Length [m]"],["Transconductance parameter [A/(V*V)]"],["Zero bias threshold voltage [V]"],["Bulk threshold parameter"],["Reduction of pinch-off region"],["Narrowing of channel [m]"],["Shortening of channel [m]"],["Drain-Source-Resistance [Ohm]"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -10104,7 +10104,7 @@ Vt=0.04;
 Maxexp=15;
 R=1.e8;
 model=scicos_model();
-model.rpar=[Ids,Vt,Maxexp,R];
+model.rpar=[[Ids],[Vt],[Maxexp],[R]];
 model.in1=1;
 model.out=1;
 model.sim="Diode";
@@ -10116,7 +10116,7 @@ mo.inputs="p";
 mo.outputs="n";
 mo.parameters=list(["Ids","Vt","Maxexp","R"],list(Ids,Vt,Maxexp,R));
 model.equations=mo;
-exprs=string([Ids,Vt,Maxexp,R]);
+exprs=string([[Ids],[Vt],[Maxexp],[R]]);
 gr_i=[];
 x=standard_define([2,1],model,exprs,list(gr_i,0));
 x.graphics.in_implicit=["I"];
@@ -10132,11 +10132,11 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,Ids,Vt,Maxexp,R,exprs]=scicos_getvalue("Set Diode block parameter",["Saturation cuurent (A)","Voltage equivalent to temperature (Volt)","Max exponent for linear continuation","R (ohm)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,Ids,Vt,Maxexp,R,exprs]=scicos_getvalue("Set Diode block parameter",[["Saturation cuurent (A)"],["Voltage equivalent to temperature (Volt)"],["Max exponent for linear continuation"],["R (ohm)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
-model.rpar=[Ids,Vt,Maxexp,R];
+model.rpar=[[Ids],[Vt],[Maxexp],[R]];
 model.equations.parameters=list(["Ids","Vt","Maxexp","R"],list(Ids,Vt,Maxexp,R));
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -10156,24 +10156,24 @@ Typein=[];
 Typeout=[];
 MI=[];
 MO=[];
-P=[2.5,90,2,0,2.5,10,2,0,97.5,90,-2,0,97.5,10,-2,0];
-PortName=["p1","n1","p2","n2"];
+P=[[2.5,90,2,0],[2.5,10,2,0],[97.5,90,-2,0],[97.5,10,-2,0]];
+PortName=[["p1"],["n1"],["p2"],["n2"]];
 for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
-Typein=[Typein,"E"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["E"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==2) {
-Typein=[Typein,"I"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["I"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==-1) {
-Typeout=[Typeout,"E"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["E"]];
+MO=[[MO],[PortName(i)]];
 }
 if (P(i,3)==-2) {
-Typeout=[Typeout,"I"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["I"]];
+MO=[[MO],[PortName(i)]];
 }
 }
 model=scicos_model();
@@ -10207,7 +10207,7 @@ model=arg1.model;
 x=arg1;
 exprs=x.graphics.exprs;
 while (true) {
-[ok,N,exprs]=scicos_getvalue(["Set Transformer block parameters:","","N:"+" Turn ratio (N1/N2)"],["N"],list("vec",1),exprs);
+[ok,N,exprs]=scicos_getvalue([["Set Transformer block parameters:"],[""],["N:"+" Turn ratio (N1/N2)"]],["N"],list("vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -10255,24 +10255,24 @@ Typein=[];
 Typeout=[];
 MI=[];
 MO=[];
-P=[2,50,1,0,70,98,2,0,70,2,-2,0];
-PortName=["vin","p","n"];
+P=[[2,50,1,0],[70,98,2,0],[70,2,-2,0]];
+PortName=[["vin"],["p"],["n"]];
 for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
-Typein=[Typein,"E"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["E"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==2) {
-Typein=[Typein,"I"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["I"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==-1) {
-Typeout=[Typeout,"E"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["E"]];
+MO=[[MO],[PortName(i)]];
 }
 if (P(i,3)==-2) {
-Typeout=[Typeout,"I"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["I"]];
+MO=[[MO],[PortName(i)]];
 }
 }
 model=scicos_model();
@@ -10356,31 +10356,31 @@ break;
 function PNP() {
 PNP.prototype.define = function PNP() {
 ModelName="PNP";
-PrametersValue=[50,0.1,0,0.02,1.200e-10,5.000e-09,1.000e-12,4.000e-13,5.000e-13,0.8,0.4,0.8,0.333,1.000e-15,1.000e-15,0.02585,40];
-ParametersName=["Bf","Br","Is","Vak","Tauf","Taur","Ccs","Cje","Cjc","Phie","Me","Phic","Mc","Gbc","Gbe","Vt","EMinMax"];
+PrametersValue=[[50],[0.1],[0],[0.02],[1.200e-10],[5.000e-09],[1.000e-12],[4.000e-13],[5.000e-13],[0.8],[0.4],[0.8],[0.333],[1.000e-15],[1.000e-15],[0.02585],[40]];
+ParametersName=[["Bf"],["Br"],["Is"],["Vak"],["Tauf"],["Taur"],["Ccs"],["Cje"],["Cjc"],["Phie"],["Me"],["Phic"],["Mc"],["Gbc"],["Gbe"],["Vt"],["EMinMax"]];
 model=scicos_model();
 Typein=[];
 Typeout=[];
 MI=[];
 MO=[];
-P=[100,90,-2,0,0,50,2,0,100,10,-2,0];
-PortName=["C","B","E"];
+P=[[100,90,-2,0],[0,50,2,0],[100,10,-2,0]];
+PortName=[["C"],["B"],["E"]];
 for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
-Typein=[Typein,"E"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["E"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==2) {
-Typein=[Typein,"I"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["I"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==-1) {
-Typeout=[Typeout,"E"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["E"]];
+MO=[[MO],[PortName(i)]];
 }
 if (P(i,3)==-2) {
-Typeout=[Typeout,"I"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["I"]];
+MO=[[MO],[PortName(i)]];
 }
 }
 model=scicos_model();
@@ -10390,7 +10390,7 @@ mo.inputs=MI;
 mo.outputs=MO;
 model.rpar=PrametersValue;
 mo.parameters=list(ParametersName,PrametersValue,zeros(ParametersName));
-exprs=["50","0.1","1.e-16","0.02","0.12e-9","5e-9","1e-12","0.4e-12","0.5e-12","0.8","0.4","0.8","0.333","1e-15","1e-15","0.02585","40"];
+exprs=[["50"],["0.1"],["1.e-16"],["0.02"],["0.12e-9"],["5e-9"],["1e-12"],["0.4e-12"],["0.5e-12"],["0.8"],["0.4"],["0.8"],["0.333"],["1e-15"],["1e-15"],["0.02585"],["40"]];
 gr_i=[];
 model.blocktype="c";
 model.dep_ut=[false,true];
@@ -10414,7 +10414,7 @@ model=arg1.model;
 x=arg1;
 exprs=x.graphics.exprs;
 while (true) {
-[ok,Bf,Br,Is,Vak,Tauf,Taur,Ccs,Cje,Cjc,Phie,Me,Phic,Mc,Gbc,Gbe,Vt,EMinMax,exprs]=scicos_getvalue(["Set PNP block parameters:",""],["Bf  : Forward beta","Br  : Reverse beta","Is  : Transport saturation current","Vak : Early voltage (inverse), 1/Volt","Tauf: Ideal forward transit time","Taur: Ideal reverse transit time","Ccs : Collector-substrat(ground) cap.","Cje : Base-emitter zero bias depletion cap.","Cjc : Base-coll. zero bias depletion cap.","Phie: Base-emitter diffusion voltage","Me  : Base-emitter gradation exponent","Phic: Base-collector diffusion voltage","Mc  : Base-collector gradation exponent","Gbc : Base-collector conductance","Gbe : Base-emitter conductance","Vt  : Voltage equivalent of temperature","EMinMax: if x > EMinMax, the exp(x) function is linearized"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,Bf,Br,Is,Vak,Tauf,Taur,Ccs,Cje,Cjc,Phie,Me,Phic,Mc,Gbc,Gbe,Vt,EMinMax,exprs]=scicos_getvalue([["Set PNP block parameters:"],[""]],[["Bf  : Forward beta"],["Br  : Reverse beta"],["Is  : Transport saturation current"],["Vak : Early voltage (inverse), 1/Volt"],["Tauf: Ideal forward transit time"],["Taur: Ideal reverse transit time"],["Ccs : Collector-substrat(ground) cap."],["Cje : Base-emitter zero bias depletion cap."],["Cjc : Base-coll. zero bias depletion cap."],["Phie: Base-emitter diffusion voltage"],["Me  : Base-emitter gradation exponent"],["Phic: Base-collector diffusion voltage"],["Mc  : Base-collector gradation exponent"],["Gbc : Base-collector conductance"],["Gbe : Base-emitter conductance"],["Vt  : Voltage equivalent of temperature"],["EMinMax: if x > EMinMax, the exp(x) function is linearized"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -10428,31 +10428,31 @@ break;
 function NPN() {
 NPN.prototype.define = function NPN() {
 ModelName="NPN";
-PrametersValue=[50,0.1,0,0.02,1.200e-10,5.000e-09,1.000e-12,4.000e-13,5.000e-13,0.8,0.4,0.8,0.333,1.000e-15,1.000e-15,0.02585,40];
-ParametersName=["Bf","Br","Is","Vak","Tauf","Taur","Ccs","Cje","Cjc","Phie","Me","Phic","Mc","Gbc","Gbe","Vt","EMinMax"];
+PrametersValue=[[50],[0.1],[0],[0.02],[1.200e-10],[5.000e-09],[1.000e-12],[4.000e-13],[5.000e-13],[0.8],[0.4],[0.8],[0.333],[1.000e-15],[1.000e-15],[0.02585],[40]];
+ParametersName=[["Bf"],["Br"],["Is"],["Vak"],["Tauf"],["Taur"],["Ccs"],["Cje"],["Cjc"],["Phie"],["Me"],["Phic"],["Mc"],["Gbc"],["Gbe"],["Vt"],["EMinMax"]];
 model=scicos_model();
 Typein=[];
 Typeout=[];
 MI=[];
 MO=[];
-P=[100,90,-2,0,0,50,2,0,100,10,-2,0];
-PortName=["C","B","E"];
+P=[[100,90,-2,0],[0,50,2,0],[100,10,-2,0]];
+PortName=[["C"],["B"],["E"]];
 for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
-Typein=[Typein,"E"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["E"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==2) {
-Typein=[Typein,"I"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["I"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==-1) {
-Typeout=[Typeout,"E"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["E"]];
+MO=[[MO],[PortName(i)]];
 }
 if (P(i,3)==-2) {
-Typeout=[Typeout,"I"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["I"]];
+MO=[[MO],[PortName(i)]];
 }
 }
 model=scicos_model();
@@ -10462,7 +10462,7 @@ mo.inputs=MI;
 mo.outputs=MO;
 model.rpar=PrametersValue;
 mo.parameters=list(ParametersName,PrametersValue,zeros(ParametersName));
-exprs=["50","0.1","1.e-16","0.02","0.12e-9","5e-9","1e-12","0.4e-12","0.5e-12","0.8","0.4","0.8","0.333","1e-15","1e-15","0.02585","40"];
+exprs=[["50"],["0.1"],["1.e-16"],["0.02"],["0.12e-9"],["5e-9"],["1e-12"],["0.4e-12"],["0.5e-12"],["0.8"],["0.4"],["0.8"],["0.333"],["1e-15"],["1e-15"],["0.02585"],["40"]];
 gr_i=[];
 model.blocktype="c";
 model.dep_ut=[false,true];
@@ -10486,7 +10486,7 @@ model=arg1.model;
 x=arg1;
 exprs=x.graphics.exprs;
 while (true) {
-[ok,Bf,Br,Is,Vak,Tauf,Taur,Ccs,Cje,Cjc,Phie,Me,Phic,Mc,Gbc,Gbe,Vt,EMinMax,exprs]=scicos_getvalue(["Set NPN block parameters:",""],["Bf  : Forward beta","Br  : Reverse beta","Is  : Transport saturation current","Vak : Early voltage (inverse), 1/Volt","Tauf: Ideal forward transit time","Taur: Ideal reverse transit time","Ccs : Collector-substrat(ground) cap.","Cje : Base-emitter zero bias depletion cap.","Cjc : Base-coll. zero bias depletion cap.","Phie: Base-emitter diffusion voltage","Me  : Base-emitter gradation exponent","Phic: Base-collector diffusion voltage","Mc  : Base-collector gradation exponent","Gbc : Base-collector conductance","Gbe : Base-emitter conductance","Vt  : Voltage equivalent of temperature","EMinmax: if x > EMinMax, the exp(x) is linearized"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,Bf,Br,Is,Vak,Tauf,Taur,Ccs,Cje,Cjc,Phie,Me,Phic,Mc,Gbc,Gbe,Vt,EMinMax,exprs]=scicos_getvalue([["Set NPN block parameters:"],[""]],[["Bf  : Forward beta"],["Br  : Reverse beta"],["Is  : Transport saturation current"],["Vak : Early voltage (inverse), 1/Volt"],["Tauf: Ideal forward transit time"],["Taur: Ideal reverse transit time"],["Ccs : Collector-substrat(ground) cap."],["Cje : Base-emitter zero bias depletion cap."],["Cjc : Base-coll. zero bias depletion cap."],["Phie: Base-emitter diffusion voltage"],["Me  : Base-emitter gradation exponent"],["Phic: Base-collector diffusion voltage"],["Mc  : Base-collector gradation exponent"],["Gbc : Base-collector conductance"],["Gbe : Base-emitter conductance"],["Vt  : Voltage equivalent of temperature"],["EMinmax: if x > EMinMax, the exp(x) is linearized"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -10501,20 +10501,20 @@ function CurrentSensor() {
 CurrentSensor.prototype.define = function CurrentSensor() {
 model=scicos_model();
 model.in1=1;
-model.out=[1,1];
+model.out=[[1],[1]];
 model.sim="CurrentSensor";
 model.blocktype="c";
 model.dep_ut=[true,false];
 mo=modelica();
 mo.model="CurrentSensor";
 mo.inputs="p";
-mo.outputs=["n","i"];
+mo.outputs=[["n"],["i"]];
 model.equations=mo;
 exprs=[];
 gr_i=[];
 x=standard_define([2,2],model,exprs,list(gr_i,0));
 x.graphics.in_implicit=["I"];
-x.graphics.out_implicit=["I","E"];
+x.graphics.out_implicit=[["I"],["E"]];
 }
 CurrentSensor.prototype.details = function CurrentSensor() {
 }
@@ -10574,7 +10574,7 @@ break;
 function VVsourceAC() {
 VVsourceAC.prototype.define = function VVsourceAC() {
 model=scicos_model();
-model.in1=[1,1];
+model.in1=[[1],[1]];
 model.out=[1];
 VA=220;
 FR=50;
@@ -10622,20 +10622,20 @@ function VoltageSensor() {
 VoltageSensor.prototype.define = function VoltageSensor() {
 model=scicos_model();
 model.in1=1;
-model.out=[1,1];
+model.out=[[1],[1]];
 model.sim="VoltageSensor";
 model.blocktype="c";
 model.dep_ut=[true,false];
 mo=modelica();
 mo.model="VoltageSensor";
 mo.inputs="p";
-mo.outputs=["n","v"];
+mo.outputs=[["n"],["v"]];
 model.equations=mo;
 exprs=[];
 gr_i=[];
 x=standard_define([2,2],model,exprs,list(gr_i,0));
 x.graphics.in_implicit=["I"];
-x.graphics.out_implicit=["I","E"];
+x.graphics.out_implicit=[["I"],["E"]];
 }
 VoltageSensor.prototype.details = function VoltageSensor() {
 }
@@ -10679,14 +10679,14 @@ Switch.prototype.define = function Switch() {
 model=scicos_model();
 Ron=0.01;
 Roff=1e5;
-S=["Ron","Roff"];
+S=[["Ron"],["Roff"]];
 Z=eval(S);
 model.sim="Switch";
 model.blocktype="c";
 model.dep_ut=[true,false];
 mo=modelica();
 mo.model=model.sim;
-mo.inputs=["p","inp"];
+mo.inputs=[["p"],["inp"]];
 mo.outputs="n";
 mo.parameters=list(S,Z);
 model.equations=mo;
@@ -10696,7 +10696,7 @@ model.rpar=Z;
 exprs=string(Z);
 gr_i=[];
 x=standard_define([2,2],model,exprs,list(gr_i,0));
-x.graphics.in_implicit=["I","E"];
+x.graphics.in_implicit=[["I"],["E"]];
 x.graphics.out_implicit=["I"];
 }
 Switch.prototype.details = function Switch() {
@@ -10709,7 +10709,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,Ron,Roff,exprs]=scicos_getvalue("Set non-ideal electrical switch parameters",["Resistance in On state (Ohm)","Resistance in Off state (Ohm)"],list("vec",1,"vec",1),exprs);
+[ok,Ron,Roff,exprs]=scicos_getvalue("Set non-ideal electrical switch parameters",[["Resistance in On state (Ohm)"],["Resistance in Off state (Ohm)"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -10725,7 +10725,7 @@ break;
 function MOTOR() {
 MOTOR.prototype.define = function MOTOR() {
 model=scicos_model();
-model.out=[1,1];
+model.out=[[1],[1]];
 model.in1=[1];
 model.sim="motor";
 model.blocktype="c";
@@ -10733,7 +10733,7 @@ model.dep_ut=[true,false];
 gr_i=[];
 exprs="";
 x=standard_define([2,2],model,exprs,gr_i);
-x.graphics.out_implicit=["I","I"];
+x.graphics.out_implicit=[["I"],["I"]];
 x.graphics.in_implicit=["I"];
 }
 MOTOR.prototype.details = function MOTOR() {
@@ -10762,17 +10762,17 @@ model.blocktype="c";
 model.dep_ut=[true,false];
 mo=modelica();
 mo.model="NMOS";
-mo.outputs=["D","B","S"];
+mo.outputs=[["D"],["B"],["S"]];
 mo.inputs="G";
-mo.parameters=list(["W","L","Beta","Vt","K2","K5","dW","dL","RDS"],[W,L,Beta,Vt,K2,K5,dW,dL,RDS]);
+mo.parameters=list([["W"],["L"],["Beta"],["Vt"],["K2"],["K5"],["dW"],["dL"],["RDS"]],[[W],[L],[Beta],[Vt],[K2],[K5],[dW],[dL],[RDS]]);
 model.equations=mo;
 model.in1=ones(size(mo.inputs,"*"),1);
 model.out=ones(size(mo.outputs,"*"),1);
-exprs=[string(W),string(L),string(Beta),string(Vt),string(K2),string(K5),string(dW),string(dL),string(RDS)];
+exprs=[[string(W)],[string(L)],[string(Beta)],[string(Vt)],[string(K2)],[string(K5)],[string(dW)],[string(dL)],[string(RDS)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 x.graphics.in_implicit=["I"];
-x.graphics.out_implicit=["I","I","I"];
+x.graphics.out_implicit=[["I"],["I"],["I"]];
 }
 NMOS.prototype.details = function NMOS() {
 }
@@ -10784,7 +10784,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,W,L,Beta,Vt,K2,K5,dW,dL,RDS,exprs]=scicos_getvalue("Set NMOS Transistor block parameters",["Width [m]","Length [m]","Transconductance parameter [A/(V*V)]","Zero bias threshold voltage [V]","Bulk threshold parameter","Reduction of pinch-off region","Narrowing of channel [m]","Shortening of channel [m]","Drain-Source-Resistance [Ohm]"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+[ok,W,L,Beta,Vt,K2,K5,dW,dL,RDS,exprs]=scicos_getvalue("Set NMOS Transistor block parameters",[["Width [m]"],["Length [m]"],["Transconductance parameter [A/(V*V)]"],["Zero bias threshold voltage [V]"],["Bulk threshold parameter"],["Reduction of pinch-off region"],["Narrowing of channel [m]"],["Shortening of channel [m]"],["Drain-Source-Resistance [Ohm]"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -10804,7 +10804,7 @@ model.in1=[1];
 model.out=[1];
 VA=220;
 FR=50;
-model.rpar=[VA,FR];
+model.rpar=[[VA],[FR]];
 model.sim="VsourceAC";
 model.blocktype="c";
 model.dep_ut=[true,false];
@@ -10812,9 +10812,9 @@ mo=modelica();
 mo.model="VsourceAC";
 mo.inputs="p";
 mo.outputs="n";
-mo.parameters=list(["VA","f"],list(VA,FR));
+mo.parameters=list([["VA"],["f"]],list(VA,FR));
 model.equations=mo;
-exprs=[string(VA),string(FR)];
+exprs=[[string(VA)],[string(FR)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,list(gr_i,0));
 x.graphics.in_implicit=["I"];
@@ -10830,11 +10830,11 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,VA,FR,exprs]=scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","Frequency (Hz)"],list("vec",-1,"vec",-1),exprs);
+[ok,VA,FR,exprs]=scicos_getvalue("Set voltage source parameter",[["Amplitude (Volt)"],["Frequency (Hz)"]],list("vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
-model.rpar=[VA,FR];
+model.rpar=[[VA],[FR]];
 model.equations.parameters[2-1]=list(VA,FR);
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -10854,7 +10854,7 @@ model.blocktype="c";
 model.dep_ut=[true,false];
 mo=modelica();
 mo.model=model.sim;
-mo.inputs=["in_p","in_n"];
+mo.inputs=[["in_p"],["in_n"]];
 mo.outputs=["out"];
 mo.parameters=list(S,Z);
 model.equations=mo;
@@ -10864,7 +10864,7 @@ model.rpar=Z;
 exprs=string(Z);
 gr_i=[];
 x=standard_define([3,5],model,exprs,gr_i);
-x.graphics.in_implicit=["I","I"];
+x.graphics.in_implicit=[["I"],["I"]];
 x.graphics.out_implicit=["I"];
 }
 OpAmp.prototype.details = function OpAmp() {
@@ -10877,7 +10877,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (false) {
-[ok,OLGain,SatH,SatL,exprs]=scicos_getvalue("Set the Operational Amplifier parameters",["Open Loop Gain","Positive saturation voltage","Negative saturation voltage"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,OLGain,SatH,SatL,exprs]=scicos_getvalue("Set the Operational Amplifier parameters",[["Open Loop Gain"],["Positive saturation voltage"],["Negative saturation voltage"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -10895,7 +10895,7 @@ Capacitor.prototype.define = function Capacitor() {
 model=scicos_model();
 C=0.01;
 v=0;
-model.rpar=[C,v];
+model.rpar=[[C],[v]];
 model.sim="Capacitor";
 model.blocktype="c";
 model.dep_ut=[true,false];
@@ -10907,7 +10907,7 @@ mo.parameters=list(["C","v"],list(C,v),[0,1]);
 model.equations=mo;
 model.in1=ones(size(mo.inputs,"*"),1);
 model.out=ones(size(mo.outputs,"*"),1);
-exprs=string([C,v]);
+exprs=string([[C],[v]]);
 gr_i=[];
 x=standard_define([2,1.1],model,exprs,list(gr_i,0));
 x.graphics.in_implicit=["I"];
@@ -10923,7 +10923,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,C,v,exprs]=scicos_getvalue("Set Capacitor block parameter",["C (F)","Initial Voltage"],list("vec",1,"vec",1),exprs);
+[ok,C,v,exprs]=scicos_getvalue("Set Capacitor block parameter",[["C (F)"],["Initial Voltage"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -10940,31 +10940,31 @@ break;
 function Gyrator() {
 Gyrator.prototype.define = function Gyrator() {
 ModelName="Gyrator";
-PrametersValue=[1,1];
-ParametersName=["G1","G2"];
+PrametersValue=[[1],[1]];
+ParametersName=[["G1"],["G2"]];
 model=scicos_model();
 Typein=[];
 Typeout=[];
 MI=[];
 MO=[];
-P=[2.5,90,2,0,2.5,10,2,0,97.5,90,-2,0,97.5,10,-2,0];
-PortName=["p1","n1","p2","n2"];
+P=[[2.5,90,2,0],[2.5,10,2,0],[97.5,90,-2,0],[97.5,10,-2,0]];
+PortName=[["p1"],["n1"],["p2"],["n2"]];
 for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
-Typein=[Typein,"E"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["E"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==2) {
-Typein=[Typein,"I"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["I"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==-1) {
-Typeout=[Typeout,"E"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["E"]];
+MO=[[MO],[PortName(i)]];
 }
 if (P(i,3)==-2) {
-Typeout=[Typeout,"I"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["I"]];
+MO=[[MO],[PortName(i)]];
 }
 }
 model=scicos_model();
@@ -10974,7 +10974,7 @@ mo.inputs=MI;
 mo.outputs=MO;
 model.rpar=PrametersValue;
 mo.parameters=list(ParametersName,PrametersValue,zeros(ParametersName));
-exprs=["1","1"];
+exprs=[["1"],["1"]];
 gr_i=[];
 model.blocktype="c";
 model.dep_ut=[false,true];
@@ -10998,7 +10998,7 @@ model=arg1.model;
 x=arg1;
 exprs=x.graphics.exprs;
 while (true) {
-[ok,G1,G2,exprs]=scicos_getvalue(["Set Gyrator block parameters:","","G1: Gyration conductance","G2: Gyration conductance"],["G1","G2"],list("vec",1,"vec",1),exprs);
+[ok,G1,G2,exprs]=scicos_getvalue([["Set Gyrator block parameters:"],[""],["G1: Gyration conductance"],["G2: Gyration conductance"]],[["G1"],["G2"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -11013,7 +11013,7 @@ function DEADBAND() {
 DEADBAND.prototype.define = function DEADBAND() {
 minp=-.5;
 maxp=.5;
-rpar=[maxp,minp];
+rpar=[[maxp],[minp]];
 model=scicos_model();
 model.sim=list("deadband",4);
 model.in1=1;
@@ -11023,7 +11023,7 @@ model.out=1;
 model.rpar=rpar;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(maxp),string(minp),string(model.nmode)];
+exprs=[[string(maxp)],[string(minp)],[string(model.nmode)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -11037,14 +11037,14 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,maxp,minp,zeroc,exprs]=scicos_getvalue("Set Deadband parameters",["End of dead band","Start of dead band","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,maxp,minp,zeroc,exprs]=scicos_getvalue("Set Deadband parameters",[["End of dead band"],["Start of dead band"],["zero crossing (0:no, 1:yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 if (maxp<=minp) {
 message("Upper limit must be > Lower limit");
 } else {
-rpar=[maxp,minp];
+rpar=[[maxp],[minp]];
 model.rpar=rpar;
 if (zeroc!=0) {
 model.nzcross=2;
@@ -11109,7 +11109,7 @@ model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
 funam="forty";
-label=list([sci2exp(model.in1),sci2exp(model.out),strcat(sci2exp(model.rpar)),funam],list([]));
+label=list([[sci2exp(model.in1)],[sci2exp(model.out)],[strcat(sci2exp(model.rpar))],[funam]],list([]));
 gr_i=[];
 x=standard_define([4,2],model,label,gr_i);
 }
@@ -11123,7 +11123,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 label=graphics.exprs;
 while (true) {
-[ok,i,o,rpar,funam,lab]=scicos_getvalue("Set fortran_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label(1));
+[ok,i,o,rpar,funam,lab]=scicos_getvalue("Set fortran_block parameters",[["input ports sizes"],["output port sizes"],["System parameters vector"],["function name"]],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label(1));
 if (!ok) {
 break;
 }
@@ -11160,7 +11160,7 @@ break;
 /* autogenerated from "macros/Misc/DIFF_f.sci" */
 function DIFF_f() {
 DIFF_f.prototype.define = function DIFF_f() {
-x0=[0,0];
+x0=[[0],[0]];
 model=scicos_model();
 model.sim=list("diffblk",10001);
 model.in1=1;
@@ -11168,7 +11168,7 @@ model.out=1;
 model.state=x0;
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[strcat(sci2exp(x0[1-1])),strcat(sci2exp(x0[2-1]))];
+exprs=[[strcat(sci2exp(x0[1-1]))],[strcat(sci2exp(x0[2-1]))]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -11182,12 +11182,12 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,x0,xd0,exprs]=scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",1,"vec",1),exprs);
+[ok,x0,xd0,exprs]=scicos_getvalue("Set continuous linear system parameters",[["Initial state"],["Initial Derivative"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 graphics.exprs=exprs;
-model.state=[x0.slice(),xd0.slice()];
+model.state=[[x0.slice()],[xd0.slice()]];
 x.graphics=graphics;
 x.model=model;
 break;
@@ -11209,11 +11209,11 @@ ipar[k-1]=j;
 k=k+1;
 }
 }
-walls=[0,5,0,5];
-x=[2,2.5];
-xd=[0,0];
-y=[3,5];
-yd=[0,0];
+walls=[[0],[5],[0],[5]];
+x=[[2],[2.5]];
+xd=[[0],[0]];
+y=[[3],[5]];
+yd=[[0],[0]];
 g=9.81;
 C=0;
 rpar1=ones(n,1);
@@ -11223,14 +11223,14 @@ state=transpose(state);
 model=scicos_model();
 model.sim=list("bounce_ball",4);
 model.in1=[];
-model.out=[n,n];
+model.out=[[n],[n]];
 model.state=state.slice();
-model.rpar=[rpar1,rpar2,walls,g,C];
+model.rpar=[[rpar1],[rpar2],[walls],[g],[C]];
 model.ipar=ipar;
 model.nzcross=n*(n-1)/2+4*n;
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[strcat(sci2exp(rpar1)),strcat(sci2exp(rpar2)),strcat(sci2exp(walls)),strcat(sci2exp(x)),strcat(sci2exp(xd)),strcat(sci2exp(y)),strcat(sci2exp(yd))];
+exprs=[[strcat(sci2exp(rpar1))],[strcat(sci2exp(rpar2))],[strcat(sci2exp(walls))],[strcat(sci2exp(x))],[strcat(sci2exp(xd))],[strcat(sci2exp(y))],[strcat(sci2exp(yd))]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -11248,7 +11248,7 @@ exprs[8-1]="9.81";
 exprs[9-1]="0";
 }
 while (true) {
-[ok,rpar1,rpar2,walls,xt,xd,y,yd,g,C,exprs]=scicos_getvalue(["Set Bounce Block"],["Mass","Radius","[xmin,xmax,ymin,ymax]","xpos","xdpos","ypos","ydpos","g (gravity)","C (aerodynamic coeff"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
+[ok,rpar1,rpar2,walls,xt,xd,y,yd,g,C,exprs]=scicos_getvalue(["Set Bounce Block"],[["Mass"],["Radius"],["[xmin,xmax,ymin,ymax]"],["xpos"],["xdpos"],["ypos"],["ydpos"],["g (gravity)"],["C (aerodynamic coeff"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -11269,7 +11269,7 @@ walls=walls[[3,4]-1];
 if (n!=size(y,"*")||n!=size(rpar1,"*")||n!=size(rpar2,"*")||n!=size(xd,"*")||n!=size(yd,"*")) {
 message("All vectors must have equal size");
 ok=false;
-} else if (!(min([rpar1,rpar2])>0)) {
+} else if (!(min([[rpar1],[rpar2]])>0)) {
 message("Mass and radius must be >0");
 ok=false;
 }
@@ -11288,7 +11288,7 @@ ipar[k-1]=j;
 k=k+1;
 }
 }
-model.rpar=[rpar1,rpar2,walls,g,C];
+model.rpar=[[rpar1],[rpar2],[walls],[g],[C]];
 model.ipar=ipar;
 state=[xt,xd,y,yd];
 state=transpose(state);
@@ -11333,7 +11333,7 @@ model.opar=list();
 model.blocktype=typ;
 model.firing=auto;
 model.dep_ut=[true,false];
-exprs=list([sci2exp([in1,in1]),sci2exp([out,out]),sci2exp(clkin),sci2exp(clkout),strcat(sci2exp(x0)),strcat(sci2exp(z0)),strcat(sci2exp(rpar)),sci2exp(auto),sci2exp(0)],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
+exprs=list([[sci2exp([in1,in1])],[sci2exp([out,out])],[sci2exp(clkin)],[sci2exp(clkout)],[strcat(sci2exp(x0))],[strcat(sci2exp(z0))],[strcat(sci2exp(rpar))],[sci2exp(auto)],[sci2exp(0)]],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -11348,7 +11348,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 exprs=graphics.exprs;
 while (true) {
-[ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=scicos_getvalue(["Set scifunc_block parameters","only regular blocks supported"],["input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","System parameters vector","initial firing vector (<0 for no firing)","is block always active (0:no, 1:yes)"],list("mat",[-1,2],"mat",[-2,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs[1-1]);
+[ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],[["input ports sizes"],["output port sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["initial discrete state"],["System parameters vector"],["initial firing vector (<0 for no firing)"],["is block always active (0:no, 1:yes)"]],list("mat",[-1,2],"mat",[-2,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs[1-1]);
 if (!ok) {
 break;
 }
@@ -11422,7 +11422,7 @@ model.ipar=0;
 model.blocktype=typ;
 model.firing=auto;
 model.dep_ut=[true,false];
-label=list([sci2exp(in1),sci2exp(out),strcat(sci2exp(rpar)),funam],list([]));
+label=list([[sci2exp(in1)],[sci2exp(out)],[strcat(sci2exp(rpar))],[funam]],list([]));
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);
 }
@@ -11436,7 +11436,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 label=graphics.exprs;
 while (true) {
-[ok,i,o,rpar,funam,lab]=scicos_getvalue("Set C_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label(1));
+[ok,i,o,rpar,funam,lab]=scicos_getvalue("Set C_block parameters",[["input ports sizes"],["output port sizes"],["System parameters vector"],["function name"]],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label(1));
 if (!ok) {
 break;
 }
@@ -11479,8 +11479,8 @@ id=[0];
 model=scicos_model();
 model.sim=list("constraint_c",10004);
 model.in1=1;
-model.out=[1,1];
-model.state=[x0,xd0];
+model.out=[[1],[1]];
+model.state=[[x0],[xd0]];
 model.ipar=id;
 model.blocktype="c";
 model.dep_ut=[false,true];
@@ -11499,7 +11499,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
 ask_again=false;
-[ok,x0,xd0,id,exprs]=scicos_getvalue("Set Constraint block parameters",["Initial guess values of states x","Initial guess values of derivative x\'","Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0"],list("vec",-1,"vec",-1,"vec",-1),exprs);
+[ok,x0,xd0,id,exprs]=scicos_getvalue("Set Constraint block parameters",[["Initial guess values of states x"],["Initial guess values of derivative x\'"],["Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0"]],list("vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -11521,7 +11521,7 @@ if ((!ask_again)) {
 for (i=1;i<=N;i+=1) {
 if (!((id[i-1]==0)||(id[i-1]==1))) {
 ask_again=true;
-x_message(["Id(i) must be either","0 when x\'(i) is not present in the feedback","1: when x\'(i) is present in the feedback"]);
+x_message([["Id(i) must be either"],["0 when x\'(i) is not present in the feedback"],["1: when x\'(i) is present in the feedback"]]);
 break;
 }
 if ((id[i-1]==0)) {
@@ -11531,8 +11531,8 @@ id[i-1]=-1;
 }
 if (!ask_again) {
 graphics.exprs=exprs;
-model.state=[x0,xd0];
-model.out=[N,N];
+model.state=[[x0],[xd0]];
+model.out=[[N],[N]];
 model.in1=N;
 model.ipar=id;
 x.graphics=graphics;
@@ -11560,7 +11560,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[function_name,sci2exp(funtyp),sci2exp(model.in1),sci2exp(model.out),sci2exp(model.evtin),sci2exp(model.evtout),sci2exp(model.state),sci2exp(model.dstate),sci2exp(model.rpar),sci2exp(model.ipar),sci2exp(model.firing),"y","n"];
+label=[[function_name],[sci2exp(funtyp)],[sci2exp(model.in1)],[sci2exp(model.out)],[sci2exp(model.evtin)],[sci2exp(model.evtout)],[sci2exp(model.state)],[sci2exp(model.dstate)],[sci2exp(model.rpar)],[sci2exp(model.ipar)],[sci2exp(model.firing)],["y"],["n"]];
 gr_i=[];
 x=standard_define([2,2],model,label,gr_i);
 }
@@ -11577,7 +11577,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,function_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,auto0,depu,dept,lab]=scicos_getvalue("Set GENERIC block parameters",["simulation function","function type (0,1,2,..)","input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","Real parameters vector","Integer parameters vector","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label);
+[ok,function_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,auto0,depu,dept,lab]=scicos_getvalue("Set GENERIC block parameters",[["simulation function"],["function type (0,1,2,..)"],["input ports sizes"],["output port sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["initial discrete state"],["Real parameters vector"],["Integer parameters vector"],["initial firing vector (<0 for no firing)"],["direct feedthrough (y or n)"],["time dependence (y or n)"]],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label);
 if (!ok) {
 break;
 }
@@ -11596,8 +11596,8 @@ if (funtyp<0) {
 message("function type cannot be negative");
 ok=false;
 }
-if ([ci,co]!=[]) {
-if (max([ci,co])>1) {
+if ([[ci],[co]]!=[]) {
+if (max([[ci],[co]])>1) {
 message("vector event links not supported");
 ok=false;
 }
@@ -11644,7 +11644,7 @@ function RATELIMITER() {
 RATELIMITER.prototype.define = function RATELIMITER() {
 minp=-1;
 maxp=1;
-rpar=[maxp,minp];
+rpar=[[maxp],[minp]];
 model=scicos_model();
 model.sim=list("ratelimiter",4);
 model.in1=1;
@@ -11652,7 +11652,7 @@ model.out=1;
 model.rpar=rpar;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(maxp),string(minp)];
+exprs=[[string(maxp)],[string(minp)]];
 gr_i=[];
 x=standard_define([3.5,2],model,exprs,gr_i);
 }
@@ -11666,14 +11666,14 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,maxp,minp,exprs]=scicos_getvalue("Set rate limiter parameters",["max slope","min slope"],list("vec",1,"vec",1),exprs);
+[ok,maxp,minp,exprs]=scicos_getvalue("Set rate limiter parameters",[["max slope"],["min slope"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 if (maxp<=minp||maxp<=0||minp>=0) {
 message("We must have max_slope> 0 > min_slope.");
 } else {
-rpar=[maxp,minp];
+rpar=[[maxp],[minp]];
 model.rpar=rpar;
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -11704,7 +11704,7 @@ exprs=graphics.exprs;
 textmp=exprs[2-1];
 ok=true;
 while (1==1) {
-[txt]=dialog(["Enter scilab instructions for debugging."," Inputs are block and flag, output is block"],textmp);
+[txt]=dialog([["Enter scilab instructions for debugging."],[" Inputs are block and flag, output is block"]],textmp);
 if (txt!=[]) {
 tt=["block=debug_scicos(block,flag)"];
 if (execstr("deff(tt,txt)","errcatch")==0) {
@@ -11718,7 +11718,7 @@ scicos_debug(2);
 }
 break;
 } else {
-message(["Error in the instructions",lasterror()]);
+message([["Error in the instructions"],[lasterror()]]);
 }
 } else {
 ok=false;
@@ -11738,12 +11738,12 @@ ipar=[2];
 label="&lt";
 model=scicos_model();
 model.sim=list("relationalop",4);
-model.in1=[1,1];
+model.in1=[[1],[1]];
 model.out=1;
 model.ipar=ipar;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(ipar),string(0)];
+exprs=[[string(ipar)],[string(0)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 x.graphics.style=["fontSize=13;fontStyle=1;displayedLabel="+label];
@@ -11758,10 +11758,10 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,1)==2) {
-exprs=[exprs,sci2exp(1)];
+exprs=[[exprs],[sci2exp(1)]];
 }
 while (true) {
-[ok,rule,zcr,Datatype,exprs]=scicos_getvalue("Set parameters",["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)","Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,rule,zcr,Datatype,exprs]=scicos_getvalue("Set parameters",[["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)"],["Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -11794,7 +11794,7 @@ ok=false;
 if (ok) {
 it=Datatype*ones(1,2);
 ot=Datatype;
-in1=[-1,-2,-1,-2];
+in1=[[-1,-2],[-1,-2]];
 out=[-1,-2];
 [model,graphics,ok]=set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
 }
@@ -11827,7 +11827,7 @@ break;
 /* autogenerated from "macros/Misc/CONSTRAINT_c.sci" */
 function CONSTRAINT_c() {
 CONSTRAINT_c.prototype.define = function CONSTRAINT_c() {
-x0=[0,0];
+x0=[[0],[0]];
 model=scicos_model();
 model.sim=list("constraint_c",10004);
 model.in1=1;
@@ -11862,7 +11862,7 @@ message("number of states (constraints) must be > 0 ");
 [model,graphics,ok]=check_io(model,graphics,N,N,[],[]);
 if (ok) {
 graphics.exprs=exprs;
-model.state=[x0,zeros(N,1)];
+model.state=[[x0],[zeros(N,1)]];
 model.out=N;
 model.in1=N;
 model.ipar=-1*ones(N,1);
@@ -11882,7 +11882,7 @@ model.sim="limpsplit";
 mo=modelica();
 mo.model="limpsplit";
 mo.inputs="n";
-mo.outputs=["n","n"];
+mo.outputs=[["n"],["n"]];
 model.equations=mo;
 model.in1=ones(size(mo.inputs,"*"),1);
 model.out=ones(size(mo.outputs,"*"),1);
@@ -11916,7 +11916,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[function_name,sci2exp(funtyp),sci2exp(model.in1),sci2exp(model.out),sci2exp(model.evtin),sci2exp(model.evtout),sci2exp(model.state),sci2exp(model.dstate),sci2exp(model.rpar),sci2exp(model.ipar),sci2exp(model.nmode),sci2exp(model.nzcross),sci2exp(model.firing),"y","n"];
+label=[[function_name],[sci2exp(funtyp)],[sci2exp(model.in1)],[sci2exp(model.out)],[sci2exp(model.evtin)],[sci2exp(model.evtout)],[sci2exp(model.state)],[sci2exp(model.dstate)],[sci2exp(model.rpar)],[sci2exp(model.ipar)],[sci2exp(model.nmode)],[sci2exp(model.nzcross)],[sci2exp(model.firing)],["y"],["n"]];
 gr_i=[];
 x=standard_define([2,2],model,label,gr_i);
 }
@@ -11933,7 +11933,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,function_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,nmode,nzcr,auto0,depu,dept,lab]=scicos_getvalue("Set GENERIC block parameters",["simulation function","function type (0,1,2,..)","input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","Real parameters vector","Integer parameters vector","number of modes","number of zero_crossings","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec","sum(%6)","str",1,"str",1),label);
+[ok,function_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,nmode,nzcr,auto0,depu,dept,lab]=scicos_getvalue("Set GENERIC block parameters",[["simulation function"],["function type (0,1,2,..)"],["input ports sizes"],["output port sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["initial discrete state"],["Real parameters vector"],["Integer parameters vector"],["number of modes"],["number of zero_crossings"],["initial firing vector (<0 for no firing)"],["direct feedthrough (y or n)"],["time dependence (y or n)"]],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec","sum(%6)","str",1,"str",1),label);
 if (!ok) {
 break;
 }
@@ -11952,8 +11952,8 @@ if (funtyp<0) {
 message("function type cannot be negative");
 ok=false;
 }
-if ([ci,co]!=[]) {
-if (max([ci,co])>1) {
+if ([[ci],[co]]!=[]) {
+if (max([[ci],[co]])>1) {
 message("vector event links not supported");
 ok=false;
 }
@@ -12011,7 +12011,7 @@ model.out=1;
 model.out2=1;
 model.outtyp=1;
 model.dep_ut=[true,false];
-label=[function_name,sci2exp(funtyp),sci2exp([model.in1,model.in2]),sci2exp(model.intyp),sci2exp([model.out,model.out2]),sci2exp(model.outtyp),sci2exp(model.evtin),sci2exp(model.evtout),sci2exp(model.state),sci2exp(model.dstate),sci2exp(model.odstate),sci2exp(model.rpar),sci2exp(model.ipar),sci2exp(model.opar),sci2exp(model.nmode),sci2exp(model.nzcross),sci2exp(model.firing),"y","n"];
+label=[[function_name],[sci2exp(funtyp)],[sci2exp([model.in1,model.in2])],[sci2exp(model.intyp)],[sci2exp([model.out,model.out2]),sci2exp(model.outtyp)],[sci2exp(model.evtin)],[sci2exp(model.evtout)],[sci2exp(model.state)],[sci2exp(model.dstate)],[sci2exp(model.odstate)],[sci2exp(model.rpar)],[sci2exp(model.ipar)],[sci2exp(model.opar)],[sci2exp(model.nmode)],[sci2exp(model.nzcross)],[sci2exp(model.firing)],["y"],["n"]];
 gr_i=[];
 x=standard_define([4,2],model,label,gr_i);
 }
@@ -12028,7 +12028,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,function_name,funtyp,in1,it,out,ot,ci,co,xx,z,oz,rpar,ipar,opar,nmode,nzcr,auto0,depu,dept,lab]=scicos_getvalue("Set GENERIC block parameters",["Simulation function","Function type (0,1,2,..)","Input ports sizes","Input ports type","Output port sizes","Output ports type","Input event ports sizes","Output events ports sizes","Initial continuous state","Initial discrete state","Initial object state","Real parameters vector","Integer parameters vector","Object parameters list","Number of modes","Number of zero crossings","Initial firing vector (<0 for no firing)","Direct feedthrough (y or n)","Time dependence (y or n)"],list("str",1,"vec",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label);
+[ok,function_name,funtyp,in1,it,out,ot,ci,co,xx,z,oz,rpar,ipar,opar,nmode,nzcr,auto0,depu,dept,lab]=scicos_getvalue("Set GENERIC block parameters",[["Simulation function"],["Function type (0,1,2,..)"],["Input ports sizes"],["Input ports type"],["Output port sizes"],["Output ports type"],["Input event ports sizes"],["Output events ports sizes"],["Initial continuous state"],["Initial discrete state"],["Initial object state"],["Real parameters vector"],["Integer parameters vector"],["Object parameters list"],["Number of modes"],["Number of zero crossings"],["Initial firing vector (<0 for no firing)"],["Direct feedthrough (y or n)"],["Time dependence (y or n)"]],list("str",1,"vec",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label);
 if (!ok) {
 break;
 }
@@ -12045,8 +12045,8 @@ if (funtyp<0) {
 message("function type cannot be negative");
 ok=false;
 }
-if ([ci,co]!=[]) {
-if (max([ci,co])>1) {
+if ([[ci],[co]]!=[]) {
+if (max([[ci],[co]])>1) {
 message("vector event links not supported");
 ok=false;
 }
@@ -12161,8 +12161,8 @@ siz=1;
 model=scicos_model();
 model.sim="text";
 model.rpar="Text";
-model.ipar=[font,siz];
-exprs=["Text",string(font),string(siz)];
+model.ipar=[[font],[siz]];
+exprs=[["Text"],[string(font)],[string(siz)]];
 graphics=scicos_graphics();
 graphics.orig=[0,0];
 graphics.sz=[2,1];
@@ -12180,10 +12180,10 @@ orig=graphics.orig;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,"*")==1) {
-exprs=[exprs,"3","1"];
+exprs=[[exprs],["3"],["1"]];
 }
 while (true) {
-[ok,txt,font,siz,exprs]=scicos_getvalue("Set Text block parameters",["Text","Font number","Font size"],list("str",-1,"vec",1,"vec",1),exprs);
+[ok,txt,font,siz,exprs]=scicos_getvalue("Set Text block parameters",[["Text"],["Font number"],["Font size"]],list("str",-1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -12210,7 +12210,7 @@ gh_winpal.font_color=default_font_color;
 sz=r.slice(3-1,4);
 graphics.sz=sz;
 x.graphics=graphics;
-ipar=[font,siz];
+ipar=[[font],[siz]];
 model.rpar=txt;
 model.ipar=ipar;
 x.model=model;
@@ -12225,7 +12225,7 @@ HYSTHERESIS.prototype.define = function HYSTHERESIS() {
 in1=1;
 ipar=[0];
 nzz=2;
-rpar=[1,0,1,0];
+rpar=[[1],[0],[1],[0]];
 model=scicos_model();
 model.sim=list("hystheresis",4);
 model.in1=in1;
@@ -12235,7 +12235,7 @@ model.nzcross=nzz;
 model.nmode=1;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(rpar),string(sign(nzz))];
+exprs=[[string(rpar)],[string(sign(nzz))]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -12249,7 +12249,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,high_lim,low_lim,out_high,out_low,nzz,exprs]=scicos_getvalue("Set parameters",["switch on at","switch off at","output when on","output when off","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,high_lim,low_lim,out_high,out_low,nzz,exprs]=scicos_getvalue("Set parameters",[["switch on at"],["switch off at"],["output when on"],["output when off"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -12312,7 +12312,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 label=graphics.exprs;
 while (true) {
-[ok,function_name,impli,i,o,ci,co,xx,ng,z,rpar,ipar,auto0,depu,dept,lab]=scicos_getvalue("Set C-Block2 block parameters",["simulation function","is block implicit? (y,n)","input ports sizes","output ports sizes","input event ports sizes","output events ports sizes","initial continuous state","number of zero crossing surfaces","initial discrete state","Real parameters vector","Integer parameters vector","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label(1));
+[ok,function_name,impli,i,o,ci,co,xx,ng,z,rpar,ipar,auto0,depu,dept,lab]=scicos_getvalue("Set C-Block2 block parameters",[["simulation function"],["is block implicit? (y,n)"],["input ports sizes"],["output ports sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["number of zero crossing surfaces"],["initial discrete state"],["Real parameters vector"],["Integer parameters vector"],["initial firing vector (<0 for no firing)"],["direct feedthrough (y or n)"],["time dependence (y or n)"]],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label(1));
 if (!ok) {
 break;
 }
@@ -12336,8 +12336,8 @@ funtyp=12004;
 } else {
 funtyp=2004;
 }
-if ([ci,co]!=[]) {
-if (max([ci,co])>1) {
+if ([[ci],[co]]!=[]) {
+if (max([[ci],[co]])>1) {
 message("vector event links not supported");
 ok=false;
 }
@@ -12410,7 +12410,7 @@ model.out=1;
 model.out2=1;
 model.outtyp=1;
 model.dep_ut=[true,false];
-label=list([funam,"n",sci2exp([model.in1,model.in2]),sci2exp(model.intyp),sci2exp([model.out,model.out2]),sci2exp(model.outtyp),sci2exp(model.evtin),sci2exp(model.evtout),sci2exp(model.state),sci2exp(model.dstate),sci2exp(model.odstate),sci2exp(model.rpar),sci2exp(model.ipar),sci2exp(model.opar),sci2exp(model.nmode),sci2exp(model.nzcross),sci2exp(model.firing),"y","n"],[]);
+label=list([[funam],["n"],[sci2exp([model.in1,model.in2])],[sci2exp(model.intyp)],[sci2exp([model.out,model.out2])],[sci2exp(model.outtyp)],[sci2exp(model.evtin)],[sci2exp(model.evtout)],[sci2exp(model.state)],[sci2exp(model.dstate)],[sci2exp(model.odstate)],[sci2exp(model.rpar)],[sci2exp(model.ipar)],[sci2exp(model.opar)],[sci2exp(model.nmode)],[sci2exp(model.nzcross)],[sci2exp(model.firing)],["y"],["n"]],[]);
 gr_i=[];
 x=standard_define([4,2],model,label,gr_i);
 }
@@ -12424,7 +12424,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 label=graphics.exprs;
 while (true) {
-[ok,function_name,impli,in1,it,out,ot,ci,co,xx,z,oz,rpar,ipar,opar,nmode,nzcr,auto0,depu,dept,lab]=scicos_getvalue("Set C-Block4 block parameters",["Simulation function","Is block implicit? (y,n)","Input ports sizes","Input ports type","Output port sizes","Output ports type","Input event ports sizes","Output events ports sizes","Initial continuous state","Initial discrete state","Initial object state","Real parameters vector","Integer parameters vector","Object parameters list","Number of modes","Number of zero crossings","Initial firing vector (<0 for no firing)","Direct feedthrough (y or n)","Time dependence (y or n)"],list("str",1,"str",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label(1));
+[ok,function_name,impli,in1,it,out,ot,ci,co,xx,z,oz,rpar,ipar,opar,nmode,nzcr,auto0,depu,dept,lab]=scicos_getvalue("Set C-Block4 block parameters",[["Simulation function"],["Is block implicit? (y,n)"],["Input ports sizes"],["Input ports type"],["Output port sizes"],["Output ports type"],["Input event ports sizes"],["Output events ports sizes"],["Initial continuous state"],["Initial discrete state"],["Initial object state"],["Real parameters vector"],["Integer parameters vector"],["Object parameters list"],["Number of modes"],["Number of zero crossings"],["Initial firing vector (<0 for no firing)"],["Direct feedthrough (y or n)"],["Time dependence (y or n)"]],list("str",1,"str",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label(1));
 if (!ok) {
 break;
 }
@@ -12445,8 +12445,8 @@ funtyp=12004;
 } else {
 funtyp=2004;
 }
-if ([ci,co]!=[]) {
-if (max([ci,co])>1) {
+if ([[ci],[co]]!=[]) {
+if (max([[ci],[co]])>1) {
 message("vector event links not supported");
 ok=false;
 }
@@ -12512,17 +12512,17 @@ function BOUNCEXY() {
 BOUNCEXY.prototype.define = function BOUNCEXY() {
 win=-1;
 imode=1;
-clrs=[1,2];
-siz=[1,1];
+clrs=[[1],[2]];
+siz=[[1],[1]];
 xmin=-5;
 xmax=5;
 ymin=0;
 ymax=15;
 model=scicos_model();
 model.sim=list("bouncexy",4);
-model.in1=[-1,-1];
-model.in2=[1,1];
-model.intyp=[1,1];
+model.in1=[[-1],[-1]];
+model.in2=[[1],[1]];
+model.intyp=[[1],[1]];
 model.evtin=1;
 z=[];
 for (i=1;i<=size(clrs,"*");i+=1) {
@@ -12534,12 +12534,12 @@ z[6*(i-1)+5-1]=0.000;
 z[6*(i-1)+6-1]=64.0*360.000;
 }
 model.dstate=z;
-model.rpar=[xmin,xmax,ymin,ymax];
-model.ipar=[win,imode,clrs.slice()];
+model.rpar=[[xmin],[xmax],[ymin],[ymax]];
+model.ipar=[[win],[imode],[clrs.slice()]];
 model.blocktype="d";
 model.firing=[];
 model.dep_ut=[false,false];
-exprs=[strcat(sci2exp(clrs)),strcat(sci2exp(siz)),strcat(sci2exp(win)),strcat(sci2exp(1)),strcat(sci2exp(xmin)),strcat(sci2exp(xmax)),strcat(sci2exp(ymin)),strcat(sci2exp(ymax))];
+exprs=[[strcat(sci2exp(clrs))],[strcat(sci2exp(siz))],[strcat(sci2exp(win))],[strcat(sci2exp(1))],[strcat(sci2exp(xmin))],[strcat(sci2exp(xmax))],[strcat(sci2exp(ymin))],[strcat(sci2exp(ymax))]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -12554,32 +12554,32 @@ exprs=graphics.exprs;
 model=arg1.model;
 dstate=model.dstate;
 while (true) {
-[ok,clrs,siz,win,imode,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue("Set Scope parameters",["colors","radii","window number (-1 for automatic)","animation mode (0,1)","Xmin","Xmax","Ymin","Ymax"],list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,clrs,siz,win,imode,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue("Set Scope parameters",[["colors"],["radii"],["window number (-1 for automatic)"],["animation mode (0,1)"],["Xmin"],["Xmax"],["Ymin"],["Ymax"]],list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (size(clrs,"*")!=size(siz,"*")) {
-mess=[mess,"colors and radii must have equal size (number of balls)"," "];
+mess=[[mess],["colors and radii must have equal size (number of balls)"],[" "]];
 ok=false;
 }
 if (win<-1) {
-mess=[mess,"Window number cannot be inferior than -1"," "];
+mess=[[mess],["Window number cannot be inferior than -1"],[" "]];
 ok=false;
 }
 if (ymin>=ymax) {
-mess=[mess,"Ymax must be greater than Ymin"," "];
+mess=[[mess],["Ymax must be greater than Ymin"],[" "]];
 ok=false;
 }
 if (xmin>=xmax) {
-mess=[mess,"Xmax must be greater than Xmin"," "];
+mess=[[mess],["Xmax must be greater than Xmin"],[" "]];
 ok=false;
 }
 if (!ok) {
 message(mess);
 } else {
-rpar=[xmin,xmax,ymin,ymax];
-ipar=[win,imode,clrs.slice()];
+rpar=[[xmin],[xmax],[ymin],[ymax]];
+ipar=[[win],[imode],[clrs.slice()]];
 z=[];
 for (i=1;i<=size(clrs,"*");i+=1) {
 z[6*(i-1)+1-1]=0;
@@ -12603,12 +12603,12 @@ break;
 /* autogenerated from "macros/Misc/BACKLASH.sci" */
 function BACKLASH() {
 BACKLASH.prototype.define = function BACKLASH() {
-exprs=["0","1","1"];
+exprs=[["0"],["1"],["1"]];
 model=scicos_model();
 model.sim=list("backlash",4);
 model.in1=1;
 model.out=1;
-model.rpar=[0,1];
+model.rpar=[[0],[1]];
 model.nzcross=2;
 model.blocktype="c";
 model.dep_ut=[true,false];
@@ -12626,7 +12626,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 rpar=model.rpar;
 while (true) {
-[ok,ini,gap,zcr,exprs]=scicos_getvalue("Set backlash parameters",["initial output","gap","use zero-crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,ini,gap,zcr,exprs]=scicos_getvalue("Set backlash parameters",[["initial output"],["gap"],["use zero-crossing (0:no, 1:yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -12659,10 +12659,10 @@ ymin=0;
 ymax=15;
 model=scicos_model();
 model.sim=list("bplatform2",5);
-model.in1=[1,1];
+model.in1=[[1],[1]];
 model.evtin=1;
 model.dstate=0;
-model.rpar=[plen,csiz,phi,xmin,xmax,ymin,ymax];
+model.rpar=[[plen],[csiz],[phi],[xmin],[xmax],[ymin],[ymax]];
 model.blocktype="d";
 model.dep_ut=[false,false];
 exprs=string(model.rpar);
@@ -12680,27 +12680,27 @@ exprs=graphics.exprs;
 model=arg1.model;
 dstate=model.dstate;
 while (true) {
-[ok,plen,csiz,phi,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,plen,csiz,phi,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue("Set Scope parameters",[["pendulum length"],["cart size (square side)"],["slope"],["Xmin"],["Xmax"],["Ymin"],["Ymax"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (plen<=0||csiz<=0) {
-mess=[mess,"Pendulum length and cart size must be positive."," "];
+mess=[[mess],["Pendulum length and cart size must be positive."],[" "]];
 ok=false;
 }
 if (ymin>=ymax) {
-mess=[mess,"Ymax must be greater than Ymin"," "];
+mess=[[mess],["Ymax must be greater than Ymin"],[" "]];
 ok=false;
 }
 if (xmin>=xmax) {
-mess=[mess,"Xmax must be greater than Xmin"," "];
+mess=[[mess],["Xmax must be greater than Xmin"],[" "]];
 ok=false;
 }
 if (!ok) {
 message(mess);
 } else {
-rpar=[plen,csiz,phi,xmin,xmax,ymin,ymax];
+rpar=[[plen],[csiz],[phi],[xmin],[xmax],[ymin],[ymax]];
 model.rpar=rpar;
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -12748,7 +12748,7 @@ SPLIT_f.prototype.define = function SPLIT_f() {
 model=scicos_model();
 model.sim="lsplit";
 model.in1=-1;
-model.out=[-1,-1,-1];
+model.out=[[-1],[-1],[-1]];
 model.blocktype="c";
 model.dep_ut=[true,false];
 x=standard_define([1,1]/3,model,[],[]);
@@ -12773,10 +12773,10 @@ ymin=-5;
 ymax=5;
 model=scicos_model();
 model.sim=list("anim_pen",5);
-model.in1=[1,1];
+model.in1=[[1],[1]];
 model.evtin=1;
 model.dstate=0;
-model.rpar=[plen,csiz,phi,xmin,xmax,ymin,ymax];
+model.rpar=[[plen],[csiz],[phi],[xmin],[xmax],[ymin],[ymax]];
 model.blocktype="d";
 model.dep_ut=[false,false];
 exprs=string(model.rpar);
@@ -12794,27 +12794,27 @@ exprs=graphics.exprs;
 model=arg1.model;
 dstate=model.dstate;
 while (true) {
-[ok,plen,csiz,phi,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,plen,csiz,phi,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue("Set Scope parameters",[["pendulum length"],["cart size (square side)"],["slope"],["Xmin"],["Xmax"],["Ymin"],["Ymax"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (plen<=0||csiz<=0) {
-mess=[mess,"Pendulum length and cart size must be positive."," "];
+mess=[[mess],["Pendulum length and cart size must be positive."],[" "]];
 ok=false;
 }
 if (ymin>=ymax) {
-mess=[mess,"Ymax must be greater than Ymin"," "];
+mess=[[mess],["Ymax must be greater than Ymin"],[" "]];
 ok=false;
 }
 if (xmin>=xmax) {
-mess=[mess,"Xmax must be greater than Xmin"," "];
+mess=[[mess],["Xmax must be greater than Xmin"],[" "]];
 ok=false;
 }
 if (!ok) {
 message(mess);
 } else {
-rpar=[plen,csiz,phi,xmin,xmax,ymin,ymax];
+rpar=[[plen],[csiz],[phi],[xmin],[xmax],[ymin],[ymax]];
 model.rpar=rpar;
 graphics.exprs=exprs;
 x.graphics=graphics;
@@ -12827,7 +12827,7 @@ break;
 /* autogenerated from "macros/Misc/LOGICAL_OP.sci" */
 function LOGICAL_OP() {
 LOGICAL_OP.prototype.define = function LOGICAL_OP() {
-in1=[-1,-1];
+in1=[[-1],[-1]];
 ipar=[0];
 nin=2;
 model=scicos_model();
@@ -12837,7 +12837,7 @@ model.out=-1;
 model.ipar=ipar;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(nin),string(ipar)];
+exprs=[[string(nin)],[string(ipar)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -12851,10 +12851,10 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,1)==2) {
-exprs=[exprs,sci2exp(1),sci2exp(0)];
+exprs=[[exprs],[sci2exp(1)],[sci2exp(0)]];
 }
 while (true) {
-[ok,nin,rule,Datatype,tp,exprs]=scicos_getvalue("Set parameters",["number of inputs","Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)","Datatype (1=double 3=int32 ...)","Bitwise Rule(0=No 1=yes)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,nin,rule,Datatype,tp,exprs]=scicos_getvalue("Set parameters",[["number of inputs"],["Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)","Datatype (1=double 3=int32 ...)"],["Bitwise Rule(0=No 1=yes)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -12898,7 +12898,7 @@ model.sim=list("logicalop_ui8",4);
 message("Datatype is not supported");
 ok=false;
 }
-model.ipar=[rule,tp];
+model.ipar=[[rule],[tp]];
 }
 if (ok) {
 it=Datatype*ones(nin,1);
@@ -12941,7 +12941,7 @@ function MEMORY_f() {
 MEMORY_f.prototype.define = function MEMORY_f() {
 z=0;
 in1=1;
-exprs=[string(z),string(1)];
+exprs=[[string(z)],[string(1)]];
 model=scicos_model();
 model.sim="memo";
 model.in1=in1;
@@ -12964,7 +12964,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,a,inh,exprs]=scicos_getvalue("Set memory block parameters",["initial condition","Inherit (1: no, 0: yes)"],list("vec",-1,"vec",1),exprs);
+[ok,a,inh,exprs]=scicos_getvalue("Set memory block parameters",[["initial condition"],["Inherit (1: no, 0: yes)"]],list("vec",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -12997,7 +12997,7 @@ function ENDBLK() {
 ENDBLK.prototype.define = function ENDBLK() {
 scs_m_1=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[-159.096,811.104,-121.216,617.984,1323,1008,331,284,630,480,0,7,1.4],Title="ENDBLK",tol=[0.0001,0.000001,1.000e-10,100001,0,0],tf=100000,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
 scs_m_1.objs[1-1]=scicos_block(gui="END_c",graphics=scicos_graphics(orig=[272.104,249.11733],sz=[40,40],flip=true,theta=0,exprs="1.000E+08",pin=[],pout=[],pein=2,peout=2,gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim=list("scicosexit",4),in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=1,evtout=1,state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="d",firing=1.000e+08,dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[2-1]=scicos_link(xx=[292.104,292.104,261.83733,261.83733,292.104,292.104],yy=[243.40305,234.45067,234.45067,305.584,305.584,294.83162],id="drawlink",thick=[0,0],ct=[5,-1],from=[1,1,0],to=[1,1,1]);
+scs_m_1.objs[2-1]=scicos_link(xx=[[292.104],[292.104],[261.83733],[261.83733],[292.104],[292.104]],yy=[[243.40305],[234.45067],[234.45067],[305.584],[305.584],[294.83162]],id="drawlink",thick=[0,0],ct=[5,-1],from=[1,1,0],to=[1,1,1]);
 model=scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list());
 gr_i=[];
 x=standard_define([2,2],model,[],gr_i);
@@ -13082,9 +13082,9 @@ INTMUL.prototype.define = function INTMUL() {
 sgn=0;
 model=scicos_model();
 model.sim=list("matmul_i32",4);
-model.in1=[-1,-2];
+model.in1=[[-1],[-2]];
 model.out=-1;
-model.in2=[-2,-3];
+model.in2=[[-2],[-3]];
 model.out2=-3;
 model.intyp=[3,3];
 model.outtyp=3;
@@ -13092,7 +13092,7 @@ model.rpar=[];
 model.ipar=sgn;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(3),sci2exp(0)];
+exprs=[[sci2exp(3)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -13106,7 +13106,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,Datatype,np,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"INTMUL")," ",gettext("Integer matrix multiplication")," "],[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)"),gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")],list("vec",1,"vec",1),exprs);
+[ok,Datatype,np,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INTMUL")],[" "],[gettext("Integer matrix multiplication")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -13198,7 +13198,7 @@ model.rpar=[];
 model.ipar=sgn;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(1),sci2exp(3),sci2exp(0)];
+exprs=[[sci2exp(1)],[sci2exp(3)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -13212,7 +13212,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,it,ot,np,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CONVERT")," ",gettext("Type conversion")," "],[gettext("Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"),gettext("Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"),gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,it,ot,np,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CONVERT")],[" "],[gettext("Type conversion")],[" "]],[[gettext("Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)")],[gettext("Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)")],[gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -13555,27 +13555,27 @@ break;
 /* autogenerated from "macros/IntegerOp/SRFLIPFLOP.sci" */
 function SRFLIPFLOP() {
 SRFLIPFLOP.prototype.define = function SRFLIPFLOP() {
-scs_m=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title=["SRFLIPFLOP"],tol=[0.0001,0.000001,1.000e-10,100001,0,0,0],tf=60,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
-scs_m.objs[1-1]=scicos_block(gui="LOGIC",graphics=scicos_graphics(orig=[298.504,201.45067],sz=[40,40],flip=true,theta=0,exprs=["[0 1;1 0;1 0;1 0;0 1;0 1;0 0;0 0]","1"],pin=[4,10,12],pout=[3,8],pein=[],peout=[],gr_i=[],id="",in_implicit=["E","E","E"],out_implicit=["E","E"]),model=scicos_model(sim=list("logic",4),in1=[1,1,1],in2=[1,1,1],intyp=[5,5,5],out=[1,1],out2=[1,1],outtyp=[5,5],evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(int8([0,1,1,0,1,0,1,0,0,1,0,1,0,0,0,0])),blocktype="c",firing=false,dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[2-1]=scicos_block(gui="DOLLAR_m",graphics=scicos_graphics(orig=[299.23733,254.25067],sz=[40,40],flip=false,theta=0,exprs=["int8(0)","1"],pin=6,pout=4,pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("dollar4_m",4),in1=1,in2=1,intyp=5,out=1,out2=1,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(int8(0)),rpar=[],ipar=[],opar=list(),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[3-1]=scicos_link(xx=[347.07543,363.03733,363.03733],yy=[228.11733,228.11733,248.584],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[5,1,1]);
-scs_m.objs[4-1]=scicos_link(xx=[290.6659,272.104,272.104,289.93257],yy=[274.25067,274.25067,231.45067,231.45067],id="drawlink",thick=[0,0],ct=[1,1],from=[2,1,0],to=[1,1,1]);
-scs_m.objs[5-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[363.03733,248.584],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=3,pout=[6,14],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=["E","E","E"]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[-1,-1,-1],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[6-1]=scicos_link(xx=[363.03733,363.03733,344.95162],yy=[248.584,274.25067,274.25067],id="drawlink",thick=[0,0],ct=[1,1],from=[5,1,0],to=[2,1,1]);
+scs_m=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title=["SRFLIPFLOP"],tol=[[0.0001],[0.000001],[1.000e-10],[100001],[0],[0],[0]],tf=60,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
+scs_m.objs[1-1]=scicos_block(gui="LOGIC",graphics=scicos_graphics(orig=[298.504,201.45067],sz=[40,40],flip=true,theta=0,exprs=[["[0 1;1 0;1 0;1 0;0 1;0 1;0 0;0 0]"],["1"]],pin=[[4],[10],[12]],pout=[[3],[8]],pein=[],peout=[],gr_i=[],id="",in_implicit=[["E"],["E"],["E"]],out_implicit=[["E"],["E"]]),model=scicos_model(sim=list("logic",4),in1=[[1],[1],[1]],in2=[[1],[1],[1]],intyp=[[5],[5],[5]],out=[[1],[1]],out2=[[1],[1]],outtyp=[[5],[5]],evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(int8([[0,1],[1,0],[1,0],[1,0],[0,1],[0,1],[0,0],[0,0]])),blocktype="c",firing=false,dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[2-1]=scicos_block(gui="DOLLAR_m",graphics=scicos_graphics(orig=[299.23733,254.25067],sz=[40,40],flip=false,theta=0,exprs=[["int8(0)"],["1"]],pin=6,pout=4,pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("dollar4_m",4),in1=1,in2=1,intyp=5,out=1,out2=1,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(int8(0)),rpar=[],ipar=[],opar=list(),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[3-1]=scicos_link(xx=[[347.07543],[363.03733],[363.03733]],yy=[[228.11733],[228.11733],[248.584]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[5,1,1]);
+scs_m.objs[4-1]=scicos_link(xx=[[290.6659],[272.104],[272.104],[289.93257]],yy=[[274.25067],[274.25067],[231.45067],[231.45067]],id="drawlink",thick=[0,0],ct=[1,1],from=[2,1,0],to=[1,1,1]);
+scs_m.objs[5-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[363.03733,248.584],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=3,pout=[[6],[14]],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[["E"],["E"],["E"]]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[[-1],[-1],[-1]],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[6-1]=scicos_link(xx=[[363.03733],[363.03733],[344.95162]],yy=[[248.584],[274.25067],[274.25067]],id="drawlink",thick=[0,0],ct=[1,1],from=[5,1,0],to=[2,1,1]);
 scs_m.objs[7-1]=scicos_block(gui="OUT_f",graphics=scicos_graphics(orig=[367.07543,204.784],sz=[20,20],flip=true,theta=0,exprs="2",pin=8,pout=[],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="output",in1=-1,in2=[],intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=2,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[8-1]=scicos_link(xx=[347.07543,367.07543],yy=[214.784,214.784],id="drawlink",thick=[0,0],ct=[1,1],from=[1,2,0],to=[7,1,1]);
+scs_m.objs[8-1]=scicos_link(xx=[[347.07543],[367.07543]],yy=[[214.784],[214.784]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,2,0],to=[7,1,1]);
 scs_m.objs[9-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[249.93257,211.45067],sz=[20,20],flip=true,theta=0,exprs="1",pin=[],pout=10,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=-1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[10-1]=scicos_link(xx=[269.93257,289.93257],yy=[221.45067,221.45067],id="drawlink",thick=[0,0],ct=[1,1],from=[9,1,0],to=[1,2,1]);
+scs_m.objs[10-1]=scicos_link(xx=[[269.93257],[289.93257]],yy=[[221.45067],[221.45067]],id="drawlink",thick=[0,0],ct=[1,1],from=[9,1,0],to=[1,2,1]);
 scs_m.objs[11-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[249.93257,201.45067],sz=[20,20],flip=true,theta=0,exprs="2",pin=[],pout=12,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=-1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=2,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[12-1]=scicos_link(xx=[269.93257,289.93257],yy=[211.45067,211.45067],id="drawlink",thick=[0,0],ct=[1,1],from=[11,1,0],to=[1,3,1]);
+scs_m.objs[12-1]=scicos_link(xx=[[269.93257],[289.93257]],yy=[[211.45067],[211.45067]],id="drawlink",thick=[0,0],ct=[1,1],from=[11,1,0],to=[1,3,1]);
 scs_m.objs[13-1]=scicos_block(gui="OUT_f",graphics=scicos_graphics(orig=[383.03733,238.584],sz=[20,20],flip=true,theta=0,exprs="1",pin=14,pout=[],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="output",in1=-1,in2=[],intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[14-1]=scicos_link(xx=[363.03733,383.03733],yy=[248.584,248.584],id="drawlink",thick=[0,0],ct=[1,1],from=[5,2,0],to=[13,1,1]);
+scs_m.objs[14-1]=scicos_link(xx=[[363.03733],[383.03733]],yy=[[248.584],[248.584]],id="drawlink",thick=[0,0],ct=[1,1],from=[5,2,0],to=[13,1,1]);
 model=scicos_model();
 model.sim="csuper";
-model.in1=[1,1];
-model.in2=[1,1];
-model.out=[1,1];
-model.out2=[1,1];
+model.in1=[[1],[1]];
+model.in2=[[1],[1]];
+model.out=[[1],[1]];
+model.out2=[[1],[1]];
 model.intyp=[5,5];
 model.outtyp=[5,5];
 model.blocktype="h";
@@ -13603,7 +13603,7 @@ exprs=xx.graphics.exprs(1);
 model=xx.model;
 init_old=model.odstate(1);
 while (true) {
-[ok,init,exprs0]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"SRFLIPFLOP")," ",gettext("SR flip-flop")," ",gettext("The \'Initial Value\' must be 0 or 1 of type int8"),gettext("&nbsp;- Negative values are considered as int8(0)"),gettext("&nbsp;- Positive values are considered as int8(1)")," "],gettext("Initial Value"),list("vec",1),exprs);
+[ok,init,exprs0]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"SRFLIPFLOP")],[" "],[gettext("SR flip-flop")],[" "],[gettext("The \'Initial Value\' must be 0 or 1 of type int8")],[gettext("&nbsp;- Negative values are considered as int8(0)")],[gettext("&nbsp;- Positive values are considered as int8(1)")],[" "]],gettext("Initial Value"),list("vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -13644,7 +13644,7 @@ model.outtyp=3;
 model.opar=list(uint32(0));
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(3),sci2exp(0)];
+exprs=[[sci2exp(3)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -13658,7 +13658,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,Datatype,bit,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"BITSET")," ",gettext("Set a bit")," "],[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)"),gettext("Index of Bit (0 is least significant)")],list("vec",1,"vec",1),exprs);
+[ok,Datatype,bit,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"BITSET")],[" "],[gettext("Set a bit")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Index of Bit (0 is least significant)")]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -13717,43 +13717,43 @@ break;
 /* autogenerated from "macros/IntegerOp/JKFLIPFLOP.sci" */
 function JKFLIPFLOP() {
 JKFLIPFLOP.prototype.define = function JKFLIPFLOP() {
-scs_m=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title=["JKFLIPFLOP"],tol=[0.0001,0.000001,1.000e-10,100001,0,0,0],tf=60,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
-scs_m.objs[1-1]=scicos_block(gui="DOLLAR_m",graphics=scicos_graphics(orig=[299.96961,261.584],sz=[40,40],flip=false,theta=0,exprs=["int8(0)","1"],pin=7,pout=5,pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("dollar4_m",4),in1=1,in2=1,intyp=5,out=1,out2=1,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(int8(0)),rpar=[],ipar=[],opar=list(),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title=["EDGE_TRIGGER","./"],tol=[0.0001,0.000001,1.000e-10,100001,0,0,0],tf=30,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
+scs_m=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title=["JKFLIPFLOP"],tol=[[0.0001],[0.000001],[1.000e-10],[100001],[0],[0],[0]],tf=60,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
+scs_m.objs[1-1]=scicos_block(gui="DOLLAR_m",graphics=scicos_graphics(orig=[299.96961,261.584],sz=[40,40],flip=false,theta=0,exprs=[["int8(0)"],["1"]],pin=7,pout=5,pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("dollar4_m",4),in1=1,in2=1,intyp=5,out=1,out2=1,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(int8(0)),rpar=[],ipar=[],opar=list(),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m_1=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title=["EDGE_TRIGGER","./"],tol=[[0.0001],[0.000001],[1.000e-10],[100001],[0],[0],[0]],tf=30,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
 scs_m_1.objs[1-1]=scicos_block(gui="EDGETRIGGER",graphics=scicos_graphics(orig=[288.58631,257.1131],sz=[60,40],flip=true,theta=0,exprs="-1",pin=5,pout=3,pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("edgetrig",4),in1=1,in2=[],intyp=1,out=1,out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=0,odstate=list(),rpar=[],ipar=-1,opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=1,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[2-1]=scicos_block(gui="IFTHEL_f",graphics=scicos_graphics(orig=[388.28869,247.1131],sz=[60,60],flip=true,theta=0,exprs=["0","0"],pin=3,pout=[],pein=[],peout=[7,0],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim=list("ifthel",-1),in1=1,in2=[],intyp=1,out=[],out2=1,outtyp=[],evtin=[],evtout=[1,1],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="l",firing=[-1,-1],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[3-1]=scicos_link(xx=[357.15774,362.99107,379.71726],yy=[277.1131,277.1131,277.1131],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[2,1,1]);
+scs_m_1.objs[2-1]=scicos_block(gui="IFTHEL_f",graphics=scicos_graphics(orig=[388.28869,247.1131],sz=[60,60],flip=true,theta=0,exprs=[["0"],["0"]],pin=3,pout=[],pein=[],peout=[[7],[0]],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim=list("ifthel",-1),in1=1,in2=[],intyp=1,out=[],out2=1,outtyp=[],evtin=[],evtout=[[1],[1]],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="l",firing=[-1,-1],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m_1.objs[3-1]=scicos_link(xx=[[357.15774],[362.99107],[379.71726]],yy=[[277.1131],[277.1131],[277.1131]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[2,1,1]);
 scs_m_1.objs[4-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[240.01488,267.1131],sz=[20,20],flip=true,theta=0,exprs="1",pin=[],pout=5,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[5-1]=scicos_link(xx=[260.01488,280.01488],yy=[277.1131,277.1131],id="drawlink",thick=[0,0],ct=[1,1],from=[4,1,0],to=[1,1,1]);
+scs_m_1.objs[5-1]=scicos_link(xx=[[260.01488],[280.01488]],yy=[[277.1131],[277.1131]],id="drawlink",thick=[0,0],ct=[1,1],from=[4,1,0],to=[1,1,1]);
 scs_m_1.objs[6-1]=scicos_block(gui="CLKOUTV_f",graphics=scicos_graphics(orig=[398.28869,181.39881],sz=[20,30],flip=true,theta=0,exprs="1",pin=[],pout=[],pein=7,peout=[],gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="output",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=1,evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[7-1]=scicos_link(xx=[408.28869,408.28869],yy=[241.39881,211.39881],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1,0],to=[6,1,1]);
+scs_m_1.objs[7-1]=scicos_link(xx=[[408.28869],[408.28869]],yy=[[241.39881],[211.39881]],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1,0],to=[6,1,1]);
 scs_m.objs[2-1]=scicos_block(gui="EDGE_TRIGGER",graphics=scicos_graphics(orig=[292.52452,323.54888],sz=[60,40],flip=true,theta=0,exprs=[],pin=14,pout=[],pein=[],peout=8,gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="csuper",in1=-1,in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=[],evtout=1,state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[3-1]=scicos_block(gui="LOGIC",graphics=scicos_graphics(orig=[302.79613,202.52782],sz=[40,40],flip=true,theta=0,exprs=["[0;1;1;1;0;0;1;0]","0"],pin=[5,16,18],pout=4,pein=8,peout=[],gr_i=[],id="",in_implicit=["E","E","E"],out_implicit="E"),model=scicos_model(sim=list("logic",4),in1=[1,1,1],in2=[1,1,1],intyp=[5,5,5],out=1,out2=1,outtyp=5,evtin=1,evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(int8([0,1,1,1,0,0,1,0])),blocktype="c",firing=false,dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[4-1]=scicos_link(xx=[351.36756,368.82793,368.82793],yy=[222.52782,222.52782,223.06473],id="drawlink",thick=[0,0],ct=[1,1],from=[3,1,0],to=[10,1,1]);
-scs_m.objs[5-1]=scicos_link(xx=[291.39818,274.18235,274.18235,294.2247],yy=[281.584,281.584,232.52782,232.52782],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[3,1,1]);
-scs_m.objs[6-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[368.82793,243.45067],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=11,pout=[7,20],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=["E","E","E"]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[-1,-1,-1],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[7-1]=scicos_link(xx=[368.82793,368.82793,345.68389],yy=[243.45067,281.584,281.584],id="drawlink",thick=[0,0],ct=[1,1],from=[6,1,0],to=[1,1,1]);
-scs_m.objs[8-1]=scicos_link(xx=[322.52452,374.69743,374.69743,322.79613],yy=[317.8346,317.8346,248.24211,248.24211],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1,0],to=[3,1,1]);
-scs_m.objs[9-1]=scicos_block(gui="LOGICAL_OP",graphics=scicos_graphics(orig=[377.63217,159.25363],sz=[60,40],flip=true,theta=0,exprs=["1","5","5","0"],pin=12,pout=22,pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("logicalop_i8",4),in1=-1,in2=-2,intyp=5,out=-1,out2=-2,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[5,0],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[10-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[368.82793,223.06473],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=4,pout=[11,12],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=["E","E","E"]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[-1,-1,-1],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[11-1]=scicos_link(xx=[368.82793,368.82793],yy=[223.06473,243.45067],id="drawlink",thick=[0,0],ct=[1,1],from=[10,1,0],to=[6,1,1]);
-scs_m.objs[12-1]=scicos_link(xx=[368.82793,368.82793,369.06074],yy=[223.06473,177.7867,179.25363],id="drawlink",thick=[0,0],ct=[1,1],from=[10,2,0],to=[9,1,1]);
+scs_m.objs[3-1]=scicos_block(gui="LOGIC",graphics=scicos_graphics(orig=[302.79613,202.52782],sz=[40,40],flip=true,theta=0,exprs=[["[0;1;1;1;0;0;1;0]"],["0"]],pin=[[5],[16],[18]],pout=4,pein=8,peout=[],gr_i=[],id="",in_implicit=[["E"],["E"],["E"]],out_implicit="E"),model=scicos_model(sim=list("logic",4),in1=[[1],[1],[1]],in2=[[1],[1],[1]],intyp=[[5],[5],[5]],out=1,out2=1,outtyp=5,evtin=1,evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(int8([[0],[1],[1],[1],[0],[0],[1],[0]])),blocktype="c",firing=false,dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[4-1]=scicos_link(xx=[[351.36756],[368.82793],[368.82793]],yy=[[222.52782],[222.52782],[223.06473]],id="drawlink",thick=[0,0],ct=[1,1],from=[3,1,0],to=[10,1,1]);
+scs_m.objs[5-1]=scicos_link(xx=[[291.39818],[274.18235],[274.18235],[294.2247]],yy=[[281.584],[281.584],[232.52782],[232.52782]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[3,1,1]);
+scs_m.objs[6-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[368.82793,243.45067],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=11,pout=[[7],[20]],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[["E"],["E"],["E"]]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[[-1],[-1],[-1]],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[7-1]=scicos_link(xx=[[368.82793],[368.82793],[345.68389]],yy=[[243.45067],[281.584],[281.584]],id="drawlink",thick=[0,0],ct=[1,1],from=[6,1,0],to=[1,1,1]);
+scs_m.objs[8-1]=scicos_link(xx=[[322.52452],[374.69743],[374.69743],[322.79613]],yy=[[317.8346],[317.8346],[248.24211],[248.24211]],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1,0],to=[3,1,1]);
+scs_m.objs[9-1]=scicos_block(gui="LOGICAL_OP",graphics=scicos_graphics(orig=[377.63217,159.25363],sz=[60,40],flip=true,theta=0,exprs=[["1"],["5"],["5"],["0"]],pin=12,pout=22,pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("logicalop_i8",4),in1=-1,in2=-2,intyp=5,out=-1,out2=-2,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[[5],[0]],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[10-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[[368.82793],[223.06473]],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=4,pout=[[11],[12]],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[["E"],["E"],["E"]]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[[-1],[-1],[-1]],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[11-1]=scicos_link(xx=[[368.82793],[368.82793]],yy=[[223.06473],[243.45067]],id="drawlink",thick=[0,0],ct=[1,1],from=[10,1,0],to=[6,1,1]);
+scs_m.objs[12-1]=scicos_link(xx=[[368.82793],[368.82793],[369.06074]],yy=[[223.06473],[177.7867],[179.25363]],id="drawlink",thick=[0,0],ct=[1,1],from=[10,2,0],to=[9,1,1]);
 scs_m.objs[13-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[243.95309,333.54888],sz=[20,20],flip=true,theta=0,exprs="2",pin=[],pout=14,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=-1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=2,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[14-1]=scicos_link(xx=[263.95309,283.95309],yy=[343.54888,343.54888],id="drawlink",thick=[0,0],ct=[1,1],from=[13,1,0],to=[2,1,1]);
+scs_m.objs[14-1]=scicos_link(xx=[[263.95309],[283.95309]],yy=[[343.54888],[343.54888]],id="drawlink",thick=[0,0],ct=[1,1],from=[13,1,0],to=[2,1,1]);
 scs_m.objs[15-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[254.2247,212.52782],sz=[20,20],flip=true,theta=0,exprs="1",pin=[],pout=16,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=-1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[16-1]=scicos_link(xx=[274.2247,294.2247],yy=[222.52782,222.52782],id="drawlink",thick=[0,0],ct=[1,1],from=[15,1,0],to=[3,2,1]);
+scs_m.objs[16-1]=scicos_link(xx=[[274.2247],[294.2247]],yy=[[222.52782],[222.52782]],id="drawlink",thick=[0,0],ct=[1,1],from=[15,1,0],to=[3,2,1]);
 scs_m.objs[17-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[254.2247,202.52782],sz=[20,20],flip=true,theta=0,exprs="3",pin=[],pout=18,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=-1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=3,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[18-1]=scicos_link(xx=[274.2247,294.2247],yy=[212.52782,212.52782],id="drawlink",thick=[0,0],ct=[1,1],from=[17,1,0],to=[3,3,1]);
+scs_m.objs[18-1]=scicos_link(xx=[[274.2247],[294.2247]],yy=[[212.52782],[212.52782]],id="drawlink",thick=[0,0],ct=[1,1],from=[17,1,0],to=[3,3,1]);
 scs_m.objs[19-1]=scicos_block(gui="OUT_f",graphics=scicos_graphics(orig=[388.82793,233.45067],sz=[20,20],flip=true,theta=0,exprs="1",pin=20,pout=[],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="output",in1=-1,in2=[],intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[20-1]=scicos_link(xx=[368.82793,388.82793],yy=[243.45067,243.45067],id="drawlink",thick=[0,0],ct=[1,1],from=[6,2,0],to=[19,1,1]);
+scs_m.objs[20-1]=scicos_link(xx=[[368.82793],[388.82793]],yy=[[243.45067],[243.45067]],id="drawlink",thick=[0,0],ct=[1,1],from=[6,2,0],to=[19,1,1]);
 scs_m.objs[21-1]=scicos_block(gui="OUT_f",graphics=scicos_graphics(orig=[466.2036,169.25363],sz=[20,20],flip=true,theta=0,exprs="2",pin=22,pout=[],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="output",in1=-1,in2=[],intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=2,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[22-1]=scicos_link(xx=[446.2036,466.2036],yy=[179.25363,179.25363],id="drawlink",thick=[0,0],ct=[1,1],from=[9,1,0],to=[21,1,1]);
+scs_m.objs[22-1]=scicos_link(xx=[[446.2036],[466.2036]],yy=[[179.25363],[179.25363]],id="drawlink",thick=[0,0],ct=[1,1],from=[9,1,0],to=[21,1,1]);
 model=scicos_model();
 model.sim="csuper";
-model.in1=[1,1,1];
-model.in2=[1,1,1];
-model.out=[1,1];
-model.out2=[1,1];
+model.in1=[[1],[1],[1]];
+model.in2=[[1],[1],[1]];
+model.out=[[1],[1]];
+model.out2=[[1],[1]];
 model.intyp=[5,1,5];
 model.outtyp=[5,5];
 model.blocktype="h";
@@ -13781,7 +13781,7 @@ exprs=xx.graphics.exprs(1);
 model=xx.model;
 init_old=model.odstate(1);
 while (true) {
-[ok,init,exprs0]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"JKFLIPFLOP")," ",gettext("JK flip-flop")," ",gettext("The \'Initial Value\' must be 0 or 1 of type int8"),gettext("&nbsp;- Negative values are considered as int8(0)"),gettext("&nbsp;- Positive values are considered as int8(1)")," "],gettext("Initial Value"),list("vec",1),exprs);
+[ok,init,exprs0]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"JKFLIPFLOP")],[" "],[gettext("JK flip-flop")],[" "],[gettext("The \'Initial Value\' must be 0 or 1 of type int8")],[gettext("&nbsp;- Negative values are considered as int8(0)")],[gettext("&nbsp;- Positive values are considered as int8(1)")],[" "]],gettext("Initial Value"),list("vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -13812,31 +13812,31 @@ typ=newpar;
 function DLATCH() {
 DLATCH.prototype.define = function DLATCH() {
 scs_m=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title=["DLATCH"],tol=[0.0001,0.000001,1.000e-10,100001,0,0],tf=100000,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
-scs_m.objs[1-1]=scicos_block(gui="CONST_m",graphics=scicos_graphics(orig=[109.62561,263.44465],sz=[20,20],flip=true,theta=0,exprs="int8(0)",pin=[],pout=7,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim=list("cstblk4_m",4),in1=[],in2=[],intyp=1,out=1,out2=1,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(int8(0)),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[2-1]=scicos_block(gui="IFTHEL_f",graphics=scicos_graphics(orig=[233.37693,320.30536],sz=[60,60],flip=true,theta=0,exprs=["0","1"],pin=13,pout=[],pein=[],peout=[6,0],gr_i=list(["txt=[\'If in>0\';\' \';\' then    else\'];","xstringb(orig(1),orig(2),txt,sz(1),sz(2),\'fill\');"],8),id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim=list("ifthel",-1),in1=1,in2=1,intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[1,1],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="l",firing=[-1,-1],dep_ut=[true,false],label="",nzcross=1,nmode=1,equations=list()),doc=list());
-scs_m.objs[3-1]=scicos_block(gui="LOGICAL_OP",graphics=scicos_graphics(orig=[152.88902,260.24498],sz=[60,40],flip=true,theta=0,exprs=["2","1","5","0"],pin=[15,7],pout=5,pein=[],peout=[],gr_i=list("xstringb(orig(1),orig(2),[\'Logical Op \';OPER],sz(1),sz(2),\'fill\');",8),id="",in_implicit=["E","E"],out_implicit="E"),model=scicos_model(sim=list("logicalop_i8",4),in1=[-1,-1],in2=[-2,-2],intyp=[5,5],out=-1,out2=-2,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[1,0],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[1-1]=scicos_block(gui="CONST_m",graphics=scicos_graphics(orig=[109.62561,263.44465],sz=[[20],[20]],flip=true,theta=0,exprs="int8(0)",pin=[],pout=7,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim=list("cstblk4_m",4),in1=[],in2=[],intyp=1,out=1,out2=1,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(int8(0)),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[2-1]=scicos_block(gui="IFTHEL_f",graphics=scicos_graphics(orig=[233.37693,320.30536],sz=[60,60],flip=true,theta=0,exprs=[["0"],["1"]],pin=13,pout=[],pein=[],peout=[[6],[0]],gr_i=list([["txt=[\'If in>0\';\' \';\' then    else\'];"],["xstringb(orig(1),orig(2),txt,sz(1),sz(2),\'fill\');"]],8),id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim=list("ifthel",-1),in1=1,in2=1,intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[[1],[1]],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="l",firing=[-1,-1],dep_ut=[true,false],label="",nzcross=1,nmode=1,equations=list()),doc=list());
+scs_m.objs[3-1]=scicos_block(gui="LOGICAL_OP",graphics=scicos_graphics(orig=[152.88902,260.24498],sz=[60,40],flip=true,theta=0,exprs=[["2"],["1"],["5"],["0"]],pin=[[15],[7]],pout=5,pein=[],peout=[],gr_i=list("xstringb(orig(1),orig(2),[\'Logical Op \';OPER],sz(1),sz(2),\'fill\');",8),id="",in_implicit=[["E"],["E"]],out_implicit="E"),model=scicos_model(sim=list("logicalop_i8",4),in1=[[-1],[-1]],in2=[[-2],[-2]],intyp=[[5],[5]],out=-1,out2=-2,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[[1],[0]],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
 scs_m.objs[4-1]=scicos_block(gui="SAMPHOLD_m",graphics=scicos_graphics(orig=[233.72156,260.24498],sz=[40,40],flip=true,theta=0,exprs="5",pin=5,pout=9,pein=6,peout=[],gr_i=list("xstringb(orig(1),orig(2),\'S/H\',sz(1),sz(2),\'fill\')",8),id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("samphold4_m",4),in1=-1,in2=-2,intyp=5,out=-1,out2=-2,outtyp=5,evtin=1,evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="d",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[5-1]=scicos_link(xx=[221.46044,225.15013],yy=[280.24498,280.24498],id="drawlink",thick=[0,0],ct=[1,1],from=[3,1,0],to=[4,1,1]);
-scs_m.objs[6-1]=scicos_link(xx=[253.37693,253.72156],yy=[314.59108,305.95927],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1,0],to=[4,1,1]);
-scs_m.objs[7-1]=scicos_link(xx=[138.19704,144.31759],yy=[273.44465,273.57832],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[3,2,1]);
-scs_m.objs[8-1]=scicos_block(gui="LOGICAL_OP",graphics=scicos_graphics(orig=[317.46698,309.46812],sz=[60,40],flip=true,theta=0,exprs=["1","5","5","0"],pin=11,pout=17,pein=[],peout=[],gr_i=list("xstringb(orig(1),orig(2),[\'Logical Op \';OPER],sz(1),sz(2),\'fill\');",8),id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("logicalop_i8",4),in1=-1,in2=-2,intyp=5,out=-1,out2=-2,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[5,0],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[9-1]=scicos_link(xx=[282.29299,305.09603,305.09603],yy=[280.24498,280.52797,280.83282],id="drawlink",thick=[0,0],ct=[1,1],from=[4,1,0],to=[10,1,1]);
-scs_m.objs[10-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[305.09603,280.83282],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=9,pout=[11,19],pein=[],peout=[],gr_i=list([],8),id="",in_implicit="E",out_implicit=["E","E","E"]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[-1,-1,-1],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[11-1]=scicos_link(xx=[305.09603,305.09603,308.89555],yy=[280.83282,329.46812,329.46812],id="drawlink",thick=[0,0],ct=[1,1],from=[10,1,0],to=[8,1,1]);
+scs_m.objs[5-1]=scicos_link(xx=[[221.46044],[225.15013]],yy=[[280.24498],[280.24498]],id="drawlink",thick=[0,0],ct=[1,1],from=[3,1,0],to=[4,1,1]);
+scs_m.objs[6-1]=scicos_link(xx=[[253.37693],[253.72156]],yy=[[314.59108],[305.95927]],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1,0],to=[4,1,1]);
+scs_m.objs[7-1]=scicos_link(xx=[[138.19704],[144.31759]],yy=[[273.44465],[273.57832]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[3,2,1]);
+scs_m.objs[8-1]=scicos_block(gui="LOGICAL_OP",graphics=scicos_graphics(orig=[317.46698,309.46812],sz=[60,40],flip=true,theta=0,exprs=[["1"],["5"],["5"],["0"]],pin=11,pout=17,pein=[],peout=[],gr_i=list("xstringb(orig(1),orig(2),[\'Logical Op \';OPER],sz(1),sz(2),\'fill\');",8),id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("logicalop_i8",4),in1=-1,in2=-2,intyp=5,out=-1,out2=-2,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[[5],[0]],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[9-1]=scicos_link(xx=[[282.29299],[305.09603],[305.09603]],yy=[[280.24498],[280.52797],[280.83282]],id="drawlink",thick=[0,0],ct=[1,1],from=[4,1,0],to=[10,1,1]);
+scs_m.objs[10-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[305.09603,280.83282],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=9,pout=[[11],[19]],pein=[],peout=[],gr_i=list([],8),id="",in_implicit="E",out_implicit=[["E"],["E"],["E"]]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[[-1],[-1],[-1]],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[11-1]=scicos_link(xx=[[305.09603],[305.09603],[308.89555]],yy=[[280.83282],[329.46812],[329.46812]],id="drawlink",thick=[0,0],ct=[1,1],from=[10,1,0],to=[8,1,1]);
 scs_m.objs[12-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[184.8055,340.30536],sz=[20,20],flip=true,theta=0,exprs="2",pin=[],pout=13,pein=[],peout=[],gr_i=list(" ",8),id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=-1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=2,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[13-1]=scicos_link(xx=[204.8055,224.8055],yy=[350.30536,350.30536],id="drawlink",thick=[0,0],ct=[1,1],from=[12,1,0],to=[2,1,1]);
+scs_m.objs[13-1]=scicos_link(xx=[[204.8055],[224.8055]],yy=[[350.30536],[350.30536]],id="drawlink",thick=[0,0],ct=[1,1],from=[12,1,0],to=[2,1,1]);
 scs_m.objs[14-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[104.31759,276.91165],sz=[20,20],flip=true,theta=0,exprs="1",pin=[],pout=15,pein=[],peout=[],gr_i=list(" ",8),id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=-1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[15-1]=scicos_link(xx=[124.31759,144.31759],yy=[286.91165,286.91165],id="drawlink",thick=[0,0],ct=[1,1],from=[14,1,0],to=[3,1,1]);
+scs_m.objs[15-1]=scicos_link(xx=[[124.31759],[144.31759]],yy=[[286.91165],[286.91165]],id="drawlink",thick=[0,0],ct=[1,1],from=[14,1,0],to=[3,1,1]);
 scs_m.objs[16-1]=scicos_block(gui="OUT_f",graphics=scicos_graphics(orig=[406.03841,319.46812],sz=[20,20],flip=true,theta=0,exprs="2",pin=17,pout=[],pein=[],peout=[],gr_i=list(" ",8),id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="output",in1=-1,in2=[],intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=2,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[17-1]=scicos_link(xx=[386.03841,406.03841],yy=[329.46812,329.46812],id="drawlink",thick=[0,0],ct=[1,1],from=[8,1,0],to=[16,1,1]);
+scs_m.objs[17-1]=scicos_link(xx=[[386.03841],[406.03841]],yy=[[329.46812],[329.46812]],id="drawlink",thick=[0,0],ct=[1,1],from=[8,1,0],to=[16,1,1]);
 scs_m.objs[18-1]=scicos_block(gui="OUT_f",graphics=scicos_graphics(orig=[325.09603,270.83282],sz=[20,20],flip=true,theta=0,exprs="1",pin=19,pout=[],pein=[],peout=[],gr_i=list(" ",8),id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="output",in1=-1,in2=[],intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[19-1]=scicos_link(xx=[305.09603,325.09603],yy=[280.83282,280.83282],id="drawlink",thick=[0,0],ct=[1,1],from=[10,2,0],to=[18,1,1]);
+scs_m.objs[19-1]=scicos_link(xx=[[305.09603],[325.09603]],yy=[[280.83282],[280.83282]],id="drawlink",thick=[0,0],ct=[1,1],from=[10,2,0],to=[18,1,1]);
 model=scicos_model();
 model.sim="csuper";
-model.in1=[1,1];
-model.in2=[1,1];
-model.out=[1,1];
-model.out2=[1,1];
+model.in1=[[1],[1]];
+model.in2=[[1],[1]];
+model.out=[[1],[1]];
+model.out2=[[1],[1]];
 model.intyp=[5,-1];
 model.outtyp=[5,5];
 model.blocktype="h";
@@ -13868,7 +13868,7 @@ model.outtyp=3;
 model.opar=list(int32(0));
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(3),sci2exp(0)];
+exprs=[[sci2exp(3)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -13882,7 +13882,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,Datatype,bit,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"BITCLEAR")," ",gettext("Clear a bit")," "],[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)"),gettext("Index of Bit (0 is least significant)")],list("vec",1,"vec",1),exprs);
+[ok,Datatype,bit,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"BITCLEAR")],[" "],[gettext("Clear a bit")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Index of Bit (0 is least significant)")]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -13955,7 +13955,7 @@ model.outtyp=3;
 model.ipar=[0,numb];
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(3),sci2exp(1),sci2exp(0),sci2exp(0)];
+exprs=[[sci2exp(3)],[sci2exp(1)],[sci2exp(0)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -13969,7 +13969,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,Datatype,rule,bit,scal,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"EXTRACTBITS")," ",gettext("Bits Extraction")," ",gettext("&nbsp;- Bits to Extract:"),gettext("&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"),gettext("&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"),gettext("&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"),gettext("&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"),gettext("&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"),gettext("&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"),gettext("&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]")," "],[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)"),gettext("Bits to extract"),gettext("Number of Bits or Index of Bit"),gettext("Treat Bit Field as an Integer (0:No, 1:Yes)")],list("vec",1,"vec",1,"vec",-1,"vec",1),exprs);
+[ok,Datatype,rule,bit,scal,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"EXTRACTBITS")],[" "],[gettext("Bits Extraction")],[" "],[gettext("&nbsp;- Bits to Extract:")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits")],[gettext("&nbsp;- Number of Bits or Index of bit : Index 0 is LSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Bits to extract")],[gettext("Number of Bits or Index of Bit")],[gettext("Treat Bit Field as an Integer (0:No, 1:Yes)")]],list("vec",1,"vec",1,"vec",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -14161,7 +14161,7 @@ out=[1,1];
 }
 if (ok) {
 graphics.exprs=exprs;
-model.ipar=[int(bit.slice()),int(numb.slice())];
+model.ipar=[[int(bit.slice())],[int(numb.slice())]];
 x.graphics=graphics;
 x.model=model;
 break;
@@ -14172,7 +14172,7 @@ break;
 /* autogenerated from "macros/IntegerOp/SHIFT.sci" */
 function SHIFT() {
 SHIFT.prototype.define = function SHIFT() {
-sgn=[0,0];
+sgn=[[0],[0]];
 OPER=0;
 model=scicos_model();
 model.sim=list("shift_32_LA",4);
@@ -14186,7 +14186,7 @@ model.rpar=[];
 model.ipar=sgn;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(3),sci2exp(0),sci2exp(0)];
+exprs=[[sci2exp(3)],[sci2exp(0)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -14200,7 +14200,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,Datatype,nb,np,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"SHIFT")," ",gettext("Shift/Rotates bits")],[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)"),gettext("Number of Bits to Shift Left (Negative number to shift right)"),gettext("Shift Type (0:Arithmetic, 1:Circular)")],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,Datatype,nb,np,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"SHIFT")],[" "],[gettext("Shift/Rotates bits")]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Number of Bits to Shift Left (Negative number to shift right)")],[gettext("Shift Type (0:Arithmetic, 1:Circular)")]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -14294,86 +14294,86 @@ break;
 function DFLIPFLOP() {
 DFLIPFLOP.prototype.define = function DFLIPFLOP() {
 scs_m=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title=["DFLIPFLOP"],tol=[0.0001,0.000001,1.000e-10,100001,0,0],tf=100000,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
-scs_m.objs[1-1]=scicos_block(gui="CONST_m",graphics=scicos_graphics(orig=[109.62561,263.44465],sz=[20,20],flip=true,theta=0,exprs="int8(0)",pin=[],pout=6,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim=list("cstblk4_m",4),in1=[],in2=[],intyp=1,out=1,out2=1,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(int8(0)),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[2-1]=scicos_block(gui="IFTHEL_f",graphics=scicos_graphics(orig=[239.98293,378.2166],sz=[60,60],flip=true,theta=0,exprs=["1","1"],pin=29,pout=[],pein=22,peout=[16,44],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim=list("ifthel",-1),in1=1,in2=1,intyp=-1,out=[],out2=[],outtyp=1,evtin=1,evtout=[1,1],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="l",firing=[-1,-1],dep_ut=[true,false],label="",nzcross=1,nmode=1,equations=list()),doc=list());
-scs_m.objs[3-1]=scicos_block(gui="LOGICAL_OP",graphics=scicos_graphics(orig=[152.88902,260.24498],sz=[60,40],flip=true,theta=0,exprs=["2","1","5","0"],pin=[11,39],pout=5,pein=[],peout=[],gr_i=[],id="",in_implicit=["E","E"],out_implicit="E"),model=scicos_model(sim=list("logicalop_i8",4),in1=[-1,-1],in2=[-2,-2],intyp=[5,5],out=-1,out2=-2,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[1,0],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[1-1]=scicos_block(gui="CONST_m",graphics=scicos_graphics(orig=[109.62561,263.44465],sz=[[20],[20]],flip=true,theta=0,exprs="int8(0)",pin=[],pout=6,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim=list("cstblk4_m",4),in1=[],in2=[],intyp=1,out=1,out2=1,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(int8(0)),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[2-1]=scicos_block(gui="IFTHEL_f",graphics=scicos_graphics(orig=[239.98293,378.2166],sz=[60,60],flip=true,theta=0,exprs=[["1"],["1"]],pin=29,pout=[],pein=22,peout=[[16],[44]],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim=list("ifthel",-1),in1=1,in2=1,intyp=-1,out=[],out2=[],outtyp=1,evtin=1,evtout=[[1],[1]],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="l",firing=[-1,-1],dep_ut=[true,false],label="",nzcross=1,nmode=1,equations=list()),doc=list());
+scs_m.objs[3-1]=scicos_block(gui="LOGICAL_OP",graphics=scicos_graphics(orig=[152.88902,260.24498],sz=[60,40],flip=true,theta=0,exprs=[["2"],["1"],["5"],["0"]],pin=[[11],[39]],pout=5,pein=[],peout=[],gr_i=[],id="",in_implicit=[["E"],["E"]],out_implicit="E"),model=scicos_model(sim=list("logicalop_i8",4),in1=[[-1],[-1]],in2=[[-2],[-2]],intyp=[[5],[5]],out=-1,out2=-2,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[[1],[0]],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
 scs_m.objs[4-1]=scicos_block(gui="SAMPHOLD_m",graphics=scicos_graphics(orig=[233.72156,260.24498],sz=[40,40],flip=true,theta=0,exprs="5",pin=5,pout=33,pein=42,peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("samphold4_m",4),in1=-1,in2=-2,intyp=5,out=-1,out2=-2,outtyp=5,evtin=1,evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="d",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[5-1]=scicos_link(xx=[221.46044,225.15013],yy=[280.24498,280.24498],id="drawlink",thick=[0,0],ct=[1,1],from=[3,1,0],to=[4,1,1]);
-scs_m.objs[6-1]=scicos_link(xx=[138.19704,140.34523],yy=[273.44465,273.49157],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[38,1,1]);
-scs_m.objs[7-1]=scicos_block(gui="LOGICAL_OP",graphics=scicos_graphics(orig=[373.24106,309.46812],sz=[60,40],flip=true,theta=0,exprs=["1","5","5","0"],pin=36,pout=13,pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("logicalop_i8",4),in1=-1,in2=-2,intyp=5,out=-1,out2=-2,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[5,0],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[5-1]=scicos_link(xx=[[221.46044],[225.15013]],yy=[[280.24498],[280.24498]],id="drawlink",thick=[0,0],ct=[1,1],from=[3,1,0],to=[4,1,1]);
+scs_m.objs[6-1]=scicos_link(xx=[[138.19704],[140.34523]],yy=[[273.44465],[273.49157]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[38,1,1]);
+scs_m.objs[7-1]=scicos_block(gui="LOGICAL_OP",graphics=scicos_graphics(orig=[373.24106,309.46812],sz=[60,40],flip=true,theta=0,exprs=[["1"],["5"],["5"],["0"]],pin=36,pout=13,pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("logicalop_i8",4),in1=-1,in2=-2,intyp=5,out=-1,out2=-2,outtyp=5,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[[5],[0]],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
 scs_m.objs[8-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[199.48466,398.2166],sz=[20,20],flip=true,theta=0,exprs="3",pin=[],pout=9,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=-1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=3,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[9-1]=scicos_link(xx=[219.48466,222.54128],yy=[408.2166,408.2166],id="drawlink",thick=[0,0],ct=[1,1],from=[8,1,0],to=[28,1,1]);
+scs_m.objs[9-1]=scicos_link(xx=[[219.48466],[222.54128]],yy=[[408.2166],[408.2166]],id="drawlink",thick=[0,0],ct=[1,1],from=[8,1,0],to=[28,1,1]);
 scs_m.objs[10-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[104.31759,276.91165],sz=[20,20],flip=true,theta=0,exprs="1",pin=[],pout=11,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=-1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[11-1]=scicos_link(xx=[124.31759,144.31759],yy=[286.91165,286.91165],id="drawlink",thick=[0,0],ct=[1,1],from=[10,1,0],to=[3,1,1]);
+scs_m.objs[11-1]=scicos_link(xx=[[124.31759],[144.31759]],yy=[[286.91165],[286.91165]],id="drawlink",thick=[0,0],ct=[1,1],from=[10,1,0],to=[3,1,1]);
 scs_m.objs[12-1]=scicos_block(gui="OUT_f",graphics=scicos_graphics(orig=[457.40928,320.20131],sz=[20,20],flip=true,theta=0,exprs="2",pin=13,pout=[],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="output",in1=-1,in2=[],intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=2,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[13-1]=scicos_link(xx=[441.81249,457.40928],yy=[329.46812,330.20131],id="drawlink",thick=[0,0],ct=[1,1],from=[7,1,0],to=[12,1,1]);
+scs_m.objs[13-1]=scicos_link(xx=[[441.81249],[457.40928]],yy=[[329.46812],[330.20131]],id="drawlink",thick=[0,0],ct=[1,1],from=[7,1,0],to=[12,1,1]);
 scs_m.objs[14-1]=scicos_block(gui="OUT_f",graphics=scicos_graphics(orig=[376.4669,270.83282],sz=[20,20],flip=true,theta=0,exprs="1",pin=37,pout=[],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="output",in1=-1,in2=[],intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
 scs_m_1=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title="Untitled",tol=[0.0001,0.000001,1.000e-10,100001,0,0],tf=100000,context=[],void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
-scs_m_1.objs[1-1]=scicos_block(gui="ANDLOG_f",graphics=scicos_graphics(orig=[194,133],sz=[60,60],flip=true,theta=0,exprs=[],pin=[],pout=9,pein=[4,11],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="andlog",in1=[],in2=[],intyp=1,out=1,out2=[],outtyp=1,evtin=[1,1],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m_1.objs[1-1]=scicos_block(gui="ANDLOG_f",graphics=scicos_graphics(orig=[194,133],sz=[60,60],flip=true,theta=0,exprs=[],pin=[],pout=9,pein=[[4],[11]],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="andlog",in1=[],in2=[],intyp=1,out=1,out2=[],outtyp=1,evtin=[[1],[1]],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
 scs_m_1.objs[2-1]=scicos_block(gui="CLKIN_f",graphics=scicos_graphics(orig=[149,287],sz=[20,20],flip=true,theta=0,exprs="1",pin=[],pout=[],pein=[],peout=4,gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=[],evtout=1,state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="d",firing=-1,dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
 scs_m_1.objs[3-1]=scicos_block(gui="CLKOUT_f",graphics=scicos_graphics(orig=[450,83],sz=[20,20],flip=true,theta=0,exprs="1",pin=[],pout=[],pein=8,peout=[],gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="output",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=1,evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[4-1]=scicos_link(xx=[169,214,214],yy=[297,297,198.71],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1],to=[1,1]);
+scs_m_1.objs[4-1]=scicos_link(xx=[[169],[214],[214]],yy=[[297],[297],[198.71]],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1],to=[1,1]);
 scs_m_1.objs[5-1]=scicos_block(gui="CLKIN_f",graphics=scicos_graphics(orig=[141,330],sz=[20,20],flip=true,theta=0,exprs="2",pin=[],pout=[],pein=[],peout=6,gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=[],evtout=1,state=[],dstate=[],odstate=list(),rpar=[],ipar=2,opar=list(),blocktype="d",firing=-1,dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[6-1]=scicos_link(xx=[161,234,234],yy=[340,340,275.78],id="drawlink",thick=[0,0],ct=[5,-1],from=[5,1],to=[10,1]);
-scs_m_1.objs[7-1]=scicos_block(gui="IFTHEL_f",graphics=scicos_graphics(orig=[331,137],sz=[60,60],flip=true,theta=0,exprs=["1","1"],pin=9,pout=[],pein=12,peout=[8,0],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim=list("ifthel",-1),in1=1,in2=1,intyp=-1,out=[],out2=[],outtyp=1,evtin=1,evtout=[1,1],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="l",firing=[-1,-1],dep_ut=[true,false],label="",nzcross=1,nmode=1,equations=list()),doc=list());
-scs_m_1.objs[8-1]=scicos_link(xx=[351,351,450],yy=[131.29,93,93],id="drawlink",thick=[0,0],ct=[5,-1],from=[7,1],to=[3,1]);
-scs_m_1.objs[9-1]=scicos_link(xx=[262.57,322.43],yy=[163,167],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1],to=[7,1]);
-scs_m_1.objs[10-1]=scicos_block(gui="CLKSPLIT_f",graphics=scicos_graphics(orig=[234,275.78348],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=[],pout=[],pein=6,peout=[11,12],gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="split",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=1,evtout=[1,1],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="d",firing=[false,false,false],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[11-1]=scicos_link(xx=[234,234],yy=[275.78,198.71],id="drawlink",thick=[0,0],ct=[5,-1],from=[10,1],to=[1,2]);
-scs_m_1.objs[12-1]=scicos_link(xx=[234,361,361],yy=[275.78,275.78,202.71],id="drawlink",thick=[0,0],ct=[5,-1],from=[10,2],to=[7,1]);
-scs_m.objs[15-1]=scicos_block(gui="ANDBLK",graphics=scicos_graphics(orig=[233.73039,318.74407],sz=[40,40],flip=true,theta=0,exprs=[],pin=[],pout=[],pein=[19,16],peout=17,gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=[1,1],evtout=1,state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=false,dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[16-1]=scicos_link(xx=[259.98293,260.39705],yy=[372.50232,364.45835],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1,0],to=[15,2,1]);
-scs_m.objs[17-1]=scicos_link(xx=[253.73039,253.72572],yy=[313.02978,309.29537],id="drawlink",thick=[0,0],ct=[5,-1],from=[15,1,0],to=[41,1,1]);
-scs_m_1=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title=["EDGE_TRIGGER","./"],tol=[0.0001,0.000001,1.000e-10,100001,0,0,0],tf=30,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
+scs_m_1.objs[6-1]=scicos_link(xx=[[161],[234],[234]],yy=[[340],[340],[275.78]],id="drawlink",thick=[0,0],ct=[5,-1],from=[5,1],to=[10,1]);
+scs_m_1.objs[7-1]=scicos_block(gui="IFTHEL_f",graphics=scicos_graphics(orig=[331,137],sz=[60,60],flip=true,theta=0,exprs=[["1"],["1"]],pin=9,pout=[],pein=12,peout=[[8],[0]],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim=list("ifthel",-1),in1=1,in2=1,intyp=-1,out=[],out2=[],outtyp=1,evtin=1,evtout=[[1],[1]],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="l",firing=[-1,-1],dep_ut=[true,false],label="",nzcross=1,nmode=1,equations=list()),doc=list());
+scs_m_1.objs[8-1]=scicos_link(xx=[[351],[351],[450]],yy=[[131.29],[93],[93]],id="drawlink",thick=[0,0],ct=[5,-1],from=[7,1],to=[3,1]);
+scs_m_1.objs[9-1]=scicos_link(xx=[[262.57],[322.43]],yy=[[163],[167]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1],to=[7,1]);
+scs_m_1.objs[10-1]=scicos_block(gui="CLKSPLIT_f",graphics=scicos_graphics(orig=[[234],[275.78348]],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=[],pout=[],pein=6,peout=[[11],[12]],gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="split",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=1,evtout=[[1],[1]],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="d",firing=[false,false,false],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m_1.objs[11-1]=scicos_link(xx=[[234],[234]],yy=[[275.78],[198.71]],id="drawlink",thick=[0,0],ct=[5,-1],from=[10,1],to=[1,2]);
+scs_m_1.objs[12-1]=scicos_link(xx=[[234],[361],[361]],yy=[[275.78],[275.78],[202.71]],id="drawlink",thick=[0,0],ct=[5,-1],from=[10,2],to=[7,1]);
+scs_m.objs[15-1]=scicos_block(gui="ANDBLK",graphics=scicos_graphics(orig=[233.73039,318.74407],sz=[40,40],flip=true,theta=0,exprs=[],pin=[],pout=[],pein=[[19],[16]],peout=17,gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=[[1],[1]],evtout=1,state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=false,dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[16-1]=scicos_link(xx=[[259.98293],[260.39705]],yy=[[372.50232],[364.45835]],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1,0],to=[15,2,1]);
+scs_m.objs[17-1]=scicos_link(xx=[[253.73039],[253.72572]],yy=[[313.02978],[309.29537]],id="drawlink",thick=[0,0],ct=[5,-1],from=[15,1,0],to=[41,1,1]);
+scs_m_1=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title=["EDGE_TRIGGER","./"],tol=[[0.0001],[0.000001],[1.000e-10],[100001],[0],[0],[0]],tf=30,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
 scs_m_1.objs[1-1]=scicos_block(gui="EDGETRIGGER",graphics=scicos_graphics(orig=[288.58631,257.1131],sz=[60,40],flip=true,theta=0,exprs="1",pin=5,pout=3,pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit="E"),model=scicos_model(sim=list("edgetrig",4),in1=1,in2=[],intyp=1,out=1,out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=0,odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=1,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[2-1]=scicos_block(gui="IFTHEL_f",graphics=scicos_graphics(orig=[388.28869,247.1131],sz=[60,60],flip=true,theta=0,exprs=["0","0"],pin=3,pout=[],pein=[],peout=[7,0],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim=list("ifthel",-1),in1=1,in2=[],intyp=1,out=[],out2=1,outtyp=[],evtin=[],evtout=[1,1],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="l",firing=[-1,-1],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[3-1]=scicos_link(xx=[357.15774,362.99107,379.71726],yy=[277.1131,277.1131,277.1131],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[2,1,1]);
+scs_m_1.objs[2-1]=scicos_block(gui="IFTHEL_f",graphics=scicos_graphics(orig=[388.28869,247.1131],sz=[60,60],flip=true,theta=0,exprs=[["0"],["0"]],pin=3,pout=[],pein=[],peout=[[7],[0]],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim=list("ifthel",-1),in1=1,in2=[],intyp=1,out=[],out2=1,outtyp=[],evtin=[],evtout=[[1],[1]],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="l",firing=[-1,-1],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m_1.objs[3-1]=scicos_link(xx=[[357.15774],[362.99107],[379.71726]],yy=[[277.1131],[277.1131],[277.1131]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[2,1,1]);
 scs_m_1.objs[4-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[240.01488,267.1131],sz=[20,20],flip=true,theta=0,exprs="1",pin=[],pout=5,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=-1,out=-1,out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[5-1]=scicos_link(xx=[260.01488,280.01488],yy=[277.1131,277.1131],id="drawlink",thick=[0,0],ct=[1,1],from=[4,1,0],to=[1,1,1]);
+scs_m_1.objs[5-1]=scicos_link(xx=[[260.01488],[280.01488]],yy=[[277.1131],[277.1131]],id="drawlink",thick=[0,0],ct=[1,1],from=[4,1,0],to=[1,1,1]);
 scs_m_1.objs[6-1]=scicos_block(gui="CLKOUTV_f",graphics=scicos_graphics(orig=[398.28869,181.39881],sz=[20,30],flip=true,theta=0,exprs="1",pin=[],pout=[],pein=7,peout=[],gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="output",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=1,evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[7-1]=scicos_link(xx=[408.28869,408.28869],yy=[241.39881,211.39881],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1,0],to=[6,1,1]);
+scs_m_1.objs[7-1]=scicos_link(xx=[[408.28869],[408.28869]],yy=[[241.39881],[211.39881]],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1,0],to=[6,1,1]);
 scs_m.objs[18-1]=scicos_block(gui="EDGE_TRIGGER",graphics=scicos_graphics(orig=[133.90637,385.342],sz=[60,40],flip=true,theta=0,exprs=[],pin=26,pout=[],pein=[],peout=19,gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="csuper",in1=-1,in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=[],evtout=1,state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[19-1]=scicos_link(xx=[163.90637,163.90637,247.06372],yy=[379.62771,364.45835,364.45835],id="drawlink",thick=[0,0],ct=[5,-1],from=[18,1,0],to=[15,1,1]);
+scs_m.objs[19-1]=scicos_link(xx=[[163.90637],[163.90637],[247.06372]],yy=[[379.62771],[364.45835],[364.45835]],id="drawlink",thick=[0,0],ct=[5,-1],from=[18,1,0],to=[15,1,1]);
 scs_m.objs[20-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[79.594811,395.47647],sz=[20,20],flip=true,theta=0,exprs="2",pin=[],pout=23,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=-1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=2,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title=["Extract_Activation","./"],tol=[0.0001,0.000001,1.000e-10,100001,0,0,0],tf=30,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
-scs_m_1.objs[1-1]=scicos_block(gui="IFTHEL_f",graphics=scicos_graphics(orig=[150.65045,143.82208],sz=[60,60],flip=true,theta=0,exprs=["0","0"],pin=6,pout=[],pein=[],peout=[3,4],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim=list("ifthel",-1),in1=1,in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=[],evtout=[1,1],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="l",firing=[-1,-1],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[2-1]=scicos_block(gui="CLKSOMV_f",graphics=scicos_graphics(orig=[169.82143,96.146231],sz=[16.666667,16.666667],flip=true,theta=0,exprs=[],pin=[],pout=[],pein=[3,4,0],peout=8,gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="sum",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=[1,1,1],evtout=1,state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="d",firing=-1,dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[3-1]=scicos_link(xx=[170.65045,170.65045,150.04302,150.04302,169.82143],yy=[138.10779,128.235,128.235,104.47956,104.47956],id="drawlink",thick=[0,0],ct=[5,-1],from=[1,1,0],to=[2,1,1]);
-scs_m_1.objs[4-1]=scicos_link(xx=[190.65045,190.65045,178.15476],yy=[138.10779,111.55729,112.8129],id="drawlink",thick=[0,0],ct=[5,-1],from=[1,2,0],to=[2,2,1]);
+scs_m_1=scicos_diagram(version="scicos4.2",props=scicos_params(wpar=[600,450,0,0,600,450],Title=["Extract_Activation","./"],tol=[[0.0001],[0.000001],[1.000e-10],[100001],[0],[0],[0]],tf=30,context=" ",void1=[],options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(true,33),[8,1],[1,5],list([5,1],[4,1]),[0.8,0.8,0.8]),void2=[],void3=[],doc=list()));
+scs_m_1.objs[1-1]=scicos_block(gui="IFTHEL_f",graphics=scicos_graphics(orig=[150.65045,143.82208],sz=[60,60],flip=true,theta=0,exprs=[["0"],["0"]],pin=6,pout=[],pein=[],peout=[[3],[4]],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim=list("ifthel",-1),in1=1,in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=[],evtout=[[1],[1]],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="l",firing=[-1,-1],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m_1.objs[2-1]=scicos_block(gui="CLKSOMV_f",graphics=scicos_graphics(orig=[169.82143,96.146231],sz=[16.666667,16.666667],flip=true,theta=0,exprs=[],pin=[],pout=[],pein=[[3],[4],[0]],peout=8,gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="sum",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=[[1],[1],[1]],evtout=1,state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="d",firing=-1,dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m_1.objs[3-1]=scicos_link(xx=[[170.65045],[170.65045],[150.04302],[150.04302],[169.82143]],yy=[[138.10779],[128.235],[128.235],[104.47956],[104.47956]],id="drawlink",thick=[0,0],ct=[5,-1],from=[1,1,0],to=[2,1,1]);
+scs_m_1.objs[4-1]=scicos_link(xx=[[190.65045],[190.65045],[178.15476]],yy=[[138.10779],[111.55729],[112.8129]],id="drawlink",thick=[0,0],ct=[5,-1],from=[1,2,0],to=[2,2,1]);
 scs_m_1.objs[5-1]=scicos_block(gui="IN_f",graphics=scicos_graphics(orig=[102.07902,163.82208],sz=[20,20],flip=true,theta=0,exprs="1",pin=[],pout=6,pein=[],peout=[],gr_i=[],id="",in_implicit=[],out_implicit="E"),model=scicos_model(sim="input",in1=[],in2=[],intyp=-1,out=-1,out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[6-1]=scicos_link(xx=[122.07902,142.07902],yy=[173.82208,173.82208],id="drawlink",thick=[0,0],ct=[1,1],from=[5,1,0],to=[1,1,1]);
+scs_m_1.objs[6-1]=scicos_link(xx=[[122.07902],[142.07902]],yy=[[173.82208],[173.82208]],id="drawlink",thick=[0,0],ct=[1,1],from=[5,1,0],to=[1,1,1]);
 scs_m_1.objs[7-1]=scicos_block(gui="CLKOUTV_f",graphics=scicos_graphics(orig=[168.15476,38.527183],sz=[20,30],flip=true,theta=0,exprs="1",pin=[],pout=[],pein=8,peout=[],gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="output",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=1,evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m_1.objs[8-1]=scicos_link(xx=[178.15476,178.15476],yy=[98.527183,68.527183],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1,0],to=[7,1,1]);
+scs_m_1.objs[8-1]=scicos_link(xx=[[178.15476],[178.15476]],yy=[[98.527183],[68.527183]],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,1,0],to=[7,1,1]);
 scs_m.objs[21-1]=scicos_block(gui="Extract_Activation",graphics=scicos_graphics(orig=[239.82193,456.57677],sz=[60,40],flip=true,theta=0,exprs=[],pin=31,pout=[],pein=[],peout=22,gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="csuper",in1=-1,in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=[],evtout=1,state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[22-1]=scicos_link(xx=[269.82193,269.98293],yy=[450.86248,443.93089],id="drawlink",thick=[0,0],ct=[5,-1],from=[21,1,0],to=[2,1,1]);
-scs_m.objs[23-1]=scicos_link(xx=[99.594811,110.25582],yy=[405.47647,405.42077],id="drawlink",thick=[0,0],ct=[1,1],from=[20,1,0],to=[25,1,1]);
-scs_m.objs[24-1]=scicos_block(gui="SUM_f",graphics=scicos_graphics(orig=[200.5252,469.13173],sz=[16.666667,16.666667],flip=true,theta=0,exprs=[],pin=[27,0,30],pout=31,pein=[],peout=[],gr_i=[],id="",in_implicit=["E","E","E"],out_implicit="E"),model=scicos_model(sim=list("plusblk",2),in1=[-1,-1,-1],in2=[],intyp=1,out=-1,out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[25-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[110.25582,405.42077],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=23,pout=[26,27],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=["E","E","E"]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[-1,-1,-1],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[26-1]=scicos_link(xx=[110.25582,114.33667,125.33494],yy=[405.42077,405.39945,405.342],id="drawlink",thick=[0,0],ct=[1,1],from=[25,1,0],to=[18,1,1]);
-scs_m.objs[27-1]=scicos_link(xx=[110.25582,110.25582,208.85853],yy=[405.42077,469.13173,469.13173],id="drawlink",thick=[0,0],ct=[1,1],from=[25,2,0],to=[24,1,1]);
-scs_m.objs[28-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[222.54128,408.2166],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=9,pout=[29,30],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=["E","E","E"]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[-1,-1,-1],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[29-1]=scicos_link(xx=[222.54128,231.4115],yy=[408.2166,408.2166],id="drawlink",thick=[0,0],ct=[1,1],from=[28,1,0],to=[2,1,1]);
-scs_m.objs[30-1]=scicos_link(xx=[222.54128,222.54128,208.85853,208.85853],yy=[408.2166,453.0015,453.0015,485.7984],id="drawlink",thick=[0,0],ct=[1,1],from=[28,2,0],to=[24,3,1]);
-scs_m.objs[31-1]=scicos_link(xx=[219.57282,231.2505],yy=[477.46506,476.57677],id="drawlink",thick=[0,0],ct=[1,1],from=[24,1,0],to=[21,1,1]);
-scs_m.objs[32-1]=scicos_block(gui="SELECT_m",graphics=scicos_graphics(orig=[298.86371,253.57321],sz=[40,40],flip=true,theta=0,exprs=["5","2","1"],pin=[33,40],pout=34,pein=[43,44],peout=[],gr_i=[],id="",in_implicit=["E","E"],out_implicit="E"),model=scicos_model(sim=list("selector_m",4),in1=[-1,-1],in2=[-2,-2],intyp=[5,5],out=-1,out2=-2,outtyp=5,evtin=[1,1],evtout=[],state=[],dstate=1,odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[33-1]=scicos_link(xx=[282.29299,290.29229],yy=[280.24498,280.23987],id="drawlink",thick=[0,0],ct=[1,1],from=[4,1,0],to=[32,1,1]);
-scs_m.objs[34-1]=scicos_link(xx=[347.43514,357.57328,357.57328],yy=[273.57321,273.57321,280.83282],id="drawlink",thick=[0,0],ct=[1,1],from=[32,1,0],to=[35,1,1]);
-scs_m.objs[35-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[357.57328,280.83282],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=34,pout=[36,37],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=["E","E","E"]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[-1,-1,-1],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[36-1]=scicos_link(xx=[357.57328,357.57328,364.66964],yy=[280.83282,329.46812,329.46812],id="drawlink",thick=[0,0],ct=[1,1],from=[35,1,0],to=[7,1,1]);
-scs_m.objs[37-1]=scicos_link(xx=[357.57328,376.4669],yy=[280.83282,280.83282],id="drawlink",thick=[0,0],ct=[1,1],from=[35,2,0],to=[14,1,1]);
-scs_m.objs[38-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[140.34523,273.49157],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=6,pout=[39,40],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=["E","E","E"]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[-1,-1,-1],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[39-1]=scicos_link(xx=[140.34523,144.31759],yy=[273.49157,273.57832],id="drawlink",thick=[0,0],ct=[1,1],from=[38,1,0],to=[3,2,1]);
-scs_m.objs[40-1]=scicos_link(xx=[140.34523,140.34523,290.29229,290.29229],yy=[273.49157,247.70767,247.70767,266.90654],id="drawlink",thick=[0,0],ct=[1,1],from=[38,2,0],to=[32,2,1]);
-scs_m.objs[41-1]=scicos_block(gui="CLKSPLIT_f",graphics=scicos_graphics(orig=[253.72572,309.29537],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=[],pout=[],pein=17,peout=[42,43],gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="split",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=1,evtout=[1,1],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="d",firing=[false,false,false],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
-scs_m.objs[42-1]=scicos_link(xx=[253.72572,253.72156],yy=[309.29537,305.95927],id="drawlink",thick=[0,0],ct=[5,-1],from=[41,1,0],to=[4,1,1]);
-scs_m.objs[43-1]=scicos_link(xx=[253.72572,312.19705,312.19705],yy=[309.29537,309.29537,299.28749],id="drawlink",thick=[0,0],ct=[5,-1],from=[41,2,0],to=[32,1,1]);
-scs_m.objs[44-1]=scicos_link(xx=[279.98293,279.98293,325.53038,325.53038],yy=[372.50232,315.89455,315.89455,299.28749],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,2,0],to=[32,2,1]);
+scs_m.objs[22-1]=scicos_link(xx=[[269.82193],[269.98293]],yy=[[450.86248],[443.93089]],id="drawlink",thick=[0,0],ct=[5,-1],from=[21,1,0],to=[2,1,1]);
+scs_m.objs[23-1]=scicos_link(xx=[[99.594811],[110.25582]],yy=[[405.47647],[405.42077]],id="drawlink",thick=[0,0],ct=[1,1],from=[20,1,0],to=[25,1,1]);
+scs_m.objs[24-1]=scicos_block(gui="SUM_f",graphics=scicos_graphics(orig=[200.5252,469.13173],sz=[16.666667,16.666667],flip=true,theta=0,exprs=[],pin=[[27],[0],[30]],pout=31,pein=[],peout=[],gr_i=[],id="",in_implicit=[["E"],["E"],["E"]],out_implicit="E"),model=scicos_model(sim=list("plusblk",2),in1=[[-1],[-1],[-1]],in2=[],intyp=1,out=-1,out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[25-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[[110.25582],[405.42077]],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=23,pout=[[26],[27]],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[["E"],["E"],["E"]]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[[-1],[-1],[-1]],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[26-1]=scicos_link(xx=[[110.25582],[114.33667],[125.33494]],yy=[[405.42077],[405.39945],[405.342]],id="drawlink",thick=[0,0],ct=[1,1],from=[25,1,0],to=[18,1,1]);
+scs_m.objs[27-1]=scicos_link(xx=[[110.25582],[110.25582],[208.85853]],yy=[[405.42077],[469.13173],[469.13173]],id="drawlink",thick=[0,0],ct=[1,1],from=[25,2,0],to=[24,1,1]);
+scs_m.objs[28-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[[222.54128],[408.2166]],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=9,pout=[[29],[30]],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[["E"],["E"],["E"]]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[[-1],[-1],[-1]],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[29-1]=scicos_link(xx=[[222.54128],[231.4115]],yy=[[408.2166],[408.2166]],id="drawlink",thick=[0,0],ct=[1,1],from=[28,1,0],to=[2,1,1]);
+scs_m.objs[30-1]=scicos_link(xx=[[222.54128],[222.54128],[208.85853],[208.85853]],yy=[[408.2166],[453.0015],[453.0015],[485.7984]],id="drawlink",thick=[0,0],ct=[1,1],from=[28,2,0],to=[24,3,1]);
+scs_m.objs[31-1]=scicos_link(xx=[[219.57282],[231.2505]],yy=[[477.46506],[476.57677]],id="drawlink",thick=[0,0],ct=[1,1],from=[24,1,0],to=[21,1,1]);
+scs_m.objs[32-1]=scicos_block(gui="SELECT_m",graphics=scicos_graphics(orig=[298.86371,253.57321],sz=[40,40],flip=true,theta=0,exprs=[["5"],["2"],["1"]],pin=[[33],[40]],pout=34,pein=[[43],[44]],peout=[],gr_i=[],id="",in_implicit=[["E"],["E"]],out_implicit="E"),model=scicos_model(sim=list("selector_m",4),in1=[[-1],[-1]],in2=[[-2],[-2]],intyp=[[5],[5]],out=-1,out2=-2,outtyp=5,evtin=[[1],[1]],evtout=[],state=[],dstate=1,odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[33-1]=scicos_link(xx=[[282.29299],[290.29229]],yy=[[280.24498],[280.23987]],id="drawlink",thick=[0,0],ct=[1,1],from=[4,1,0],to=[32,1,1]);
+scs_m.objs[34-1]=scicos_link(xx=[[347.43514],[357.57328],[357.57328]],yy=[[273.57321],[273.57321],[280.83282]],id="drawlink",thick=[0,0],ct=[1,1],from=[32,1,0],to=[35,1,1]);
+scs_m.objs[35-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[357.57328,280.83282],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=34,pout=[[36],[37]],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[["E"],["E"],["E"]]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[[-1],[-1],[-1]],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[36-1]=scicos_link(xx=[[357.57328],[357.57328],[364.66964]],yy=[[280.83282],[329.46812],[329.46812]],id="drawlink",thick=[0,0],ct=[1,1],from=[35,1,0],to=[7,1,1]);
+scs_m.objs[37-1]=scicos_link(xx=[[357.57328],[376.4669]],yy=[[280.83282],[280.83282]],id="drawlink",thick=[0,0],ct=[1,1],from=[35,2,0],to=[14,1,1]);
+scs_m.objs[38-1]=scicos_block(gui="SPLIT_f",graphics=scicos_graphics(orig=[[140.34523],[273.49157]],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=6,pout=[[39],[40]],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[["E"],["E"],["E"]]),model=scicos_model(sim="lsplit",in1=-1,in2=[],intyp=1,out=[[-1],[-1],[-1]],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="c",firing=[],dep_ut=[true,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[39-1]=scicos_link(xx=[[140.34523],[144.31759]],yy=[[273.49157],[273.57832]],id="drawlink",thick=[0,0],ct=[1,1],from=[38,1,0],to=[3,2,1]);
+scs_m.objs[40-1]=scicos_link(xx=[[140.34523],[140.34523],[290.29229],[290.29229]],yy=[[273.49157],[247.70767],[247.70767],[266.90654]],id="drawlink",thick=[0,0],ct=[1,1],from=[38,2,0],to=[32,2,1]);
+scs_m.objs[41-1]=scicos_block(gui="CLKSPLIT_f",graphics=scicos_graphics(orig=[[253.72572],[309.29537]],sz=[0.3333333,0.3333333],flip=true,theta=0,exprs=[],pin=[],pout=[],pein=17,peout=[[42],[43]],gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="split",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=1,evtout=[[1],[1]],state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="d",firing=[false,false,false],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
+scs_m.objs[42-1]=scicos_link(xx=[[253.72572],[253.72156]],yy=[[309.29537],[305.95927]],id="drawlink",thick=[0,0],ct=[5,-1],from=[41,1,0],to=[4,1,1]);
+scs_m.objs[43-1]=scicos_link(xx=[[253.72572],[312.19705],[312.19705]],yy=[[309.29537],[309.29537],[299.28749]],id="drawlink",thick=[0,0],ct=[5,-1],from=[41,2,0],to=[32,1,1]);
+scs_m.objs[44-1]=scicos_link(xx=[[279.98293],[279.98293],[325.53038],[325.53038]],yy=[[372.50232],[315.89455],[315.89455],[299.28749]],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,2,0],to=[32,2,1]);
 model=scicos_model();
 model.sim="csuper";
-model.in1=[1,1,1];
-model.in2=[1,1,1];
-model.out=[1,1];
-model.out2=[1,1];
+model.in1=[[1],[1],[1]];
+model.in2=[[1],[1],[1]];
+model.out=[[1],[1]];
+model.out2=[[1],[1]];
 model.intyp=[5,1,1];
 model.outtyp=[5,5];
 model.blocktype="h";
@@ -14394,11 +14394,11 @@ x=arg1;
 /* autogenerated from "macros/IntegerOp/LOGIC.sci" */
 function LOGIC() {
 LOGIC.prototype.define = function LOGIC() {
-mat=[0,0,0,1];
+mat=[[0],[0],[0],[1]];
 model=scicos_model();
 model.sim=list("logic",4);
-model.in1=[1,1];
-model.in2=[1,1];
+model.in1=[[1],[1]];
+model.in2=[[1],[1]];
 model.out=1;
 model.out2=1;
 model.evtin=1;
@@ -14408,7 +14408,7 @@ model.opar=list(int8(mat));
 model.blocktype="c";
 model.firing=false;
 model.dep_ut=[true,false];
-exprs=[sci2exp(mat),sci2exp(0)];
+exprs=[[sci2exp(mat)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -14422,7 +14422,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,mat,herit,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"LOGIC")," ",gettext("Combinatorial logic")," ",gettext("&nbsp; Rows of the matrix are the output values"),gettext("&nbsp; Number of rows must be a power of two."),gettext("&nbsp; Number of columns gives the number of outputs.")," "],[gettext("Truth Table (matrix of outputs)"),gettext("Accepts Inherited Events (0:No, 1:Yes)")],list("mat",[-1,-2],"vec",1),exprs);
+[ok,mat,herit,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"LOGIC")],[" "],[gettext("Combinatorial logic")],[" "],[gettext("&nbsp; Rows of the matrix are the output values")],[gettext("&nbsp; Number of rows must be a power of two.")],[gettext("&nbsp; Number of columns gives the number of outputs.")],[" "]],[[gettext("Truth Table (matrix of outputs)")],[gettext("Accepts Inherited Events (0:No, 1:Yes)")]],list("mat",[-1,-2],"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -14460,18 +14460,18 @@ break;
 /* autogenerated from "macros/NonLinear/INTRP2BLK_f.sci" */
 function INTRP2BLK_f() {
 INTRP2BLK_f.prototype.define = function INTRP2BLK_f() {
-a=[0,1];
-b=[0,1];
-c=[0,1,1,2];
+a=[[0],[1]];
+b=[[0],[1]];
+c=[[0,1],[1,2]];
 model=scicos_model();
 model.sim=list("intrp2",1);
-model.in1=[1,1];
+model.in1=[[1],[1]];
 model.out=1;
-model.rpar=[a,b,c.slice()];
-model.ipar=[2,2];
+model.rpar=[[a],[b],[c.slice()]];
+model.ipar=[[2],[2]];
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[strcat(sci2exp(a)),strcat(sci2exp(b)),strcat(sci2exp(c,0))];
+exprs=[[strcat(sci2exp(a))],[strcat(sci2exp(b))],[strcat(sci2exp(c,0))]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -14485,7 +14485,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,a,b,c,exprs]=scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord.","Z values"],list("vec",-1,"vec",-1,"mat",[-1,-1]),exprs);
+[ok,a,b,c,exprs]=scicos_getvalue("Set Interpolation block parameters",[["X coord."],["Y coord."],["Z values"]],list("vec",-1,"vec",-1,"mat",[-1,-1]),exprs);
 if (!ok) {
 break;
 }
@@ -14496,8 +14496,8 @@ message("X and Y must be strictly increasing");
 } else {
 if (ok) {
 graphics.exprs=exprs;
-model.rpar=[a.slice(),b.slice(),c.slice()];
-model.ipar=[size(a,"*"),size(b,"*")];
+model.rpar=[[a.slice()],[b.slice()],[c.slice()]];
+model.ipar=[[size(a,"*")],[size(b,"*")]];
 x.graphics=graphics;
 x.model=model;
 break;
@@ -14509,10 +14509,10 @@ break;
 /* autogenerated from "macros/NonLinear/PRODUCT.sci" */
 function PRODUCT() {
 PRODUCT.prototype.define = function PRODUCT() {
-sgn=[1,-1];
+sgn=[[1],[-1]];
 model=scicos_model();
 model.sim=list("product",4);
-model.in1=[-1,-1];
+model.in1=[[-1],[-1]];
 model.out=-1;
 model.ipar=sgn;
 model.blocktype="c";
@@ -14531,7 +14531,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,sgn,exprs]=scicos_getvalue(["         Set multiplication block parameters","(multiplication is set with + 1, division with -1)",""],"Number of inputs or sign vector",list("vec",-1),exprs);
+[ok,sgn,exprs]=scicos_getvalue([["         Set multiplication block parameters"],["(multiplication is set with + 1, division with -1)"],[""]],"Number of inputs or sign vector",list("vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -14665,16 +14665,16 @@ SAT_f.prototype.define = function SAT_f() {
 minp=-1;
 maxp=1;
 slope=1;
-rpar=[minp,maxp,slope];
+rpar=[[minp],[maxp],[slope]];
 model=scicos_model();
 model.sim=list("lusat",1);
 model.in1=1;
 model.nzcross=2;
 model.out=1;
-model.rpar=[minp,maxp,slope];
+model.rpar=[[minp],[maxp],[slope]];
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(minp),string(maxp),string(slope)];
+exprs=[[string(minp)],[string(maxp)],[string(slope)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -14688,7 +14688,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,minp,maxp,pente,exprs]=scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,minp,maxp,pente,exprs]=scicos_getvalue("Set Saturation parameters",[["Min"],["Max"],["Slope"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -14697,7 +14697,7 @@ message("Max must be strictly positive");
 } else if (pente<=0) {
 message("Slope must be strictly positive");
 } else {
-rpar=[minp/pente,maxp/pente,pente];
+rpar=[[minp/pente],[maxp/pente],[pente]];
 model.rpar=rpar;
 model.firing=[];
 graphics.exprs=exprs;
@@ -14715,7 +14715,7 @@ model=scicos_model();
 model.sim="lookup";
 model.in1=1;
 model.out=1;
-model.rpar=[-2,-1,1,2,-1,1,-1,1];
+model.rpar=[[-2],[-1],[1],[2],[-1],[1],[-1],[1]];
 model.blocktype="c";
 model.dep_ut=[true,false];
 gr_i=[];
@@ -14750,7 +14750,7 @@ message("You have not defined a function");
 ok=false;
 }
 if (ok) {
-model.rpar=[xx.slice(),yy.slice()];
+model.rpar=[[xx.slice()],[yy.slice()]];
 x.graphics=graphics;
 x.model=model;
 break;
@@ -14761,16 +14761,16 @@ break;
 /* autogenerated from "macros/NonLinear/INTRPLBLK_f.sci" */
 function INTRPLBLK_f() {
 INTRPLBLK_f.prototype.define = function INTRPLBLK_f() {
-a=[0,1];
-b=[0,1];
+a=[[0],[1]];
+b=[[0],[1]];
 model=scicos_model();
 model.sim="intrpl";
 model.in1=1;
 model.out=1;
-model.rpar=[a,b];
+model.rpar=[[a],[b]];
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[strcat(sci2exp(a)),strcat(sci2exp(b))];
+exprs=[[strcat(sci2exp(a))],[strcat(sci2exp(b))]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -14784,7 +14784,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,a,b,exprs]=scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord."],list("vec",-1,"vec",-1),exprs);
+[ok,a,b,exprs]=scicos_getvalue("Set Interpolation block parameters",[["X coord."],["Y coord."]],list("vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -14795,7 +14795,7 @@ message("X must be strictly increasing");
 } else {
 if (ok) {
 graphics.exprs=exprs;
-model.rpar=[a.slice(),b.slice()];
+model.rpar=[[a.slice()],[b.slice()]];
 x.graphics=graphics;
 x.model=model;
 break;
@@ -14809,7 +14809,7 @@ function PROD_f() {
 PROD_f.prototype.define = function PROD_f() {
 model=scicos_model();
 model.sim=list("prod",2);
-model.in1=[-1,-1];
+model.in1=[[-1],[-1]];
 model.out=-1;
 model.blocktype="c";
 model.dep_ut=[true,false];
@@ -14826,24 +14826,24 @@ x=arg1;
 /* autogenerated from "macros/NonLinear/DLRADAPT_f.sci" */
 function DLRADAPT_f() {
 DLRADAPT_f.prototype.define = function DLRADAPT_f() {
-p=[0,1];
+p=[[0],[1]];
 rn=[];
-rd=[math.complex(0.2,0.8),math.complex(0.2,-0.8),math.complex(0.3,0.7),math.complex(0.3,-0.7)];
-g=[1,1];
+rd=[[math.complex(0.2,0.8),math.complex(0.2,-0.8)],[math.complex(0.3,0.7),math.complex(0.3,-0.7)]];
+g=[[1],[1]];
 last_u=[];
-last_y=[0,0];
+last_y=[[0],[0]];
 model=scicos_model();
 model.sim="dlradp";
-model.in1=[1,1];
+model.in1=[[1],[1]];
 model.out=1;
 model.evtin=1;
-model.dstate=[last_u,last_y];
-model.rpar=[p.slice(),real(rn.slice()),imag(rn.slice()),real(rd.slice()),imag(rd.slice()),g.slice()];
-model.ipar=[0,2,2];
+model.dstate=[[last_u],[last_y]];
+model.rpar=[[p.slice()],[real(rn.slice())],[imag(rn.slice())],[real(rd.slice())],[imag(rd.slice())],[g.slice()]];
+model.ipar=[[0],[2],[2]];
 model.blocktype="d";
 model.firing=[];
 model.dep_ut=[true,false];
-exprs=[sci2exp(p),sci2exp(rn),sci2exp(rd,0),sci2exp(g),sci2exp(last_u),sci2exp(last_y)];
+exprs=[[sci2exp(p)],[sci2exp(rn)],[sci2exp(rd,0)],[sci2exp(g)],[sci2exp(last_u)],[sci2exp(last_y)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -14857,7 +14857,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,p,rn,rd,g,last_u,last_y,exprs]=scicos_getvalue("Set block parameters",["Vector of p mesh points","Numerator roots (one line for each mesh)","Denominator roots (one line for each mesh)","Vector of gain at mesh points","past inputs (Num degree values)","past outputs (Den degree values)"],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),exprs);
+[ok,p,rn,rd,g,last_u,last_y,exprs]=scicos_getvalue("Set block parameters",[["Vector of p mesh points"],["Numerator roots (one line for each mesh)"],["Denominator roots (one line for each mesh)"],["Vector of gain at mesh points"],["past inputs (Num degree values)"],["past outputs (Den degree values)"]],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),exprs);
 if (!ok) {
 break;
 }
@@ -14868,9 +14868,9 @@ message("Transfer must be strictly proper");
 } else if (size(rn,1)!=0&&size(rn,1)!=size(p,"*")) {
 message("Numerator roots matrix row size\'s is incorrect");
 } else {
-rpar=[p.slice(),real(rn.slice()),imag(rn.slice()),real(rd.slice()),imag(rd.slice()),g.slice()];
-ipar=[m,n,npt];
-model.dstate=[last_u.slice(),last_y.slice()];
+rpar=[[p.slice()],[real(rn.slice())],[imag(rn.slice())],[real(rd.slice())],[imag(rd.slice())],[g.slice()]];
+ipar=[[m],[n],[npt]];
+model.dstate=[[last_u.slice()],[last_y.slice()]];
 model.rpar=rpar;
 model.ipar=ipar;
 graphics.exprs=exprs;
@@ -14894,7 +14894,7 @@ model.rpar=pas;
 model.ipar=meth;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(pas),string(meth)];
+exprs=[[string(pas)],[string(meth)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -14908,7 +14908,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,pas,meth,exprs]=scicos_getvalue("Set parameters",["Step","Quantization Type (1-4)"],list("vec",1,"vec",1),exprs);
+[ok,pas,meth,exprs]=scicos_getvalue("Set parameters",[["Step"],["Quantization Type (1-4)"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -14991,7 +14991,7 @@ model=scicos_model();
 model.sim="maxblk";
 model.in1=in1;
 model.out=1;
-model.dstate=[0,0];
+model.dstate=[[0],[0]];
 model.blocktype="c";
 model.dep_ut=[true,false];
 exprs=" ";
@@ -15131,7 +15131,7 @@ model=scicos_model();
 model.sim="minblk";
 model.in1=in1;
 model.out=1;
-model.dstate=[0,0];
+model.dstate=[[0],[0]];
 model.blocktype="c";
 model.dep_ut=[true,false];
 exprs=sci2exp(in1);
@@ -15151,7 +15151,7 @@ function SATURATION() {
 SATURATION.prototype.define = function SATURATION() {
 minp=-1;
 maxp=1;
-rpar=[maxp,minp];
+rpar=[[maxp],[minp]];
 model=scicos_model();
 model.sim=list("satur",4);
 model.in1=1;
@@ -15161,7 +15161,7 @@ model.out=1;
 model.rpar=rpar;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(maxp),string(minp),string(model.nmode)];
+exprs=[[string(maxp)],[string(minp)],[string(model.nmode)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -15175,14 +15175,14 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,maxp,minp,zeroc,exprs]=scicos_getvalue("Set Saturation parameters",["Upper limit","Lower limit","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,maxp,minp,zeroc,exprs]=scicos_getvalue("Set Saturation parameters",[["Upper limit"],["Lower limit"],["zero crossing (0:no, 1:yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 if (maxp<=minp) {
 message("Upper limit must be > Lower limit");
 } else {
-rpar=[maxp,minp];
+rpar=[[maxp],[minp]];
 model.rpar=rpar;
 if (zeroc!=0) {
 model.nzcross=2;
@@ -15382,7 +15382,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,mm,nin,zcr,exprs]=scicos_getvalue("Set Max/Min block parameters",["Min (1) or Max (2) ","Number of input vectors (1 or 2)","zero-crossing (1: yes, 0;no)"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,mm,nin,zcr,exprs]=scicos_getvalue("Set Max/Min block parameters",[["Min (1) or Max (2) "],["Number of input vectors (1 or 2)"],["zero-crossing (1: yes, 0;no)"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }

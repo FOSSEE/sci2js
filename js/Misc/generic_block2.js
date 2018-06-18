@@ -16,7 +16,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[function_name,sci2exp(funtyp),sci2exp(model.in1),sci2exp(model.out),sci2exp(model.evtin),sci2exp(model.evtout),sci2exp(model.state),sci2exp(model.dstate),sci2exp(model.rpar),sci2exp(model.ipar),sci2exp(model.nmode),sci2exp(model.nzcross),sci2exp(model.firing),"y","n"];
+label=[[function_name],[sci2exp(funtyp)],[sci2exp(model.in1)],[sci2exp(model.out)],[sci2exp(model.evtin)],[sci2exp(model.evtout)],[sci2exp(model.state)],[sci2exp(model.dstate)],[sci2exp(model.rpar)],[sci2exp(model.ipar)],[sci2exp(model.nmode)],[sci2exp(model.nzcross)],[sci2exp(model.firing)],["y"],["n"]];
 gr_i=[];
 x=standard_define([2,2],model,label,gr_i);
 }
@@ -33,7 +33,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,function_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,nmode,nzcr,auto0,depu,dept,lab]=scicos_getvalue("Set GENERIC block parameters",["simulation function","function type (0,1,2,..)","input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","Real parameters vector","Integer parameters vector","number of modes","number of zero_crossings","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec","sum(%6)","str",1,"str",1),label);
+[ok,function_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,nmode,nzcr,auto0,depu,dept,lab]=scicos_getvalue("Set GENERIC block parameters",[["simulation function"],["function type (0,1,2,..)"],["input ports sizes"],["output port sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["initial discrete state"],["Real parameters vector"],["Integer parameters vector"],["number of modes"],["number of zero_crossings"],["initial firing vector (<0 for no firing)"],["direct feedthrough (y or n)"],["time dependence (y or n)"]],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec","sum(%6)","str",1,"str",1),label);
 if (!ok) {
 break;
 }
@@ -52,8 +52,8 @@ if (funtyp<0) {
 message("function type cannot be negative");
 ok=false;
 }
-if ([ci,co]!=[]) {
-if (max([ci,co])>1) {
+if ([[ci],[co]]!=[]) {
+if (max([[ci],[co]])>1) {
 message("vector event links not supported");
 ok=false;
 }

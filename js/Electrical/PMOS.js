@@ -16,17 +16,17 @@ model.blocktype="c";
 model.dep_ut=[true,false];
 mo=modelica();
 mo.model="PMOS";
-mo.outputs=["D","B","S"];
+mo.outputs=[["D"],["B"],["S"]];
 mo.inputs="G";
-mo.parameters=list(["W","L","Beta","Vt","K2","K5","dW","dL","RDS"],[W,L,Beta,Vt,K2,K5,dW,dL,RDS]);
+mo.parameters=list([["W"],["L"],["Beta"],["Vt"],["K2"],["K5"],["dW"],["dL"],["RDS"]],[[W],[L],[Beta],[Vt],[K2],[K5],[dW],[dL],[RDS]]);
 model.equations=mo;
 model.in1=ones(size(mo.inputs,"*"),1);
 model.out=ones(size(mo.outputs,"*"),1);
-exprs=[string(W),string(L),string(Beta),string(Vt),string(K2),string(K5),string(dW),string(dL),string(RDS)];
+exprs=[[string(W)],[string(L)],[string(Beta)],[string(Vt)],[string(K2)],[string(K5)],[string(dW)],[string(dL)],[string(RDS)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 x.graphics.in_implicit=["I"];
-x.graphics.out_implicit=["I","I","I"];
+x.graphics.out_implicit=[["I"],["I"],["I"]];
 }
 PMOS.prototype.details = function PMOS() {
 }
@@ -38,7 +38,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,W,L,Beta,Vt,K2,K5,dW,dL,RDS,exprs]=scicos_getvalue("Set PMOS Transistor parameters",["Width [m]","Length [m]","Transconductance parameter [A/(V*V)]","Zero bias threshold voltage [V]","Bulk threshold parameter","Reduction of pinch-off region","Narrowing of channel [m]","Shortening of channel [m]","Drain-Source-Resistance [Ohm]"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+[ok,W,L,Beta,Vt,K2,K5,dW,dL,RDS,exprs]=scicos_getvalue("Set PMOS Transistor parameters",[["Width [m]"],["Length [m]"],["Transconductance parameter [A/(V*V)]"],["Zero bias threshold voltage [V]"],["Bulk threshold parameter"],["Reduction of pinch-off region"],["Narrowing of channel [m]"],["Shortening of channel [m]"],["Drain-Source-Resistance [Ohm]"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }

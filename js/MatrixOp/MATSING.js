@@ -20,7 +20,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp(1)];
+label=[[sci2exp(1)],[sci2exp(1)]];
 gr_i=[];
 x=standard_define([2,2],model,label,gr_i);
 }
@@ -37,7 +37,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,typ,decomptyp,lab]=scicos_getvalue("Set MATSVD block parameters",["Datatype(1=real double  2=Complex)","decomposition type (1=singular values  2=sing values+matrix U & V)"],list("vec",1,"vec",1),label);
+[ok,typ,decomptyp,lab]=scicos_getvalue("Set MATSVD block parameters",[["Datatype(1=real double  2=Complex)"],["decomposition type (1=singular values  2=sing values+matrix U & V)"]],list("vec",1,"vec",1),label);
 if (!ok) {
 break;
 }
@@ -51,7 +51,7 @@ ot=1;
 } else if ((decomptyp==2)) {
 function_name="mat_svd";
 in1=[-1,-2];
-out=[-1,-1,-1,-2,-2,-2];
+out=[[-1,-1],[-1,-2],[-2,-2]];
 ot=[1,1,1];
 } else {
 message("decomposition type is not supported");
@@ -67,7 +67,7 @@ ot=1;
 } else if ((decomptyp==2)) {
 function_name="matz_svd";
 in1=[-1,-2];
-out=[-1,-1,-1,-2,-2,-2];
+out=[[-1,-1],[-1,-2],[-2,-2]];
 ot=[2,1,2];
 } else {
 message("decomposition type is not supported");

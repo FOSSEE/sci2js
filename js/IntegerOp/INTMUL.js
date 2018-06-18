@@ -4,9 +4,9 @@ INTMUL.prototype.define = function INTMUL() {
 sgn=0;
 model=scicos_model();
 model.sim=list("matmul_i32",4);
-model.in1=[-1,-2];
+model.in1=[[-1],[-2]];
 model.out=-1;
-model.in2=[-2,-3];
+model.in2=[[-2],[-3]];
 model.out2=-3;
 model.intyp=[3,3];
 model.outtyp=3;
@@ -14,7 +14,7 @@ model.rpar=[];
 model.ipar=sgn;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(3),sci2exp(0)];
+exprs=[[sci2exp(3)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -28,7 +28,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,Datatype,np,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"INTMUL")," ",gettext("Integer matrix multiplication")," "],[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)"),gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")],list("vec",1,"vec",1),exprs);
+[ok,Datatype,np,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INTMUL")],[" "],[gettext("Integer matrix multiplication")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }

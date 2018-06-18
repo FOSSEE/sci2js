@@ -16,11 +16,11 @@ model.evtout=[];
 model.state=[];
 model.dstate=[];
 model.rpar=[];
-model.ipar=[1,1,1,1];
+model.ipar=[[1],[1],[1],[1]];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp(1),sci2exp(1),sci2exp(1),sci2exp(1)];
+label=[[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)]];
 gr_i=[];
 x=standard_define([2.5,2],model,label,gr_i);
 }
@@ -37,7 +37,7 @@ if (size(label,"*")==5) {
 label[6-1]=sci2exp([1,1]);
 }
 while (true) {
-[ok,typ,a,b,c,d,inp,exprs]=scicos_getvalue("Set SUBMAT Block",["Datatype (1=real double  2=Complex)","Starting Row Index","Ending Row Index","Starting Column Index","Ending Column Index","Input Dimensions"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label);
+[ok,typ,a,b,c,d,inp,exprs]=scicos_getvalue("Set SUBMAT Block",[["Datatype (1=real double  2=Complex)"],["Starting Row Index"],["Ending Row Index"],["Starting Column Index"],["Ending Column Index"],["Input Dimensions"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label);
 if (!ok) {
 break;
 }
@@ -73,7 +73,7 @@ if (d>inp(2)) {
 message("index of ending column is out of range");
 ok=false;
 }
-model.ipar=[a,b,c,d];
+model.ipar=[[a],[b],[c],[d]];
 in1=[inp(1),inp(2)];
 out=[(b-a)+1,(d-c)+1];
 funtyp=4;

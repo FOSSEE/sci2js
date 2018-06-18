@@ -16,7 +16,7 @@ model.dep_ut=[false,false];
 mo=modelica();
 mo.model="gotomo";
 mo.inputs="p";
-exprs=["A",sci2exp(1)];
+exprs=[["A"],[sci2exp(1)]];
 gr_i=[];
 x=standard_define([2,1],model,exprs,gr_i);
 x.graphics.in_implicit=["I"];
@@ -31,7 +31,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,tag,tagvis,exprs]=scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),exprs);
+[ok,tag,tagvis,exprs]=scicos_getvalue("Set parameters",[["Tag"],["Tag Visibility(1=Local 2=scoped 3= global)"]],list("str",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }

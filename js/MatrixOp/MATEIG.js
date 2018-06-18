@@ -20,7 +20,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp(1)];
+label=[[sci2exp(1)],[sci2exp(1)]];
 gr_i=[];
 x=standard_define([2,2],model,label,gr_i);
 }
@@ -37,7 +37,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,typ,decomptyp,lab]=scicos_getvalue("Set MATEIG block parameters",["Datatype(1=real double  2=Complex)","decomposition type (1=eig values  2=eig values+eig vectors"],list("vec",1,"vec",1),label);
+[ok,typ,decomptyp,lab]=scicos_getvalue("Set MATEIG block parameters",[["Datatype(1=real double  2=Complex)"],["decomposition type (1=eig values  2=eig values+eig vectors"]],list("vec",1,"vec",1),label);
 if (!ok) {
 break;
 }
@@ -49,7 +49,7 @@ out=[-1,1];
 ot=2;
 } else if ((decomptyp==2)) {
 function_name="mat_vpv";
-out=[-1,-1,-1,-1];
+out=[[-1,-1],[-1,-1]];
 ot=[2,2];
 } else {
 message("decomposition type is not supported");
@@ -63,7 +63,7 @@ out=[-1,1];
 ot=2;
 } else if ((decomptyp==2)) {
 function_name="matz_vpv";
-out=[-1,-1,-1,-1];
+out=[[-1,-1],[-1,-1]];
 ot=[2,2];
 } else {
 message("decomposition type is not supported");

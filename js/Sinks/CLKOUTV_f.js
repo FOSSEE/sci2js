@@ -22,7 +22,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CLKOUTV_f")," ",gettext("Event output port")],gettext("Port number"),list("vec",1),exprs);
+[ok,prt,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLKOUTV_f")],[" "],[gettext("Event output port")]],gettext("Port number"),list("vec",1),exprs);
 if (!ok) {
 break;
 }

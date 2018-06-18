@@ -24,10 +24,10 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,1)==1) {
-exprs=[exprs,sci2exp(1)];
+exprs=[[exprs],[sci2exp(1)]];
 }
 while (true) {
-[ok,z0,it,exprs]=scicos_getvalue("Set delay parameters",["Register initial condition","Datatype (1=double 3=int32 ...)"],list("vec",-1,"vec",1),exprs);
+[ok,z0,it,exprs]=scicos_getvalue("Set delay parameters",[["Register initial condition"],["Datatype (1=double 3=int32 ...)"]],list("vec",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }

@@ -2,7 +2,7 @@
 function MOTOR() {
 MOTOR.prototype.define = function MOTOR() {
 model=scicos_model();
-model.out=[1,1];
+model.out=[[1],[1]];
 model.in1=[1];
 model.sim="motor";
 model.blocktype="c";
@@ -10,7 +10,7 @@ model.dep_ut=[true,false];
 gr_i=[];
 exprs="";
 x=standard_define([2,2],model,exprs,gr_i);
-x.graphics.out_implicit=["I","I"];
+x.graphics.out_implicit=[["I"],["I"]];
 x.graphics.in_implicit=["I"];
 }
 MOTOR.prototype.details = function MOTOR() {

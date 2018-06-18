@@ -10,14 +10,14 @@ model.sim=list("fromws_c",4);
 model.out=-1;
 model.out2=-2;
 model.outtyp=-1;
-model.ipar=[length(varnam),_str2code(varnam),Method,ZC,OutEnd];
+model.ipar=[[length(varnam)],[_str2code(varnam)],[Method],[ZC],[OutEnd]];
 model.evtin=[1];
 model.evtout=[1];
 model.firing=[0];
 model.blocktype="d";
 model.dep_ut=[false,true];
 gr_i=[];
-exprs=[string(varnam),string(Method),string(ZC),string(OutEnd)];
+exprs=[[string(varnam)],[string(Method)],[string(ZC)],[string(OutEnd)]];
 x=standard_define([3.5,2],model,exprs,gr_i);
 }
 FROMWS_c.prototype.details = function FROMWS_c() {
@@ -30,7 +30,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,varnam,Method,ZC,OutEnd,exprs]=scicos_getvalue("Set From_Workspace block parameters",["Variable name","Interpolation Method","Enable zero crossing(0:No, 1:Yes)?","Output at end(0:Zero, 1:Hold, 2:Repeat)"],list("str",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,varnam,Method,ZC,OutEnd,exprs]=scicos_getvalue("Set From_Workspace block parameters",[["Variable name"],["Interpolation Method"],["Enable zero crossing(0:No, 1:Yes)?"],["Output at end(0:Zero, 1:Hold, 2:Repeat)"]],list("str",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -49,11 +49,11 @@ ok=false;
 r=false;
 ierr=execstr("r=validvar(varnam)","errcatch");
 if (!r) {
-message(["Invalid variable name.","Please choose another variable name."]);
+message([["Invalid variable name."],["Please choose another variable name."]]);
 ok=false;
 }
 if (ok) {
-model.ipar=[length(varnam),_str2code(varnam),Method,ZC,OutEnd];
+model.ipar=[[length(varnam)],[_str2code(varnam)],[Method],[ZC],[OutEnd]];
 [model,graphics,ok]=set_io(model,graphics,list(),list([-1,-2],-1),1,1);
 if (ok) {
 graphics.exprs=exprs;

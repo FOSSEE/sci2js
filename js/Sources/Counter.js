@@ -10,10 +10,10 @@ model.evtin=1;
 model.out=1;
 model.out2=1;
 model.dstate=0;
-model.ipar=[rule,maxim,minim];
+model.ipar=[[rule],[maxim],[minim]];
 model.blocktype="c";
 model.dep_ut=[false,false];
-exprs=[string(minim),string(maxim),string(rule)];
+exprs=[[string(minim)],[string(maxim)],[string(rule)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -27,7 +27,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,minim,maxim,rule,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"Counter")," ",gettext("Integer counter generator")," "],[gettext("Minimum"),gettext("Maximum"),gettext("Rule (1:Increment, 2:Decrement)")],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,minim,maxim,rule,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"Counter")],[" "],[gettext("Integer counter generator")],[" "]],[[gettext("Minimum")],[gettext("Maximum")],[gettext("Rule (1:Increment, 2:Decrement)")]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -40,7 +40,7 @@ block_parameter_error(msprintf(gettext("Wrong value for \'Rule\' parameter: %d")
 } else {
 graphics.exprs=exprs;
 model.dstate=0;
-model.ipar=[rule,maxim,minim];
+model.ipar=[[rule],[maxim],[minim]];
 x.graphics=graphics;
 x.model=model;
 break;

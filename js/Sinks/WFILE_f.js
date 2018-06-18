@@ -11,11 +11,11 @@ model=scicos_model();
 model.sim="writef";
 model.in1=in1;
 model.evtin=1;
-model.dstate=[-1,lunit,zeros((nin+1)*N,1)];
-model.ipar=[length(fname),length(frmt),0,N,_str2code(fname),_str2code(frmt)];
+model.dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
+model.ipar=[[length(fname)],[length(frmt)],[0],[N],[_str2code(fname)],[_str2code(frmt)]];
 model.blocktype="d";
 model.dep_ut=[true,false];
-exprs=[sci2exp(in1),fname,frmt,string(N)];
+exprs=[[sci2exp(in1)],[fname],[frmt],[string(N)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -38,7 +38,7 @@ lunit=dstate(2);
 fname=exprs[2-1];
 frmt=exprs[3-1];
 while (true) {
-[ok,in1,fname1,frmt1,N,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"WFILE_f")," ",gettext("Write to output file")," ",gettext("Write is done on:"),gettext("&nbsp; - A binary file if no format given"),gettext("&nbsp; - A formatted text file if a  format (Fortran type) is given")],[gettext("Input Size"),gettext("Output File Name"),gettext("Output Format"),gettext("Buffer Size")],list("vec",1,"str",1,"str",1,"vec",1),exprs);
+[ok,in1,fname1,frmt1,N,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WFILE_f")],[" "],[gettext("Write to output file")],[" "],[gettext("Write is done on:")],[gettext("&nbsp; - A binary file if no format given")],[gettext("&nbsp; - A formatted text file if a  format (Fortran type) is given")]],[[gettext("Input Size")],[gettext("Output File Name")],[gettext("Output Format")],[gettext("Buffer Size")]],list("vec",1,"str",1,"str",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -72,9 +72,9 @@ block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),
 ok=false;
 }
 if (ok) {
-ipar=[length(fname1),length(frmt1),0,N,_str2code(fname1),_str2code(frmt1)];
+ipar=[[length(fname1)],[length(frmt1)],[0],[N],[_str2code(fname1)],[_str2code(frmt1)]];
 if (prod(size(dstate))!=(nin+1)*N+2) {
-dstate=[-1,lunit,zeros((nin+1)*N,1)];
+dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
 }
 model.in1=nin;
 model.dstate=dstate;

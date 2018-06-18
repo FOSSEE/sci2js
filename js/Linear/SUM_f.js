@@ -3,7 +3,7 @@ function SUM_f() {
 SUM_f.prototype.define = function SUM_f() {
 model=scicos_model();
 model.sim=list("plusblk",2);
-model.in1=[-1,-1,-1];
+model.in1=[[-1],[-1],[-1]];
 model.out=-1;
 model.blocktype="c";
 model.dep_ut=[true,false];

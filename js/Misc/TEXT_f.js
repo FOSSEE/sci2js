@@ -6,8 +6,8 @@ siz=1;
 model=scicos_model();
 model.sim="text";
 model.rpar="Text";
-model.ipar=[font,siz];
-exprs=["Text",string(font),string(siz)];
+model.ipar=[[font],[siz]];
+exprs=[["Text"],[string(font)],[string(siz)]];
 graphics=scicos_graphics();
 graphics.orig=[0,0];
 graphics.sz=[2,1];
@@ -25,10 +25,10 @@ orig=graphics.orig;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,"*")==1) {
-exprs=[exprs,"3","1"];
+exprs=[[exprs],["3"],["1"]];
 }
 while (true) {
-[ok,txt,font,siz,exprs]=scicos_getvalue("Set Text block parameters",["Text","Font number","Font size"],list("str",-1,"vec",1,"vec",1),exprs);
+[ok,txt,font,siz,exprs]=scicos_getvalue("Set Text block parameters",[["Text"],["Font number"],["Font size"]],list("str",-1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -55,7 +55,7 @@ gh_winpal.font_color=default_font_color;
 sz=r.slice(3-1,4);
 graphics.sz=sz;
 x.graphics=graphics;
-ipar=[font,siz];
+ipar=[[font],[siz]];
 model.rpar=txt;
 model.ipar=ipar;
 x.model=model;

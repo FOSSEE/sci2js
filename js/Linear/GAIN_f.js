@@ -11,7 +11,7 @@ model.out=1;
 model.rpar=gain;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[strcat(sci2exp(gain)),strcat(sci2exp(in1)),strcat(sci2exp(out))];
+exprs=[[strcat(sci2exp(gain))],[strcat(sci2exp(in1))],[strcat(sci2exp(out))]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }

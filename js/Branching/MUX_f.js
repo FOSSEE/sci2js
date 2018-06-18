@@ -36,7 +36,7 @@ ok=false;
 }
 } else {
 if (size(in1,"*")<2||size(in1,"*")>8||or(in1==0)) {
-message(["Block must have at least two input ports","and at most eight, and size 0 is not allowed. "]);
+message([["Block must have at least two input ports"],["and at most eight, and size 0 is not allowed. "]]);
 ok=false;
 } else {
 if (min(in1)<0) {

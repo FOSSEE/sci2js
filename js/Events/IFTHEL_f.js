@@ -7,14 +7,14 @@ model.in1=1;
 model.in2=1;
 model.intyp=-1;
 model.evtin=1;
-model.evtout=[1,1];
+model.evtout=[[1],[1]];
 model.blocktype="l";
 model.firing=[-1,-1];
 model.dep_ut=[true,false];
 model.nmode=1;
 model.nzcross=1;
 gr_i=[];
-exprs=[string(model.in1),string(model.nmode)];
+exprs=[[string(model.in1)],[string(model.nmode)]];
 x=standard_define([3,3],model,exprs,gr_i);
 }
 IFTHEL_f.prototype.details = function IFTHEL_f() {
@@ -33,7 +33,7 @@ if (size(exprs,"*")==1) {
 exprs[2-1]=string(1);
 }
 while (true) {
-[ok,inh,nmod,exprs]=scicos_getvalue("Set parameters",["Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1),exprs);
+[ok,inh,nmod,exprs]=scicos_getvalue("Set parameters",[["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -44,7 +44,7 @@ nmod=1;
 if (inh!=1) {
 inh=[];
 }
-[model,graphics,ok]=check_io(model,graphics,1,[],inh,[1,1]);
+[model,graphics,ok]=check_io(model,graphics,1,[],inh,[[1],[1]]);
 if (ok) {
 graphics.exprs=exprs;
 model.evtin=inh;

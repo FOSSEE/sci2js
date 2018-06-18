@@ -5,7 +5,7 @@ model=scicos_model();
 model.sim="lookup";
 model.in1=1;
 model.out=1;
-model.rpar=[-2,-1,1,2,-1,1,-1,1];
+model.rpar=[[-2],[-1],[1],[2],[-1],[1],[-1],[1]];
 model.blocktype="c";
 model.dep_ut=[true,false];
 gr_i=[];
@@ -40,7 +40,7 @@ message("You have not defined a function");
 ok=false;
 }
 if (ok) {
-model.rpar=[xx.slice(),yy.slice()];
+model.rpar=[[xx.slice()],[yy.slice()]];
 x.graphics=graphics;
 x.model=model;
 break;

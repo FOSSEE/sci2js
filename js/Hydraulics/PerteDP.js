@@ -10,7 +10,7 @@ lambda=0.03;
 z1=0;
 z2=0;
 p_rho=0;
-model.rpar=[L,D,lambda,z1,z2,p_rho];
+model.rpar=[[L],[D],[lambda],[z1],[z2],[p_rho]];
 model.sim="PerteDP";
 model.blocktype="c";
 model.dep_ut=[true,false];
@@ -18,11 +18,11 @@ mo=modelica();
 mo.model="PerteDP";
 mo.inputs="C1";
 mo.outputs="C2";
-mo.parameters=list(["L","D","lambda","z1","z2","p_rho"],[L,D,lambda,z1,z2,p_rho]);
+mo.parameters=list([["L"],["D"],["lambda"],["z1"],["z2"],["p_rho"]],[[L],[D],[lambda],[z1],[z2],[p_rho]]);
 model.equations=mo;
 model.in1=ones(size(mo.inputs,"*"),1);
 model.out=ones(size(mo.outputs,"*"),1);
-exprs=[string(L),string(D),string(lambda),string(z1),string(z2),string(p_rho)];
+exprs=[[string(L)],[string(D)],[string(lambda)],[string(z1)],[string(z2)],[string(p_rho)]];
 gr_i=[];
 x=standard_define([2,1],model,exprs,list(gr_i,0));
 x.graphics.in_implicit=["I"];
@@ -38,11 +38,11 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,L,D,lambda,z1,z2,p_rho,exprs]=scicos_getvalue("Parametres du tuyau",["Longueur du tube : L (m)","Diamètre interne du tube : D (m)","Coefficient de perte de charge-frottement(S.U) : lambda","Altitude entrée tuyauterie : z1 (m)","Altitude sortie tuyauterie : z2 (m)","Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+[ok,L,D,lambda,z1,z2,p_rho,exprs]=scicos_getvalue("Parametres du tuyau",[["Longueur du tube : L (m)"],["Diamètre interne du tube : D (m)"],["Coefficient de perte de charge-frottement(S.U) : lambda"],["Altitude entrée tuyauterie : z1 (m)"],["Altitude sortie tuyauterie : z2 (m)"],["Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
-model.rpar=[L,D,lambda,z1,z2,p_rho];
+model.rpar=[[L],[D],[lambda],[z1],[z2],[p_rho]];
 model.equations.parameters[2-1]=list(L,D,lambda,z1,z2,p_rho);
 graphics.exprs=exprs;
 x.graphics=graphics;

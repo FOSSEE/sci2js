@@ -29,10 +29,10 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 if (size(exprs,"*")==1) {
-exprs=[exprs,sci2exp(0)];
+exprs=[[exprs],[sci2exp(0)]];
 }
 while (true) {
-[ok,gain,over,exprs]=scicos_getvalue("Set gain block parameters",["Gain","Do On Overflow(0=Nothing 1=Saturate 2=Error)"],list("mat",[-1,-1],"vec",1),exprs);
+[ok,gain,over,exprs]=scicos_getvalue("Set gain block parameters",[["Gain"],["Do On Overflow(0=Nothing 1=Saturate 2=Error)"]],list("mat",[-1,-1],"vec",1),exprs);
 if (!ok) {
 break;
 }

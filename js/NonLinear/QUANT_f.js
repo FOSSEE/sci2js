@@ -11,7 +11,7 @@ model.rpar=pas;
 model.ipar=meth;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(pas),string(meth)];
+exprs=[[string(pas)],[string(meth)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -25,7 +25,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,pas,meth,exprs]=scicos_getvalue("Set parameters",["Step","Quantization Type (1-4)"],list("vec",1,"vec",1),exprs);
+[ok,pas,meth,exprs]=scicos_getvalue("Set parameters",[["Step"],["Quantization Type (1-4)"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }

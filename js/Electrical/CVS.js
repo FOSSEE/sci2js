@@ -9,24 +9,24 @@ Typein=[];
 Typeout=[];
 MI=[];
 MO=[];
-P=[2,50,1,0,70,98,2,0,70,2,-2,0];
-PortName=["vin","p","n"];
+P=[[2,50,1,0],[70,98,2,0],[70,2,-2,0]];
+PortName=[["vin"],["p"],["n"]];
 for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
-Typein=[Typein,"E"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["E"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==2) {
-Typein=[Typein,"I"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["I"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==-1) {
-Typeout=[Typeout,"E"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["E"]];
+MO=[[MO],[PortName(i)]];
 }
 if (P(i,3)==-2) {
-Typeout=[Typeout,"I"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["I"]];
+MO=[[MO],[PortName(i)]];
 }
 }
 model=scicos_model();

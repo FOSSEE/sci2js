@@ -20,7 +20,7 @@ model.ipar=[1,1,1,1];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp([1]),sci2exp([1])];
+label=[[sci2exp(1)],[sci2exp([1])],[sci2exp([1])]];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);
 }
@@ -37,7 +37,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,typ,a,b,exprs]=scicos_getvalue("Set EXTRACT Block",["Datatype (1=real double  2=Complex)","Lines to extract","Columns to extract"],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
+[ok,typ,a,b,exprs]=scicos_getvalue("Set EXTRACT Block",[["Datatype (1=real double  2=Complex)"],["Lines to extract"],["Columns to extract"]],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
 a=a.slice();
 b=b.slice();
 if (!ok) {
@@ -73,7 +73,7 @@ message("invalid index");
 ok=false;
 }
 }
-model.ipar=[a,b,ma,mb];
+model.ipar=[[a],[b],[ma],[mb]];
 in1=[model.in1,model.in2];
 out=[ma,mb];
 funtyp=4;

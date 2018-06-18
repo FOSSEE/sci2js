@@ -37,7 +37,7 @@ ok=false;
 }
 } else {
 if (size(out,"*")<2||size(out,"*")>8||or(out==0)) {
-message(["Block must have at least 2 and at most 8 output ports","and size 0 is not allowed"]   );
+message([["Block must have at least 2 and at most 8 output ports"],["and size 0 is not allowed"]]);
 ok=false;
 } else {
 if (min(out)<0) {

@@ -20,7 +20,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp(1)];
+label=[[sci2exp(1)],[sci2exp(1)]];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);
 }
@@ -37,7 +37,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,typ,decomptyp,lab]=scicos_getvalue("Set EXTTRI block parameters",["Datatype(1=real double  2=Complex)","extraction type (1=lower  2=upper  3=diagonal)"],list("vec",1,"vec",1),label);
+[ok,typ,decomptyp,lab]=scicos_getvalue("Set EXTTRI block parameters",[["Datatype(1=real double  2=Complex)"],["extraction type (1=lower  2=upper  3=diagonal)"]],list("vec",1,"vec",1),label);
 if (!ok) {
 break;
 }

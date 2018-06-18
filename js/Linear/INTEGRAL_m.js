@@ -14,7 +14,7 @@ model.out2=1;
 model.rpar=rpar;
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=string([0,0,0,maxp,minp]);
+exprs=string([[0],[0],[0],[maxp],[minp]]);
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -28,7 +28,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("mat",[-1,-1],"vec",1,"vec",1,"mat",[-1,-1],"mat",[-1,-1]),exprs);
+[ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue("Set Integral block parameters",[["Initial Condition"],["With re-intialization (1:yes, 0:no)"],["With saturation (1:yes, 0:no)"],["Upper limit"],["Lower limit"]],list("mat",[-1,-1],"vec",1,"vec",1,"mat",[-1,-1],"mat",[-1,-1]),exprs);
 if (!ok) {
 break;
 }
@@ -59,7 +59,7 @@ ok=false;
 message("Initial condition x0 should be inside the limits");
 ok=false;
 } else {
-rpar=[real(maxp.slice()),real(lowp.slice())];
+rpar=[[real(maxp.slice())],[real(lowp.slice())]];
 model.nzcross=size(x0,"*");
 model.nmode=size(x0,"*");
 }
@@ -80,7 +80,7 @@ ok=false;
 message("Initial condition x0 should be inside the limits");
 ok=false;
 } else {
-rpar=[real(maxp.slice()),real(lowp.slice()),imag(maxp.slice()),imag(lowp.slice())];
+rpar=[[real(maxp.slice())],[real(lowp.slice())],[imag(maxp.slice())],[imag(lowp.slice())]];
 model.nzcross=2*size(x0,"*");
 model.nmode=2*size(x0,"*");
 }
@@ -95,19 +95,19 @@ model.rpar=rpar;
 if ((Datatype==1)) {
 model.state=real(x0.slice());
 model.sim=list("integral_func",4);
-it=[1,ones(reinit,1)];
+it=[[1],[ones(reinit,1)]];
 ot=1;
 } else if ((Datatype==2)) {
-model.state=[real(x0.slice()),imag(x0.slice())];
+model.state=[[real(x0.slice())],[imag(x0.slice())]];
 model.sim=list("integralz_func",4);
-it=[2,2*ones(reinit,1)];
+it=[[2],[2*ones(reinit,1)]];
 ot=2;
 } else {
 message("Datatype is not supported");
 ok=false;
 }
 if (ok) {
-in1=[size(x0,1)*[1,ones(reinit,1)],size(x0,2)*[1,ones(reinit,1)]];
+in1=[size(x0,1)*[[1],[ones(reinit,1)]],size(x0,2)*[[1],[ones(reinit,1)]]];
 out=size(x0);
 [model,graphics,ok]=set_io(model,graphics,list(in1,it),list(out,ot),ones(reinit,1),[]);
 }

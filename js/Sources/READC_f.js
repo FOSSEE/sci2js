@@ -13,18 +13,18 @@ offset=1;
 outmask=1;
 ievt=0;
 nout=size(outmask,"*");
-ipar=[length(fname),_str2code(frmt),ievt,N,M,swap,offset,_str2code(fname),tmask,outmask];
+ipar=[[length(fname)],[_str2code(frmt)],[ievt],[N],[M],[swap],[offset],[_str2code(fname)],[tmask],[outmask]];
 model=scicos_model();
 model.sim=list("readc",2);
 model.out=nout;
 model.evtin=1;
 model.evtout=[];
-model.dstate=[1,1,lunit,zeros(N*M,1)];
-model.ipar=[length(fname),_str2code(frmt),ievt,N,M,swap,offset,_str2code(fname),tmask,outmask];
+model.dstate=[[1],[1],[lunit],[zeros(N*M,1)]];
+model.ipar=[[length(fname)],[_str2code(frmt)],[ievt],[N],[M],[swap],[offset],[_str2code(fname)],[tmask],[outmask]];
 model.blocktype="d";
 model.firing=-1;
 model.dep_ut=[false,false];
-exprs=["[]",sci2exp(outmask),fname,frmt,string(M),string(N),string(offset),string(swap)];
+exprs=[["[]"],[sci2exp(outmask)],[fname],[frmt],[string(M)],[string(N)],[string(offset)],[string(swap)]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -46,7 +46,7 @@ lunit=dstate(3);
 fname=exprs[3-1];
 frmt=exprs[4-1];
 while (true) {
-[ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"READC_f")," ",gettext("Read from C binary file")],[gettext("Time Record Selection"),gettext("Outputs Record Selection"),gettext("Input File Name"),gettext("Input Format"),gettext("Record Size"),gettext("Buffer Size"),gettext("Initial Record Index"),gettext("Swap Mode (0:No, 1:Yes)")],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"READC_f")],[" "],[gettext("Read from C binary file")]],[[gettext("Time Record Selection")],[gettext("Outputs Record Selection")],[gettext("Input File Name")],[gettext("Input Format")],[gettext("Record Size")],[gettext("Buffer Size")],[gettext("Initial Record Index")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -100,9 +100,9 @@ model.firing=-1;
 } else {
 model.firing=0;
 }
-ipar=[length(fname1),_str2code(frmt1),ievt,N,M,swap,offset,_str2code(fname1),tmask1,outmask.slice()];
+ipar=[[length(fname1)],[_str2code(frmt1)],[ievt],[N],[M],[swap],[offset],[_str2code(fname1)],[tmask1],[outmask.slice()]];
 if (prod(size(dstate))!=(N*M)+3) {
-dstate=[-1,-1,lunit,zeros(N*M,1)];
+dstate=[[-1],[-1],[lunit],[zeros(N*M,1)]];
 }
 model.dstate=dstate;
 model.ipar=ipar;

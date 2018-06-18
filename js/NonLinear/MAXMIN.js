@@ -23,7 +23,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,mm,nin,zcr,exprs]=scicos_getvalue("Set Max/Min block parameters",["Min (1) or Max (2) ","Number of input vectors (1 or 2)","zero-crossing (1: yes, 0;no)"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,mm,nin,zcr,exprs]=scicos_getvalue("Set Max/Min block parameters",[["Min (1) or Max (2) "],["Number of input vectors (1 or 2)"],["zero-crossing (1: yes, 0;no)"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }

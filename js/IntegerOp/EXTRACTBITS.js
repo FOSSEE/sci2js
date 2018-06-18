@@ -13,7 +13,7 @@ model.outtyp=3;
 model.ipar=[0,numb];
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(3),sci2exp(1),sci2exp(0),sci2exp(0)];
+exprs=[[sci2exp(3)],[sci2exp(1)],[sci2exp(0)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -27,7 +27,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,Datatype,rule,bit,scal,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"EXTRACTBITS")," ",gettext("Bits Extraction")," ",gettext("&nbsp;- Bits to Extract:"),gettext("&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"),gettext("&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"),gettext("&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"),gettext("&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"),gettext("&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"),gettext("&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"),gettext("&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]")," "],[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)"),gettext("Bits to extract"),gettext("Number of Bits or Index of Bit"),gettext("Treat Bit Field as an Integer (0:No, 1:Yes)")],list("vec",1,"vec",1,"vec",-1,"vec",1),exprs);
+[ok,Datatype,rule,bit,scal,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"EXTRACTBITS")],[" "],[gettext("Bits Extraction")],[" "],[gettext("&nbsp;- Bits to Extract:")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits")],[gettext("&nbsp;- Number of Bits or Index of bit : Index 0 is LSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Bits to extract")],[gettext("Number of Bits or Index of Bit")],[gettext("Treat Bit Field as an Integer (0:No, 1:Yes)")]],list("vec",1,"vec",1,"vec",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -219,7 +219,7 @@ out=[1,1];
 }
 if (ok) {
 graphics.exprs=exprs;
-model.ipar=[int(bit.slice()),int(numb.slice())];
+model.ipar=[[int(bit.slice())],[int(numb.slice())]];
 x.graphics=graphics;
 x.model=model;
 break;

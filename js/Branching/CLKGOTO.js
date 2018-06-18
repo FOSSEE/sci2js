@@ -9,7 +9,7 @@ model.ipar=int(1);
 model.blocktype="d";
 model.firing=-1;
 model.dep_ut=[false,false];
-exprs=["A",sci2exp(1)];
+exprs=[["A"],[sci2exp(1)]];
 x=standard_define([2,1],model,exprs," ");
 x.graphics.id="Goto";
 }
@@ -23,7 +23,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,tag,tagvis,exprs]=scicos_getvalue("Set block parameters",["Tag","Tag Visibility (1=Local 2=Scoped 3=Global)"],list("str",-1,"vec",1),exprs);
+[ok,tag,tagvis,exprs]=scicos_getvalue("Set block parameters",[["Tag"],["Tag Visibility (1=Local 2=Scoped 3=Global)"]],list("str",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }

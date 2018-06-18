@@ -6,7 +6,7 @@ Vt=0.04;
 Maxexp=15;
 R=1.e8;
 model=scicos_model();
-model.rpar=[Ids,Vt,Maxexp,R];
+model.rpar=[[Ids],[Vt],[Maxexp],[R]];
 model.in1=1;
 model.out=1;
 model.sim="Diode";
@@ -18,7 +18,7 @@ mo.inputs="p";
 mo.outputs="n";
 mo.parameters=list(["Ids","Vt","Maxexp","R"],list(Ids,Vt,Maxexp,R));
 model.equations=mo;
-exprs=string([Ids,Vt,Maxexp,R]);
+exprs=string([[Ids],[Vt],[Maxexp],[R]]);
 gr_i=[];
 x=standard_define([2,1],model,exprs,list(gr_i,0));
 x.graphics.in_implicit=["I"];
@@ -34,11 +34,11 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,Ids,Vt,Maxexp,R,exprs]=scicos_getvalue("Set Diode block parameter",["Saturation cuurent (A)","Voltage equivalent to temperature (Volt)","Max exponent for linear continuation","R (ohm)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,Ids,Vt,Maxexp,R,exprs]=scicos_getvalue("Set Diode block parameter",[["Saturation cuurent (A)"],["Voltage equivalent to temperature (Volt)"],["Max exponent for linear continuation"],["R (ohm)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
-model.rpar=[Ids,Vt,Maxexp,R];
+model.rpar=[[Ids],[Vt],[Maxexp],[R]];
 model.equations.parameters=list(["Ids","Vt","Maxexp","R"],list(Ids,Vt,Maxexp,R));
 graphics.exprs=exprs;
 x.graphics=graphics;

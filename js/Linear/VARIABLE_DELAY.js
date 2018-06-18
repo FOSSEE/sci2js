@@ -7,13 +7,13 @@ init=0;
 N=1024;
 model=scicos_model();
 model.sim=list("variable_delay",4);
-model.in1=[nin,1];
+model.in1=[[nin],[1]];
 model.out=nin;
 model.rpar=[T,init];
 model.ipar=N;
 model.blocktype="d";
 model.dep_ut=[false,false];
-exprs=[string(T),string(init),string(N)];
+exprs=[[string(T)],[string(init)],[string(N)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -28,7 +28,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 nin=model.in1(1);
 while (true) {
-[ok,T,init,N,exprs]=scicos_getvalue("Set delay parameters",["Max delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,T,init,N,exprs]=scicos_getvalue("Set delay parameters",[["Max delay"],["initial input"],["Buffer size"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -41,11 +41,11 @@ message("Delay must be positive");
 ok=false;
 }
 if (ok) {
-[model,graphics,ok]=check_io(model,graphics,[-1,1],-1,[],[]);
+[model,graphics,ok]=check_io(model,graphics,[[-1],[1]],-1,[],[]);
 }
 if (ok) {
 graphics.exprs=exprs;
-model.rpar=[T,init];
+model.rpar=[[T],[init]];
 model.ipar=N;
 x.graphics=graphics;
 x.model=model;

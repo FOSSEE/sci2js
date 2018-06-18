@@ -4,7 +4,7 @@ HYSTHERESIS.prototype.define = function HYSTHERESIS() {
 in1=1;
 ipar=[0];
 nzz=2;
-rpar=[1,0,1,0];
+rpar=[[1],[0],[1],[0]];
 model=scicos_model();
 model.sim=list("hystheresis",4);
 model.in1=in1;
@@ -14,7 +14,7 @@ model.nzcross=nzz;
 model.nmode=1;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(rpar),string(sign(nzz))];
+exprs=[[string(rpar)],[string(sign(nzz))]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -28,7 +28,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,high_lim,low_lim,out_high,out_low,nzz,exprs]=scicos_getvalue("Set parameters",["switch on at","switch off at","output when on","output when off","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,high_lim,low_lim,out_high,out_low,nzz,exprs]=scicos_getvalue("Set parameters",[["switch on at"],["switch off at"],["output when on"],["output when off"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }

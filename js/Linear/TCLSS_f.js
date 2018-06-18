@@ -11,14 +11,14 @@ nx=size(x0,"*");
 out=1;
 model=scicos_model();
 model.sim=list("tcslti",1);
-model.in1=[in1,nx];
+model.in1=[[in1],[nx]];
 model.out=out;
 model.evtin=1;
 model.state=x0;
-model.rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+model.rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[strcat(sci2exp(A)),strcat(sci2exp(B)),strcat(sci2exp(C)),strcat(sci2exp(D)),strcat(sci2exp(x0))];
+exprs=[[strcat(sci2exp(A))],[strcat(sci2exp(B))],[strcat(sci2exp(C))],[strcat(sci2exp(D))],[strcat(sci2exp(x0))]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -35,7 +35,7 @@ if (size(exprs,"*")==7) {
 exprs=exprs[[1:4,7]-1];
 }
 while (true) {
-[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
 if (!ok) {
 break;
 }
@@ -51,10 +51,10 @@ in1=[];
 if (ms!=ns) {
 message("A matrix must be square");
 } else {
-[model,graphics,ok]=check_io(model,graphics,[in1,ms],out,1,[]);
+[model,graphics,ok]=check_io(model,graphics,[[in1],[ms]],out,1,[]);
 if (ok) {
 graphics.exprs=exprs;
-rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 if (D!=[]) {
 if (norm(D,1)!=0) {
 mmm=[true,true];

@@ -12,11 +12,11 @@ model=scicos_model();
 model.sim=list("writec",2);
 model.in1=in1;
 model.evtin=1;
-model.dstate=[-1,lunit,zeros((nin+1)*N,1)];
-model.ipar=[length(fname),_str2code(frmt),N,swap,_str2code(fname)];
+model.dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
+model.ipar=[[length(fname)],[_str2code(frmt)],[N],[swap],[_str2code(fname)]];
 model.blocktype="d";
 model.dep_ut=[true,false];
-exprs=[sci2exp(in1),fname,frmt,string(N),string(swap)];
+exprs=[[sci2exp(in1)],[fname],[frmt],[string(N),string(swap)]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -35,7 +35,7 @@ lunit=dstate(2);
 fname=exprs[2-1];
 frmt=exprs[3-1];
 while (true) {
-[ok,in1,fname1,frmt1,N,swap,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"WRITEC_f")," ",gettext("Write to C binary file")],[gettext("Input Size"),gettext("Output File Name"),gettext("Output Format"),gettext("Buffer Size"),gettext("Swap Mode (0:No, 1:Yes)")],list("vec",1,"str",1,"str",1,"vec",1,"vec",1),exprs);
+[ok,in1,fname1,frmt1,N,swap,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WRITEC_f")],[" "],[gettext("Write to C binary file")]],[[gettext("Input Size")],[gettext("Output File Name")],[gettext("Output Format")],[gettext("Buffer Size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",1,"str",1,"str",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -73,9 +73,9 @@ ok=false;
 }
 frmt1=part(frmt1,1,3);
 if (ok) {
-ipar=[length(fname1),_str2code(frmt1),N,swap,_str2code(fname1)];
+ipar=[[length(fname1)],[_str2code(frmt1)],[N],[swap],[_str2code(fname1)]];
 if (prod(size(dstate))!=(nin+1)*N+2) {
-dstate=[-1,lunit,zeros((nin+1)*N,1)];
+dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
 }
 model.in1=nin;
 model.dstate=dstate;

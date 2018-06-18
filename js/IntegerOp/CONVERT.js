@@ -14,7 +14,7 @@ model.rpar=[];
 model.ipar=sgn;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(1),sci2exp(3),sci2exp(0)];
+exprs=[[sci2exp(1)],[sci2exp(3)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -28,7 +28,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,it,ot,np,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CONVERT")," ",gettext("Type conversion")," "],[gettext("Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"),gettext("Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"),gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,it,ot,np,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CONVERT")],[" "],[gettext("Type conversion")],[" "]],[[gettext("Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)")],[gettext("Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)")],[gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }

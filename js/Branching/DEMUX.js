@@ -37,7 +37,7 @@ ok=false;
 }
 } else {
 if (size(out,"*")<2||or(out==0)||size(out,"*")>31) {
-message(["Block must have at least 2 and at most 31 output ports","size 0 is not allowed"]);
+message([["Block must have at least 2 and at most 31 output ports"],["size 0 is not allowed"]]);
 ok=false;
 } else {
 if (min(out)<0) {

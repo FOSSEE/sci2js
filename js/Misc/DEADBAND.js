@@ -3,7 +3,7 @@ function DEADBAND() {
 DEADBAND.prototype.define = function DEADBAND() {
 minp=-.5;
 maxp=.5;
-rpar=[maxp,minp];
+rpar=[[maxp],[minp]];
 model=scicos_model();
 model.sim=list("deadband",4);
 model.in1=1;
@@ -13,7 +13,7 @@ model.out=1;
 model.rpar=rpar;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[string(maxp),string(minp),string(model.nmode)];
+exprs=[[string(maxp)],[string(minp)],[string(model.nmode)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -27,14 +27,14 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,maxp,minp,zeroc,exprs]=scicos_getvalue("Set Deadband parameters",["End of dead band","Start of dead band","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,maxp,minp,zeroc,exprs]=scicos_getvalue("Set Deadband parameters",[["End of dead band"],["Start of dead band"],["zero crossing (0:no, 1:yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 if (maxp<=minp) {
 message("Upper limit must be > Lower limit");
 } else {
-rpar=[maxp,minp];
+rpar=[[maxp],[minp]];
 model.rpar=rpar;
 if (zeroc!=0) {
 model.nzcross=2;

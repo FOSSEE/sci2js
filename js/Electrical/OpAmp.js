@@ -9,7 +9,7 @@ model.blocktype="c";
 model.dep_ut=[true,false];
 mo=modelica();
 mo.model=model.sim;
-mo.inputs=["in_p","in_n"];
+mo.inputs=[["in_p"],["in_n"]];
 mo.outputs=["out"];
 mo.parameters=list(S,Z);
 model.equations=mo;
@@ -19,7 +19,7 @@ model.rpar=Z;
 exprs=string(Z);
 gr_i=[];
 x=standard_define([3,5],model,exprs,gr_i);
-x.graphics.in_implicit=["I","I"];
+x.graphics.in_implicit=[["I"],["I"]];
 x.graphics.out_implicit=["I"];
 }
 OpAmp.prototype.details = function OpAmp() {
@@ -32,7 +32,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (false) {
-[ok,OLGain,SatH,SatL,exprs]=scicos_getvalue("Set the Operational Amplifier parameters",["Open Loop Gain","Positive saturation voltage","Negative saturation voltage"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,OLGain,SatH,SatL,exprs]=scicos_getvalue("Set the Operational Amplifier parameters",[["Open Loop Gain"],["Positive saturation voltage"],["Negative saturation voltage"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }

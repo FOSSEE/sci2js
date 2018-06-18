@@ -14,12 +14,12 @@ model.out=[];
 model.evtin=[1];
 model.evtout=[];
 model.rpar=[];
-model.ipar=[nz,length(varnam),transpose(ascii(varnam))];
+model.ipar=[[nz],[length(varnam)],[transpose(ascii(varnam))]];
 model.blocktype="d";
 model.firing=[];
 model.dep_ut=[false,false];
 gr_i=[];
-exprs=[string(nz),string(varnam),string(herit)];
+exprs=[[string(nz)],[string(varnam)],[string(herit)]];
 x=standard_define([4,2],model,exprs,gr_i);
 }
 TOWS_c.prototype.details = function TOWS_c() {
@@ -32,7 +32,7 @@ graphics=arg1.graphics;
 model=arg1.model;
 exprs=graphics.exprs;
 while (true) {
-[ok,nz,varnam,herit,exprs]=scicos_getvalue("Set Xcos buffer block",["Size of buffer","Scilab variable name","Inherit (no:0, yes:1)"],list("vec",1,"str",1,"vec",1),exprs);
+[ok,nz,varnam,herit,exprs]=scicos_getvalue("Set Xcos buffer block",[["Size of buffer"],["Scilab variable name"],["Inherit (no:0, yes:1)"]],list("vec",1,"str",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -43,7 +43,7 @@ ok=false;
 r=false;
 ierr=execstr("r = validvar(varnam)","errcatch");
 if (!r||ierr!=0||length(varnam)>19) {
-message(["Invalid variable name.","Please choose another variable name."]);
+message([["Invalid variable name."],["Please choose another variable name."]]);
 ok=false;
 }
 execstr("if type("+varnam+") <> 17 | or(fieldnames("+varnam+") <> [\"values\"; \"time\"]) then"+" message([\"Protected variable name.\"; \"Please choose another variable name.\"]);"+" ok = %f;"+" end","errcatch");
@@ -54,7 +54,7 @@ model.blocktype="x";
 } else {
 model.blocktype="d";
 }
-model.ipar=[nz,length(varnam),transpose(ascii(varnam))];
+model.ipar=[[nz],[length(varnam)],[transpose(ascii(varnam))]];
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;

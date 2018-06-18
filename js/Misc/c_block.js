@@ -24,7 +24,7 @@ model.ipar=0;
 model.blocktype=typ;
 model.firing=auto;
 model.dep_ut=[true,false];
-label=list([sci2exp(in1),sci2exp(out),strcat(sci2exp(rpar)),funam],list([]));
+label=list([[sci2exp(in1)],[sci2exp(out)],[strcat(sci2exp(rpar))],[funam]],list([]));
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);
 }
@@ -38,7 +38,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 label=graphics.exprs;
 while (true) {
-[ok,i,o,rpar,funam,lab]=scicos_getvalue("Set C_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label(1));
+[ok,i,o,rpar,funam,lab]=scicos_getvalue("Set C_block parameters",[["input ports sizes"],["output port sizes"],["System parameters vector"],["function name"]],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label(1));
 if (!ok) {
 break;
 }

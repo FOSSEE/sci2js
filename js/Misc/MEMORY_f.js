@@ -3,7 +3,7 @@ function MEMORY_f() {
 MEMORY_f.prototype.define = function MEMORY_f() {
 z=0;
 in1=1;
-exprs=[string(z),string(1)];
+exprs=[[string(z)],[string(1)]];
 model=scicos_model();
 model.sim="memo";
 model.in1=in1;
@@ -26,7 +26,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,a,inh,exprs]=scicos_getvalue("Set memory block parameters",["initial condition","Inherit (1: no, 0: yes)"],list("vec",-1,"vec",1),exprs);
+[ok,a,inh,exprs]=scicos_getvalue("Set memory block parameters",[["initial condition"],["Inherit (1: no, 0: yes)"]],list("vec",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }

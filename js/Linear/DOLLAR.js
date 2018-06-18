@@ -4,7 +4,7 @@ DOLLAR.prototype.define = function DOLLAR() {
 z=0;
 inh=0;
 in1=1;
-exprs=string([z,inh]);
+exprs=string([[z],[inh]]);
 model=scicos_model();
 model.sim=list("dollar4",4);
 model.in1=in1;
@@ -29,7 +29,7 @@ if (size(exprs,"*")<2) {
 exprs[2-1]="0";
 }
 while (true) {
-[ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("mat",[-1,-2],"vec",-1),exprs);
+[ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",[["initial condition"],["Inherit (no:0, yes:1)"]],list("mat",[-1,-2],"vec",-1),exprs);
 if (!ok) {
 break;
 }

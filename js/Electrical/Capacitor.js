@@ -4,7 +4,7 @@ Capacitor.prototype.define = function Capacitor() {
 model=scicos_model();
 C=0.01;
 v=0;
-model.rpar=[C,v];
+model.rpar=[[C],[v]];
 model.sim="Capacitor";
 model.blocktype="c";
 model.dep_ut=[true,false];
@@ -16,7 +16,7 @@ mo.parameters=list(["C","v"],list(C,v),[0,1]);
 model.equations=mo;
 model.in1=ones(size(mo.inputs,"*"),1);
 model.out=ones(size(mo.outputs,"*"),1);
-exprs=string([C,v]);
+exprs=string([[C],[v]]);
 gr_i=[];
 x=standard_define([2,1.1],model,exprs,list(gr_i,0));
 x.graphics.in_implicit=["I"];
@@ -32,7 +32,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,C,v,exprs]=scicos_getvalue("Set Capacitor block parameter",["C (F)","Initial Voltage"],list("vec",1,"vec",1),exprs);
+[ok,C,v,exprs]=scicos_getvalue("Set Capacitor block parameter",[["C (F)"],["Initial Voltage"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }

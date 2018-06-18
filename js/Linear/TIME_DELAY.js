@@ -13,7 +13,7 @@ model.rpar=[T,init];
 model.ipar=N;
 model.blocktype="x";
 model.dep_ut=[false,true];
-exprs=[string(T),string(init),string(N)];
+exprs=[[string(T)],[string(init)],[string(N)]];
 gr_i=[];
 x=standard_define([3.5,2],model,exprs,gr_i);
 }
@@ -28,7 +28,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 nin=model.in1(1);
 while (true) {
-[ok,T,init,N,exprs]=scicos_getvalue("Set delay parameters",["Delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,T,init,N,exprs]=scicos_getvalue("Set delay parameters",[["Delay"],["initial input"],["Buffer size"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -45,7 +45,7 @@ if (ok) {
 }
 if (ok) {
 graphics.exprs=exprs;
-model.rpar=[T,init];
+model.rpar=[[T],[init]];
 model.ipar=N;
 model.dep_ut=[false,true];
 x.graphics=graphics;

@@ -10,10 +10,10 @@ ymin=-5;
 ymax=5;
 model=scicos_model();
 model.sim=list("anim_pen",5);
-model.in1=[1,1];
+model.in1=[[1],[1]];
 model.evtin=1;
 model.dstate=0;
-model.rpar=[plen,csiz,phi,xmin,xmax,ymin,ymax];
+model.rpar=[[plen],[csiz],[phi],[xmin],[xmax],[ymin],[ymax]];
 model.blocktype="d";
 model.dep_ut=[false,false];
 exprs=string(model.rpar);
@@ -31,27 +31,27 @@ exprs=graphics.exprs;
 model=arg1.model;
 dstate=model.dstate;
 while (true) {
-[ok,plen,csiz,phi,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+[ok,plen,csiz,phi,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue("Set Scope parameters",[["pendulum length"],["cart size (square side)"],["slope"],["Xmin"],["Xmax"],["Ymin"],["Ymax"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 mess=[];
 if (plen<=0||csiz<=0) {
-mess=[mess,"Pendulum length and cart size must be positive."," "];
+mess=[[mess],["Pendulum length and cart size must be positive."],[" "]];
 ok=false;
 }
 if (ymin>=ymax) {
-mess=[mess,"Ymax must be greater than Ymin"," "];
+mess=[[mess],["Ymax must be greater than Ymin"],[" "]];
 ok=false;
 }
 if (xmin>=xmax) {
-mess=[mess,"Xmax must be greater than Xmin"," "];
+mess=[[mess],["Xmax must be greater than Xmin"],[" "]];
 ok=false;
 }
 if (!ok) {
 message(mess);
 } else {
-rpar=[plen,csiz,phi,xmin,xmax,ymin,ymax];
+rpar=[[plen],[csiz],[phi],[xmin],[xmax],[ymin],[ymax]];
 model.rpar=rpar;
 graphics.exprs=exprs;
 x.graphics=graphics;

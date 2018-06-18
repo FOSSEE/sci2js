@@ -3,7 +3,7 @@ function CLKSOM_f() {
 CLKSOM_f.prototype.define = function CLKSOM_f() {
 model=scicos_model();
 model.sim="sum";
-model.evtin=[1,1,1];
+model.evtin=[[1],[1],[1]];
 model.evtout=1;
 model.blocktype="d";
 model.firing=-1;

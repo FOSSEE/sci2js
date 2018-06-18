@@ -20,7 +20,7 @@ model.ipar=[];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
-label=[sci2exp(1),sci2exp(0)];
+label=[[sci2exp(1)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([3,2],model,label,gr_i);
 }
@@ -37,7 +37,7 @@ if (size(label,"*")==14) {
 label[9-1]=[];
 }
 while (true) {
-[ok,typ,decomptyp,lab]=scicos_getvalue("Set CUMSUM block parameters",["Datatype(1=real double  2=Complex)","Sum along (0=the first non singleton dimension  1=Rows  2=Columns)"],list("vec",1,"vec",1),label);
+[ok,typ,decomptyp,lab]=scicos_getvalue("Set CUMSUM block parameters",[["Datatype(1=real double  2=Complex)"],["Sum along (0=the first non singleton dimension  1=Rows  2=Columns)"]],list("vec",1,"vec",1),label);
 if (!ok) {
 break;
 }

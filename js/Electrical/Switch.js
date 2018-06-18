@@ -4,14 +4,14 @@ Switch.prototype.define = function Switch() {
 model=scicos_model();
 Ron=0.01;
 Roff=1e5;
-S=["Ron","Roff"];
+S=[["Ron"],["Roff"]];
 Z=eval(S);
 model.sim="Switch";
 model.blocktype="c";
 model.dep_ut=[true,false];
 mo=modelica();
 mo.model=model.sim;
-mo.inputs=["p","inp"];
+mo.inputs=[["p"],["inp"]];
 mo.outputs="n";
 mo.parameters=list(S,Z);
 model.equations=mo;
@@ -21,7 +21,7 @@ model.rpar=Z;
 exprs=string(Z);
 gr_i=[];
 x=standard_define([2,2],model,exprs,list(gr_i,0));
-x.graphics.in_implicit=["I","E"];
+x.graphics.in_implicit=[["I"],["E"]];
 x.graphics.out_implicit=["I"];
 }
 Switch.prototype.details = function Switch() {
@@ -34,7 +34,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,Ron,Roff,exprs]=scicos_getvalue("Set non-ideal electrical switch parameters",["Resistance in On state (Ohm)","Resistance in Off state (Ohm)"],list("vec",1,"vec",1),exprs);
+[ok,Ron,Roff,exprs]=scicos_getvalue("Set non-ideal electrical switch parameters",[["Resistance in On state (Ohm)"],["Resistance in Off state (Ohm)"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }

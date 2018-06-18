@@ -26,7 +26,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,C,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CONST_m")," ",gettext("Constant value generator")," "],gettext("Constant Value"),list("vec",-1),exprs);
+[ok,C,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CONST_m")],[" "],[gettext("Constant value generator")],[" "]],gettext("Constant Value"),list("vec",-1),exprs);
 if (!ok) {
 break;
 }

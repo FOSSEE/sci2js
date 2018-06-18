@@ -24,7 +24,7 @@ model=arg1.model;
 exprs=graphics.exprs;
 exprs=exprs[1-1];
 while (true) {
-[ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CLKINV_f")," ",gettext("Event input port")," "],"Port Number",list("vec",1),exprs);
+[ok,prt,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLKINV_f")],[" "],[gettext("Event input port")],[" "]],"Port Number",list("vec",1),exprs);
 prt=int(prt);
 if (!ok) {
 break;

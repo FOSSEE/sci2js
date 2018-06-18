@@ -5,8 +5,8 @@ z0=1;
 nout=2;
 model=scicos_model();
 model.sim=list("selector_m",4);
-model.out=[-1,-1];
-model.out2=[-2,-2];
+model.out=[[-1],[-1]];
+model.out2=[[-2],[-2]];
 model.outtyp=1;
 model.in1=-1;
 model.in2=-2;
@@ -20,7 +20,7 @@ model.evtin=ones(nout,1);
 model.dstate=z0;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(1),sci2exp(nout),sci2exp(z0)];
+exprs=[[sci2exp(1)],[sci2exp(nout)],[sci2exp(z0)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -34,7 +34,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,typ,nout,z0,exprs]=scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ...)","number of outputs","initial connected output"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,typ,nout,z0,exprs]=scicos_getvalue("Set parameters",[["Datatype(1= real double  2=Complex 3=int32 ...)"],["number of outputs"],["initial connected output"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }

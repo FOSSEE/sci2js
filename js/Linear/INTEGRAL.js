@@ -12,7 +12,7 @@ model.out=1;
 model.rpar=rpar;
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=string([0,0,0,maxp,minp]);
+exprs=string([[0],[0],[0],[maxp],[minp]]);
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 x.graphics.id="1/s";
@@ -27,7 +27,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),exprs);
+[ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue("Set Integral block parameters",[["Initial Condition"],["With re-intialization (1:yes, 0:no)"],["With saturation (1:yes, 0:no)"],["Upper limit"],["Lower limit"]],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
 break;
 }
@@ -55,7 +55,7 @@ ok=false;
 message("Initial condition x0 should be inside the limits");
 ok=false;
 } else {
-rpar=[maxp,lowp];
+rpar=[[maxp],[lowp]];
 model.nzcross=size(x0,1);
 model.nmode=size(x0,1);
 }
@@ -67,7 +67,7 @@ model.nmode=0;
 if (ok) {
 model.rpar=rpar;
 model.state=x0;
-[model,graphics,ok]=check_io(model,graphics,size(x0,1)*[1,ones(reinit,1)],size(x0,1),ones(reinit,1),[]);
+[model,graphics,ok]=check_io(model,graphics,size(x0,1)*[[1],[ones(reinit,1)]],size(x0,1),ones(reinit,1),[]);
 }
 if (ok) {
 graphics.exprs=exprs;

@@ -70,11 +70,11 @@ def p_statement_assignment(p):
 
 def p_statement_resume(p):
     'statement : lterm ASSIGNMENT RESUME OPENBRACKET expression CLOSEBRACKET EOL'
-    p[0] = '%s%s%s%s%s%s\n' % (p[1], p[2], p[3], p[4], p[5], p[6])
+    p[0] = '%s%s%s(%s)\n' % (p[1], p[2], p[3], p[5])
 
 def p_statement_where(p):
     'statement : lterm ASSIGNMENT WHERE OPENBRACKET CLOSEBRACKET EOL'
-    p[0] = '%s%s%s%s%s\n' % (p[1], p[2], p[3], p[4], p[5])
+    p[0] = '%s%s%s()\n' % (p[1], p[2], p[3])
 
 def p_statement_forstatement_forstatementblock(p):
     'statement : forstatementblock END EOL'
@@ -277,9 +277,16 @@ def p_ltermarraylist_in(p):
 
 # define termarraylist
 
-def p_termarraylist_termarraylist_semicolon_expression(p):
-    '''termarraylist : termarraylist SEMICOLON expression
-                     | termarraylist COMMA expression
+def p_termarrayarraylist_termarrayarraylist_semicolon_termarraylist(p):
+    'termarrayarraylist : termarrayarraylist SEMICOLON termarraylist'
+    p[0] = '%s,[%s]' % (p[1], p[3])
+
+def p_termarrayarraylist_termarraylist_semicolon_termarraylist(p):
+    'termarrayarraylist : termarraylist SEMICOLON termarraylist'
+    p[0] = '[%s],[%s]' % (p[1], p[3])
+
+def p_termarraylist_termarraylist_comma_expression(p):
+    '''termarraylist : termarraylist COMMA expression
                      | termarraylist SPACE expression'''
     p[0] = '%s,%s' % (p[1], p[3])
 
@@ -323,14 +330,23 @@ def p_list_in_expression(p):
 # (2+3)
 def p_expression_expression(p):
     'expression : OPENBRACKET expression CLOSEBRACKET'
-    p[0] = '%s%s%s' % (p[1], p[2], p[3])
+    p[0] = '(%s)' % (p[2])
+
+# [2+1,1;3-1,2;4-1,3]
+def p_expression_termarrayarraylist(p):
+    '''expression : OPENSQBRACKET termarrayarraylist CLOSESQBRACKET
+                  | OPENSQBRACKET termarrayarraylist SEMICOLON CLOSESQBRACKET'''
+    p[0] = '[%s]' % (p[2])
+
+# [2+1,1;]
+def p_expression_termarraylist_semicolon(p):
+    '''expression : OPENSQBRACKET termarraylist SEMICOLON CLOSESQBRACKET'''
+    p[0] = '[[%s]]' % (p[2])
 
 # [2 3 4]
 # [2,3,4]
-# [2+1;3-1;4-1]
 def p_expression_termarraylist(p):
     '''expression : OPENSQBRACKET termarraylist CLOSESQBRACKET
-                  | OPENSQBRACKET termarraylist SEMICOLON CLOSESQBRACKET
                   | OPENSQBRACKET termarraylist COMMA CLOSESQBRACKET
                   | OPENSQBRACKET termarraylist SPACE CLOSESQBRACKET'''
     p[0] = '[%s]' % (p[2])
@@ -395,17 +411,17 @@ def p_expression_term(p):
 def p_function_function_parameter(p):
     '''function : ltermvar OPENBRACKET expression CLOSEBRACKET
                 | SCICOS_DEBUG OPENBRACKET expression CLOSEBRACKET'''
-    p[0] = '%s%s%s%s' % (p[1], p[2], p[3], p[4])
+    p[0] = '%s(%s)' % (p[1], p[3])
 
 # A(2,3)
 def p_function_function_parameters(p):
     'function : ltermvar OPENBRACKET list CLOSEBRACKET'
-    p[0] = '%s%s%s%s' % (p[1], p[2], p[3], p[4])
+    p[0] = '%s(%s)' % (p[1], p[3])
 
 # A()
 def p_function_function(p):
     'function : ltermvar OPENBRACKET CLOSEBRACKET'
-    p[0] = '%s%s%s' % (p[1], p[2], p[3])
+    p[0] = '%s()' % (p[1])
 
 # end define function
 
@@ -518,11 +534,31 @@ def p_term_index(p):
 
 # B($-2)('function parameter')
 def p_term_termfunc_parameter(p):
-    'term : termfunc OPENBRACKET expression CLOSEBRACKET'
+    'term : termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'
     if isarray(p[1]):
-        p[0] = '%s[%s-1]' % (p[1], p[3])
+        base = '%s[%s-1]' % (p[1], p[3])
     else:
-        p[0] = '%s(%s)' % (p[1], p[3])
+        base = '%s(%s)' % (p[1], p[3])
+    if isarray(base):
+        p[0] = '%s[%s-1]' % (base, p[5])
+    else:
+        p[0] = '%s(%s)' % (base, p[5])
+
+# B($-2)('function parameter')(3)
+def p_term_termfunc_parameter_parameter(p):
+    'term : termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'
+    if isarray(p[1]):
+        base = '%s[%s-1]' % (p[1], p[3])
+    else:
+        base = '%s(%s)' % (p[1], p[3])
+    if isarray(base):
+        base = '%s[%s-1]' % (base, p[5])
+    else:
+        base = '%s(%s)' % (base, p[5])
+    if isarray(base):
+        p[0] = '%s[%s-1]' % (base, p[7])
+    else:
+        p[0] = '%s(%s)' % (base, p[7])
 
 def p_term_termfunc(p):
     'term : termfunc'

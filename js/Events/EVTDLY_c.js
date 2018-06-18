@@ -7,11 +7,11 @@ model=scicos_model();
 model.sim=list("evtdly4",4);
 model.evtin=1;
 model.evtout=1;
-model.rpar=[dt,ff];
+model.rpar=[[dt],[ff]];
 model.blocktype="d";
 model.firing=ff;
 model.dep_ut=[false,false];
-exprs=[string(dt),sci2exp(ff)];
+exprs=[[string(dt)],[sci2exp(ff)]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
 }
@@ -25,7 +25,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,dt,ff,exprs]=scicos_getvalue(["Set Event Delay block parameters","Delay  is the delay between an input event ","       and the generated output event","Block may initially generate an output event before ","       any input event. \"Date of initial output event\"","       gives the date of this event. Set a negative value","       to disable any output event."],["Delay","Date of initial output event"],list("vec",1,"vec",1),exprs);
+[ok,dt,ff,exprs]=scicos_getvalue([["Set Event Delay block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       to disable any output event."]],[["Delay"],["Date of initial output event"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
@@ -35,7 +35,7 @@ ok=false;
 }
 if (ok) {
 graphics.exprs=exprs;
-model.rpar=[dt,ff];
+model.rpar=[[dt],[ff]];
 model.firing=ff;
 x.graphics=graphics;
 x.model=model;

@@ -15,7 +15,7 @@ model.dep_ut=[true,false];
 model.nmode=0;
 model.nzcross=0;
 gr_i=[];
-exprs=[string(out),string(1),string(model.nmode)];
+exprs=[[string(out)],[string(1)],[string(model.nmode)]];
 x=standard_define([4,2],model,exprs,gr_i);
 }
 ESELECT_f.prototype.details = function ESELECT_f() {
@@ -34,7 +34,7 @@ exprs[3-1]=string(0);
 }
 model=arg1.model;
 while (true) {
-[ok,out,inh,nmod,exprs]=scicos_getvalue("Set ESELECT block parameters",["number of output event ports","Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1,"vec",1),exprs);
+[ok,out,inh,nmod,exprs]=scicos_getvalue("Set ESELECT block parameters",[["number of output event ports"],["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }

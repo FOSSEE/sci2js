@@ -12,7 +12,7 @@ model.outtyp=3;
 model.opar=list(uint32(0));
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[sci2exp(3),sci2exp(0)];
+exprs=[[sci2exp(3)],[sci2exp(0)]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -26,7 +26,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 while (true) {
-[ok,Datatype,bit,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"BITSET")," ",gettext("Set a bit")," "],[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)"),gettext("Index of Bit (0 is least significant)")],list("vec",1,"vec",1),exprs);
+[ok,Datatype,bit,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"BITSET")],[" "],[gettext("Set a bit")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Index of Bit (0 is least significant)")]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }

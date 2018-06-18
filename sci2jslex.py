@@ -68,6 +68,7 @@ predefinedvariables = {
 tokens = [
     'ASSIGNMENT',
     'CLOSEBRACKET',
+    'CLOSEOPENBRACKET',
     'CLOSESQBRACKET',
     'COLON',
     'COMMA',
@@ -112,6 +113,27 @@ def t_SEMICOLON(t):
     if brackets != 0:
         return t
     t.type = 'EOL'
+    return t
+
+def t_CLOSESQBRACKET(t):
+    r'([ \t]*\.\.+[ \t]*\n)?[ \t]*\]'
+    global afterarray, brackets, sqbrackets
+    afterarray = True
+    brackets -= 1
+    sqbrackets -= 1
+    return t
+
+def t_CLOSEOPENBRACKET(t):
+    r'[ \t]*\)\(([ \t]*(//.*)?\n?)*'
+    global afterarray, brackets
+    afterarray = True
+    return t
+
+def t_CLOSEBRACKET(t):
+    r'([ \t]*\.\.+[ \t]*\n)?[ \t]*\)'
+    global afterarray, brackets
+    afterarray = True
+    brackets -= 1
     return t
 
 def t_COMMENT(t):
@@ -187,26 +209,11 @@ def t_OPENSQBRACKET(t):
     sqbrackets += 1
     return t
 
-def t_CLOSESQBRACKET(t):
-    r'[ \t]*\]'
-    global afterarray, brackets, sqbrackets
-    afterarray = True
-    brackets -= 1
-    sqbrackets -= 1
-    return t
-
 def t_OPENBRACKET(t):
     r'\(([ \t]*(//.*)?\n?)*'
     global afterarray, brackets
     afterarray = False
     brackets += 1
-    return t
-
-def t_CLOSEBRACKET(t):
-    r'[ \t]*\)'
-    global afterarray, brackets
-    afterarray = True
-    brackets -= 1
     return t
 
 def t_NOT(t):

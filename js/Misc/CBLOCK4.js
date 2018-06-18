@@ -11,7 +11,7 @@ model.out=1;
 model.out2=1;
 model.outtyp=1;
 model.dep_ut=[true,false];
-label=list([funam,"n",sci2exp([model.in1,model.in2]),sci2exp(model.intyp),sci2exp([model.out,model.out2]),sci2exp(model.outtyp),sci2exp(model.evtin),sci2exp(model.evtout),sci2exp(model.state),sci2exp(model.dstate),sci2exp(model.odstate),sci2exp(model.rpar),sci2exp(model.ipar),sci2exp(model.opar),sci2exp(model.nmode),sci2exp(model.nzcross),sci2exp(model.firing),"y","n"],[]);
+label=list([[funam],["n"],[sci2exp([model.in1,model.in2])],[sci2exp(model.intyp)],[sci2exp([model.out,model.out2])],[sci2exp(model.outtyp)],[sci2exp(model.evtin)],[sci2exp(model.evtout)],[sci2exp(model.state)],[sci2exp(model.dstate)],[sci2exp(model.odstate)],[sci2exp(model.rpar)],[sci2exp(model.ipar)],[sci2exp(model.opar)],[sci2exp(model.nmode)],[sci2exp(model.nzcross)],[sci2exp(model.firing)],["y"],["n"]],[]);
 gr_i=[];
 x=standard_define([4,2],model,label,gr_i);
 }
@@ -25,7 +25,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 label=graphics.exprs;
 while (true) {
-[ok,function_name,impli,in1,it,out,ot,ci,co,xx,z,oz,rpar,ipar,opar,nmode,nzcr,auto0,depu,dept,lab]=scicos_getvalue("Set C-Block4 block parameters",["Simulation function","Is block implicit? (y,n)","Input ports sizes","Input ports type","Output port sizes","Output ports type","Input event ports sizes","Output events ports sizes","Initial continuous state","Initial discrete state","Initial object state","Real parameters vector","Integer parameters vector","Object parameters list","Number of modes","Number of zero crossings","Initial firing vector (<0 for no firing)","Direct feedthrough (y or n)","Time dependence (y or n)"],list("str",1,"str",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label(1));
+[ok,function_name,impli,in1,it,out,ot,ci,co,xx,z,oz,rpar,ipar,opar,nmode,nzcr,auto0,depu,dept,lab]=scicos_getvalue("Set C-Block4 block parameters",[["Simulation function"],["Is block implicit? (y,n)"],["Input ports sizes"],["Input ports type"],["Output port sizes"],["Output ports type"],["Input event ports sizes"],["Output events ports sizes"],["Initial continuous state"],["Initial discrete state"],["Initial object state"],["Real parameters vector"],["Integer parameters vector"],["Object parameters list"],["Number of modes"],["Number of zero crossings"],["Initial firing vector (<0 for no firing)"],["Direct feedthrough (y or n)"],["Time dependence (y or n)"]],list("str",1,"str",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label(1));
 if (!ok) {
 break;
 }
@@ -46,8 +46,8 @@ funtyp=12004;
 } else {
 funtyp=2004;
 }
-if ([ci,co]!=[]) {
-if (max([ci,co])>1) {
+if ([[ci],[co]]!=[]) {
+if (max([[ci],[co]])>1) {
 message("vector event links not supported");
 ok=false;
 }

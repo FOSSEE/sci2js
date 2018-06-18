@@ -13,10 +13,10 @@ model.sim=list("csslti4",4);
 model.in1=in1;
 model.out=out;
 model.state=x0;
-model.rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+model.rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[strcat(sci2exp(A)),strcat(sci2exp(B)),strcat(sci2exp(C)),strcat(sci2exp(D)),strcat(sci2exp(x0))];
+exprs=[[strcat(sci2exp(A))],[strcat(sci2exp(B))],[strcat(sci2exp(C))],[strcat(sci2exp(D))],[strcat(sci2exp(x0))]];
 gr_i=[];
 x=standard_define([4,2],model,exprs,gr_i);
 }
@@ -33,7 +33,7 @@ exprs=exprs[[1:4,7]-1];
 }
 model=arg1.model;
 while (true) {
-[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+[ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
 if (!ok) {
 break;
 }
@@ -62,7 +62,7 @@ message(_("Matrix A is not square or D has wrong dimension"));
 [model,graphics,ok]=check_io(model,graphics,in1,out,[],[]);
 if (ok) {
 graphics.exprs=exprs;
-rpar=[A.slice(),B.slice(),C.slice(),D.slice()];
+rpar=[[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
 if (D!=[]) {
 if (norm(D,1)!=0) {
 mmm=[true,true];

@@ -41,7 +41,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 label=graphics.exprs;
 while (true) {
-[ok,function_name,impli,i,o,ci,co,xx,ng,z,rpar,ipar,auto0,depu,dept,lab]=scicos_getvalue("Set C-Block2 block parameters",["simulation function","is block implicit? (y,n)","input ports sizes","output ports sizes","input event ports sizes","output events ports sizes","initial continuous state","number of zero crossing surfaces","initial discrete state","Real parameters vector","Integer parameters vector","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label(1));
+[ok,function_name,impli,i,o,ci,co,xx,ng,z,rpar,ipar,auto0,depu,dept,lab]=scicos_getvalue("Set C-Block2 block parameters",[["simulation function"],["is block implicit? (y,n)"],["input ports sizes"],["output ports sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["number of zero crossing surfaces"],["initial discrete state"],["Real parameters vector"],["Integer parameters vector"],["initial firing vector (<0 for no firing)"],["direct feedthrough (y or n)"],["time dependence (y or n)"]],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label(1));
 if (!ok) {
 break;
 }
@@ -65,8 +65,8 @@ funtyp=12004;
 } else {
 funtyp=2004;
 }
-if ([ci,co]!=[]) {
-if (max([ci,co])>1) {
+if ([[ci],[co]]!=[]) {
+if (max([[ci],[co]])>1) {
 message("vector event links not supported");
 ok=false;
 }

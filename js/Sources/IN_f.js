@@ -27,10 +27,10 @@ if (size(exprs,"*")==2) {
 exprs=exprs[1-1];
 }
 if (size(exprs,"*")==1) {
-exprs=[exprs[1-1],"[-1 -2]","-1"];
+exprs=[[exprs[1-1]],["[-1 -2]"],["-1"]];
 }
 while (true) {
-[ok,prt,otsz,ot,exprs]=getvalue(_("Set Input block parameters"),[_("Port number"),_("Outport size ([-1 -2] for inherit)"),_("Outport Type (-1 for inherit)")],list("vec",1,"vec",-1,"vec",1),exprs);
+[ok,prt,otsz,ot,exprs]=getvalue(_("Set Input block parameters"),[[_("Port number")],[_("Outport size ([-1 -2] for inherit)")],[_("Outport Type (-1 for inherit)")]],list("vec",1,"vec",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }

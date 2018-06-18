@@ -9,24 +9,24 @@ Typein=[];
 Typeout=[];
 MI=[];
 MO=[];
-P=[50,105,-1,90,0,10,2,0,101,10,-2,0];
-PortName=["Mesure","C1","C2"];
+P=[[50,105,-1,90],[0,10,2,0],[101,10,-2,0]];
+PortName=[["Mesure"],["C1"],["C2"]];
 for (i=1;i<=size(P,"r");i+=1) {
 if (P(i,3)==1) {
-Typein=[Typein,"E"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["E"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==2) {
-Typein=[Typein,"I"];
-MI=[MI,PortName(i)];
+Typein=[[Typein],["I"]];
+MI=[[MI],[PortName(i)]];
 }
 if (P(i,3)==-1) {
-Typeout=[Typeout,"E"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["E"]];
+MO=[[MO],[PortName(i)]];
 }
 if (P(i,3)==-2) {
-Typeout=[Typeout,"I"];
-MO=[MO,PortName(i)];
+Typeout=[[Typeout],["I"]];
+MO=[[MO],[PortName(i)]];
 }
 }
 model=scicos_model();
@@ -60,7 +60,7 @@ model=arg1.model;
 x=arg1;
 exprs=x.graphics.exprs;
 while (false) {
-[ok,Qini,exprs]=scicos_getvalue(["Set Flowmeter block parameters:","","Qini: "],"Qini",list("vec",1),exprs);
+[ok,Qini,exprs]=scicos_getvalue([["Set Flowmeter block parameters:"],[""],["Qini: "]],"Qini",list("vec",1),exprs);
 if (!ok) {
 break;
 }

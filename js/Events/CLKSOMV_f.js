@@ -3,7 +3,7 @@ function CLKSOMV_f() {
 CLKSOMV_f.prototype.define = function CLKSOMV_f() {
 model=scicos_model();
 model.sim="sum";
-model.evtin=[1,1,1];
+model.evtin=[[1],[1],[1]];
 model.evtout=1;
 model.blocktype="d";
 model.firing=-1;

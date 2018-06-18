@@ -2,7 +2,7 @@
 function RELAY_f() {
 RELAY_f.prototype.define = function RELAY_f() {
 i0=0;
-in1=[-1,-1];
+in1=[[-1],[-1]];
 nin=2;
 model=scicos_model();
 model.sim=list("relay",2);
@@ -13,7 +13,7 @@ model.dstate=i0;
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,true];
-exprs=[string(nin),string(i0+1)];
+exprs=[[string(nin)],[string(i0+1)]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -28,7 +28,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 ipar=model.ipar;
 while (true) {
-[ok,nin,z0,exprs]=scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),exprs);
+[ok,nin,z0,exprs]=scicos_getvalue("Set parameters",[["number of inputs"],["initial connected input"]],list("vec",1,"vec",1),exprs);
 if (!ok) {
 break;
 }
