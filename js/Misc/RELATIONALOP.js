@@ -30,7 +30,7 @@ exprs=[exprs,sci2exp(1)];
 while (true) {
 [ok,rule,zcr,Datatype,exprs]=scicos_getvalue("Set parameters",["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)","Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 rule=int(rule);
 if (zcr!=0) {
@@ -86,7 +86,7 @@ model.nzcross=zcr;
 model.nmode=zcr;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

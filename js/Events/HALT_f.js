@@ -25,14 +25,14 @@ model=arg1.model;
 while (true) {
 [ok,n,exprs]=scicos_getvalue("Set Halt block parameters",["State on halt"],list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (ok) {
 graphics.exprs=exprs;
 model.ipar=n;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

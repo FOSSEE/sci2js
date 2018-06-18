@@ -34,7 +34,7 @@ model=arg1.model;
 while (true) {
 [ok,ot,rule,thra,nzz,exprs]=scicos_getvalue("Set parameters",["Datatype (1=real double  2=complex 3=int32 ...)","pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 rule=int(rule);
 if ((rule<0)) {
@@ -68,7 +68,7 @@ out=[model.out,model.out2];
 if (ok) {
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

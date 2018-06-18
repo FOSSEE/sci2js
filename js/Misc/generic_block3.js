@@ -31,7 +31,7 @@ label[9-1]=[];
 while (true) {
 [ok,function_name,funtyp,in1,it,out,ot,ci,co,xx,z,oz,rpar,ipar,opar,nmode,nzcr,auto0,depu,dept,lab]=scicos_getvalue("Set GENERIC block parameters",["Simulation function","Function type (0,1,2,..)","Input ports sizes","Input ports type","Output port sizes","Output ports type","Input event ports sizes","Output events ports sizes","Initial continuous state","Initial discrete state","Initial object state","Real parameters vector","Integer parameters vector","Object parameters list","Number of modes","Number of zero crossings","Initial firing vector (<0 for no firing)","Direct feedthrough (y or n)","Time dependence (y or n)"],list("str",1,"vec",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label);
 if (!ok) {
-break
+break;
 }
 label=lab;
 function_name=stripblanks(function_name);
@@ -95,7 +95,7 @@ arg1.model=model;
 graphics.exprs=label;
 arg1.graphics=graphics;
 x=arg1;
-break
+break;
 }
 }
 needcompile=resume(needcompile)

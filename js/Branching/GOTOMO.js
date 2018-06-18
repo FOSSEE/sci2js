@@ -33,7 +33,7 @@ model=arg1.model;
 while (true) {
 [ok,tag,tagvis,exprs]=scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 tagvis=int(tagvis);
 if (((tagvis<1)||(tagvis>3))) {
@@ -51,7 +51,7 @@ model.ipar=tagvis;
 x.model=model;
 x.graphics=graphics;
 arg1=x;
-break
+break;
 }
 }
 needcompile=resume(needcompile)

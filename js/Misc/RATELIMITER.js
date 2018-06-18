@@ -27,7 +27,7 @@ model=arg1.model;
 while (true) {
 [ok,maxp,minp,exprs]=scicos_getvalue("Set rate limiter parameters",["max slope","min slope"],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (maxp<=minp||maxp<=0||minp>=0) {
 message("We must have max_slope> 0 > min_slope.");
@@ -37,7 +37,7 @@ model.rpar=rpar;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

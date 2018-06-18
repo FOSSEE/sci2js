@@ -46,7 +46,6 @@ def p_functionblock_function_statementblock_endfunction(p):
                     fname, fname, (JOB_BLOCKS['"set"'] if '"set"' in JOB_BLOCKS else ''),
                    )
 
-
 # end define functionblock
 
 # define statementblock
@@ -67,23 +66,23 @@ def p_statement_assignment(p):
     '''statement : assignment EOL
                  | assignment SEMICOLON
                  | function EOL'''
-    p[0] = str(p[1]) + ';\n'
+    p[0] = '%s;\n' % (p[1])
 
 def p_statement_resume(p):
     'statement : lterm ASSIGNMENT RESUME OPENBRACKET expression CLOSEBRACKET EOL'
-    p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6] + '\n'
+    p[0] = '%s%s%s%s%s%s\n' % (p[1], p[2], p[3], p[4], p[5], p[6])
 
 def p_statement_where(p):
     'statement : lterm ASSIGNMENT WHERE OPENBRACKET CLOSEBRACKET EOL'
-    p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + '\n'
+    p[0] = '%s%s%s%s%s\n' % (p[1], p[2], p[3], p[4], p[5])
 
 def p_statement_forstatement_forstatementblock(p):
     'statement : forstatementblock END EOL'
-    p[0] = p[1] + '}\n'
+    p[0] = '%s}\n' % (p[1])
 
 def p_statement_selectstatement_casestatementblock(p):
     'statement : selectstatement casestatementblock END EOL'
-    p[0] = p[1] + p[2] + '}\n'
+    p[0] = '%s%s}\n' % (p[1], p[2])
 
 def p_statement_selectjobstatement_casejobstatementblock(p):
     'statement : selectjobstatement casejobstatementblock END EOL'
@@ -91,35 +90,35 @@ def p_statement_selectjobstatement_casejobstatementblock(p):
 
 def p_statement_whilestatement_whilestatementblock(p):
     'statement : whilestatementblock END EOL'
-    p[0] = p[1] + '}\n'
+    p[0] = '%s}\n' % (p[1])
 
 def p_statement_whilestatement_whilestatementblock_elsestatementblock(p):
     'statement : whilestatementblock elsestatementblock END EOL'
-    p[0] = p[1] + p[2] + p[3] + '}\n'
+    p[0] = '%s%s%s}\n' % (p[1], p[2], p[3])
 
 def p_statement_ifstatement_ifstatementblock(p):
     'statement : ifstatementblock END EOL'
-    p[0] = p[1] + '}\n'
+    p[0] = '%s}\n' % (p[1])
 
 def p_statement_ifstatement_ifstatementblock_elsestatementblock(p):
     'statement : ifstatementblock elsestatementblock END EOL'
-    p[0] = p[1] + p[2] + '}\n'
+    p[0] = '%s%s}\n' % (p[1], p[2])
 
 def p_statement_ifstatement_ifstatementblock_elseifstatementblock(p):
     'statement : ifstatementblock elseifstatementblock END EOL'
-    p[0] = p[1] + p[2] + '}\n'
+    p[0] = '%s%s}\n' % (p[1], p[2])
 
 def p_statement_ifstatement_ifstatementblock_elseifstatementblock_elsestatementblock(p):
     'statement : ifstatementblock elseifstatementblock elsestatementblock END EOL'
-    p[0] = p[1] + p[2] + p[3] + '}\n'
+    p[0] = '%s%s%s}\n' % (p[1], p[2], p[3])
 
 def p_statement_break(p):
     'statement : BREAK EOL'
-    p[0] = str(p[1]) + '\n'
+    p[0] = '%s;\n' % (p[1])
 
 def p_statement_eol(p):
     'statement : EOL'
-    p[0] = ''
+    p[0] = '\n'
 
 # end define statement
 
@@ -127,15 +126,15 @@ def p_statement_eol(p):
 
 def p_forstatementblock_forstatement(p):
     'forstatementblock : forstatement statementblock'
-    p[0] = p[1] + p[2]
+    p[0] = '%s%s' % (p[1], p[2])
 
 def p_casestatementblock_casestatementblock_casestatement(p):
     'casestatementblock : casestatementblock casestatement statementblock'
-    p[0] = p[1] + p[2] + p[3]
+    p[0] = '%s%s%s' % (p[1], p[2], p[3])
 
 def p_casestatementblock_casestatement(p):
     'casestatementblock : casestatement statementblock'
-    p[0] = p[1] + p[2]
+    p[0] = '%s%s' % (p[1], p[2])
 
 def p_casejobstatementblock_casejobstatementblock_casejobstatement(p):
     'casejobstatementblock : casejobstatementblock casejobstatement statementblock'
@@ -149,23 +148,23 @@ def p_casejobstatementblock_casejobstatement(p):
 
 def p_whilestatementblock_whilestatement(p):
     'whilestatementblock : whilestatement statementblock'
-    p[0] = p[1] + p[2]
+    p[0] = '%s%s' % (p[1], p[2])
 
 def p_ifstatementblock_ifstatement(p):
     'ifstatementblock : ifstatement statementblock'
-    p[0] = p[1] + p[2]
+    p[0] = '%s%s' % (p[1], p[2])
 
 def p_elseifstatementblock_elseifstatementblock_elseifstatement(p):
     'elseifstatementblock : elseifstatementblock elseifstatement statementblock'
-    p[0] = p[1] + p[2] + p[3]
+    p[0] = '%s%s%s' % (p[1], p[2], p[3])
 
 def p_elseifstatementblock_elseifstatement(p):
     'elseifstatementblock : elseifstatement statementblock'
-    p[0] = p[1] + p[2]
+    p[0] = '%s%s' % (p[1], p[2])
 
 def p_elsestatementblock_elsestatement(p):
     'elsestatementblock : elsestatement statementblock'
-    p[0] = p[1] + p[2]
+    p[0] = '%s%s' % (p[1], p[2])
 
 # end define for, case, if, elseif, else statement block
 
@@ -205,7 +204,7 @@ def p_forstatement_for_list(p):
 
 def p_selectstatement_select(p):
     'selectstatement : SELECT expression EOL'
-    p[0] = 'switch (' + p[2] + ') {\n'
+    p[0] = 'switch (%s) {\n' % (p[2])
 
 def p_selectjobstatement_select(p):
     'selectjobstatement : SELECT JOB EOL'
@@ -215,29 +214,29 @@ def p_casestatement_case(p):
     '''casestatement : CASE expression THEN EOL
                      | CASE expression EOL
                      | CASE expression THEN COMMA'''
-    p[0] = 'case ' + p[2] + ':\n'
+    p[0] = 'case %s:\n' % (p[2])
 
 def p_casejobstatement_case(p):
     '''casejobstatement : CASE expression THEN EOL
                         | CASE expression EOL
                         | CASE expression THEN COMMA'''
-    p[0] = p[2]
+    p[0] = '%s' % (p[2])
 
 def p_whilestatement_while_do(p):
     '''whilestatement : WHILE expression DO EOL
                       | WHILE expression THEN EOL
                       | WHILE expression EOL'''
-    p[0] = 'while (' + p[2] + ') {\n'
+    p[0] = 'while (%s) {\n' % (p[2])
 
 def p_ifstatement_if_then(p):
     '''ifstatement : IF expression THEN EOL
                    | IF expression EOL'''
-    p[0] = 'if (' + p[2] + ') {\n'
+    p[0] = 'if (%s) {\n' % (p[2])
 
 def p_elseifstatement_elseif_then(p):
     '''elseifstatement : ELSEIF expression THEN EOL
                        | ELSEIF expression EOL'''
-    p[0] = '} else if (' + p[2] + ') {\n'
+    p[0] = '} else if (%s) {\n' % (p[2])
 
 def p_elsestatement_else(p):
     '''elsestatement : ELSE EOL'''
@@ -249,7 +248,7 @@ def p_elsestatement_else(p):
 
 def p_assignment_expression(p):
     'assignment : lterm ASSIGNMENT expression'
-    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+    p[0] = '%s%s%s' % (p[1], p[2], p[3])
 
 # end define assignment
 
@@ -258,20 +257,21 @@ def p_assignment_expression(p):
 def p_ltermarraylist_ltermarraylist_comma_var(p):
     '''ltermarraylist : ltermarraylist COMMA VAR
                       | ltermarraylist SPACE VAR'''
-    p[0] = p[1] + ',' + p[3]
+    p[0] = '%s,%s' % (p[1], p[3])
 
 def p_ltermarraylist_ltermarraylist_comma_in(p):
     '''ltermarraylist : ltermarraylist COMMA IN
                       | ltermarraylist SPACE IN'''
-    p[0] = p[1] + ',' + p[3] + '1'
+    p[0] = '%s,%s1' % (p[1], p[3])
 
 def p_ltermarraylist_var(p):
     'ltermarraylist : VAR'
     p[0] = p[1]
+    p[0] = '%s' % (p[1])
 
 def p_ltermarraylist_in(p):
     'ltermarraylist : IN'
-    p[0] = p[1] + '1'
+    p[0] = '%s1' % (p[1])
 
 # end define ltermarraylist
 
@@ -281,15 +281,15 @@ def p_termarraylist_termarraylist_semicolon_expression(p):
     '''termarraylist : termarraylist SEMICOLON expression
                      | termarraylist COMMA expression
                      | termarraylist SPACE expression'''
-    p[0] = str(p[1]) + ',' + str(p[3])
+    p[0] = '%s,%s' % (p[1], p[3])
 
 def p_termarraylist_expression(p):
     'termarraylist : expression'
-    p[0] = str(p[1])
+    p[0] = '%s' % (p[1])
 
 def p_termarraylist_expression_colon_expression(p):
     'termarraylist : expression COLON expression'
-    p[0] = str(p[1]) + ':' + str(p[3])
+    p[0] = '%s:%s' % (p[1], p[3])
 
 # end define termarraylist
 
@@ -298,23 +298,23 @@ def p_termarraylist_expression_colon_expression(p):
 def p_list_list_expression(p):
     '''list : list COMMA expression
             | expression COMMA expression'''
-    p[0] = str(p[1]) + ',' + str(p[3])
+    p[0] = '%s,%s' % (p[1], p[3])
 
 def p_list_list_var_expression(p):
     'list : list COMMA VAR ASSIGNMENT expression'
-    p[0] = str(p[1]) + ',' + str(p[3]) + '=' + str(p[5])
+    p[0] = '%s,%s=%s' % (p[1], p[3], p[5])
 
 def p_list_list_in_expression(p):
     'list : list COMMA IN ASSIGNMENT expression'
-    p[0] = str(p[1]) + ',' + str(p[3]) + '1=' + str(p[5])
+    p[0] = '%s,%s1=%s' % (p[1], p[3], p[5])
 
 def p_list_var_expression(p):
     'list : VAR ASSIGNMENT expression'
-    p[0] = str(p[1]) + '=' + str(p[3])
+    p[0] = '%s=%s' % (p[1], p[3])
 
 def p_list_in_expression(p):
     'list : IN ASSIGNMENT expression'
-    p[0] = str(p[1]) + '1=' + str(p[3])
+    p[0] = '%s1=%s' % (p[1], p[3])
 
 # end define list
 
@@ -323,7 +323,7 @@ def p_list_in_expression(p):
 # (2+3)
 def p_expression_expression(p):
     'expression : OPENBRACKET expression CLOSEBRACKET'
-    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+    p[0] = '%s%s%s' % (p[1], p[2], p[3])
 
 # [2 3 4]
 # [2,3,4]
@@ -333,16 +333,16 @@ def p_expression_termarraylist(p):
                   | OPENSQBRACKET termarraylist SEMICOLON CLOSESQBRACKET
                   | OPENSQBRACKET termarraylist COMMA CLOSESQBRACKET
                   | OPENSQBRACKET termarraylist SPACE CLOSESQBRACKET'''
-    p[0] = '[' + str(p[2]) + ']'
+    p[0] = '[%s]' % (p[2])
 
 # []
 def p_expression_empty(p):
     'expression : OPENSQBRACKET CLOSESQBRACKET'
-    p[0] = str(p[1]) + str(p[2])
+    p[0] = '[]'
 
 def p_expression_term_transpose(p):
     'expression : expression TRANSPOSE'
-    p[0] = 'transpose(' + str(p[1]) + ')'
+    p[0] = 'transpose(%s)' % (p[1])
 
 def p_expression_expression_multiplication_expression(p):
     'expression : expression MULTIPLICATION expression'
@@ -352,18 +352,18 @@ def p_expression_expression_multiplication_expression(p):
         operator = '\\'
     else:
         operator = p[2]
-    p[0] = str(p[1]) + operator + str(p[3])
+    p[0] = '%s%s%s' % (p[1], operator, p[3])
 
 def p_expression_expression_addition_expression(p):
     'expression : expression ADDITION expression'
-    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+    p[0] = '%s%s%s' % (p[1], p[2], p[3])
 
 def p_expression_expression_comparison_expression(p):
     'expression : expression COMPARISON expression'
     operator = p[2]
     if operator == '<>' or operator == '~=':
         operator = '!='
-    p[0] = str(p[1]) + operator + str(p[3])
+    p[0] = '%s%s%s' % (p[1], operator, p[3])
 
 def p_expression_expression_logical_expression(p):
     'expression : expression LOGICAL expression'
@@ -372,19 +372,20 @@ def p_expression_expression_logical_expression(p):
         operator = '&&'
     elif operator == '|':
         operator = '||'
-    p[0] = str(p[1]) + operator + str(p[3])
+    p[0] = '%s%s%s' % (p[1], operator, p[3])
 
 def p_expression_addition_term(p):
     'expression : ADDITION expression %prec UNARYADDITION'
-    p[0] = str(p[1]) + str(p[2])
+    p[0] = '%s%s' % (p[1], p[2])
 
 def p_expression_not_expression(p):
     'expression : NOT expression'
-    p[0] = '!' + str(p[2])
+    operator = '!'
+    p[0] = '%s%s' % (operator, p[2])
 
 def p_expression_term(p):
     'expression : term'
-    p[0] = str(p[1])
+    p[0] = '%s' % (p[1])
 
 # end define expression
 
@@ -394,17 +395,17 @@ def p_expression_term(p):
 def p_function_function_parameter(p):
     '''function : ltermvar OPENBRACKET expression CLOSEBRACKET
                 | SCICOS_DEBUG OPENBRACKET expression CLOSEBRACKET'''
-    p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
+    p[0] = '%s%s%s%s' % (p[1], p[2], p[3], p[4])
 
 # A(2,3)
 def p_function_function_parameters(p):
     'function : ltermvar OPENBRACKET list CLOSEBRACKET'
-    p[0] = str(p[1]) + str(p[2]) + str(p[3]) + str(p[4])
+    p[0] = '%s%s%s%s' % (p[1], p[2], p[3], p[4])
 
 # A()
 def p_function_function(p):
     'function : ltermvar OPENBRACKET CLOSEBRACKET'
-    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+    p[0] = '%s%s%s' % (p[1], p[2], p[3])
 
 # end define function
 
@@ -414,7 +415,7 @@ def p_function_function(p):
 def p_lterm_slice(p):
     'lterm : ltermvar OPENBRACKET expression COLON expression CLOSEBRACKET'
     addtoarray(p[1])
-    p[0] = p[1] + '.slice(' + str(p[3]) + '-1,' + str(p[5]) + ')'
+    p[0] = '%s.slice(%s-1,%s)' % (p[1], p[3], p[5])
 
 # B(2)
 def p_lterm_index(p):
@@ -425,29 +426,29 @@ def p_lterm_index(p):
 # [A,B,C]
 def p_lterm_ltermarraylist(p):
     'lterm : OPENSQBRACKET ltermarraylist CLOSESQBRACKET'
-    p[0] = str(p[1]) + str(p[2]) + str(p[3])
+    p[0] = '[%s]' % (p[2])
 
 def p_lterm_ltermvar(p):
     'lterm : ltermvar'
-    p[0] = str(p[1])
+    p[0] = '%s' % (p[1])
 
 def p_ltermvar_ltermvar_dot_var(p):
     'ltermvar : ltermvar DOT VAR'
-    p[0] = p[1] + p[2] + p[3]
+    p[0] = '%s.%s' % (p[1], p[3])
 
 def p_ltermvar_ltermvar_dot_in(p):
     'ltermvar : ltermvar DOT IN'
-    p[0] = p[1] + p[2] + p[3] + '1'
+    p[0] = '%s.%s1' % (p[1], p[3])
 
 def p_ltermvar_var(p):
     '''ltermvar : VAR
                 | PREVAR'''
-    p[0] = p[1]
+    p[0] = '%s' % (p[1])
 
 # in
 def p_ltermvar_in(p):
     'ltermvar : IN'
-    p[0] = p[1] + '1'
+    p[0] = '%s1' % (p[1])
 
 # end define lterm
 
@@ -511,14 +512,17 @@ def p_term_range(p):
 def p_term_index(p):
     'termfunc : termvar OPENBRACKET expression CLOSEBRACKET'
     if isarray(p[1]):
-        p[0] = p[1] + '[' + str(p[3]) + '-1]'
+        p[0] = '%s[%s-1]' % (p[1], p[3])
     else:
-        p[0] = p[1] + '(' + str(p[3]) + ')'
+        p[0] = '%s(%s)' % (p[1], p[3])
 
 # B($-2)('function parameter')
 def p_term_termfunc_parameter(p):
     'term : termfunc OPENBRACKET expression CLOSEBRACKET'
-    p[0] = p[1] + '(' + str(p[3]) + ')'
+    if isarray(p[1]):
+        p[0] = '%s[%s-1]' % (p[1], p[3])
+    else:
+        p[0] = '%s(%s)' % (p[1], p[3])
 
 def p_term_termfunc(p):
     'term : termfunc'
@@ -527,12 +531,12 @@ def p_term_termfunc(p):
 # part(x,1:10)
 def p_term_part_parameter_range(p):
     'term : PART OPENBRACKET expression COMMA expression COLON expression CLOSEBRACKET'
-    p[0] = p[1] + p[2] + p[3] + ',' + p[5] + ',' + p[7] + p[8]
+    p[0] = '%s(%s,%s,%s)' % (p[1], p[3], p[5], p[7])
 
 # part(x,1)
 def p_term_part_parameter_parameter(p):
     'term : PART OPENBRACKET expression COMMA expression CLOSEBRACKET'
-    p[0] = p[1] + p[2] + p[3] + ',' + p[5] + p[6]
+    p[0] = '%s(%s,%s)' % (p[1], p[3], p[5])
 
 # A(2,3)
 def p_term_function_parameters(p):
@@ -544,7 +548,7 @@ def p_term_function_parameters(p):
             | SCICOS_LINK OPENBRACKET list CLOSEBRACKET
             | SCICOS_MODEL OPENBRACKET list CLOSEBRACKET
             | SCICOS_PARAMS OPENBRACKET list CLOSEBRACKET'''
-    p[0] = str(p[1]) + '(' + str(p[3]) + ')'
+    p[0] = '%s(%s)' % (p[1], p[3])
 
 # A()
 def p_term_function(p):
@@ -555,25 +559,26 @@ def p_term_function(p):
             | SCICOS_GRAPHICS OPENBRACKET CLOSEBRACKET
             | SCICOS_LINK OPENBRACKET CLOSEBRACKET
             | SCICOS_MODEL OPENBRACKET CLOSEBRACKET'''
-    p[0] = str(p[1]) + '()'
+    p[0] = '%s()' % (p[1])
 
 # $
 def p_term_lastindex(p):
     'term : LASTINDEX'
-    p[0] = str(p[1])
+    p[0] = '%s' % (p[1])
 
 # %f
 def p_term_prevar(p):
     'term : PREVAR'
-    p[0] = str(p[1])
+    p[0] = '%s' % (p[1])
 
 # %f
 def p_term_prevar_boolean(p):
     'term : PREVAR_BOOLEAN'
     if p[1] == '%t':
-        p[0] = 'true'
+        value = 'true'
     elif p[1] == '%f':
-        p[0] = 'false'
+        value = 'false'
+    p[0] = '%s' % (value)
 
 # 1+2*%i
 def p_term_prevar_complex1(p):
@@ -582,7 +587,7 @@ def p_term_prevar_complex1(p):
         imag = str(p[2]) + str(p[3])
     else:
         imag = str(p[3])
-    p[0] = 'math.complex(' + p[1] + ',' + imag + ')'
+    p[0] = 'math.complex(%s,%s)' % (p[1], imag)
 
 # 1+2*%i
 def p_term_prevar_complex2(p):
@@ -591,7 +596,7 @@ def p_term_prevar_complex2(p):
         imag = str(p[2]) + str(p[5])
     else:
         imag = str(p[5])
-    p[0] = 'math.complex(' + p[1] + ',' + imag + ')'
+    p[0] = 'math.complex(%s,%s)' % (p[1], imag)
 
 # %e %pi
 def p_term_prevar_float(p):
@@ -602,30 +607,30 @@ def p_term_prevar_float(p):
         flt = 'math.PI'
     else:
         flt = p[1]
-    p[0] = flt
+    p[0] = '%s' % (flt)
 
 def p_term_termvar(p):
     'term : termvar'
-    p[0] = str(p[1])
+    p[0] = '%s' % (p[1])
 
 # A.B
 def p_termvar_termvar_dot_var(p):
     'termvar : termvar DOT VAR'
-    p[0] = p[1] + p[2] + p[3]
+    p[0] = '%s.%s' % (p[1], p[3])
 
 def p_termvar_termvar_dot_in(p):
     'termvar : termvar DOT IN'
-    p[0] = p[1] + p[2] + p[3] + '1'
+    p[0] = '%s.%s1' % (p[1], p[3])
 
 # A
 def p_termvar_var(p):
     'termvar : VAR'
-    p[0] = p[1]
+    p[0] = '%s' % (p[1])
 
 # in
 def p_termvar_in(p):
     'termvar : IN'
-    p[0] = p[1] + '1'
+    p[0] = '%s1' % (p[1])
 
 # 3.4
 # 'abc'
@@ -634,7 +639,7 @@ def p_term_constant(p):
     '''term : NUMBER
             | QSTRING
             | DQSTRING'''
-    p[0] = str(p[1])
+    p[0] = '%s' % (p[1])
 
 # end define term
 

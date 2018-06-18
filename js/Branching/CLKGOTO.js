@@ -25,7 +25,7 @@ exprs=graphics.exprs;
 while (true) {
 [ok,tag,tagvis,exprs]=scicos_getvalue("Set block parameters",["Tag","Tag Visibility (1=Local 2=Scoped 3=Global)"],list("str",-1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (((tagvis<1)||(tagvis>3))) {
 message("Tag Visibility must be between 1 and 3");
@@ -44,7 +44,7 @@ model.firing=-1;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 needcompile=resume(needcompile)

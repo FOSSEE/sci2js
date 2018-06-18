@@ -28,7 +28,7 @@ model=arg1.model;
 while (true) {
 [ok,a,inh,exprs]=scicos_getvalue("Set memory block parameters",["initial condition","Inherit (1: no, 0: yes)"],list("vec",-1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (inh==0) {
 inh=[];
@@ -49,7 +49,7 @@ model.in1=in1;
 model.out=out;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

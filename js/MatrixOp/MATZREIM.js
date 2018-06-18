@@ -39,7 +39,7 @@ label[9-1]=[];
 while (true) {
 [ok,decomptyp,lab]=scicos_getvalue("Set MATZREIM block parameters",["decomposition type (1=Complex2Real&Imag 2=Real&Imag2Complex)"],list("vec",1),label);
 if (!ok) {
-break
+break;
 }
 label=lab;
 if ((decomptyp==1)) {
@@ -68,7 +68,7 @@ arg1.model=model;
 graphics.exprs=label;
 arg1.graphics=graphics;
 x=arg1;
-break
+break;
 }
 }
 }

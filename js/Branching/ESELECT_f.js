@@ -36,7 +36,7 @@ model=arg1.model;
 while (true) {
 [ok,out,inh,nmod,exprs]=scicos_getvalue("Set ESELECT block parameters",["number of output event ports","Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (nmod!=0) {
 nmod=1;
@@ -59,7 +59,7 @@ x.graphics=graphics;
 model.nmode=nmod;
 model.nzcross=nmod;
 x.model=model;
-break
+break;
 }
 }
 }

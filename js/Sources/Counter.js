@@ -29,7 +29,7 @@ model=arg1.model;
 while (true) {
 [ok,minim,maxim,rule,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"Counter")," ",gettext("Integer counter generator")," "],[gettext("Minimum"),gettext("Maximum"),gettext("Rule (1:Increment, 2:Decrement)")],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 maxim=int(maxim);
 minim=int(minim);
@@ -43,7 +43,7 @@ model.dstate=0;
 model.ipar=[rule,maxim,minim];
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

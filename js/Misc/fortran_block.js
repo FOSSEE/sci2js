@@ -31,10 +31,10 @@ label=graphics.exprs;
 while (true) {
 [ok,i,o,rpar,funam,lab]=scicos_getvalue("Set fortran_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label(1));
 if (!ok) {
-break
+break;
 }
 if (funam==" ") {
-break
+break;
 }
 label[1-1]=lab;
 rpar=rpar.slice();
@@ -48,7 +48,7 @@ tt=[];
 }
 [ok,tt]=FORTR(funam,tt,i,o);
 if (!ok) {
-break
+break;
 }
 [model,graphics,ok]=check_io(model,graphics,i,o,[],[]);
 if (ok) {
@@ -58,7 +58,7 @@ label[2-1]=tt;
 x.model=model;
 graphics.exprs=label;
 x.graphics=graphics;
-break
+break;
 }
 }
 }

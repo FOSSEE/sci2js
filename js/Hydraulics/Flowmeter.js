@@ -62,11 +62,11 @@ exprs=x.graphics.exprs;
 while (false) {
 [ok,Qini,exprs]=scicos_getvalue(["Set Flowmeter block parameters:","","Qini: "],"Qini",list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 x.model.equations.parameters[2-1]=list(Qini);
 x.graphics.exprs=exprs;
-break
+break;
 }
 }
 }

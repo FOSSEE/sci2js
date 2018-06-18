@@ -29,7 +29,7 @@ exprs=exprs[2-1];
 while (true) {
 [ok,a,exprs]=scicos_getvalue("Set log block parameters","Basis (>1)",list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (a<=1) {
 message("Basis must be larger than 1");
@@ -39,7 +39,7 @@ graphics.exprs=exprs;
 model.rpar=a;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

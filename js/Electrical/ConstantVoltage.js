@@ -33,14 +33,14 @@ model=arg1.model;
 while (true) {
 [ok,V,exprs]=scicos_getvalue("Set ConstantVoltage block parameter","V (volt)",list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 model.rpar=V;
 model.equations.parameters[2-1]=list(V);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

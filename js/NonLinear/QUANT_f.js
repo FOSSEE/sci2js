@@ -27,7 +27,7 @@ model=arg1.model;
 while (true) {
 [ok,pas,meth,exprs]=scicos_getvalue("Set parameters",["Step","Quantization Type (1-4)"],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (meth<1||meth>4) {
 message("Quantization Type must be from 1 to 4");
@@ -48,7 +48,7 @@ model.sim="qzcel";
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

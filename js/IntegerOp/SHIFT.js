@@ -31,7 +31,7 @@ exprs=graphics.exprs;
 while (true) {
 [ok,Datatype,nb,np,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"SHIFT")," ",gettext("Shift/Rotates bits")],[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)"),gettext("Number of Bits to Shift Left (Negative number to shift right)"),gettext("Shift Type (0:Arithmetic, 1:Circular)")],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if ((np!=0&&np!=1)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Shift Type"),np),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
@@ -114,7 +114,7 @@ model.ipar=nb;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

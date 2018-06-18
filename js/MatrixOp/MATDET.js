@@ -39,7 +39,7 @@ label[9-1]=[];
 while (true) {
 [ok,typ,exprs]=scicos_getvalue("Set MATDET Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
 if (!ok) {
-break
+break;
 }
 if ((typ==1)) {
 function_name="mat_det";
@@ -64,7 +64,7 @@ graphics.exprs=label;
 arg1.graphics=graphics;
 arg1.model=model;
 x=arg1;
-break
+break;
 }
 }
 }

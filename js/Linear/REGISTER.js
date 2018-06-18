@@ -29,7 +29,7 @@ exprs=[exprs,sci2exp(1)];
 while (true) {
 [ok,z0,it,exprs]=scicos_getvalue("Set delay parameters",["Register initial condition","Datatype (1=double 3=int32 ...)"],list("vec",-1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (prod(size(z0))<1) {
 message("Register length must be at least 1");
@@ -74,7 +74,7 @@ if (ok) {
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

@@ -79,7 +79,7 @@ if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
 ppath[2-1]=i;
 }
 if (and(ppath!=list(0,0))) {
-break
+break;
 }
 }
 x=arg1;
@@ -92,7 +92,7 @@ exprs=[evtdly_exprs(1),register_exprs];
 while (true) {
 [ok,dt,z0,exprs]=scicos_getvalue(["This block implements as a discretized delay","it is consist of a shift register and a clock","value of the delay is given by;","the discretization time step multiplied by the","number-1 of state of the register"],["Discretization time step","Register initial state"],list("vec",1,"vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 mess=[];
 if (prod(size(z0))<1) {
@@ -118,7 +118,7 @@ register.model.dstate=z0.slice();
 newpar[$+1-1]=ppath[1-1];
 }
 x.model.rpar.objs[ppath[1-1]-1]=register;
-break
+break;
 }
 }
 needcompile=0;

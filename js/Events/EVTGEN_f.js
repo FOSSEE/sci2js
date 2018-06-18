@@ -24,7 +24,7 @@ model=arg1.model;
 while (true) {
 [ok,tt,exprs]=scicos_getvalue("Set Event time",["Event Time"],list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 graphics.exprs=exprs;
 if (model.firing!=tt) {
@@ -32,7 +32,7 @@ model.firing=tt;
 }
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

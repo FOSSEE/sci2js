@@ -29,7 +29,7 @@ while (true) {
 ini_c=int(ini_c);
 base=int(base);
 if (!ok) {
-break
+break;
 }
 if (ini_c<0) {
 block_parameter_error(msprintf(gettext("Wrong value for \'Initial State\' parameter: %d."),ini_c),gettext("Null or positive integer expected."));
@@ -41,7 +41,7 @@ model.ipar=base;
 model.dstate=ini_c;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

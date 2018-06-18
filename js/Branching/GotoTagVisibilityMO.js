@@ -30,7 +30,7 @@ model=arg1.model;
 while (true) {
 [ok,tag,exprs]=scicos_getvalue("Set parameters",["GotoTag"],list("str",-1),exprs);
 if (!ok) {
-break
+break;
 }
 if (ok) {
 if (model.opar!=list(tag)) {
@@ -41,7 +41,7 @@ graphics.exprs=exprs;
 model.opar=list(tag);
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 needcompile=resume(needcompile)

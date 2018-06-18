@@ -43,7 +43,7 @@ label=graphics.exprs;
 while (true) {
 [ok,function_name,impli,i,o,ci,co,xx,ng,z,rpar,ipar,auto0,depu,dept,lab]=scicos_getvalue("Set C-Block2 block parameters",["simulation function","is block implicit? (y,n)","input ports sizes","output ports sizes","input event ports sizes","output events ports sizes","initial continuous state","number of zero crossing surfaces","initial discrete state","Real parameters vector","Integer parameters vector","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label(1));
 if (!ok) {
-break
+break;
 }
 label[1-1]=lab;
 funam=stripblanks(function_name);
@@ -85,7 +85,7 @@ dept=false;
 }
 dep_ut=[depu,dept];
 if (funam==" ") {
-break
+break;
 }
 if (model.sim(1)!=funam||sign(size(model.state,"*"))!=sign(nx)||sign(size(model.dstate,"*"))!=sign(nz)||model.nzcross!=ng||sign(size(model.evtout,"*"))!=sign(nevout)) {
 tt=[];
@@ -95,7 +95,7 @@ while (true) {
 [ok,tt,cancel]=CFORTR2(funam,tt);
 if (!ok) {
 if (cancel) {
-break
+break;
 }
 } else {
 [model,graphics,ok]=check_io(model,graphics,i,o,ci,co);
@@ -116,12 +116,12 @@ label[2-1]=tt;
 x.model=model;
 graphics.exprs=label;
 x.graphics=graphics;
-break
+break;
 }
 }
 }
 if (ok||cancel) {
-break
+break;
 }
 }
 }

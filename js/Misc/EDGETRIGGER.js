@@ -27,13 +27,13 @@ model=arg1.model;
 while (true) {
 [ok,edge,exprs]=scicos_getvalue("Set edge trigger block parameters",["rising (1), falling (-1), both (0)"],list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 model.ipar=sign(edge);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

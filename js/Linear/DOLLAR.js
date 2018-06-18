@@ -31,7 +31,7 @@ exprs[2-1]="0";
 while (true) {
 [ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("mat",[-1,-2],"vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 out=[size(a,1),size(a,2)];
 if (out==0) {
@@ -83,7 +83,7 @@ if (ok) {
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

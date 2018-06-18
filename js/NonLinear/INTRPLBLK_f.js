@@ -26,7 +26,7 @@ model=arg1.model;
 while (true) {
 [ok,a,b,exprs]=scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord."],list("vec",-1,"vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 if (size(a,"*")!=size(b,"*")) {
 message("X and Y must have the same size");
@@ -38,7 +38,7 @@ graphics.exprs=exprs;
 model.rpar=[a.slice(),b.slice()];
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

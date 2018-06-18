@@ -26,7 +26,7 @@ model=arg1.model;
 while (true) {
 [ok,typ,exprs]=scicos_getvalue("Set SQRT Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
 if (!ok) {
-break
+break;
 }
 if ((typ==1)) {
 function_name="mat_sqrt";
@@ -49,7 +49,7 @@ graphics.exprs=label;
 arg1.graphics=graphics;
 arg1.model=model;
 x=arg1;
-break
+break;
 }
 }
 }

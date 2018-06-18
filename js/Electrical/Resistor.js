@@ -33,14 +33,14 @@ model=arg1.model;
 while (true) {
 [ok,R,exprs]=scicos_getvalue("Set Resistor block parameter","R (ohm)",list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 model.rpar=R;
 model.equations.parameters[2-1]=list(R);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

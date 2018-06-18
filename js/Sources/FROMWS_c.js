@@ -32,7 +32,7 @@ model=arg1.model;
 while (true) {
 [ok,varnam,Method,ZC,OutEnd,exprs]=scicos_getvalue("Set From_Workspace block parameters",["Variable name","Interpolation Method","Enable zero crossing(0:No, 1:Yes)?","Output at end(0:Zero, 1:Hold, 2:Repeat)"],list("str",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (!(Method==0||Method==1||Method==2||Method==3)) {
 message("Interpolation method should be chosen in [0,1,2,3]");
@@ -59,7 +59,7 @@ if (ok) {
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

@@ -32,7 +32,7 @@ exprs=[exprs,sci2exp(0)];
 while (true) {
 [ok,Datatype,sgn,satur,exprs]=scicos_getvalue("Set sum block parameters",["Datatype (1=real double  2=complex 3=int32 ...)","Number of inputs or sign vector (of +1, -1)","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",-1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 sgn=sgn.slice();
 if ((satur!=0&&satur!=1&&satur!=2)) {
@@ -130,7 +130,7 @@ model.ipar=sgn;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

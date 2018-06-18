@@ -34,7 +34,7 @@ model=arg1.model;
 while (true) {
 [ok,in1,font,fontsize,colr,nt,nd,herit,exprs]=scicos_getvalue("Set  parameters",["Input Size","Font number","Font size","Color","Total number of digits","Number of rational part digits","Block inherits (1) or not (0)"],list("mat",[1,2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 mess=[];
 if (font<=0) {
@@ -73,7 +73,7 @@ model.evtin=ones(1-herit,1);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

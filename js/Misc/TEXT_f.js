@@ -30,7 +30,7 @@ exprs=[exprs,"3","1"];
 while (true) {
 [ok,txt,font,siz,exprs]=scicos_getvalue("Set Text block parameters",["Text","Font number","Font size"],list("str",-1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (font<=0||font>6) {
 message("Font number must be greater than 0 and less than 7");
@@ -59,7 +59,7 @@ ipar=[font,siz];
 model.rpar=txt;
 model.ipar=ipar;
 x.model=model;
-break
+break;
 }
 }
 }

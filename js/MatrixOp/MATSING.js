@@ -39,7 +39,7 @@ label[9-1]=[];
 while (true) {
 [ok,typ,decomptyp,lab]=scicos_getvalue("Set MATSVD block parameters",["Datatype(1=real double  2=Complex)","decomposition type (1=singular values  2=sing values+matrix U & V)"],list("vec",1,"vec",1),label);
 if (!ok) {
-break
+break;
 }
 label=lab;
 if ((typ==1)) {
@@ -88,7 +88,7 @@ arg1.model=model;
 graphics.exprs=label;
 arg1.graphics=graphics;
 x=arg1;
-break
+break;
 }
 }
 }

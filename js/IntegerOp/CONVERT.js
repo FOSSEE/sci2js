@@ -30,7 +30,7 @@ exprs=graphics.exprs;
 while (true) {
 [ok,it,ot,np,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CONVERT")," ",gettext("Type conversion")," "],[gettext("Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"),gettext("Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"),gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (it==2) {
 it=1;
@@ -363,7 +363,7 @@ if (ok) {
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

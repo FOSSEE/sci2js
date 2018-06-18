@@ -36,7 +36,7 @@ model=arg1.model;
 while (true) {
 [ok,typ,nin,z0,exprs]=scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ..)","number of inputs","initial connected input"],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (z0>nin||z0<=0) {
 message("initial connected input is not a valid input port number");
@@ -55,7 +55,7 @@ graphics.exprs=exprs;
 model.dstate=z0;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

@@ -29,7 +29,7 @@ while (true) {
 ask_again=false;
 [ok,x0,xd0,id,exprs]=scicos_getvalue("Set Constraint block parameters",["Initial guess values of states x","Initial guess values of derivative x\'","Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0"],list("vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 x0=x0.slice();
 N=size(x0,"*");
@@ -50,7 +50,7 @@ for (i=1;i<=N;i+=1) {
 if (!((id[i-1]==0)||(id[i-1]==1))) {
 ask_again=true;
 x_message(["Id(i) must be either","0 when x\'(i) is not present in the feedback","1: when x\'(i) is present in the feedback"]);
-break
+break;
 }
 if ((id[i-1]==0)) {
 id[i-1]=-1;
@@ -65,7 +65,7 @@ model.in1=N;
 model.ipar=id;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

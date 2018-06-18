@@ -39,7 +39,7 @@ label[6-1]=sci2exp([1,1]);
 while (true) {
 [ok,typ,a,b,c,d,inp,exprs]=scicos_getvalue("Set SUBMAT Block",["Datatype (1=real double  2=Complex)","Starting Row Index","Ending Row Index","Starting Column Index","Ending Column Index","Input Dimensions"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label);
 if (!ok) {
-break
+break;
 }
 if ((typ==1)) {
 function_name="submat";
@@ -85,7 +85,7 @@ graphics.exprs=label;
 arg1.graphics=graphics;
 arg1.model=model;
 x=arg1;
-break
+break;
 }
 }
 }

@@ -40,7 +40,7 @@ frmt=exprs[3-1];
 while (true) {
 [ok,in1,fname1,frmt1,N,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"WFILE_f")," ",gettext("Write to output file")," ",gettext("Write is done on:"),gettext("&nbsp; - A binary file if no format given"),gettext("&nbsp; - A formatted text file if a  format (Fortran type) is given")],[gettext("Input Size"),gettext("Output File Name"),gettext("Output Format"),gettext("Buffer Size")],list("vec",1,"str",1,"str",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 in1=int(in1);
 nin=in1;
@@ -83,7 +83,7 @@ model.dep_ut=[true,false];
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

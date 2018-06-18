@@ -50,7 +50,7 @@ for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
 path=i;
-break
+break;
 }
 }
 newpar=list();
@@ -63,7 +63,7 @@ model_n=model;
 while (true) {
 [ok,dt,t0,exprs0]=scicos_getvalue("Set Clock  block parameters",["Period","Init time"],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (dt<=0) {
 message("period must be positive");
@@ -75,7 +75,7 @@ model.rpar=dt;
 model.firing=t0;
 xx.model=model;
 arg1.model.rpar.objs[path-1]=xx;
-break
+break;
 }
 }
 if (!and([t0_old,dt_old]==[t0,dt])||!and(exprs0==exprs)) {

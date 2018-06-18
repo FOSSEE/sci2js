@@ -25,7 +25,7 @@ exprs=graphics.exprs;
 while (true) {
 [ok,sgn,exprs]=scicos_getvalue(["         Set multiplication block parameters","(multiplication is set with + 1, division with -1)",""],"Number of inputs or sign vector",list("vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 sgn=sgn.slice();
 if (size(sgn,1)==1) {
@@ -58,7 +58,7 @@ model.ipar=sgn;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

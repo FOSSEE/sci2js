@@ -39,7 +39,7 @@ label[9-1]=[];
 while (true) {
 [ok,typ,l1,out,lab]=scicos_getvalue("Set MATRESH block parameters",["Datatype(1=real double  2=Complex)","input size","output size desired"],list("vec",-1,"vec",-1,"vec",-1),label);
 if (!ok) {
-break
+break;
 }
 nout=size(out);
 nin=size(l1);
@@ -88,7 +88,7 @@ graphics.exprs=label;
 arg1.graphics=graphics;
 arg1.model=model;
 x=arg1;
-break
+break;
 }
 }
 needcompile=resume(needcompile)

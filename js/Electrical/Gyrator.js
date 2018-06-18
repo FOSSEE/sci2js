@@ -62,11 +62,11 @@ exprs=x.graphics.exprs;
 while (true) {
 [ok,G1,G2,exprs]=scicos_getvalue(["Set Gyrator block parameters:","","G1: Gyration conductance","G2: Gyration conductance"],["G1","G2"],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 x.model.equations.parameters[2-1]=list(G1,G2);
 x.graphics.exprs=exprs;
-break
+break;
 }
 }
 }

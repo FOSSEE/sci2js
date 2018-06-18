@@ -27,7 +27,7 @@ model=arg1.model;
 while (true) {
 [ok,gain,exprs]=scicos_getvalue("Set gain block parameters",["Gain"],list("mat",[-1,-1]),exprs[1-1]);
 if (!ok) {
-break
+break;
 }
 if (gain==[]) {
 message("Gain must have at least one element");
@@ -39,7 +39,7 @@ graphics.exprs=exprs;
 model.rpar=gain.slice();
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

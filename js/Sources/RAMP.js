@@ -30,7 +30,7 @@ model=arg1.model;
 while (true) {
 [ok,slope,stt,iout,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"RAMP")," ",gettext("Ramp function")," "],[gettext("Slope"),gettext("Start Time"),gettext("Initial Value")],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (stt<0) {
 block_parameter_error(msprintf(gettext("Wrong value for \'Start Time\' parameter: %e."),stt),gettext("Null or positive integer expected."));
@@ -39,7 +39,7 @@ model.rpar=[slope,stt,iout];
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

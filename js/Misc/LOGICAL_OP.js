@@ -30,7 +30,7 @@ exprs=[exprs,sci2exp(1),sci2exp(0)];
 while (true) {
 [ok,nin,rule,Datatype,tp,exprs]=scicos_getvalue("Set parameters",["number of inputs","Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)","Datatype (1=double 3=int32 ...)","Bitwise Rule(0=No 1=yes)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 nin=int(nin);
 rule=int(rule);
@@ -104,7 +104,7 @@ graphics.exprs=exprs;
 graphics.style=["blockWithLabel;displayedLabel="+label];
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

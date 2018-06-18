@@ -29,7 +29,7 @@ model=arg1.model;
 while (true) {
 [ok,minp,maxp,pente,exprs]=scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (maxp<=0) {
 message("Max must be strictly positive");
@@ -42,7 +42,7 @@ model.firing=[];
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

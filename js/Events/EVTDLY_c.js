@@ -27,7 +27,7 @@ model=arg1.model;
 while (true) {
 [ok,dt,ff,exprs]=scicos_getvalue(["Set Event Delay block parameters","Delay  is the delay between an input event ","       and the generated output event","Block may initially generate an output event before ","       any input event. \"Date of initial output event\"","       gives the date of this event. Set a negative value","       to disable any output event."],["Delay","Date of initial output event"],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (dt<=0) {
 message("Delay must be positive");
@@ -39,7 +39,7 @@ model.rpar=[dt,ff];
 model.firing=ff;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

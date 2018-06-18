@@ -56,7 +56,7 @@ for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
 path=i;
-break
+break;
 }
 }
 newpar=list();
@@ -67,7 +67,7 @@ init_old=model.odstate(1);
 while (true) {
 [ok,init,exprs0]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"JKFLIPFLOP")," ",gettext("JK flip-flop")," ",gettext("The \'Initial Value\' must be 0 or 1 of type int8"),gettext("&nbsp;- Negative values are considered as int8(0)"),gettext("&nbsp;- Positive values are considered as int8(1)")," "],gettext("Initial Value"),list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (init<=0) {
 init=int8(0);
@@ -79,7 +79,7 @@ xx.graphics.exprs[1-1]=exprs0;
 model.odstate[1-1]=init;
 xx.model=model;
 arg1.model.rpar.objs[path-1]=xx;
-break
+break;
 }
 }
 needcompile=0;

@@ -29,7 +29,7 @@ ipar=model.ipar;
 while (true) {
 [ok,nin,z0,exprs]=scicos_getvalue("Set switch parameters",["number of inputs","connected input"],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (z0>nin||z0<=0) {
 message("initial connected input is not a valid input port number");
@@ -40,7 +40,7 @@ graphics.exprs=exprs;
 model.ipar=z0-1;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

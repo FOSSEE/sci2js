@@ -25,14 +25,14 @@ model=arg1.model;
 while (true) {
 [ok,nin,exprs]=scicos_getvalue("Set parameters",["number of inputs"],list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 [model,graphics,ok]=check_io(model,graphics,-ones(nin,1),-1,[],[]);
 if (ok) {
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

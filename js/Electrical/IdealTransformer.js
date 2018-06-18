@@ -62,11 +62,11 @@ exprs=x.graphics.exprs;
 while (true) {
 [ok,N,exprs]=scicos_getvalue(["Set Transformer block parameters:","","N:"+" Turn ratio (N1/N2)"],["N"],list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 x.model.equations.parameters[2-1]=list(N);
 x.graphics.exprs=exprs;
-break
+break;
 }
 }
 }

@@ -29,7 +29,7 @@ exprs=exprs[2-1];
 while (true) {
 [ok,a,exprs]=scicos_getvalue("Set u^a block parameters","to the power of",list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 graphics.exprs=exprs;
 if (a==int(a)) {
@@ -42,7 +42,7 @@ model.ipar=[];
 model.firing=[];
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

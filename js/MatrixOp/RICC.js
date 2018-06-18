@@ -39,7 +39,7 @@ label[9-1]=[];
 while (true) {
 [ok,tpe,mod,exprs]=scicos_getvalue("Set RICC Block",["Type (1=Cont  2=Disc)","Model(1=Schr  2=sign(cont) inv(disc))"],list("vec",1,"vec",1),label);
 if (!ok) {
-break
+break;
 }
 in1=[model.in1,model.in2];
 out=[model.out,model.out2];
@@ -53,7 +53,7 @@ graphics.exprs=label;
 arg1.graphics=graphics;
 arg1.model=model;
 x=arg1;
-break
+break;
 }
 }
 }

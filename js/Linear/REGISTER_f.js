@@ -26,7 +26,7 @@ model=arg1.model;
 while (true) {
 [ok,z0,exprs]=scicos_getvalue("Set delay parameters","Register initial condition",list("vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 if (prod(size(z0))<1) {
 message("Register length must be at least 1");
@@ -37,7 +37,7 @@ graphics.exprs=exprs;
 model.dstate=z0;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

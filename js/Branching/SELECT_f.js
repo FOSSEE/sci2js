@@ -28,7 +28,7 @@ model=arg1.model;
 while (true) {
 [ok,nin,z0,exprs]=scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (z0>nin||z0<=0) {
 message("initial connected input is not a valid input port number");
@@ -39,7 +39,7 @@ graphics.exprs=exprs;
 model.dstate=z0-1;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

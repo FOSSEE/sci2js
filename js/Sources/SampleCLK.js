@@ -23,7 +23,7 @@ exprs=graphics.exprs;
 while (true) {
 [ok,frequ,offset,exprs]=scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (frequ<0) {
 message("Frequency must be a positif number");
@@ -44,7 +44,7 @@ model.firing=-1;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 needcompile=resume(needcompile)

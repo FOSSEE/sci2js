@@ -24,7 +24,7 @@ exprs=graphics.exprs;
 while (true) {
 [ok,tag,exprs]=scicos_getvalue("Set block parameters","Tag",list("str",-1),exprs);
 if (!ok) {
-break
+break;
 }
 if (model.opar!=list(tag)) {
 needcompile=4;
@@ -36,7 +36,7 @@ model.firing=-1;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 needcompile=resume(needcompile)
 }

@@ -24,7 +24,7 @@ exprs=graphics.exprs;
 while (true) {
 [ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CLKOUTV_f")," ",gettext("Event output port")],gettext("Port number"),list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 prt=int(prt);
 if (prt<=0) {
@@ -35,7 +35,7 @@ model.evtin=1;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

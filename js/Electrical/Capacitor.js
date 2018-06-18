@@ -34,14 +34,14 @@ model=arg1.model;
 while (true) {
 [ok,C,v,exprs]=scicos_getvalue("Set Capacitor block parameter",["C (F)","Initial Voltage"],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 model.rpar=C;
 model.equations.parameters[2-1]=list(C,v);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

@@ -47,7 +47,7 @@ dstate=model.dstate;
 while (true) {
 [ok,clrs,siz,win,imode,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue("Set Scope parameters",["colors","radii","window number (-1 for automatic)","animation mode (0,1)","Xmin","Xmax","Ymin","Ymax"],list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 mess=[];
 if (size(clrs,"*")!=size(siz,"*")) {
@@ -86,7 +86,7 @@ model.ipar=ipar;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

@@ -34,7 +34,7 @@ exprs=graphics.exprs;
 while (true) {
 [ok,nz,varnam,herit,exprs]=scicos_getvalue("Set Xcos buffer block",["Size of buffer","Scilab variable name","Inherit (no:0, yes:1)"],list("vec",1,"str",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if ((nz<=0)) {
 message("Size of buffer must be positive");
@@ -58,7 +58,7 @@ model.ipar=[nz,length(varnam),transpose(ascii(varnam))];
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

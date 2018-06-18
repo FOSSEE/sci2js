@@ -25,7 +25,7 @@ model=arg1.model;
 while (true) {
 [ok,in1,exprs]=scicos_getvalue("Set MUX block parameters","number of input ports or vector of sizes",list("vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 if (size(in1,"*")==1) {
 if (in1<2||in1>8) {
@@ -55,7 +55,7 @@ graphics.exprs=exprs;
 model.ipar=in1;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

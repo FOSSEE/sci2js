@@ -30,7 +30,7 @@ model=arg1.model;
 while (true) {
 [ok,high_lim,low_lim,out_high,out_low,nzz,exprs]=scicos_getvalue("Set parameters",["switch on at","switch off at","output when on","output when off","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (low_lim>high_lim) {
 message("switch on value must be larger than switch off value");
@@ -43,7 +43,7 @@ nzz=2;
 model.nzcross=nzz;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

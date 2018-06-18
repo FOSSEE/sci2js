@@ -26,7 +26,7 @@ while (true) {
 [ok,prt,exprs]=scicos_getvalue("Set Event Input block parameters","Port number",list("vec",1),exprs);
 prt=int(prt);
 if (!ok) {
-break
+break;
 }
 if (prt<=0) {
 message("Port number must be a positive integer");
@@ -37,7 +37,7 @@ model.firing=-1;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

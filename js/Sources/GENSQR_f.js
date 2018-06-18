@@ -30,7 +30,7 @@ exprs=exprs[2-1];
 while (true) {
 [ok,Amplitude,exprs]=scicos_getvalue(["Set Square generator block parameters"],["Amplitude"],list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 graphics.exprs=exprs;
 model.dstate=Amplitude;
@@ -38,7 +38,7 @@ model.out2=1;
 model.outtyp=1;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

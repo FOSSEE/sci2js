@@ -43,7 +43,7 @@ exprs[9-1]=[];
 while (true) {
 [ok,typ,flag,a,b,seed_c,exprs]=scicos_getvalue(["Set Random generator block parameters","flag = 0 : Uniform distribution A is min and A+B max","flag = 1 : Normal distribution A is mean and B deviation"," ","A and B must be matrix with equal sizes"],["Datatype(1=real double  2=complex)","flag","A","B","SEED"],list("vec",1,"vec",1,"mat",[-1,-2],"mat","[-1 -2]","mat",[1,2]),exprs);
 if (!ok) {
-break
+break;
 }
 if (flag!=0&&flag!=1) {
 message("flag must be equal to 1 or 0");
@@ -71,7 +71,7 @@ graphics.exprs=exprs;
 model.ipar=flag;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

@@ -36,14 +36,14 @@ model=arg1.model;
 while (true) {
 [ok,Cvmax,p_rho,exprs]=scicos_getvalue("Paramètres de la vanne reglante",["Cvmax","p_rho"],list("vec",-1,"vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 model.rpar=[Cvmax,p_rho];
 model.equations.parameters[2-1]=list(Cvmax,p_rho);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

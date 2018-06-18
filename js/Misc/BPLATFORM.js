@@ -33,7 +33,7 @@ dstate=model.dstate;
 while (true) {
 [ok,plen,csiz,phi,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 mess=[];
 if (plen<=0||csiz<=0) {
@@ -56,7 +56,7 @@ model.rpar=rpar;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

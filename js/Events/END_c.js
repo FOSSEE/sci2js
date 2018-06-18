@@ -25,14 +25,14 @@ model=arg1.model;
 while (true) {
 [ok,tf,exprs]=scicos_getvalue("Set final simulation time",["Final simulation time"],list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (ok) {
 graphics.exprs=exprs;
 model.firing=tf;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

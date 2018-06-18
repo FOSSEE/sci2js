@@ -25,7 +25,7 @@ model=arg1.model;
 while (true) {
 [ok,ind,exprs]=scicos_getvalue("Set block parameters",["indices to extract"],list("vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 ind=int(ind);
 ind=ind.slice();
@@ -35,7 +35,7 @@ model.ipar=ind;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

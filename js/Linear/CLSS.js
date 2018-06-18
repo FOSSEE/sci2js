@@ -35,7 +35,7 @@ model=arg1.model;
 while (true) {
 [ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
 if (!ok) {
-break
+break;
 }
 out=size(C,1);
 if (out==0) {
@@ -79,7 +79,7 @@ model.state=x0.slice();
 model.rpar=rpar;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

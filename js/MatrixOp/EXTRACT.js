@@ -41,7 +41,7 @@ while (true) {
 a=a.slice();
 b=b.slice();
 if (!ok) {
-break
+break;
 }
 if ((typ==1)) {
 function_name="extract";
@@ -85,7 +85,7 @@ graphics.exprs=label;
 arg1.graphics=graphics;
 arg1.model=model;
 x=arg1;
-break
+break;
 }
 }
 }

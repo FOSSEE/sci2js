@@ -40,7 +40,7 @@ label="size(evstr("+label(2)+"),\'*\')";
 while (true) {
 [ok,nin,lab]=scicos_getvalue("Set MATCATV block parameters",["Number od inputs"],list("vec",1),label);
 if (!ok) {
-break
+break;
 }
 label=lab;
 in1=[-(transpose([2:nin+1])),-ones(nin,1)];
@@ -55,7 +55,7 @@ graphics.exprs=label;
 arg1.graphics=graphics;
 arg1.model=model;
 x=arg1;
-break
+break;
 }
 }
 }

@@ -35,7 +35,7 @@ lunit=dstate(2);
 while (true) {
 [ok,N,swap,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"WRITEAU_f")," ",gettext("Write \'.au\' sound file on audio device")],[gettext("Buffer Size"),gettext("Swap Mode (0:No, 1:Yes)")],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 nin=1;
 fname1="/dev/audio";
@@ -62,7 +62,7 @@ model.ipar=ipar;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

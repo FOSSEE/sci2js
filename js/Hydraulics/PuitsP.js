@@ -33,14 +33,14 @@ model=arg1.model;
 while (true) {
 [ok,P0,T0,H0,option_temperature,exprs]=scicos_getvalue("Paramètres du puits",["Pression de la source : P0 (Pa)","Temperature de la source : T0 (K)","Enthalpie spécifique de la source : H0 (J/kg)","1:température fixée - 2:enthalpie fixée : option_temperature"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 model.rpar=[P0,T0,H0,option_temperature];
 model.equations.parameters[2-1]=list(P0,T0,H0,option_temperature);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

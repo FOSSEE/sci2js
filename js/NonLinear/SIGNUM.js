@@ -26,7 +26,7 @@ model=arg1.model;
 while (true) {
 [ok,zcr,exprs]=scicos_getvalue("Set block parameters",["use zero_crossing (1: yes) (0:no)"],list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 graphics.exprs=exprs;
 if (ok) {
@@ -39,7 +39,7 @@ model.nzcross=0;
 }
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

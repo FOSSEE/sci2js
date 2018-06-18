@@ -29,7 +29,7 @@ model=arg1.model;
 while (true) {
 [ok,it,exprs]=scicos_getvalue("Set parameters Block",["Datatype(1=real double 2=Complex 3=int32 ...)"],list("vec",1),label);
 if (!ok) {
-break
+break;
 }
 if (((it<1)||(it>8))) {
 message("Datatype is not supported");
@@ -43,7 +43,7 @@ graphics.exprs=exprs;
 arg1.graphics=graphics;
 arg1.model=model;
 x=arg1;
-break
+break;
 }
 }
 }

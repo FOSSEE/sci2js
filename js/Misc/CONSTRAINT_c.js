@@ -26,7 +26,7 @@ model=arg1.model;
 while (true) {
 [ok,x0,exprs]=scicos_getvalue("Set solver block parameters","Initial guess values",list("vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 x0=x0.slice();
 N=size(x0,"*");
@@ -42,7 +42,7 @@ model.in1=N;
 model.ipar=-1*ones(N,1);
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

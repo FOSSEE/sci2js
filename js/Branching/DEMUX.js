@@ -26,7 +26,7 @@ model=arg1.model;
 while (true) {
 [ok,out,exprs]=scicos_getvalue("Set DEMUX block parameters",["number of output ports or vector of sizes"],list("intvec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 if (size(out,"*")==1) {
 if (out<2||out>31) {
@@ -56,7 +56,7 @@ graphics.exprs=exprs;
 model.ipar=out;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

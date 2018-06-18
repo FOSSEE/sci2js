@@ -25,7 +25,7 @@ exprs=graphics.exprs;
 while (true) {
 [ok,sgn,exprs]=scicos_getvalue("Set sum block parameters","Inputs ports signs/gain",list("vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 in1=-ones(size(sgn,"*"),1);
 [model,graphics,ok]=check_io(model,graphics,in1,-1,[],[]);
@@ -34,7 +34,7 @@ model.rpar=sgn.slice();
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

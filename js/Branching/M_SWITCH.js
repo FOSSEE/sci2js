@@ -27,7 +27,7 @@ model=arg1.model;
 while (true) {
 [ok,nin,base,rule,exprs]=scicos_getvalue("Set parameters",["number of inputs","zero base indexing (0), otherwise 1","rounding rule: int (0), round (1), ceil (2), floor (3)"],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 nin=int(nin);
 base=int(base);
@@ -55,7 +55,7 @@ graphics.exprs=exprs;
 model.ipar=[base,rule];
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

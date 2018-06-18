@@ -37,7 +37,7 @@ frmt=exprs[3-1];
 while (true) {
 [ok,in1,fname1,frmt1,N,swap,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"WRITEC_f")," ",gettext("Write to C binary file")],[gettext("Input Size"),gettext("Output File Name"),gettext("Output Format"),gettext("Buffer Size"),gettext("Swap Mode (0:No, 1:Yes)")],list("vec",1,"str",1,"str",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 in1=int(in1);
 nin=in1;
@@ -83,7 +83,7 @@ model.ipar=ipar;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

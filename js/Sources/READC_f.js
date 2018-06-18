@@ -48,7 +48,7 @@ frmt=exprs[4-1];
 while (true) {
 [ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"READC_f")," ",gettext("Read from C binary file")],[gettext("Time Record Selection"),gettext("Outputs Record Selection"),gettext("Input File Name"),gettext("Input Format"),gettext("Record Size"),gettext("Buffer Size"),gettext("Initial Record Index"),gettext("Swap Mode (0:No, 1:Yes)")],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 fname1=pathconvert(stripblanks(fname1),false,true);
 frmt1=stripblanks(frmt1);
@@ -109,7 +109,7 @@ model.ipar=ipar;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

@@ -24,7 +24,7 @@ model=arg1.model;
 while (true) {
 [ok,nout,exprs]=scicos_getvalue("Set block parameters",["size of output (-1: if don\'t know)"],list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 nout=int(nout);
 if ((nout!=-1&&(nout<=0))) {
@@ -38,7 +38,7 @@ if (ok) {
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

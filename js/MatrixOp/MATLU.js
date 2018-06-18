@@ -39,7 +39,7 @@ label[9-1]=[];
 while (true) {
 [ok,typ,lab]=scicos_getvalue("Set MATLU block parameters",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
 if (!ok) {
-break
+break;
 }
 if ((typ==1)) {
 function_name="mat_lu";
@@ -62,7 +62,7 @@ model.sim=list(function_name,funtyp);
 graphics.exprs=lab;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

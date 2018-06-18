@@ -26,7 +26,7 @@ rpar=model.rpar;
 while (true) {
 [ok,ini,gap,zcr,exprs]=scicos_getvalue("Set backlash parameters",["initial output","gap","use zero-crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (ok) {
 graphics.exprs=exprs;
@@ -40,7 +40,7 @@ model.nzcross=0;
 model.rpar=rpar;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

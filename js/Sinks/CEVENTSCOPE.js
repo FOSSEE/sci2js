@@ -33,7 +33,7 @@ nclock=int(nclock);
 clrs=int(clrs);
 win=int(win);
 if (!ok) {
-break
+break;
 }
 mess=[];
 if (size(wpos,"*")!=0&&size(wpos,"*")!=2) {
@@ -79,7 +79,7 @@ model.ipar=ipar;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

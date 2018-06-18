@@ -25,13 +25,13 @@ model=arg1.model;
 while (true) {
 [ok,x0,exprs]=scicos_getvalue("Set continuous linear system parameters","Initial state",list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 graphics.exprs=exprs;
 model.state=x0;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 x.model.firing=[];
 }

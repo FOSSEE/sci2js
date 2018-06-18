@@ -28,7 +28,7 @@ model=arg1.model;
 while (true) {
 [ok,Datatype,bit,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"BITSET")," ",gettext("Set a bit")," "],[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)"),gettext("Index of Bit (0 is least significant)")],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 in1=[model.in1,model.in2];
 if (floor(bit)!=bit) {
@@ -77,7 +77,7 @@ graphics.exprs=exprs;
 model.opar=list(n);
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

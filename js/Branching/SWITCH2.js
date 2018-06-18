@@ -31,7 +31,7 @@ model=arg1.model;
 while (true) {
 [ok,rule,thra,nzz,exprs]=scicos_getvalue("Set parameters",["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 rule=int(rule);
 if ((rule<0)) {
@@ -52,7 +52,7 @@ model.nzcross=0;
 }
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

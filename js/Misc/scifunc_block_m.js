@@ -46,7 +46,7 @@ exprs=graphics.exprs;
 while (true) {
 [ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=scicos_getvalue(["Set scifunc_block parameters","only regular blocks supported"],["input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","System parameters vector","initial firing vector (<0 for no firing)","is block always active (0:no, 1:yes)"],list("mat",[-1,2],"mat",[-2,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs[1-1]);
 if (!ok) {
-break
+break;
 }
 exprs[1-1]=lab;
 xx=xx.slice();
@@ -64,7 +64,7 @@ nco=size(co,1);
 [ok,tt,dep_ut]=genfunc2(exprs[2-1],i,o,nci,nco,size(xx,1),size(z,1),nrp,"c");
 dep_ut[2-1]=(1==deptime);
 if (!ok) {
-break
+break;
 }
 [model,graphics,ok]=set_io(model,graphics,list(i,it),list(o,ot),ci,co);
 if (ok) {
@@ -86,7 +86,7 @@ x.model=model;
 exprs[2-1]=tt;
 graphics.exprs=exprs;
 x.graphics=graphics;
-break
+break;
 }
 }
 needcompile=resume(needcompile)

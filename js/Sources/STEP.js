@@ -29,7 +29,7 @@ model=arg1.model;
 while (true) {
 [ok,temps,in1,fi,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"STEP_FUNCTION")," ",gettext("Step Function")," "],[gettext("Step Time"),gettext("Initial Value"),gettext("Final Value")],list("vec",1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 in1=in1.slice();
 fi=fi.slice();
@@ -59,7 +59,7 @@ model.rpar=rpar;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

@@ -28,7 +28,7 @@ model=arg1.model;
 while (true) {
 [ok,in1,exprs]=scicos_getvalue(["Set Zero-Crossing parameters","All surfaces must cross together"],"Input size",list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 in1=int(in1);
 if (in1<=0) {
@@ -45,7 +45,7 @@ model.nzcross=in1;
 model.firing=-1;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

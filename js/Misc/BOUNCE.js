@@ -53,7 +53,7 @@ exprs[9-1]="0";
 while (true) {
 [ok,rpar1,rpar2,walls,xt,xd,y,yd,g,C,exprs]=scicos_getvalue(["Set Bounce Block"],["Mass","Radius","[xmin,xmax,ymin,ymax]","xpos","xdpos","ypos","ydpos","g (gravity)","C (aerodynamic coeff"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 xt=xt.slice();
 y=y.slice();
@@ -77,7 +77,7 @@ message("Mass and radius must be >0");
 ok=false;
 }
 if (!ok) {
-break
+break;
 }
 [model,graphics,ok]=check_io(model,graphics,[],[n,n],[],[]);
 if (ok) {
@@ -100,7 +100,7 @@ model.nzcross=n*(n-1)/2+4*n;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

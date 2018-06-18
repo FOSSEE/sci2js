@@ -27,7 +27,7 @@ model=arg1.model;
 while (true) {
 [ok,M,F,P,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"GENSIN_f")," ",gettext("Sine wave generator")," "],[gettext("Magnitude"),gettext("Frequency (rad/s)"),gettext("Phase (rad)")],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (F<0) {
 block_parameter_error(msprintf(gettext("Wrong value for \'Frequency\' parameter: %e."),F),gettext("Strictly positive integer expected."));
@@ -41,7 +41,7 @@ model.outtyp=1;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

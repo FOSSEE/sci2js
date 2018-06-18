@@ -33,7 +33,7 @@ exprs=exprs[2-1];
 while (true) {
 [ok,a,exprs]=scicos_getvalue("Set a^u  block parameters","a (>0)",list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (or(a<=0)) {
 message("a^u : a must be positive");
@@ -42,7 +42,7 @@ graphics.exprs=exprs;
 model.rpar=a;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

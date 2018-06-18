@@ -36,13 +36,13 @@ model=arg1.model;
 while (true) {
 [ok,Ron,Roff,exprs]=scicos_getvalue("Set non-ideal electrical switch parameters",["Resistance in On state (Ohm)","Resistance in Off state (Ohm)"],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 model.equations.parameters[2-1]=list(Ron,Roff);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

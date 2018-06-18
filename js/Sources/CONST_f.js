@@ -25,7 +25,7 @@ model=arg1.model;
 while (true) {
 [ok,C,exprs]=scicos_getvalue(["Set Contant Block"],"Constant",list("vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 nout=size(C,"*");
 if (nout==0) {
@@ -36,7 +36,7 @@ model.out=nout;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

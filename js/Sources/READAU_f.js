@@ -48,7 +48,7 @@ frmt1="uc";
 M=1;
 offset=1;
 if (!ok) {
-break
+break;
 }
 fname1=stripblanks(fname1);
 frmt1=stripblanks(frmt1);
@@ -75,7 +75,7 @@ model.ipar=ipar;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

@@ -32,7 +32,7 @@ model=arg1.model;
 while (true) {
 [ok,xmin,xmax,ymin,ymax,thickness,exprs]=scicos_getvalue("Set Scope parameters",["Xmin","Xmax","Ymin","Ymax","Segs Thickness"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 mess=[];
 if (ymin>=ymax) {
@@ -55,7 +55,7 @@ model.ipar=thickness;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

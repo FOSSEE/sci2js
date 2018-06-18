@@ -35,7 +35,7 @@ exprs[2-1]=string(1);
 while (true) {
 [ok,inh,nmod,exprs]=scicos_getvalue("Set parameters",["Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 model.dep_ut=[true,false];
 if (nmod!=0) {
@@ -53,7 +53,7 @@ model.nmode=nmod;
 model.nzcross=nmod;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

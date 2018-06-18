@@ -69,7 +69,7 @@ ppath[3-1]=o.to(1);
 }
 }
 if (and(ppath!=list(0,0,0))) {
-break
+break;
 }
 }
 }
@@ -87,7 +87,7 @@ y=0;
 while (true) {
 [ok,p,i,d,exprs0]=scicos_getvalue("Set PID parameters",["Proportional","Integral","Derivation"],list("vec",-1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 if (ok) {
 xx1.graphics.exprs=exprs0(1);
@@ -99,7 +99,7 @@ xx3.model.rpar=d;
 arg1.model.rpar.objs[ppath[1-1]-1]=xx1;
 arg1.model.rpar.objs[ppath[2-1]-1]=xx2;
 arg1.model.rpar.objs[ppath[3-1]-1]=xx3;
-break
+break;
 }
 }
 needcompile=0;

@@ -26,7 +26,7 @@ while (true) {
 ask_again=false;
 [ok,x0,xd0,exprs]=scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",-1,"vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 x0=x0.slice();
 N=size(x0,"*");
@@ -47,7 +47,7 @@ model.out=[N];
 model.in1=N;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 x.model.firing=[];

@@ -34,7 +34,7 @@ exprs=[exprs,sci2exp(0)];
 while (true) {
 [ok,gain,over,exprs]=scicos_getvalue("Set gain block parameters",["Gain","Do On Overflow(0=Nothing 1=Saturate 2=Error)"],list("mat",[-1,-1],"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (gain==[]) {
 message("Gain must have at least one element");
@@ -139,7 +139,7 @@ if (ok) {
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

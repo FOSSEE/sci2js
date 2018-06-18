@@ -33,7 +33,7 @@ exprs=exprs[1-1];
 while (true) {
 [ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"INIMPL_f")," ",gettext("Implicit input port")," "],"Port Number",list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 prt=int(prt);
 if (prt<=0) {
@@ -47,7 +47,7 @@ model.ipar=prt;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

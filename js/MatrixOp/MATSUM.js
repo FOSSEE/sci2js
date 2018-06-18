@@ -39,7 +39,7 @@ label[9-1]=[];
 while (true) {
 [ok,typ,decomptyp,lab]=scicos_getvalue("Set MATSUM block parameters",["Datatype(1=real double  2=Complex)","Sum along (0=all 1=lines  2=Columns)"],list("vec",1,"vec",1),label);
 if (!ok) {
-break
+break;
 }
 label=lab;
 if ((typ==1)) {
@@ -89,7 +89,7 @@ arg1.model=model;
 graphics.exprs=label;
 arg1.graphics=graphics;
 x=arg1;
-break
+break;
 }
 }
 }

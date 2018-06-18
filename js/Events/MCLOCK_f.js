@@ -77,7 +77,7 @@ for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="MFCLCK_f") {
 path=i;
-break
+break;
 }
 }
 newpar=list();

@@ -29,7 +29,7 @@ model=arg1.model;
 while (true) {
 [ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 x0=x0.slice();
 maxp=maxp.slice();
@@ -73,7 +73,7 @@ if (ok) {
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

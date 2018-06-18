@@ -40,7 +40,7 @@ if (!or(fun=="do_eval")) {
 ok=true;
 }
 if (!ok) {
-break
+break;
 }
 n=size(xx,"*");
 if (or(xx.slice(2-1,n)-xx.slice(1-1,n-1)<0)) {
@@ -56,7 +56,7 @@ axisdata=gc(2);
 model.ipar=[size(xx,"*"),axisdata.slice()];
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

@@ -35,7 +35,7 @@ model=arg1.model;
 while (true) {
 [ok,vec_x,vec_y,colormap,cmin,cmax,exprs]=scicos_getvalue("Set Scope parameters",["Bounds Vector X (-1 for standard)","Bounds Vector Y (-1 for standard)","ColorMap","Zmin","Zmax"],list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 mess=[];
 if (size(vec_x,"*")!=size(vec_y,"*")) {
@@ -59,7 +59,7 @@ model.rpar=rpar;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

@@ -30,7 +30,7 @@ nin=model.in1(1);
 while (true) {
 [ok,T,init,N,exprs]=scicos_getvalue("Set delay parameters",["Max delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (N<2) {
 message("Buffer must be larger than 2");
@@ -49,7 +49,7 @@ model.rpar=[T,init];
 model.ipar=N;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

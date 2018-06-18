@@ -31,7 +31,7 @@ model=arg1.model;
 while (true) {
 [ok,mat,herit,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"LOGIC")," ",gettext("Combinatorial logic")," ",gettext("&nbsp; Rows of the matrix are the output values"),gettext("&nbsp; Number of rows must be a power of two."),gettext("&nbsp; Number of columns gives the number of outputs.")," "],[gettext("Truth Table (matrix of outputs)"),gettext("Accepts Inherited Events (0:No, 1:Yes)")],list("mat",[-1,-2],"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 nout=size(mat,2);
 nin=(log(size(mat,1))/log(2));
@@ -59,7 +59,7 @@ mat=int8(mat);
 model.opar=list(mat);
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

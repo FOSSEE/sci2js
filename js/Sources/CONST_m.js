@@ -28,7 +28,7 @@ model=arg1.model;
 while (true) {
 [ok,C,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CONST_m")," ",gettext("Constant value generator")," "],gettext("Constant Value"),list("vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 nout=size(C);
 if (find(nout==0)!=[]) {
@@ -64,7 +64,7 @@ model.rpar=[];
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

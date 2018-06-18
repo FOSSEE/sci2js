@@ -34,7 +34,7 @@ label[3-1]=sci2exp(1);
 while (true) {
 [ok,dtype,rule,np,exprs]=scicos_getvalue(["Set MATMUL parameter","For the Multipication rule:","    1= Matrix by Matrix","    2= Matrix by Matrix element wise ","    3= Matrix by Scalar","In the third case the second input will be the scalar"],["Datatype(1=real double 2=Complex 3=int32 ...)","Multiplication rule","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",1,"vec",1),label);
 if (!ok) {
-break
+break;
 }
 rule=int(rule);
 if ((dtype<1||dtype>8)) {
@@ -144,7 +144,7 @@ graphics.exprs=label;
 x.graphics=graphics;
 x.model=model;
 arg1=x;
-break
+break;
 }
 }
 }

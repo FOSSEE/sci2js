@@ -33,7 +33,7 @@ model=arg1.model;
 while (true) {
 [ok,colormap,cmin,cmax,exprs]=scicos_getvalue("Set Scope parameters",["ColorMap","Minimum level range","Maximum level range"],list("vec",-1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 mess=[];
 if (cmax<=cmin) {
@@ -55,7 +55,7 @@ model.rpar=rpar;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

@@ -33,14 +33,14 @@ model=arg1.model;
 while (true) {
 [ok,L,exprs]=scicos_getvalue("Set Inductor block parameter","L (H)",list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 model.rpar=L;
 model.equations.parameters[2-1]=list(L);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

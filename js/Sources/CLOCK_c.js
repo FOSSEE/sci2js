@@ -50,7 +50,7 @@ for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
 o=arg1.model.rpar.objs(i);
 if (typeof(o)=="Block"&&o.gui=="EVTDLY_c") {
 path=i;
-break
+break;
 }
 }
 newpar=list();
@@ -63,7 +63,7 @@ model_n=model;
 while (true) {
 [ok,dt,t0,exprs0]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CLOCK_c")," ",gettext("Event clock generator")," ",gettext("&nbsp; Do not start if \'Initialisation Time\' is negative")," "],[gettext("Period"),gettext("Initialisation Time")],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (dt<=0) {
 block_parameter_error(msprintf(gettext("Wrong values for \'%s\' parameter: %5.1e."),gettext("Period"),dt),gettext("Strictly positive number expected."));
@@ -75,7 +75,7 @@ model.rpar=[dt,t0];
 model.firing=t0;
 xx.model=model;
 arg1.model.rpar.objs[path-1]=xx;
-break
+break;
 }
 }
 if (!and([t0_old,dt_old]==[t0,dt])) {

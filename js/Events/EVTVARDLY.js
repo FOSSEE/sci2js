@@ -26,13 +26,13 @@ model=arg1.model;
 while (true) {
 [ok,fir,exprs]=scicos_getvalue("Set parameter of variable event delay","Initial event firing time (<0 if absent)",list("vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 graphics.exprs=exprs;
 model.firing=fir;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

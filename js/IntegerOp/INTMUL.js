@@ -30,7 +30,7 @@ exprs=graphics.exprs;
 while (true) {
 [ok,Datatype,np,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"INTMUL")," ",gettext("Integer matrix multiplication")," "],[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)"),gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")],list("vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 it=Datatype*ones(1,2);
 ot=Datatype;
@@ -99,7 +99,7 @@ model.ipar=np;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

@@ -34,14 +34,14 @@ model=arg1.model;
 while (true) {
 [ok,VA,FR,exprs]=scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","Frequency (Hz)"],list("vec",-1,"vec",-1),exprs);
 if (!ok) {
-break
+break;
 }
 model.rpar=[VA,FR];
 model.equations.parameters[2-1]=list(VA,FR);
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

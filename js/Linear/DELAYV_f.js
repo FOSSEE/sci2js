@@ -36,7 +36,7 @@ told=z0[$-1];
 while (true) {
 [ok,nin,zz0,T,exprs]=scicos_getvalue("Set delay parameters",["Number of inputs","Register initial condition","Max delay"],list("vec",1,"vec",-1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (size(zz0,"*")<2) {
 message("Register length must be at least 2");
@@ -55,7 +55,7 @@ model.dstate=[zz0.slice(),told];
 model.rpar=T/(size(zz0,"*"));
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

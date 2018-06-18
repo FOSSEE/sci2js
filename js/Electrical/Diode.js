@@ -36,14 +36,14 @@ model=arg1.model;
 while (true) {
 [ok,Ids,Vt,Maxexp,R,exprs]=scicos_getvalue("Set Diode block parameter",["Saturation cuurent (A)","Voltage equivalent to temperature (Volt)","Max exponent for linear continuation","R (ohm)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 model.rpar=[Ids,Vt,Maxexp,R];
 model.equations.parameters=list(["Ids","Vt","Maxexp","R"],list(Ids,Vt,Maxexp,R));
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }

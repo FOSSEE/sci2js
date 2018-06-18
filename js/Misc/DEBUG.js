@@ -31,13 +31,13 @@ exprs[2-1]=txt;
 if ((scicos_debug()!=2&&scicos_debug()!=3)) {
 scicos_debug(2);
 }
-break
+break;
 } else {
 message(["Error in the instructions",lasterror()]);
 }
 } else {
 ok=false;
-break
+break;
 }
 }
 if (ok) {

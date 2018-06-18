@@ -29,7 +29,7 @@ model=arg1.model;
 while (true) {
 [ok,maxp,minp,zeroc,exprs]=scicos_getvalue("Set Saturation parameters",["Upper limit","Lower limit","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {
-break
+break;
 }
 if (maxp<=minp) {
 message("Upper limit must be > Lower limit");
@@ -46,7 +46,7 @@ model.nmode=0;
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;
-break
+break;
 }
 }
 }
