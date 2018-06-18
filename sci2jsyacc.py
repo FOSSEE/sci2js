@@ -1,5 +1,13 @@
 #!/usr/bin/python
 
+"""
+Convert a .sci file to a .js file for use with xcos_on_cloud.
+
+Usage: ./sci2jsyacc.py filename.sci > filename.js
+
+Example: ./sci2jsyacc.py macros/Sinks/CSCOPE.sci > js/Sinks/CSCOPE.js
+"""
+
 from __future__ import print_function
 
 import sys

@@ -1,0 +1,116 @@
+Project:
+
+convert from .sci files in scilab blocks modules to .js files for use with xcos
+on cloud.
+
+Requirements:
+
+python      2.7.12
+python-ply  3.7
+make        4.1
+
+Running:
+
+There are two files for modification:
+
+1. sci2jslex.py
+
+This contains the tokenizer for the input .sci files. The file is read and
+divided into tokens. Each token will give the token type and the corresponding
+value. The token types are used in describing the grammar rules of the files.
+The token values are used in the python code to replace the input with the
+required output. Here are a few sample token types from the input .sci files:
+
+a.
+
+EOL
+
+Meaning: end-of-line
+
+Matching text:
+
+new-line, in some cases semi-colon and comma, also an entire comment block like this:
+
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+
+Special notes:
+
+In some cases, new lines are parsed differently. For example, if there is an
+opening bracket '(' or '[' on a line, and no matching close bracket ']' or ')',
+then the new line is treated as space.
+
+b.
+
+SPACE
+
+Meaning: space
+
+Matching text:
+
+any string of multiple spaces and tabs
+
+Special note:
+
+In some cases, the space token is not significant. In that case, it does not generate a token. Instead, it is just parsed and skipped.
+
+c. 
+
+BREAK CASE DO ELSE ELSEIF END ENDFUNCTION FOR FUNCTION IF SELECT THEN WHILE
+
+Meaning: part of language syntax. They are used in the conditionals, loops, and function definitions
+
+Matching text:
+
+corresponding language tokens
+
+d.
+
+IN
+
+Meaning: a variable name
+
+Matching text:
+
+in
+
+Special note:
+
+'in' is a reserved word in javascript, whereas it is used as a normal variable
+in scilab. Hence, it is treated specially to replace 'in' with 'in1' in
+javascript.
+
+e.
+
+PREVAR PREVAR_BOOLEAN PREVAR_COMPLEX PREVAR_FLOAT
+
+Meaning: a predefined variable
+
+Matching text:
+
+'%' followed by a word. Example: %e %f %i %pi %t
+
+any word which starts with % is treated a predefined variable. each variable can be used in specific context only.
+
+Special note:
+
+Only some of the predefined variables are known.
+%t and %f are boolean values representing true and false in javascript respectively.
+%e and %pi are float values representing math.E and math.PI in javascript respectively.
+%i is an imaginary value representing math.complex(0, 1).
+Work is pending for other predefined variables.
+
+f.
+
+VAR
+
+Meaning: a variable
+
+Matching text:
+
+any alphabet followed by series of alphanumeric characters. _ is considered as an alphabet.
+
+Example:
+
+A _out rpar N ymin win

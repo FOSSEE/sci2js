@@ -1,5 +1,14 @@
 #!/usr/bin/python
 
+"""
+Parse a .sci file and split it into tokens. This file is used indirectly
+through sci2jsyacc.py (except for debugging purposes).
+
+Usage: ./sci2jslex.py filename.sci > filename.lex
+
+Example: ./sci2jslex.py macros/Sinks/CSCOPE.sci > js/Sinks/CSCOPE.lex
+"""
+
 from __future__ import print_function
 
 import ply.lex as lex
