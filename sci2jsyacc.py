@@ -14,6 +14,7 @@ precedence = (
     ('left', 'MULTIPLICATION'),
     ('right', 'NOT'),
     ('right', 'UNARYADDITION'),
+    ('right', 'TRANSPOSE'),
 )
 
 start = 'functionblock'
@@ -340,7 +341,7 @@ def p_expression_empty(p):
     p[0] = str(p[1]) + str(p[2])
 
 def p_expression_term_transpose(p):
-    'expression : term TRANSPOSE'
+    'expression : expression TRANSPOSE'
     p[0] = 'transpose(' + str(p[1]) + ')'
 
 def p_expression_expression_multiplication_expression(p):
