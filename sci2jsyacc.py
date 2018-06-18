@@ -35,15 +35,15 @@ def p_functionblock_function_statementblock_endfunction(p):
     'functionblock : EOL FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION EOL'
     fname = str(p[5])
     p[0] = ('function %s() {\n' +
-            '%s.prototype.get = function %s() {\n%s}\n' +
-            '%s.prototype.set = function %s() {\n%s}\n' +
             '%s.prototype.define = function %s() {\n%s}\n' +
             '%s.prototype.details = function %s() {\n%s}\n' +
+            '%s.prototype.get = function %s() {\n%s}\n' +
+            '%s.prototype.set = function %s() {\n%s}\n' +
             '}') % (fname,
-                    fname, fname, (JOB_BLOCKS['"get"'] if '"get"' in JOB_BLOCKS else ''),
-                    fname, fname, (JOB_BLOCKS['"set"'] if '"set"' in JOB_BLOCKS else ''),
                     fname, fname, (JOB_BLOCKS['"define"'] if '"define"' in JOB_BLOCKS else ''),
                     fname, fname, (JOB_BLOCKS['"details"'] if '"details"' in JOB_BLOCKS else ''),
+                    fname, fname, (JOB_BLOCKS['"get"'] if '"get"' in JOB_BLOCKS else ''),
+                    fname, fname, (JOB_BLOCKS['"set"'] if '"set"' in JOB_BLOCKS else ''),
                    )
 
 
