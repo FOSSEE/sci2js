@@ -10,7 +10,7 @@ model=arg1.model;
 nin=model.in1(1);
 z0=model.dstate;
 zz0=z0.slice(1-1,$-1);
-told=z0($);
+told=z0[$-1];
 while (true) {
 [ok,nin,zz0,T,exprs]=scicos_getvalue("Set delay parameters",["Number of inputs","Register initial condition","Max delay"],list("vec",1,"vec",-1,"vec",1),exprs);
 if (!ok) {

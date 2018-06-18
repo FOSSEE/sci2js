@@ -29,7 +29,7 @@ model.out=1;
 model.state=x0;
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[strcat(sci2exp(x0(1))),strcat(sci2exp(x0(2)))];
+exprs=[strcat(sci2exp(x0[1-1])),strcat(sci2exp(x0[2-1]))];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }

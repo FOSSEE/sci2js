@@ -1310,7 +1310,7 @@ model.out=1;
 model.state=x0;
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[strcat(sci2exp(x0(1))),strcat(sci2exp(x0(2)))];
+exprs=[strcat(sci2exp(x0[1-1])),strcat(sci2exp(x0[2-1]))];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -2246,7 +2246,7 @@ model=arg1.model;
 nin=model.in1(1);
 z0=model.dstate;
 zz0=z0.slice(1-1,$-1);
-told=z0($);
+told=z0[$-1];
 while (true) {
 [ok,nin,zz0,T,exprs]=scicos_getvalue("Set delay parameters",["Number of inputs","Register initial condition","Max delay"],list("vec",1,"vec",-1,"vec",1),exprs);
 if (!ok) {
@@ -4490,10 +4490,10 @@ model=scicos_model();
 model.sim=list("cevscpe",4);
 model.evtin=1;
 model.rpar=per;
-model.ipar=[win,1,clrs(nclock),wpos.slice(),wdim.slice()];
+model.ipar=[win,1,clrs[nclock-1],wpos.slice(),wdim.slice()];
 model.blocktype="d";
 model.dep_ut=[false,false];
-exprs=[sci2exp(nclock),strcat(sci2exp(clrs(nclock))," "),string(win),sci2exp([]),sci2exp(wdim),string(per)];
+exprs=[sci2exp(nclock),strcat(sci2exp(clrs[nclock-1])," "),string(win),sci2exp([]),sci2exp(wdim),string(per)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -8982,13 +8982,13 @@ message("empty field");
 ok=false;
 }
 for (i=1;i<=ma;i+=1) {
-if ((a(i)<=0)) {
+if ((a[i-1]<=0)) {
 message("invalid index");
 ok=false;
 }
 }
 for (j=1;j<=mb;j+=1) {
-if ((b(j)<=0)) {
+if ((b[j-1]<=0)) {
 message("invalid index");
 ok=false;
 }
@@ -10815,7 +10815,7 @@ model.out=1;
 model.state=x0;
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[strcat(sci2exp(x0(1))),strcat(sci2exp(x0(2)))];
+exprs=[strcat(sci2exp(x0[1-1])),strcat(sci2exp(x0[2-1]))];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }
@@ -10848,11 +10848,11 @@ rpar1=rpar1.slice();
 rpar2=rpar2.slice();
 n=size(xt,"*");
 walls=walls.slice();
-if (walls(1)>walls(2)) {
-walls=walls([2,1]);
+if (walls[1-1]>walls[2-1]) {
+walls=walls[[2,1]-1];
 }
-if (walls(3)>walls(3)) {
-walls=walls([3,4]);
+if (walls[3-1]>walls[3-1]) {
+walls=walls[[3,4]-1];
 }
 if (n!=size(y,"*")||n!=size(rpar1,"*")||n!=size(rpar2,"*")||n!=size(xd,"*")||n!=size(yd,"*")) {
 message("All vectors must have equal size");
@@ -11128,12 +11128,12 @@ ask_again=true;
 }
 if ((!ask_again)) {
 for (i=1;i<=N;i+=1) {
-if (!((id(i)==0)||(id(i)==1))) {
+if (!((id[i-1]==0)||(id[i-1]==1))) {
 ask_again=true;
 x_message(["Id(i) must be either","0 when x\'(i) is not present in the feedback","1: when x\'(i) is present in the feedback"]);
 break
 }
-if ((id(i)==0)) {
+if ((id[i-1]==0)) {
 id[i-1]=-1;
 }
 }
@@ -13425,11 +13425,11 @@ numb=bit;
 if ((size(bit,"*")!=2)) {
 block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),gettext("Must have this form: [Start, End]."));
 ok=false;
-} else if (bit(1)>bit(2)) {
+} else if (bit[1-1]>bit[2-1]) {
 block_parameter_error(msprintf(gettext("Wrong values for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("\'Start\' must be less than \'End\'.")));
 ok=false;
 } else {
-numb=bit(2)-bit(1);
+numb=bit[2-1]-bit[1-1];
 }
 } else {
 bit=0;

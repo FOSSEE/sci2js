@@ -455,32 +455,50 @@ def p_ltermvar_in(p):
 # B(2:$-1)
 def p_term_slice(p):
     'term : termvar OPENBRACKET expression COLON expression CLOSEBRACKET'
-    p[0] = p[1] + '.slice(' + str(p[3]) + '-1,' + str(p[5]) + ')'
+    addtoarray(p[1])
+    p[0] = '%s.slice(%s-1,%s)' % (p[1], p[3], p[5])
+
+# B(2:$-1,1)
+def p_term_slice_expression(p):
+    'term : termvar OPENBRACKET expression COLON expression COMMA expression CLOSEBRACKET'
+    addtoarray(p[1])
+    p[0] = '%s.slice(%s-1,%s)[%s-1]' % (p[1], p[3], p[5], p[7])
 
 # B(:$-1)
 def p_term_left_slice(p):
     'term : termvar OPENBRACKET COLON expression CLOSEBRACKET'
-    p[0] = p[1] + '.slice(' + str(p[3]) + '-1)'
+    addtoarray(p[1])
+    p[0] = '%s.slice(%s-1)' % (p[1], p[3])
 
 # B(2:)
 def p_term_right_slice(p):
     'term : termvar OPENBRACKET expression COLON CLOSEBRACKET'
-    p[0] = str(p[1]) + '.slice(0,' + str(p[4]) + ')'
+    addtoarray(p[1])
+    p[0] = '%s.slice(%s-1,%s)' % (p[1], '1', p[4])
 
 # B(:)
 def p_term_full_slice(p):
     'term : termvar OPENBRACKET COLON CLOSEBRACKET'
-    p[0] = p[1] + '.slice()'
+    addtoarray(p[1])
+    p[0] = '%s.slice()' % (p[1])
 
 # B(:,1)
 def p_term_full_slice_expression(p):
     'term : termvar OPENBRACKET COLON COMMA expression CLOSEBRACKET'
-    p[0] = p[1] + '.slice()[' + str(p[5]) + '-1]'
+    addtoarray(p[1])
+    p[0] = '%s.slice()[%s-1]' % (p[1], p[5])
 
-# B(:,1)
+# B(1,:)
+def p_term_expression_full_slice(p):
+    '''term : termvar OPENBRACKET expression COMMA COLON CLOSEBRACKET'''
+    addtoarray(p[1])
+    p[0] = '%s[%s-1].slice()' % (p[1], p[3])
+
+# B(:,:)
 def p_term_full_slice_full_slice(p):
     'term : termvar OPENBRACKET COLON COMMA COLON CLOSEBRACKET'
-    p[0] = p[1] + '.slice().slice()'
+    addtoarray(p[1])
+    p[0] = '%s.slice().slice()' % (p[1])
 
 # (1:10)
 def p_term_range(p):

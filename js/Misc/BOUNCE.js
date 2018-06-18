@@ -24,11 +24,11 @@ rpar1=rpar1.slice();
 rpar2=rpar2.slice();
 n=size(xt,"*");
 walls=walls.slice();
-if (walls(1)>walls(2)) {
-walls=walls([2,1]);
+if (walls[1-1]>walls[2-1]) {
+walls=walls[[2,1]-1];
 }
-if (walls(3)>walls(3)) {
-walls=walls([3,4]);
+if (walls[3-1]>walls[3-1]) {
+walls=walls[[3,4]-1];
 }
 if (n!=size(y,"*")||n!=size(rpar1,"*")||n!=size(rpar2,"*")||n!=size(xd,"*")||n!=size(yd,"*")) {
 message("All vectors must have equal size");

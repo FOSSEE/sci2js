@@ -74,10 +74,10 @@ model=scicos_model();
 model.sim=list("cevscpe",4);
 model.evtin=1;
 model.rpar=per;
-model.ipar=[win,1,clrs(nclock),wpos.slice(),wdim.slice()];
+model.ipar=[win,1,clrs[nclock-1],wpos.slice(),wdim.slice()];
 model.blocktype="d";
 model.dep_ut=[false,false];
-exprs=[sci2exp(nclock),strcat(sci2exp(clrs(nclock))," "),string(win),sci2exp([]),sci2exp(wdim),string(per)];
+exprs=[sci2exp(nclock),strcat(sci2exp(clrs[nclock-1])," "),string(win),sci2exp([]),sci2exp(wdim),string(per)];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
 }

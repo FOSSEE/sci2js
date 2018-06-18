@@ -34,11 +34,11 @@ numb=bit;
 if ((size(bit,"*")!=2)) {
 block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),gettext("Must have this form: [Start, End]."));
 ok=false;
-} else if (bit(1)>bit(2)) {
+} else if (bit[1-1]>bit[2-1]) {
 block_parameter_error(msprintf(gettext("Wrong values for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("\'Start\' must be less than \'End\'.")));
 ok=false;
 } else {
-numb=bit(2)-bit(1);
+numb=bit[2-1]-bit[1-1];
 }
 } else {
 bit=0;

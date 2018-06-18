@@ -1,4 +1,4 @@
-Syntax error in input LexToken(COMMA,',',1,3818)
+Syntax error in input LexToken(ASSIGNMENT,'=',1,4752)
 Syntax error in input LexToken(VAR,'ixy',1,6611)
 Syntax error in input LexToken(VAR,'a',1,25132)
 Syntax error in input LexToken(VAR,'a',1,26313)

@@ -36,13 +36,13 @@ message("empty field");
 ok=false;
 }
 for (i=1;i<=ma;i+=1) {
-if ((a(i)<=0)) {
+if ((a[i-1]<=0)) {
 message("invalid index");
 ok=false;
 }
 }
 for (j=1;j<=mb;j+=1) {
-if ((b(j)<=0)) {
+if ((b[j-1]<=0)) {
 message("invalid index");
 ok=false;
 }
