@@ -65,7 +65,8 @@ def p_statementblock_statement(p):
 def p_statement_assignment(p):
     '''statement : assignment EOL
                  | assignment SEMICOLON
-                 | function EOL'''
+                 | function EOL
+                 | RETURN EOL'''
     p[0] = '%s;\n' % (p[1])
 
 def p_statement_resume(p):
