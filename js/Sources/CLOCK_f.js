@@ -47,14 +47,14 @@ x.model.rpar=diagram;
     }
     CLOCK_f.prototype.set = function CLOCK_f() {
 for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-o=arg1.model.rpar.objs(i);
+o=arg1.model.rpar.objs[i-1];
 if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
 path=i;
 break;
 }
 }
 newpar=list();
-xx=arg1.model.rpar.objs(path);
+xx=arg1.model.rpar.objs[path-1];
 exprs=xx.graphics.exprs;
 model=xx.model;
 t0_old=model.firing;

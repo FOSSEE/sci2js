@@ -19,7 +19,7 @@ exprs=graphics.exprs;
 textmp=exprs[2-1];
 ok=true;
 while (1==1) {
-[txt]=dialog([["Enter scilab instructions for debugging."],[" Inputs are block and flag, output is block"]],textmp);
+[txt]=dialog[[["Enter scilab instructions for debugging."],[" Inputs are block and flag, output is block"]]-1][textmp-1];
 if (txt!=[]) {
 tt=["block=debug_scicos(block,flag)"];
 if (execstr("deff(tt,txt)","errcatch")==0) {

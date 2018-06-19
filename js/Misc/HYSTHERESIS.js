@@ -14,7 +14,7 @@ model.nzcross=nzz;
 model.nmode=1;
 model.blocktype="c";
 model.dep_ut=[true,false];
-exprs=[[string(rpar)],[string(sign(nzz))]];
+exprs=[[string(rpar)],[string(sign[nzz-1])]];
 gr_i=[];
 x=standard_define([2,2],model,exprs,gr_i);
     }

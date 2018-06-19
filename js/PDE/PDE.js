@@ -22,7 +22,7 @@ x=arg1;
 graphics=arg1.graphics;
 label=graphics.exprs;
 model=arg1.model;
-params_pde=label(1);
+params_pde=label[1-1];
 while (true) {
 [ln,fun]=where()
 if (!or(fun=="do_eval")) {
@@ -31,7 +31,7 @@ if (ok) {
 return;
 }
 } else {
-if (exists("%scicos_context")) {
+if (exists["%scicos_context"-1]) {
 [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,a7,b7,k,mesures,params_pde]=setvalue_IHM_EDP(params_pde);
 }
 }
@@ -39,7 +39,7 @@ okk=false;
 rdnom="PDE";
 ok1=true;
 while (true) {
-[okk,rdnom,lab]=scicos_getvalue("PLEASE, GIVE US THE BLOCK\'s NAME. ","New block\'s name :",list("str",1),label(3));
+[okk,rdnom,lab]=scicos_getvalue("PLEASE, GIVE US THE BLOCK\'s NAME. ","New block\'s name :",list("str",1),label[3-1]);
 if (okk==false) {
 ok1=false;
 return;
@@ -75,7 +75,7 @@ delta=evstr(a4)^2-4*evstr(a1)*evstr(a2);
 if ((delta==[])) {
 delta=0;
 }
-type_meth=arbre_decision(delta);
+type_meth=arbre_decision[delta-1];
 }
 [flag_type,rdnom,DF_type,tt]=translate(CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,type_meth,degre,a_domaine,b_domaine,Nbr_maillage,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,a7,b7,rdnom,mesures);
 Nbr=Nbr_maillage;
@@ -114,7 +114,7 @@ model.state=zeros(2*Nbr_maillage,1);
 }
 }
 }
-[ok1]=CFORTREDP(rdnom,tt);
+[ok1]=CFORTREDP[rdnom-1][tt-1];
 if (!ok1) {
 break;
 }

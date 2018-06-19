@@ -34,7 +34,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 label=graphics.exprs;
 if (size(label,"*")>1) {
-label="size(evstr("+label(2)+"),\'*\')";
+label="size(evstr("+label[2-1]+"),\'*\')";
 }
 while (true) {
 [ok,nin,lab]=scicos_getvalue("Set MATCATH block parameters",["Number of input"],list("vec",1),label);

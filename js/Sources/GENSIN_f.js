@@ -11,7 +11,7 @@ model.outtyp=1;
 model.rpar=[[1],[1],[0]];
 model.blocktype="c";
 model.dep_ut=[false,true];
-exprs=[[string(rpar(1))],[string(rpar(2))],[string(rpar(3))]];
+exprs=[[string(rpar[1-1])],[string(rpar[2-1])],[string(rpar[3-1])]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
     }

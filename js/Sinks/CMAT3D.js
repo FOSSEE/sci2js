@@ -3,7 +3,7 @@ function CMAT3D() {
     CMAT3D.prototype.define = function CMAT3D() {
 cmin=0;
 cmax=100;
-colormap=jetcolormap(25);
+colormap=jetcolormap[25-1];
 size_c=25;
 x=-1;
 y=-1;

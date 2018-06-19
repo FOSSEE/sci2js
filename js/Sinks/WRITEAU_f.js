@@ -13,7 +13,7 @@ model.sim=list("writeau",2);
 model.in1=in1;
 model.evtin=1;
 model.dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
-model.ipar=[[length(fname)],[_str2code(frmt)],[N],[swap],[_str2code(fname)]];
+model.ipar=[[length(fname)],[_str2code[frmt-1]],[N],[swap],[_str2code[fname-1]]];
 model.blocktype="d";
 model.dep_ut=[true,false];
 exprs=[string(N),string(swap)];
@@ -31,7 +31,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 ipar=model.ipar;
 dstate=model.dstate;
-lunit=dstate(2);
+lunit=dstate[2-1];
 while (true) {
 [ok,N,swap,exprs]=scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WRITEAU_f")],[" "],[gettext("Write \'.au\' sound file on audio device")]],[[gettext("Buffer Size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",1,"vec",1),exprs);
 if (!ok) {
@@ -40,7 +40,7 @@ break;
 nin=1;
 fname1="/dev/audio";
 frmt1="uc ";
-if (alreadyran&&(N!=ipar(5))) {
+if (alreadyran&&(N!=ipar[5-1])) {
 block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
 ok=false;
 } else if (N<1) {
@@ -52,8 +52,8 @@ block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),
 ok=false;
 }
 if (ok) {
-ipar=[[length(fname1)],[_str2code(frmt1)],[N],[swap],[_str2code(fname1)]];
-if (prod(size(dstate))!=(nin+1)*N+2) {
+ipar=[[length(fname1)],[_str2code[frmt1-1]],[N],[swap],[_str2code[fname1-1]]];
+if (prod[size(dstate)-1]!=(nin+1)*N+2) {
 dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
 }
 model.in1=1;

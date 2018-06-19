@@ -41,8 +41,8 @@ in1=out;
 model.sim=list("dollar4_m",4);
 model.odstate=list(a);
 model.dstate=[];
-if ((type(a)==1)) {
-if (isreal(a)) {
+if ((type[a-1]==1)) {
+if (isreal[a-1]) {
 it=1;
 ot=1;
 if ((size(a,1)==1||size(a,2)==1)) {

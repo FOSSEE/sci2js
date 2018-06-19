@@ -67,21 +67,21 @@ ok=false;
 }
 if (N<2) {
 for (i=1;i<=size(clrs,"*");i+=1) {
-if (clrs(i)>0) {
+if (clrs[i-1]>0) {
 mess=[[mess],["Buffer size must be at least 2 or Change a color (must be >0)"],[" "]];
 ok=false;
 }
 }
 }
-if (vec_y(1)>=vec_y(2)) {
+if (vec_y[1-1]>=vec_y[2-1]) {
 mess=[[mess],["Ymax must be higher than Ymin"],[" "]];
 ok=false;
 }
-if (vec_x(1)>=vec_x(2)) {
+if (vec_x[1-1]>=vec_x[2-1]) {
 mess=[[mess],["Xmax must be higher than Xmin"],[" "]];
 ok=false;
 }
-if (vec_z(1)>=vec_z(2)) {
+if (vec_z[1-1]>=vec_z[2-1]) {
 mess=[[mess],["Zmax must be higher than Zmin"],[" "]];
 ok=false;
 }

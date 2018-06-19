@@ -65,16 +65,16 @@ if (d<c) {
 message("ending column must be greater than starting column");
 ok=false;
 }
-if (b>inp(1)) {
+if (b>inp[1-1]) {
 message("index of ending row is out of range");
 ok=false;
 }
-if (d>inp(2)) {
+if (d>inp[2-1]) {
 message("index of ending column is out of range");
 ok=false;
 }
 model.ipar=[[a],[b],[c],[d]];
-in1=[inp(1),inp(2)];
+in1=[inp[1-1],inp[2-1]];
 out=[(b-a)+1,(d-c)+1];
 funtyp=4;
 label=exprs;

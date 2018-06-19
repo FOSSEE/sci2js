@@ -74,7 +74,7 @@ x.graphics.peout=[[0],[0]];
     }
     MCLOCK_f.prototype.set = function MCLOCK_f() {
 for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-o=arg1.model.rpar.objs(i);
+o=arg1.model.rpar.objs[i-1];
 if (typeof(o)=="Block"&&o.gui=="MFCLCK_f") {
 path=i;
 break;
@@ -82,7 +82,7 @@ break;
 }
 newpar=list();
 spath=list("model","rpar","objs",path);
-xx=arg1(spath);
+xx=arg1[spath-1];
 execstr("xxn="+xx.gui+"(\'set\',xx)");
 if (or(xxn!=xx)) {
 arg1[spath-1]=xxn;

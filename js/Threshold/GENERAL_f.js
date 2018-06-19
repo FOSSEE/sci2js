@@ -43,7 +43,7 @@ rp=matrix(rpar,nout,2^(2*nin));
 rp=-1*ones(nout1,2^(2*nin1));
 }
 n=size(rp,2)/2;
-result=x_mdialog("routing matrix",string.slice(1-1,nout1),string.slice(1-1,2^(2*nin1)),string[rp.slice().slice()-1]);
+result=x_mdialog("routing matrix",string(1,nout1),string(1,2^(2*nin1)),string(rp.slice().slice()));
 if (result!=[]) {
 rp.slice(1-1,nout1).slice(1-1,2*n)=evstr(result);
 model.nzcross=in1;

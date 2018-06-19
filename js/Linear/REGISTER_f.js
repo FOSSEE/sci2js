@@ -28,7 +28,7 @@ while (true) {
 if (!ok) {
 break;
 }
-if (prod(size(z0))<1) {
+if (prod[size(z0)-1]<1) {
 message("Register length must be at least 1");
 ok=false;
 }

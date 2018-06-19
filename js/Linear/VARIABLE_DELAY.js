@@ -26,7 +26,7 @@ x=arg1;
 graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
-nin=model.in1(1);
+nin=model.in1[1-1];
 while (true) {
 [ok,T,init,N,exprs]=scicos_getvalue("Set delay parameters",[["Max delay"],["initial input"],["Buffer size"]],list("vec",1,"vec",1,"vec",1),exprs);
 if (!ok) {

@@ -8,7 +8,7 @@ model.in1=1;
 model.out=1;
 model.dstate=0;
 model.nzcross=1;
-model.ipar=sign(edge);
+model.ipar=sign[edge-1];
 model.blocktype="c";
 model.dep_ut=[true,false];
 exprs=[string(edge)];
@@ -29,7 +29,7 @@ while (true) {
 if (!ok) {
 break;
 }
-model.ipar=sign(edge);
+model.ipar=sign[edge-1];
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;

@@ -24,7 +24,7 @@ model.ipar=flag;
 model.blocktype="d";
 model.firing=[];
 model.dep_ut=[false,false];
-exprs=[[sci2exp(1)],[string(flag)],[sci2exp([a])],[sci2exp([b])],[sci2exp([model.dstate(1),int(rand()*(10^7-1))])]];
+exprs=[[sci2exp(1)],[string(flag)],[sci2exp([a])],[sci2exp([b])],[sci2exp([model.dstate[1-1],int(rand()*(10^7-1))])]];
 gr_i=[];
 x=standard_define([3,2],model,exprs,gr_i);
     }
@@ -52,7 +52,7 @@ out=size(a);
 if (typ==1) {
 function_name="rndblk_m";
 model.rpar=[[real(a.slice())],[real(b.slice())]];
-model.dstate=[[seed_c(1)],[0*real(a.slice())]];
+model.dstate=[[seed_c[1-1]],[0*real(a.slice())]];
 ot=1;
 } else if (typ==2) {
 function_name="rndblkz_m";

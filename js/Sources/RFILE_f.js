@@ -10,14 +10,14 @@ N=2;
 rpar=[];
 tmask=0;
 outmask=1;
-ipar=[[length(fname)],[length(frmt)],[0],[N],[_str2code(fname)],[_str2code(frmt)],[tmask],[outmask]];
+ipar=[[length(fname)],[length(frmt)],[0],[N],[_str2code[fname-1]],[_str2code[frmt-1]],[tmask],[outmask]];
 dstate=[[1],[1],[lunit],[zeros((nout)*N,1)]];
 model=scicos_model();
 model.sim="readf";
 model.out=nout;
 model.evtin=1;
 model.dstate=dstate;
-model.ipar=[[length(fname)],[length(frmt)],[0],[N],[_str2code(fname)],[_str2code(frmt)],[tmask],[outmask]];
+model.ipar=[[length(fname)],[length(frmt)],[0],[N],[_str2code[fname-1]],[_str2code[frmt-1]],[tmask],[outmask]];
 model.blocktype="d";
 model.dep_ut=[false,false];
 exprs=[[sci2exp([])],[sci2exp(outmask)],[fname],[frmt],[string(N)],[sci2exp(out)]];
@@ -35,11 +35,11 @@ exprs=graphics.exprs;
 model=arg1.model;
 dstate=model.dstate;
 ipar=model.ipar;
-ievt=ipar(3);
-N=ipar(4);
-imask=5+ipar(1)+ipar(2);
-tmask=ipar(imask);
-lunit=dstate(3);
+ievt=ipar[3-1];
+N=ipar[4-1];
+imask=5+ipar[1-1]+ipar[2-1];
+tmask=ipar[imask-1];
+lunit=dstate[3-1];
 fname=exprs[3-1];
 frmt=exprs[4-1];
 if (size(exprs,"*")>5) {
@@ -53,7 +53,7 @@ break;
 fname1=pathconvert(stripblanks(fname1),false,true);
 frmt1=stripblanks(frmt1);
 nout=size(outmask,"*");
-if (prod(size(tmask1))>1) {
+if (prod[size(tmask1)-1]>1) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Time Record Selection"),strcat(string(tmask1.slice())," ")),gettext("Empty matrix or scalar expected."));
 } else if (tmask1!=[]&&tmask1<1) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d"),gettext("Time Record Selection"),tmask1),gettext("Strictly positive integer expected."));
@@ -89,8 +89,8 @@ model.firing=[];
 } else {
 model.firing=0;
 }
-ipar=[[length(fname1)],[length(frmt1)],[ievt],[N],[_str2code(fname1)],[_str2code(frmt1)],[tmask1],[outmask.slice()]];
-if (prod(size(dstate))!=(nout+ievt)*N+3) {
+ipar=[[length(fname1)],[length(frmt1)],[ievt],[N],[_str2code[fname1-1]],[_str2code[frmt1-1]],[tmask1],[outmask.slice()]];
+if (prod[size(dstate)-1]!=(nout+ievt)*N+3) {
 dstate=[[-1],[-1],[lunit],[zeros((nout+ievt)*N,1)]];
 }
 model.dstate=dstate;

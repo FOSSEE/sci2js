@@ -2,7 +2,7 @@
 function STEP_FUNCTION() {
     STEP_FUNCTION.prototype.define = function STEP_FUNCTION() {
 scs_m_1=scicos_diagram();
-scs_m_1.objs[1-1]=STEP("define");
+scs_m_1.objs[1-1]=STEP["define"-1];
 scs_m_1.objs[2-1]=OUT_f("define");
 scs_m_1.objs[3-1]=scicos_link();
 scs_m_1.objs[4-1]=scicos_link();
@@ -56,7 +56,7 @@ x=standard_define([2,2],model,[],gr_i);
     }
     STEP_FUNCTION.prototype.set = function STEP_FUNCTION() {
 for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-o=arg1.model.rpar.objs(i);
+o=arg1.model.rpar.objs[i-1];
 if (typeof(o)=="Block"&&o.gui=="STEP") {
 ppath=list(i);
 break;
@@ -70,9 +70,9 @@ for (k=1;k<=np;k+=1) {
 spath[$+1-1]="model";
 spath[$+1-1]="rpar";
 spath[$+1-1]="objs";
-spath[$+1-1]=path(k);
+spath[$+1-1]=path[k-1];
 }
-xx=arg1(spath);
+xx=arg1[spath-1];
 execstr("xxn="+xx.gui+"(\'set\',xx)");
 if (diffobjs(xxn,xx)) {
 model=xx.model;
@@ -96,9 +96,9 @@ needcompile=4;
 if ((model.nzcross!=model_n.nzcross)||(model.nmode!=model_n.nmode)) {
 needcompile=4;
 }
-if (prod(size(model_n.sim))>1) {
-if (model_n.sim(2)>1000) {
-if (model.sim(1)!=model_n.sim(1)) {
+if (prod[size(model_n.sim)-1]>1) {
+if (model_n.sim[2-1]>1000) {
+if (model.sim[1-1]!=model_n.sim[1-1]) {
 needcompile=4;
 }
 }

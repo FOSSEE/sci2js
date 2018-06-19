@@ -30,17 +30,17 @@ if (size(exprs,"*")==1) {
 exprs=[[exprs[1-1]],["[-1 -2]"],["-1"]];
 }
 while (true) {
-[ok,prt,otsz,ot,exprs]=getvalue(_("Set Input block parameters"),[[_("Port number")],[_("Outport size ([-1 -2] for inherit)")],[_("Outport Type (-1 for inherit)")]],list("vec",1,"vec",-1,"vec",1),exprs);
+[ok,prt,otsz,ot,exprs]=getvalue(_["Set Input block parameters"-1],[[_["Port number"-1]],[_["Outport size ([-1 -2] for inherit)"-1]],[_["Outport Type (-1 for inherit)"-1]]],list("vec",1,"vec",-1,"vec",1),exprs);
 if (!ok) {
 break;
 }
 prt=int(prt);
 if (prt<=0) {
-message(_("Port number must be a positive integer"));
+message(_["Port number must be a positive integer"-1]);
 } else if (!isequal(size(otsz,"*"),2)) {
-message(_("Outport Size must be a 2 elements vector"));
+message(_["Outport Size must be a 2 elements vector"-1]);
 } else if (((ot<1||ot>9)&&(ot!=-1))) {
-message(_("Outport type must be a number between 1 and 9, or -1 for inheritance."));
+message(_["Outport type must be a number between 1 and 9, or -1 for inheritance."-1]);
 } else {
 if (model.ipar!=prt) {
 needcompile=4;
@@ -48,8 +48,8 @@ y=needcompile;
 }
 model.ipar=prt;
 model.firing=[];
-model.out=otsz(1);
-model.out2=otsz(2);
+model.out=otsz[1-1];
+model.out2=otsz[2-1];
 model.outtyp=ot;
 graphics.exprs=exprs;
 x.graphics=graphics;

@@ -14,7 +14,7 @@ x=standard_define([2,2],model,[],gr_i);
     }
     ENDBLK.prototype.set = function ENDBLK() {
 for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-o=arg1.model.rpar.objs(i);
+o=arg1.model.rpar.objs[i-1];
 if (typeof(o)=="Block"&&o.gui=="END_c") {
 ppath=list(i);
 break;
@@ -29,11 +29,11 @@ for (k=1;k<=np;k+=1) {
 spath[$+1-1]="model";
 spath[$+1-1]="rpar";
 spath[$+1-1]="objs";
-spath[$+1-1]=path(k);
+spath[$+1-1]=path[k-1];
 }
-xx=arg1(spath);
+xx=arg1[spath-1];
 execstr("xxn="+xx.gui+"(\'set\',xx)");
-if (!isequalbitwise(xxn,xx)) {
+if (!isequalbitwise[xxn-1][xx-1]) {
 model=xx.model;
 model_n=xxn.model;
 if (!is_modelica_block(xx)) {
@@ -58,9 +58,9 @@ needcompile=4;
 if ((model.nzcross!=model_n.nzcross)||(model.nmode!=model_n.nmode)) {
 needcompile=4;
 }
-if (prod(size(model_n.sim))>1) {
-if (model_n.sim(2)>1000) {
-if (model.sim(1)!=model_n.sim(1)) {
+if (prod[size(model_n.sim)-1]>1) {
+if (model_n.sim[2-1]>1000) {
+if (model.sim[1-1]!=model_n.sim[1-1]) {
 needcompile=4;
 }
 }

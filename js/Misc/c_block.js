@@ -38,7 +38,7 @@ model=arg1.model;
 graphics=arg1.graphics;
 label=graphics.exprs;
 while (true) {
-[ok,i,o,rpar,funam,lab]=scicos_getvalue("Set C_block parameters",[["input ports sizes"],["output port sizes"],["System parameters vector"],["function name"]],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label(1));
+[ok,i,o,rpar,funam,lab]=scicos_getvalue("Set C_block parameters",[["input ports sizes"],["output port sizes"],["System parameters vector"],["function name"]],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
 if (!ok) {
 break;
 }
@@ -52,7 +52,7 @@ ni=size(i,1);
 o=int(o.slice());
 no=size(o,1);
 tt=label[2-1];
-if (model.sim(1)!=funam||size(model.in1,"*")!=size(i,"*")||size(model.out,"*")!=size(o,"*")) {
+if (model.sim[1-1]!=funam||size(model.in1,"*")!=size(i,"*")||size(model.out,"*")!=size(o,"*")) {
 tt=[];
 }
 [ok,tt]=CFORTR(funam,tt,i,o);

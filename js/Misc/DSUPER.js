@@ -15,10 +15,10 @@ warnBlockByUID(arg1.model.label,gettext("Invalid masked block."));
 x=arg1;
 return;
 }
-exprs=graphics.exprs(1);
-exprs0=graphics.exprs(2)(1);
-btitre=graphics.exprs(2)(2)(1);
-bitems=graphics.exprs(2)(2).slice(2-1,$);
+exprs=graphics.exprs[1-1];
+exprs0=graphics.exprs[2-1][1-1];
+btitre=graphics.exprs[2-1][2-1][1-1];
+bitems=graphics.exprs[2-1][2-1].slice(2-1,$);
 if (exprs0==[]) {
 x=arg1;
 return;
@@ -29,11 +29,11 @@ if (ierr!=0) {
 x=arg1;
 return;
 }
-tt="scicos_context."+exprs0(1);
+tt="scicos_context."+exprs0[1-1];
 for (i=2;i<=size(exprs0,1);i+=1) {
-tt=tt+",scicos_context."+exprs0(i);
+tt=tt+",scicos_context."+exprs0[i-1];
 }
-ss=graphics.exprs(2)(3);
+ss=graphics.exprs[2-1][3-1];
 scicos_context=PREVAR_scicos_context;
 execstr("[ok,"+tt+",exprs]=scicos_getvalue(btitre,bitems,ss,exprs)");
 if (ok) {

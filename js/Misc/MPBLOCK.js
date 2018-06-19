@@ -14,7 +14,7 @@ model=scicos_model();
 model.blocktype="c";
 model.dep_ut=[true,true];
 model.rpar=[];
-for (i=1;i<=lstsize(paramv);i+=1) {
+for (i=1;i<=lstsize[paramv-1];i+=1) {
 model.rpar=[[model.rpar],[paramv[i-1].slice()]];
 }
 mo=modelica();
@@ -40,14 +40,14 @@ x=arg1;
 model=arg1.model;
 graphics=arg1.graphics;
 exprs=graphics.exprs;
-if (type(exprs)==15) {
+if (type[exprs-1]==15) {
 paramv=list();
 pprop=[];
 for (i=1;i<=size(model.rpar,"*");i+=1) {
-paramv[$+1-1]=string(model.rpar(i));
+paramv[$+1-1]=string(model.rpar[i-1]);
 pprop[$+1-1]=0;
 }
-exprs=tlist(["MPBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],exprs[1-1](1),exprs[1-1](2),exprs[1-1](3),exprs[1-1](4),exprs[1-1](5),paramv,sci2exp(pprop.slice()),exprs[1-1](7),exprs[2-1]);
+exprs=tlist(["MPBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],exprs[1-1][1-1],exprs[1-1][2-1],exprs[1-1][3-1],exprs[1-1][4-1],exprs[1-1][5-1],paramv,sci2exp(pprop.slice()),exprs[1-1][7-1],exprs[2-1]);
 }
 lab_1=list(exprs.in1,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
 lab_2=exprs.paramv;
@@ -71,7 +71,7 @@ break;
 }
 }
 if (!ok) {
-x_message([["Invalid variable name for the input "+string(i)+"."],["\""+in1(i)+"\""],["Please choose another variable name."]]);
+x_message([["Invalid variable name for the input "+string(i)+"."],["\""+in1[i-1]+"\""],["Please choose another variable name."]]);
 }
 }
 if (ok) {
@@ -84,7 +84,7 @@ break;
 }
 }
 if (!ok) {
-x_message([["Invalid variable name for the output "+string(i)+"."],["\""+out(i)+"\""],["Please choose another variable name."]]);
+x_message([["Invalid variable name for the output "+string(i)+"."],["\""+out[i-1]+"\""],["Please choose another variable name."]]);
 }
 }
 if (ok) {
@@ -103,7 +103,7 @@ x_message([["Invalid variable name for the parameter "+string(i)+"."],["\""+para
 }
 if (ok) {
 for (i=1;i<=size(intype,"*");i+=1) {
-if (intype(i)!="E"&&intype(i)!="I") {
+if (intype[i-1]!="E"&&intype[i-1]!="I") {
 x_message("Input type should be \'E\' or \'I\'!");
 ok=false;
 break;
@@ -112,7 +112,7 @@ break;
 }
 if (ok) {
 for (i=1;i<=size(outtype,"*");i+=1) {
-if (outtype(i)!="E"&&outtype(i)!="I") {
+if (outtype[i-1]!="E"&&outtype[i-1]!="I") {
 x_message("Output type should be \'E\' or \'I\'!");
 ok=false;
 break;
@@ -165,17 +165,17 @@ outtypex=find(outtype=="I");
 if (ok) {
 Tparam_lab=evstr(Tparam);
 Tparam_sz=size(Tparam_lab,"*");
-if (Tparam_sz>lstsize(lab_2)) {
-for (i=1;i<=(Tparam_sz-lstsize(lab_2));i+=1) {
+if (Tparam_sz>lstsize[lab_2-1]) {
+for (i=1;i<=(Tparam_sz-lstsize[lab_2-1]);i+=1) {
 lab_2[$+1-1]="0";
 }
-} else if (Tparam_sz<lstsize(lab_2)) {
+} else if (Tparam_sz<lstsize[lab_2-1]) {
 lab_2_tmp=list();
 if (Tparam_sz!=0) {
 for (i=1;i<=Tparam_sz;i+=1) {
 ee=evstr(exprs.param);
 for (j=1;j<=size(ee,"r");j+=1) {
-if (ee(j)==Tparam_lab(i)) {
+if (ee[j-1]==Tparam_lab[i-1]) {
 lab_2_tmp[i-1]=lab_2[j-1];
 }
 }
@@ -190,11 +190,11 @@ rhs_txt="";
 for (i=1;i<=Tparam_sz;i+=1) {
 lhs_txt=lhs_txt+"%v"+string(i)+",";
 if (pprop[i-1]==0) {
-lab_txt=lab_txt+"\'"+Tparam_lab(i)+"\';";
+lab_txt=lab_txt+"\'"+Tparam_lab[i-1]+"\';";
 } else if (pprop[i-1]==1) {
-lab_txt=lab_txt+"\'"+Tparam_lab(i)+" (state) \';";
+lab_txt=lab_txt+"\'"+Tparam_lab[i-1]+" (state) \';";
 } else if (pprop[i-1]==2) {
-lab_txt=lab_txt+"\'"+Tparam_lab(i)+" (fixed state) \';";
+lab_txt=lab_txt+"\'"+Tparam_lab[i-1]+" (fixed state) \';";
 }
 rhs_txt=rhs_txt+"\'vec\',-1,";
 }
@@ -228,19 +228,19 @@ mo.parameters=list(transpose(param),paramv);
 }
 model.equations=mo;
 model.rpar=[];
-for (i=1;i<=lstsize(paramv);i+=1) {
-model.rpar=[[model.rpar],[double(paramv[i-1].slice())]];
+for (i=1;i<=lstsize[paramv-1];i+=1) {
+model.rpar=[[model.rpar],[double[paramv[i-1].slice()-1]]];
 }
 model.sim[1-1]=funam;
-exprs.in1=lab_1(1);
-exprs.intype=lab_1(2);
-exprs.out=lab_1(3);
-exprs.outtype=lab_1(4);
-exprs.param=lab_1(5);
+exprs.in1=lab_1[1-1];
+exprs.intype=lab_1[2-1];
+exprs.out=lab_1[3-1];
+exprs.outtype=lab_1[4-1];
+exprs.param=lab_1[5-1];
 exprs.paramv=list();
 if (Tparam_sz!=0) {
-if (type(lab_2)==15) {
-for (i=1;i<=lstsize(lab_2);i+=1) {
+if (type[lab_2-1]==15) {
+for (i=1;i<=lstsize[lab_2-1];i+=1) {
 exprs.paramv[i-1]=lab_2[i-1];
 }
 } else {
@@ -249,8 +249,8 @@ exprs.paramv[i-1]=lab_2[i-1];
 }
 }
 }
-exprs.pprop=lab_1(6);
-exprs.nameF=lab_1(7);
+exprs.pprop=lab_1[6-1];
+exprs.nameF=lab_1[7-1];
 exprs.funtxt="";
 x.model=model;
 graphics.gr_i[1-1][1-1]="txt=[\' "+nameF+" \'];";

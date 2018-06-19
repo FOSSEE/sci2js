@@ -1,5 +1,4 @@
-Syntax error in input LexToken(ASSIGNMENT,'=',1,4886)
-Syntax error in input LexToken(VAR,'ixy',1,6905)
+Syntax error in input LexToken(FUNCTION,'function',1,6870)
 Syntax error in input LexToken(VAR,'a',1,25832)
 Syntax error in input LexToken(VAR,'a',1,27066)
 Syntax error in input LexToken(VAR,'a',1,27777)

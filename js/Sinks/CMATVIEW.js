@@ -4,7 +4,7 @@ function CMATVIEW() {
 cmin=0;
 cmax=100;
 size_c=25;
-colormap=jetcolormap(size_c);
+colormap=jetcolormap[size_c-1];
 alpha_c=0.24;
 beta_c=1;
 model=scicos_model();
@@ -45,9 +45,9 @@ message([["Some specified values are inconsistent:"],[" "],[mess]]);
 }
 if (ok) {
 size_c=size(colormap.slice(),1);
-sol=inv([[cmin,1],[cmax,1]])*[[1],[size_c/3]];
-alpha_c=sol(1);
-beta_c=sol(2);
+sol=inv[[[cmin,1],[cmax,1]]-1]*[[1],[size_c/3]];
+alpha_c=sol[1-1];
+beta_c=sol[2-1];
 ipar=[[cmin],[cmax],[size_c]];
 rpar=[[alpha_c],[beta_c],[colormap.slice()]];
 model.ipar=ipar;

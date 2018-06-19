@@ -13,7 +13,7 @@ model.sim=list("writec",2);
 model.in1=in1;
 model.evtin=1;
 model.dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
-model.ipar=[[length(fname)],[_str2code(frmt)],[N],[swap],[_str2code(fname)]];
+model.ipar=[[length(fname)],[_str2code[frmt-1]],[N],[swap],[_str2code[fname-1]]];
 model.blocktype="d";
 model.dep_ut=[true,false];
 exprs=[[sci2exp(in1)],[fname],[frmt],[string(N),string(swap)]];
@@ -31,7 +31,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 ipar=model.ipar;
 dstate=model.dstate;
-lunit=dstate(2);
+lunit=dstate[2-1];
 fname=exprs[2-1];
 frmt=exprs[3-1];
 while (true) {
@@ -50,14 +50,14 @@ ok=false;
 } else if (alreadyran&&fname1!=fname) {
 block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running"),gettext("Input Format")),gettext("End current simulation first."));
 ok=false;
-} else if (alreadyran&&N!=ipar(5)) {
+} else if (alreadyran&&N!=ipar[5-1]) {
 block_parameter_error(msprintf(gettext("You cannot modify \'Buffer Size\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
 ok=false;
 } else if (fname1=="") {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Output File Name")),gettext("You must provide a filename."));
 } else if (fileparts(fname1)!="") {
 [pa,fn,ex]=fileparts(fname1);
-if (!isdir(pa)) {
+if (!isdir[pa-1]) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Output File Name")),msprintf(gettext("Directory \'%s\' does not exist"),pa));
 ok=false;
 }
@@ -73,8 +73,8 @@ ok=false;
 }
 frmt1=part(frmt1,1,3);
 if (ok) {
-ipar=[[length(fname1)],[_str2code(frmt1)],[N],[swap],[_str2code(fname1)]];
-if (prod(size(dstate))!=(nin+1)*N+2) {
+ipar=[[length(fname1)],[_str2code[frmt1-1]],[N],[swap],[_str2code[fname1-1]]];
+if (prod[size(dstate)-1]!=(nin+1)*N+2) {
 dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
 }
 model.in1=nin;

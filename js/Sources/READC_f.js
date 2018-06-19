@@ -13,14 +13,14 @@ offset=1;
 outmask=1;
 ievt=0;
 nout=size(outmask,"*");
-ipar=[[length(fname)],[_str2code(frmt)],[ievt],[N],[M],[swap],[offset],[_str2code(fname)],[tmask],[outmask]];
+ipar=[[length(fname)],[_str2code[frmt-1]],[ievt],[N],[M],[swap],[offset],[_str2code[fname-1]],[tmask],[outmask]];
 model=scicos_model();
 model.sim=list("readc",2);
 model.out=nout;
 model.evtin=1;
 model.evtout=[];
 model.dstate=[[1],[1],[lunit],[zeros(N*M,1)]];
-model.ipar=[[length(fname)],[_str2code(frmt)],[ievt],[N],[M],[swap],[offset],[_str2code(fname)],[tmask],[outmask]];
+model.ipar=[[length(fname)],[_str2code[frmt-1]],[ievt],[N],[M],[swap],[offset],[_str2code[fname-1]],[tmask],[outmask]];
 model.blocktype="d";
 model.firing=-1;
 model.dep_ut=[false,false];
@@ -40,9 +40,9 @@ exprs=graphics.exprs;
 out=model.out;
 dstate=model.dstate;
 ipar=model.ipar;
-imask=9+ipar(1);
-tmask=ipar(imask);
-lunit=dstate(3);
+imask=9+ipar[1-1];
+tmask=ipar[imask-1];
+lunit=dstate[3-1];
 fname=exprs[3-1];
 frmt=exprs[4-1];
 while (true) {
@@ -54,13 +54,13 @@ fname1=pathconvert(stripblanks(fname1),false,true);
 frmt1=stripblanks(frmt1);
 fmts=["s","l","d","f","c","us","ul","uc","ull","uls","ubl","ubs","dl","fl","ll","sl","db","fb","lb","sb"];
 nout=size(outmask,"*");
-if (prod(size(tmask1))>1) {
+if (prod[size(tmask1)-1]>1) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Time Record Selection")),gettext("Must be a scalar or an empty matrix."));
 } else if (and(frmt1!=fmts)) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Input Format"),frmt1),gettext("Valid formats are: "+strcat(fmts,", ")));
 } else if (alreadyran&&fname1!=fname) {
 block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running"),gettext("Input File Name")),gettext("End current simulation first."));
-} else if (N!=ipar(6)&&alreadyran) {
+} else if (N!=ipar[6-1]&&alreadyran) {
 block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
 } else if (alreadyran&&size(tmask1)!=size(tmask)) {
 block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Time Record Selection")),gettext("End current simulation first."));
@@ -100,8 +100,8 @@ model.firing=-1;
 } else {
 model.firing=0;
 }
-ipar=[[length(fname1)],[_str2code(frmt1)],[ievt],[N],[M],[swap],[offset],[_str2code(fname1)],[tmask1],[outmask.slice()]];
-if (prod(size(dstate))!=(N*M)+3) {
+ipar=[[length(fname1)],[_str2code[frmt1-1]],[ievt],[N],[M],[swap],[offset],[_str2code[fname1-1]],[tmask1],[outmask.slice()]];
+if (prod[size(dstate)-1]!=(N*M)+3) {
 dstate=[[-1],[-1],[lunit],[zeros(N*M,1)]];
 }
 model.dstate=dstate;

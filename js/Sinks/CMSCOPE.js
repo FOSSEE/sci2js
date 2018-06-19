@@ -70,7 +70,7 @@ mess=[[mess],["Size of Refresh Period must equal size of Ymin/Ymax vector"],[" "
 ok=false;
 }
 for (i=1;i<=size(per,"*");i+=1) {
-if ((per(i)<=0)) {
+if ((per[i-1]<=0)) {
 mess=[[mess],["Refresh Period must be positive"],[" "]];
 ok=false;
 }

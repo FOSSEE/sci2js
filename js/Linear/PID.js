@@ -45,27 +45,27 @@ x=standard_define([2,2],model,[],gr_i);
     PID.prototype.set = function PID() {
 ppath=list(0,0,0);
 for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-o=arg1.model.rpar.objs(i);
+o=arg1.model.rpar.objs[i-1];
 if (typeof(o)=="Link") {
-from=arg1.model.rpar.objs(o.from(1));
-to=arg1.model.rpar.objs(o.to(1));
+from=arg1.model.rpar.objs[o.from[1-1]-1];
+to=arg1.model.rpar.objs[o.to[1-1]-1];
 if (from.gui=="GAINBLK") {
 switch (to.gui) {
 case "SUMMATION":
-ppath[1-1]=o.from(1);
+ppath[1-1]=o.from[1-1];
 case "INTEGRAL_m":
-ppath[2-1]=o.from(1);
+ppath[2-1]=o.from[1-1];
 case "DERIV":
-ppath[3-1]=o.from(1);
+ppath[3-1]=o.from[1-1];
 }
 } else if (to.gui=="GAINBLK") {
 switch (from.gui) {
 case "SUMMATION":
-ppath[1-1]=o.to(1);
+ppath[1-1]=o.to[1-1];
 case "INTEGRAL_m":
-ppath[2-1]=o.to(1);
+ppath[2-1]=o.to[1-1];
 case "DERIV":
-ppath[3-1]=o.to(1);
+ppath[3-1]=o.to[1-1];
 }
 }
 if (and(ppath!=list(0,0,0))) {
@@ -74,14 +74,14 @@ break;
 }
 }
 newpar=list();
-xx1=arg1.model.rpar.objs(ppath[1-1]);
-exprs[1-1]=xx1.graphics.exprs(1);
+xx1=arg1.model.rpar.objs[ppath[1-1]-1];
+exprs[1-1]=xx1.graphics.exprs[1-1];
 p_old=xx1.model.rpar;
-xx2=arg1.model.rpar.objs(ppath[2-1]);
-exprs[2-1]=xx2.graphics.exprs(1);
+xx2=arg1.model.rpar.objs[ppath[2-1]-1];
+exprs[2-1]=xx2.graphics.exprs[1-1];
 i_old=xx2.model.rpar;
-xx3=arg1.model.rpar.objs(ppath[3-1]);
-exprs[3-1]=xx3.graphics.exprs(1);
+xx3=arg1.model.rpar.objs[ppath[3-1]-1];
+exprs[3-1]=xx3.graphics.exprs[1-1];
 d_old=xx3.model.rpar;
 y=0;
 while (true) {
@@ -90,11 +90,11 @@ if (!ok) {
 break;
 }
 if (ok) {
-xx1.graphics.exprs=exprs0(1);
+xx1.graphics.exprs=exprs0[1-1];
 xx1.model.rpar=p;
-xx2.graphics.exprs=exprs0(2);
+xx2.graphics.exprs=exprs0[2-1];
 xx2.model.rpar=i;
-xx3.graphics.exprs=exprs0(3);
+xx3.graphics.exprs=exprs0[3-1];
 xx3.model.rpar=d;
 arg1.model.rpar.objs[ppath[1-1]-1]=xx1;
 arg1.model.rpar.objs[ppath[2-1]-1]=xx2;

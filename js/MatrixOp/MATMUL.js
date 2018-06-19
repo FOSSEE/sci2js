@@ -121,8 +121,8 @@ model.sim=list("matmul_ui8e",4);
 }
 }
 }
-kmin=TABMIN(dtype);
-kmax=TABMAX(dtype);
+kmin=TABMIN[dtype-1];
+kmax=TABMAX[dtype-1];
 it=dtype*ones(1,2);
 ot=dtype;
 if (rule==1) {

@@ -9,11 +9,11 @@ nd=1;
 in1=[1,1];
 model=scicos_model();
 model.sim=list("affich2",4);
-model.in1=in1(1,1);
-model.in2=in1(1,2);
+model.in1=in1[1-1][1-1];
+model.in2=in1[1-1][2-1];
 model.evtin=1;
-model.dstate=[[-1],[0],[0],[1],[1],[0],[zeros(in1(1,1)*in1(1,2),1)]];
-model.ipar=[[font],[fontsize],[colr],[1000],[nt],[nd],[in1(1,1)]];
+model.dstate=[[-1],[0],[0],[1],[1],[0],[zeros(in1[1-1][1-1]*in1[1-1][2-1],1)]];
+model.ipar=[[font],[fontsize],[colr],[1000],[nt],[nd],[in1[1-1][1-1]]];
 model.blocktype="c";
 model.firing=[];
 model.dep_ut=[true,false];
@@ -67,8 +67,8 @@ if (ok) {
 [model,graphics,ok]=set_io(model,graphics,list(in1,1),list(),ones(1-herit,1),[]);
 }
 if (ok) {
-model.ipar=[[font],[fontsize],[colr],[nt],[nd],[in1(1,1)]];
-model.dstate=[[-1],[0],[0],[1],[1],[0],[zeros(in1(1,1)*in1(1,2),1)]];
+model.ipar=[[font],[fontsize],[colr],[nt],[nd],[in1[1-1][1-1]]];
+model.dstate=[[-1],[0],[0],[1],[1],[0],[zeros(in1[1-1][1-1]*in1[1-1][2-1],1)]];
 model.evtin=ones(1-herit,1);
 graphics.exprs=exprs;
 x.graphics=graphics;

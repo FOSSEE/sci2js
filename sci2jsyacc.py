@@ -33,7 +33,8 @@ JOB_BLOCKS = {}
 # define functionblock
 
 def p_functionblock_function_statementblock_endfunction(p):
-    'functionblock : EOL FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION EOL'
+    '''functionblock : EOL FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION EOL
+                     | EOL FUNCTION lterm ASSIGNMENT FUNCTIONCALL OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION EOL'''
     fname = str(p[5])
     indent = '    '
     p[0] = ('function %s() {\n' +
@@ -114,6 +115,10 @@ def p_statement_ifstatement_ifstatementblock_elseifstatementblock(p):
 def p_statement_ifstatement_ifstatementblock_elseifstatementblock_elsestatementblock(p):
     'statement : ifstatementblock elseifstatementblock elsestatementblock END EOL'
     p[0] = '%s%s%s}\n' % (p[1], p[2], p[3])
+
+def p_statement_trystatement_try_statementblock_catch_statementblock_end(p):
+    'statement : TRY EOL statementblock CATCH EOL statementblock END EOL'
+    p[0] = 'try {\n%s} catch (Exception e) {\n%s}\n' % (p[3], p[6])
 
 def p_statement_break(p):
     'statement : BREAK EOL'
@@ -316,8 +321,7 @@ def p_termarraylist_expression_colon_expression(p):
 # define list
 
 def p_list_list_expression(p):
-    '''list : list COMMA expression
-            | expression COMMA expression'''
+    'list : list COMMA expression'
     p[0] = '%s,%s' % (p[1], p[3])
 
 def p_list_list_var_expression(p):
@@ -327,6 +331,10 @@ def p_list_list_var_expression(p):
 def p_list_list_in_expression(p):
     'list : list COMMA IN ASSIGNMENT expression'
     p[0] = '%s,%s1=%s' % (p[1], p[3], p[5])
+
+def p_list_expression(p):
+    'list : expression'
+    p[0] = '%s' % (p[1])
 
 def p_list_var_expression(p):
     'list : VAR ASSIGNMENT expression'
@@ -420,19 +428,14 @@ def p_expression_term(p):
 
 # define function
 
-# C('function parameter')
-def p_function_function_parameter(p):
-    'function : ltermvar OPENBRACKET expression CLOSEBRACKET'
-    p[0] = '%s(%s)' % (p[1], p[3])
-
 # A(2,3)
 def p_function_function_parameters(p):
-    'function : ltermvar OPENBRACKET list CLOSEBRACKET'
+    'function : FUNCTIONCALL OPENBRACKET list CLOSEBRACKET'
     p[0] = '%s(%s)' % (p[1], p[3])
 
 # A()
 def p_function_function(p):
-    'function : ltermvar OPENBRACKET CLOSEBRACKET'
+    'function : FUNCTIONCALL OPENBRACKET CLOSEBRACKET'
     p[0] = '%s()' % (p[1])
 
 # end define function
@@ -440,29 +443,26 @@ def p_function_function(p):
 # define lterm
 
 # B(2:$-1)
-def p_lterm_ltermfunc_slice(p):
+def p_lterm_ltermvar_slice(p):
     'lterm : ltermvar OPENBRACKET expression COLON expression CLOSEBRACKET'
-    addtoarray(p[1])
     p[0] = '%s.slice(%s-1,%s)' % (p[1], p[3], p[5])
 
 # B(2)
-def p_lterm_ltermfunc_index(p):
+def p_lterm_ltermvar_index(p):
     'lterm : ltermvar OPENBRACKET expression CLOSEBRACKET'
-    addtoarray(p[1])
     p[0] = '%s[%s-1]' % (p[1], p[3])
 
 # B(2:$-1,1:n)
-def p_lterm_ltermfunc_slice_slice(p):
+def p_lterm_ltermvar_slice_slice(p):
     'lterm : ltermvar OPENBRACKET expression COLON expression COMMA expression COLON expression CLOSEBRACKET'
-    addtoarray(p[1])
     p[0] = '%s.slice(%s-1,%s).slice(%s-1,%s)' % (p[1], p[3], p[5], p[7], p[9])
 
+# B(2,3)
 # B($-2)(3)
-def p_lterm_ltermfunc_index_index(p):
-    'lterm : ltermvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'
-    addtoarray(p[1])
+def p_lterm_ltermvar_index_index(p):
+    '''lterm : ltermvar OPENBRACKET expression COMMA expression CLOSEBRACKET
+             | ltermvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'''
     base = '%s[%s-1]' % (p[1], p[3])
-    addtoarray(base)
     p[0] = '%s[%s-1]' % (base, p[5])
 
 # [A,B,C]
@@ -499,49 +499,51 @@ def p_ltermvar_in(p):
 # B(2:$-1)
 def p_term_slice(p):
     'term : termvar OPENBRACKET expression COLON expression CLOSEBRACKET'
-    addtoarray(p[1])
     p[0] = '%s.slice(%s-1,%s)' % (p[1], p[3], p[5])
 
 # B(2:$-1,1)
 def p_term_slice_expression(p):
     'term : termvar OPENBRACKET expression COLON expression COMMA expression CLOSEBRACKET'
-    addtoarray(p[1])
     p[0] = '%s.slice(%s-1,%s)[%s-1]' % (p[1], p[3], p[5], p[7])
 
 # B(:$-1)
 def p_term_left_slice(p):
     'term : termvar OPENBRACKET COLON expression CLOSEBRACKET'
-    addtoarray(p[1])
     p[0] = '%s.slice(%s-1)' % (p[1], p[3])
 
 # B(2:)
 def p_term_right_slice(p):
     'term : termvar OPENBRACKET expression COLON CLOSEBRACKET'
-    addtoarray(p[1])
     p[0] = '%s.slice(%s-1,%s)' % (p[1], '1', p[4])
 
 # B(:)
 def p_term_full_slice(p):
     'term : termvar OPENBRACKET COLON CLOSEBRACKET'
-    addtoarray(p[1])
     p[0] = '%s.slice()' % (p[1])
 
 # B(:,1)
 def p_term_full_slice_expression(p):
     'term : termvar OPENBRACKET COLON COMMA expression CLOSEBRACKET'
-    addtoarray(p[1])
     p[0] = '%s.slice()[%s-1]' % (p[1], p[5])
 
 # B(1,:)
 def p_term_expression_full_slice(p):
-    '''term : termvar OPENBRACKET expression COMMA COLON CLOSEBRACKET'''
-    addtoarray(p[1])
-    p[0] = '%s[%s-1].slice()' % (p[1], p[3])
+    '''term : termvar OPENBRACKET expression COMMA COLON CLOSEBRACKET
+            | termvar OPENBRACKET expression CLOSEOPENBRACKET COLON CLOSEBRACKET'''
+    base = '%s[%s-1]' % (p[1], p[3])
+    p[0] = '%s.slice()' % (base)
+
+# B(1,1)
+# B($-2)(1)
+def p_term_expression_expression(p):
+    '''term : termvar OPENBRACKET expression COMMA expression CLOSEBRACKET
+            | termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'''
+    base = '%s[%s-1]' % (p[1], p[3])
+    p[0] = '%s[%s-1]' % (base, p[5])
 
 # B(:,:)
 def p_term_full_slice_full_slice(p):
     'term : termvar OPENBRACKET COLON COMMA COLON CLOSEBRACKET'
-    addtoarray(p[1])
     p[0] = '%s.slice().slice()' % (p[1])
 
 # (1:10)
@@ -551,63 +553,22 @@ def p_term_range(p):
 
 # B($-2)
 # C('function parameter')
-def p_term_termfunc_parameter(p):
+def p_term_termvar_parameter(p):
     'term : termvar OPENBRACKET expression CLOSEBRACKET'
-    if isarray(p[1]):
-        p[0] = '%s[%s-1]' % (p[1], p[3])
-    else:
-        p[0] = '%s(%s)' % (p[1], p[3])
-
-# B($-2)('function parameter')
-def p_term_termfunc_parameter_parameter(p):
-    'term : termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'
-    if isarray(p[1]):
-        base = '%s[%s-1]' % (p[1], p[3])
-    else:
-        base = '%s(%s)' % (p[1], p[3])
-    if isarray(base):
-        p[0] = '%s[%s-1]' % (base, p[5])
-    else:
-        p[0] = '%s(%s)' % (base, p[5])
-
-# B($-2)(:)
-def p_term_termfunc_parameter_slice(p):
-    'term : termvar OPENBRACKET expression CLOSEOPENBRACKET COLON CLOSEBRACKET'
-    if isarray(p[1]):
-        base = '%s[%s-1]' % (p[1], p[3])
-    else:
-        base = '%s(%s)' % (p[1], p[3])
-    addtoarray(base)
-    p[0] = '%s.slice()' % (base)
+    p[0] = '%s[%s-1]' % (p[1], p[3])
 
 # B($-2)('function parameter')(3)
-def p_term_termfunc_parameter_parameter_parameter(p):
+def p_term_termvar_parameter_parameter_parameter(p):
     'term : termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'
-    if isarray(p[1]):
-        base = '%s[%s-1]' % (p[1], p[3])
-    else:
-        base = '%s(%s)' % (p[1], p[3])
-    if isarray(base):
-        base = '%s[%s-1]' % (base, p[5])
-    else:
-        base = '%s(%s)' % (base, p[5])
-    if isarray(base):
-        p[0] = '%s[%s-1]' % (base, p[7])
-    else:
-        p[0] = '%s(%s)' % (base, p[7])
+    base = '%s[%s-1]' % (p[1], p[3])
+    base = '%s[%s-1]' % (base, p[5])
+    p[0] = '%s[%s-1]' % (base, p[7])
 
 # B($-2)('function parameter')(3:4)
-def p_term_termfunc_parameter_parameter_slice(p):
+def p_term_termvar_parameter_parameter_slice(p):
     'term : termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET'
-    if isarray(p[1]):
-        base = '%s[%s-1]' % (p[1], p[3])
-    else:
-        base = '%s(%s)' % (p[1], p[3])
-    if isarray(base):
-        base = '%s[%s-1]' % (base, p[5])
-    else:
-        base = '%s(%s)' % (base, p[5])
-    addtoarray(base)
+    base = '%s[%s-1]' % (p[1], p[3])
+    base = '%s[%s-1]' % (base, p[5])
     p[0] = '%s.slice(%s-1,%s)' % (base, p[7], p[9])
 
 # part(x,1:10)
@@ -620,9 +581,19 @@ def p_term_part_parameter_parameter(p):
     'term : PART OPENBRACKET expression COMMA expression CLOSEBRACKET'
     p[0] = '%s(%s,%s)' % (p[1], p[3], p[5])
 
+# string(1:10)
+def p_term_string_range(p):
+    'term : STRING OPENBRACKET expression COLON expression CLOSEBRACKET'
+    p[0] = '%s(%s,%s)' % (p[1], p[3], p[5])
+
+# string(x)
+def p_term_string_parameter(p):
+    'term : STRING OPENBRACKET expression CLOSEBRACKET'
+    p[0] = '%s(%s)' % (p[1], p[3])
+
 # A(2,3)
 def p_term_function_parameters(p):
-    'term : termvar OPENBRACKET list CLOSEBRACKET'
+    'term : FUNCTIONCALL OPENBRACKET list CLOSEBRACKET'
     p[0] = '%s(%s)' % (p[1], p[3])
 
 # scicos_getvalue(2,3)
@@ -632,7 +603,7 @@ def p_term_scicos_getvalue_parameters(p):
 
 # A()
 def p_term_function(p):
-    'term : termvar OPENBRACKET CLOSEBRACKET'
+    'term : FUNCTIONCALL OPENBRACKET CLOSEBRACKET'
     p[0] = '%s()' % (p[1])
 
 # $
@@ -728,27 +699,12 @@ def p_term_string(p):
 def p_error(p):
     print("Syntax error in input", p)
 
-ARRAY_LIST = set()
-
-def addtoarray(name):
-    ARRAY_LIST.add(name)
-
-def isarray(name):
-    return name in ARRAY_LIST
-
-FUNCTION_LIST = set()
-
-def isfunction(name):
-    return name in FUNCTION_LIST
-
 def processfile(filename):
     '''convert a sci file to a js file'''
     data = ''
     with open(filename, 'r') as infile:
         for line in infile:
             data += line
-
-        addtoarray('exprs')
 
         parser = yacc.yacc()
         result = parser.parse(data, debug=True)

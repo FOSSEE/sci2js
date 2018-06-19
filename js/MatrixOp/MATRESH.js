@@ -52,15 +52,15 @@ message("input must have at least one element");
 ok=false;
 }
 if (ok) {
-if (((out(1)>(l1(1)*l1(2))))) {
+if (((out[1-1]>(l1[1-1]*l1[2-1])))) {
 message("the first dimension of the output is too big");
 ok=false;
 }
-if (((out(2)>(l1(1)*l1(2))))) {
+if (((out[2-1]>(l1[1-1]*l1[2-1])))) {
 message("the second dimension of the output is too big");
 ok=false;
 }
-if ((((out(2)*out(1))>(l1(1)*l1(2))))) {
+if ((((out[2-1]*out[1-1])>(l1[1-1]*l1[2-1])))) {
 message("the dimensions of the output are too big");
 ok=false;
 }

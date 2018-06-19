@@ -32,7 +32,7 @@ while (true) {
 if (!ok) {
 break;
 }
-if (isreal(x0)) {
+if (isreal[x0-1]) {
 Datatype=1;
 } else {
 Datatype=2;
