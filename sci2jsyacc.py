@@ -558,6 +558,16 @@ def p_term_termfunc_parameter_parameter(p):
     else:
         p[0] = '%s(%s)' % (base, p[5])
 
+# B($-2)(:)
+def p_term_termfunc_parameter_slice(p):
+    'term : termvar OPENBRACKET expression CLOSEOPENBRACKET COLON CLOSEBRACKET'
+    if isarray(p[1]):
+        base = '%s[%s-1]' % (p[1], p[3])
+    else:
+        base = '%s(%s)' % (p[1], p[3])
+    addtoarray(base)
+    p[0] = '%s.slice()' % (base)
+
 # B($-2)('function parameter')(3)
 def p_term_termfunc_parameter_parameter_parameter(p):
     'term : termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'
