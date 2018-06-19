@@ -547,7 +547,7 @@ def p_term_parameter(p):
         p[0] = '%s(%s)' % (p[1], p[3])
 
 # B($-2)('function parameter')
-def p_term_termfunc_parameter(p):
+def p_term_termfunc_parameter_parameter(p):
     'term : termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'
     if isarray(p[1]):
         base = '%s[%s-1]' % (p[1], p[3])
@@ -559,7 +559,7 @@ def p_term_termfunc_parameter(p):
         p[0] = '%s(%s)' % (base, p[5])
 
 # B($-2)('function parameter')(3)
-def p_term_termfunc_parameter_parameter(p):
+def p_term_termfunc_parameter_parameter_parameter(p):
     'term : termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'
     if isarray(p[1]):
         base = '%s[%s-1]' % (p[1], p[3])
@@ -573,6 +573,20 @@ def p_term_termfunc_parameter_parameter(p):
         p[0] = '%s[%s-1]' % (base, p[7])
     else:
         p[0] = '%s(%s)' % (base, p[7])
+
+# B($-2)('function parameter')(3:4)
+def p_term_termfunc_parameter_parameter_slice(p):
+    'term : termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET'
+    if isarray(p[1]):
+        base = '%s[%s-1]' % (p[1], p[3])
+    else:
+        base = '%s(%s)' % (p[1], p[3])
+    if isarray(base):
+        base = '%s[%s-1]' % (base, p[5])
+    else:
+        base = '%s(%s)' % (base, p[5])
+    addtoarray(base)
+    p[0] = '%s.slice(%s-1,%s)' % (base, p[7], p[9])
 
 # part(x,1:10)
 def p_term_part_parameter_range(p):
