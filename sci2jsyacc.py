@@ -10,6 +10,7 @@ Example: ./sci2jsyacc.py macros/Sinks/CSCOPE.sci > js/Sinks/CSCOPE.js
 
 from __future__ import print_function
 
+import re
 import sys
 import ply.yacc as yacc
 
@@ -538,8 +539,8 @@ def p_term_range(p):
 
 # B($-2)
 # C('function parameter')
-def p_term_index(p):
-    'termfunc : termvar OPENBRACKET expression CLOSEBRACKET'
+def p_term_parameter(p):
+    'term : termvar OPENBRACKET expression CLOSEBRACKET'
     if isarray(p[1]):
         p[0] = '%s[%s-1]' % (p[1], p[3])
     else:
@@ -572,10 +573,6 @@ def p_term_termfunc_parameter_parameter(p):
         p[0] = '%s[%s-1]' % (base, p[7])
     else:
         p[0] = '%s(%s)' % (base, p[7])
-
-def p_term_termfunc(p):
-    'term : termfunc'
-    p[0] = p[1]
 
 # part(x,1:10)
 def p_term_part_parameter_range(p):
@@ -681,12 +678,19 @@ def p_termvar_in(p):
     'termvar : IN'
     p[0] = '%s1' % (p[1])
 
+# 5
 # 3.4
+# 4e5
+# 1.0d-4
+def p_term_number(p):
+    'term : NUMBER'
+    number = re.sub(r'[de]', r'e', p[1], flags=re.IGNORECASE)
+    p[0] = '%s' % (number)
+
 # 'abc'
 # "abc"
-def p_term_constant(p):
-    '''term : NUMBER
-            | QSTRING
+def p_term_string(p):
+    '''term : QSTRING
             | DQSTRING'''
     p[0] = '%s' % (p[1])
 

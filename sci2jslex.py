@@ -11,13 +11,12 @@ Example: ./sci2jslex.py macros/Sinks/CSCOPE.sci > js/Sinks/CSCOPE.lex
 
 from __future__ import print_function
 
-import ply.lex as lex
-import re
 import sys
+import ply.lex as lex
 
 ''' keep track of how many open brackets have been encountered so far '''
-brackets = 0
-sqbrackets = 0
+BRACKET_STACK = [' ']
+LAST_BRACKET = BRACKET_STACK[-1]
 
 ''' keep current string in memory '''
 qstring = ''
@@ -99,41 +98,44 @@ states = (
 
 def t_COMMA(t):
     r'[ \t]*,([ \t]*(//.*)?\n?)*'
-    global afterarray, brackets
+    global afterarray
     afterarray = False
-    if brackets != 0:
+    if LAST_BRACKET != ' ':
         return t
     t.type = 'EOL'
     return t
 
 def t_SEMICOLON(t):
     r'[ \t]*;([ \t]*(//.*)?\n?)*'
-    global afterarray, brackets
+    global afterarray
     afterarray = False
-    if brackets != 0:
+    if LAST_BRACKET != ' ':
         return t
     t.type = 'EOL'
     return t
 
 def t_CLOSESQBRACKET(t):
     r'([ \t]*\.\.+[ \t]*\n)?[ \t]*\]'
-    global afterarray, brackets, sqbrackets
+    global afterarray, LAST_BRACKET
     afterarray = True
-    brackets -= 1
-    sqbrackets -= 1
+    if BRACKET_STACK.pop() != '[':
+        print("Syntax error: Mismatched ]")
+    LAST_BRACKET = BRACKET_STACK[-1]
     return t
 
 def t_CLOSEOPENBRACKET(t):
     r'[ \t]*\)\(([ \t]*(//.*)?\n?)*'
-    global afterarray, brackets
+    global afterarray
     afterarray = True
     return t
 
 def t_CLOSEBRACKET(t):
     r'([ \t]*\.\.+[ \t]*\n)?[ \t]*\)'
-    global afterarray, brackets
+    global afterarray, LAST_BRACKET
     afterarray = True
-    brackets -= 1
+    if BRACKET_STACK.pop() != '(':
+        print("Syntax error: Mismatched )")
+    LAST_BRACKET = BRACKET_STACK[-1]
     return t
 
 def t_COMMENT(t):
@@ -144,7 +146,6 @@ def t_NUMBER(t):
     r'(\d+(\.\d*)?|\.\d+)([dDeE][+-]?\d+)?'
     global afterarray
     afterarray = False
-    t.value = re.sub(r'[de]', r'e', t.value, flags=re.IGNORECASE)
     return t
 
 def t_PREVAR(t):
@@ -175,11 +176,11 @@ def t_LASTINDEX(t):
 
 def t_EOL(t):
     r'[ \t]*\n([ \t]*(//.*)?\n?)*'
-    global afterarray, brackets
-    if brackets == 0:
+    global afterarray
+    if LAST_BRACKET == ' ':
         afterarray = False
         return t
-    if sqbrackets != 0:
+    if LAST_BRACKET == '[':
         t.type = 'SPACE'
         return t
 
@@ -203,17 +204,18 @@ def t_ADDITION(t):
 
 def t_OPENSQBRACKET(t):
     r'\[([ \t]*(//.*)?\n?)*'
-    global afterarray, brackets, sqbrackets
+    global afterarray, LAST_BRACKET
     afterarray = False
-    brackets += 1
-    sqbrackets += 1
+    LAST_BRACKET = '['
+    BRACKET_STACK.append(LAST_BRACKET)
     return t
 
 def t_OPENBRACKET(t):
     r'\(([ \t]*(//.*)?\n?)*'
-    global afterarray, brackets
+    global afterarray, LAST_BRACKET
     afterarray = False
-    brackets += 1
+    LAST_BRACKET = '('
+    BRACKET_STACK.append(LAST_BRACKET)
     return t
 
 def t_NOT(t):
@@ -242,12 +244,11 @@ def t_COLON(t):
 
 def t_SPACE(t):
     r'[ \t]+'
-    global sqbrackets
-    if sqbrackets != 0:
+    if LAST_BRACKET == '[':
         return t
 
 def t_error(t):
-    print("Illegal character '", t.value[0], "'", sep='')
+    print("Syntax error: Illegal character '", t.value[0], "'", sep='')
     t.lexer.skip(1)
 
 def t_TRANSPOSE(t):
@@ -313,11 +314,11 @@ def t_dqstring_end(t):
     return t
 
 def t_qstring_error(t):
-    print("Illegal character '", t.value[0], "' in qstring", sep='')
+    print("Syntax error: Illegal character '", t.value[0], "' in qstring", sep='')
     t.lexer.skip(1)
 
 def t_dqstring_error(t):
-    print("Illegal character '", t.value[0], "' in dqstring", sep='')
+    print("Syntax error: Illegal character '", t.value[0], "' in dqstring", sep='')
     t.lexer.skip(1)
 
 lexer = lex.lex()
