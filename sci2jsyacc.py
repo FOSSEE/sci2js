@@ -121,6 +121,10 @@ def p_statement_eol(p):
     'statement : EOL'
     p[0] = '\n'
 
+def p_statement_clearvar(p):
+    'statement : clearvar EOL'
+    p[0] = '%s' % (p[1])
+
 # end define statement
 
 # define for, case, while, if, elseif, else statement block
@@ -166,6 +170,14 @@ def p_elseifstatementblock_elseifstatement(p):
 def p_elsestatementblock_elsestatement(p):
     'elsestatementblock : elsestatement statementblock'
     p[0] = '%s%s' % (p[1], p[2])
+
+def p_clearvar_clear_var(p):
+    'clearvar : CLEAR VAR'
+    p[0] = '%s={};\n' % (p[2])
+
+def p_clearvar_clearvar_var(p):
+    'clearvar : clearvar VAR'
+    p[0] = '%s%s={};\n' % (p[1], p[2])
 
 # end define for, case, if, elseif, else statement block
 
