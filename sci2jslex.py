@@ -16,7 +16,6 @@ import ply.lex as lex
 
 ''' keep track of how many open brackets have been encountered so far '''
 BRACKET_STACK = [' ']
-LAST_BRACKET = BRACKET_STACK[-1]
 
 ''' keep current string in memory '''
 qstring = ''
@@ -64,7 +63,40 @@ predefinedvariables = {
     't': 'PREVAR_BOOLEAN',
 }
 
+functioncalls = {
+        'ANDLOG_f',
+        'CLKIN_f',
+        'CLKOUT_f',
+        'CLKSOM_f',
+        'CLKSPLIT_f',
+        'IFTHEL_f',
+        'MFCLCK_f',
+        'check_io',
+        'eval',
+        'execstr',
+        'int',
+        'length',
+        'list',
+        'message',
+        'min',
+        'modelica',
+        'ones',
+        'or',
+        'sci2exp',
+        'set_io',
+        'size',
+        'standard_define',
+        'string',
+        'sum',
+        'typeof',
+}
+
+objects = {
+        'arg1',
+}
+
 tokens = [
+    'ADDITION',
     'ASSIGNMENT',
     'CLOSEBRACKET',
     'CLOSEOPENBRACKET',
@@ -74,19 +106,19 @@ tokens = [
     'COMPARISON',
     'DOT',
     'DQSTRING',
-    'SPACE',
     'EOL',
+    'FUNCTIONCALL',
     'LASTINDEX',
     'LOGICAL',
+    'MULTIPLICATION',
     'NOT',
     'NUMBER',
     'OPENBRACKET',
     'OPENSQBRACKET',
-    'MULTIPLICATION',
-    'ADDITION',
     'PREVAR',
     'QSTRING',
     'SEMICOLON',
+    'SPACE',
     'TRANSPOSE',
     'VAR',
 ] + list(syntaxtokens.values()) + list(set(predefinedvariables.values()))
@@ -100,7 +132,7 @@ def t_COMMA(t):
     r'[ \t]*,([ \t]*(//.*)?\n?)*'
     global afterarray
     afterarray = False
-    if LAST_BRACKET != ' ':
+    if BRACKET_STACK[-1] != ' ':
         return t
     t.type = 'EOL'
     return t
@@ -109,18 +141,17 @@ def t_SEMICOLON(t):
     r'[ \t]*;([ \t]*(//.*)?\n?)*'
     global afterarray
     afterarray = False
-    if LAST_BRACKET != ' ':
+    if BRACKET_STACK[-1] != ' ':
         return t
     t.type = 'EOL'
     return t
 
 def t_CLOSESQBRACKET(t):
     r'([ \t]*\.\.+[ \t]*\n)?[ \t]*\]'
-    global afterarray, LAST_BRACKET
+    global afterarray
     afterarray = True
     if BRACKET_STACK.pop() != '[':
         print("Syntax error: Mismatched ]")
-    LAST_BRACKET = BRACKET_STACK[-1]
     return t
 
 def t_CLOSEOPENBRACKET(t):
@@ -131,11 +162,10 @@ def t_CLOSEOPENBRACKET(t):
 
 def t_CLOSEBRACKET(t):
     r'([ \t]*\.\.+[ \t]*\n)?[ \t]*\)'
-    global afterarray, LAST_BRACKET
+    global afterarray
     afterarray = True
     if BRACKET_STACK.pop() != '(':
         print("Syntax error: Mismatched )")
-    LAST_BRACKET = BRACKET_STACK[-1]
     return t
 
 def t_COMMENT(t):
@@ -177,10 +207,11 @@ def t_LASTINDEX(t):
 def t_EOL(t):
     r'[ \t]*\n([ \t]*(//.*)?\n?)*'
     global afterarray
-    if LAST_BRACKET == ' ':
+    lastbracket = BRACKET_STACK[-1]
+    if lastbracket == ' ':
         afterarray = False
         return t
-    if LAST_BRACKET == '[':
+    if lastbracket == '[':
         t.type = 'SPACE'
         return t
 
@@ -204,18 +235,16 @@ def t_ADDITION(t):
 
 def t_OPENSQBRACKET(t):
     r'\[([ \t]*(//.*)?\n?)*'
-    global afterarray, LAST_BRACKET
+    global afterarray
     afterarray = False
-    LAST_BRACKET = '['
-    BRACKET_STACK.append(LAST_BRACKET)
+    BRACKET_STACK.append('[')
     return t
 
 def t_OPENBRACKET(t):
     r'\(([ \t]*(//.*)?\n?)*'
-    global afterarray, LAST_BRACKET
+    global afterarray
     afterarray = False
-    LAST_BRACKET = '('
-    BRACKET_STACK.append(LAST_BRACKET)
+    BRACKET_STACK.append('(')
     return t
 
 def t_NOT(t):
@@ -244,7 +273,7 @@ def t_COLON(t):
 
 def t_SPACE(t):
     r'[ \t]+'
-    if LAST_BRACKET == '[':
+    if BRACKET_STACK[-1] == '[':
         return t
 
 def t_error(t):
