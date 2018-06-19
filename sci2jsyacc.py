@@ -442,16 +442,24 @@ def p_function_function(p):
 # define lterm
 
 # B(2:$-1)
-def p_lterm_slice(p):
+def p_lterm_ltermfunc_slice(p):
     'lterm : ltermvar OPENBRACKET expression COLON expression CLOSEBRACKET'
     addtoarray(p[1])
     p[0] = '%s.slice(%s-1,%s)' % (p[1], p[3], p[5])
 
 # B(2)
-def p_lterm_index(p):
+def p_lterm_ltermfunc_index(p):
     'lterm : ltermvar OPENBRACKET expression CLOSEBRACKET'
     addtoarray(p[1])
     p[0] = '%s[%s-1]' % (p[1], p[3])
+
+# B($-2)(3)
+def p_lterm_ltermfunc_index_index(p):
+    'lterm : ltermvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'
+    addtoarray(p[1])
+    base = '%s[%s-1]' % (p[1], p[3])
+    addtoarray(base)
+    p[0] = '%s[%s-1]' % (base, p[5])
 
 # [A,B,C]
 def p_lterm_ltermarraylist(p):
@@ -539,7 +547,7 @@ def p_term_range(p):
 
 # B($-2)
 # C('function parameter')
-def p_term_parameter(p):
+def p_term_termfunc_parameter(p):
     'term : termvar OPENBRACKET expression CLOSEBRACKET'
     if isarray(p[1]):
         p[0] = '%s[%s-1]' % (p[1], p[3])
