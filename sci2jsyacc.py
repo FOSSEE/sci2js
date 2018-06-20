@@ -134,20 +134,29 @@ def p_forstatementblock_forstatement(p):
     'forstatementblock : forstatement statementblock'
     p[0] = '%s%s' % (p[1], p[2])
 
-def p_casestatementblock_casestatementblock_casestatement(p):
+def p_casestatementblock_casestatementblock_casestatement_statementblock(p):
     'casestatementblock : casestatementblock casestatement statementblock'
     p[0] = '%s%s%s' % (p[1], p[2], p[3])
 
-def p_casestatementblock_casestatement(p):
+def p_casestatementblock_casestatementblock_casestatement(p):
+    'casestatementblock : casestatementblock casestatement'
+    p[0] = '%s%s%s' % (p[1], p[2], '')
+
+def p_casestatementblock_casestatement_statementblock(p):
     'casestatementblock : casestatement statementblock'
     p[0] = '%s%s' % (p[1], p[2])
 
-def p_casejobstatementblock_casejobstatementblock_casejobstatement(p):
+def p_casejobstatementblock_casejobstatementblock_casejobstatement_statementblock(p):
     'casejobstatementblock : casejobstatementblock casejobstatement statementblock'
     JOB_BLOCKS[p[2]] = p[3]
     p[0] = ''
 
-def p_casejobstatementblock_casejobstatement(p):
+def p_casejobstatementblock_casejobstatementblock_casejobstatement(p):
+    'casejobstatementblock : casejobstatementblock casejobstatement'
+    JOB_BLOCKS[p[2]] = ''
+    p[0] = ''
+
+def p_casejobstatementblock_casejobstatement_statementblock(p):
     'casejobstatementblock : casejobstatement statementblock'
     JOB_BLOCKS[p[1]] = p[2]
     p[0] = ''
