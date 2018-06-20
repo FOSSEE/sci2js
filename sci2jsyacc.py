@@ -450,6 +450,12 @@ def p_lterm_ltermfunc_index(p):
     addtoarray(p[1])
     p[0] = '%s[%s-1]' % (p[1], p[3])
 
+# B(2:$-1,1:n)
+def p_lterm_ltermfunc_slice_slice(p):
+    'lterm : ltermvar OPENBRACKET expression COLON expression COMMA expression COLON expression CLOSEBRACKET'
+    addtoarray(p[1])
+    p[0] = '%s.slice(%s-1,%s).slice(%s-1,%s)' % (p[1], p[3], p[5], p[7], p[9])
+
 # B($-2)(3)
 def p_lterm_ltermfunc_index_index(p):
     'lterm : ltermvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'
