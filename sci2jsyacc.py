@@ -268,24 +268,13 @@ def p_assignment_expression(p):
 
 # define ltermarraylist
 
-def p_ltermarraylist_ltermarraylist_comma_var(p):
-    '''ltermarraylist : ltermarraylist COMMA VAR
-                      | ltermarraylist SPACE VAR'''
+def p_ltermarraylist_ltermarraylist_comma_ltermvar(p):
+    'ltermarraylist : ltermarraylist COMMA ltermvar'''
     p[0] = '%s,%s' % (p[1], p[3])
 
-def p_ltermarraylist_ltermarraylist_comma_in(p):
-    '''ltermarraylist : ltermarraylist COMMA IN
-                      | ltermarraylist SPACE IN'''
-    p[0] = '%s,%s1' % (p[1], p[3])
-
-def p_ltermarraylist_var(p):
-    'ltermarraylist : VAR'
-    p[0] = p[1]
+def p_ltermarraylist_ltermvar(p):
+    'ltermarraylist : ltermvar'
     p[0] = '%s' % (p[1])
-
-def p_ltermarraylist_in(p):
-    'ltermarraylist : IN'
-    p[0] = '%s1' % (p[1])
 
 # end define ltermarraylist
 
