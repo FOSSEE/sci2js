@@ -39,16 +39,7 @@ syntaxtokens = {
     'part': 'PART',
     'resume': 'RESUME',
     'return': 'RETURN',
-    'scicos': 'SCICOS',
-    'scicos_block': 'SCICOS_BLOCK',
-    'scicos_context': 'SCICOS_CONTEXT',
-    'scicos_debug': 'SCICOS_DEBUG',
-    'scicos_diagram': 'SCICOS_DIAGRAM',
     'scicos_getvalue': 'SCICOS_GETVALUE',
-    'scicos_graphics': 'SCICOS_GRAPHICS',
-    'scicos_link': 'SCICOS_LINK',
-    'scicos_model': 'SCICOS_MODEL',
-    'scicos_params': 'SCICOS_PARAMS',
     'select': 'SELECT',
     'then': 'THEN',
     'where': 'WHERE',
@@ -83,6 +74,14 @@ functioncalls = {
         'ones',
         'or',
         'sci2exp',
+        'scicos',
+        'scicos_block',
+        'scicos_debug'
+        'scicos_diagram',
+        'scicos_graphics',
+        'scicos_link',
+        'scicos_model',
+        'scicos_params',
         'set_io',
         'size',
         'standard_define',
@@ -93,6 +92,7 @@ functioncalls = {
 
 objects = {
         'arg1',
+        'scicos_context',
 }
 
 tokens = [

@@ -423,8 +423,7 @@ def p_expression_term(p):
 
 # C('function parameter')
 def p_function_function_parameter(p):
-    '''function : ltermvar OPENBRACKET expression CLOSEBRACKET
-                | SCICOS_DEBUG OPENBRACKET expression CLOSEBRACKET'''
+    'function : ltermvar OPENBRACKET expression CLOSEBRACKET'
     p[0] = '%s(%s)' % (p[1], p[3])
 
 # A(2,3)
@@ -618,25 +617,17 @@ def p_term_part_parameter_parameter(p):
 
 # A(2,3)
 def p_term_function_parameters(p):
-    '''term : termvar OPENBRACKET list CLOSEBRACKET
-            | SCICOS_BLOCK OPENBRACKET list CLOSEBRACKET
-            | SCICOS_DIAGRAM OPENBRACKET list CLOSEBRACKET
-            | SCICOS_GETVALUE OPENBRACKET list CLOSEBRACKET
-            | SCICOS_GRAPHICS OPENBRACKET list CLOSEBRACKET
-            | SCICOS_LINK OPENBRACKET list CLOSEBRACKET
-            | SCICOS_MODEL OPENBRACKET list CLOSEBRACKET
-            | SCICOS_PARAMS OPENBRACKET list CLOSEBRACKET'''
+    'term : termvar OPENBRACKET list CLOSEBRACKET'
+    p[0] = '%s(%s)' % (p[1], p[3])
+
+# scicos_getvalue(2,3)
+def p_term_scicos_getvalue_parameters(p):
+    'term : SCICOS_GETVALUE OPENBRACKET list CLOSEBRACKET'
     p[0] = '%s(%s)' % (p[1], p[3])
 
 # A()
 def p_term_function(p):
-    '''term : termvar OPENBRACKET CLOSEBRACKET
-            | SCICOS_BLOCK OPENBRACKET CLOSEBRACKET
-            | SCICOS_DEBUG OPENBRACKET CLOSEBRACKET
-            | SCICOS_DIAGRAM OPENBRACKET CLOSEBRACKET
-            | SCICOS_GRAPHICS OPENBRACKET CLOSEBRACKET
-            | SCICOS_LINK OPENBRACKET CLOSEBRACKET
-            | SCICOS_MODEL OPENBRACKET CLOSEBRACKET'''
+    'term : termvar OPENBRACKET CLOSEBRACKET'
     p[0] = '%s()' % (p[1])
 
 # $
