@@ -47,10 +47,15 @@ syntaxtokens = {
 }
 
 predefinedvariables = {
+    'FF': 'PREVAR_SUBSTITUTE',
+    'GG': 'PREVAR_SUBSTITUTE',
     'f': 'PREVAR_BOOLEAN',
+    'foo': 'PREVAR_SUBSTITUTE',
     'e': 'PREVAR_FLOAT',
     'i': 'PREVAR_COMPLEX',
+    'jji': 'PREVAR_SUBSTITUTE',
     'pi': 'PREVAR_FLOAT',
+    'scicos_context': 'PREVAR_SUBSTITUTE',
     't': 'PREVAR_BOOLEAN',
 }
 
@@ -91,6 +96,7 @@ functioncalls = {
 }
 
 objects = {
+        'PREVAR_scicos_context',
         'arg1',
         'scicos_context',
 }
@@ -182,7 +188,11 @@ def t_PREVAR(t):
     r'%[a-zA-Z_][a-zA-Z0-9_]*'
     global afterarray
     afterarray = False
-    t.type = predefinedvariables.get(t.value[1:], 'PREVAR')
+    base = t.value[1:]
+    t.type = predefinedvariables.get(base, 'PREVAR')
+    if t.type == 'PREVAR_SUBSTITUTE':
+        t.type = 'VAR'
+        t.value = 'PREVAR_' + base
     return t
 
 def t_VAR(t):

@@ -71,9 +71,9 @@ while (!ok) {
 if (!ok) {
 return;
 }
-%scicos_context=scicos_context;
+PREVAR_scicos_context=scicos_context;
 sblock=x.model.rpar;
-[%scicos_context,ierr]=script2var(sblock.props.context,%scicos_context);
+[PREVAR_scicos_context,ierr]=script2var(sblock.props.context,PREVAR_scicos_context);
 if (ierr==0) {
 [sblock,%w,needcompile2,ok]=do_eval(sblock,list());
 if (ok) {

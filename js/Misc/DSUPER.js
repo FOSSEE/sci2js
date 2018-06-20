@@ -24,7 +24,7 @@ x=arg1;
 return;
 }
 context=[arg1.model.rpar.props.context];
-[%scicos_context,ierr]=script2var(context,%scicos_context);
+[PREVAR_scicos_context,ierr]=script2var(context,PREVAR_scicos_context);
 if (ierr!=0) {
 x=arg1;
 return;
@@ -34,11 +34,11 @@ for (i=2;i<=size(exprs0,1);i+=1) {
 tt=tt+",scicos_context."+exprs0(i);
 }
 ss=graphics.exprs(2)(3);
-scicos_context=%scicos_context;
+scicos_context=PREVAR_scicos_context;
 execstr("[ok,"+tt+",exprs]=scicos_getvalue(btitre,bitems,ss,exprs)");
 if (ok) {
 x=arg1;
-%scicos_context=scicos_context;
+PREVAR_scicos_context=scicos_context;
 sblock=x.model.rpar;
 [sblock,%w,needcompile2,ok]=do_eval(sblock,list(),scicos_context);
 y=max(2,needcompile,needcompile2);
