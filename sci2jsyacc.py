@@ -32,24 +32,26 @@ start = 'functionblocks'
 
 JOB_BLOCKS = {}
 
+LOCAL_VARS = set()
+GLOBAL_VARS = set()
+
 # define functionblocks
 
 def p_functionblocks_functionblocks_functionblock(p):
     'functionblocks : functionblocks functionblock'
     p[0] = '%s%s' % (p[1], p[2])
 
-def p_functionblocks_functionblock(p):
-    'functionblocks : EOL functionblock'
+def p_functionblocks_jobfunctionblock(p):
+    'functionblocks : EOL jobfunctionblock'
     p[0] = '%s' % (p[2])
 
 # end functionblocks
 
 # define functionblock
 
-def p_functionblock_function_job_statementblock_endfunction(p):
-    '''functionblock : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION EOL
-                     | FUNCTION lterm ASSIGNMENT FUNCTIONCALL OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION EOL'''
-    fname = p[4]
+def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
+    'jobfunctionblock : jobfunctionstatement statementblock ENDFUNCTION EOL'
+    fname = '%s' % (p[1])
     indent = '    '
     p[0] = ('function %s() {\n' +
             '%s%s.prototype.define = function %s() {\n%s%s}\n' +
@@ -63,9 +65,20 @@ def p_functionblock_function_job_statementblock_endfunction(p):
                     indent, fname, fname, (JOB_BLOCKS['"set"'] if '"set"' in JOB_BLOCKS else ''), indent,
                    )
 
-def p_functionblock_function_statementblock_endfunction(p):
-    '''functionblock : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET list CLOSEBRACKET EOL statementblock ENDFUNCTION EOL
-                     | FUNCTION lterm ASSIGNMENT FUNCTIONCALL OPENBRACKET list CLOSEBRACKET EOL statementblock ENDFUNCTION EOL'''
+def p_functionblock_functionstatement_statementblock_endfunction(p):
+    'functionblock : functionstatement statementblock ENDFUNCTION EOL'
+    p[0] = ''
+
+def p_jobfunctionstatement_function(p):
+    '''jobfunctionstatement : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL
+                            | FUNCTION lterm ASSIGNMENT FUNCTIONCALL OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL'''
+    for var in (p[6], p[8], p[10]):
+        LOCAL_VARS.add(var)
+    p[0] = '%s' % (p[4])
+
+def p_functionstatement_function(p):
+    '''functionstatement : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET list CLOSEBRACKET EOL
+                         | FUNCTION lterm ASSIGNMENT FUNCTIONCALL OPENBRACKET list CLOSEBRACKET EOL'''
     p[0] = ''
 
 # end define functionblock
@@ -90,6 +103,10 @@ def p_statement_assignment(p):
                  | function EOL
                  | RETURN EOL'''
     p[0] = '%s;\n' % (p[1])
+
+def p_statement_functionblock(p):
+    'statement : functionblock'
+    p[0] = ''
 
 def p_statement_resume(p):
     'statement : lterm ASSIGNMENT RESUME OPENBRACKET expression CLOSEBRACKET EOL'
@@ -231,6 +248,9 @@ def p_forstatement_for_start_step_end(p):
     else:
         endop = '>='
         stepop = '-='
+    if var not in GLOBAL_VARS:
+        if var not in LOCAL_VARS:
+            LOCAL_VARS.add(var)
     p[0] = 'for (%s=%s;%s%s%s;%s%s%s) {\n' % (var, lstart, var, endop, lend, var, stepop, lstep)
 
 def p_forstatement_for_start_end(p):
@@ -242,12 +262,18 @@ def p_forstatement_for_start_end(p):
     lend = p[6]
     endop = '<='
     stepop = '+='
+    if var not in GLOBAL_VARS:
+        if var not in LOCAL_VARS:
+            LOCAL_VARS.add(var)
     p[0] = 'for (%s=%s;%s%s%s;%s%s%s) {\n' % (var, lstart, var, endop, lend, var, stepop, lstep)
 
 def p_forstatement_for_list(p):
     '''forstatement : FOR VAR ASSIGNMENT VAR EOL
                     | FOR VAR ASSIGNMENT VAR DO EOL'''
     var = p[2]
+    if var not in GLOBAL_VARS:
+        if var not in LOCAL_VARS:
+            LOCAL_VARS.add(var)
     p[0] = 'for (%s in %s) {\n' % (var, p[4])
 
 def p_selectstatement_select(p):
@@ -502,14 +528,31 @@ def p_ltermvar_ltermvar_dot_in(p):
     p[0] = '%s.%s1' % (p[1], p[3])
 
 def p_ltermvar_var(p):
-    '''ltermvar : VAR
-                | PREVAR'''
-    p[0] = '%s' % (p[1])
+    'ltermvar : VAR'
+    var = p[1]
+    if var not in GLOBAL_VARS:
+        if var not in LOCAL_VARS:
+            LOCAL_VARS.add(var)
+    if var in GLOBAL_VARS:
+        p[0] = '%s' % (var)
+    else:
+        p[0] = '%s' % (var)
 
 # in
 def p_ltermvar_in(p):
     'ltermvar : IN'
-    p[0] = '%s1' % (p[1])
+    var = p[1] + '1'
+    if var not in GLOBAL_VARS:
+        if var not in LOCAL_VARS:
+            LOCAL_VARS.add(var)
+    if var in GLOBAL_VARS:
+        p[0] = '%s' % (var)
+    else:
+        p[0] = '%s' % (var)
+
+def p_ltermvar_prevar(p):
+    'ltermvar : PREVAR'
+    p[0] = '%s' % (p[1])
 
 # end define lterm
 
@@ -695,12 +738,26 @@ def p_termvar_termvar_dot_in(p):
 # A
 def p_termvar_var(p):
     'termvar : VAR'
-    p[0] = '%s' % (p[1])
+    var = p[1]
+    if var not in GLOBAL_VARS:
+        if var not in LOCAL_VARS:
+            GLOBAL_VARS.add(var)
+    if var in GLOBAL_VARS:
+        p[0] = '%s' % (var)
+    else:
+        p[0] = '%s' % (var)
 
 # in
 def p_termvar_in(p):
     'termvar : IN'
-    p[0] = '%s1' % (p[1])
+    var = p[1] + '1'
+    if var not in GLOBAL_VARS:
+        if var not in LOCAL_VARS:
+            GLOBAL_VARS.add(var)
+    if var in GLOBAL_VARS:
+        p[0] = '%s' % (var)
+    else:
+        p[0] = '%s' % (var)
 
 # 5
 # 3.4
