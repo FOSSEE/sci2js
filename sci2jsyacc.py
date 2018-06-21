@@ -17,25 +17,39 @@ import ply.yacc as yacc
 from sci2jslex import tokens
 
 precedence = (
+    ('left', 'COLON'),
     ('left', 'LOGICAL'),
-    ('left', 'COMPARISON'),
+    ('nonassoc', 'COMPARISON'),
     ('left', 'ADDITION'),
     ('left', 'MULTIPLICATION'),
     ('right', 'NOT'),
     ('right', 'UNARYADDITION'),
     ('right', 'TRANSPOSE'),
+    ('left', 'DOT'),
 )
 
-start = 'functionblock'
+start = 'functionblocks'
 
 JOB_BLOCKS = {}
 
+# define functionblocks
+
+def p_functionblocks_functionblocks_functionblock(p):
+    'functionblocks : functionblocks functionblock'
+    p[0] = '%s%s' % (p[1], p[2])
+
+def p_functionblocks_functionblock(p):
+    'functionblocks : EOL functionblock'
+    p[0] = '%s' % (p[2])
+
+# end functionblocks
+
 # define functionblock
 
-def p_functionblock_function_statementblock_endfunction(p):
-    '''functionblock : EOL FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION EOL
-                     | EOL FUNCTION lterm ASSIGNMENT FUNCTIONCALL OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION EOL'''
-    fname = str(p[5])
+def p_functionblock_function_job_statementblock_endfunction(p):
+    '''functionblock : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION EOL
+                     | FUNCTION lterm ASSIGNMENT FUNCTIONCALL OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL statementblock ENDFUNCTION EOL'''
+    fname = p[4]
     indent = '    '
     p[0] = ('function %s() {\n' +
             '%s%s.prototype.define = function %s() {\n%s%s}\n' +
@@ -48,6 +62,11 @@ def p_functionblock_function_statementblock_endfunction(p):
                     indent, fname, fname, (JOB_BLOCKS['"get"'] if '"get"' in JOB_BLOCKS else ''), indent,
                     indent, fname, fname, (JOB_BLOCKS['"set"'] if '"set"' in JOB_BLOCKS else ''), indent,
                    )
+
+def p_functionblock_function_statementblock_endfunction(p):
+    '''functionblock : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET list CLOSEBRACKET EOL statementblock ENDFUNCTION EOL
+                     | FUNCTION lterm ASSIGNMENT FUNCTIONCALL OPENBRACKET list CLOSEBRACKET EOL statementblock ENDFUNCTION EOL'''
+    p[0] = ''
 
 # end define functionblock
 
@@ -551,6 +570,11 @@ def p_term_range(p):
     'term : OPENBRACKET expression COLON expression CLOSEBRACKET'
     p[0] = '[%s:%s]' % (p[2], p[4])
 
+# 1:10:50
+def p_term_range_step(p):
+    'term : expression COLON expression COLON expression'
+    p[0] = '[%s:%s:%s]' % (p[1], p[3], p[5])
+
 # B($-2)
 # C('function parameter')
 def p_term_termvar_parameter(p):
@@ -630,18 +654,18 @@ def p_term_prevar_boolean(p):
 def p_term_prevar_complex1(p):
     'expression : expression ADDITION expression MULTIPLICATION PREVAR_COMPLEX'
     if p[2] == '-':
-        imag = str(p[2]) + str(p[3])
+        imag = '%s%s' % (p[2], p[3])
     else:
-        imag = str(p[3])
+        imag = '%s' % (p[3])
     p[0] = 'math.complex(%s,%s)' % (p[1], imag)
 
 # 1+2*%i
 def p_term_prevar_complex2(p):
     'expression : expression ADDITION PREVAR_COMPLEX MULTIPLICATION expression'
     if p[2] == '-':
-        imag = str(p[2]) + str(p[5])
+        imag = '%s%s' % (p[2], p[5])
     else:
-        imag = str(p[5])
+        imag = '%s' % (p[5])
     p[0] = 'math.complex(%s,%s)' % (p[1], imag)
 
 # %e %pi
