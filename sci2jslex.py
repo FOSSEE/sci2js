@@ -14,15 +14,10 @@ from __future__ import print_function
 import sys
 import ply.lex as lex
 
-''' keep track of how many open brackets have been encountered so far '''
+# keep track of how many open brackets have been encountered so far
 BRACKET_STACK = [' ']
 
-''' keep current string in memory '''
-qstring = ''
-dqstring = ''
-afterarray = False
-
-syntaxtokens = {
+SYNTAX_TOKENS = {
     'break': 'BREAK',
     'case': 'CASE',
     'clear': 'CLEAR',
@@ -46,7 +41,7 @@ syntaxtokens = {
     'while': 'WHILE',
 }
 
-predefinedvariables = {
+PREDEFINED_VARIABLES = {
     'FF': 'PREVAR_SUBSTITUTE',
     'GG': 'PREVAR_SUBSTITUTE',
     'f': 'PREVAR_BOOLEAN',
@@ -59,46 +54,46 @@ predefinedvariables = {
     't': 'PREVAR_BOOLEAN',
 }
 
-functioncalls = {
-        'ANDLOG_f',
-        'CLKIN_f',
-        'CLKOUT_f',
-        'CLKSOM_f',
-        'CLKSPLIT_f',
-        'IFTHEL_f',
-        'MFCLCK_f',
-        'check_io',
-        'eval',
-        'execstr',
-        'int',
-        'length',
-        'list',
-        'message',
-        'min',
-        'modelica',
-        'ones',
-        'or',
-        'sci2exp',
-        'scicos',
-        'scicos_block',
-        'scicos_debug'
-        'scicos_diagram',
-        'scicos_graphics',
-        'scicos_link',
-        'scicos_model',
-        'scicos_params',
-        'set_io',
-        'size',
-        'standard_define',
-        'string',
-        'sum',
-        'typeof',
+FUNCTION_CALLS = {
+    'ANDLOG_f',
+    'CLKIN_f',
+    'CLKOUT_f',
+    'CLKSOM_f',
+    'CLKSPLIT_f',
+    'IFTHEL_f',
+    'MFCLCK_f',
+    'check_io',
+    'eval',
+    'execstr',
+    'int',
+    'length',
+    'list',
+    'message',
+    'min',
+    'modelica',
+    'ones',
+    'or',
+    'sci2exp',
+    'scicos',
+    'scicos_block',
+    'scicos_debug'
+    'scicos_diagram',
+    'scicos_graphics',
+    'scicos_link',
+    'scicos_model',
+    'scicos_params',
+    'set_io',
+    'size',
+    'standard_define',
+    'string',
+    'sum',
+    'typeof',
 }
 
-objects = {
-        'PREVAR_scicos_context',
-        'arg1',
-        'scicos_context',
+OBJECTS = {
+    'PREVAR_scicos_context',
+    'arg1',
+    'scicos_context',
 }
 
 tokens = [
@@ -127,7 +122,7 @@ tokens = [
     'SPACE',
     'TRANSPOSE',
     'VAR',
-] + list(syntaxtokens.values()) + list(set(predefinedvariables.values()))
+] + list(SYNTAX_TOKENS.values()) + list(set(PREDEFINED_VARIABLES.values()))
 
 states = (
     ('qstring', 'exclusive'),
@@ -136,8 +131,7 @@ states = (
 
 def t_COMMA(t):
     r'[ \t]*,([ \t]*(//.*)?\n?)*'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     if BRACKET_STACK[-1] != ' ':
         return t
     t.type = 'EOL'
@@ -145,8 +139,7 @@ def t_COMMA(t):
 
 def t_SEMICOLON(t):
     r'[ \t]*;([ \t]*(//.*)?\n?)*'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     if BRACKET_STACK[-1] != ' ':
         return t
     t.type = 'EOL'
@@ -154,22 +147,19 @@ def t_SEMICOLON(t):
 
 def t_CLOSESQBRACKET(t):
     r'([ \t]*\.\.+[ \t]*\n)?[ \t]*\]'
-    global afterarray
-    afterarray = True
+    t.lexer.afterarray = True
     if BRACKET_STACK.pop() != '[':
         print("Syntax error: Mismatched ]")
     return t
 
 def t_CLOSEOPENBRACKET(t):
     r'[ \t]*\)\(([ \t]*(//.*)?\n?)*'
-    global afterarray
-    afterarray = True
+    t.lexer.afterarray = True
     return t
 
 def t_CLOSEBRACKET(t):
     r'([ \t]*\.\.+[ \t]*\n)?[ \t]*\)'
-    global afterarray
-    afterarray = True
+    t.lexer.afterarray = True
     if BRACKET_STACK.pop() != '(':
         print("Syntax error: Mismatched )")
     return t
@@ -180,16 +170,14 @@ def t_COMMENT(t):
 
 def t_NUMBER(t):
     r'(\d+(\.\d*)?|\.\d+)([dDeE][+-]?\d+)?'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     return t
 
 def t_PREVAR(t):
     r'%[a-zA-Z_][a-zA-Z0-9_]*'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     base = t.value[1:]
-    t.type = predefinedvariables.get(base, 'PREVAR')
+    t.type = PREDEFINED_VARIABLES.get(base, 'PREVAR')
     if t.type == 'PREVAR_SUBSTITUTE':
         t.type = 'VAR'
         t.value = 'PREVAR_' + base
@@ -197,29 +185,25 @@ def t_PREVAR(t):
 
 def t_VAR(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
-    global afterarray
-    afterarray = True
-    t.type = syntaxtokens.get(t.value, 'VAR')
+    t.lexer.afterarray = True
+    t.type = SYNTAX_TOKENS.get(t.value, 'VAR')
     return t
 
 def t_COMPARISON(t):
     r'<>|[<>~=]=|[<>]'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     return t
 
 def t_LASTINDEX(t):
     r'\$'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     return t
 
 def t_EOL(t):
     r'[ \t]*\n([ \t]*(//.*)?\n?)*'
-    global afterarray
     lastbracket = BRACKET_STACK[-1]
     if lastbracket == ' ':
-        afterarray = False
+        t.lexer.afterarray = False
         return t
     if lastbracket == '[':
         t.type = 'SPACE'
@@ -227,58 +211,49 @@ def t_EOL(t):
 
 def t_DOT(t):
     r'\.'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     return t
 
 def t_MULTIPLICATION(t):
     r'\*\*|[*/^\\]'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     return t
 
 def t_ADDITION(t):
     r'[+\-]'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     return t
 
 def t_OPENSQBRACKET(t):
     r'\[([ \t]*(//.*)?\n?)*'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     BRACKET_STACK.append('[')
     return t
 
 def t_OPENBRACKET(t):
     r'\(([ \t]*(//.*)?\n?)*'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     BRACKET_STACK.append('(')
     return t
 
 def t_NOT(t):
     r'~'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     return t
 
 def t_LOGICAL(t):
     r'[&|]'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     return t
 
 def t_ASSIGNMENT(t):
     r'='
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     return t
 
 def t_COLON(t):
     r':'
-    global afterarray
-    afterarray = False
+    t.lexer.afterarray = False
     return t
 
 def t_SPACE(t):
@@ -292,19 +267,17 @@ def t_error(t):
 
 def t_TRANSPOSE(t):
     r"'"
-    global afterarray, qstring
-    if afterarray:
-        afterarray = False
+    if t.lexer.afterarray:
+        t.lexer.afterarray = False
         return t
     t.lexer.push_state('qstring')
-    qstring = t.value
+    t.lexer.qstring = t.value
 
 def t_begin_dqstring(t):
     r'"'
-    global afterarray, dqstring
-    afterarray = False
+    t.lexer.afterarray = False
     t.lexer.push_state('dqstring')
-    dqstring = t.value
+    t.lexer.dqstring = t.value
 
 def t_qstring_COMMENT(t):
     r'\.\.+[ \t]*(//.*)?\n'
@@ -316,40 +289,34 @@ def t_dqstring_COMMENT(t):
 
 def t_qstring_char(t):
     r'\.|[^\'".]+'
-    global qstring
-    qstring += t.value
+    t.lexer.qstring += t.value
 
 def t_dqstring_char(t):
     r'\.|[^\'".]+'
-    global dqstring
-    dqstring += t.value
+    t.lexer.dqstring += t.value
 
 def t_qstring_quote(t):
     r'\'\'|""'
-    global qstring
-    qstring += '\\' + t.value[0]
+    t.lexer.qstring += '\\' + t.value[0]
 
 def t_dqstring_quote(t):
     r'\'\'|""'
-    global dqstring
-    dqstring += '\\' + t.value[0]
+    t.lexer.dqstring += '\\' + t.value[0]
 
 def t_qstring_end(t):
     r"'"
-    global qstring
     t.lexer.pop_state()
-    qstring += t.value
+    t.lexer.qstring += t.value
     t.type = 'QSTRING'
-    t.value = qstring
+    t.value = t.lexer.qstring
     return t
 
 def t_dqstring_end(t):
     r'"'
-    global dqstring
     t.lexer.pop_state()
-    dqstring += t.value
+    t.lexer.dqstring += t.value
     t.type = 'DQSTRING'
-    t.value = dqstring
+    t.value = t.lexer.dqstring
     return t
 
 def t_qstring_error(t):
@@ -360,14 +327,8 @@ def t_dqstring_error(t):
     print("Syntax error: Illegal character '", t.value[0], "' in dqstring", sep='')
     t.lexer.skip(1)
 
-lexer = lex.lex()
-
-if __name__ == '__main__':
-    if len(sys.argv) <= 1:
-        print('Usage:', sys.argv[0], 'filename')
-        sys.exit(1)
-
-    filename = sys.argv[1]
+def processfile(filename):
+    '''split a sci file into tokens'''
     data = ''
     with open(filename, 'r') as infile:
         for line in infile:
@@ -377,3 +338,16 @@ if __name__ == '__main__':
 
         for tok in lexer:
             print(tok)
+
+lexer = lex.lex()
+# keep current string in memory
+lexer.qstring = ''
+lexer.dqstring = ''
+lexer.afterarray = False
+
+if __name__ == '__main__':
+    if len(sys.argv) <= 1:
+        print('Usage:', sys.argv[0], 'filename')
+        sys.exit(1)
+
+    processfile(sys.argv[1])
