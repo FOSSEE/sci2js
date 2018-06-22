@@ -1,0 +1,13 @@
+c__builtin__
+set
+p0
+((lp1
+S'isdir'
+p2
+aS'_str2code'
+p3
+aS'alreadyran'
+p4
+atp5
+Rp6
+.

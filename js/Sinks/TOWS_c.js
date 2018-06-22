@@ -14,7 +14,7 @@ model.out=[];
 model.evtin=[1];
 model.evtout=[];
 model.rpar=[];
-model.ipar=[[nz],[length(varnam)],[transpose(ascii[varnam-1])]];
+model.ipar=[[nz],[length(varnam)],[transpose(this.ascii[varnam-1])]];
 model.blocktype="d";
 model.firing=[];
 model.dep_ut=[false,false];
@@ -54,7 +54,7 @@ model.blocktype="x";
 } else {
 model.blocktype="d";
 }
-model.ipar=[[nz],[length(varnam)],[transpose(ascii[varnam-1])]];
+model.ipar=[[nz],[length(varnam)],[transpose(this.ascii[varnam-1])]];
 graphics.exprs=exprs;
 x.graphics=graphics;
 x.model=model;

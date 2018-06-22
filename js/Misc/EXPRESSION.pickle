@@ -1,0 +1,13 @@
+c__builtin__
+set
+p0
+((lp1
+S'getfield'
+p2
+aS'PREVAR_foo'
+p3
+aS'PREVAR_scicos_context'
+p4
+atp5
+Rp6
+.

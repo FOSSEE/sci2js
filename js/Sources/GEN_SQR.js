@@ -54,7 +54,7 @@ x=standard_define([3,2],model,exprs,gr_i);
     GEN_SQR.prototype.get = function GEN_SQR() {
     }
     GEN_SQR.prototype.set = function GEN_SQR() {
-y=needcompile;
+y=this.needcompile;
 arg1.model.ipar=1;
 typ=list();
 graphics=arg1.graphics;
@@ -77,7 +77,7 @@ sblock=x.model.rpar;
 if (ierr==0) {
 [sblock,%w,needcompile2,ok]=do_eval(sblock,list());
 if (ok) {
-y=max(2,needcompile,needcompile2);
+y=max(2,this.needcompile,needcompile2);
 x.graphics.exprs=exprs;
 x.model.rpar=sblock;
 break;

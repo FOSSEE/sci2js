@@ -29,7 +29,7 @@ exprs=graphics.exprs;
 model=arg1.model;
 x0=model.state;
 rpar=model.rpar;
-ns=prod[size(x0)-1];
+ns=prod(size(x0));
 nin=1;
 nout=1;
 PREVAR_scicos_context=PREVAR_scicos_context;
@@ -39,12 +39,12 @@ while (true) {
 if (!ok) {
 break;
 }
-if (degree[num-1]>degree[den-1]) {
+if (degree(num)>degree(den)) {
 message("Transfer must be proper or strictly proper");
 ok=false;
 }
 if (ok) {
-H=cont_frm[num-1][den-1];
+H=cont_frm(num,den);
 [A,B,C,D]=H.slice(2-1,5);
 graphics.exprs=exprs;
 [ns1,ns1]=size(A);

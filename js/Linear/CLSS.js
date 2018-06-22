@@ -57,7 +57,7 @@ okD=false;
 }
 }
 if (ms!=ns||!okD) {
-message(_["Matrix A is not square or D has wrong dimension"-1]);
+message(_("Matrix A is not square or D has wrong dimension"));
 } else {
 [model,graphics,ok]=check_io(model,graphics,in1,out,[],[]);
 if (ok) {

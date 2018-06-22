@@ -95,7 +95,7 @@ if (!ok) {
 break;
 }
 mess=[];
-if (prod[size(z0)-1]<1) {
+if (prod(size(z0))<1) {
 mess=[[mess],["Register length must be at least 1"],[" "]];
 ok=false;
 }

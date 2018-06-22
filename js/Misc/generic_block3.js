@@ -52,11 +52,11 @@ message("vector event links not supported");
 ok=false;
 }
 }
-if (type[opar-1]!=15) {
+if (this.type[opar-1]!=15) {
 message("object parameter must be a list");
 ok=false;
 }
-if (type[oz-1]!=15) {
+if (this.type[oz-1]!=15) {
 message("discrete object state must be a list");
 ok=false;
 }

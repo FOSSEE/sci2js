@@ -33,9 +33,9 @@ spath[$+1-1]=path[k-1];
 }
 xx=arg1[spath-1];
 execstr("xxn="+xx.gui+"(\'set\',xx)");
-if (!isequalbitwise[xxn-1][xx-1]) {
+if (!this.isequalbitwise[this.xxn-1][xx-1]) {
 model=xx.model;
-model_n=xxn.model;
+model_n=this.xxn.model;
 if (!is_modelica_block(xx)) {
 modified=or(model.sim!=model_n.sim)||!isequal(model.state,model_n.state)||!isequal(model.dstate,model_n.dstate)||!isequal(model.odstate,model_n.odstate)||!isequal(model.rpar,model_n.rpar)||!isequal(model.ipar,model_n.ipar)||!isequal(model.opar,model_n.opar)||!isequal(model.label,model_n.label);
 if (or(model.in1!=model_n.in1)||or(model.out!=model_n.out)||or(model.in2!=model_n.in2)||or(model.out2!=model_n.out2)||or(model.outtyp!=model_n.outtyp)||or(model.intyp!=model_n.intyp)) {
@@ -58,7 +58,7 @@ needcompile=4;
 if ((model.nzcross!=model_n.nzcross)||(model.nmode!=model_n.nmode)) {
 needcompile=4;
 }
-if (prod[size(model_n.sim)-1]>1) {
+if (prod(size(model_n.sim))>1) {
 if (model_n.sim[2-1]>1000) {
 if (model.sim[1-1]!=model_n.sim[1-1]) {
 needcompile=4;
@@ -73,7 +73,7 @@ if (or(eq.model!=eqn.model)||or(eq.inputs!=eqn.inputs)||or(eq.outputs!=eqn.outpu
 needcompile=4;
 }
 }
-arg1[spath-1]=xxn;
+arg1[spath-1]=this.xxn;
 newpar[size(newpar)+1-1]=path;
 y=max(y,needcompile);
 }

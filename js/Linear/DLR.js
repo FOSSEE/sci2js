@@ -29,7 +29,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 model=arg1.model;
 x0=model.dstate;
-ns=prod[size(x0)-1];
+ns=prod(size(x0));
 PREVAR_scicos_context=PREVAR_scicos_context;
 PREVAR_scicos_context.z=%z;
 while (true) {
@@ -37,12 +37,12 @@ while (true) {
 if (!ok) {
 break;
 }
-if (degree[num-1]>degree[den-1]) {
+if (degree(num)>degree(den)) {
 message("Transfer function must be proper");
 ok=false;
 }
 if (ok) {
-H=cont_frm[num-1][den-1];
+H=cont_frm(num,den);
 [A,B,C,D]=H.slice(2-1,5);
 graphics.exprs=exprs;
 [ns1,ns1]=size(A);

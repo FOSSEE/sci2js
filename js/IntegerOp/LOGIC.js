@@ -11,7 +11,7 @@ model.out2=1;
 model.evtin=1;
 model.intyp=[5,5];
 model.outtyp=5;
-model.opar=list(int8[mat-1]);
+model.opar=list(int8(mat));
 model.blocktype="c";
 model.firing=false;
 model.dep_ut=[true,false];
@@ -34,8 +34,8 @@ if (!ok) {
 break;
 }
 nout=size(mat,2);
-nin=(log[size(mat,1)-1]/log[2-1]);
-u1=floor[nin-1];
+nin=(log(size(mat,1))/log(2));
+u1=floor(nin);
 if ((u1!=nin)) {
 block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter: %d."),gettext("Truth Table"),size(mat,1)),gettext("Number of rows must be a power of two."));
 ok=false;
@@ -55,7 +55,7 @@ ot=5*ones(1,nout);
 }
 if (ok) {
 graphics.exprs=exprs;
-mat=int8[mat-1];
+mat=int8(mat);
 model.opar=list(mat);
 x.graphics=graphics;
 x.model=model;

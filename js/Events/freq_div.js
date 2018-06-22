@@ -173,7 +173,7 @@ needcompile=4;
 if ((model.nzcross!=model_n.nzcross)||(model.nmode!=model_n.nmode)) {
 needcompile=4;
 }
-if (prod[size(model_n.sim)-1]>1) {
+if (prod(size(model_n.sim))>1) {
 if (model_n.sim[2-1]>1000) {
 if (model.sim[1-1]!=model_n.sim[1-1]) {
 needcompile=4;

@@ -17,7 +17,7 @@ model.sim=list("readau",2);
 model.out=nout;
 model.evtin=1;
 model.dstate=[[1],[1],[lunit],[zeros(N*M,1)]];
-model.ipar=[[length(fname)],[_str2code[frmt-1]],[ievt],[N],[M],[swap],[offset],[_str2code[fname-1]],[tmask],[outmask]];
+model.ipar=[[length(fname)],[this._str2code[frmt-1]],[ievt],[N],[M],[swap],[offset],[this._str2code[fname-1]],[tmask],[outmask]];
 model.blocktype="d";
 model.dep_ut=[false,false];
 exprs=[[fname],[string(N)],[string(swap)]];
@@ -52,13 +52,13 @@ break;
 }
 fname1=stripblanks(fname1);
 frmt1=stripblanks(frmt1);
-if (alreadyran&&fname1!=fname) {
+if (this.alreadyran&&fname1!=fname) {
 block_parameter_error(gettext("Simulation running !!! You cannot modify Input file name"),gettext("End current simulation first."));
 } else if (fname1=="") {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Input File Name")),gettext("You must provide a filename."));
 } else if (N<1) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer size"),N),msprintf(gettext("Must be greater than %d."),1));
-} else if (alreadyran&&(N!=ipar[6-1])) {
+} else if (this.alreadyran&&(N!=ipar[6-1])) {
 block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first."));
 } else if (swap!=0&&swap!=1) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Swap Mode"),swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
@@ -66,8 +66,8 @@ block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),
 [model,graphics,ok]=check_io(model,graphics,[],1,1,[]);
 frmt1=part(frmt1,1,3);
 if (ok) {
-ipar=[[length(fname1)],[_str2code[frmt1-1]],[0],[N],[M],[swap],[offset,_str2code[fname1-1]],[tmask1,outmask.slice()]];
-if (prod[size(dstate)-1]!=(N*M)+3) {
+ipar=[[length(fname1)],[this._str2code[frmt1-1]],[0],[N],[M],[swap],[offset,this._str2code[fname1-1]],[tmask1,outmask.slice()]];
+if (prod(size(dstate))!=(N*M)+3) {
 dstate=[[-1],[-1],[lunit],[zeros(N*M,1)]];
 }
 model.dstate=dstate;

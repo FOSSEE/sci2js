@@ -12,7 +12,7 @@ model.sim="writef";
 model.in1=in1;
 model.evtin=1;
 model.dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
-model.ipar=[[length(fname)],[length(frmt)],[0],[N],[_str2code[fname-1]],[_str2code[frmt-1]]];
+model.ipar=[[length(fname)],[length(frmt)],[0],[N],[this._str2code[fname-1]],[this._str2code[frmt-1]]];
 model.blocktype="d";
 model.dep_ut=[true,false];
 exprs=[[sci2exp(in1)],[fname],[frmt],[string(N)]];
@@ -25,8 +25,8 @@ x=standard_define([3,2],model,exprs,gr_i);
     }
     WFILE_f.prototype.set = function WFILE_f() {
 warnobsolete("WRITEC_f","6.0.0");
-warnMessage=msprintf(_["Feature %s is obsolete."-1],"WFILE_f");
-warnAdvise=msprintf(_["Please use %s instead."-1],"WRITEC_f");
+warnMessage=msprintf(_("Feature %s is obsolete."),"WFILE_f");
+warnAdvise=msprintf(_("Please use %s instead."),"WRITEC_f");
 warnXcosMessage=msprintf("%s %s",warnMessage,warnAdvise);
 warnBlockByUID(arg1.model.label,warnXcosMessage);
 x=arg1;
@@ -57,7 +57,7 @@ block_parameter_error(gettext("Wrong value for \'Output File Name\' parameter"),
 ok=false;
 } else if (fileparts(fname1)!="") {
 [pa,fn,ex]=fileparts(fname1);
-if (!isdir[pa-1]) {
+if (!this.isdir[pa-1]) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Output File Name")),msprintf(gettext("Directory \'%s\' does not exist"),pa));
 ok=false;
 }
@@ -72,8 +72,8 @@ block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),
 ok=false;
 }
 if (ok) {
-ipar=[[length(fname1)],[length(frmt1)],[0],[N],[_str2code[fname1-1]],[_str2code[frmt1-1]]];
-if (prod[size(dstate)-1]!=(nin+1)*N+2) {
+ipar=[[length(fname1)],[length(frmt1)],[0],[N],[this._str2code[fname1-1]],[this._str2code[frmt1-1]]];
+if (prod(size(dstate))!=(nin+1)*N+2) {
 dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
 }
 model.in1=nin;

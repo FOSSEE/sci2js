@@ -40,7 +40,7 @@ if (gain==[]) {
 message("Gain must have at least one element");
 } else {
 if (typeof(gain)=="constant") {
-if (isreal[gain-1]) {
+if (isreal(gain)) {
 it=1;
 ot=1;
 model.sim=list("gainblk",4);

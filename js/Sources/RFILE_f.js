@@ -10,14 +10,14 @@ N=2;
 rpar=[];
 tmask=0;
 outmask=1;
-ipar=[[length(fname)],[length(frmt)],[0],[N],[_str2code[fname-1]],[_str2code[frmt-1]],[tmask],[outmask]];
+ipar=[[length(fname)],[length(frmt)],[0],[N],[this._str2code[fname-1]],[this._str2code[frmt-1]],[tmask],[outmask]];
 dstate=[[1],[1],[lunit],[zeros((nout)*N,1)]];
 model=scicos_model();
 model.sim="readf";
 model.out=nout;
 model.evtin=1;
 model.dstate=dstate;
-model.ipar=[[length(fname)],[length(frmt)],[0],[N],[_str2code[fname-1]],[_str2code[frmt-1]],[tmask],[outmask]];
+model.ipar=[[length(fname)],[length(frmt)],[0],[N],[this._str2code[fname-1]],[this._str2code[frmt-1]],[tmask],[outmask]];
 model.blocktype="d";
 model.dep_ut=[false,false];
 exprs=[[sci2exp([])],[sci2exp(outmask)],[fname],[frmt],[string(N)],[sci2exp(out)]];
@@ -53,7 +53,7 @@ break;
 fname1=pathconvert(stripblanks(fname1),false,true);
 frmt1=stripblanks(frmt1);
 nout=size(outmask,"*");
-if (prod[size(tmask1)-1]>1) {
+if (prod(size(tmask1))>1) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Time Record Selection"),strcat(string(tmask1.slice())," ")),gettext("Empty matrix or scalar expected."));
 } else if (tmask1!=[]&&tmask1<1) {
 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d"),gettext("Time Record Selection"),tmask1),gettext("Strictly positive integer expected."));
@@ -89,8 +89,8 @@ model.firing=[];
 } else {
 model.firing=0;
 }
-ipar=[[length(fname1)],[length(frmt1)],[ievt],[N],[_str2code[fname1-1]],[_str2code[frmt1-1]],[tmask1],[outmask.slice()]];
-if (prod[size(dstate)-1]!=(nout+ievt)*N+3) {
+ipar=[[length(fname1)],[length(frmt1)],[ievt],[N],[this._str2code[fname1-1]],[this._str2code[frmt1-1]],[tmask1],[outmask.slice()]];
+if (prod(size(dstate))!=(nout+ievt)*N+3) {
 dstate=[[-1],[-1],[lunit],[zeros((nout+ievt)*N,1)]];
 }
 model.dstate=dstate;

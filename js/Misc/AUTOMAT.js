@@ -2,15 +2,15 @@
 function AUTOMAT() {
     AUTOMAT.prototype.define = function AUTOMAT() {
 NMode=2;
-Minitial=1;
+this.Minitial=1;
 NX=1;
-X0=[0.0];
-XP=[[1],[1]];
+this.X0=[0.0];
+this.XP=[[1],[1]];
 C1=[2];
 C2=[1];
-exprs=[[string(NMode)],[string(Minitial)],[string(NX)],[sci2exp(X0)],[sci2exp(XP)],[sci2exp(C1)],[sci2exp(C2)]];
-ipar=[[NMode],[Minitial],[NX],[XP],[C1],[C2]];
-rpar=[X0];
+exprs=[[string(NMode)],[string(this.Minitial)],[string(NX)],[sci2exp(this.X0)],[sci2exp(this.XP)],[sci2exp(C1)],[sci2exp(C2)]];
+ipar=[[NMode],[this.Minitial],[NX],[this.XP],[C1],[C2]];
+rpar=[this.X0];
 model=scicos_model();
 model.sim=list("automat",10004);
 model.in1=[[2*NX+1],[2*NX+1]];
@@ -52,7 +52,7 @@ VEC=VEC+","+"\'mat\',[-1,1]";
 }
 GTV="[ok,NMode,Minitial,NX,X0,XP,"+CX+",exprs]=scicos_getvalue(\'Set Finite state machine model\',            [\'Number (finite-state) Modes\';\'Initial Mode\';\'Number of continuous-time states\';\'Continuous-time states intial values\';\'Xproperties of continuous-time states in each Mode\';"+MSG+"],            list(\'vec\',1,\'vec\',1,\'vec\',1,\'mat\',[-1,-1],\'mat\',[-1,-1],"+VEC+"),exprs)";
 execstr(GTV);
-if (!ok) {
+if (!this.ok) {
 break;
 }
 NMode_old=size(exprs,"*")-5;
@@ -65,11 +65,11 @@ if ((NMode_old<NMode)) {
 exprs.slice(NMode_old+6-1,NMode+5)=exprs[NMode_old+4-1];
 ModifEncore=true;
 }
-if ((NX!=size(X0,"*"))) {
+if ((NX!=size(this.X0,"*"))) {
 messagebox("the size of intial continuous-time states should be NX="+string(NX),"modal","error");
 ModifEncore=true;
 }
-[rXP,cXP]=size(XP);
+[rXP,cXP]=size(this.XP);
 if (cXP!=NX) {
 messagebox("Xproperty matrix is not valid: it should have NX="+string(NX)+" columns","modal","error");
 ModifEncore=true;
@@ -78,13 +78,13 @@ messagebox("Xproperty matrix is not valid: it should have NMode="+string(NMode)+
 ModifEncore=true;
 } else if ((rXP==1)) {
 for (i=1;i<=NMode-1;i+=1) {
-XP=[[XP],[XP[1-1].slice()]];
+this.XP=[[this.XP],[this.XP[1-1].slice()]];
 }
 }
 if ((NMode_old==NMode)&&(!ModifEncore)) {
-XP=matrix(transpose(XP),NMode*NX,1);
-ipar=[[NMode],[Minitial],[NX],[XP]];
-rpar=matrix(X0,NX,1);
+this.XP=matrix(transpose(this.XP),NMode*NX,1);
+ipar=[[NMode],[this.Minitial],[NX],[this.XP]];
+rpar=matrix(this.X0,NX,1);
 INP=ones(NMode,1);
 if (NX>0) {
 OUT=[[2],[2*NX]];
@@ -115,8 +115,8 @@ ModifEncore=true;
 }
 }
 if (!ModifEncore) {
-[model,graphics,ok]=check_io(model,graphics,INP,OUT,[],[1]);
-if (!ok) {
+[model,graphics,this.ok]=check_io(model,graphics,INP,OUT,[],[1]);
+if (!this.ok) {
 break;
 }
 model.nzcross=nzcross;

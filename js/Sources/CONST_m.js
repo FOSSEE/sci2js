@@ -36,8 +36,8 @@ block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter"),gettex
 } else {
 model.sim=list("cstblk4_m",4);
 model.opar=list(C);
-if ((type[C-1]==1)) {
-if (isreal[C-1]) {
+if ((this.type[C-1]==1)) {
+if (isreal(C)) {
 ot=1;
 } else {
 ot=2;

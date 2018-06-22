@@ -64,12 +64,12 @@ if (!((nx==nz)&&(ny==mz))) {
 x_message("incompatible size of x and y");
 Ask_again=true;
 }
-[ok]=test_increasing[xx-1];
+[ok]=test_increasing(xx);
 if ((!ok)) {
 x_message("Row input values must be monotonically increasing");
 Ask_again=true;
 }
-[ok]=test_increasing[yy-1];
+[ok]=test_increasing(yy);
 if ((!ok)) {
 x_message("Column input values must be monotonically increasing");
 Ask_again=true;

@@ -84,8 +84,8 @@ newpar=list();
 spath=list("model","rpar","objs",path);
 xx=arg1[spath-1];
 execstr("xxn="+xx.gui+"(\'set\',xx)");
-if (or(xxn!=xx)) {
-arg1[spath-1]=xxn;
+if (or(this.xxn!=xx)) {
+arg1[spath-1]=this.xxn;
 newpar[size(newpar)+1-1]=path;
 }
 x=arg1;

@@ -7,7 +7,7 @@ function DSUPER() {
     DSUPER.prototype.get = function DSUPER() {
     }
     DSUPER.prototype.set = function DSUPER() {
-y=needcompile;
+y=this.needcompile;
 typ=list();
 graphics=arg1.graphics;
 if ((length(graphics.exprs)==0)) {
@@ -36,12 +36,12 @@ tt=tt+",scicos_context."+exprs0[i-1];
 ss=graphics.exprs[2-1][3-1];
 scicos_context=PREVAR_scicos_context;
 execstr("[ok,"+tt+",exprs]=scicos_getvalue(btitre,bitems,ss,exprs)");
-if (ok) {
+if (this.ok) {
 x=arg1;
 PREVAR_scicos_context=scicos_context;
 sblock=x.model.rpar;
-[sblock,%w,needcompile2,ok]=do_eval(sblock,list(),scicos_context);
-y=max(2,needcompile,needcompile2);
+[sblock,%w,needcompile2,this.ok]=do_eval(sblock,list(),scicos_context);
+y=max(2,this.needcompile,needcompile2);
 x.graphics.exprs[1-1]=exprs;
 x.model.rpar=sblock;
 } else {

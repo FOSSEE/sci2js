@@ -87,12 +87,12 @@ dep_ut=[depu,dept];
 if (funam==" ") {
 break;
 }
-if (model.sim[1-1]!=funam||sign[size(model.state,"*")-1]!=sign[nx-1]||sign[size(model.dstate,"*")-1]!=sign[nz-1]||model.nzcross!=ng||sign[size(model.evtout,"*")-1]!=sign[nevout-1]) {
+if (model.sim[1-1]!=funam||sign(size(model.state,"*"))!=sign(nx)||sign(size(model.dstate,"*"))!=sign(nz)||model.nzcross!=ng||sign(size(model.evtout,"*"))!=sign(nevout)) {
 tt=[];
 }
 tt=label[2-1];
 while (true) {
-[ok,tt,cancel]=CFORTR2[funam-1][tt-1];
+[ok,tt,cancel]=CFORTR2(funam,tt);
 if (!ok) {
 if (cancel) {
 break;

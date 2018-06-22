@@ -2,7 +2,7 @@
 function STEP_FUNCTION() {
     STEP_FUNCTION.prototype.define = function STEP_FUNCTION() {
 scs_m_1=scicos_diagram();
-scs_m_1.objs[1-1]=STEP["define"-1];
+scs_m_1.objs[1-1]=this.STEP["define"-1];
 scs_m_1.objs[2-1]=OUT_f("define");
 scs_m_1.objs[3-1]=scicos_link();
 scs_m_1.objs[4-1]=scicos_link();
@@ -74,9 +74,9 @@ spath[$+1-1]=path[k-1];
 }
 xx=arg1[spath-1];
 execstr("xxn="+xx.gui+"(\'set\',xx)");
-if (diffobjs(xxn,xx)) {
+if (diffobjs(this.xxn,xx)) {
 model=xx.model;
-model_n=xxn.model;
+model_n=this.xxn.model;
 if (!is_modelica_block(xx)) {
 modified=or(model.sim!=model_n.sim)||!isequal(model.state,model_n.state)||!isequal(model.dstate,model_n.dstate)||!isequal(model.rpar,model_n.rpar)||!isequal(model.ipar,model_n.ipar)||!isequal(model.label,model_n.label);
 if (or(model.in1!=model_n.in1)||or(model.out!=model_n.out)) {
@@ -96,7 +96,7 @@ needcompile=4;
 if ((model.nzcross!=model_n.nzcross)||(model.nmode!=model_n.nmode)) {
 needcompile=4;
 }
-if (prod[size(model_n.sim)-1]>1) {
+if (prod(size(model_n.sim))>1) {
 if (model_n.sim[2-1]>1000) {
 if (model.sim[1-1]!=model_n.sim[1-1]) {
 needcompile=4;
@@ -111,7 +111,7 @@ if (or(eq.model!=eqn.model)||or(eq.inputs!=eqn.inputs)||or(eq.outputs!=eqn.outpu
 needcompile=4;
 }
 }
-arg1[spath-1]=xxn;
+arg1[spath-1]=this.xxn;
 newpar[size(newpar)+1-1]=path;
 }
 }

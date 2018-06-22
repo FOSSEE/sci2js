@@ -13,7 +13,7 @@ model.sim=list("writeau",2);
 model.in1=in1;
 model.evtin=1;
 model.dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
-model.ipar=[[length(fname)],[_str2code[frmt-1]],[N],[swap],[_str2code[fname-1]]];
+model.ipar=[[length(fname)],[this._str2code[frmt-1]],[N],[swap],[this._str2code[fname-1]]];
 model.blocktype="d";
 model.dep_ut=[true,false];
 exprs=[string(N),string(swap)];
@@ -40,7 +40,7 @@ break;
 nin=1;
 fname1="/dev/audio";
 frmt1="uc ";
-if (alreadyran&&(N!=ipar[5-1])) {
+if (this.alreadyran&&(N!=ipar[5-1])) {
 block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
 ok=false;
 } else if (N<1) {
@@ -52,8 +52,8 @@ block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),
 ok=false;
 }
 if (ok) {
-ipar=[[length(fname1)],[_str2code[frmt1-1]],[N],[swap],[_str2code[fname1-1]]];
-if (prod[size(dstate)-1]!=(nin+1)*N+2) {
+ipar=[[length(fname1)],[this._str2code[frmt1-1]],[N],[swap],[this._str2code[fname1-1]]];
+if (prod(size(dstate))!=(nin+1)*N+2) {
 dstate=[[-1],[lunit],[zeros((nin+1)*N,1)]];
 }
 model.in1=1;

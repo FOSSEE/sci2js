@@ -21,7 +21,7 @@ graphics=arg1.graphics;
 exprs=graphics.exprs;
 x=arg1;
 model=x.model;
-[ok,mac,exprs]=genfunc[exprs-1];
+[ok,mac,exprs]=this.genfunc[exprs-1];
 if (ok) {
 model.sim=mac;
 graphics.exprs=exprs;

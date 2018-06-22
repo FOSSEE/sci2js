@@ -41,10 +41,10 @@ message("The |Offset| must be less than the Frequency");
 ok=false;
 }
 if (ok) {
-[m,den,off,count,m1,fir,frequ,offset,ok]=mfrequ_clk[frequ-1][offset-1];
+[m,den,off,count,m1,fir,frequ,offset,ok]=mfrequ_clk(frequ,offset);
 }
 if (ok) {
-model.opar=list(m,double[den-1],off,count);
+model.opar=list(m,double(den),off,count);
 mn=(2^size(m1,"*"))-1;
 [model,graphics,ok]=set_io(model,graphics,list(),list(),1,ones(mn,1));
 if (mn>3) {
