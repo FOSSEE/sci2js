@@ -37,6 +37,9 @@ FUNCTION_VARS = set()
 LOCAL_VARS = set()
 GLOBAL_VARS = set()
 
+INDENT_LEVEL = 2
+INDENT_SIZE = 4
+
 # define functionblocks
 
 def p_functionblocks_functionblocks_functionblock(p):
@@ -101,7 +104,7 @@ def p_statementblock_statement(p):
 
 def p_statement_assignment(p):
     '''statement : assignment EOL
-                 | assignment SEMICOLON
+                 | getvalueassignment EOL
                  | function EOL
                  | RETURN EOL'''
     p[0] = '%s;\n' % (p[1])
@@ -276,11 +279,11 @@ def p_forstatement_for_list(p):
     if var not in GLOBAL_VARS:
         if var not in LOCAL_VARS:
             LOCAL_VARS.add(var)
-    p[0] = 'for (%s in %s) {\n' % (var, p[4])
+    p[0] = '%*sfor (%s in %s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, p[4])
 
 def p_selectstatement_select(p):
     'selectstatement : SELECT expression EOL'
-    p[0] = 'switch (%s) {\n' % (p[2])
+    p[0] = '%*sswitch (%s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[2])
 
 def p_selectjobstatement_select(p):
     'selectjobstatement : SELECT JOB EOL'
@@ -290,7 +293,7 @@ def p_casestatement_case(p):
     '''casestatement : CASE expression THEN EOL
                      | CASE expression EOL
                      | CASE expression THEN COMMA'''
-    p[0] = 'case %s:\n' % (p[2])
+    p[0] = '%*scase %s:\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[2])
 
 def p_casejobstatement_case(p):
     '''casejobstatement : CASE expression THEN EOL
@@ -304,21 +307,21 @@ def p_whilestatement_while_do(p):
     '''whilestatement : WHILE expression DO EOL
                       | WHILE expression THEN EOL
                       | WHILE expression EOL'''
-    p[0] = 'while (%s) {\n' % (p[2])
+    p[0] = '%*swhile (%s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[2])
 
 def p_ifstatement_if_then(p):
     '''ifstatement : IF expression THEN EOL
                    | IF expression EOL'''
-    p[0] = 'if (%s) {\n' % (p[2])
+    p[0] = '%*sif (%s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[2])
 
 def p_elseifstatement_elseif_then(p):
     '''elseifstatement : ELSEIF expression THEN EOL
                        | ELSEIF expression EOL'''
-    p[0] = '} else if (%s) {\n' % (p[2])
+    p[0] = '%*s} else if (%s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[2])
 
 def p_elsestatement_else(p):
     '''elsestatement : ELSE EOL'''
-    p[0] = '} else {\n'
+    p[0] = '%*s} else {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ')
 
 # end define for, select, case, while, if, elseif, else
 
@@ -326,7 +329,11 @@ def p_elsestatement_else(p):
 
 def p_assignment_expression(p):
     'assignment : lterm ASSIGNMENT expression'
-    p[0] = '%s%s%s' % (p[1], p[2], p[3])
+    p[0] = '%*s%s %s %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[2], p[3])
+
+def p_getvalueassignment_getvalue(p):
+    'getvalueassignment : lterm ASSIGNMENT getvalue'
+    p[0] = '%*s%s %s %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[2], p[3])
 
 # end define assignment
 
@@ -668,8 +675,8 @@ def p_term_function_parameters(p):
     p[0] = '%s(%s)' % (p[1], p[3])
 
 # scicos_getvalue(2,3)
-def p_term_scicos_getvalue_parameters(p):
-    'term : SCICOS_GETVALUE OPENBRACKET list CLOSEBRACKET'
+def p_getvalue_scicos_getvalue_parameters(p):
+    'getvalue : SCICOS_GETVALUE OPENBRACKET list CLOSEBRACKET'
     p[0] = '%s(%s)' % (p[1], p[3])
 
 # A()
@@ -788,10 +795,12 @@ def processfile(filename, picklefilename, passnumber):
     '''convert a sci file to a js file'''
 
     global GLOBAL_VARS
+    debug = False
 
     if passnumber == 2:
         with open(picklefilename, 'r') as cfile:
             GLOBAL_VARS = pickle.load(cfile)
+        debug = True
 
     data = ''
     with open(filename, 'r') as infile:
@@ -799,7 +808,7 @@ def processfile(filename, picklefilename, passnumber):
             data += line
 
         parser = yacc.yacc()
-        result = parser.parse(data, debug=True)
+        result = parser.parse(data, debug=debug)
 
         if passnumber == 1:
             with open(picklefilename, 'w') as cfile:

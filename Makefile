@@ -23,14 +23,14 @@ js/%.lex: macros/%.sci sci2jslex.py
 	./sci2jslex.py $< > js/$*.lex
 
 js/%.pickle: macros/%.sci sci2jsyacc.py parsetab.py sci2jslex.py
-	./sci2jsyacc.py $< $@ 1 > js/$*.js.old 2> js/$*.yacc.old
+	./sci2jsyacc.py $< $@ 1 > js/$*.js.old 2> /dev/null
 
 js/%.js: macros/%.sci js/%.pickle sci2jsyacc.py parsetab.py sci2jslex.py
 	./sci2jsyacc.py $< js/$*.pickle 2 > $@ 2> js/$*.yacc
 
-parsetab.py: sci2jsyacc.py sci2jslex.py
+parsetab.py: macros/Misc/DEBUG_SCICOS.sci sci2jsyacc.py sci2jslex.py
 	@rm -f $@* parser.out
-	./sci2jsyacc.py /dev/null /dev/null 3 > /dev/null
+	./sci2jsyacc.py $< /dev/null 3 > /dev/null
 
 $(JSFILES): | $(JSDIRS)
 
