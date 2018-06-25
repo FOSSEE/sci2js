@@ -10,13 +10,14 @@ function TRASH_f() {
         model.dep_ut = [false,false];
         exprs = " ";
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     TRASH_f.prototype.details = function TRASH_f() {
+        return this.x;
     }
     TRASH_f.prototype.get = function TRASH_f() {
     }
     TRASH_f.prototype.set = function TRASH_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

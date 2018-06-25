@@ -7,13 +7,14 @@ function TIME_f() {
         model.blocktype = "c";
         model.dep_ut = [false,true];
         gr_i = [];
-        x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],model,[],gr_i);
     }
     TIME_f.prototype.details = function TIME_f() {
+        return this.x;
     }
     TIME_f.prototype.get = function TIME_f() {
     }
     TIME_f.prototype.set = function TIME_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

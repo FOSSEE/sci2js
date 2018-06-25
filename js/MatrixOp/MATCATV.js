@@ -23,40 +23,41 @@ function MATCATV() {
         model.dep_ut = [true,false];
         label = [sci2exp(2)];
         gr_i = [];
-        x = standard_define([2,3],model,label,gr_i);
+        this.x = standard_define([2,3],model,label,gr_i);
     }
     MATCATV.prototype.details = function MATCATV() {
+        return this.x;
     }
     MATCATV.prototype.get = function MATCATV() {
     }
     MATCATV.prototype.set = function MATCATV() {
-        x = arg1;
+        this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;
         label = graphics.exprs;
         if (size(label,"*")>1) {
-        label = "size(evstr("+label[2-1]+"),\'*\')";
-}
+            label = "size(evstr("+label[2-1]+"),\'*\')";
+        }
         while (true) {
-        [ok,nin,lab] = scicos_getvalue("Set MATCATV block parameters",["Number od inputs"],list("vec",1),label);
-        if (!ok) {
-break;
-}
-        label = lab;
-        in1 = [-(transpose([2:nin+1])),-ones(nin,1)];
-        it = -ones(nin,1);
-        ot = -1;
-        out = [0,-1];
-        [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
-        if (ok) {
-        funtyp = 4;
-        model.sim = list("mat_catv",funtyp);
-        graphics.exprs = label;
-        arg1.graphics = graphics;
-        arg1.model = model;
-        x = arg1;
-break;
-}
-}
+            [ok,nin,lab] = scicos_getvalue("Set MATCATV block parameters",["Number od inputs"],list("vec",1),label);
+            if (!ok) {
+                break;
+            }
+            label = lab;
+            in1 = [-(transpose([2:nin+1])),-ones(nin,1)];
+            it = -ones(nin,1);
+            ot = -1;
+            out = [0,-1];
+            [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
+            if (ok) {
+                funtyp = 4;
+                model.sim = list("mat_catv",funtyp);
+                graphics.exprs = label;
+                arg1.graphics = graphics;
+                arg1.model = model;
+                this.x = arg1;
+                break;
+            }
+        }
     }
 }

@@ -29,49 +29,50 @@ function SRFLIPFLOP() {
         model.dep_ut = [true,false];
         model.rpar = scs_m;
         gr_i = [];
-        x = standard_define([2,3],model,[],gr_i);
+        this.x = standard_define([2,3],model,[],gr_i);
     }
     SRFLIPFLOP.prototype.details = function SRFLIPFLOP() {
+        return this.x;
     }
     SRFLIPFLOP.prototype.get = function SRFLIPFLOP() {
     }
     SRFLIPFLOP.prototype.set = function SRFLIPFLOP() {
-for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-        o = arg1.model.rpar.objs[i-1];
-        if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
-        path = i;
-break;
-}
-}
+        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+            o = arg1.model.rpar.objs[i-1];
+            if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
+                path = i;
+                break;
+            }
+        }
         newpar = list();
         xx = arg1.model.rpar.objs[path-1];
         exprs = xx.graphics.exprs[1-1];
         model = xx.model;
         init_old = model.odstate[1-1];
         while (true) {
-        [ok,init,exprs0] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"SRFLIPFLOP")],[" "],[gettext("SR flip-flop")],[" "],[gettext("The \'Initial Value\' must be 0 or 1 of type int8")],[gettext("&nbsp;- Negative values are considered as int8(0)")],[gettext("&nbsp;- Positive values are considered as int8(1)")],[" "]],gettext("Initial Value"),list("vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (init<=0) {
-        init = int8(0);
-        } else if (init>0) {
-        init = int8(1);
-}
-        if (ok) {
-        xx.graphics.exprs[1-1] = exprs0;
-        model.odstate[1-1] = init;
-        xx.model = model;
-        arg1.model.rpar.objs[path-1] = xx;
-break;
-}
-}
+            [ok,init,exprs0] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"SRFLIPFLOP")],[" "],[gettext("SR flip-flop")],[" "],[gettext("The \'Initial Value\' must be 0 or 1 of type int8")],[gettext("&nbsp;- Negative values are considered as int8(0)")],[gettext("&nbsp;- Positive values are considered as int8(1)")],[" "]],gettext("Initial Value"),list("vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (init<=0) {
+                init = int8(0);
+            } else if (init>0) {
+                init = int8(1);
+            }
+            if (ok) {
+                xx.graphics.exprs[1-1] = exprs0;
+                model.odstate[1-1] = init;
+                xx.model = model;
+                arg1.model.rpar.objs[path-1] = xx;
+                break;
+            }
+        }
         needcompile = 0;
         if (init_old!=init) {
-        newpar[size(newpar)+1-1] = path;
-        needcompile = 2;
-}
-        x = arg1;
+            newpar[size(newpar)+1-1] = path;
+            needcompile = 2;
+        }
+        this.x = arg1;
         y = needcompile;
         typ = newpar;
     }

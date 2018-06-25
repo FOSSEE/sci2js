@@ -9,35 +9,36 @@ function CLKFROM() {
         model.firing = -1;
         model.dep_ut = [false,false];
         exprs = "A";
-        x = standard_define([2,1],model,exprs," ");
-        x.graphics.id = "From";
+        this.x = standard_define([2,1],model,exprs," ");
+        this.x.graphics.id = "From";
     }
     CLKFROM.prototype.details = function CLKFROM() {
+        return this.x;
     }
     CLKFROM.prototype.get = function CLKFROM() {
     }
     CLKFROM.prototype.set = function CLKFROM() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-        [ok,tag,exprs] = scicos_getvalue("Set block parameters","Tag",list("str",-1),exprs);
-        if (!ok) {
-break;
-}
-        if (model.opar!=list(tag)) {
-        needcompile = 4;
-        y = needcompile;
-}
-        model.opar = list(tag);
-        model.evtout = 1;
-        model.firing = -1;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-needcompile=resume(needcompile)
+            [ok,tag,exprs] = scicos_getvalue("Set block parameters","Tag",list("str",-1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (model.opar!=list(tag)) {
+                needcompile = 4;
+                y = needcompile;
+            }
+            model.opar = list(tag);
+            model.evtout = 1;
+            model.firing = -1;
+            graphics.exprs = exprs;
+            this.x.graphics = graphics;
+            this.x.model = model;
+            break;
+        }
+        needcompile=resume(needcompile)
     }
 }

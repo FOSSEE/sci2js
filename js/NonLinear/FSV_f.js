@@ -10,13 +10,14 @@ function FSV_f() {
         model.dep_ut = [true,false];
         exprs = " ";
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     FSV_f.prototype.details = function FSV_f() {
+        return this.x;
     }
     FSV_f.prototype.get = function FSV_f() {
     }
     FSV_f.prototype.set = function FSV_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

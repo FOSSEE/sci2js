@@ -12,39 +12,40 @@ function CONSTRAINT_c() {
         model.dep_ut = [false,true];
         exprs = "0";
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     CONSTRAINT_c.prototype.details = function CONSTRAINT_c() {
+        return this.x;
     }
     CONSTRAINT_c.prototype.get = function CONSTRAINT_c() {
     }
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,x0,exprs] = scicos_getvalue("Set solver block parameters","Initial guess values",list("vec",-1),exprs);
-        if (!ok) {
-break;
-}
-        x0 = x0.slice();
-        N = size(x0,"*");
-        if (N<=0) {
-message("number of states (constraints) must be > 0 ");
-        } else {
-        [model,graphics,ok] = check_io(model,graphics,N,N,[],[]);
-        if (ok) {
-        graphics.exprs = exprs;
-        model.state = [[x0],[zeros(N,1)]];
-        model.out = N;
-        model.in1 = N;
-        model.ipar = -1*ones(N,1);
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
-}
+            [ok,x0,exprs] = scicos_getvalue("Set solver block parameters","Initial guess values",list("vec",-1),exprs);
+            if (!ok) {
+                break;
+            }
+            x0 = x0.slice();
+            N = size(x0,"*");
+            if (N<=0) {
+                message("number of states (constraints) must be > 0 ");
+            } else {
+                [model,graphics,ok] = check_io(model,graphics,N,N,[],[]);
+                if (ok) {
+                    graphics.exprs = exprs;
+                    model.state = [[x0],[zeros(N,1)]];
+                    model.out = N;
+                    model.in1 = N;
+                    model.ipar = -1*ones(N,1);
+                    this.x.graphics = graphics;
+                    this.x.model = model;
+                    break;
+                }
+            }
+        }
     }
 }

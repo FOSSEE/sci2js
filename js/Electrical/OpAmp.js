@@ -18,29 +18,30 @@ function OpAmp() {
         model.rpar = Z;
         exprs = string(Z);
         gr_i = [];
-        x = standard_define([3,5],model,exprs,gr_i);
-        x.graphics.in_implicit = [["I"],["I"]];
-        x.graphics.out_implicit = ["I"];
+        this.x = standard_define([3,5],model,exprs,gr_i);
+        this.x.graphics.in_implicit = [["I"],["I"]];
+        this.x.graphics.out_implicit = ["I"];
     }
     OpAmp.prototype.details = function OpAmp() {
+        return this.x;
     }
     OpAmp.prototype.get = function OpAmp() {
     }
     OpAmp.prototype.set = function OpAmp() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (false) {
-        [ok,OLGain,SatH,SatL,exprs] = scicos_getvalue("Set the Operational Amplifier parameters",[["Open Loop Gain"],["Positive saturation voltage"],["Negative saturation voltage"]],list("vec",1,"vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        model.equations.parameters[2-1] = list(OLGain,SatH,SatL);
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
+            [ok,OLGain,SatH,SatL,exprs] = scicos_getvalue("Set the Operational Amplifier parameters",[["Open Loop Gain"],["Positive saturation voltage"],["Negative saturation voltage"]],list("vec",1,"vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            model.equations.parameters[2-1] = list(OLGain,SatH,SatL);
+            graphics.exprs = exprs;
+            this.x.graphics = graphics;
+            this.x.model = model;
+            break;
+        }
     }
 }

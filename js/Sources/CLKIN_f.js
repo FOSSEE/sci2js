@@ -10,35 +10,36 @@ function CLKIN_f() {
         model.firing = -1;
         model.dep_ut = [false,false];
         exprs = string(prt);
-        x = standard_define([1,1],model,exprs," ");
+        this.x = standard_define([1,1],model,exprs," ");
     }
     CLKIN_f.prototype.details = function CLKIN_f() {
+        return this.x;
     }
     CLKIN_f.prototype.get = function CLKIN_f() {
     }
     CLKIN_f.prototype.set = function CLKIN_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;
         exprs = graphics.exprs;
         exprs = exprs[1-1];
         while (true) {
-        [ok,prt,exprs] = scicos_getvalue("Set Event Input block parameters","Port number",list("vec",1),exprs);
-        prt = int(prt);
-        if (!ok) {
-break;
-}
-        if (prt<=0) {
-message("Port number must be a positive integer");
-        } else {
-        model.ipar = prt;
-        model.evtout = 1;
-        model.firing = -1;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,prt,exprs] = scicos_getvalue("Set Event Input block parameters","Port number",list("vec",1),exprs);
+            prt = int(prt);
+            if (!ok) {
+                break;
+            }
+            if (prt<=0) {
+                message("Port number must be a positive integer");
+            } else {
+                model.ipar = prt;
+                model.evtout = 1;
+                model.firing = -1;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

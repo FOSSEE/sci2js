@@ -11,36 +11,37 @@ function CONST() {
         model.dep_ut = [false,false];
         exprs = strcat(sci2exp(C));
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     CONST.prototype.details = function CONST() {
+        return this.x;
     }
     CONST.prototype.get = function CONST() {
     }
     CONST.prototype.set = function CONST() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,C,exprs] = scicos_getvalue(["Set Contant Block"],"Constant",list("vec",-1),exprs);
-        if (!ok) {
-break;
-}
-        sz = size(C);
-        nout = size(C,"*");
-        if (nout==0) {
-message("C must have at least one element");
-        } else if (and(sz>1)) {
-message("C matrix is not supported, use CONST_m instead");
-        } else {
-        model.rpar = C.slice();
-        model.out = nout;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,C,exprs] = scicos_getvalue(["Set Contant Block"],"Constant",list("vec",-1),exprs);
+            if (!ok) {
+                break;
+            }
+            sz = size(C);
+            nout = size(C,"*");
+            if (nout==0) {
+                message("C must have at least one element");
+            } else if (and(sz>1)) {
+                message("C matrix is not supported, use CONST_m instead");
+            } else {
+                model.rpar = C.slice();
+                model.out = nout;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

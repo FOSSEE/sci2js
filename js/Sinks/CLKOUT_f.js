@@ -10,35 +10,36 @@ function CLKOUT_f() {
         model.firing = [];
         model.dep_ut = [false,false];
         exprs = string(prt);
-        x = standard_define([1,1],model,exprs," ");
+        this.x = standard_define([1,1],model,exprs," ");
     }
     CLKOUT_f.prototype.details = function CLKOUT_f() {
+        return this.x;
     }
     CLKOUT_f.prototype.get = function CLKOUT_f() {
     }
     CLKOUT_f.prototype.set = function CLKOUT_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;
         exprs = graphics.exprs;
         exprs = exprs[1-1];
         while (true) {
-        [ok,prt,exprs] = scicos_getvalue("Set Event Output block parameters","Port number",list("vec",1),exprs);
-        if (!ok) {
-break;
-}
-        prt = int(prt);
-        if (prt<=0) {
-message("Port number must be a positive integer");
-        } else {
-        model.ipar = prt;
-        model.evtin = 1;
-        model.firing = [];
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,prt,exprs] = scicos_getvalue("Set Event Output block parameters","Port number",list("vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            prt = int(prt);
+            if (prt<=0) {
+                message("Port number must be a positive integer");
+            } else {
+                model.ipar = prt;
+                model.evtin = 1;
+                model.firing = [];
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

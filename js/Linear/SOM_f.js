@@ -11,30 +11,31 @@ function SOM_f() {
         model.dep_ut = [true,false];
         exprs = [[sci2exp(1)],[sci2exp(sgn)]];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     SOM_f.prototype.details = function SOM_f() {
+        return this.x;
     }
     SOM_f.prototype.get = function SOM_f() {
     }
     SOM_f.prototype.set = function SOM_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;
         exprs = graphics.exprs;
         if (size(exprs,"*")==2) {
-        exprs = exprs[2-1];
-}
+            exprs = exprs[2-1];
+        }
         if (size(exprs,"*")!=3) {
-        exprs = string(model.rpar);
-}
+            exprs = string(model.rpar);
+        }
         if (graphics.flip) {
-        labs = ["down","left","up"];
+            labs = ["down","left","up"];
         } else {
-        labs = ["down","right","up"];
-}
+            labs = ["down","right","up"];
+        }
         str = [["This sum block is obsolete","parameters cannot be modified. Please replace it with new sum block"],["and gain blocks in the linear palette"," ","Input ports are located at up, side and  down positions.","Current gains are:"]];
         str = [[str],[(part(labs.slice(),1,7)+exprs.slice())]];
-message(str);
+        message(str);
     }
 }

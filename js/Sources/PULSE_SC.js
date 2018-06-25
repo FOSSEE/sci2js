@@ -42,9 +42,10 @@ function PULSE_SC() {
         A = 1;
         exprs = [sci2exp(E),sci2exp(W),sci2exp(F),sci2exp(A)];
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     PULSE_SC.prototype.details = function PULSE_SC() {
+        return this.x;
     }
     PULSE_SC.prototype.get = function PULSE_SC() {
     }
@@ -59,30 +60,30 @@ function PULSE_SC() {
         Bitems = [["Phase delay (secs):"],["Pulse Width (% of period):"],["Period (secs):"],["Amplitude:"]];
         Ss = list("pol",-1,"pol",-1,"pol",-1,"mat",[-1,-1]);
         scicos_context = struct();
-        x = arg1;
+        this.x = arg1;
         ok = false;
         while (!ok) {
-        [ok,scicos_context.E,scicos_context.W,scicos_context.F,scicos_context.A,exprs] = scicos_getvalue(Btitre,Bitems,Ss,exprs);
-        if (!ok) {
-return;
-}
-        PREVAR_scicos_context = scicos_context;
-        sblock = x.model.rpar;
-        [PREVAR_scicos_context,ierr] = script2var(sblock.props.context,PREVAR_scicos_context);
-        if (ierr==0) {
-        [sblock,%w,needcompile2,ok] = do_eval(sblock,list());
-        if (ok) {
-        y = max(2,this.needcompile,needcompile2);
-        x.graphics.exprs = exprs;
-        x.model.rpar = sblock;
-break;
-}
-        } else {
-        if ((lasterror()!=[])) {
-messagebox(lasterror());
-}
-        ok = false;
-}
-}
+            [ok,scicos_context.E,scicos_context.W,scicos_context.F,scicos_context.A,exprs] = scicos_getvalue(Btitre,Bitems,Ss,exprs);
+            if (!ok) {
+                return;
+            }
+            PREVAR_scicos_context = scicos_context;
+            sblock = this.x.model.rpar;
+            [PREVAR_scicos_context,ierr] = script2var(sblock.props.context,PREVAR_scicos_context);
+            if (ierr==0) {
+                [sblock,%w,needcompile2,ok] = do_eval(sblock,list());
+                if (ok) {
+                    y = max(2,this.needcompile,needcompile2);
+                    this.x.graphics.exprs = exprs;
+                    this.x.model.rpar = sblock;
+                    break;
+                }
+            } else {
+                if ((lasterror()!=[])) {
+                    messagebox(lasterror());
+                }
+                ok = false;
+            }
+        }
     }
 }

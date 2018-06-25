@@ -75,21 +75,22 @@ function Extract_Activation() {
         lnk.from = [2,1,0];
         lnk.to = [4,1,1];
         scs_m_1.objs[8-1] = lnk;
-blk={};
-lnk={};
+        blk={};
+        lnk={};
         model = scicos_model();
         model.sim = "csuper";
         model.in1 = 1;
         model.evtout = 1;
         model.rpar = scs_m_1;
         gr_i = [];
-        x = standard_define([3,2],model,[],gr_i);
+        this.x = standard_define([3,2],model,[],gr_i);
     }
     Extract_Activation.prototype.details = function Extract_Activation() {
+        return this.x;
     }
     Extract_Activation.prototype.get = function Extract_Activation() {
     }
     Extract_Activation.prototype.set = function Extract_Activation() {
-        x = arg1;
+        this.x = arg1;
     }
 }

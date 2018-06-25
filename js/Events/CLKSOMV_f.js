@@ -9,13 +9,14 @@ function CLKSOMV_f() {
         model.firing = -1;
         model.dep_ut = [false,false];
         gr_i = [];
-        x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],model,[],gr_i);
     }
     CLKSOMV_f.prototype.details = function CLKSOMV_f() {
+        return this.x;
     }
     CLKSOMV_f.prototype.get = function CLKSOMV_f() {
     }
     CLKSOMV_f.prototype.set = function CLKSOMV_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

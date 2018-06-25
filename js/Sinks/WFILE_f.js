@@ -17,19 +17,20 @@ function WFILE_f() {
         model.dep_ut = [true,false];
         exprs = [[sci2exp(in1)],[fname],[frmt],[string(N)]];
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     WFILE_f.prototype.details = function WFILE_f() {
+        return this.x;
     }
     WFILE_f.prototype.get = function WFILE_f() {
     }
     WFILE_f.prototype.set = function WFILE_f() {
-warnobsolete("WRITEC_f","6.0.0");
+        warnobsolete("WRITEC_f","6.0.0");
         warnMessage = msprintf(_("Feature %s is obsolete."),"WFILE_f");
         warnAdvise = msprintf(_("Please use %s instead."),"WRITEC_f");
         warnXcosMessage = msprintf("%s %s",warnMessage,warnAdvise);
-warnBlockByUID(arg1.model.label,warnXcosMessage);
-        x = arg1;
+        warnBlockByUID(arg1.model.label,warnXcosMessage);
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
@@ -38,53 +39,53 @@ warnBlockByUID(arg1.model.label,warnXcosMessage);
         fname = exprs[2-1];
         frmt = exprs[3-1];
         while (true) {
-        [ok,in1,fname1,frmt1,N,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WFILE_f")],[" "],[gettext("Write to output file")],[" "],[gettext("Write is done on:")],[gettext("&nbsp; - A binary file if no format given")],[gettext("&nbsp; - A formatted text file if a  format (Fortran type) is given")]],[[gettext("Input Size")],[gettext("Output File Name")],[gettext("Output Format")],[gettext("Buffer Size")]],list("vec",1,"str",1,"str",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        in1 = int(in1);
-        nin = in1;
-        fname1 = pathconvert(stripblanks(fname1),false,true);
-        frmt1 = stripblanks(frmt1);
-        if (lunit>0&&min(length(frmt),1)!=min(length(frmt1),1)) {
-block_parameter_error(gettext("Simulation running !!! You cannot switch<br />between formatted and unformatted when running"),gettext("End current simulation first."));
-        ok = false;
-        } else if (lunit>0&&fname1!=fname) {
-block_parameter_error(gettext("You cannot modify \'Output File Name\' when running."),gettext("End current simulation first."));
-        ok = false;
-        } else if (fname1=="") {
-block_parameter_error(gettext("Wrong value for \'Output File Name\' parameter"),gettext("You must provide a filename."));
-        ok = false;
-        } else if (fileparts(fname1)!="") {
-        [pa,fn,ex] = fileparts(fname1);
-        if (!this.isdir[pa-1]) {
-block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Output File Name")),msprintf(gettext("Directory \'%s\' does not exist"),pa));
-        ok = false;
-}
-        } else if (frmt1!=""&&(part(frmt1,1)!="("||part(frmt1,length(frmt1))!=")")) {
-block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Input Format"),frmt1),gettext("You must enclose the format\'s string between parentheses."));
-        ok = false;
-        } else if (N<2) {
-block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),N),gettext("Must be greater than 1."));
-        ok = false;
-        } else if (in1<=0) {
-block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Input Size"),in1),gettext("Strictly positive integer expected."));
-        ok = false;
-}
-        if (ok) {
-        ipar = [[length(fname1)],[length(frmt1)],[0],[N],[this._str2code[fname1-1]],[this._str2code[frmt1-1]]];
-        if (prod(size(dstate))!=(nin+1)*N+2) {
-        dstate = [[-1],[lunit],[zeros((nin+1)*N,1)]];
-}
-        model.in1 = nin;
-        model.dstate = dstate;
-        model.ipar = ipar;
-        model.dep_ut = [true,false];
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,in1,fname1,frmt1,N,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WFILE_f")],[" "],[gettext("Write to output file")],[" "],[gettext("Write is done on:")],[gettext("&nbsp; - A binary file if no format given")],[gettext("&nbsp; - A formatted text file if a  format (Fortran type) is given")]],[[gettext("Input Size")],[gettext("Output File Name")],[gettext("Output Format")],[gettext("Buffer Size")]],list("vec",1,"str",1,"str",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            in1 = int(in1);
+            nin = in1;
+            fname1 = pathconvert(stripblanks(fname1),false,true);
+            frmt1 = stripblanks(frmt1);
+            if (lunit>0&&min(length(frmt),1)!=min(length(frmt1),1)) {
+                block_parameter_error(gettext("Simulation running !!! You cannot switch<br />between formatted and unformatted when running"),gettext("End current simulation first."));
+                ok = false;
+            } else if (lunit>0&&fname1!=fname) {
+                block_parameter_error(gettext("You cannot modify \'Output File Name\' when running."),gettext("End current simulation first."));
+                ok = false;
+            } else if (fname1=="") {
+                block_parameter_error(gettext("Wrong value for \'Output File Name\' parameter"),gettext("You must provide a filename."));
+                ok = false;
+            } else if (fileparts(fname1)!="") {
+                [pa,fn,ex] = fileparts(fname1);
+                if (!this.isdir[pa-1]) {
+                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Output File Name")),msprintf(gettext("Directory \'%s\' does not exist"),pa));
+                    ok = false;
+                }
+            } else if (frmt1!=""&&(part(frmt1,1)!="("||part(frmt1,length(frmt1))!=")")) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Input Format"),frmt1),gettext("You must enclose the format\'s string between parentheses."));
+                ok = false;
+            } else if (N<2) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),N),gettext("Must be greater than 1."));
+                ok = false;
+            } else if (in1<=0) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Input Size"),in1),gettext("Strictly positive integer expected."));
+                ok = false;
+            }
+            if (ok) {
+                ipar = [[length(fname1)],[length(frmt1)],[0],[N],[this._str2code[fname1-1]],[this._str2code[frmt1-1]]];
+                if (prod(size(dstate))!=(nin+1)*N+2) {
+                    dstate = [[-1],[lunit],[zeros((nin+1)*N,1)]];
+                }
+                model.in1 = nin;
+                model.dstate = dstate;
+                model.ipar = ipar;
+                model.dep_ut = [true,false];
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

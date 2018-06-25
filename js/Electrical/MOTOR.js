@@ -9,15 +9,16 @@ function MOTOR() {
         model.dep_ut = [true,false];
         gr_i = [];
         exprs = "";
-        x = standard_define([2,2],model,exprs,gr_i);
-        x.graphics.out_implicit = [["I"],["I"]];
-        x.graphics.in_implicit = ["I"];
+        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x.graphics.out_implicit = [["I"],["I"]];
+        this.x.graphics.in_implicit = ["I"];
     }
     MOTOR.prototype.details = function MOTOR() {
+        return this.x;
     }
     MOTOR.prototype.get = function MOTOR() {
     }
     MOTOR.prototype.set = function MOTOR() {
-        x = arg1;
+        this.x = arg1;
     }
 }

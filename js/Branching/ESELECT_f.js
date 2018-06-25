@@ -16,52 +16,53 @@ function ESELECT_f() {
         model.nzcross = 0;
         gr_i = [];
         exprs = [[string(out)],[string(1)],[string(model.nmode)]];
-        x = standard_define([4,2],model,exprs,gr_i);
+        this.x = standard_define([4,2],model,exprs,gr_i);
     }
     ESELECT_f.prototype.details = function ESELECT_f() {
+        return this.x;
     }
     ESELECT_f.prototype.get = function ESELECT_f() {
     }
     ESELECT_f.prototype.set = function ESELECT_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         if (size(exprs,"*")==1) {
-        exprs[2-1] = string(1);
-}
+            exprs[2-1] = string(1);
+        }
         if (size(exprs,"*")==2) {
-        exprs[3-1] = string(0);
-}
+            exprs[3-1] = string(0);
+        }
         model = arg1.model;
         while (true) {
-        [ok,out,inh,nmod,exprs] = scicos_getvalue("Set ESELECT block parameters",[["number of output event ports"],["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (nmod!=0) {
-        nmod = 1;
-}
-        if (inh==0) {
-        inh = [];
-        } else {
-        inh = 1;
-}
-        out = int(out);
-        if (out<2) {
-message("Block must have at least two output ports");
-        } else {
-        [model,graphics,ok] = check_io(model,graphics,1,[],inh,[ones(out,1)]);
-        if (ok) {
-        graphics.exprs = exprs;
-        model.evtout = ones(out,1);
-        model.firing = -ones(out,1);
-        x.graphics = graphics;
-        model.nmode = nmod;
-        model.nzcross = nmod;
-        x.model = model;
-break;
-}
-}
-}
+            [ok,out,inh,nmod,exprs] = scicos_getvalue("Set ESELECT block parameters",[["number of output event ports"],["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (nmod!=0) {
+                nmod = 1;
+            }
+            if (inh==0) {
+                inh = [];
+            } else {
+                inh = 1;
+            }
+            out = int(out);
+            if (out<2) {
+                message("Block must have at least two output ports");
+            } else {
+                [model,graphics,ok] = check_io(model,graphics,1,[],inh,[ones(out,1)]);
+                if (ok) {
+                    graphics.exprs = exprs;
+                    model.evtout = ones(out,1);
+                    model.firing = -ones(out,1);
+                    this.x.graphics = graphics;
+                    model.nmode = nmod;
+                    model.nzcross = nmod;
+                    this.x.model = model;
+                    break;
+                }
+            }
+        }
     }
 }

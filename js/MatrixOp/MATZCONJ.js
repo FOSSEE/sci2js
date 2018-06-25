@@ -22,13 +22,14 @@ function MATZCONJ() {
         model.dep_ut = [true,false];
         label = [];
         gr_i = [];
-        x = standard_define([2,2],model,label,gr_i);
+        this.x = standard_define([2,2],model,label,gr_i);
     }
     MATZCONJ.prototype.details = function MATZCONJ() {
+        return this.x;
     }
     MATZCONJ.prototype.get = function MATZCONJ() {
     }
     MATZCONJ.prototype.set = function MATZCONJ() {
-        x = arg1;
+        this.x = arg1;
     }
 }

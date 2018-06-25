@@ -10,33 +10,34 @@ function CLKOUTV_f() {
         model.firing = [];
         model.dep_ut = [false,false];
         exprs = string(prt);
-        x = standard_define([1,1],model,exprs," ");
+        this.x = standard_define([1,1],model,exprs," ");
     }
     CLKOUTV_f.prototype.details = function CLKOUTV_f() {
+        return this.x;
     }
     CLKOUTV_f.prototype.get = function CLKOUTV_f() {
     }
     CLKOUTV_f.prototype.set = function CLKOUTV_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-        [ok,prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLKOUTV_f")],[" "],[gettext("Event output port")]],gettext("Port number"),list("vec",1),exprs);
-        if (!ok) {
-break;
-}
-        prt = int(prt);
-        if (prt<=0) {
-block_parameter_error(msprintf(gettext("Wrong value for \'Port Number\' parameter: %d."),prt),gettext("Strictly positive integer expected."));
-        } else {
-        model.ipar = prt;
-        model.evtin = 1;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLKOUTV_f")],[" "],[gettext("Event output port")]],gettext("Port number"),list("vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            prt = int(prt);
+            if (prt<=0) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'Port Number\' parameter: %d."),prt),gettext("Strictly positive integer expected."));
+            } else {
+                model.ipar = prt;
+                model.evtin = 1;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

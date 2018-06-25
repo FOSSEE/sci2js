@@ -8,13 +8,14 @@ function ABSBLK_f() {
         model.blocktype = "c";
         model.dep_ut = [true,false];
         gr_i = [];
-        x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],model,[],gr_i);
     }
     ABSBLK_f.prototype.details = function ABSBLK_f() {
+        return this.x;
     }
     ABSBLK_f.prototype.get = function ABSBLK_f() {
     }
     ABSBLK_f.prototype.set = function ABSBLK_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

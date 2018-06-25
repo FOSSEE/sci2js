@@ -16,14 +16,15 @@ function CURV_f() {
         model.blocktype = "c";
         model.dep_ut = [false,true];
         gr_i = [];
-        x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],model,[],gr_i);
     }
     CURV_f.prototype.details = function CURV_f() {
+        return this.x;
     }
     CURV_f.prototype.get = function CURV_f() {
     }
     CURV_f.prototype.set = function CURV_f() {
-        x = arg1;
+        this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;
         rpar = model.rpar;
@@ -33,31 +34,31 @@ function CURV_f() {
         yy = rpar.slice(n+1-1,2*n);
         gc = list(rpar.slice(2*n+1-1,2*n+4),ipar.slice(2-1,5));
         while (true) {
-[ln,fun]=where()
-        if (!or(fun=="do_eval")) {
-        [xx,yy,ok,gc] = edit_curv(xx,yy,"axy",[" "," "," "],gc);
-        } else {
-        ok = true;
-}
-        if (!ok) {
-break;
-}
-        n = size(xx,"*");
-        if (or(xx.slice(2-1,n)-xx.slice(1-1,n-1)<0)) {
-message("You have not defined a function");
-        ok = false;
-}
-        if (ok) {
-        model.sim = "intplt";
-        model.firing = [];
-        rect = gc[1-1];
-        model.rpar = [[xx.slice()],[yy.slice()],[rect.slice()]];
-        axisdata = gc[2-1];
-        model.ipar = [[size(xx,"*")],[axisdata.slice()]];
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ln,fun]=where()
+            if (!or(fun=="do_eval")) {
+                [xx,yy,ok,gc] = edit_curv(xx,yy,"axy",[" "," "," "],gc);
+            } else {
+                ok = true;
+            }
+            if (!ok) {
+                break;
+            }
+            n = size(xx,"*");
+            if (or(xx.slice(2-1,n)-xx.slice(1-1,n-1)<0)) {
+                message("You have not defined a function");
+                ok = false;
+            }
+            if (ok) {
+                model.sim = "intplt";
+                model.firing = [];
+                rect = gc[1-1];
+                model.rpar = [[xx.slice()],[yy.slice()],[rect.slice()]];
+                axisdata = gc[2-1];
+                model.ipar = [[size(xx,"*")],[axisdata.slice()]];
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

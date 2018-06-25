@@ -16,31 +16,32 @@ function RAMP() {
         model.dep_ut = [false,true];
         exprs = [string(rpar)];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     RAMP.prototype.details = function RAMP() {
+        return this.x;
     }
     RAMP.prototype.get = function RAMP() {
     }
     RAMP.prototype.set = function RAMP() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,slope,stt,iout,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"RAMP")],[" "],[gettext("Ramp function")],[" "]],[[gettext("Slope")],[gettext("Start Time")],[gettext("Initial Value")]],list("vec",1,"vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (stt<0) {
-block_parameter_error(msprintf(gettext("Wrong value for \'Start Time\' parameter: %e."),stt),gettext("Null or positive integer expected."));
-        } else {
-        model.rpar = [[slope],[stt],[iout]];
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,slope,stt,iout,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"RAMP")],[" "],[gettext("Ramp function")],[" "]],[[gettext("Slope")],[gettext("Start Time")],[gettext("Initial Value")]],list("vec",1,"vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (stt<0) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'Start Time\' parameter: %e."),stt),gettext("Null or positive integer expected."));
+            } else {
+                model.rpar = [[slope],[stt],[iout]];
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

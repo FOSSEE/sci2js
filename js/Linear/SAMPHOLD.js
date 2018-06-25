@@ -10,14 +10,15 @@ function SAMPHOLD() {
         model.blocktype = "d";
         model.dep_ut = [true,false];
         gr_i = [];
-        x = standard_define([2,2],model," ",gr_i);
+        this.x = standard_define([2,2],model," ",gr_i);
     }
     SAMPHOLD.prototype.details = function SAMPHOLD() {
+        return this.x;
     }
     SAMPHOLD.prototype.get = function SAMPHOLD() {
     }
     SAMPHOLD.prototype.set = function SAMPHOLD() {
-        x = arg1;
-        x.model.firing = [];
+        this.x = arg1;
+        this.x.model.firing = [];
     }
 }

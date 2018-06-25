@@ -10,13 +10,14 @@ function VirtualCLK0() {
         model.firing = -1;
         model.dep_ut = [false,false];
         exprs = [];
-        x = standard_define([2,2],model,exprs," ");
+        this.x = standard_define([2,2],model,exprs," ");
     }
     VirtualCLK0.prototype.details = function VirtualCLK0() {
+        return this.x;
     }
     VirtualCLK0.prototype.get = function VirtualCLK0() {
     }
     VirtualCLK0.prototype.set = function VirtualCLK0() {
-        x = arg1;
+        this.x = arg1;
     }
 }

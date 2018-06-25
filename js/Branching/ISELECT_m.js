@@ -22,43 +22,44 @@ function ISELECT_m() {
         model.dep_ut = [true,false];
         exprs = [[sci2exp(1)],[sci2exp(nout)],[sci2exp(z0)]];
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     ISELECT_m.prototype.details = function ISELECT_m() {
+        return this.x;
     }
     ISELECT_m.prototype.get = function ISELECT_m() {
     }
     ISELECT_m.prototype.set = function ISELECT_m() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,typ,nout,z0,exprs] = scicos_getvalue("Set parameters",[["Datatype(1= real double  2=Complex 3=int32 ...)"],["number of outputs"],["initial connected output"]],list("vec",1,"vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (z0>nout||z0<=0) {
-message("initial connected input is not a valid input port number");
-        } else if (((typ<1)||(typ>8))) {
-message("Datatype is not supported");
-        ok = false;
-        } else {
-        it = typ;
-        ot = typ*ones(1,nout);
-        if (ok) {
-        out = [-ones(nout,1),-2*ones(nout,1)];
-        in1 = [-1,-2];
-        [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),ones(nout,1),[]);
-        if (ok) {
-        graphics.exprs = exprs;
-        model.dstate = z0;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
-}
-}
+            [ok,typ,nout,z0,exprs] = scicos_getvalue("Set parameters",[["Datatype(1= real double  2=Complex 3=int32 ...)"],["number of outputs"],["initial connected output"]],list("vec",1,"vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (z0>nout||z0<=0) {
+                message("initial connected input is not a valid input port number");
+            } else if (((typ<1)||(typ>8))) {
+                message("Datatype is not supported");
+                ok = false;
+            } else {
+                it = typ;
+                ot = typ*ones(1,nout);
+                if (ok) {
+                    out = [-ones(nout,1),-2*ones(nout,1)];
+                    in1 = [-1,-2];
+                    [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),ones(nout,1),[]);
+                    if (ok) {
+                        graphics.exprs = exprs;
+                        model.dstate = z0;
+                        this.x.graphics = graphics;
+                        this.x.model = model;
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

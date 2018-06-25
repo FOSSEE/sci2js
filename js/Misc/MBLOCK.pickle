@@ -10,10 +10,12 @@ aS'outtype'
 p4
 aS'funam'
 p5
-aS'type'
+aS'x'
 p6
-aS'out'
+aS'type'
 p7
-atp8
-Rp9
+aS'out'
+p8
+atp9
+Rp10
 .

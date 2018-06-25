@@ -19,44 +19,45 @@ function CMATVIEW() {
         model.dep_ut = [true,false];
         exprs = [[string("jetcolormap(25)")],[string(cmin)],[string(cmax)]];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     CMATVIEW.prototype.details = function CMATVIEW() {
+        return this.x;
     }
     CMATVIEW.prototype.get = function CMATVIEW() {
     }
     CMATVIEW.prototype.set = function CMATVIEW() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,colormap,cmin,cmax,exprs] = scicos_getvalue("Set Scope parameters",[["ColorMap"],["Minimum level range"],["Maximum level range"]],list("vec",-1,"vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        mess = [];
-        if (cmax<=cmin) {
-        mess = [[mess],["Error with minimum and maximum value"],[" "]];
-        ok = false;
-}
-        if (!ok) {
-message([["Some specified values are inconsistent:"],[" "],[mess]]);
-}
-        if (ok) {
-        size_c = size(colormap.slice(),1);
-        sol = inv([[cmin,1],[cmax,1]])*[[1],[size_c/3]];
-        alpha_c = sol[1-1];
-        beta_c = sol[2-1];
-        ipar = [[cmin],[cmax],[size_c]];
-        rpar = [[alpha_c],[beta_c],[colormap.slice()]];
-        model.ipar = ipar;
-        model.rpar = rpar;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,colormap,cmin,cmax,exprs] = scicos_getvalue("Set Scope parameters",[["ColorMap"],["Minimum level range"],["Maximum level range"]],list("vec",-1,"vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            mess = [];
+            if (cmax<=cmin) {
+                mess = [[mess],["Error with minimum and maximum value"],[" "]];
+                ok = false;
+            }
+            if (!ok) {
+                message([["Some specified values are inconsistent:"],[" "],[mess]]);
+            }
+            if (ok) {
+                size_c = size(colormap.slice(),1);
+                sol = inv([[cmin,1],[cmax,1]])*[[1],[size_c/3]];
+                alpha_c = sol[1-1];
+                beta_c = sol[2-1];
+                ipar = [[cmin],[cmax],[size_c]];
+                rpar = [[alpha_c],[beta_c],[colormap.slice()]];
+                model.ipar = ipar;
+                model.rpar = rpar;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

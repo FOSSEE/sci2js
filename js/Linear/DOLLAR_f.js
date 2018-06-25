@@ -14,42 +14,43 @@ function DOLLAR_f() {
         model.blocktype = "d";
         model.dep_ut = [false,false];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     DOLLAR_f.prototype.details = function DOLLAR_f() {
+        return this.x;
     }
     DOLLAR_f.prototype.get = function DOLLAR_f() {
     }
     DOLLAR_f.prototype.set = function DOLLAR_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         if (size(exprs,"*")<2) {
-        exprs[2-1] = "0";
-}
+            exprs[2-1] = "0";
+        }
         while (true) {
-        [ok,a,inh,exprs] = scicos_getvalue("Set 1/z block parameters",[["initial condition"],["Inherit (no:0, yes:1)"]],list("vec",-1,"vec",-1),exprs);
-        if (!ok) {
-break;
-}
-        out = size(a,"*");
-        if (out==0) {
-        out = [];
-}
-        in1 = out;
-        if (ok) {
-        [model,graphics,ok] = check_io(model,graphics,-1,-1,ones(1-inh,1),[]);
-}
-        if (ok) {
-        graphics.exprs = exprs;
-        model.dstate = a;
-        model.in1 = in1;
-        model.out = out;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,a,inh,exprs] = scicos_getvalue("Set 1/z block parameters",[["initial condition"],["Inherit (no:0, yes:1)"]],list("vec",-1,"vec",-1),exprs);
+            if (!ok) {
+                break;
+            }
+            out = size(a,"*");
+            if (out==0) {
+                out = [];
+            }
+            in1 = out;
+            if (ok) {
+                [model,graphics,ok] = check_io(model,graphics,-1,-1,ones(1-inh,1),[]);
+            }
+            if (ok) {
+                graphics.exprs = exprs;
+                model.dstate = a;
+                model.in1 = in1;
+                model.out = out;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

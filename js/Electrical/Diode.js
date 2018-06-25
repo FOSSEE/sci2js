@@ -20,30 +20,31 @@ function Diode() {
         model.equations = mo;
         exprs = string([[Ids],[Vt],[Maxexp],[R]]);
         gr_i = [];
-        x = standard_define([2,1],model,exprs,list(gr_i,0));
-        x.graphics.in_implicit = ["I"];
-        x.graphics.out_implicit = ["I"];
+        this.x = standard_define([2,1],model,exprs,list(gr_i,0));
+        this.x.graphics.in_implicit = ["I"];
+        this.x.graphics.out_implicit = ["I"];
     }
     Diode.prototype.details = function Diode() {
+        return this.x;
     }
     Diode.prototype.get = function Diode() {
     }
     Diode.prototype.set = function Diode() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,Ids,Vt,Maxexp,R,exprs] = scicos_getvalue("Set Diode block parameter",[["Saturation cuurent (A)"],["Voltage equivalent to temperature (Volt)"],["Max exponent for linear continuation"],["R (ohm)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        model.rpar = [[Ids],[Vt],[Maxexp],[R]];
-        model.equations.parameters = list(["Ids","Vt","Maxexp","R"],list(Ids,Vt,Maxexp,R));
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
+            [ok,Ids,Vt,Maxexp,R,exprs] = scicos_getvalue("Set Diode block parameter",[["Saturation cuurent (A)"],["Voltage equivalent to temperature (Volt)"],["Max exponent for linear continuation"],["R (ohm)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            model.rpar = [[Ids],[Vt],[Maxexp],[R]];
+            model.equations.parameters = list(["Ids","Vt","Maxexp","R"],list(Ids,Vt,Maxexp,R));
+            graphics.exprs = exprs;
+            this.x.graphics = graphics;
+            this.x.model = model;
+            break;
+        }
     }
 }

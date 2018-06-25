@@ -17,49 +17,50 @@ function fortran_block() {
         funam = "forty";
         label = list([[sci2exp(model.in1)],[sci2exp(model.out)],[strcat(sci2exp(model.rpar))],[funam]],list([]));
         gr_i = [];
-        x = standard_define([4,2],model,label,gr_i);
+        this.x = standard_define([4,2],model,label,gr_i);
     }
     fortran_block.prototype.details = function fortran_block() {
+        return this.x;
     }
     fortran_block.prototype.get = function fortran_block() {
     }
     fortran_block.prototype.set = function fortran_block() {
-        x = arg1;
+        this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;
         label = graphics.exprs;
         while (true) {
-        [ok,i,o,rpar,funam,lab] = scicos_getvalue("Set fortran_block parameters",[["input ports sizes"],["output port sizes"],["System parameters vector"],["function name"]],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
-        if (!ok) {
-break;
-}
-        if (funam==" ") {
-break;
-}
-        label[1-1] = lab;
-        rpar = rpar.slice();
-        i = int(i.slice());
-        ni = size(i,1);
-        o = int(o.slice());
-        no = size(o,1);
-        tt = label[2-1];
-        if (model.sim[1-1]!=funam||size(model.in1,"*")!=size(i,"*")||size(model.out,"*")!=size(o,"*")) {
-        tt = [];
-}
-        [ok,tt] = FORTR(funam,tt,i,o);
-        if (!ok) {
-break;
-}
-        [model,graphics,ok] = check_io(model,graphics,i,o,[],[]);
-        if (ok) {
-        model.sim[1-1] = funam;
-        model.rpar = rpar;
-        label[2-1] = tt;
-        x.model = model;
-        graphics.exprs = label;
-        x.graphics = graphics;
-break;
-}
-}
+            [ok,i,o,rpar,funam,lab] = scicos_getvalue("Set fortran_block parameters",[["input ports sizes"],["output port sizes"],["System parameters vector"],["function name"]],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
+            if (!ok) {
+                break;
+            }
+            if (funam==" ") {
+                break;
+            }
+            label[1-1] = lab;
+            rpar = rpar.slice();
+            i = int(i.slice());
+            ni = size(i,1);
+            o = int(o.slice());
+            no = size(o,1);
+            tt = label[2-1];
+            if (model.sim[1-1]!=funam||size(model.in1,"*")!=size(i,"*")||size(model.out,"*")!=size(o,"*")) {
+                tt = [];
+            }
+            [ok,tt] = FORTR(funam,tt,i,o);
+            if (!ok) {
+                break;
+            }
+            [model,graphics,ok] = check_io(model,graphics,i,o,[],[]);
+            if (ok) {
+                model.sim[1-1] = funam;
+                model.rpar = rpar;
+                label[2-1] = tt;
+                this.x.model = model;
+                graphics.exprs = label;
+                this.x.graphics = graphics;
+                break;
+            }
+        }
     }
 }

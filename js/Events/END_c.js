@@ -11,29 +11,30 @@ function END_c() {
         model.dep_ut = [false,false];
         exprs = string(tf);
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     END_c.prototype.details = function END_c() {
+        return this.x;
     }
     END_c.prototype.get = function END_c() {
     }
     END_c.prototype.set = function END_c() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,tf,exprs] = scicos_getvalue("Set final simulation time",["Final simulation time"],list("vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (ok) {
-        graphics.exprs = exprs;
-        model.firing = tf;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,tf,exprs] = scicos_getvalue("Set final simulation time",["Final simulation time"],list("vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (ok) {
+                graphics.exprs = exprs;
+                model.firing = tf;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

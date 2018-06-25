@@ -22,75 +22,76 @@ function MATRESH() {
         model.dep_ut = [true,false];
         label = [[sci2exp(1)],[sci2exp([1,1])],[sci2exp([1,1])]];
         gr_i = [];
-        x = standard_define([3,2],model,label,gr_i);
+        this.x = standard_define([3,2],model,label,gr_i);
     }
     MATRESH.prototype.details = function MATRESH() {
+        return this.x;
     }
     MATRESH.prototype.get = function MATRESH() {
     }
     MATRESH.prototype.set = function MATRESH() {
-        x = arg1;
+        this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;
         label = graphics.exprs;
         if (size(label,"*")==14) {
-        label[9-1] = [];
-}
+            label[9-1] = [];
+        }
         while (true) {
-        [ok,typ,l1,out,lab] = scicos_getvalue("Set MATRESH block parameters",[["Datatype(1=real double  2=Complex)","input size"],["output size desired"]],list("vec",-1,"vec",-1,"vec",-1),label);
-        if (!ok) {
-break;
-}
-        nout = size(out);
-        nin = size(l1);
-        if (nout==0) {
-message("output must have at least one element");
-        ok = false;
-}
-        if (nin==0) {
-message("input must have at least one element");
-        ok = false;
-}
-        if (ok) {
-        if (((out[1-1]>(l1[1-1]*l1[2-1])))) {
-message("the first dimension of the output is too big");
-        ok = false;
-}
-        if (((out[2-1]>(l1[1-1]*l1[2-1])))) {
-message("the second dimension of the output is too big");
-        ok = false;
-}
-        if ((((out[2-1]*out[1-1])>(l1[1-1]*l1[2-1])))) {
-message("the dimensions of the output are too big");
-        ok = false;
-}
-}
-        if ((typ==1)) {
-        function_name = "mat_reshape";
-        ot = 1;
-        it = 1;
-        } else if ((typ==2)) {
-        function_name = "matz_reshape";
-        ot = 2;
-        it = 2;
-        } else {
-message("Datatype is not supported");
-        ok = false;
-}
-        if (ok) {
-        label = lab;
-        [model,graphics,ok] = set_io(model,graphics,list(l1,it),list(out,ot),[],[]);
-}
-        if (ok) {
-        funtyp = 4;
-        model.sim = list(function_name,funtyp);
-        graphics.exprs = label;
-        arg1.graphics = graphics;
-        arg1.model = model;
-        x = arg1;
-break;
-}
-}
-needcompile=resume(needcompile)
+            [ok,typ,l1,out,lab] = scicos_getvalue("Set MATRESH block parameters",[["Datatype(1=real double  2=Complex)","input size"],["output size desired"]],list("vec",-1,"vec",-1,"vec",-1),label);
+            if (!ok) {
+                break;
+            }
+            nout = size(out);
+            nin = size(l1);
+            if (nout==0) {
+                message("output must have at least one element");
+                ok = false;
+            }
+            if (nin==0) {
+                message("input must have at least one element");
+                ok = false;
+            }
+            if (ok) {
+                if (((out[1-1]>(l1[1-1]*l1[2-1])))) {
+                    message("the first dimension of the output is too big");
+                    ok = false;
+                }
+                if (((out[2-1]>(l1[1-1]*l1[2-1])))) {
+                    message("the second dimension of the output is too big");
+                    ok = false;
+                }
+                if ((((out[2-1]*out[1-1])>(l1[1-1]*l1[2-1])))) {
+                    message("the dimensions of the output are too big");
+                    ok = false;
+                }
+            }
+            if ((typ==1)) {
+                function_name = "mat_reshape";
+                ot = 1;
+                it = 1;
+            } else if ((typ==2)) {
+                function_name = "matz_reshape";
+                ot = 2;
+                it = 2;
+            } else {
+                message("Datatype is not supported");
+                ok = false;
+            }
+            if (ok) {
+                label = lab;
+                [model,graphics,ok] = set_io(model,graphics,list(l1,it),list(out,ot),[],[]);
+            }
+            if (ok) {
+                funtyp = 4;
+                model.sim = list(function_name,funtyp);
+                graphics.exprs = label;
+                arg1.graphics = graphics;
+                arg1.model = model;
+                this.x = arg1;
+                break;
+            }
+        }
+        needcompile=resume(needcompile)
     }
 }

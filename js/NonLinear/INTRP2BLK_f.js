@@ -14,36 +14,37 @@ function INTRP2BLK_f() {
         model.dep_ut = [true,false];
         exprs = [[strcat(sci2exp(a))],[strcat(sci2exp(b))],[strcat(sci2exp(c,0))]];
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     INTRP2BLK_f.prototype.details = function INTRP2BLK_f() {
+        return this.x;
     }
     INTRP2BLK_f.prototype.get = function INTRP2BLK_f() {
     }
     INTRP2BLK_f.prototype.set = function INTRP2BLK_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,a,b,c,exprs] = scicos_getvalue("Set Interpolation block parameters",[["X coord."],["Y coord."],["Z values"]],list("vec",-1,"vec",-1,"mat",[-1,-1]),exprs);
-        if (!ok) {
-break;
-}
-        if (size(a,"*")!=size(c,"c")||size(b,"*")!=size(c,"r")) {
-message("incompatible dimension");
-        } else if (min(a.slice(2-1,$)-a.slice(1-1,$-1))<=0||min(b.slice(2-1,$)-b.slice(1-1,$-1))<=0) {
-message("X and Y must be strictly increasing");
-        } else {
-        if (ok) {
-        graphics.exprs = exprs;
-        model.rpar = [[a.slice()],[b.slice()],[c.slice()]];
-        model.ipar = [[size(a,"*")],[size(b,"*")]];
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
-}
+            [ok,a,b,c,exprs] = scicos_getvalue("Set Interpolation block parameters",[["X coord."],["Y coord."],["Z values"]],list("vec",-1,"vec",-1,"mat",[-1,-1]),exprs);
+            if (!ok) {
+                break;
+            }
+            if (size(a,"*")!=size(c,"c")||size(b,"*")!=size(c,"r")) {
+                message("incompatible dimension");
+            } else if (min(a.slice(2-1,$)-a.slice(1-1,$-1))<=0||min(b.slice(2-1,$)-b.slice(1-1,$-1))<=0) {
+                message("X and Y must be strictly increasing");
+            } else {
+                if (ok) {
+                    graphics.exprs = exprs;
+                    model.rpar = [[a.slice()],[b.slice()],[c.slice()]];
+                    model.ipar = [[size(a,"*")],[size(b,"*")]];
+                    this.x.graphics = graphics;
+                    this.x.model = model;
+                    break;
+                }
+            }
+        }
     }
 }

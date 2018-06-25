@@ -89,13 +89,14 @@ function DFLIPFLOP() {
         model.dep_ut = [true,false];
         model.rpar = scs_m;
         gr_i = [];
-        x = standard_define([2,3],model,[],gr_i);
+        this.x = standard_define([2,3],model,[],gr_i);
     }
     DFLIPFLOP.prototype.details = function DFLIPFLOP() {
+        return this.x;
     }
     DFLIPFLOP.prototype.get = function DFLIPFLOP() {
     }
     DFLIPFLOP.prototype.set = function DFLIPFLOP() {
-        x = arg1;
+        this.x = arg1;
     }
 }

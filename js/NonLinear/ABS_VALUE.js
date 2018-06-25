@@ -12,35 +12,36 @@ function ABS_VALUE() {
         model.dep_ut = [true,false];
         exprs = [string([1])];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     ABS_VALUE.prototype.details = function ABS_VALUE() {
+        return this.x;
     }
     ABS_VALUE.prototype.get = function ABS_VALUE() {
     }
     ABS_VALUE.prototype.set = function ABS_VALUE() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,zcr,exprs] = scicos_getvalue("Set block parameters",["use zero_crossing (1: yes) (0:no)"],list("vec",1),exprs);
-        if (!ok) {
-break;
-}
-        graphics.exprs = exprs;
-        if (ok) {
-        if (zcr!=0) {
-        model.nmode = -1;
-        model.nzcross = -1;
-        } else {
-        model.nmode = 0;
-        model.nzcross = 0;
-}
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,zcr,exprs] = scicos_getvalue("Set block parameters",["use zero_crossing (1: yes) (0:no)"],list("vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            graphics.exprs = exprs;
+            if (ok) {
+                if (zcr!=0) {
+                    model.nmode = -1;
+                    model.nzcross = -1;
+                } else {
+                    model.nmode = 0;
+                    model.nzcross = 0;
+                }
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

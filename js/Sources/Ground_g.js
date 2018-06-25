@@ -15,13 +15,14 @@ function Ground_g() {
         model.dep_ut = [false,false];
         exprs = [];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     Ground_g.prototype.details = function Ground_g() {
+        return this.x;
     }
     Ground_g.prototype.get = function Ground_g() {
     }
     Ground_g.prototype.set = function Ground_g() {
-        x = arg1;
+        this.x = arg1;
     }
 }

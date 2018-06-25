@@ -9,13 +9,14 @@ function DERIV() {
         model.dep_ut = [true,false];
         exprs = [];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     DERIV.prototype.details = function DERIV() {
+        return this.x;
     }
     DERIV.prototype.get = function DERIV() {
     }
     DERIV.prototype.set = function DERIV() {
-        x = arg1;
+        this.x = arg1;
     }
 }

@@ -8,13 +8,14 @@ function CLKSPLIT_f() {
         model.blocktype = "d";
         model.firing = [false,false,false];
         model.dep_ut = [false,false];
-        x = standard_define([1,1]/3,model,[],[]);
+        this.x = standard_define([1,1]/3,model,[],[]);
     }
     CLKSPLIT_f.prototype.details = function CLKSPLIT_f() {
+        return this.x;
     }
     CLKSPLIT_f.prototype.get = function CLKSPLIT_f() {
     }
     CLKSPLIT_f.prototype.set = function CLKSPLIT_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

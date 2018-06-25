@@ -58,37 +58,38 @@ function MCLOCK_f() {
         diagram.objs[11-1] = split2;
         diagram.objs[12-1] = scicos_link(xx=[[482.5],[489.6],[489.6],[354],[354]],yy=[[169.3],[169.3],[338.3],[338.3],[244.7]],ct=[10,-1],from=[11,1],to=[1,1]);
         diagram.objs[13-1] = scicos_link(xx=[[482.4],[482.4],[509]],yy=[[169.3],[152],[152]],ct=[10,-1],from=[11,2],to=[7,1]);
-        x = scicos_block();
-        x.gui = "MCLOCK_f";
-        x.graphics.sz = [3,2];
-        x.graphics.gr_i = gr_i;
-        x.model.sim = "csuper";
-        x.model.evtout = [[1],[1]];
-        x.model.blocktype = "h";
-        x.model.rpar = diagram;
-        x.graphics.peout = [[0],[0]];
+        this.x = scicos_block();
+        this.x.gui = "MCLOCK_f";
+        this.x.graphics.sz = [3,2];
+        this.x.graphics.gr_i = gr_i;
+        this.x.model.sim = "csuper";
+        this.x.model.evtout = [[1],[1]];
+        this.x.model.blocktype = "h";
+        this.x.model.rpar = diagram;
+        this.x.graphics.peout = [[0],[0]];
     }
     MCLOCK_f.prototype.details = function MCLOCK_f() {
+        return this.x;
     }
     MCLOCK_f.prototype.get = function MCLOCK_f() {
     }
     MCLOCK_f.prototype.set = function MCLOCK_f() {
-for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-        o = arg1.model.rpar.objs[i-1];
-        if (typeof(o)=="Block"&&o.gui=="MFCLCK_f") {
-        path = i;
-break;
-}
-}
+        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+            o = arg1.model.rpar.objs[i-1];
+            if (typeof(o)=="Block"&&o.gui=="MFCLCK_f") {
+                path = i;
+                break;
+            }
+        }
         newpar = list();
         spath = list("model","rpar","objs",path);
         xx = arg1[spath-1];
-execstr("xxn="+xx.gui+"(\'set\',xx)");
+        execstr("xxn="+xx.gui+"(\'set\',xx)");
         if (or(this.xxn!=xx)) {
-        arg1[spath-1] = this.xxn;
-        newpar[size(newpar)+1-1] = path;
-}
-        x = arg1;
+            arg1[spath-1] = this.xxn;
+            newpar[size(newpar)+1-1] = path;
+        }
+        this.x = arg1;
         y = 0;
         typ = newpar;
     }

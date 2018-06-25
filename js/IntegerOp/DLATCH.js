@@ -34,13 +34,14 @@ function DLATCH() {
         model.dep_ut = [true,false];
         model.rpar = scs_m;
         gr_i = [];
-        x = standard_define([2,3],model,[],gr_i);
+        this.x = standard_define([2,3],model,[],gr_i);
     }
     DLATCH.prototype.details = function DLATCH() {
+        return this.x;
     }
     DLATCH.prototype.get = function DLATCH() {
     }
     DLATCH.prototype.set = function DLATCH() {
-        x = arg1;
+        this.x = arg1;
     }
 }

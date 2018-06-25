@@ -14,35 +14,36 @@ function SWITCH_f() {
         model.dep_ut = [true,true];
         exprs = [[string(nin)],[string(i0+1)]];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     SWITCH_f.prototype.details = function SWITCH_f() {
+        return this.x;
     }
     SWITCH_f.prototype.get = function SWITCH_f() {
     }
     SWITCH_f.prototype.set = function SWITCH_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         ipar = model.ipar;
         while (true) {
-        [ok,nin,z0,exprs] = scicos_getvalue("Set switch parameters",[["number of inputs"],["connected input"]],list("vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (z0>nin||z0<=0) {
-message("initial connected input is not a valid input port number");
-        } else {
-        [model,graphics,ok] = check_io(model,graphics,-ones(nin,1),-1,[],[]);
-        if (ok) {
-        graphics.exprs = exprs;
-        model.ipar = z0-1;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
-}
+            [ok,nin,z0,exprs] = scicos_getvalue("Set switch parameters",[["number of inputs"],["connected input"]],list("vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (z0>nin||z0<=0) {
+                message("initial connected input is not a valid input port number");
+            } else {
+                [model,graphics,ok] = check_io(model,graphics,-ones(nin,1),-1,[],[]);
+                if (ok) {
+                    graphics.exprs = exprs;
+                    model.ipar = z0-1;
+                    this.x.graphics = graphics;
+                    this.x.model = model;
+                    break;
+                }
+            }
+        }
     }
 }

@@ -20,29 +20,30 @@ function Switch() {
         model.rpar = Z;
         exprs = string(Z);
         gr_i = [];
-        x = standard_define([2,2],model,exprs,list(gr_i,0));
-        x.graphics.in_implicit = [["I"],["E"]];
-        x.graphics.out_implicit = ["I"];
+        this.x = standard_define([2,2],model,exprs,list(gr_i,0));
+        this.x.graphics.in_implicit = [["I"],["E"]];
+        this.x.graphics.out_implicit = ["I"];
     }
     Switch.prototype.details = function Switch() {
+        return this.x;
     }
     Switch.prototype.get = function Switch() {
     }
     Switch.prototype.set = function Switch() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,Ron,Roff,exprs] = scicos_getvalue("Set non-ideal electrical switch parameters",[["Resistance in On state (Ohm)"],["Resistance in Off state (Ohm)"]],list("vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        model.equations.parameters[2-1] = list(Ron,Roff);
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
+            [ok,Ron,Roff,exprs] = scicos_getvalue("Set non-ideal electrical switch parameters",[["Resistance in On state (Ohm)"],["Resistance in Off state (Ohm)"]],list("vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            model.equations.parameters[2-1] = list(Ron,Roff);
+            graphics.exprs = exprs;
+            this.x.graphics = graphics;
+            this.x.model = model;
+            break;
+        }
     }
 }

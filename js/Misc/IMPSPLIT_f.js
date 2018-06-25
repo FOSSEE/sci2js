@@ -10,15 +10,16 @@ function IMPSPLIT_f() {
         model.equations = mo;
         model.in1 = ones(size(mo.inputs,"*"),1);
         model.out = ones(size(mo.outputs,"*"),1);
-        x = standard_define([1,1]/3,model,[],[]);
-        x.graphics.in_implicit = ["I"];
-        x.graphics.out_implicit = ["I","I"];
+        this.x = standard_define([1,1]/3,model,[],[]);
+        this.x.graphics.in_implicit = ["I"];
+        this.x.graphics.out_implicit = ["I","I"];
     }
     IMPSPLIT_f.prototype.details = function IMPSPLIT_f() {
+        return this.x;
     }
     IMPSPLIT_f.prototype.get = function IMPSPLIT_f() {
     }
     IMPSPLIT_f.prototype.set = function IMPSPLIT_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

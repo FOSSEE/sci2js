@@ -7,13 +7,14 @@ function PROD_f() {
         model.out = -1;
         model.blocktype = "c";
         model.dep_ut = [true,false];
-        x = standard_define([1,1],model,[],[]);
+        this.x = standard_define([1,1],model,[],[]);
     }
     PROD_f.prototype.details = function PROD_f() {
+        return this.x;
     }
     PROD_f.prototype.get = function PROD_f() {
     }
     PROD_f.prototype.set = function PROD_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

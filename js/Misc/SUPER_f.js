@@ -19,13 +19,14 @@ function SUPER_f() {
         model.blocktype = "h";
         model.dep_ut = [false,false];
         gr_i = [];
-        x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],model,[],gr_i);
     }
     SUPER_f.prototype.details = function SUPER_f() {
+        return this.x;
     }
     SUPER_f.prototype.get = function SUPER_f() {
     }
     SUPER_f.prototype.set = function SUPER_f() {
-xcos(arg1.model.rpar);
+        xcos(arg1.model.rpar);
     }
 }

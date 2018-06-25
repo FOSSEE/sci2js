@@ -2,10 +2,12 @@ c__builtin__
 set
 p0
 ((lp1
-S'of'
+S'x'
 p2
 aS'fr'
 p3
-atp4
-Rp5
+aS'of'
+p4
+atp5
+Rp6
 .

@@ -16,91 +16,92 @@ function INTMUL() {
         model.dep_ut = [true,false];
         exprs = [[sci2exp(3)],[sci2exp(0)]];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     INTMUL.prototype.details = function INTMUL() {
+        return this.x;
     }
     INTMUL.prototype.get = function INTMUL() {
     }
     INTMUL.prototype.set = function INTMUL() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-        [ok,Datatype,np,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INTMUL")],[" "],[gettext("Integer matrix multiplication")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")]],list("vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        it = Datatype*ones(1,2);
-        ot = Datatype;
-        if ((np!=0&&np!=1&&np!=2)) {
-block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Do on Overflow"),np),msprintf(gettext("Must be in the interval %s."),"[0, 2]"));
-        ok = false;
-        } else if (Datatype==3) {
-        if (np==0) {
-        model.sim = list("matmul_i32n",4);
-        } else if (np==1) {
-        model.sim = list("matmul_i32s",4);
-        } else {
-        model.sim = list("matmul_i32e",4);
-}
-        } else if (Datatype==4) {
-        if (np==0) {
-        model.sim = list("matmul_i16n",4);
-        } else if (np==1) {
-        model.sim = list("matmul_i16s",4);
-        } else {
-        model.sim = list("matmul_i16e",4);
-}
-        } else if (Datatype==5) {
-        if (np==0) {
-        model.sim = list("matmul_i8n",4);
-        } else if (np==1) {
-        model.sim = list("matmul_i8s",4);
-        } else {
-        model.sim = list("matmul_i8e",4);
-}
-        } else if (Datatype==6) {
-        if (np==0) {
-        model.sim = list("matmul_ui32n",4);
-        } else if (np==1) {
-        model.sim = list("matmul_ui32s",4);
-        } else {
-        model.sim = list("matmul_ui32e",4);
-}
-        } else if (Datatype==7) {
-        if (np==0) {
-        model.sim = list("matmul_ui16n",4);
-        } else if (np==1) {
-        model.sim = list("matmul_ui16s",4);
-        } else {
-        model.sim = list("matmul_ui16e",4);
-}
-        } else if (Datatype==8) {
-        if (np==0) {
-        model.sim = list("matmul_ui8n",4);
-        } else if (np==1) {
-        model.sim = list("matmul_ui8s",4);
-        } else {
-        model.sim = list("matmul_ui8e",4);
-}
-        } else {
-block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),ot),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
-        ok = false;
-}
-        in1 = [model.in1,model.in2];
-        out = [model.out,model.out2];
-        if (ok) {
-        [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
-}
-        if (ok) {
-        model.ipar = np;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,Datatype,np,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INTMUL")],[" "],[gettext("Integer matrix multiplication")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")]],list("vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            it = Datatype*ones(1,2);
+            ot = Datatype;
+            if ((np!=0&&np!=1&&np!=2)) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Do on Overflow"),np),msprintf(gettext("Must be in the interval %s."),"[0, 2]"));
+                ok = false;
+            } else if (Datatype==3) {
+                if (np==0) {
+                    model.sim = list("matmul_i32n",4);
+                } else if (np==1) {
+                    model.sim = list("matmul_i32s",4);
+                } else {
+                    model.sim = list("matmul_i32e",4);
+                }
+            } else if (Datatype==4) {
+                if (np==0) {
+                    model.sim = list("matmul_i16n",4);
+                } else if (np==1) {
+                    model.sim = list("matmul_i16s",4);
+                } else {
+                    model.sim = list("matmul_i16e",4);
+                }
+            } else if (Datatype==5) {
+                if (np==0) {
+                    model.sim = list("matmul_i8n",4);
+                } else if (np==1) {
+                    model.sim = list("matmul_i8s",4);
+                } else {
+                    model.sim = list("matmul_i8e",4);
+                }
+            } else if (Datatype==6) {
+                if (np==0) {
+                    model.sim = list("matmul_ui32n",4);
+                } else if (np==1) {
+                    model.sim = list("matmul_ui32s",4);
+                } else {
+                    model.sim = list("matmul_ui32e",4);
+                }
+            } else if (Datatype==7) {
+                if (np==0) {
+                    model.sim = list("matmul_ui16n",4);
+                } else if (np==1) {
+                    model.sim = list("matmul_ui16s",4);
+                } else {
+                    model.sim = list("matmul_ui16e",4);
+                }
+            } else if (Datatype==8) {
+                if (np==0) {
+                    model.sim = list("matmul_ui8n",4);
+                } else if (np==1) {
+                    model.sim = list("matmul_ui8s",4);
+                } else {
+                    model.sim = list("matmul_ui8e",4);
+                }
+            } else {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),ot),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
+                ok = false;
+            }
+            in1 = [model.in1,model.in2];
+            out = [model.out,model.out2];
+            if (ok) {
+                [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
+            }
+            if (ok) {
+                model.ipar = np;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

@@ -12,27 +12,28 @@ function EVTVARDLY() {
         model.dep_ut = [true,false];
         exprs = string(model.firing);
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     EVTVARDLY.prototype.details = function EVTVARDLY() {
+        return this.x;
     }
     EVTVARDLY.prototype.get = function EVTVARDLY() {
     }
     EVTVARDLY.prototype.set = function EVTVARDLY() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,fir,exprs] = scicos_getvalue("Set parameter of variable event delay","Initial event firing time (<0 if absent)",list("vec",1),exprs);
-        if (!ok) {
-break;
-}
-        graphics.exprs = exprs;
-        model.firing = fir;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
+            [ok,fir,exprs] = scicos_getvalue("Set parameter of variable event delay","Initial event firing time (<0 if absent)",list("vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            graphics.exprs = exprs;
+            model.firing = fir;
+            this.x.graphics = graphics;
+            this.x.model = model;
+            break;
+        }
     }
 }

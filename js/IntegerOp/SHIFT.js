@@ -17,105 +17,106 @@ function SHIFT() {
         model.dep_ut = [true,false];
         exprs = [[sci2exp(3)],[sci2exp(0)],[sci2exp(0)]];
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     SHIFT.prototype.details = function SHIFT() {
+        return this.x;
     }
     SHIFT.prototype.get = function SHIFT() {
     }
     SHIFT.prototype.set = function SHIFT() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-        [ok,Datatype,nb,np,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"SHIFT")],[" "],[gettext("Shift/Rotates bits")]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Number of Bits to Shift Left (Negative number to shift right)")],[gettext("Shift Type (0:Arithmetic, 1:Circular)")]],list("vec",1,"vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if ((np!=0&&np!=1)) {
-block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Shift Type"),np),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
-        ok = false;
-}
-        it = Datatype;
-        ot = Datatype;
-        if ((Datatype==3||Datatype==6)) {
-        if (nb>0) {
-        switch (np) {
-        case 0:
-        model.sim = list("shift_32_LA",4);
-        case 1:
-        model.sim = list("shift_32_LC",4);
-}
-        } else if (nb<0) {
-        switch (np) {
-        case 0:
-        switch (Datatype) {
-        case 3:
-        model.sim = list("shift_32_RA",4);
-        case 6:
-        model.sim = list("shift_u32_RA",4);
-}
-        case 1:
-        model.sim = list("shift_32_RC",4);
-}
-}
-        } else if ((Datatype==4||Datatype==7)) {
-        if (nb>0) {
-        switch (np) {
-        case 0:
-        model.sim = list("shift_16_LA",4);
-        case 1:
-        model.sim = list("shift_16_LC",4);
-}
-        } else if (nb<0) {
-        switch (np) {
-        case 0:
-        switch (Datatype) {
-        case 4:
-        model.sim = list("shift_16_RA",4);
-        case 7:
-        model.sim = list("shift_u16_RA",4);
-}
-        case 1:
-        model.sim = list("shift_16_RC",4);
-}
-}
-        } else if ((Datatype==5||Datatype==8)) {
-        if (nb>0) {
-        switch (np) {
-        case 0:
-        model.sim = list("shift_8_LA",4);
-        case 1:
-        model.sim = list("shift_8_LC",4);
-}
-        } else if (nb<0) {
-        switch (np) {
-        case 0:
-        switch (Datatype) {
-        case 5:
-        model.sim = list("shift_8_RA",4);
-        case 8:
-        model.sim = list("shift_u8_RA",4);
-}
-        case 1:
-        model.sim = list("shift_8_RC",4);
-}
-}
-        } else {
-block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
-        ok = false;
-}
-        if (ok) {
-        [model,graphics,ok] = set_io(model,graphics,list([-1,-2],it),list([-1,-2],ot),[],[]);
-}
-        if (ok) {
-        model.ipar = nb;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,Datatype,nb,np,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"SHIFT")],[" "],[gettext("Shift/Rotates bits")]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Number of Bits to Shift Left (Negative number to shift right)")],[gettext("Shift Type (0:Arithmetic, 1:Circular)")]],list("vec",1,"vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if ((np!=0&&np!=1)) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Shift Type"),np),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                ok = false;
+            }
+            it = Datatype;
+            ot = Datatype;
+            if ((Datatype==3||Datatype==6)) {
+                if (nb>0) {
+                    switch (np) {
+                    case 0:
+                        model.sim = list("shift_32_LA",4);
+                    case 1:
+                        model.sim = list("shift_32_LC",4);
+                    }
+                } else if (nb<0) {
+                    switch (np) {
+                    case 0:
+                        switch (Datatype) {
+                        case 3:
+                            model.sim = list("shift_32_RA",4);
+                        case 6:
+                            model.sim = list("shift_u32_RA",4);
+                        }
+                    case 1:
+                        model.sim = list("shift_32_RC",4);
+                    }
+                }
+            } else if ((Datatype==4||Datatype==7)) {
+                if (nb>0) {
+                    switch (np) {
+                    case 0:
+                        model.sim = list("shift_16_LA",4);
+                    case 1:
+                        model.sim = list("shift_16_LC",4);
+                    }
+                } else if (nb<0) {
+                    switch (np) {
+                    case 0:
+                        switch (Datatype) {
+                        case 4:
+                            model.sim = list("shift_16_RA",4);
+                        case 7:
+                            model.sim = list("shift_u16_RA",4);
+                        }
+                    case 1:
+                        model.sim = list("shift_16_RC",4);
+                    }
+                }
+            } else if ((Datatype==5||Datatype==8)) {
+                if (nb>0) {
+                    switch (np) {
+                    case 0:
+                        model.sim = list("shift_8_LA",4);
+                    case 1:
+                        model.sim = list("shift_8_LC",4);
+                    }
+                } else if (nb<0) {
+                    switch (np) {
+                    case 0:
+                        switch (Datatype) {
+                        case 5:
+                            model.sim = list("shift_8_RA",4);
+                        case 8:
+                            model.sim = list("shift_u8_RA",4);
+                        }
+                    case 1:
+                        model.sim = list("shift_8_RC",4);
+                    }
+                }
+            } else {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
+                ok = false;
+            }
+            if (ok) {
+                [model,graphics,ok] = set_io(model,graphics,list([-1,-2],it),list([-1,-2],ot),[],[]);
+            }
+            if (ok) {
+                model.ipar = nb;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

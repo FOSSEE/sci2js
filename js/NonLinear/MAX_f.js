@@ -11,13 +11,14 @@ function MAX_f() {
         model.dep_ut = [true,false];
         exprs = " ";
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     MAX_f.prototype.details = function MAX_f() {
+        return this.x;
     }
     MAX_f.prototype.get = function MAX_f() {
     }
     MAX_f.prototype.set = function MAX_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

@@ -8,79 +8,80 @@ function FROMWSB() {
         scs_m_1.objs[4-1] = scicos_link(xx=[[338.9421],[358.9421]],yy=[[281.584],[281.584]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[3,1,1]);
         model = scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=-1,out2=-2,outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list());
         gr_i = [];
-        x = standard_define([5,2],model,[],gr_i);
+        this.x = standard_define([5,2],model,[],gr_i);
     }
     FROMWSB.prototype.details = function FROMWSB() {
+        return this.x;
     }
     FROMWSB.prototype.get = function FROMWSB() {
     }
     FROMWSB.prototype.set = function FROMWSB() {
-for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-        o = arg1.model.rpar.objs[i-1];
-        if (typeof(o)=="Block"&&o.gui=="FROMWS_c") {
-        ppath = list(i);
-break;
-}
-}
+        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+            o = arg1.model.rpar.objs[i-1];
+            if (typeof(o)=="Block"&&o.gui=="FROMWS_c") {
+                ppath = list(i);
+                break;
+            }
+        }
         newpar = list();
         y = 0;
         for (path in ppath) {
-        np = size(path,"*");
-        spath = list();
-for (k=1;k<=np;k+=1) {
-        spath[$+1-1] = "model";
-        spath[$+1-1] = "rpar";
-        spath[$+1-1] = "objs";
-        spath[$+1-1] = path[k-1];
-}
-        xx = arg1[spath-1];
-execstr("xxn="+xx.gui+"(\'set\',xx)");
-        if (!this.isequalbitwise[this.xxn-1][xx-1]) {
-        model = xx.model;
-        model_n = this.xxn.model;
-        if (!is_modelica_block(xx)) {
-        modified = or(model.sim!=model_n.sim)||!isequal(model.state,model_n.state)||!isequal(model.dstate,model_n.dstate)||!isequal(model.odstate,model_n.odstate)||!isequal(model.rpar,model_n.rpar)||!isequal(model.ipar,model_n.ipar)||!isequal(model.opar,model_n.opar)||!isequal(model.label,model_n.label);
-        if (or(model.in1!=model_n.in1)||or(model.out!=model_n.out)||or(model.in2!=model_n.in2)||or(model.out2!=model_n.out2)||or(model.outtyp!=model_n.outtyp)||or(model.intyp!=model_n.intyp)) {
-        needcompile = 1;
-}
-        if (or(model.firing!=model_n.firing)) {
-        needcompile = 2;
-}
-        if ((size(model.in1,"*")!=size(model_n.in1,"*"))||(size(model.out,"*")!=size(model_n.out,"*"))) {
-        needcompile = 4;
-}
-        if (model.sim=="input"||model.sim=="output") {
-        if (model.ipar!=model_n.ipar) {
-        needcompile = 4;
-}
-}
-        if (or(model.blocktype!=model_n.blocktype)||or(model.dep_ut!=model_n.dep_ut)) {
-        needcompile = 4;
-}
-        if ((model.nzcross!=model_n.nzcross)||(model.nmode!=model_n.nmode)) {
-        needcompile = 4;
-}
-        if (prod(size(model_n.sim))>1) {
-        if (model_n.sim[2-1]>1000) {
-        if (model.sim[1-1]!=model_n.sim[1-1]) {
-        needcompile = 4;
-}
-}
-}
-        } else {
-        modified = or(model_n!=model);
-        eq = model.equations;
-        eqn = model_n.equations;
-        if (or(eq.model!=eqn.model)||or(eq.inputs!=eqn.inputs)||or(eq.outputs!=eqn.outputs)) {
-        needcompile = 4;
-}
-}
-        arg1[spath-1] = this.xxn;
-        newpar[size(newpar)+1-1] = path;
-        y = max(y,needcompile);
-}
-}
-        x = arg1;
+            np = size(path,"*");
+            spath = list();
+            for (k=1;k<=np;k+=1) {
+                spath[$+1-1] = "model";
+                spath[$+1-1] = "rpar";
+                spath[$+1-1] = "objs";
+                spath[$+1-1] = path[k-1];
+            }
+            xx = arg1[spath-1];
+            execstr("xxn="+xx.gui+"(\'set\',xx)");
+            if (!this.isequalbitwise[this.xxn-1][xx-1]) {
+                model = xx.model;
+                model_n = this.xxn.model;
+                if (!is_modelica_block(xx)) {
+                    modified = or(model.sim!=model_n.sim)||!isequal(model.state,model_n.state)||!isequal(model.dstate,model_n.dstate)||!isequal(model.odstate,model_n.odstate)||!isequal(model.rpar,model_n.rpar)||!isequal(model.ipar,model_n.ipar)||!isequal(model.opar,model_n.opar)||!isequal(model.label,model_n.label);
+                    if (or(model.in1!=model_n.in1)||or(model.out!=model_n.out)||or(model.in2!=model_n.in2)||or(model.out2!=model_n.out2)||or(model.outtyp!=model_n.outtyp)||or(model.intyp!=model_n.intyp)) {
+                        needcompile = 1;
+                    }
+                    if (or(model.firing!=model_n.firing)) {
+                        needcompile = 2;
+                    }
+                    if ((size(model.in1,"*")!=size(model_n.in1,"*"))||(size(model.out,"*")!=size(model_n.out,"*"))) {
+                        needcompile = 4;
+                    }
+                    if (model.sim=="input"||model.sim=="output") {
+                        if (model.ipar!=model_n.ipar) {
+                            needcompile = 4;
+                        }
+                    }
+                    if (or(model.blocktype!=model_n.blocktype)||or(model.dep_ut!=model_n.dep_ut)) {
+                        needcompile = 4;
+                    }
+                    if ((model.nzcross!=model_n.nzcross)||(model.nmode!=model_n.nmode)) {
+                        needcompile = 4;
+                    }
+                    if (prod(size(model_n.sim))>1) {
+                        if (model_n.sim[2-1]>1000) {
+                            if (model.sim[1-1]!=model_n.sim[1-1]) {
+                                needcompile = 4;
+                            }
+                        }
+                    }
+                } else {
+                    modified = or(model_n!=model);
+                    eq = model.equations;
+                    eqn = model_n.equations;
+                    if (or(eq.model!=eqn.model)||or(eq.inputs!=eqn.inputs)||or(eq.outputs!=eqn.outputs)) {
+                        needcompile = 4;
+                    }
+                }
+                arg1[spath-1] = this.xxn;
+                newpar[size(newpar)+1-1] = path;
+                y = max(y,needcompile);
+            }
+        }
+        this.x = arg1;
         typ = newpar;
     }
 }

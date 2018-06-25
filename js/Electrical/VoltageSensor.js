@@ -14,15 +14,16 @@ function VoltageSensor() {
         model.equations = mo;
         exprs = [];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,list(gr_i,0));
-        x.graphics.in_implicit = ["I"];
-        x.graphics.out_implicit = [["I"],["E"]];
+        this.x = standard_define([2,2],model,exprs,list(gr_i,0));
+        this.x.graphics.in_implicit = ["I"];
+        this.x.graphics.out_implicit = [["I"],["E"]];
     }
     VoltageSensor.prototype.details = function VoltageSensor() {
+        return this.x;
     }
     VoltageSensor.prototype.get = function VoltageSensor() {
     }
     VoltageSensor.prototype.set = function VoltageSensor() {
-        x = arg1;
+        this.x = arg1;
     }
 }

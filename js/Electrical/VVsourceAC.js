@@ -18,30 +18,31 @@ function VVsourceAC() {
         model.equations = mo;
         exprs = [string(FR)];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,list(gr_i,0));
-        x.graphics.in_implicit = ["I","E"];
-        x.graphics.out_implicit = ["I"];
+        this.x = standard_define([2,2],model,exprs,list(gr_i,0));
+        this.x.graphics.in_implicit = ["I","E"];
+        this.x.graphics.out_implicit = ["I"];
     }
     VVsourceAC.prototype.details = function VVsourceAC() {
+        return this.x;
     }
     VVsourceAC.prototype.get = function VVsourceAC() {
     }
     VVsourceAC.prototype.set = function VVsourceAC() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,FR,exprs] = scicos_getvalue("Set voltage source parameter",["Frequency (Hz)"],list("vec",-1),exprs);
-        if (!ok) {
-break;
-}
-        model.rpar = [FR];
-        model.equations.parameters[2-1] = list(FR);
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
+            [ok,FR,exprs] = scicos_getvalue("Set voltage source parameter",["Frequency (Hz)"],list("vec",-1),exprs);
+            if (!ok) {
+                break;
+            }
+            model.rpar = [FR];
+            model.equations.parameters[2-1] = list(FR);
+            graphics.exprs = exprs;
+            this.x.graphics = graphics;
+            this.x.model = model;
+            break;
+        }
     }
 }

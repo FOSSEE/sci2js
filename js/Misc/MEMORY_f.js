@@ -14,43 +14,44 @@ function MEMORY_f() {
         model.blocktype = "m";
         model.dep_ut = [false,false];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     MEMORY_f.prototype.details = function MEMORY_f() {
+        return this.x;
     }
     MEMORY_f.prototype.get = function MEMORY_f() {
     }
     MEMORY_f.prototype.set = function MEMORY_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,a,inh,exprs] = scicos_getvalue("Set memory block parameters",[["initial condition"],["Inherit (1: no, 0: yes)"]],list("vec",-1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (inh==0) {
-        inh = [];
-        } else {
-        inh = 1;
-}
-        [model,graphics,ok] = check_io(model,graphics,-1,-1,inh,[]);
-        out = size(a,"*");
-        if (out==0) {
-        ok = false;
-messagebox("Initial condition empty","modal","error");
-}
-        in1 = out;
-        if (ok) {
-        graphics.exprs = exprs;
-        model.rpar = a;
-        model.in1 = in1;
-        model.out = out;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,a,inh,exprs] = scicos_getvalue("Set memory block parameters",[["initial condition"],["Inherit (1: no, 0: yes)"]],list("vec",-1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (inh==0) {
+                inh = [];
+            } else {
+                inh = 1;
+            }
+            [model,graphics,ok] = check_io(model,graphics,-1,-1,inh,[]);
+            out = size(a,"*");
+            if (out==0) {
+                ok = false;
+                messagebox("Initial condition empty","modal","error");
+            }
+            in1 = out;
+            if (ok) {
+                graphics.exprs = exprs;
+                model.rpar = a;
+                model.in1 = in1;
+                model.out = out;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

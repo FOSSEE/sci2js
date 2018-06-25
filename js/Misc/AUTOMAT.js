@@ -24,14 +24,15 @@ function AUTOMAT() {
         model.ipar = ipar;
         model.rpar = rpar;
         gr_i = [];
-        x = standard_define([4,2],model,exprs,gr_i);
+        this.x = standard_define([4,2],model,exprs,gr_i);
     }
     AUTOMAT.prototype.details = function AUTOMAT() {
+        return this.x;
     }
     AUTOMAT.prototype.get = function AUTOMAT() {
     }
     AUTOMAT.prototype.set = function AUTOMAT() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
@@ -39,96 +40,96 @@ function AUTOMAT() {
         NMode = ipar[1-1];
         NX = ipar[3-1];
         while (true) {
-        CX = "C1";
-        MSG0 = "\'Jump from Mode ";
-        MSG2 = ":[..;M_final(Guard=In(";
-        MSG3 = ").i);..]\'";
-        MSG = MSG0+"1"+MSG2+"1"+MSG3;
-        VEC = "\'mat\',[-1,1]";
-for (i=2;i<=NMode;i+=1) {
-        CX = CX+","+"C"+string(i);
-        MSG = MSG+";"+MSG0+string(i)+MSG2+string(i)+MSG3;
-        VEC = VEC+","+"\'mat\',[-1,1]";
-}
-        GTV = "[ok,NMode,Minitial,NX,X0,XP,"+CX+",exprs]=scicos_getvalue(\'Set Finite state machine model\',            [\'Number (finite-state) Modes\';\'Initial Mode\';\'Number of continuous-time states\';\'Continuous-time states intial values\';\'Xproperties of continuous-time states in each Mode\';"+MSG+"],            list(\'vec\',1,\'vec\',1,\'vec\',1,\'mat\',[-1,-1],\'mat\',[-1,-1],"+VEC+"),exprs)";
-execstr(GTV);
-        if (!this.ok) {
-break;
-}
-        NMode_old = size(exprs,"*")-5;
-        ModifEncore = false;
-        if ((NMode_old>NMode)) {
-        exprs.slice(NMode+6-1,NMode_old+5) = [];
-        ModifEncore = true;
-}
-        if ((NMode_old<NMode)) {
-        exprs.slice(NMode_old+6-1,NMode+5) = exprs[NMode_old+4-1];
-        ModifEncore = true;
-}
-        if ((NX!=size(this.X0,"*"))) {
-messagebox("the size of intial continuous-time states should be NX="+string(NX),"modal","error");
-        ModifEncore = true;
-}
-        [rXP,cXP] = size(this.XP);
-        if (cXP!=NX) {
-messagebox("Xproperty matrix is not valid: it should have NX="+string(NX)+" columns","modal","error");
-        ModifEncore = true;
-        } else if (((rXP!=NMode)&&(rXP>1))) {
-messagebox("Xproperty matrix is not valid: it should have NMode="+string(NMode)+" or 1 row(s)","modal","error");
-        ModifEncore = true;
-        } else if ((rXP==1)) {
-for (i=1;i<=NMode-1;i+=1) {
-        this.XP = [[this.XP],[this.XP[1-1].slice()]];
-}
-}
-        if ((NMode_old==NMode)&&(!ModifEncore)) {
-        this.XP = matrix(transpose(this.XP),NMode*NX,1);
-        ipar = [[NMode],[this.Minitial],[NX],[this.XP]];
-        rpar = matrix(this.X0,NX,1);
-        INP = ones(NMode,1);
-        if (NX>0) {
-        OUT = [[2],[2*NX]];
-        } else {
-        OUT = [2];
-}
-        MaxModes = 1;
-        nzcross = 0;
-for (i=1;i<=NMode;i+=1) {
-        Ci = evstr(exprs[5+i-1]);
-        ipar = [[ipar],[Ci]];
-        INP[i-1][1-1] = 2*NX+length(Ci);
-        if ((nzcross<length(Ci))) {
-        nzcross = length(Ci);
-}
-        if ((MaxModes<max(Ci))) {
-        MaxModes = max(Ci);
-        imax = i;
-}
-}
-        if (MaxModes>NMode) {
-messagebox([["Number of Modes should be "+string(MaxModes)],["A destination Mode in Mode#"+string(imax)+"\'s targets is invalid!"]],"modal","error");
-        ModifEncore = true;
-}
-        if (MaxModes<NMode) {
-messagebox(["There is an unused Mode or the Number of Modes should be "+string(MaxModes)],"modal","error");
-        ModifEncore = true;
-}
-}
-        if (!ModifEncore) {
-        [model,graphics,this.ok] = check_io(model,graphics,INP,OUT,[],[1]);
-        if (!this.ok) {
-break;
-}
-        model.nzcross = nzcross;
-        model.state = ones(2*NX,1);
-        graphics.gr_i[1-1][1-1] = "txt=[\'Automaton\';\'nM="+string(NMode)+",nX="+string(NX)+"\'];";
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        model.ipar = ipar;
-        model.rpar = rpar;
-        x.model = model;
-break;
-}
-}
+            CX = "C1";
+            MSG0 = "\'Jump from Mode ";
+            MSG2 = ":[..;M_final(Guard=In(";
+            MSG3 = ").i);..]\'";
+            MSG = MSG0+"1"+MSG2+"1"+MSG3;
+            VEC = "\'mat\',[-1,1]";
+            for (i=2;i<=NMode;i+=1) {
+                CX = CX+","+"C"+string(i);
+                MSG = MSG+";"+MSG0+string(i)+MSG2+string(i)+MSG3;
+                VEC = VEC+","+"\'mat\',[-1,1]";
+            }
+            GTV = "[ok,NMode,Minitial,NX,X0,XP,"+CX+",exprs]=scicos_getvalue(\'Set Finite state machine model\',            [\'Number (finite-state) Modes\';\'Initial Mode\';\'Number of continuous-time states\';\'Continuous-time states intial values\';\'Xproperties of continuous-time states in each Mode\';"+MSG+"],            list(\'vec\',1,\'vec\',1,\'vec\',1,\'mat\',[-1,-1],\'mat\',[-1,-1],"+VEC+"),exprs)";
+            execstr(GTV);
+            if (!this.ok) {
+                break;
+            }
+            NMode_old = size(exprs,"*")-5;
+            ModifEncore = false;
+            if ((NMode_old>NMode)) {
+                exprs.slice(NMode+6-1,NMode_old+5) = [];
+                ModifEncore = true;
+            }
+            if ((NMode_old<NMode)) {
+                exprs.slice(NMode_old+6-1,NMode+5) = exprs[NMode_old+4-1];
+                ModifEncore = true;
+            }
+            if ((NX!=size(this.X0,"*"))) {
+                messagebox("the size of intial continuous-time states should be NX="+string(NX),"modal","error");
+                ModifEncore = true;
+            }
+            [rXP,cXP] = size(this.XP);
+            if (cXP!=NX) {
+                messagebox("Xproperty matrix is not valid: it should have NX="+string(NX)+" columns","modal","error");
+                ModifEncore = true;
+            } else if (((rXP!=NMode)&&(rXP>1))) {
+                messagebox("Xproperty matrix is not valid: it should have NMode="+string(NMode)+" or 1 row(s)","modal","error");
+                ModifEncore = true;
+            } else if ((rXP==1)) {
+                for (i=1;i<=NMode-1;i+=1) {
+                    this.XP = [[this.XP],[this.XP[1-1].slice()]];
+                }
+            }
+            if ((NMode_old==NMode)&&(!ModifEncore)) {
+                this.XP = matrix(transpose(this.XP),NMode*NX,1);
+                ipar = [[NMode],[this.Minitial],[NX],[this.XP]];
+                rpar = matrix(this.X0,NX,1);
+                INP = ones(NMode,1);
+                if (NX>0) {
+                    OUT = [[2],[2*NX]];
+                } else {
+                    OUT = [2];
+                }
+                MaxModes = 1;
+                nzcross = 0;
+                for (i=1;i<=NMode;i+=1) {
+                    Ci = evstr(exprs[5+i-1]);
+                    ipar = [[ipar],[Ci]];
+                    INP[i-1][1-1] = 2*NX+length(Ci);
+                    if ((nzcross<length(Ci))) {
+                        nzcross = length(Ci);
+                    }
+                    if ((MaxModes<max(Ci))) {
+                        MaxModes = max(Ci);
+                        imax = i;
+                    }
+                }
+                if (MaxModes>NMode) {
+                    messagebox([["Number of Modes should be "+string(MaxModes)],["A destination Mode in Mode#"+string(imax)+"\'s targets is invalid!"]],"modal","error");
+                    ModifEncore = true;
+                }
+                if (MaxModes<NMode) {
+                    messagebox(["There is an unused Mode or the Number of Modes should be "+string(MaxModes)],"modal","error");
+                    ModifEncore = true;
+                }
+            }
+            if (!ModifEncore) {
+                [model,graphics,this.ok] = check_io(model,graphics,INP,OUT,[],[1]);
+                if (!this.ok) {
+                    break;
+                }
+                model.nzcross = nzcross;
+                model.state = ones(2*NX,1);
+                graphics.gr_i[1-1][1-1] = "txt=[\'Automaton\';\'nM="+string(NMode)+",nX="+string(NX)+"\'];";
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                model.ipar = ipar;
+                model.rpar = rpar;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

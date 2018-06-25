@@ -9,13 +9,14 @@ function SUM_f() {
         model.dep_ut = [true,false];
         gr_i = [];
         exprs = [];
-        x = standard_define([1,1],model,exprs,gr_i);
+        this.x = standard_define([1,1],model,exprs,gr_i);
     }
     SUM_f.prototype.details = function SUM_f() {
+        return this.x;
     }
     SUM_f.prototype.get = function SUM_f() {
     }
     SUM_f.prototype.set = function SUM_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

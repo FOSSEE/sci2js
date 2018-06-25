@@ -10,14 +10,15 @@ function TANBLK_f() {
         model.dep_ut = [true,false];
         exprs = sci2exp(in1);
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     TANBLK_f.prototype.details = function TANBLK_f() {
+        return this.x;
     }
     TANBLK_f.prototype.get = function TANBLK_f() {
     }
     TANBLK_f.prototype.set = function TANBLK_f() {
-        x = arg1;
-        x.model.firing = [];
+        this.x = arg1;
+        this.x.model.firing = [];
     }
 }

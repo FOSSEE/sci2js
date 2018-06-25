@@ -11,29 +11,30 @@ function HALT_f() {
         model.dep_ut = [false,false];
         exprs = string(n);
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     HALT_f.prototype.details = function HALT_f() {
+        return this.x;
     }
     HALT_f.prototype.get = function HALT_f() {
     }
     HALT_f.prototype.set = function HALT_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,n,exprs] = scicos_getvalue("Set Halt block parameters",["State on halt"],list("vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (ok) {
-        graphics.exprs = exprs;
-        model.ipar = n;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,n,exprs] = scicos_getvalue("Set Halt block parameters",["State on halt"],list("vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (ok) {
+                graphics.exprs = exprs;
+                model.ipar = n;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

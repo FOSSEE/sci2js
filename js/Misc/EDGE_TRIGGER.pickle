@@ -2,10 +2,12 @@ c__builtin__
 set
 p0
 ((lp1
-S'EDGETRIGGER'
+S'x'
 p2
-aS'xxn'
+aS'EDGETRIGGER'
 p3
-atp4
-Rp5
+aS'xxn'
+p4
+atp5
+Rp6
 .

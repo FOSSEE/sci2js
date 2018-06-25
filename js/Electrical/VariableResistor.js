@@ -14,15 +14,16 @@ function VariableResistor() {
         model.out = ones(size(mo.outputs,"*"),1);
         exprs = [];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,list(gr_i,0));
-        x.graphics.in_implicit = ["I","E"];
-        x.graphics.out_implicit = ["I"];
+        this.x = standard_define([2,2],model,exprs,list(gr_i,0));
+        this.x.graphics.in_implicit = ["I","E"];
+        this.x.graphics.out_implicit = ["I"];
     }
     VariableResistor.prototype.details = function VariableResistor() {
+        return this.x;
     }
     VariableResistor.prototype.get = function VariableResistor() {
     }
     VariableResistor.prototype.set = function VariableResistor() {
-        x = arg1;
+        this.x = arg1;
     }
 }

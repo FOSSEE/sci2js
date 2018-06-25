@@ -17,30 +17,31 @@ function Resistor() {
         model.out = ones(size(mo.outputs,"*"),1);
         exprs = string(R);
         gr_i = [];
-        x = standard_define([2,1],model,exprs,list(gr_i,0));
-        x.graphics.in_implicit = ["I"];
-        x.graphics.out_implicit = ["I"];
+        this.x = standard_define([2,1],model,exprs,list(gr_i,0));
+        this.x.graphics.in_implicit = ["I"];
+        this.x.graphics.out_implicit = ["I"];
     }
     Resistor.prototype.details = function Resistor() {
+        return this.x;
     }
     Resistor.prototype.get = function Resistor() {
     }
     Resistor.prototype.set = function Resistor() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,R,exprs] = scicos_getvalue("Set Resistor block parameter","R (ohm)",list("vec",1),exprs);
-        if (!ok) {
-break;
-}
-        model.rpar = R;
-        model.equations.parameters[2-1] = list(R);
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
+            [ok,R,exprs] = scicos_getvalue("Set Resistor block parameter","R (ohm)",list("vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            model.rpar = R;
+            model.equations.parameters[2-1] = list(R);
+            graphics.exprs = exprs;
+            this.x.graphics = graphics;
+            this.x.model = model;
+            break;
+        }
     }
 }

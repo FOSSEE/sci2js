@@ -11,13 +11,14 @@ function MIN_f() {
         model.dep_ut = [true,false];
         exprs = sci2exp(in1);
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     MIN_f.prototype.details = function MIN_f() {
+        return this.x;
     }
     MIN_f.prototype.get = function MIN_f() {
     }
     MIN_f.prototype.set = function MIN_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

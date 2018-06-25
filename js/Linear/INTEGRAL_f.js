@@ -11,28 +11,29 @@ function INTEGRAL_f() {
         model.dep_ut = [false,true];
         exprs = strcat(sci2exp(x0));
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     INTEGRAL_f.prototype.details = function INTEGRAL_f() {
+        return this.x;
     }
     INTEGRAL_f.prototype.get = function INTEGRAL_f() {
     }
     INTEGRAL_f.prototype.set = function INTEGRAL_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,x0,exprs] = scicos_getvalue("Set continuous linear system parameters","Initial state",list("vec",1),exprs);
-        if (!ok) {
-break;
-}
-        graphics.exprs = exprs;
-        model.state = x0;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-        x.model.firing = [];
+            [ok,x0,exprs] = scicos_getvalue("Set continuous linear system parameters","Initial state",list("vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            graphics.exprs = exprs;
+            model.state = x0;
+            this.x.graphics = graphics;
+            this.x.model = model;
+            break;
+        }
+        this.x.model.firing = [];
     }
 }

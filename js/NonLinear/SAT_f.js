@@ -15,35 +15,36 @@ function SAT_f() {
         model.dep_ut = [true,false];
         exprs = [[string(minp)],[string(maxp)],[string(slope)]];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     SAT_f.prototype.details = function SAT_f() {
+        return this.x;
     }
     SAT_f.prototype.get = function SAT_f() {
     }
     SAT_f.prototype.set = function SAT_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,minp,maxp,pente,exprs] = scicos_getvalue("Set Saturation parameters",[["Min"],["Max"],["Slope"]],list("vec",1,"vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (maxp<=0) {
-message("Max must be strictly positive");
-        } else if (pente<=0) {
-message("Slope must be strictly positive");
-        } else {
-        rpar = [[minp/pente],[maxp/pente],[pente]];
-        model.rpar = rpar;
-        model.firing = [];
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,minp,maxp,pente,exprs] = scicos_getvalue("Set Saturation parameters",[["Min"],["Max"],["Slope"]],list("vec",1,"vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (maxp<=0) {
+                message("Max must be strictly positive");
+            } else if (pente<=0) {
+                message("Slope must be strictly positive");
+            } else {
+                rpar = [[minp/pente],[maxp/pente],[pente]];
+                model.rpar = rpar;
+                model.firing = [];
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

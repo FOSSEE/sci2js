@@ -18,30 +18,31 @@ function Capacitor() {
         model.out = ones(size(mo.outputs,"*"),1);
         exprs = string([[C],[v]]);
         gr_i = [];
-        x = standard_define([2,1.1],model,exprs,list(gr_i,0));
-        x.graphics.in_implicit = ["I"];
-        x.graphics.out_implicit = ["I"];
+        this.x = standard_define([2,1.1],model,exprs,list(gr_i,0));
+        this.x.graphics.in_implicit = ["I"];
+        this.x.graphics.out_implicit = ["I"];
     }
     Capacitor.prototype.details = function Capacitor() {
+        return this.x;
     }
     Capacitor.prototype.get = function Capacitor() {
     }
     Capacitor.prototype.set = function Capacitor() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,C,v,exprs] = scicos_getvalue("Set Capacitor block parameter",[["C (F)"],["Initial Voltage"]],list("vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        model.rpar = C;
-        model.equations.parameters[2-1] = list(C,v);
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
+            [ok,C,v,exprs] = scicos_getvalue("Set Capacitor block parameter",[["C (F)"],["Initial Voltage"]],list("vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            model.rpar = C;
+            model.equations.parameters[2-1] = list(C,v);
+            graphics.exprs = exprs;
+            this.x.graphics = graphics;
+            this.x.model = model;
+            break;
+        }
     }
 }

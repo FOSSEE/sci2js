@@ -15,46 +15,47 @@ function IFTHEL_f() {
         model.nzcross = 1;
         gr_i = [];
         exprs = [[string(model.in1)],[string(model.nmode)]];
-        x = standard_define([3,3],model,exprs,gr_i);
+        this.x = standard_define([3,3],model,exprs,gr_i);
     }
     IFTHEL_f.prototype.details = function IFTHEL_f() {
+        return this.x;
     }
     IFTHEL_f.prototype.get = function IFTHEL_f() {
     }
     IFTHEL_f.prototype.set = function IFTHEL_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         if (exprs==[]) {
-        exprs = string(1);
-}
+            exprs = string(1);
+        }
         if (size(exprs,"*")==1) {
-        exprs[2-1] = string(1);
-}
+            exprs[2-1] = string(1);
+        }
         while (true) {
-        [ok,inh,nmod,exprs] = scicos_getvalue("Set parameters",[["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        model.dep_ut = [true,false];
-        if (nmod!=0) {
-        nmod = 1;
-}
-        if (inh!=1) {
-        inh = [];
-}
-        [model,graphics,ok] = check_io(model,graphics,1,[],inh,[[1],[1]]);
-        if (ok) {
-        graphics.exprs = exprs;
-        model.evtin = inh;
-        model.sim[2-1] = -1;
-        model.nmode = nmod;
-        model.nzcross = nmod;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,inh,nmod,exprs] = scicos_getvalue("Set parameters",[["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            model.dep_ut = [true,false];
+            if (nmod!=0) {
+                nmod = 1;
+            }
+            if (inh!=1) {
+                inh = [];
+            }
+            [model,graphics,ok] = check_io(model,graphics,1,[],inh,[[1],[1]]);
+            if (ok) {
+                graphics.exprs = exprs;
+                model.evtin = inh;
+                model.sim[2-1] = -1;
+                model.nmode = nmod;
+                model.nzcross = nmod;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

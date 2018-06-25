@@ -47,80 +47,81 @@ function DELAY_f() {
         diagram.objs[8-1] = split;
         diagram.objs[9-1] = scicos_link(xx=[[263],[263]],yy=[[271.2],[250.7]],ct=[5,-1],from=[8,1],to=[3,1]);
         diagram.objs[10-1] = scicos_link(xx=[[263],[308.6],[308.6],[263],[263]],yy=[[271.2],[271.2],[367],[367],[341.7]],ct=[5,-1],from=[8,2],to=[4,1]);
-        x = scicos_block();
-        x.gui = "DELAY_f";
-        x.graphics.sz = [2,2];
-        x.graphics.gr_i = [];
-        x.graphics.pin = 0;
-        x.graphics.pout = 0;
-        x.model.sim = "csuper";
-        x.model.in1 = 1;
-        x.model.out = 1;
-        x.model.blocktype = "h";
-        x.model.dep_ut = [false,false];
-        x.model.rpar = diagram;
-        x.graphics.in_implicit = ["E"];
-        x.graphics.in_style = "";
-        x.graphics.out_implicit = ["E"];
-        x.graphics.out_style = "";
+        this.x = scicos_block();
+        this.x.gui = "DELAY_f";
+        this.x.graphics.sz = [2,2];
+        this.x.graphics.gr_i = [];
+        this.x.graphics.pin = 0;
+        this.x.graphics.pout = 0;
+        this.x.model.sim = "csuper";
+        this.x.model.in1 = 1;
+        this.x.model.out = 1;
+        this.x.model.blocktype = "h";
+        this.x.model.dep_ut = [false,false];
+        this.x.model.rpar = diagram;
+        this.x.graphics.in_implicit = ["E"];
+        this.x.graphics.in_style = "";
+        this.x.graphics.out_implicit = ["E"];
+        this.x.graphics.out_style = "";
     }
     DELAY_f.prototype.details = function DELAY_f() {
+        return this.x;
     }
     DELAY_f.prototype.get = function DELAY_f() {
     }
     DELAY_f.prototype.set = function DELAY_f() {
         ppath = list(0,0);
-for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-        o = arg1.model.rpar.objs[i-1];
-        if (typeof(o)=="Block"&&o.gui=="REGISTER_f") {
-        ppath[1-1] = i;
-}
-        if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
-        ppath[2-1] = i;
-}
-        if (and(ppath!=list(0,0))) {
-break;
-}
-}
-        x = arg1;
+        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+            o = arg1.model.rpar.objs[i-1];
+            if (typeof(o)=="Block"&&o.gui=="REGISTER_f") {
+                ppath[1-1] = i;
+            }
+            if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
+                ppath[2-1] = i;
+            }
+            if (and(ppath!=list(0,0))) {
+                break;
+            }
+        }
+        this.x = arg1;
         newpar = list();
-        register = x.model.rpar.objs[ppath[1-1]-1];
-        evtdly = x.model.rpar.objs[ppath[2-1]-1];
+        register = this.x.model.rpar.objs[ppath[1-1]-1];
+        evtdly = this.x.model.rpar.objs[ppath[2-1]-1];
         register_exprs = register.graphics.exprs;
         evtdly_exprs = evtdly.graphics.exprs;
         exprs = [[evtdly_exprs[1-1]],[register_exprs]];
         while (true) {
-        [ok,dt,z0,exprs] = scicos_getvalue([["This block implements as a discretized delay"],["it is consist of a shift register and a clock"],["value of the delay is given by;","the discretization time step multiplied by the"],["number-1 of state of the register"]],[["Discretization time step"],["Register initial state"]],list("vec",1,"vec",-1),exprs);
-        if (!ok) {
-break;
-}
-        mess = [];
-        if (prod(size(z0))<1) {
-        mess = [[mess],["Register length must be at least 1"],[" "]];
-        ok = false;
-}
-        if (dt<=0) {
-        mess = [[mess],["Discretization time step must be positive"],[" "]];
-        ok = false;
-}
-        if (!ok) {
-message(mess);
-        } else {
-        evtdly.graphics.exprs[1-1] = exprs[1-1];
-        if (evtdly.model.rpar!=dt) {
-        evtdly.model.rpar = dt;
-        newpar[$+1-1] = ppath[2-1];
-}
-        x.model.rpar.objs[ppath[2-1]-1] = evtdly;
-        register.graphics.exprs = exprs[2-1];
-        if (or(register.model.dstate!=z0.slice())) {
-        register.model.dstate = z0.slice();
-        newpar[$+1-1] = ppath[1-1];
-}
-        x.model.rpar.objs[ppath[1-1]-1] = register;
-break;
-}
-}
+            [ok,dt,z0,exprs] = scicos_getvalue([["This block implements as a discretized delay"],["it is consist of a shift register and a clock"],["value of the delay is given by;","the discretization time step multiplied by the"],["number-1 of state of the register"]],[["Discretization time step"],["Register initial state"]],list("vec",1,"vec",-1),exprs);
+            if (!ok) {
+                break;
+            }
+            mess = [];
+            if (prod(size(z0))<1) {
+                mess = [[mess],["Register length must be at least 1"],[" "]];
+                ok = false;
+            }
+            if (dt<=0) {
+                mess = [[mess],["Discretization time step must be positive"],[" "]];
+                ok = false;
+            }
+            if (!ok) {
+                message(mess);
+            } else {
+                evtdly.graphics.exprs[1-1] = exprs[1-1];
+                if (evtdly.model.rpar!=dt) {
+                    evtdly.model.rpar = dt;
+                    newpar[$+1-1] = ppath[2-1];
+                }
+                this.x.model.rpar.objs[ppath[2-1]-1] = evtdly;
+                register.graphics.exprs = exprs[2-1];
+                if (or(register.model.dstate!=z0.slice())) {
+                    register.model.dstate = z0.slice();
+                    newpar[$+1-1] = ppath[1-1];
+                }
+                this.x.model.rpar.objs[ppath[1-1]-1] = register;
+                break;
+            }
+        }
         needcompile = 0;
         y = needcompile;
         typ = newpar;

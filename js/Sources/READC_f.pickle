@@ -4,8 +4,10 @@ p0
 ((lp1
 S'_str2code'
 p2
-aS'alreadyran'
+aS'x'
 p3
-atp4
-Rp5
+aS'alreadyran'
+p4
+atp5
+Rp6
 .

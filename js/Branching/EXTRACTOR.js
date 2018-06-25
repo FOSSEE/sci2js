@@ -11,32 +11,33 @@ function EXTRACTOR() {
         model.ipar = ind;
         exprs = [sci2exp(ind)];
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     EXTRACTOR.prototype.details = function EXTRACTOR() {
+        return this.x;
     }
     EXTRACTOR.prototype.get = function EXTRACTOR() {
     }
     EXTRACTOR.prototype.set = function EXTRACTOR() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,ind,exprs] = scicos_getvalue("Set block parameters",["indices to extract"],list("vec",-1),exprs);
-        if (!ok) {
-break;
-}
-        ind = int(ind);
-        ind = ind.slice();
-        [model,graphics,ok] = check_io(model,graphics,[-1],size(ind,1),[],[]);
-        if (ok) {
-        model.ipar = ind;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,ind,exprs] = scicos_getvalue("Set block parameters",["indices to extract"],list("vec",-1),exprs);
+            if (!ok) {
+                break;
+            }
+            ind = int(ind);
+            ind = ind.slice();
+            [model,graphics,ok] = check_io(model,graphics,[-1],size(ind,1),[],[]);
+            if (ok) {
+                model.ipar = ind;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

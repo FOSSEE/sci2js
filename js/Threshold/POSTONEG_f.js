@@ -12,14 +12,15 @@ function POSTONEG_f() {
         model.dep_ut = [true,false];
         model.firing = [-1];
         gr_i = [];
-        x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],model,[],gr_i);
     }
     POSTONEG_f.prototype.details = function POSTONEG_f() {
+        return this.x;
     }
     POSTONEG_f.prototype.get = function POSTONEG_f() {
     }
     POSTONEG_f.prototype.set = function POSTONEG_f() {
-        x = arg1;
-        x.model.firing = [-1];
+        this.x = arg1;
+        this.x.model.firing = [-1];
     }
 }

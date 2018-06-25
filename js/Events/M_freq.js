@@ -12,52 +12,53 @@ function M_freq() {
         model.dep_ut = [false,false];
         exprs = [[sci2exp([[1],[2]])],[sci2exp([[0],[0]])]];
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     M_freq.prototype.details = function M_freq() {
+        return this.x;
     }
     M_freq.prototype.get = function M_freq() {
     }
     M_freq.prototype.set = function M_freq() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-        [ok,frequ,offset,exprs] = scicos_getvalue("Set block parameters",[["Sample time"],["Offset"]],list("vec",-1,"vec",-1),exprs);
-        if (!ok) {
-break;
-}
-        offset = offset.slice();
-        frequ = frequ.slice();
-        if ((size(frequ,"*"))!=(size(offset,"*"))) {
-message("offset and frequency must have the same size");
-        ok = false;
-        } else if (or(frequ<0)) {
-message("Frequency must be a positif number");
-        ok = false;
-        } else if (or(abs(offset)>frequ)) {
-message("The |Offset| must be less than the Frequency");
-        ok = false;
-}
-        if (ok) {
-        [m,den,off,count,m1,fir,frequ,offset,ok] = mfrequ_clk(frequ,offset);
-}
-        if (ok) {
-        model.opar = list(m,double(den),off,count);
-        mn = (2^size(m1,"*"))-1;
-        [model,graphics,ok] = set_io(model,graphics,list(),list(),1,ones(mn,1));
-        if (mn>3) {
-        graphics.sz = [40+(mn-3)*10,40];
-        } else {
-        graphics.sz = [50,40];
-}
-        model.firing = fir;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,frequ,offset,exprs] = scicos_getvalue("Set block parameters",[["Sample time"],["Offset"]],list("vec",-1,"vec",-1),exprs);
+            if (!ok) {
+                break;
+            }
+            offset = offset.slice();
+            frequ = frequ.slice();
+            if ((size(frequ,"*"))!=(size(offset,"*"))) {
+                message("offset and frequency must have the same size");
+                ok = false;
+            } else if (or(frequ<0)) {
+                message("Frequency must be a positif number");
+                ok = false;
+            } else if (or(abs(offset)>frequ)) {
+                message("The |Offset| must be less than the Frequency");
+                ok = false;
+            }
+            if (ok) {
+                [m,den,off,count,m1,fir,frequ,offset,ok] = mfrequ_clk(frequ,offset);
+            }
+            if (ok) {
+                model.opar = list(m,double(den),off,count);
+                mn = (2^size(m1,"*"))-1;
+                [model,graphics,ok] = set_io(model,graphics,list(),list(),1,ones(mn,1));
+                if (mn>3) {
+                    graphics.sz = [40+(mn-3)*10,40];
+                } else {
+                    graphics.sz = [50,40];
+                }
+                model.firing = fir;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

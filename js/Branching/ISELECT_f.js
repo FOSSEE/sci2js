@@ -14,34 +14,35 @@ function ISELECT_f() {
         model.dep_ut = [true,false];
         exprs = [[string(nout)],[string(z0+1)]];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     ISELECT_f.prototype.details = function ISELECT_f() {
+        return this.x;
     }
     ISELECT_f.prototype.get = function ISELECT_f() {
     }
     ISELECT_f.prototype.set = function ISELECT_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,nout,z0,exprs] = scicos_getvalue("Set parameters",[["number of outputs"],["initial connected output"]],list("vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (z0>nout||z0<=0) {
-message("initial connected input is not a valid input port number");
-        } else {
-        [model,graphics,ok] = check_io(model,graphics,-1,-ones(nout,1),ones(nout,1),[]);
-        if (ok) {
-        graphics.exprs = exprs;
-        model.dstate = z0-1;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
-}
+            [ok,nout,z0,exprs] = scicos_getvalue("Set parameters",[["number of outputs"],["initial connected output"]],list("vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (z0>nout||z0<=0) {
+                message("initial connected input is not a valid input port number");
+            } else {
+                [model,graphics,ok] = check_io(model,graphics,-1,-ones(nout,1),ones(nout,1),[]);
+                if (ok) {
+                    graphics.exprs = exprs;
+                    model.dstate = z0-1;
+                    this.x.graphics = graphics;
+                    this.x.model = model;
+                    break;
+                }
+            }
+        }
     }
 }

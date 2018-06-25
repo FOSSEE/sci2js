@@ -14,9 +14,9 @@ function MPBLOCK() {
         model.blocktype = "c";
         model.dep_ut = [true,true];
         model.rpar = [];
-for (i=1;i<=lstsize(paramv);i+=1) {
-        model.rpar = [[model.rpar],[paramv[i-1].slice()]];
-}
+        for (i=1;i<=lstsize(paramv);i+=1) {
+            model.rpar = [[model.rpar],[paramv[i-1].slice()]];
+        }
         mo = modelica();
         mo.model = nameF;
         mo.parameters = list(param,paramv);
@@ -27,239 +27,240 @@ for (i=1;i<=lstsize(paramv);i+=1) {
         model.out = ones(size(mo.outputs,"r"),1);
         model.equations = mo;
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
-        x.graphics.in_implicit = this.intype;
-        x.graphics.out_implicit = this.outtype;
+        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x.graphics.in_implicit = this.intype;
+        this.x.graphics.out_implicit = this.outtype;
     }
     MPBLOCK.prototype.details = function MPBLOCK() {
+        return this.x;
     }
     MPBLOCK.prototype.get = function MPBLOCK() {
     }
     MPBLOCK.prototype.set = function MPBLOCK() {
-        x = arg1;
+        this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         if (this.type[exprs-1]==15) {
-        paramv = list();
-        pprop = [];
-for (i=1;i<=size(model.rpar,"*");i+=1) {
-        paramv[$+1-1] = string(model.rpar[i-1]);
-        pprop[$+1-1] = 0;
-}
-        exprs = tlist(["MPBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],exprs[1-1][1-1],exprs[1-1][2-1],exprs[1-1][3-1],exprs[1-1][4-1],exprs[1-1][5-1],paramv,sci2exp(pprop.slice()),exprs[1-1][7-1],exprs[2-1]);
-}
+            paramv = list();
+            pprop = [];
+            for (i=1;i<=size(model.rpar,"*");i+=1) {
+                paramv[$+1-1] = string(model.rpar[i-1]);
+                pprop[$+1-1] = 0;
+            }
+            exprs = tlist(["MPBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],exprs[1-1][1-1],exprs[1-1][2-1],exprs[1-1][3-1],exprs[1-1][4-1],exprs[1-1][5-1],paramv,sci2exp(pprop.slice()),exprs[1-1][7-1],exprs[2-1]);
+        }
         lab_1 = list(exprs.in1,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
         lab_2 = exprs.paramv;
         while (true) {
-        [ok,Tin,Tintype,Tout,Touttype,Tparam,pprop,Tfunam,lab_1] = getvalue("Set Modelica generic block parameters",[["Input variables:       "],["Input variables types: "],["Output variables:      "],["Output variables types:"],["Parameters in Modelica:"],["Parameters properties: "],["Model name in packages:"]],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),lab_1);
-        if (!ok) {
-break;
-}
-        ierr = execstr("in=stripblanks(evstr(Tin));            intype=stripblanks(evstr(Tintype));            out=stripblanks(evstr(Tout));            outtype=stripblanks(evstr(Touttype));            param=stripblanks(evstr(Tparam));            funam=stripblanks(Tfunam)","errcatch");
-        if (ierr!=0) {
-x_message("Error in evaluation of variables.");
-        ok = false;
-}
-        if (ok) {
-for (i=1;i<=size(this.in1,"*");i+=1) {
-        r = false;
-        ierr = execstr("r=validvar(in(i))","errcatch");
-        if (!r) {
-        ok = false;
-break;
-}
-}
-        if (!ok) {
-x_message([["Invalid variable name for the input "+string(i)+"."],["\""+this.in1[i-1]+"\""],["Please choose another variable name."]]);
-}
-}
-        if (ok) {
-for (i=1;i<=size(this.out,"*");i+=1) {
-        r = false;
-        ierr = execstr("r=validvar(out(i))","errcatch");
-        if (!r) {
-        ok = false;
-break;
-}
-}
-        if (!ok) {
-x_message([["Invalid variable name for the output "+string(i)+"."],["\""+this.out[i-1]+"\""],["Please choose another variable name."]]);
-}
-}
-        if (ok) {
-        param = param.slice();
-for (i=1;i<=size(param,"*");i+=1) {
-        r = false;
-        ierr = execstr("r=validvar(param(i))","errcatch");
-        if (!r) {
-        ok = false;
-break;
-}
-}
-        if (!ok) {
-x_message([["Invalid variable name for the parameter "+string(i)+"."],["\""+param[i-1]+"\""],["Please choose another variable name."]]);
-}
-}
-        if (ok) {
-for (i=1;i<=size(this.intype,"*");i+=1) {
-        if (this.intype[i-1]!="E"&&this.intype[i-1]!="I") {
-x_message("Input type should be \'E\' or \'I\'!");
-        ok = false;
-break;
-}
-}
-}
-        if (ok) {
-for (i=1;i<=size(this.outtype,"*");i+=1) {
-        if (this.outtype[i-1]!="E"&&this.outtype[i-1]!="I") {
-x_message("Output type should be \'E\' or \'I\'!");
-        ok = false;
-break;
-}
-}
-}
-        if (ok) {
-        if (or(size(this.intype)!=size(this.in1))) {
-x_message("Input variables are not well defined!");
-        ok = false;
-}
-}
-        if (ok) {
-        if (or(size(this.outtype)!=size(this.out))) {
-x_message("Output variables are not well defined!");
-        ok = false;
-}
-}
-        if (ok) {
-        pprop = pprop.slice();
-        if ((size(param,"*")!=size(pprop,"*"))) {
-x_message([["There is differences in"],["size of param and size "],["of param properties."]]);
-        ok = false;
-}
-}
-        if (ok) {
-        if (max(pprop)>2||min(pprop)<0) {
-x_message([["Parameters properties must be :"],["0 : if it is a paramaters"],["1 : if it is an initial value of state,"],["2 : it it is a fixed initial state value."]]);
-        ok = false;
-}
-}
-        if (ok) {
-        if (this.funam=="") {
-x_message("The model name is not defined!");
-        ok = false;
-}
-}
-        if (ok) {
-        [dirF,nameF,extF] = fileparts(this.funam);
-        if ((extF!="")||(dirF!="")) {
-x_message("Invalid model name!");
-        ok = false;
-}
-}
-        if (ok) {
-        intypex = find(this.intype=="I");
-        outtypex = find(this.outtype=="I");
-        [model,graphics,ok] = set_io(model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
-}
-        if (ok) {
-        Tparam_lab = evstr(Tparam);
-        Tparam_sz = size(Tparam_lab,"*");
-        if (Tparam_sz>lstsize(lab_2)) {
-for (i=1;i<=(Tparam_sz-lstsize(lab_2));i+=1) {
-        lab_2[$+1-1] = "0";
-}
-        } else if (Tparam_sz<lstsize(lab_2)) {
-        lab_2_tmp = list();
-        if (Tparam_sz!=0) {
-for (i=1;i<=Tparam_sz;i+=1) {
-        ee = evstr(exprs.param);
-for (j=1;j<=size(ee,"r");j+=1) {
-        if (ee[j-1]==Tparam_lab[i-1]) {
-        lab_2_tmp[i-1] = lab_2[j-1];
-}
-}
-}
-        lab_2 = lab_2_tmp;
-}
-}
-        if (Tparam_sz!=0) {
-        lhs_txt = "";
-        lab_txt = "";
-        rhs_txt = "";
-for (i=1;i<=Tparam_sz;i+=1) {
-        lhs_txt = lhs_txt+"%v"+string(i)+",";
-        if (pprop[i-1]==0) {
-        lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+"\';";
-        } else if (pprop[i-1]==1) {
-        lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+" (state) \';";
-        } else if (pprop[i-1]==2) {
-        lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+" (fixed state) \';";
-}
-        rhs_txt = rhs_txt+"\'vec\',-1,";
-}
-        lhs_txt = part(lhs_txt,1,length(lhs_txt)-1);
-        lab_txt = part(lab_txt,1,length(lab_txt)-1);
-        rhs_txt = part(rhs_txt,1,length(rhs_txt)-1);
-        getvalue_txt = "[ok,"+lhs_txt+",lab_2]=scicos_getvalue(\'Set parameters values\',["+lab_txt+"],"+"list("+rhs_txt+"),lab_2)";
-execstr(getvalue_txt);
-        if (!ok) {
-        lab_2 = exprs.paramv;
-}
-}
-}
-        if (ok) {
-        paramv = list();
-for (i=1;i<=Tparam_sz;i+=1) {
-execstr("paramv("+string(i)+")=%v"+string(i));
-}
-}
-        if (ok) {
-        mo = modelica();
-        mo.model = nameF;
-        mo.inputs = this.in1;
-        mo.outputs = this.out;
-        if (pprop!=[]) {
-        if (max(pprop)>0) {
-        mo.parameters = list(transpose(param),paramv,transpose(pprop));
-        } else {
-        mo.parameters = list(transpose(param),paramv);
-}
-}
-        model.equations = mo;
-        model.rpar = [];
-for (i=1;i<=lstsize(paramv);i+=1) {
-        model.rpar = [[model.rpar],[double(paramv[i-1].slice())]];
-}
-        model.sim[1-1] = this.funam;
-        exprs.in1 = lab_1[1-1];
-        exprs.intype = lab_1[2-1];
-        exprs.out = lab_1[3-1];
-        exprs.outtype = lab_1[4-1];
-        exprs.param = lab_1[5-1];
-        exprs.paramv = list();
-        if (Tparam_sz!=0) {
-        if (this.type[lab_2-1]==15) {
-for (i=1;i<=lstsize(lab_2);i+=1) {
-        exprs.paramv[i-1] = lab_2[i-1];
-}
-        } else {
-for (i=1;i<=size(lab_2,"*");i+=1) {
-        exprs.paramv[i-1] = lab_2[i-1];
-}
-}
-}
-        exprs.pprop = lab_1[6-1];
-        exprs.nameF = lab_1[7-1];
-        exprs.funtxt = "";
-        x.model = model;
-        graphics.gr_i[1-1][1-1] = "txt=[\' "+nameF+" \'];";
-        graphics.in_implicit = this.intype;
-        graphics.out_implicit = this.outtype;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-break;
-}
-}
+            [ok,Tin,Tintype,Tout,Touttype,Tparam,pprop,Tfunam,lab_1] = getvalue("Set Modelica generic block parameters",[["Input variables:       "],["Input variables types: "],["Output variables:      "],["Output variables types:"],["Parameters in Modelica:"],["Parameters properties: "],["Model name in packages:"]],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),lab_1);
+            if (!ok) {
+                break;
+            }
+            ierr = execstr("in=stripblanks(evstr(Tin));            intype=stripblanks(evstr(Tintype));            out=stripblanks(evstr(Tout));            outtype=stripblanks(evstr(Touttype));            param=stripblanks(evstr(Tparam));            funam=stripblanks(Tfunam)","errcatch");
+            if (ierr!=0) {
+                x_message("Error in evaluation of variables.");
+                ok = false;
+            }
+            if (ok) {
+                for (i=1;i<=size(this.in1,"*");i+=1) {
+                    r = false;
+                    ierr = execstr("r=validvar(in(i))","errcatch");
+                    if (!r) {
+                        ok = false;
+                        break;
+                    }
+                }
+                if (!ok) {
+                    x_message([["Invalid variable name for the input "+string(i)+"."],["\""+this.in1[i-1]+"\""],["Please choose another variable name."]]);
+                }
+            }
+            if (ok) {
+                for (i=1;i<=size(this.out,"*");i+=1) {
+                    r = false;
+                    ierr = execstr("r=validvar(out(i))","errcatch");
+                    if (!r) {
+                        ok = false;
+                        break;
+                    }
+                }
+                if (!ok) {
+                    x_message([["Invalid variable name for the output "+string(i)+"."],["\""+this.out[i-1]+"\""],["Please choose another variable name."]]);
+                }
+            }
+            if (ok) {
+                param = param.slice();
+                for (i=1;i<=size(param,"*");i+=1) {
+                    r = false;
+                    ierr = execstr("r=validvar(param(i))","errcatch");
+                    if (!r) {
+                        ok = false;
+                        break;
+                    }
+                }
+                if (!ok) {
+                    x_message([["Invalid variable name for the parameter "+string(i)+"."],["\""+param[i-1]+"\""],["Please choose another variable name."]]);
+                }
+            }
+            if (ok) {
+                for (i=1;i<=size(this.intype,"*");i+=1) {
+                    if (this.intype[i-1]!="E"&&this.intype[i-1]!="I") {
+                        x_message("Input type should be \'E\' or \'I\'!");
+                        ok = false;
+                        break;
+                    }
+                }
+            }
+            if (ok) {
+                for (i=1;i<=size(this.outtype,"*");i+=1) {
+                    if (this.outtype[i-1]!="E"&&this.outtype[i-1]!="I") {
+                        x_message("Output type should be \'E\' or \'I\'!");
+                        ok = false;
+                        break;
+                    }
+                }
+            }
+            if (ok) {
+                if (or(size(this.intype)!=size(this.in1))) {
+                    x_message("Input variables are not well defined!");
+                    ok = false;
+                }
+            }
+            if (ok) {
+                if (or(size(this.outtype)!=size(this.out))) {
+                    x_message("Output variables are not well defined!");
+                    ok = false;
+                }
+            }
+            if (ok) {
+                pprop = pprop.slice();
+                if ((size(param,"*")!=size(pprop,"*"))) {
+                    x_message([["There is differences in"],["size of param and size "],["of param properties."]]);
+                    ok = false;
+                }
+            }
+            if (ok) {
+                if (max(pprop)>2||min(pprop)<0) {
+                    x_message([["Parameters properties must be :"],["0 : if it is a paramaters"],["1 : if it is an initial value of state,"],["2 : it it is a fixed initial state value."]]);
+                    ok = false;
+                }
+            }
+            if (ok) {
+                if (this.funam=="") {
+                    x_message("The model name is not defined!");
+                    ok = false;
+                }
+            }
+            if (ok) {
+                [dirF,nameF,extF] = fileparts(this.funam);
+                if ((extF!="")||(dirF!="")) {
+                    x_message("Invalid model name!");
+                    ok = false;
+                }
+            }
+            if (ok) {
+                intypex = find(this.intype=="I");
+                outtypex = find(this.outtype=="I");
+                [model,graphics,ok] = set_io(model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
+            }
+            if (ok) {
+                Tparam_lab = evstr(Tparam);
+                Tparam_sz = size(Tparam_lab,"*");
+                if (Tparam_sz>lstsize(lab_2)) {
+                    for (i=1;i<=(Tparam_sz-lstsize(lab_2));i+=1) {
+                        lab_2[$+1-1] = "0";
+                    }
+                } else if (Tparam_sz<lstsize(lab_2)) {
+                    lab_2_tmp = list();
+                    if (Tparam_sz!=0) {
+                        for (i=1;i<=Tparam_sz;i+=1) {
+                            ee = evstr(exprs.param);
+                            for (j=1;j<=size(ee,"r");j+=1) {
+                                if (ee[j-1]==Tparam_lab[i-1]) {
+                                    lab_2_tmp[i-1] = lab_2[j-1];
+                                }
+                            }
+                        }
+                        lab_2 = lab_2_tmp;
+                    }
+                }
+                if (Tparam_sz!=0) {
+                    lhs_txt = "";
+                    lab_txt = "";
+                    rhs_txt = "";
+                    for (i=1;i<=Tparam_sz;i+=1) {
+                        lhs_txt = lhs_txt+"%v"+string(i)+",";
+                        if (pprop[i-1]==0) {
+                            lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+"\';";
+                        } else if (pprop[i-1]==1) {
+                            lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+" (state) \';";
+                        } else if (pprop[i-1]==2) {
+                            lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+" (fixed state) \';";
+                        }
+                        rhs_txt = rhs_txt+"\'vec\',-1,";
+                    }
+                    lhs_txt = part(lhs_txt,1,length(lhs_txt)-1);
+                    lab_txt = part(lab_txt,1,length(lab_txt)-1);
+                    rhs_txt = part(rhs_txt,1,length(rhs_txt)-1);
+                    getvalue_txt = "[ok,"+lhs_txt+",lab_2]=scicos_getvalue(\'Set parameters values\',["+lab_txt+"],"+"list("+rhs_txt+"),lab_2)";
+                    execstr(getvalue_txt);
+                    if (!ok) {
+                        lab_2 = exprs.paramv;
+                    }
+                }
+            }
+            if (ok) {
+                paramv = list();
+                for (i=1;i<=Tparam_sz;i+=1) {
+                    execstr("paramv("+string(i)+")=%v"+string(i));
+                }
+            }
+            if (ok) {
+                mo = modelica();
+                mo.model = nameF;
+                mo.inputs = this.in1;
+                mo.outputs = this.out;
+                if (pprop!=[]) {
+                    if (max(pprop)>0) {
+                        mo.parameters = list(transpose(param),paramv,transpose(pprop));
+                    } else {
+                        mo.parameters = list(transpose(param),paramv);
+                    }
+                }
+                model.equations = mo;
+                model.rpar = [];
+                for (i=1;i<=lstsize(paramv);i+=1) {
+                    model.rpar = [[model.rpar],[double(paramv[i-1].slice())]];
+                }
+                model.sim[1-1] = this.funam;
+                exprs.in1 = lab_1[1-1];
+                exprs.intype = lab_1[2-1];
+                exprs.out = lab_1[3-1];
+                exprs.outtype = lab_1[4-1];
+                exprs.param = lab_1[5-1];
+                exprs.paramv = list();
+                if (Tparam_sz!=0) {
+                    if (this.type[lab_2-1]==15) {
+                        for (i=1;i<=lstsize(lab_2);i+=1) {
+                            exprs.paramv[i-1] = lab_2[i-1];
+                        }
+                    } else {
+                        for (i=1;i<=size(lab_2,"*");i+=1) {
+                            exprs.paramv[i-1] = lab_2[i-1];
+                        }
+                    }
+                }
+                exprs.pprop = lab_1[6-1];
+                exprs.nameF = lab_1[7-1];
+                exprs.funtxt = "";
+                this.x.model = model;
+                graphics.gr_i[1-1][1-1] = "txt=[\' "+nameF+" \'];";
+                graphics.in_implicit = this.intype;
+                graphics.out_implicit = this.outtype;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                break;
+            }
+        }
     }
 }

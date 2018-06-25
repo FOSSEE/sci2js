@@ -7,13 +7,14 @@ function SPLIT_f() {
         model.out = [[-1],[-1],[-1]];
         model.blocktype = "c";
         model.dep_ut = [true,false];
-        x = standard_define([1,1]/3,model,[],[]);
+        this.x = standard_define([1,1]/3,model,[],[]);
     }
     SPLIT_f.prototype.details = function SPLIT_f() {
+        return this.x;
     }
     SPLIT_f.prototype.get = function SPLIT_f() {
     }
     SPLIT_f.prototype.set = function SPLIT_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

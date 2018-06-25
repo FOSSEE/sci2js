@@ -13,34 +13,35 @@ function EVTDLY_c() {
         model.dep_ut = [false,false];
         exprs = [[string(dt)],[sci2exp(ff)]];
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     EVTDLY_c.prototype.details = function EVTDLY_c() {
+        return this.x;
     }
     EVTDLY_c.prototype.get = function EVTDLY_c() {
     }
     EVTDLY_c.prototype.set = function EVTDLY_c() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,dt,ff,exprs] = scicos_getvalue([["Set Event Delay block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       to disable any output event."]],[["Delay"],["Date of initial output event"]],list("vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (dt<=0) {
-message("Delay must be positive");
-        ok = false;
-}
-        if (ok) {
-        graphics.exprs = exprs;
-        model.rpar = [[dt],[ff]];
-        model.firing = ff;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,dt,ff,exprs] = scicos_getvalue([["Set Event Delay block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       to disable any output event."]],[["Delay"],["Date of initial output event"]],list("vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (dt<=0) {
+                message("Delay must be positive");
+                ok = false;
+            }
+            if (ok) {
+                graphics.exprs = exprs;
+                model.rpar = [[dt],[ff]];
+                model.firing = ff;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

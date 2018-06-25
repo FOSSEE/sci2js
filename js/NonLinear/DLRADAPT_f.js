@@ -20,39 +20,40 @@ function DLRADAPT_f() {
         model.dep_ut = [true,false];
         exprs = [[sci2exp(p)],[sci2exp(rn)],[sci2exp(rd,0)],[sci2exp(g)],[sci2exp(last_u)],[sci2exp(last_y)]];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     DLRADAPT_f.prototype.details = function DLRADAPT_f() {
+        return this.x;
     }
     DLRADAPT_f.prototype.get = function DLRADAPT_f() {
     }
     DLRADAPT_f.prototype.set = function DLRADAPT_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,p,rn,rd,g,last_u,last_y,exprs] = scicos_getvalue("Set block parameters",[["Vector of p mesh points"],["Numerator roots (one line for each mesh)"],["Denominator roots (one line for each mesh)"],["Vector of gain at mesh points"],["past inputs (Num degree values)"],["past outputs (Den degree values)"]],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),exprs);
-        if (!ok) {
-break;
-}
-        m = size(rn,2);
-        [npt,n] = size(rd);
-        if (m>=n) {
-message("Transfer must be strictly proper");
-        } else if (size(rn,1)!=0&&size(rn,1)!=size(p,"*")) {
-message("Numerator roots matrix row size\'s is incorrect");
-        } else {
-        rpar = [[p.slice()],[real(rn.slice())],[imag(rn.slice())],[real(rd.slice())],[imag(rd.slice())],[g.slice()]];
-        ipar = [[m],[n],[npt]];
-        model.dstate = [[last_u.slice()],[last_y.slice()]];
-        model.rpar = rpar;
-        model.ipar = ipar;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,p,rn,rd,g,last_u,last_y,exprs] = scicos_getvalue("Set block parameters",[["Vector of p mesh points"],["Numerator roots (one line for each mesh)"],["Denominator roots (one line for each mesh)"],["Vector of gain at mesh points"],["past inputs (Num degree values)"],["past outputs (Den degree values)"]],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),exprs);
+            if (!ok) {
+                break;
+            }
+            m = size(rn,2);
+            [npt,n] = size(rd);
+            if (m>=n) {
+                message("Transfer must be strictly proper");
+            } else if (size(rn,1)!=0&&size(rn,1)!=size(p,"*")) {
+                message("Numerator roots matrix row size\'s is incorrect");
+            } else {
+                rpar = [[p.slice()],[real(rn.slice())],[imag(rn.slice())],[real(rd.slice())],[imag(rd.slice())],[g.slice()]];
+                ipar = [[m],[n],[npt]];
+                model.dstate = [[last_u.slice()],[last_y.slice()]];
+                model.rpar = rpar;
+                model.ipar = ipar;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

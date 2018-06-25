@@ -47,9 +47,10 @@ function GEN_SQR() {
         F = 1;
         exprs = [sci2exp(Amin),sci2exp(Amax),sci2exp(rule),sci2exp(F)];
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     GEN_SQR.prototype.details = function GEN_SQR() {
+        return this.x;
     }
     GEN_SQR.prototype.get = function GEN_SQR() {
     }
@@ -64,28 +65,28 @@ function GEN_SQR() {
         Bitems = [["Minimum Value"],["Maximum Value"],["Initial Value( 1= Minimum Value 2= Maximum Value)"],["Period (sec)"]];
         Ss = list("mat",[-1,-1],"mat",[-1,-1],"pol",-1,"pol",-1);
         scicos_context = struct();
-        x = arg1;
+        this.x = arg1;
         ok = false;
         while (!ok) {
-        [ok,scicos_context.Amin,scicos_context.Amax,scicos_context.rule,scicos_context.F,exprs] = scicos_getvalue(Btitre,Bitems,Ss,exprs);
-        if (!ok) {
-return;
-}
-        PREVAR_scicos_context = scicos_context;
-        sblock = x.model.rpar;
-        [PREVAR_scicos_context,ierr] = script2var(sblock.props.context,PREVAR_scicos_context);
-        if (ierr==0) {
-        [sblock,%w,needcompile2,ok] = do_eval(sblock,list());
-        if (ok) {
-        y = max(2,this.needcompile,needcompile2);
-        x.graphics.exprs = exprs;
-        x.model.rpar = sblock;
-break;
-}
-        } else {
-message(lasterror());
-        ok = false;
-}
-}
+            [ok,scicos_context.Amin,scicos_context.Amax,scicos_context.rule,scicos_context.F,exprs] = scicos_getvalue(Btitre,Bitems,Ss,exprs);
+            if (!ok) {
+                return;
+            }
+            PREVAR_scicos_context = scicos_context;
+            sblock = this.x.model.rpar;
+            [PREVAR_scicos_context,ierr] = script2var(sblock.props.context,PREVAR_scicos_context);
+            if (ierr==0) {
+                [sblock,%w,needcompile2,ok] = do_eval(sblock,list());
+                if (ok) {
+                    y = max(2,this.needcompile,needcompile2);
+                    this.x.graphics.exprs = exprs;
+                    this.x.model.rpar = sblock;
+                    break;
+                }
+            } else {
+                message(lasterror());
+                ok = false;
+            }
+        }
     }
 }

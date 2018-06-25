@@ -24,30 +24,31 @@ function PerteDP() {
         model.out = ones(size(mo.outputs,"*"),1);
         exprs = [[string(L)],[string(D)],[string(lambda)],[string(z1)],[string(z2)],[string(p_rho)]];
         gr_i = [];
-        x = standard_define([2,1],model,exprs,list(gr_i,0));
-        x.graphics.in_implicit = ["I"];
-        x.graphics.out_implicit = ["I"];
+        this.x = standard_define([2,1],model,exprs,list(gr_i,0));
+        this.x.graphics.in_implicit = ["I"];
+        this.x.graphics.out_implicit = ["I"];
     }
     PerteDP.prototype.details = function PerteDP() {
+        return this.x;
     }
     PerteDP.prototype.get = function PerteDP() {
     }
     PerteDP.prototype.set = function PerteDP() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,L,D,lambda,z1,z2,p_rho,exprs] = scicos_getvalue("Parametres du tuyau",[["Longueur du tube : L (m)"],["Diamètre interne du tube : D (m)"],["Coefficient de perte de charge-frottement(S.U) : lambda"],["Altitude entrée tuyauterie : z1 (m)"],["Altitude sortie tuyauterie : z2 (m)"],["Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
-        if (!ok) {
-break;
-}
-        model.rpar = [[L],[D],[lambda],[z1],[z2],[p_rho]];
-        model.equations.parameters[2-1] = list(L,D,lambda,z1,z2,p_rho);
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
+            [ok,L,D,lambda,z1,z2,p_rho,exprs] = scicos_getvalue("Parametres du tuyau",[["Longueur du tube : L (m)"],["Diamètre interne du tube : D (m)"],["Coefficient de perte de charge-frottement(S.U) : lambda"],["Altitude entrée tuyauterie : z1 (m)"],["Altitude sortie tuyauterie : z2 (m)"],["Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+            if (!ok) {
+                break;
+            }
+            model.rpar = [[L],[D],[lambda],[z1],[z2],[p_rho]];
+            model.equations.parameters[2-1] = list(L,D,lambda,z1,z2,p_rho);
+            graphics.exprs = exprs;
+            this.x.graphics = graphics;
+            this.x.model = model;
+            break;
+        }
     }
 }

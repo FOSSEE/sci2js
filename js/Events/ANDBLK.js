@@ -52,25 +52,26 @@ function ANDBLK() {
         diagram.objs[10-1] = split;
         diagram.objs[11-1] = scicos_link(xx=[[234],[234]],yy=[[275.78],[198.71]],ct=[5,-1],from=[10,1],to=[1,2]);
         diagram.objs[12-1] = scicos_link(xx=[[234],[361],[361]],yy=[[275.78],[275.78],[202.71]],ct=[5,-1],from=[10,2],to=[7,1]);
-        x = scicos_block();
-        x.gui = "ANDBLK";
-        x.graphics.sz = [2,2];
-        x.graphics.gr_i = [];
-        x.graphics.pein = [[0],[0]];
-        x.graphics.peout = 0;
-        x.model.sim = "csuper";
-        x.model.evtin = [[1],[1]];
-        x.model.evtout = 1;
-        x.model.blocktype = "h";
-        x.model.firing = false;
-        x.model.dep_ut = [false,false];
-        x.model.rpar = diagram;
+        this.x = scicos_block();
+        this.x.gui = "ANDBLK";
+        this.x.graphics.sz = [2,2];
+        this.x.graphics.gr_i = [];
+        this.x.graphics.pein = [[0],[0]];
+        this.x.graphics.peout = 0;
+        this.x.model.sim = "csuper";
+        this.x.model.evtin = [[1],[1]];
+        this.x.model.evtout = 1;
+        this.x.model.blocktype = "h";
+        this.x.model.firing = false;
+        this.x.model.dep_ut = [false,false];
+        this.x.model.rpar = diagram;
     }
     ANDBLK.prototype.details = function ANDBLK() {
+        return this.x;
     }
     ANDBLK.prototype.get = function ANDBLK() {
     }
     ANDBLK.prototype.set = function ANDBLK() {
-        x = arg1;
+        this.x = arg1;
     }
 }

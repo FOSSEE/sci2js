@@ -17,30 +17,31 @@ function ConstantVoltage() {
         model.equations = mo;
         exprs = string(V);
         gr_i = [];
-        x = standard_define([1.5,1.1],model,exprs,list(gr_i,0));
-        x.graphics.in_implicit = ["I"];
-        x.graphics.out_implicit = ["I"];
+        this.x = standard_define([1.5,1.1],model,exprs,list(gr_i,0));
+        this.x.graphics.in_implicit = ["I"];
+        this.x.graphics.out_implicit = ["I"];
     }
     ConstantVoltage.prototype.details = function ConstantVoltage() {
+        return this.x;
     }
     ConstantVoltage.prototype.get = function ConstantVoltage() {
     }
     ConstantVoltage.prototype.set = function ConstantVoltage() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,V,exprs] = scicos_getvalue("Set ConstantVoltage block parameter","V (volt)",list("vec",1),exprs);
-        if (!ok) {
-break;
-}
-        model.rpar = V;
-        model.equations.parameters[2-1] = list(V);
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
+            [ok,V,exprs] = scicos_getvalue("Set ConstantVoltage block parameter","V (volt)",list("vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            model.rpar = V;
+            model.equations.parameters[2-1] = list(V);
+            graphics.exprs = exprs;
+            this.x.graphics = graphics;
+            this.x.model = model;
+            break;
+        }
     }
 }

@@ -13,36 +13,37 @@ function GENSIN_f() {
         model.dep_ut = [false,true];
         exprs = [[string(rpar[1-1])],[string(rpar[2-1])],[string(rpar[3-1])]];
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     GENSIN_f.prototype.details = function GENSIN_f() {
+        return this.x;
     }
     GENSIN_f.prototype.get = function GENSIN_f() {
     }
     GENSIN_f.prototype.set = function GENSIN_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,M,F,P,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"GENSIN_f")],[" "],[gettext("Sine wave generator")],[" "]],[[gettext("Magnitude")],[gettext("Frequency (rad/s)")],[gettext("Phase (rad)")]],list("vec",1,"vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (F<0) {
-block_parameter_error(msprintf(gettext("Wrong value for \'Frequency\' parameter: %e."),F),gettext("Strictly positive integer expected."));
-        ok = false;
-}
-        if (ok) {
-        [model,graphics,ok] = check_io(model,graphics,[],1,[],[]);
-        model.rpar = [[M],[F],[P]];
-        model.out2 = 1;
-        model.outtyp = 1;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,M,F,P,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"GENSIN_f")],[" "],[gettext("Sine wave generator")],[" "]],[[gettext("Magnitude")],[gettext("Frequency (rad/s)")],[gettext("Phase (rad)")]],list("vec",1,"vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (F<0) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'Frequency\' parameter: %e."),F),gettext("Strictly positive integer expected."));
+                ok = false;
+            }
+            if (ok) {
+                [model,graphics,ok] = check_io(model,graphics,[],1,[],[]);
+                model.rpar = [[M],[F],[P]];
+                model.out2 = 1;
+                model.outtyp = 1;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

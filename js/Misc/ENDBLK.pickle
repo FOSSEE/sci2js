@@ -2,10 +2,12 @@ c__builtin__
 set
 p0
 ((lp1
-S'xxn'
+S'x'
 p2
-aS'isequalbitwise'
+aS'xxn'
 p3
-atp4
-Rp5
+aS'isequalbitwise'
+p4
+atp5
+Rp6
 .

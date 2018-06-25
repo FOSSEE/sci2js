@@ -10,13 +10,14 @@ function SAWTOOTH_f() {
         model.dep_ut = [false,true];
         exprs = " ";
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     SAWTOOTH_f.prototype.details = function SAWTOOTH_f() {
+        return this.x;
     }
     SAWTOOTH_f.prototype.get = function SAWTOOTH_f() {
     }
     SAWTOOTH_f.prototype.set = function SAWTOOTH_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

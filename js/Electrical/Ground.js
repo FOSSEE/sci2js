@@ -13,15 +13,16 @@ function Ground() {
         model.equations = mo;
         exprs = "";
         gr_i = [];
-        x = standard_define([1,1],model,exprs,list(gr_i,0));
-        x.graphics.in_implicit = ["I"];
-        x.graphics.out_implicit = ["I"];
+        this.x = standard_define([1,1],model,exprs,list(gr_i,0));
+        this.x.graphics.in_implicit = ["I"];
+        this.x.graphics.out_implicit = ["I"];
     }
     Ground.prototype.details = function Ground() {
+        return this.x;
     }
     Ground.prototype.get = function Ground() {
     }
     Ground.prototype.set = function Ground() {
-        x = arg1;
+        this.x = arg1;
     }
 }

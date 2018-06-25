@@ -11,24 +11,24 @@ function PNP() {
         MO = [];
         P = [[100,90,-2,0],[0,50,2,0],[100,10,-2,0]];
         PortName = [["C"],["B"],["E"]];
-for (i=1;i<=size(P,"r");i+=1) {
-        if (P[i-1][3-1]==1) {
-        Typein = [[Typein],["E"]];
-        MI = [[MI],[PortName[i-1]]];
-}
-        if (P[i-1][3-1]==2) {
-        Typein = [[Typein],["I"]];
-        MI = [[MI],[PortName[i-1]]];
-}
-        if (P[i-1][3-1]==-1) {
-        Typeout = [[Typeout],["E"]];
-        MO = [[MO],[PortName[i-1]]];
-}
-        if (P[i-1][3-1]==-2) {
-        Typeout = [[Typeout],["I"]];
-        MO = [[MO],[PortName[i-1]]];
-}
-}
+        for (i=1;i<=size(P,"r");i+=1) {
+            if (P[i-1][3-1]==1) {
+                Typein = [[Typein],["E"]];
+                MI = [[MI],[PortName[i-1]]];
+            }
+            if (P[i-1][3-1]==2) {
+                Typein = [[Typein],["I"]];
+                MI = [[MI],[PortName[i-1]]];
+            }
+            if (P[i-1][3-1]==-1) {
+                Typeout = [[Typeout],["E"]];
+                MO = [[MO],[PortName[i-1]]];
+            }
+            if (P[i-1][3-1]==-2) {
+                Typeout = [[Typeout],["I"]];
+                MO = [[MO],[PortName[i-1]]];
+            }
+        }
         model = scicos_model();
         mo = modelica();
         model.sim = ModelName;
@@ -44,29 +44,30 @@ for (i=1;i<=size(P,"r");i+=1) {
         model.equations = mo;
         model.in1 = ones(size(MI,"*"),1);
         model.out = ones(size(MO,"*"),1);
-        x = standard_define([2,2],model,exprs,list(gr_i,0));
-        x.graphics.in_implicit = Typein;
-        x.graphics.out_implicit = Typeout;
+        this.x = standard_define([2,2],model,exprs,list(gr_i,0));
+        this.x.graphics.in_implicit = Typein;
+        this.x.graphics.out_implicit = Typeout;
     }
     PNP.prototype.details = function PNP() {
+        return this.x;
     }
     PNP.prototype.get = function PNP() {
     }
     PNP.prototype.set = function PNP() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
-        x = arg1;
-        exprs = x.graphics.exprs;
+        this.x = arg1;
+        exprs = this.x.graphics.exprs;
         while (true) {
-        [ok,Bf,Br,Is,Vak,Tauf,Taur,Ccs,Cje,Cjc,Phie,Me,Phic,Mc,Gbc,Gbe,Vt,EMinMax,exprs] = scicos_getvalue([["Set PNP block parameters:"],[""]],[["Bf  : Forward beta"],["Br  : Reverse beta"],["Is  : Transport saturation current"],["Vak : Early voltage (inverse), 1/Volt"],["Tauf: Ideal forward transit time"],["Taur: Ideal reverse transit time"],["Ccs : Collector-substrat(ground) cap."],["Cje : Base-emitter zero bias depletion cap."],["Cjc : Base-coll. zero bias depletion cap."],["Phie: Base-emitter diffusion voltage"],["Me  : Base-emitter gradation exponent"],["Phic: Base-collector diffusion voltage"],["Mc  : Base-collector gradation exponent"],["Gbc : Base-collector conductance"],["Gbe : Base-emitter conductance"],["Vt  : Voltage equivalent of temperature"],["EMinMax: if x > EMinMax, the exp(x) function is linearized"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        x.model.equations.parameters[2-1] = list(Bf,Br,Is,Vak,Tauf,Taur,Ccs,Cje,Cjc,Phie,Me,Phic,Mc,Gbc,Gbe,Vt,EMinMax);
-        x.graphics.exprs = exprs;
-break;
-}
+            [ok,Bf,Br,Is,Vak,Tauf,Taur,Ccs,Cje,Cjc,Phie,Me,Phic,Mc,Gbc,Gbe,Vt,EMinMax,exprs] = scicos_getvalue([["Set PNP block parameters:"],[""]],[["Bf  : Forward beta"],["Br  : Reverse beta"],["Is  : Transport saturation current"],["Vak : Early voltage (inverse), 1/Volt"],["Tauf: Ideal forward transit time"],["Taur: Ideal reverse transit time"],["Ccs : Collector-substrat(ground) cap."],["Cje : Base-emitter zero bias depletion cap."],["Cjc : Base-coll. zero bias depletion cap."],["Phie: Base-emitter diffusion voltage"],["Me  : Base-emitter gradation exponent"],["Phic: Base-collector diffusion voltage"],["Mc  : Base-collector gradation exponent"],["Gbc : Base-collector conductance"],["Gbe : Base-emitter conductance"],["Vt  : Voltage equivalent of temperature"],["EMinMax: if x > EMinMax, the exp(x) function is linearized"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            this.x.model.equations.parameters[2-1] = list(Bf,Br,Is,Vak,Tauf,Taur,Ccs,Cje,Cjc,Phie,Me,Phic,Mc,Gbc,Gbe,Vt,EMinMax);
+            this.x.graphics.exprs = exprs;
+            break;
+        }
     }
 }

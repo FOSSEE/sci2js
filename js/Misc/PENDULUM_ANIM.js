@@ -18,46 +18,47 @@ function PENDULUM_ANIM() {
         model.dep_ut = [false,false];
         exprs = string(model.rpar);
         gr_i = [];
-        x = standard_define([3,3],model,exprs,gr_i);
+        this.x = standard_define([3,3],model,exprs,gr_i);
     }
     PENDULUM_ANIM.prototype.details = function PENDULUM_ANIM() {
+        return this.x;
     }
     PENDULUM_ANIM.prototype.get = function PENDULUM_ANIM() {
     }
     PENDULUM_ANIM.prototype.set = function PENDULUM_ANIM() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         dstate = model.dstate;
         while (true) {
-        [ok,plen,csiz,phi,xmin,xmax,ymin,ymax,exprs] = scicos_getvalue("Set Scope parameters",[["pendulum length"],["cart size (square side)"],["slope"],["Xmin"],["Xmax"],["Ymin"],["Ymax"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        mess = [];
-        if (plen<=0||csiz<=0) {
-        mess = [[mess],["Pendulum length and cart size must be positive."],[" "]];
-        ok = false;
-}
-        if (ymin>=ymax) {
-        mess = [[mess],["Ymax must be greater than Ymin"],[" "]];
-        ok = false;
-}
-        if (xmin>=xmax) {
-        mess = [[mess],["Xmax must be greater than Xmin"],[" "]];
-        ok = false;
-}
-        if (!ok) {
-message(mess);
-        } else {
-        rpar = [[plen],[csiz],[phi],[xmin],[xmax],[ymin],[ymax]];
-        model.rpar = rpar;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,plen,csiz,phi,xmin,xmax,ymin,ymax,exprs] = scicos_getvalue("Set Scope parameters",[["pendulum length"],["cart size (square side)"],["slope"],["Xmin"],["Xmax"],["Ymin"],["Ymax"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            mess = [];
+            if (plen<=0||csiz<=0) {
+                mess = [[mess],["Pendulum length and cart size must be positive."],[" "]];
+                ok = false;
+            }
+            if (ymin>=ymax) {
+                mess = [[mess],["Ymax must be greater than Ymin"],[" "]];
+                ok = false;
+            }
+            if (xmin>=xmax) {
+                mess = [[mess],["Xmax must be greater than Xmin"],[" "]];
+                ok = false;
+            }
+            if (!ok) {
+                message(mess);
+            } else {
+                rpar = [[plen],[csiz],[phi],[xmin],[xmax],[ymin],[ymax]];
+                model.rpar = rpar;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

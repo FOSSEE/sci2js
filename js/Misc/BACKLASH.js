@@ -11,37 +11,38 @@ function BACKLASH() {
         model.blocktype = "c";
         model.dep_ut = [true,false];
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     BACKLASH.prototype.details = function BACKLASH() {
+        return this.x;
     }
     BACKLASH.prototype.get = function BACKLASH() {
     }
     BACKLASH.prototype.set = function BACKLASH() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         rpar = model.rpar;
         while (true) {
-        [ok,ini,gap,zcr,exprs] = scicos_getvalue("Set backlash parameters",[["initial output"],["gap"],["use zero-crossing (0:no, 1:yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (ok) {
-        graphics.exprs = exprs;
-        rpar[1-1] = ini;
-        rpar[2-1] = gap;
-        if (zcr!=0) {
-        model.nzcross = 2;
-        } else {
-        model.nzcross = 0;
-}
-        model.rpar = rpar;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,ini,gap,zcr,exprs] = scicos_getvalue("Set backlash parameters",[["initial output"],["gap"],["use zero-crossing (0:no, 1:yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (ok) {
+                graphics.exprs = exprs;
+                rpar[1-1] = ini;
+                rpar[2-1] = gap;
+                if (zcr!=0) {
+                    model.nzcross = 2;
+                } else {
+                    model.nzcross = 0;
+                }
+                model.rpar = rpar;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

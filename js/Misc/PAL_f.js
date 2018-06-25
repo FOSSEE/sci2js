@@ -11,20 +11,21 @@ function PAL_f() {
         model.blocktype = "h";
         model.dep_ut = [false,false];
         gr_i = [];
-        x = standard_define([2,2],model,[],gr_i);
-        x.graphics.id = scs.props.title[1-1];
+        this.x = standard_define([2,2],model,[],gr_i);
+        this.x.graphics.id = scs.props.title[1-1];
     }
     PAL_f.prototype.details = function PAL_f() {
+        return this.x;
     }
     PAL_f.prototype.get = function PAL_f() {
     }
     PAL_f.prototype.set = function PAL_f() {
-        [x,newparameters,needcompile,edited] = scicos(arg1.model.rpar);
-        arg1.graphics.id = x.props.title[1-1];
-        arg1.model.rpar = x;
-        x = arg1;
+        [this.x,newparameters,needcompile,edited] = scicos(arg1.model.rpar);
+        arg1.graphics.id = this.x.props.title[1-1];
+        arg1.model.rpar = this.x;
+        this.x = arg1;
         y = [];
         typ = [];
-%exit=resume(false)
+        %exit=resume(false)
     }
 }

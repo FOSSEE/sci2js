@@ -18,14 +18,15 @@ function WRITEAU_f() {
         model.dep_ut = [true,false];
         exprs = [string(N),string(swap)];
         gr_i = [];
-        x = standard_define([4,2],model,exprs,gr_i);
+        this.x = standard_define([4,2],model,exprs,gr_i);
     }
     WRITEAU_f.prototype.details = function WRITEAU_f() {
+        return this.x;
     }
     WRITEAU_f.prototype.get = function WRITEAU_f() {
     }
     WRITEAU_f.prototype.set = function WRITEAU_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
@@ -33,37 +34,37 @@ function WRITEAU_f() {
         dstate = model.dstate;
         lunit = dstate[2-1];
         while (true) {
-        [ok,N,swap,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WRITEAU_f")],[" "],[gettext("Write \'.au\' sound file on audio device")]],[[gettext("Buffer Size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        nin = 1;
-        fname1 = "/dev/audio";
-        frmt1 = "uc ";
-        if (this.alreadyran&&(N!=ipar[5-1])) {
-block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
-        ok = false;
-        } else if (N<1) {
-block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),N),gettext("Strictly positive integer expected."));
-        ok = false;
-}
-        if (swap!=0&&swap!=1) {
-block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Swap Mode"),swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
-        ok = false;
-}
-        if (ok) {
-        ipar = [[length(fname1)],[this._str2code[frmt1-1]],[N],[swap],[this._str2code[fname1-1]]];
-        if (prod(size(dstate))!=(nin+1)*N+2) {
-        dstate = [[-1],[lunit],[zeros((nin+1)*N,1)]];
-}
-        model.in1 = 1;
-        model.dstate = dstate;
-        model.ipar = ipar;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,N,swap,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WRITEAU_f")],[" "],[gettext("Write \'.au\' sound file on audio device")]],[[gettext("Buffer Size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            nin = 1;
+            fname1 = "/dev/audio";
+            frmt1 = "uc ";
+            if (this.alreadyran&&(N!=ipar[5-1])) {
+                block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
+                ok = false;
+            } else if (N<1) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),N),gettext("Strictly positive integer expected."));
+                ok = false;
+            }
+            if (swap!=0&&swap!=1) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Swap Mode"),swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                ok = false;
+            }
+            if (ok) {
+                ipar = [[length(fname1)],[this._str2code[frmt1-1]],[N],[swap],[this._str2code[fname1-1]]];
+                if (prod(size(dstate))!=(nin+1)*N+2) {
+                    dstate = [[-1],[lunit],[zeros((nin+1)*N,1)]];
+                }
+                model.in1 = 1;
+                model.dstate = dstate;
+                model.ipar = ipar;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

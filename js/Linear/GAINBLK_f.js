@@ -13,35 +13,36 @@ function GAINBLK_f() {
         model.dep_ut = [true,false];
         exprs = [strcat(sci2exp(gain))];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     GAINBLK_f.prototype.details = function GAINBLK_f() {
+        return this.x;
     }
     GAINBLK_f.prototype.get = function GAINBLK_f() {
     }
     GAINBLK_f.prototype.set = function GAINBLK_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,gain,exprs] = scicos_getvalue("Set gain block parameters",["Gain"],list("mat",[-1,-1]),exprs[1-1]);
-        if (!ok) {
-break;
-}
-        if (gain==[]) {
-message("Gain must have at least one element");
-        } else {
-        [out,in1] = size(gain);
-        [model,graphics,ok] = check_io(model,graphics,in1,out,[],[]);
-        if (ok) {
-        graphics.exprs = exprs;
-        model.rpar = gain.slice();
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
-}
+            [ok,gain,exprs] = scicos_getvalue("Set gain block parameters",["Gain"],list("mat",[-1,-1]),exprs[1-1]);
+            if (!ok) {
+                break;
+            }
+            if (gain==[]) {
+                message("Gain must have at least one element");
+            } else {
+                [out,in1] = size(gain);
+                [model,graphics,ok] = check_io(model,graphics,in1,out,[],[]);
+                if (ok) {
+                    graphics.exprs = exprs;
+                    model.rpar = gain.slice();
+                    this.x.graphics = graphics;
+                    this.x.model = model;
+                    break;
+                }
+            }
+        }
     }
 }

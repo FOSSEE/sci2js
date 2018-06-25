@@ -15,40 +15,41 @@ function INIMPL_f() {
         prt = 1;
         exprs = "1";
         gr_i = [];
-        x = standard_define([1,1],model,exprs,gr_i);
-        x.graphics.out_implicit = ["I"];
+        this.x = standard_define([1,1],model,exprs,gr_i);
+        this.x.graphics.out_implicit = ["I"];
     }
     INIMPL_f.prototype.details = function INIMPL_f() {
+        return this.x;
     }
     INIMPL_f.prototype.get = function INIMPL_f() {
     }
     INIMPL_f.prototype.set = function INIMPL_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         if (size(exprs,"*")==2) {
-        exprs = exprs[1-1];
-}
+            exprs = exprs[1-1];
+        }
         while (true) {
-        [ok,prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INIMPL_f")],[" "],[gettext("Implicit input port")],[" "]],"Port Number",list("vec",1),exprs);
-        if (!ok) {
-break;
-}
-        prt = int(prt);
-        if (prt<=0) {
-block_parameter_error(msprintf(gettext("Wrong value for \'Port Number\' parameter: %d."),prt),gettext("Strictly positive integer expected."));
-        } else {
-        if (model.ipar!=prt) {
-        needcompile = 4;
-        y = needcompile;
-}
-        model.ipar = prt;
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INIMPL_f")],[" "],[gettext("Implicit input port")],[" "]],"Port Number",list("vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            prt = int(prt);
+            if (prt<=0) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'Port Number\' parameter: %d."),prt),gettext("Strictly positive integer expected."));
+            } else {
+                if (model.ipar!=prt) {
+                    needcompile = 4;
+                    y = needcompile;
+                }
+                model.ipar = prt;
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

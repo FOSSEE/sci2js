@@ -15,35 +15,36 @@ function FROM() {
         model.dep_ut = [false,false];
         exprs = ["A"];
         gr_i = [];
-        x = standard_define([2,1],model,exprs,gr_i);
-        x.graphics.id = "From";
+        this.x = standard_define([2,1],model,exprs,gr_i);
+        this.x.graphics.id = "From";
     }
     FROM.prototype.details = function FROM() {
+        return this.x;
     }
     FROM.prototype.get = function FROM() {
     }
     FROM.prototype.set = function FROM() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,tag,exprs] = scicos_getvalue("Set parameters",["Tag"],list("str",-1),exprs);
-        if (!ok) {
-break;
-}
-        if (ok) {
-        if (model.opar!=list(tag)) {
-        needcompile = 4;
-        y = needcompile;
-}
-        graphics.exprs = exprs;
-        model.opar = list(tag);
-        x.model = model;
-        x.graphics = graphics;
-break;
-}
-}
-needcompile=resume(needcompile)
+            [ok,tag,exprs] = scicos_getvalue("Set parameters",["Tag"],list("str",-1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (ok) {
+                if (model.opar!=list(tag)) {
+                    needcompile = 4;
+                    y = needcompile;
+                }
+                graphics.exprs = exprs;
+                model.opar = list(tag);
+                this.x.model = model;
+                this.x.graphics = graphics;
+                break;
+            }
+        }
+        needcompile=resume(needcompile)
     }
 }

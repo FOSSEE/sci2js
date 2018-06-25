@@ -9,13 +9,14 @@ function SINBLK_f() {
         model.dep_ut = [true,false];
         exprs = " ";
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     SINBLK_f.prototype.details = function SINBLK_f() {
+        return this.x;
     }
     SINBLK_f.prototype.get = function SINBLK_f() {
     }
     SINBLK_f.prototype.set = function SINBLK_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

@@ -9,9 +9,10 @@ function func_block() {
         model.dep_ut = [true,false];
         exprs = "v=sin(u);y=u*v";
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     func_block.prototype.details = function func_block() {
+        return this.x;
     }
     func_block.prototype.get = function func_block() {
     }
@@ -19,14 +20,14 @@ function func_block() {
         model = arg1.model;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        x = arg1;
-        model = x.model;
+        this.x = arg1;
+        model = this.x.model;
         [ok,mac,exprs] = this.genfunc[exprs-1];
         if (ok) {
-        model.sim = mac;
-        graphics.exprs = exprs;
-        x.model = model;
-        x.graphics = graphics;
-}
+            model.sim = mac;
+            graphics.exprs = exprs;
+            this.x.model = model;
+            this.x.graphics = graphics;
+        }
     }
 }

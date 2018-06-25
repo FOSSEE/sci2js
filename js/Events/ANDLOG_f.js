@@ -9,13 +9,14 @@ function ANDLOG_f() {
         model.firing = [];
         model.dep_ut = [false,false];
         gr_i = [];
-        x = standard_define([3,3],model,[],gr_i);
+        this.x = standard_define([3,3],model,[],gr_i);
     }
     ANDLOG_f.prototype.details = function ANDLOG_f() {
+        return this.x;
     }
     ANDLOG_f.prototype.get = function ANDLOG_f() {
     }
     ANDLOG_f.prototype.set = function ANDLOG_f() {
-        x = arg1;
+        this.x = arg1;
     }
 }

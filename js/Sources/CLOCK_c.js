@@ -29,30 +29,31 @@ function CLOCK_c() {
         diagram.objs[4-1] = split;
         diagram.objs[5-1] = scicos_link(xx=[[380.71],[399]],yy=[[172],[172]],ct=[5,-1],from=[4,1],to=[1,1]);
         diagram.objs[6-1] = scicos_link(xx=[[380.71],[380.71],[340],[340]],yy=[[172],[302],[302],[277.71]],ct=[5,-1],from=[4,2],to=[2,1]);
-        x = scicos_block();
-        x.gui = "CLOCK_c";
-        x.graphics.sz = [2,2];
-        x.graphics.gr_i = gr_i;
-        x.graphics.peout = 0;
-        x.model.sim = "csuper";
-        x.model.evtout = 1;
-        x.model.blocktype = "h";
-        x.model.firing = false;
-        x.model.dep_ut = [false,false];
-        x.model.rpar = diagram;
+        this.x = scicos_block();
+        this.x.gui = "CLOCK_c";
+        this.x.graphics.sz = [2,2];
+        this.x.graphics.gr_i = gr_i;
+        this.x.graphics.peout = 0;
+        this.x.model.sim = "csuper";
+        this.x.model.evtout = 1;
+        this.x.model.blocktype = "h";
+        this.x.model.firing = false;
+        this.x.model.dep_ut = [false,false];
+        this.x.model.rpar = diagram;
     }
     CLOCK_c.prototype.details = function CLOCK_c() {
+        return this.x;
     }
     CLOCK_c.prototype.get = function CLOCK_c() {
     }
     CLOCK_c.prototype.set = function CLOCK_c() {
-for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-        o = arg1.model.rpar.objs[i-1];
-        if (typeof(o)=="Block"&&o.gui=="EVTDLY_c") {
-        path = i;
-break;
-}
-}
+        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+            o = arg1.model.rpar.objs[i-1];
+            if (typeof(o)=="Block"&&o.gui=="EVTDLY_c") {
+                path = i;
+                break;
+            }
+        }
         newpar = list();
         xx = arg1.model.rpar.objs[path-1];
         exprs = xx.graphics.exprs;
@@ -61,32 +62,32 @@ break;
         dt_old = model.rpar[1-1];
         model_n = model;
         while (true) {
-        [ok,dt,t0,exprs0] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLOCK_c")],[" "],[gettext("Event clock generator")],[" "],[gettext("&nbsp; Do not start if \'Initialisation Time\' is negative")],[" "]],[[gettext("Period")],[gettext("Initialisation Time")]],list("vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        if (dt<=0) {
-block_parameter_error(msprintf(gettext("Wrong values for \'%s\' parameter: %5.1e."),gettext("Period"),dt),gettext("Strictly positive number expected."));
-        ok = false;
-}
-        if (ok) {
-        xx.graphics.exprs = exprs0;
-        model.rpar = [[dt],[t0]];
-        model.firing = t0;
-        xx.model = model;
-        arg1.model.rpar.objs[path-1] = xx;
-break;
-}
-}
+            [ok,dt,t0,exprs0] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLOCK_c")],[" "],[gettext("Event clock generator")],[" "],[gettext("&nbsp; Do not start if \'Initialisation Time\' is negative")],[" "]],[[gettext("Period")],[gettext("Initialisation Time")]],list("vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (dt<=0) {
+                block_parameter_error(msprintf(gettext("Wrong values for \'%s\' parameter: %5.1e."),gettext("Period"),dt),gettext("Strictly positive number expected."));
+                ok = false;
+            }
+            if (ok) {
+                xx.graphics.exprs = exprs0;
+                model.rpar = [[dt],[t0]];
+                model.firing = t0;
+                xx.model = model;
+                arg1.model.rpar.objs[path-1] = xx;
+                break;
+            }
+        }
         if (!and([t0_old,dt_old]==[t0,dt])) {
-        newpar[size(newpar)+1-1] = path;
-}
+            newpar[size(newpar)+1-1] = path;
+        }
         if (t0_old!=t0) {
-        needcompile = 2;
+            needcompile = 2;
         } else {
-        needcompile = 0;
-}
-        x = arg1;
+            needcompile = 0;
+        }
+        this.x = arg1;
         y = needcompile;
         typ = newpar;
     }

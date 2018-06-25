@@ -12,8 +12,10 @@ aS'argn'
 p5
 aS'xy'
 p6
-aS'curwin'
+aS'x'
 p7
-atp8
-Rp9
+aS'curwin'
+p8
+atp9
+Rp10
 .

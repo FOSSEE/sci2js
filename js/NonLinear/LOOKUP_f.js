@@ -9,14 +9,15 @@ function LOOKUP_f() {
         model.blocktype = "c";
         model.dep_ut = [true,false];
         gr_i = [];
-        x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],model,[],gr_i);
     }
     LOOKUP_f.prototype.details = function LOOKUP_f() {
+        return this.x;
     }
     LOOKUP_f.prototype.get = function LOOKUP_f() {
     }
     LOOKUP_f.prototype.set = function LOOKUP_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
@@ -25,26 +26,26 @@ function LOOKUP_f() {
         xx = rpar.slice(1-1,n);
         yy = rpar.slice(n+1-1,2*n);
         while (true) {
-[ln,fun]=where()
-        if (!or(fun=="do_eval")) {
-        [xx,yy,ok,gc] = edit_curv(xx,yy,"axy");
-        } else {
-        ok = true;
-}
-        if (!ok) {
-break;
-}
-        n = size(xx,"*");
-        if (or(xx.slice(2-1,n)-xx.slice(1-1,n-1)<=0)) {
-message("You have not defined a function");
-        ok = false;
-}
-        if (ok) {
-        model.rpar = [[xx.slice()],[yy.slice()]];
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ln,fun]=where()
+            if (!or(fun=="do_eval")) {
+                [xx,yy,ok,gc] = edit_curv(xx,yy,"axy");
+            } else {
+                ok = true;
+            }
+            if (!ok) {
+                break;
+            }
+            n = size(xx,"*");
+            if (or(xx.slice(2-1,n)-xx.slice(1-1,n-1)<=0)) {
+                message("You have not defined a function");
+                ok = false;
+            }
+            if (ok) {
+                model.rpar = [[xx.slice()],[yy.slice()]];
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

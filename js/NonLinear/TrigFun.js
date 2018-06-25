@@ -9,33 +9,34 @@ function TrigFun() {
         model.dep_ut = [true,false];
         exprs = "sin";
         gr_i = [];
-        x = standard_define([4,2],model,exprs,gr_i);
+        this.x = standard_define([4,2],model,exprs,gr_i);
     }
     TrigFun.prototype.details = function TrigFun() {
+        return this.x;
     }
     TrigFun.prototype.get = function TrigFun() {
     }
     TrigFun.prototype.set = function TrigFun() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         PREVAR_FF = [["sin"],["cos"],["tan"],["asin"],["acos"],["atan"],["sinh"],["cosh"],["tanh"],["asinh"],["acosh"],["atanh"]];
         PREVAR_GG = [["Choose among "+strcat(PREVAR_FF.slice(1-1,4),", ")],[strcat(PREVAR_FF.slice(5-1,$),", ")]];
         while (true) {
-        [ok,fun,exprs] = scicos_getvalue(PREVAR_GG,"Function",list("str",1),exprs);
-        if (!ok) {
-break;
-}
-        if (find(PREVAR_FF==fun)==[]) {
-message("Sorry but "+fun+" is not in the list!");
-        } else {
-        graphics.exprs = exprs;
-execstr("model.sim=list(\'"+fun+"_blk\',4)");
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,fun,exprs] = scicos_getvalue(PREVAR_GG,"Function",list("str",1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (find(PREVAR_FF==fun)==[]) {
+                message("Sorry but "+fun+" is not in the list!");
+            } else {
+                graphics.exprs = exprs;
+                execstr("model.sim=list(\'"+fun+"_blk\',4)");
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

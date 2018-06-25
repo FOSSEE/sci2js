@@ -12,82 +12,83 @@ function RELATIONALOP() {
         model.dep_ut = [true,false];
         exprs = [[string(ipar)],[string(0)]];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
-        x.graphics.style = ["fontSize=13;fontStyle=1;displayedLabel="+label];
+        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x.graphics.style = ["fontSize=13;fontStyle=1;displayedLabel="+label];
     }
     RELATIONALOP.prototype.details = function RELATIONALOP() {
+        return this.x;
     }
     RELATIONALOP.prototype.get = function RELATIONALOP() {
     }
     RELATIONALOP.prototype.set = function RELATIONALOP() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         if (size(exprs,1)==2) {
-        exprs = [[exprs],[sci2exp(1)]];
-}
+            exprs = [[exprs],[sci2exp(1)]];
+        }
         while (true) {
-        [ok,rule,zcr,Datatype,exprs] = scicos_getvalue("Set parameters",[["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)"],["Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"]],list("vec",1,"vec",1,"vec",1),exprs);
-        if (!ok) {
-break;
-}
-        rule = int(rule);
-        if (zcr!=0) {
-        zcr = 1;
-}
-        if ((rule<0)||(rule>5)) {
-message("Incorrect operator "+string(rule)+" ; must be 0 to 5.");
-        ok = false;
-}
-        if ((Datatype==1)) {
-        model.sim = list("relational_op",4);
-        } else if ((Datatype==3||Datatype==9)) {
-        model.sim = list("relational_op_i32",4);
-        } else if ((Datatype==4)) {
-        model.sim = list("relational_op_i16",4);
-        } else if ((Datatype==5)) {
-        model.sim = list("relational_op_i8",4);
-        } else if ((Datatype==6)) {
-        model.sim = list("relational_op_ui32",4);
-        } else if ((Datatype==7)) {
-        model.sim = list("relational_op_ui16",4);
-        } else if ((Datatype==8)) {
-        model.sim = list("relational_op_ui8",4);
-        } else {
-message("Datatype is not supported");
-        ok = false;
-}
-        if (ok) {
-        it = Datatype*ones(1,2);
-        ot = Datatype;
-        in1 = [[-1,-2],[-1,-2]];
-        out = [-1,-2];
-        [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
-}
-        if (ok) {
-        if (rule==0) {
-        label = "==";
-        } else if (rule==1) {
-        label = "~=";
-        } else if (rule==2) {
-        label = "&#60;";
-        } else if (rule==3) {
-        label = "&#8804;";
-        } else if (rule==4) {
-        label = "&#62;";
-        } else if (rule==5) {
-        label = "&#8805;";
-}
-        graphics.exprs = exprs;
-        graphics.style = ["fontSize=13;fontStyle=1;displayedLabel="+label];
-        model.ipar = [rule];
-        model.nzcross = zcr;
-        model.nmode = zcr;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,rule,zcr,Datatype,exprs] = scicos_getvalue("Set parameters",[["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)"],["Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            if (!ok) {
+                break;
+            }
+            rule = int(rule);
+            if (zcr!=0) {
+                zcr = 1;
+            }
+            if ((rule<0)||(rule>5)) {
+                message("Incorrect operator "+string(rule)+" ; must be 0 to 5.");
+                ok = false;
+            }
+            if ((Datatype==1)) {
+                model.sim = list("relational_op",4);
+            } else if ((Datatype==3||Datatype==9)) {
+                model.sim = list("relational_op_i32",4);
+            } else if ((Datatype==4)) {
+                model.sim = list("relational_op_i16",4);
+            } else if ((Datatype==5)) {
+                model.sim = list("relational_op_i8",4);
+            } else if ((Datatype==6)) {
+                model.sim = list("relational_op_ui32",4);
+            } else if ((Datatype==7)) {
+                model.sim = list("relational_op_ui16",4);
+            } else if ((Datatype==8)) {
+                model.sim = list("relational_op_ui8",4);
+            } else {
+                message("Datatype is not supported");
+                ok = false;
+            }
+            if (ok) {
+                it = Datatype*ones(1,2);
+                ot = Datatype;
+                in1 = [[-1,-2],[-1,-2]];
+                out = [-1,-2];
+                [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
+            }
+            if (ok) {
+                if (rule==0) {
+                    label = "==";
+                } else if (rule==1) {
+                    label = "~=";
+                } else if (rule==2) {
+                    label = "&#60;";
+                } else if (rule==3) {
+                    label = "&#8804;";
+                } else if (rule==4) {
+                    label = "&#62;";
+                } else if (rule==5) {
+                    label = "&#8805;";
+                }
+                graphics.exprs = exprs;
+                graphics.style = ["fontSize=13;fontStyle=1;displayedLabel="+label];
+                model.ipar = [rule];
+                model.nzcross = zcr;
+                model.nmode = zcr;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

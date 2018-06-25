@@ -12,35 +12,36 @@ function INTRPLBLK_f() {
         model.dep_ut = [true,false];
         exprs = [[strcat(sci2exp(a))],[strcat(sci2exp(b))]];
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     INTRPLBLK_f.prototype.details = function INTRPLBLK_f() {
+        return this.x;
     }
     INTRPLBLK_f.prototype.get = function INTRPLBLK_f() {
     }
     INTRPLBLK_f.prototype.set = function INTRPLBLK_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-        [ok,a,b,exprs] = scicos_getvalue("Set Interpolation block parameters",[["X coord."],["Y coord."]],list("vec",-1,"vec",-1),exprs);
-        if (!ok) {
-break;
-}
-        if (size(a,"*")!=size(b,"*")) {
-message("X and Y must have the same size");
-        } else if (min(a.slice(2-1,$)-a.slice(1-1,$-1))<=0) {
-message("X must be strictly increasing");
-        } else {
-        if (ok) {
-        graphics.exprs = exprs;
-        model.rpar = [[a.slice()],[b.slice()]];
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
-}
+            [ok,a,b,exprs] = scicos_getvalue("Set Interpolation block parameters",[["X coord."],["Y coord."]],list("vec",-1,"vec",-1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (size(a,"*")!=size(b,"*")) {
+                message("X and Y must have the same size");
+            } else if (min(a.slice(2-1,$)-a.slice(1-1,$-1))<=0) {
+                message("X must be strictly increasing");
+            } else {
+                if (ok) {
+                    graphics.exprs = exprs;
+                    model.rpar = [[a.slice()],[b.slice()]];
+                    this.x.graphics = graphics;
+                    this.x.model = model;
+                    break;
+                }
+            }
+        }
     }
 }

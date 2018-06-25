@@ -14,15 +14,16 @@ function PotentialSensor() {
         mo.outputs = ["v"];
         model.equations = mo;
         gr_i = [];
-        x = standard_define([2,2],model,"",list(gr_i,0));
-        x.graphics.in_implicit = ["I"];
-        x.graphics.out_implicit = ["E"];
+        this.x = standard_define([2,2],model,"",list(gr_i,0));
+        this.x.graphics.in_implicit = ["I"];
+        this.x.graphics.out_implicit = ["E"];
     }
     PotentialSensor.prototype.details = function PotentialSensor() {
+        return this.x;
     }
     PotentialSensor.prototype.get = function PotentialSensor() {
     }
     PotentialSensor.prototype.set = function PotentialSensor() {
-        x = arg1;
+        this.x = arg1;
     }
 }

@@ -11,31 +11,32 @@ function BIGSOM_f() {
         model.dep_ut = [true,false];
         exprs = sci2exp(sgn);
         gr_i = [];
-        x = standard_define([2,3],model,exprs,gr_i);
+        this.x = standard_define([2,3],model,exprs,gr_i);
     }
     BIGSOM_f.prototype.details = function BIGSOM_f() {
+        return this.x;
     }
     BIGSOM_f.prototype.get = function BIGSOM_f() {
     }
     BIGSOM_f.prototype.set = function BIGSOM_f() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-        [ok,sgn,exprs] = scicos_getvalue("Set sum block parameters","Inputs ports signs/gain",list("vec",-1),exprs);
-        if (!ok) {
-break;
-}
-        in1 = -ones(size(sgn,"*"),1);
-        [model,graphics,ok] = check_io(model,graphics,in1,-1,[],[]);
-        if (ok) {
-        model.rpar = sgn.slice();
-        graphics.exprs = exprs;
-        x.graphics = graphics;
-        x.model = model;
-break;
-}
-}
+            [ok,sgn,exprs] = scicos_getvalue("Set sum block parameters","Inputs ports signs/gain",list("vec",-1),exprs);
+            if (!ok) {
+                break;
+            }
+            in1 = -ones(size(sgn,"*"),1);
+            [model,graphics,ok] = check_io(model,graphics,in1,-1,[],[]);
+            if (ok) {
+                model.rpar = sgn.slice();
+                graphics.exprs = exprs;
+                this.x.graphics = graphics;
+                this.x.model = model;
+                break;
+            }
+        }
     }
 }

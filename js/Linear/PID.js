@@ -36,43 +36,44 @@ function PID() {
         model.dep_ut = [false,false];
         model.rpar = scs_m;
         gr_i = [];
-        x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],model,[],gr_i);
     }
     PID.prototype.details = function PID() {
+        return this.x;
     }
     PID.prototype.get = function PID() {
     }
     PID.prototype.set = function PID() {
         ppath = list(0,0,0);
-for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-        o = arg1.model.rpar.objs[i-1];
-        if (typeof(o)=="Link") {
-        from = arg1.model.rpar.objs[o.from[1-1]-1];
-        to = arg1.model.rpar.objs[o.to[1-1]-1];
-        if (from.gui=="GAINBLK") {
-        switch (to.gui) {
-        case "SUMMATION":
-        ppath[1-1] = o.from[1-1];
-        case "INTEGRAL_m":
-        ppath[2-1] = o.from[1-1];
-        case "DERIV":
-        ppath[3-1] = o.from[1-1];
-}
-        } else if (to.gui=="GAINBLK") {
-        switch (from.gui) {
-        case "SUMMATION":
-        ppath[1-1] = o.to[1-1];
-        case "INTEGRAL_m":
-        ppath[2-1] = o.to[1-1];
-        case "DERIV":
-        ppath[3-1] = o.to[1-1];
-}
-}
-        if (and(ppath!=list(0,0,0))) {
-break;
-}
-}
-}
+        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
+            o = arg1.model.rpar.objs[i-1];
+            if (typeof(o)=="Link") {
+                from = arg1.model.rpar.objs[o.from[1-1]-1];
+                to = arg1.model.rpar.objs[o.to[1-1]-1];
+                if (from.gui=="GAINBLK") {
+                    switch (to.gui) {
+                    case "SUMMATION":
+                        ppath[1-1] = o.from[1-1];
+                    case "INTEGRAL_m":
+                        ppath[2-1] = o.from[1-1];
+                    case "DERIV":
+                        ppath[3-1] = o.from[1-1];
+                    }
+                } else if (to.gui=="GAINBLK") {
+                    switch (from.gui) {
+                    case "SUMMATION":
+                        ppath[1-1] = o.to[1-1];
+                    case "INTEGRAL_m":
+                        ppath[2-1] = o.to[1-1];
+                    case "DERIV":
+                        ppath[3-1] = o.to[1-1];
+                    }
+                }
+                if (and(ppath!=list(0,0,0))) {
+                    break;
+                }
+            }
+        }
         newpar = list();
         xx1 = arg1.model.rpar.objs[ppath[1-1]-1];
         exprs[1-1] = xx1.graphics.exprs[1-1];
@@ -85,31 +86,31 @@ break;
         d_old = xx3.model.rpar;
         y = 0;
         while (true) {
-        [ok,p,i,d,exprs0] = scicos_getvalue("Set PID parameters",[["Proportional"],["Integral"],["Derivation"]],list("vec",-1,"vec",-1,"vec",-1),exprs);
-        if (!ok) {
-break;
-}
-        if (ok) {
-        xx1.graphics.exprs = exprs0[1-1];
-        xx1.model.rpar = p;
-        xx2.graphics.exprs = exprs0[2-1];
-        xx2.model.rpar = i;
-        xx3.graphics.exprs = exprs0[3-1];
-        xx3.model.rpar = d;
-        arg1.model.rpar.objs[ppath[1-1]-1] = xx1;
-        arg1.model.rpar.objs[ppath[2-1]-1] = xx2;
-        arg1.model.rpar.objs[ppath[3-1]-1] = xx3;
-break;
-}
-}
+            [ok,p,i,d,exprs0] = scicos_getvalue("Set PID parameters",[["Proportional"],["Integral"],["Derivation"]],list("vec",-1,"vec",-1,"vec",-1),exprs);
+            if (!ok) {
+                break;
+            }
+            if (ok) {
+                xx1.graphics.exprs = exprs0[1-1];
+                xx1.model.rpar = p;
+                xx2.graphics.exprs = exprs0[2-1];
+                xx2.model.rpar = i;
+                xx3.graphics.exprs = exprs0[3-1];
+                xx3.model.rpar = d;
+                arg1.model.rpar.objs[ppath[1-1]-1] = xx1;
+                arg1.model.rpar.objs[ppath[2-1]-1] = xx2;
+                arg1.model.rpar.objs[ppath[3-1]-1] = xx3;
+                break;
+            }
+        }
         needcompile = 0;
         if (!(p_old==p&&i_old==i&&d_old==d)) {
-        newpar[size(newpar)+1-1] = ppath[1-1];
-        newpar[size(newpar)+1-1] = ppath[2-1];
-        newpar[size(newpar)+1-1] = ppath[3-1];
-        needcompile = 2;
-}
-        x = arg1;
+            newpar[size(newpar)+1-1] = ppath[1-1];
+            newpar[size(newpar)+1-1] = ppath[2-1];
+            newpar[size(newpar)+1-1] = ppath[3-1];
+            needcompile = 2;
+        }
+        this.x = arg1;
         y = max(y,needcompile);
         typ = newpar;
     }

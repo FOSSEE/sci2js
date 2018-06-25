@@ -13,23 +13,24 @@ function TKSCALE() {
         model.dep_ut = [false,false];
         exprs = [[sci2exp(a)],[sci2exp(b)],[sci2exp(f)]];
         gr_i = [];
-        x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],model,exprs,gr_i);
     }
     TKSCALE.prototype.details = function TKSCALE() {
+        return this.x;
     }
     TKSCALE.prototype.get = function TKSCALE() {
     }
     TKSCALE.prototype.set = function TKSCALE() {
-        x = arg1;
+        this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
         [ok,a,b,f,exprs] = scicos_getvalue("Set scale block parameters",[["Min value"],["Max value"],["Normalization"]],list("vec",1,"vec",1,"vec",1),exprs);
         if (ok) {
-        graphics.exprs = exprs;
-        model.rpar = [[a],[b],[f]];
-        x.graphics = graphics;
-        x.model = model;
-}
+            graphics.exprs = exprs;
+            model.rpar = [[a],[b],[f]];
+            this.x.graphics = graphics;
+            this.x.model = model;
+        }
     }
 }

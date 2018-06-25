@@ -11,14 +11,15 @@ function NEGTOPOS_f() {
         model.firing = -1;
         model.dep_ut = [true,false];
         gr_i = [];
-        x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],model,[],gr_i);
     }
     NEGTOPOS_f.prototype.details = function NEGTOPOS_f() {
+        return this.x;
     }
     NEGTOPOS_f.prototype.get = function NEGTOPOS_f() {
     }
     NEGTOPOS_f.prototype.set = function NEGTOPOS_f() {
-        x = arg1;
-        x.model.firing = -1;
+        this.x = arg1;
+        this.x.model.firing = -1;
     }
 }

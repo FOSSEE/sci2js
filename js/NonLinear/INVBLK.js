@@ -10,13 +10,14 @@ function INVBLK() {
         model.dep_ut = [true,false];
         exprs = " ";
         gr_i = [];
-        x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],model,exprs,gr_i);
     }
     INVBLK.prototype.details = function INVBLK() {
+        return this.x;
     }
     INVBLK.prototype.get = function INVBLK() {
     }
     INVBLK.prototype.set = function INVBLK() {
-        x = arg1;
+        this.x = arg1;
     }
 }

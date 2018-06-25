@@ -4,8 +4,10 @@ p0
 ((lp1
 S'needcompile'
 p2
-aS'ok'
+aS'x'
 p3
-atp4
-Rp5
+aS'ok'
+p4
+atp5
+Rp6
 .
