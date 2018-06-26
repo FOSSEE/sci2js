@@ -13,6 +13,7 @@ function INTRPLBLK_f() {
         exprs = [[strcat(sci2exp(a))],[strcat(sci2exp(b))]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     INTRPLBLK_f.prototype.details = function INTRPLBLK_f() {
         return this.x;
@@ -43,5 +44,6 @@ function INTRPLBLK_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

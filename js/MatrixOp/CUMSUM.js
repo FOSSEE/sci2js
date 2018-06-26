@@ -23,6 +23,7 @@ function CUMSUM() {
         label = [[sci2exp(1)],[sci2exp(0)]];
         gr_i = [];
         this.x = standard_define([3,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     CUMSUM.prototype.details = function CUMSUM() {
         return this.x;
@@ -91,5 +92,6 @@ function CUMSUM() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

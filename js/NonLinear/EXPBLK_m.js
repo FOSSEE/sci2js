@@ -17,6 +17,7 @@ function EXPBLK_m() {
         exprs = ["%e"];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     EXPBLK_m.prototype.details = function EXPBLK_m() {
         return this.x;
@@ -46,5 +47,6 @@ function EXPBLK_m() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

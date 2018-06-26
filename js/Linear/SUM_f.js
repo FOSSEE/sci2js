@@ -10,6 +10,7 @@ function SUM_f() {
         gr_i = [];
         exprs = [];
         this.x = standard_define([1,1],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     SUM_f.prototype.details = function SUM_f() {
         return this.x;
@@ -18,5 +19,6 @@ function SUM_f() {
     }
     SUM_f.prototype.set = function SUM_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

@@ -7,6 +7,7 @@ function DEBUG() {
         exprs = list("","xcos_debug_gui(flag,block);");
         gr_i = [];
         this.x = standard_define([8,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     DEBUG.prototype.details = function DEBUG() {
         return this.x;
@@ -45,5 +46,6 @@ function DEBUG() {
             graphics.exprs = exprs;
             this.x.graphics = graphics;
         }
+        return new BasicBlock(this.x);
     }
 }

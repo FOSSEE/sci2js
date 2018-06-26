@@ -23,6 +23,7 @@ function MATPINV() {
         label = [sci2exp(1)];
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATPINV.prototype.details = function MATPINV() {
         return this.x;
@@ -68,5 +69,6 @@ function MATPINV() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

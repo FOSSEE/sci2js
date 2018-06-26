@@ -19,6 +19,7 @@ function BPLATFORM() {
         exprs = string(model.rpar);
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     BPLATFORM.prototype.details = function BPLATFORM() {
         return this.x;
@@ -60,5 +61,6 @@ function BPLATFORM() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

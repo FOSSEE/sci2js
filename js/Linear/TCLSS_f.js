@@ -21,6 +21,7 @@ function TCLSS_f() {
         exprs = [[strcat(sci2exp(A))],[strcat(sci2exp(B))],[strcat(sci2exp(C))],[strcat(sci2exp(D))],[strcat(sci2exp(x0))]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     TCLSS_f.prototype.details = function TCLSS_f() {
         return this.x;
@@ -81,5 +82,6 @@ function TCLSS_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

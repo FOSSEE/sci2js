@@ -10,6 +10,7 @@ function ANDLOG_f() {
         model.dep_ut = [false,false];
         gr_i = [];
         this.x = standard_define([3,3],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     ANDLOG_f.prototype.details = function ANDLOG_f() {
         return this.x;
@@ -18,5 +19,6 @@ function ANDLOG_f() {
     }
     ANDLOG_f.prototype.set = function ANDLOG_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

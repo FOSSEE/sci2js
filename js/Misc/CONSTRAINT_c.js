@@ -13,6 +13,7 @@ function CONSTRAINT_c() {
         exprs = "0";
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CONSTRAINT_c.prototype.details = function CONSTRAINT_c() {
         return this.x;
@@ -47,5 +48,6 @@ function CONSTRAINT_c() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

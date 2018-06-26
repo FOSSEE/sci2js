@@ -12,6 +12,7 @@ function NEGTOPOS_f() {
         model.dep_ut = [true,false];
         gr_i = [];
         this.x = standard_define([2,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     NEGTOPOS_f.prototype.details = function NEGTOPOS_f() {
         return this.x;
@@ -21,5 +22,6 @@ function NEGTOPOS_f() {
     NEGTOPOS_f.prototype.set = function NEGTOPOS_f() {
         this.x = arg1;
         this.x.model.firing = -1;
+        return new BasicBlock(this.x);
     }
 }

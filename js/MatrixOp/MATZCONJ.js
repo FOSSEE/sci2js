@@ -23,6 +23,7 @@ function MATZCONJ() {
         label = [];
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATZCONJ.prototype.details = function MATZCONJ() {
         return this.x;
@@ -31,5 +32,6 @@ function MATZCONJ() {
     }
     MATZCONJ.prototype.set = function MATZCONJ() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

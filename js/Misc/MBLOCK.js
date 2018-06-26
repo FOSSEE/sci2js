@@ -30,6 +30,7 @@ function MBLOCK() {
         this.x = standard_define([3,2],model,exprs,gr_i);
         this.x.graphics.in_implicit = this.intype;
         this.x.graphics.out_implicit = this.outtype;
+        return new BasicBlock(this.x);
     }
     MBLOCK.prototype.details = function MBLOCK() {
         return this.x;
@@ -270,5 +271,6 @@ function MBLOCK() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -22,6 +22,7 @@ function SourceP() {
         gr_i = [];
         this.x = standard_define([2.5,2],model,exprs,list(gr_i,0));
         this.x.graphics.out_implicit = ["I"];
+        return new BasicBlock(this.x);
     }
     SourceP.prototype.details = function SourceP() {
         return this.x;
@@ -45,5 +46,6 @@ function SourceP() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

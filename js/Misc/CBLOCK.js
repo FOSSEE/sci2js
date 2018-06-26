@@ -30,6 +30,7 @@ function CBLOCK() {
         label = list(transpose([funam,"n",sci2exp(in1),sci2exp(out),sci2exp(clkin),sci2exp(clkout),sci2exp(x0),sci2exp(0),sci2exp(z0),sci2exp(rpar),sci2exp(ipar),sci2exp(auto),"y","n"]),[]);
         gr_i = [];
         this.x = standard_define([4,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     CBLOCK.prototype.details = function CBLOCK() {
         return this.x;
@@ -125,5 +126,6 @@ function CBLOCK() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -16,6 +16,7 @@ function VARIABLE_DELAY() {
         exprs = [[string(T)],[string(init)],[string(N)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     VARIABLE_DELAY.prototype.details = function VARIABLE_DELAY() {
         return this.x;
@@ -53,5 +54,6 @@ function VARIABLE_DELAY() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

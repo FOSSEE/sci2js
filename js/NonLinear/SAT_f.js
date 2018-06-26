@@ -16,6 +16,7 @@ function SAT_f() {
         exprs = [[string(minp)],[string(maxp)],[string(slope)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     SAT_f.prototype.details = function SAT_f() {
         return this.x;
@@ -46,5 +47,6 @@ function SAT_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -8,6 +8,7 @@ function SPLIT_f() {
         model.blocktype = "c";
         model.dep_ut = [true,false];
         this.x = standard_define([1,1]/3,model,[],[]);
+        return new BasicBlock(this.x);
     }
     SPLIT_f.prototype.details = function SPLIT_f() {
         return this.x;
@@ -16,5 +17,6 @@ function SPLIT_f() {
     }
     SPLIT_f.prototype.set = function SPLIT_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

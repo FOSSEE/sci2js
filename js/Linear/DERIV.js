@@ -10,6 +10,7 @@ function DERIV() {
         exprs = [];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     DERIV.prototype.details = function DERIV() {
         return this.x;
@@ -18,5 +19,6 @@ function DERIV() {
     }
     DERIV.prototype.set = function DERIV() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

@@ -27,6 +27,7 @@ function scifunc_block() {
         exprs = list([[sci2exp(in1)],[sci2exp(out)],[sci2exp(clkin)],[sci2exp(clkout)],[strcat(sci2exp(x0))],[strcat(sci2exp(z0))],[strcat(sci2exp(rpar))],[sci2exp(auto)]],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     scifunc_block.prototype.details = function scifunc_block() {
         return this.x;
@@ -89,5 +90,6 @@ function scifunc_block() {
             }
         }
         needcompile=resume(needcompile)
+        return new BasicBlock(this.x);
     }
 }

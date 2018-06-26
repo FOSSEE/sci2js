@@ -16,6 +16,7 @@ function GENERAL_f() {
         exprs = [[strcat(sci2exp(in1))],[strcat(sci2exp(out))]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     GENERAL_f.prototype.details = function GENERAL_f() {
         return this.x;
@@ -56,5 +57,6 @@ function GENERAL_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

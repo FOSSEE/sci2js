@@ -12,6 +12,7 @@ function PDE() {
         label = list(params_pde,[],"");
         gr_i = [];
         this.x = standard_define([3,3],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     PDE.prototype.details = function PDE() {
         return this.x;
@@ -129,5 +130,6 @@ function PDE() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

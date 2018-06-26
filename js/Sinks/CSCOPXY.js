@@ -25,6 +25,7 @@ function CSCOPXY() {
         exprs = [[string(nbr_curves)],[sci2exp(clrs)],[sci2exp(siz)],[string(win)],[sci2exp([])],[sci2exp(wdim)],[string(xmin)],[string(xmax)],[string(ymin)],[string(ymax)],[string(N)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CSCOPXY.prototype.details = function CSCOPXY() {
         return this.x;
@@ -96,5 +97,6 @@ function CSCOPXY() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

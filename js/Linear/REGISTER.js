@@ -13,6 +13,7 @@ function REGISTER() {
         exprs = strcat(string(z0),";");
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     REGISTER.prototype.details = function REGISTER() {
         return this.x;
@@ -78,5 +79,6 @@ function REGISTER() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

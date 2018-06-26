@@ -27,6 +27,7 @@ function NMOS() {
         this.x = standard_define([2,2],model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = [["I"],["I"],["I"]];
+        return new BasicBlock(this.x);
     }
     NMOS.prototype.details = function NMOS() {
         return this.x;
@@ -49,5 +50,6 @@ function NMOS() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

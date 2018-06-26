@@ -13,6 +13,7 @@ function LOGBLK_f() {
         exprs = "%e";
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     LOGBLK_f.prototype.details = function LOGBLK_f() {
         return this.x;
@@ -44,5 +45,6 @@ function LOGBLK_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -14,6 +14,7 @@ function OUT_f() {
         exprs = string(prt);
         gr_i = [];
         this.x = standard_define([1,1],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     OUT_f.prototype.details = function OUT_f() {
         return this.x;
@@ -44,5 +45,6 @@ function OUT_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

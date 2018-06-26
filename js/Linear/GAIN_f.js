@@ -14,6 +14,7 @@ function GAIN_f() {
         exprs = [[strcat(sci2exp(gain))],[strcat(sci2exp(in1))],[strcat(sci2exp(out))]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     GAIN_f.prototype.details = function GAIN_f() {
         return this.x;
@@ -44,5 +45,6 @@ function GAIN_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

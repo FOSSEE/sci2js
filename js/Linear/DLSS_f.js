@@ -18,6 +18,7 @@ function DLSS_f() {
         exprs = [[strcat(sci2exp(A))],[strcat(sci2exp(B))],[strcat(sci2exp(C))],[strcat(sci2exp(D))],[strcat(sci2exp(x0))]];
         gr_i = [];
         this.x = standard_define([4,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     DLSS_f.prototype.details = function DLSS_f() {
         return this.x;
@@ -73,5 +74,6 @@ function DLSS_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

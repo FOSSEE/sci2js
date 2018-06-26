@@ -12,6 +12,7 @@ function END_c() {
         exprs = string(tf);
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     END_c.prototype.details = function END_c() {
         return this.x;
@@ -36,5 +37,6 @@ function END_c() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

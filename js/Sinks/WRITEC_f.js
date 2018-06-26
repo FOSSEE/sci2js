@@ -19,6 +19,7 @@ function WRITEC_f() {
         exprs = [[sci2exp(in1)],[fname],[frmt],[string(N),string(swap)]];
         gr_i = [];
         this.x = standard_define([4,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     WRITEC_f.prototype.details = function WRITEC_f() {
         return this.x;
@@ -87,5 +88,6 @@ function WRITEC_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

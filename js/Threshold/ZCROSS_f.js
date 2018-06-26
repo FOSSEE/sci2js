@@ -15,6 +15,7 @@ function ZCROSS_f() {
         exprs = strcat(sci2exp(in1));
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     ZCROSS_f.prototype.details = function ZCROSS_f() {
         return this.x;
@@ -49,5 +50,6 @@ function ZCROSS_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -17,6 +17,7 @@ function ESELECT_f() {
         gr_i = [];
         exprs = [[string(out)],[string(1)],[string(model.nmode)]];
         this.x = standard_define([4,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     ESELECT_f.prototype.details = function ESELECT_f() {
         return this.x;
@@ -64,5 +65,6 @@ function ESELECT_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

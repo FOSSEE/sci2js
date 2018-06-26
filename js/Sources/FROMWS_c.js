@@ -19,6 +19,7 @@ function FROMWS_c() {
         gr_i = [];
         exprs = [[string(varnam)],[string(Method)],[string(ZC)],[string(OutEnd)]];
         this.x = standard_define([3.5,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     FROMWS_c.prototype.details = function FROMWS_c() {
         return this.x;
@@ -64,5 +65,6 @@ function FROMWS_c() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

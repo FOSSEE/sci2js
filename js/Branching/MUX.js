@@ -12,6 +12,7 @@ function MUX() {
         exprs = string(in1);
         gr_i = [];
         this.x = standard_define([.5,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     MUX.prototype.details = function MUX() {
         return this.x;
@@ -59,5 +60,6 @@ function MUX() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

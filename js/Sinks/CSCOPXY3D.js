@@ -25,6 +25,7 @@ function CSCOPXY3D() {
         exprs = [[string(nbr_curves)],[strcat(string(clrs)," ")],[strcat(string(siz)," ")],[string(win)],[sci2exp([])],[sci2exp(wdim)],[strcat(string(vec_x)," ")],[strcat(string(vec_y)," ")],[strcat(string(vec_z)," ")],[strcat(string(param3ds)," ")],[string(N)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CSCOPXY3D.prototype.details = function CSCOPXY3D() {
         return this.x;
@@ -109,5 +110,6 @@ function CSCOPXY3D() {
                 message(mess);
             }
         }
+        return new BasicBlock(this.x);
     }
 }

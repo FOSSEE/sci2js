@@ -16,6 +16,7 @@ function DEADBAND() {
         exprs = [[string(maxp)],[string(minp)],[string(model.nmode)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     DEADBAND.prototype.details = function DEADBAND() {
         return this.x;
@@ -50,5 +51,6 @@ function DEADBAND() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

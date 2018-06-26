@@ -33,6 +33,7 @@ function BOUNCEXY() {
         exprs = [[strcat(sci2exp(clrs))],[strcat(sci2exp(siz))],[strcat(sci2exp(win))],[strcat(sci2exp(1))],[strcat(sci2exp(xmin))],[strcat(sci2exp(xmax))],[strcat(sci2exp(ymin))],[strcat(sci2exp(ymax))]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     BOUNCEXY.prototype.details = function BOUNCEXY() {
         return this.x;
@@ -90,5 +91,6 @@ function BOUNCEXY() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

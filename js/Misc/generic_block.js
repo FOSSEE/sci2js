@@ -19,6 +19,7 @@ function generic_block() {
         label = [[function_name],[sci2exp(funtyp)],[sci2exp(model.in1)],[sci2exp(model.out)],[sci2exp(model.evtin)],[sci2exp(model.evtout)],[sci2exp(model.state)],[sci2exp(model.dstate)],[sci2exp(model.rpar)],[sci2exp(model.ipar)],[sci2exp(model.firing)],["y"],["n"]];
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     generic_block.prototype.details = function generic_block() {
         return this.x;
@@ -94,5 +95,6 @@ function generic_block() {
             }
         }
         needcompile=resume(needcompile)
+        return new BasicBlock(this.x);
     }
 }

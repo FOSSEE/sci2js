@@ -17,6 +17,7 @@ function PotentialSensor() {
         this.x = standard_define([2,2],model,"",list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["E"];
+        return new BasicBlock(this.x);
     }
     PotentialSensor.prototype.details = function PotentialSensor() {
         return this.x;
@@ -25,5 +26,6 @@ function PotentialSensor() {
     }
     PotentialSensor.prototype.set = function PotentialSensor() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

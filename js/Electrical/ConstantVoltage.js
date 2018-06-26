@@ -20,6 +20,7 @@ function ConstantVoltage() {
         this.x = standard_define([1.5,1.1],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
+        return new BasicBlock(this.x);
     }
     ConstantVoltage.prototype.details = function ConstantVoltage() {
         return this.x;
@@ -43,5 +44,6 @@ function ConstantVoltage() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

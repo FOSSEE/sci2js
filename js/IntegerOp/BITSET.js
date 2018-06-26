@@ -15,6 +15,7 @@ function BITSET() {
         exprs = [[sci2exp(3)],[sci2exp(0)]];
         gr_i = [];
         this.x = standard_define([4,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     BITSET.prototype.details = function BITSET() {
         return this.x;
@@ -81,5 +82,6 @@ function BITSET() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

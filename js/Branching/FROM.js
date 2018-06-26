@@ -17,6 +17,7 @@ function FROM() {
         gr_i = [];
         this.x = standard_define([2,1],model,exprs,gr_i);
         this.x.graphics.id = "From";
+        return new BasicBlock(this.x);
     }
     FROM.prototype.details = function FROM() {
         return this.x;
@@ -46,5 +47,6 @@ function FROM() {
             }
         }
         needcompile=resume(needcompile)
+        return new BasicBlock(this.x);
     }
 }

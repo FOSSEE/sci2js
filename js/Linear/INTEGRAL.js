@@ -16,6 +16,7 @@ function INTEGRAL() {
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
         this.x.graphics.id = "1/s";
+        return new BasicBlock(this.x);
     }
     INTEGRAL.prototype.details = function INTEGRAL() {
         return this.x;
@@ -77,5 +78,6 @@ function INTEGRAL() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

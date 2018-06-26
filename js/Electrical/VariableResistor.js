@@ -17,6 +17,7 @@ function VariableResistor() {
         this.x = standard_define([2,2],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I","E"];
         this.x.graphics.out_implicit = ["I"];
+        return new BasicBlock(this.x);
     }
     VariableResistor.prototype.details = function VariableResistor() {
         return this.x;
@@ -25,5 +26,6 @@ function VariableResistor() {
     }
     VariableResistor.prototype.set = function VariableResistor() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

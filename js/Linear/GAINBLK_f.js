@@ -14,6 +14,7 @@ function GAINBLK_f() {
         exprs = [strcat(sci2exp(gain))];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     GAINBLK_f.prototype.details = function GAINBLK_f() {
         return this.x;
@@ -44,5 +45,6 @@ function GAINBLK_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

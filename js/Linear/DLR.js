@@ -18,6 +18,7 @@ function DLR() {
         model.dep_ut = [false,false];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     DLR.prototype.details = function DLR() {
         return this.x;
@@ -69,5 +70,6 @@ function DLR() {
             }
         }
         this.x.model.firing = [];
+        return new BasicBlock(this.x);
     }
 }

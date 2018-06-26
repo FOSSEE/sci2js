@@ -90,6 +90,7 @@ function DFLIPFLOP() {
         model.rpar = scs_m;
         gr_i = [];
         this.x = standard_define([2,3],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     DFLIPFLOP.prototype.details = function DFLIPFLOP() {
         return this.x;
@@ -98,5 +99,6 @@ function DFLIPFLOP() {
     }
     DFLIPFLOP.prototype.set = function DFLIPFLOP() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

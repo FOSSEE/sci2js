@@ -13,6 +13,7 @@ function POSTONEG_f() {
         model.firing = [-1];
         gr_i = [];
         this.x = standard_define([2,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     POSTONEG_f.prototype.details = function POSTONEG_f() {
         return this.x;
@@ -22,5 +23,6 @@ function POSTONEG_f() {
     POSTONEG_f.prototype.set = function POSTONEG_f() {
         this.x = arg1;
         this.x.model.firing = [-1];
+        return new BasicBlock(this.x);
     }
 }

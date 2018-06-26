@@ -23,6 +23,7 @@ function MATCATH() {
         label = [sci2exp(2)];
         gr_i = [];
         this.x = standard_define([2,3],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATCATH.prototype.details = function MATCATH() {
         return this.x;
@@ -58,5 +59,6 @@ function MATCATH() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

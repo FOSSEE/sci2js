@@ -23,6 +23,7 @@ function MATDIAG() {
         label = [sci2exp(1)];
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATDIAG.prototype.details = function MATDIAG() {
         return this.x;
@@ -68,5 +69,6 @@ function MATDIAG() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -11,6 +11,7 @@ function CLKIN_f() {
         model.dep_ut = [false,false];
         exprs = string(prt);
         this.x = standard_define([1,1],model,exprs," ");
+        return new BasicBlock(this.x);
     }
     CLKIN_f.prototype.details = function CLKIN_f() {
         return this.x;
@@ -41,5 +42,6 @@ function CLKIN_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -14,6 +14,7 @@ function EVTDLY_f() {
         exprs = [[string(dt)],[sci2exp(ff)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     EVTDLY_f.prototype.details = function EVTDLY_f() {
         return this.x;
@@ -43,5 +44,6 @@ function EVTDLY_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

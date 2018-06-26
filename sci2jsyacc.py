@@ -60,15 +60,16 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     fname = '%s' % (p[1])
     indent = '%*s' % (INDENT_LEVEL * INDENT_SIZE, ' ')
     INDENT_LEVEL += 1
+    blocktype = getblocktype(fname)
 
     jdefine = JOB_BLOCKS['"define"'] if '"define"' in JOB_BLOCKS else ''
-    jdefine = '%s%s.prototype.define = function %s() {\n%s%s}\n' % (indent, fname, fname, jdefine, indent)
+    jdefine = '%s%s.prototype.define = function %s() {\n%s%*sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, jdefine, INDENT_LEVEL * INDENT_SIZE, ' ', blocktype, indent)
     jdetails = JOB_BLOCKS['"details"'] if '"details"' in JOB_BLOCKS else ''
     jdetails = '%s%s.prototype.details = function %s() {\n%s%*sreturn this.x;\n%s}\n' % (indent, fname, fname, jdetails, INDENT_LEVEL * INDENT_SIZE, ' ', indent)
     jget = JOB_BLOCKS['"get"'] if '"get"' in JOB_BLOCKS else ''
     jget = '%s%s.prototype.get = function %s() {\n%s%s}\n' % (indent, fname, fname, jget, indent)
     jset = JOB_BLOCKS['"set"'] if '"set"' in JOB_BLOCKS else ''
-    jset = '%s%s.prototype.set = function %s() {\n%s%s}\n' % (indent, fname, fname, jset, indent)
+    jset = '%s%s.prototype.set = function %s() {\n%s%*sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, jset, INDENT_LEVEL * INDENT_SIZE, ' ', blocktype, indent)
 
     INDENT_LEVEL -= 1
     p[0] = 'function %s() {\n%s%s%s%s}' % (fname, jdefine, jdetails, jget, jset)
@@ -321,8 +322,7 @@ def p_selectjobstatement_select(p):
 
 def p_casestatement_case(p):
     '''casestatement : CASE expression THEN EOL
-                     | CASE expression EOL
-                     | CASE expression THEN COMMA'''
+                     | CASE expression EOL'''
     global INDENT_LEVEL
     INDENT_LEVEL -= 1
     p[0] = '%*scase %s:\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[2])
@@ -330,8 +330,7 @@ def p_casestatement_case(p):
 
 def p_casejobstatement_case(p):
     '''casejobstatement : CASE expression THEN EOL
-                        | CASE expression EOL
-                        | CASE expression THEN COMMA'''
+                        | CASE expression EOL'''
     LOCAL_VARS.clear()
     LOCAL_VARS.update(FUNCTION_VARS)
     p[0] = '%s' % (p[2])
@@ -826,8 +825,15 @@ def p_term_string(p):
 
 # end define term
 
+BLOCK_TYPE = {
+}
+
 def p_error(p):
     print("Syntax error in input", p)
+
+def getblocktype(module):
+    '''return a block type for a module'''
+    return BLOCK_TYPE.get(module, 'BasicBlock')
 
 def processfile(filename, picklefilename, passnumber):
     '''convert a sci file to a js file'''

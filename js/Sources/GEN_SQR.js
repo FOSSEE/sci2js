@@ -48,6 +48,7 @@ function GEN_SQR() {
         exprs = [sci2exp(Amin),sci2exp(Amax),sci2exp(rule),sci2exp(F)];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     GEN_SQR.prototype.details = function GEN_SQR() {
         return this.x;
@@ -88,5 +89,6 @@ function GEN_SQR() {
                 ok = false;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

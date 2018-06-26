@@ -11,6 +11,7 @@ function SCALAR2VECTOR() {
         exprs = [string([nout])];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     SCALAR2VECTOR.prototype.details = function SCALAR2VECTOR() {
         return this.x;
@@ -42,5 +43,6 @@ function SCALAR2VECTOR() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

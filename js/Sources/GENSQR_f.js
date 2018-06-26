@@ -14,6 +14,7 @@ function GENSQR_f() {
         exprs = string(Amplitude);
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     GENSQR_f.prototype.details = function GENSQR_f() {
         return this.x;
@@ -41,5 +42,6 @@ function GENSQR_f() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

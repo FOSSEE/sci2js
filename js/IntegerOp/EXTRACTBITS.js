@@ -16,6 +16,7 @@ function EXTRACTBITS() {
         exprs = [[sci2exp(3)],[sci2exp(1)],[sci2exp(0)],[sci2exp(0)]];
         gr_i = [];
         this.x = standard_define([4,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     EXTRACTBITS.prototype.details = function EXTRACTBITS() {
         return this.x;
@@ -226,5 +227,6 @@ function EXTRACTBITS() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -12,6 +12,7 @@ function SOM_f() {
         exprs = [[sci2exp(1)],[sci2exp(sgn)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     SOM_f.prototype.details = function SOM_f() {
         return this.x;
@@ -37,5 +38,6 @@ function SOM_f() {
         str = [["This sum block is obsolete","parameters cannot be modified. Please replace it with new sum block"],["and gain blocks in the linear palette"," ","Input ports are located at up, side and  down positions.","Current gains are:"]];
         str = [[str],[(part(labs.slice(),1,7)+exprs.slice())]];
         message(str);
+        return new BasicBlock(this.x);
     }
 }

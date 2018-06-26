@@ -14,6 +14,7 @@ function QUANT_f() {
         exprs = [[string(pas)],[string(meth)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     QUANT_f.prototype.details = function QUANT_f() {
         return this.x;
@@ -52,5 +53,6 @@ function QUANT_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

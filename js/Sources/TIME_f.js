@@ -8,6 +8,7 @@ function TIME_f() {
         model.dep_ut = [false,true];
         gr_i = [];
         this.x = standard_define([2,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     TIME_f.prototype.details = function TIME_f() {
         return this.x;
@@ -16,5 +17,6 @@ function TIME_f() {
     }
     TIME_f.prototype.set = function TIME_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

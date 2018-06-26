@@ -11,6 +11,7 @@ function EVTGEN_f() {
         exprs = string(tt);
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     EVTGEN_f.prototype.details = function EVTGEN_f() {
         return this.x;
@@ -35,5 +36,6 @@ function EVTGEN_f() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

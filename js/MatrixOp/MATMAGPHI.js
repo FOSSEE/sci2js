@@ -23,6 +23,7 @@ function MATMAGPHI() {
         label = [sci2exp(1)];
         gr_i = [];
         this.x = standard_define([3,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATMAGPHI.prototype.details = function MATMAGPHI() {
         return this.x;
@@ -72,5 +73,6 @@ function MATMAGPHI() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

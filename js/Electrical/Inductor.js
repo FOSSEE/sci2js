@@ -20,6 +20,7 @@ function Inductor() {
         this.x = standard_define([2,0.9],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
+        return new BasicBlock(this.x);
     }
     Inductor.prototype.details = function Inductor() {
         return this.x;
@@ -43,5 +44,6 @@ function Inductor() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

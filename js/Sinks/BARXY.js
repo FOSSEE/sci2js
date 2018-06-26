@@ -19,6 +19,7 @@ function BARXY() {
         this.x.graphics.in_implicit = ["E","E"];
         this.x.graphics.out_implicit = [];
         this.x.graphics.exprs = [["-15"],["15"],["-15"],["15"],["1"]];
+        return new BasicBlock(this.x);
     }
     BARXY.prototype.details = function BARXY() {
         return this.x;
@@ -59,5 +60,6 @@ function BARXY() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -17,6 +17,7 @@ function GotoTagVisibilityMO() {
         exprs = "A";
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     GotoTagVisibilityMO.prototype.details = function GotoTagVisibilityMO() {
         return this.x;
@@ -46,5 +47,6 @@ function GotoTagVisibilityMO() {
             }
         }
         needcompile=resume(needcompile)
+        return new BasicBlock(this.x);
     }
 }

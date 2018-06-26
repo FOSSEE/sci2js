@@ -23,6 +23,7 @@ function EXTTRI() {
         label = [[sci2exp(1)],[sci2exp(1)]];
         gr_i = [];
         this.x = standard_define([3,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     EXTTRI.prototype.details = function EXTTRI() {
         return this.x;
@@ -88,5 +89,6 @@ function EXTTRI() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

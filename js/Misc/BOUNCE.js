@@ -36,6 +36,7 @@ function BOUNCE() {
         exprs = [[strcat(sci2exp(rpar1))],[strcat(sci2exp(rpar2))],[strcat(sci2exp(walls))],[strcat(sci2exp(this.x))],[strcat(sci2exp(xd))],[strcat(sci2exp(y))],[strcat(sci2exp(yd))]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     BOUNCE.prototype.details = function BOUNCE() {
         return this.x;
@@ -104,5 +105,6 @@ function BOUNCE() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

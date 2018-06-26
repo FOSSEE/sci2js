@@ -23,6 +23,7 @@ function MATBKSL() {
         label = [sci2exp(1)];
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATBKSL.prototype.details = function MATBKSL() {
         return this.x;
@@ -68,5 +69,6 @@ function MATBKSL() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

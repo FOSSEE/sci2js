@@ -12,6 +12,7 @@ function PRODUCT() {
         exprs = sci2exp(sgn);
         gr_i = [];
         this.x = standard_define([2,3],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     PRODUCT.prototype.details = function PRODUCT() {
         return this.x;
@@ -62,5 +63,6 @@ function PRODUCT() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

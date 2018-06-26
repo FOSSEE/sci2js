@@ -23,6 +23,7 @@ function ROOTCOEF() {
         label = [[sci2exp(1)],[sci2exp(1)]];
         gr_i = [];
         this.x = standard_define([3,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     ROOTCOEF.prototype.details = function ROOTCOEF() {
         return this.x;
@@ -68,5 +69,6 @@ function ROOTCOEF() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -35,6 +35,7 @@ function DLATCH() {
         model.rpar = scs_m;
         gr_i = [];
         this.x = standard_define([2,3],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     DLATCH.prototype.details = function DLATCH() {
         return this.x;
@@ -43,5 +44,6 @@ function DLATCH() {
     }
     DLATCH.prototype.set = function DLATCH() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

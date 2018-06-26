@@ -30,6 +30,7 @@ function SRFLIPFLOP() {
         model.rpar = scs_m;
         gr_i = [];
         this.x = standard_define([2,3],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     SRFLIPFLOP.prototype.details = function SRFLIPFLOP() {
         return this.x;
@@ -75,5 +76,6 @@ function SRFLIPFLOP() {
         this.x = arg1;
         y = needcompile;
         typ = newpar;
+        return new BasicBlock(this.x);
     }
 }

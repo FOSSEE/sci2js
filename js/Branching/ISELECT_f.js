@@ -15,6 +15,7 @@ function ISELECT_f() {
         exprs = [[string(nout)],[string(z0+1)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     ISELECT_f.prototype.details = function ISELECT_f() {
         return this.x;
@@ -44,5 +45,6 @@ function ISELECT_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

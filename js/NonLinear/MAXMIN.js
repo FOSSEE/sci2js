@@ -12,6 +12,7 @@ function MAXMIN() {
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
         this.x.graphics.style = "MAXMIN;displayedLabel=MAX";
+        return new BasicBlock(this.x);
     }
     MAXMIN.prototype.details = function MAXMIN() {
         return this.x;
@@ -65,5 +66,6 @@ function MAXMIN() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

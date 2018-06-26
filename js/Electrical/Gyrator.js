@@ -47,6 +47,7 @@ function Gyrator() {
         this.x = standard_define([2,2],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = Typein;
         this.x.graphics.out_implicit = Typeout;
+        return new BasicBlock(this.x);
     }
     Gyrator.prototype.details = function Gyrator() {
         return this.x;
@@ -69,5 +70,6 @@ function Gyrator() {
             this.x.graphics.exprs = exprs;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

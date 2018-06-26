@@ -19,6 +19,7 @@ function DELAYV_f() {
         exprs = [[string(nin)],[strcat(string(z0.slice(1-1,$-1)),";")],[string(T)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     DELAYV_f.prototype.details = function DELAYV_f() {
         return this.x;
@@ -59,5 +60,6 @@ function DELAYV_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

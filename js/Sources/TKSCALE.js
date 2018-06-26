@@ -14,6 +14,7 @@ function TKSCALE() {
         exprs = [[sci2exp(a)],[sci2exp(b)],[sci2exp(f)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     TKSCALE.prototype.details = function TKSCALE() {
         return this.x;
@@ -32,5 +33,6 @@ function TKSCALE() {
             this.x.graphics = graphics;
             this.x.model = model;
         }
+        return new BasicBlock(this.x);
     }
 }

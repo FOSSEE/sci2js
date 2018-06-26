@@ -21,6 +21,7 @@ function CSCOPE() {
         exprs = [[strcat(string(clrs)," ")],[string(win)],[sci2exp([])],[sci2exp(wdim)],[string(ymin)],[string(ymax)],[string(per)],[string(N)],[transpose(string(0))],[emptystr()]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CSCOPE.prototype.details = function CSCOPE() {
         return this.x;
@@ -92,5 +93,6 @@ function CSCOPE() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

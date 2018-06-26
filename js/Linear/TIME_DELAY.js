@@ -16,6 +16,7 @@ function TIME_DELAY() {
         exprs = [[string(T)],[string(init)],[string(N)]];
         gr_i = [];
         this.x = standard_define([3.5,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     TIME_DELAY.prototype.details = function TIME_DELAY() {
         return this.x;
@@ -54,5 +55,6 @@ function TIME_DELAY() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

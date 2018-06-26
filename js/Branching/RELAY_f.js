@@ -16,6 +16,7 @@ function RELAY_f() {
         exprs = [[string(nin)],[string(i0+1)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     RELAY_f.prototype.details = function RELAY_f() {
         return this.x;
@@ -46,5 +47,6 @@ function RELAY_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

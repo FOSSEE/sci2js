@@ -17,6 +17,7 @@ function CurrentSensor() {
         this.x = standard_define([2,2],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = [["I"],["E"]];
+        return new BasicBlock(this.x);
     }
     CurrentSensor.prototype.details = function CurrentSensor() {
         return this.x;
@@ -25,5 +26,6 @@ function CurrentSensor() {
     }
     CurrentSensor.prototype.set = function CurrentSensor() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

@@ -14,6 +14,7 @@ function RATELIMITER() {
         exprs = [[string(maxp)],[string(minp)]];
         gr_i = [];
         this.x = standard_define([3.5,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     RATELIMITER.prototype.details = function RATELIMITER() {
         return this.x;
@@ -41,5 +42,6 @@ function RATELIMITER() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

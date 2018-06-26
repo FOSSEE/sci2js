@@ -18,6 +18,7 @@ function LOGIC() {
         exprs = [[sci2exp(mat)],[sci2exp(0)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     LOGIC.prototype.details = function LOGIC() {
         return this.x;
@@ -63,5 +64,6 @@ function LOGIC() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

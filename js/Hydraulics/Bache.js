@@ -32,6 +32,7 @@ function Bache() {
         this.x = standard_define([2,2],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = [["I"],["I"]];
         this.x.graphics.out_implicit = [["I"],["I"],["E"]];
+        return new BasicBlock(this.x);
     }
     Bache.prototype.details = function Bache() {
         return this.x;
@@ -55,5 +56,6 @@ function Bache() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

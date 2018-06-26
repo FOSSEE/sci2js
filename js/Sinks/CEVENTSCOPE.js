@@ -17,6 +17,7 @@ function CEVENTSCOPE() {
         exprs = [[sci2exp(nclock)],[strcat(sci2exp(clrs[nclock-1])," ")],[string(win)],[sci2exp([])],[sci2exp(wdim)],[string(per)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CEVENTSCOPE.prototype.details = function CEVENTSCOPE() {
         return this.x;
@@ -83,5 +84,6 @@ function CEVENTSCOPE() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

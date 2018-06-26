@@ -17,6 +17,7 @@ function INTMUL() {
         exprs = [[sci2exp(3)],[sci2exp(0)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     INTMUL.prototype.details = function INTMUL() {
         return this.x;
@@ -103,5 +104,6 @@ function INTMUL() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

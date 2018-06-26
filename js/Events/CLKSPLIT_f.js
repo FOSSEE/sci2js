@@ -9,6 +9,7 @@ function CLKSPLIT_f() {
         model.firing = [false,false,false];
         model.dep_ut = [false,false];
         this.x = standard_define([1,1]/3,model,[],[]);
+        return new BasicBlock(this.x);
     }
     CLKSPLIT_f.prototype.details = function CLKSPLIT_f() {
         return this.x;
@@ -17,5 +18,6 @@ function CLKSPLIT_f() {
     }
     CLKSPLIT_f.prototype.set = function CLKSPLIT_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

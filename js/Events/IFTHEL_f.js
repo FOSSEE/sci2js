@@ -16,6 +16,7 @@ function IFTHEL_f() {
         gr_i = [];
         exprs = [[string(model.in1)],[string(model.nmode)]];
         this.x = standard_define([3,3],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     IFTHEL_f.prototype.details = function IFTHEL_f() {
         return this.x;
@@ -57,5 +58,6 @@ function IFTHEL_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

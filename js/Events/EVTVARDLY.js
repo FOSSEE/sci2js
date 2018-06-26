@@ -13,6 +13,7 @@ function EVTVARDLY() {
         exprs = string(model.firing);
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     EVTVARDLY.prototype.details = function EVTVARDLY() {
         return this.x;
@@ -35,5 +36,6 @@ function EVTVARDLY() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -17,6 +17,7 @@ function GOTO() {
         gr_i = [];
         this.x = standard_define([2,1],model,exprs,gr_i);
         this.x.graphics.id = "Goto";
+        return new BasicBlock(this.x);
     }
     GOTO.prototype.details = function GOTO() {
         return this.x;
@@ -53,5 +54,6 @@ function GOTO() {
             }
         }
         needcompile=resume(needcompile)
+        return new BasicBlock(this.x);
     }
 }

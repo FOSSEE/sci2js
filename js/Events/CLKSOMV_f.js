@@ -10,6 +10,7 @@ function CLKSOMV_f() {
         model.dep_ut = [false,false];
         gr_i = [];
         this.x = standard_define([2,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     CLKSOMV_f.prototype.details = function CLKSOMV_f() {
         return this.x;
@@ -18,5 +19,6 @@ function CLKSOMV_f() {
     }
     CLKSOMV_f.prototype.set = function CLKSOMV_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

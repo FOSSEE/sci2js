@@ -23,6 +23,7 @@ function MATDET() {
         label = [sci2exp(1)];
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATDET.prototype.details = function MATDET() {
         return this.x;
@@ -68,5 +69,6 @@ function MATDET() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

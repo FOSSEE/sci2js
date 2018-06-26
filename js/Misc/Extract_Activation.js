@@ -84,6 +84,7 @@ function Extract_Activation() {
         model.rpar = scs_m_1;
         gr_i = [];
         this.x = standard_define([3,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     Extract_Activation.prototype.details = function Extract_Activation() {
         return this.x;
@@ -92,5 +93,6 @@ function Extract_Activation() {
     }
     Extract_Activation.prototype.set = function Extract_Activation() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

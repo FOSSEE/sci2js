@@ -13,6 +13,7 @@ function TEXT_f() {
         graphics.sz = [2,1];
         graphics.exprs = exprs;
         this.x = mlist(["Text","graphics","model","void","gui"],graphics,model," ","TEXT_f");
+        return new BasicBlock(this.x);
     }
     TEXT_f.prototype.details = function TEXT_f() {
         return this.x;
@@ -63,5 +64,6 @@ function TEXT_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

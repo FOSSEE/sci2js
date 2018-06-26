@@ -9,6 +9,7 @@ function ABSBLK_f() {
         model.dep_ut = [true,false];
         gr_i = [];
         this.x = standard_define([2,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     ABSBLK_f.prototype.details = function ABSBLK_f() {
         return this.x;
@@ -17,5 +18,6 @@ function ABSBLK_f() {
     }
     ABSBLK_f.prototype.set = function ABSBLK_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

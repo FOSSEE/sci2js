@@ -23,6 +23,7 @@ function RFILE_f() {
         exprs = [[sci2exp([])],[sci2exp(outmask)],[fname],[frmt],[string(N)],[sci2exp(out)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     RFILE_f.prototype.details = function RFILE_f() {
         return this.x;
@@ -103,5 +104,6 @@ function RFILE_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

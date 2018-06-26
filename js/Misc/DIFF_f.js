@@ -12,6 +12,7 @@ function DIFF_f() {
         exprs = [[strcat(sci2exp(x0[1-1]))],[strcat(sci2exp(x0[2-1]))]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     DIFF_f.prototype.details = function DIFF_f() {
         return this.x;
@@ -35,5 +36,6 @@ function DIFF_f() {
             break;
         }
         this.x.model.firing = [];
+        return new BasicBlock(this.x);
     }
 }

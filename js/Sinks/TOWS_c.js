@@ -21,6 +21,7 @@ function TOWS_c() {
         gr_i = [];
         exprs = [[string(nz)],[string(varnam)],[string(herit)]];
         this.x = standard_define([4,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     TOWS_c.prototype.details = function TOWS_c() {
         return this.x;
@@ -62,5 +63,6 @@ function TOWS_c() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

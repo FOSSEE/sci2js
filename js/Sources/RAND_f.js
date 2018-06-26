@@ -18,6 +18,7 @@ function RAND_f() {
         exprs = [[string(flag)],[sci2exp(a.slice())],[sci2exp(b.slice())],[string(model.dstate[1-1])]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     RAND_f.prototype.details = function RAND_f() {
         return this.x;
@@ -54,5 +55,6 @@ function RAND_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -12,6 +12,7 @@ function CLKINV_f() {
         exprs = string(prt);
         gr_i = [];
         this.x = standard_define([1,1],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CLKINV_f.prototype.details = function CLKINV_f() {
         return this.x;
@@ -42,5 +43,6 @@ function CLKINV_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

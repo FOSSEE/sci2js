@@ -13,6 +13,7 @@ function SIGNUM() {
         exprs = [string([1])];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     SIGNUM.prototype.details = function SIGNUM() {
         return this.x;
@@ -43,5 +44,6 @@ function SIGNUM() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

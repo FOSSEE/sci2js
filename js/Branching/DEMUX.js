@@ -13,6 +13,7 @@ function DEMUX() {
         exprs = string(out);
         gr_i = [];
         this.x = standard_define([.5,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     DEMUX.prototype.details = function DEMUX() {
         return this.x;
@@ -60,5 +61,6 @@ function DEMUX() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

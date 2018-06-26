@@ -26,6 +26,7 @@ function CANIMXY3D() {
         exprs = [[string(nbr_curves)],[strcat(string(clrs)," ")],[strcat(string(siz)," ")],[string(win)],["[]"],["[]"],[strcat(string(vec_x)," ")],[strcat(string(vec_y)," ")],[strcat(string(vec_z)," ")],[strcat(string(param3ds)," ")],[string(N)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CANIMXY3D.prototype.details = function CANIMXY3D() {
         return this.x;
@@ -114,5 +115,6 @@ function CANIMXY3D() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

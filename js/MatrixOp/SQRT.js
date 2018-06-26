@@ -13,6 +13,7 @@ function SQRT() {
         label = [sci2exp(1)];
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     SQRT.prototype.details = function SQRT() {
         return this.x;
@@ -53,5 +54,6 @@ function SQRT() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

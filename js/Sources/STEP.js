@@ -16,6 +16,7 @@ function STEP() {
         exprs = [[string(1)],[string(rpar)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     STEP.prototype.details = function STEP() {
         return this.x;
@@ -63,5 +64,6 @@ function STEP() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

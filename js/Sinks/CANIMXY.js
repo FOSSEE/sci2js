@@ -26,6 +26,7 @@ function CANIMXY() {
         exprs = [[string(nbr_curves)],[string(clrs)],[string(siz)],[string(win)],["[]"],["[]"],[string(xmin)],[string(xmax)],[string(ymin)],[string(ymax)],[string(N)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CANIMXY.prototype.details = function CANIMXY() {
         return this.x;
@@ -97,5 +98,6 @@ function CANIMXY() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -17,6 +17,7 @@ function INIMPL_f() {
         gr_i = [];
         this.x = standard_define([1,1],model,exprs,gr_i);
         this.x.graphics.out_implicit = ["I"];
+        return new BasicBlock(this.x);
     }
     INIMPL_f.prototype.details = function INIMPL_f() {
         return this.x;
@@ -51,5 +52,6 @@ function INIMPL_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

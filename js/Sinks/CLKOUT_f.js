@@ -11,6 +11,7 @@ function CLKOUT_f() {
         model.dep_ut = [false,false];
         exprs = string(prt);
         this.x = standard_define([1,1],model,exprs," ");
+        return new BasicBlock(this.x);
     }
     CLKOUT_f.prototype.details = function CLKOUT_f() {
         return this.x;
@@ -41,5 +42,6 @@ function CLKOUT_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

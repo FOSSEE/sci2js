@@ -23,6 +23,7 @@ function SUBMAT() {
         label = [[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)]];
         gr_i = [];
         this.x = standard_define([2.5,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     SUBMAT.prototype.details = function SUBMAT() {
         return this.x;
@@ -89,5 +90,6 @@ function SUBMAT() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

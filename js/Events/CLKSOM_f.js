@@ -10,6 +10,7 @@ function CLKSOM_f() {
         model.dep_ut = [false,false];
         gr_i = [];
         this.x = standard_define([1,1]/1.2,model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     CLKSOM_f.prototype.details = function CLKSOM_f() {
         return this.x;
@@ -18,5 +19,6 @@ function CLKSOM_f() {
     }
     CLKSOM_f.prototype.set = function CLKSOM_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

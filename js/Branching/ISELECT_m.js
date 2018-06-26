@@ -23,6 +23,7 @@ function ISELECT_m() {
         exprs = [[sci2exp(1)],[sci2exp(nout)],[sci2exp(z0)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     ISELECT_m.prototype.details = function ISELECT_m() {
         return this.x;
@@ -61,5 +62,6 @@ function ISELECT_m() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

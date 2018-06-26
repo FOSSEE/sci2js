@@ -40,6 +40,7 @@ function CLOCK_c() {
         this.x.model.firing = false;
         this.x.model.dep_ut = [false,false];
         this.x.model.rpar = diagram;
+        return new BasicBlock(this.x);
     }
     CLOCK_c.prototype.details = function CLOCK_c() {
         return this.x;
@@ -90,5 +91,6 @@ function CLOCK_c() {
         this.x = arg1;
         y = needcompile;
         typ = newpar;
+        return new BasicBlock(this.x);
     }
 }

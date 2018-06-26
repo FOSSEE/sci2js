@@ -19,6 +19,7 @@ function WRITEAU_f() {
         exprs = [string(N),string(swap)];
         gr_i = [];
         this.x = standard_define([4,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     WRITEAU_f.prototype.details = function WRITEAU_f() {
         return this.x;
@@ -66,5 +67,6 @@ function WRITEAU_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

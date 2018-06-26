@@ -10,6 +10,7 @@ function TrigFun() {
         exprs = "sin";
         gr_i = [];
         this.x = standard_define([4,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     TrigFun.prototype.details = function TrigFun() {
         return this.x;
@@ -38,5 +39,6 @@ function TrigFun() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

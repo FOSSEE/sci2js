@@ -46,6 +46,7 @@ function JKFLIPFLOP() {
         model.rpar = scs_m;
         gr_i = [];
         this.x = standard_define([2,3],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     JKFLIPFLOP.prototype.details = function JKFLIPFLOP() {
         return this.x;
@@ -91,5 +92,6 @@ function JKFLIPFLOP() {
         this.x = arg1;
         y = needcompile;
         typ = newpar;
+        return new BasicBlock(this.x);
     }
 }

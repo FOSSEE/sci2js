@@ -12,6 +12,7 @@ function BACKLASH() {
         model.dep_ut = [true,false];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     BACKLASH.prototype.details = function BACKLASH() {
         return this.x;
@@ -44,5 +45,6 @@ function BACKLASH() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

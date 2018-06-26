@@ -18,6 +18,7 @@ function SWITCH2() {
         exprs = [[string(ipar)],[string(rpar)],[string(nzz)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     SWITCH2.prototype.details = function SWITCH2() {
         return this.x;
@@ -55,5 +56,6 @@ function SWITCH2() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -11,6 +11,7 @@ function SAMPHOLD() {
         model.dep_ut = [true,false];
         gr_i = [];
         this.x = standard_define([2,2],model," ",gr_i);
+        return new BasicBlock(this.x);
     }
     SAMPHOLD.prototype.details = function SAMPHOLD() {
         return this.x;
@@ -20,5 +21,6 @@ function SAMPHOLD() {
     SAMPHOLD.prototype.set = function SAMPHOLD() {
         this.x = arg1;
         this.x.model.firing = [];
+        return new BasicBlock(this.x);
     }
 }

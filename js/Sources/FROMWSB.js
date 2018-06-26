@@ -9,6 +9,7 @@ function FROMWSB() {
         model = scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=-1,out2=-2,outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list());
         gr_i = [];
         this.x = standard_define([5,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     FROMWSB.prototype.details = function FROMWSB() {
         return this.x;
@@ -83,5 +84,6 @@ function FROMWSB() {
         }
         this.x = arg1;
         typ = newpar;
+        return new BasicBlock(this.x);
     }
 }

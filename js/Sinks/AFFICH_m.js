@@ -21,6 +21,7 @@ function AFFICH_m() {
         exprs = [[sci2exp([model.in1,model.in2])],[string(font)],[string(fontsize)],[string(colr)],[string(nt)],[string(nd)],[string(0)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     AFFICH_m.prototype.details = function AFFICH_m() {
         return this.x;
@@ -77,5 +78,6 @@ function AFFICH_m() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

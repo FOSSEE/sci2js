@@ -12,6 +12,7 @@ function MOTOR() {
         this.x = standard_define([2,2],model,exprs,gr_i);
         this.x.graphics.out_implicit = [["I"],["I"]];
         this.x.graphics.in_implicit = ["I"];
+        return new BasicBlock(this.x);
     }
     MOTOR.prototype.details = function MOTOR() {
         return this.x;
@@ -20,5 +21,6 @@ function MOTOR() {
     }
     MOTOR.prototype.set = function MOTOR() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

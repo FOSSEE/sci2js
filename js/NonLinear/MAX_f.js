@@ -12,6 +12,7 @@ function MAX_f() {
         exprs = " ";
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     MAX_f.prototype.details = function MAX_f() {
         return this.x;
@@ -20,5 +21,6 @@ function MAX_f() {
     }
     MAX_f.prototype.set = function MAX_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

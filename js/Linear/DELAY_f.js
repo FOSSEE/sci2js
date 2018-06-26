@@ -63,6 +63,7 @@ function DELAY_f() {
         this.x.graphics.in_style = "";
         this.x.graphics.out_implicit = ["E"];
         this.x.graphics.out_style = "";
+        return new BasicBlock(this.x);
     }
     DELAY_f.prototype.details = function DELAY_f() {
         return this.x;
@@ -125,5 +126,6 @@ function DELAY_f() {
         needcompile = 0;
         y = needcompile;
         typ = newpar;
+        return new BasicBlock(this.x);
     }
 }

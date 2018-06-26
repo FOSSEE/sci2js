@@ -65,6 +65,7 @@ function ANDBLK() {
         this.x.model.firing = false;
         this.x.model.dep_ut = [false,false];
         this.x.model.rpar = diagram;
+        return new BasicBlock(this.x);
     }
     ANDBLK.prototype.details = function ANDBLK() {
         return this.x;
@@ -73,5 +74,6 @@ function ANDBLK() {
     }
     ANDBLK.prototype.set = function ANDBLK() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

@@ -15,6 +15,7 @@ function BITCLEAR() {
         exprs = [[sci2exp(3)],[sci2exp(0)]];
         gr_i = [];
         this.x = standard_define([4,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     BITCLEAR.prototype.details = function BITCLEAR() {
         return this.x;
@@ -83,5 +84,6 @@ function BITCLEAR() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

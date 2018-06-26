@@ -105,6 +105,7 @@ function freq_div() {
         model.rpar = scs_m_1;
         gr_i = [];
         this.x = standard_define([3,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     freq_div.prototype.details = function freq_div() {
         return this.x;
@@ -195,5 +196,6 @@ function freq_div() {
         }
         this.x = arg1;
         typ = newpar;
+        return new BasicBlock(this.x);
     }
 }

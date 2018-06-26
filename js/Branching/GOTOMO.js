@@ -20,6 +20,7 @@ function GOTOMO() {
         gr_i = [];
         this.x = standard_define([2,1],model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
+        return new BasicBlock(this.x);
     }
     GOTOMO.prototype.details = function GOTOMO() {
         return this.x;
@@ -56,5 +57,6 @@ function GOTOMO() {
             }
         }
         needcompile=resume(needcompile)
+        return new BasicBlock(this.x);
     }
 }

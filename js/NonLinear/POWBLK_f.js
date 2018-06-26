@@ -13,6 +13,7 @@ function POWBLK_f() {
         exprs = string(a);
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     POWBLK_f.prototype.details = function POWBLK_f() {
         return this.x;
@@ -45,5 +46,6 @@ function POWBLK_f() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

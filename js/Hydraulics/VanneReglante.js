@@ -23,6 +23,7 @@ function VanneReglante() {
         this.x = standard_define([2,2],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = [["I"],["E"]];
         this.x.graphics.out_implicit = ["I"];
+        return new BasicBlock(this.x);
     }
     VanneReglante.prototype.details = function VanneReglante() {
         return this.x;
@@ -46,5 +47,6 @@ function VanneReglante() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

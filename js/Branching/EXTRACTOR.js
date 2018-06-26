@@ -12,6 +12,7 @@ function EXTRACTOR() {
         exprs = [sci2exp(ind)];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     EXTRACTOR.prototype.details = function EXTRACTOR() {
         return this.x;
@@ -39,5 +40,6 @@ function EXTRACTOR() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -11,6 +11,7 @@ function VirtualCLK0() {
         model.dep_ut = [false,false];
         exprs = [];
         this.x = standard_define([2,2],model,exprs," ");
+        return new BasicBlock(this.x);
     }
     VirtualCLK0.prototype.details = function VirtualCLK0() {
         return this.x;
@@ -19,5 +20,6 @@ function VirtualCLK0() {
     }
     VirtualCLK0.prototype.set = function VirtualCLK0() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

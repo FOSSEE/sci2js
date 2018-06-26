@@ -27,6 +27,7 @@ function PerteDP() {
         this.x = standard_define([2,1],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
+        return new BasicBlock(this.x);
     }
     PerteDP.prototype.details = function PerteDP() {
         return this.x;
@@ -50,5 +51,6 @@ function PerteDP() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

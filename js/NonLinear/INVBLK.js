@@ -11,6 +11,7 @@ function INVBLK() {
         exprs = " ";
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     INVBLK.prototype.details = function INVBLK() {
         return this.x;
@@ -19,5 +20,6 @@ function INVBLK() {
     }
     INVBLK.prototype.set = function INVBLK() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

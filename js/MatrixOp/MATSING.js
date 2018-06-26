@@ -23,6 +23,7 @@ function MATSING() {
         label = [[sci2exp(1)],[sci2exp(1)]];
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATSING.prototype.details = function MATSING() {
         return this.x;
@@ -92,5 +93,6 @@ function MATSING() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

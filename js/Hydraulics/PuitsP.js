@@ -20,6 +20,7 @@ function PuitsP() {
         gr_i = [];
         this.x = standard_define([2.5,2],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
+        return new BasicBlock(this.x);
     }
     PuitsP.prototype.details = function PuitsP() {
         return this.x;
@@ -43,5 +44,6 @@ function PuitsP() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

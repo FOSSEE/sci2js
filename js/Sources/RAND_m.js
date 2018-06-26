@@ -27,6 +27,7 @@ function RAND_m() {
         exprs = [[sci2exp(1)],[string(flag)],[sci2exp([a])],[sci2exp([b])],[sci2exp([model.dstate[1-1],int(rand()*(10^7-1))])]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     RAND_m.prototype.details = function RAND_m() {
         return this.x;
@@ -77,5 +78,6 @@ function RAND_m() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

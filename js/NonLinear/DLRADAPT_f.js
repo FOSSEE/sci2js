@@ -21,6 +21,7 @@ function DLRADAPT_f() {
         exprs = [[sci2exp(p)],[sci2exp(rn)],[sci2exp(rd,0)],[sci2exp(g)],[sci2exp(last_u)],[sci2exp(last_y)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     DLRADAPT_f.prototype.details = function DLRADAPT_f() {
         return this.x;
@@ -55,5 +56,6 @@ function DLRADAPT_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

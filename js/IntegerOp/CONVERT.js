@@ -17,6 +17,7 @@ function CONVERT() {
         exprs = [[sci2exp(1)],[sci2exp(3)],[sci2exp(0)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CONVERT.prototype.details = function CONVERT() {
         return this.x;
@@ -367,5 +368,6 @@ function CONVERT() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

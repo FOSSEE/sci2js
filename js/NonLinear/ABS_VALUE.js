@@ -13,6 +13,7 @@ function ABS_VALUE() {
         exprs = [string([1])];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     ABS_VALUE.prototype.details = function ABS_VALUE() {
         return this.x;
@@ -43,5 +44,6 @@ function ABS_VALUE() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

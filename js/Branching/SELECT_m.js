@@ -23,6 +23,7 @@ function SELECT_m() {
         exprs = [[sci2exp(1)],[sci2exp(nin)],[sci2exp(z0)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     SELECT_m.prototype.details = function SELECT_m() {
         return this.x;
@@ -61,5 +62,6 @@ function SELECT_m() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

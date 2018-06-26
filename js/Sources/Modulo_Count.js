@@ -14,6 +14,7 @@ function Modulo_Count() {
         exprs = [[string(ini_c)],[string(base)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     Modulo_Count.prototype.details = function Modulo_Count() {
         return this.x;
@@ -45,5 +46,6 @@ function Modulo_Count() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

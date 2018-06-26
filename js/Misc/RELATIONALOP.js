@@ -14,6 +14,7 @@ function RELATIONALOP() {
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
         this.x.graphics.style = ["fontSize=13;fontStyle=1;displayedLabel="+label];
+        return new BasicBlock(this.x);
     }
     RELATIONALOP.prototype.details = function RELATIONALOP() {
         return this.x;
@@ -90,5 +91,6 @@ function RELATIONALOP() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

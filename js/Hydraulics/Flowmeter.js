@@ -47,6 +47,7 @@ function Flowmeter() {
         this.x = standard_define([2,2],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = Typein;
         this.x.graphics.out_implicit = Typeout;
+        return new BasicBlock(this.x);
     }
     Flowmeter.prototype.details = function Flowmeter() {
         return this.x;
@@ -69,5 +70,6 @@ function Flowmeter() {
             this.x.graphics.exprs = exprs;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

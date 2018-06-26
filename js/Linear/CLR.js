@@ -17,6 +17,7 @@ function CLR() {
         model.dep_ut = [false,true];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CLR.prototype.details = function CLR() {
         return this.x;
@@ -70,5 +71,6 @@ function CLR() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

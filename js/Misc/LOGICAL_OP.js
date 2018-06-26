@@ -14,6 +14,7 @@ function LOGICAL_OP() {
         exprs = [[string(nin)],[string(ipar)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     LOGICAL_OP.prototype.details = function LOGICAL_OP() {
         return this.x;
@@ -109,5 +110,6 @@ function LOGICAL_OP() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

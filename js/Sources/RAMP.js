@@ -17,6 +17,7 @@ function RAMP() {
         exprs = [string(rpar)];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     RAMP.prototype.details = function RAMP() {
         return this.x;
@@ -43,5 +44,6 @@ function RAMP() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

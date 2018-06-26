@@ -23,6 +23,7 @@ function MATEIG() {
         label = [[sci2exp(1)],[sci2exp(1)]];
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATEIG.prototype.details = function MATEIG() {
         return this.x;
@@ -89,5 +90,6 @@ function MATEIG() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

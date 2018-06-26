@@ -12,6 +12,7 @@ function HALT_f() {
         exprs = string(n);
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     HALT_f.prototype.details = function HALT_f() {
         return this.x;
@@ -36,5 +37,6 @@ function HALT_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

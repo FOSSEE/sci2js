@@ -12,6 +12,7 @@ function NRMSOM_f() {
         exprs = [string(nin)];
         gr_i = [];
         this.x = standard_define([.2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     NRMSOM_f.prototype.details = function NRMSOM_f() {
         return this.x;
@@ -36,5 +37,6 @@ function NRMSOM_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -23,6 +23,7 @@ function MATZREIM() {
         label = sci2exp(1);
         gr_i = [];
         this.x = standard_define([3,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATZREIM.prototype.details = function MATZREIM() {
         return this.x;
@@ -72,5 +73,6 @@ function MATZREIM() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

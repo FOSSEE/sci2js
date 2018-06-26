@@ -27,6 +27,7 @@ function c_block() {
         label = list([[sci2exp(in1)],[sci2exp(out)],[strcat(sci2exp(rpar))],[funam]],list([]));
         gr_i = [];
         this.x = standard_define([3,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     c_block.prototype.details = function c_block() {
         return this.x;
@@ -71,5 +72,6 @@ function c_block() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

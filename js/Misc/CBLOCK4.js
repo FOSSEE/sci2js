@@ -14,6 +14,7 @@ function CBLOCK4() {
         label = list([[funam],["n"],[sci2exp([model.in1,model.in2])],[sci2exp(model.intyp)],[sci2exp([model.out,model.out2])],[sci2exp(model.outtyp)],[sci2exp(model.evtin)],[sci2exp(model.evtout)],[sci2exp(model.state)],[sci2exp(model.dstate)],[sci2exp(model.odstate)],[sci2exp(model.rpar)],[sci2exp(model.ipar)],[sci2exp(model.opar)],[sci2exp(model.nmode)],[sci2exp(model.nzcross)],[sci2exp(model.firing)],["y"],["n"]],[]);
         gr_i = [];
         this.x = standard_define([4,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     CBLOCK4.prototype.details = function CBLOCK4() {
         return this.x;
@@ -107,5 +108,6 @@ function CBLOCK4() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

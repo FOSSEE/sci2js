@@ -12,6 +12,7 @@ function BIGSOM_f() {
         exprs = sci2exp(sgn);
         gr_i = [];
         this.x = standard_define([2,3],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     BIGSOM_f.prototype.details = function BIGSOM_f() {
         return this.x;
@@ -38,5 +39,6 @@ function BIGSOM_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

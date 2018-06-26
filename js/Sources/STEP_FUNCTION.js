@@ -49,6 +49,7 @@ function STEP_FUNCTION() {
         model.rpar = scs_m_1;
         gr_i = [];
         this.x = standard_define([2,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     STEP_FUNCTION.prototype.details = function STEP_FUNCTION() {
         return this.x;
@@ -119,5 +120,6 @@ function STEP_FUNCTION() {
         this.x = arg1;
         y = needcompile;
         typ = newpar;
+        return new BasicBlock(this.x);
     }
 }

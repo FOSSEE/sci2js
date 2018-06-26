@@ -10,6 +10,7 @@ function LOOKUP_f() {
         model.dep_ut = [true,false];
         gr_i = [];
         this.x = standard_define([2,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     LOOKUP_f.prototype.details = function LOOKUP_f() {
         return this.x;
@@ -47,5 +48,6 @@ function LOOKUP_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

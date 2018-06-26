@@ -15,6 +15,7 @@ function CONSTRAINT2_c() {
         exprs = list(strcat(sci2exp(x0)),strcat(sci2exp(xd0)),strcat(sci2exp(id)));
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CONSTRAINT2_c.prototype.details = function CONSTRAINT2_c() {
         return this.x;
@@ -69,5 +70,6 @@ function CONSTRAINT2_c() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -12,6 +12,7 @@ function MATMUL() {
         label = [sci2exp(model.ipar)];
         gr_i = [];
         this.x = standard_define([3,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATMUL.prototype.details = function MATMUL() {
         return this.x;
@@ -148,5 +149,6 @@ function MATMUL() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

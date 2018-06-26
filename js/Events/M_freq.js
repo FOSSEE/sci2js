@@ -13,6 +13,7 @@ function M_freq() {
         exprs = [[sci2exp([[1],[2]])],[sci2exp([[0],[0]])]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     M_freq.prototype.details = function M_freq() {
         return this.x;
@@ -60,5 +61,6 @@ function M_freq() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

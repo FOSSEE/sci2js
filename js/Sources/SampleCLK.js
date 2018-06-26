@@ -10,6 +10,7 @@ function SampleCLK() {
         model.dep_ut = [false,false];
         exprs = [[sci2exp(1)],[sci2exp(0)]];
         this.x = standard_define([2,2],model,exprs," ");
+        return new BasicBlock(this.x);
     }
     SampleCLK.prototype.details = function SampleCLK() {
         return this.x;
@@ -49,5 +50,6 @@ function SampleCLK() {
             }
         }
         needcompile=resume(needcompile)
+        return new BasicBlock(this.x);
     }
 }

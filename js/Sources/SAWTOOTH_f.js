@@ -11,6 +11,7 @@ function SAWTOOTH_f() {
         exprs = " ";
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     SAWTOOTH_f.prototype.details = function SAWTOOTH_f() {
         return this.x;
@@ -19,5 +20,6 @@ function SAWTOOTH_f() {
     }
     SAWTOOTH_f.prototype.set = function SAWTOOTH_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

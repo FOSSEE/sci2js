@@ -12,6 +12,7 @@ function CLKGOTO() {
         exprs = [["A"],[sci2exp(1)]];
         this.x = standard_define([2,1],model,exprs," ");
         this.x.graphics.id = "Goto";
+        return new BasicBlock(this.x);
     }
     CLKGOTO.prototype.details = function CLKGOTO() {
         return this.x;
@@ -49,5 +50,6 @@ function CLKGOTO() {
             }
         }
         needcompile=resume(needcompile)
+        return new BasicBlock(this.x);
     }
 }

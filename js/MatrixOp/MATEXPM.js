@@ -23,6 +23,7 @@ function MATEXPM() {
         label = [sci2exp(1)];
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATEXPM.prototype.details = function MATEXPM() {
         return this.x;
@@ -68,5 +69,6 @@ function MATEXPM() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

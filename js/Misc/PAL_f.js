@@ -13,6 +13,7 @@ function PAL_f() {
         gr_i = [];
         this.x = standard_define([2,2],model,[],gr_i);
         this.x.graphics.id = scs.props.title[1-1];
+        return new BasicBlock(this.x);
     }
     PAL_f.prototype.details = function PAL_f() {
         return this.x;
@@ -27,5 +28,6 @@ function PAL_f() {
         y = [];
         typ = [];
         %exit=resume(false)
+        return new BasicBlock(this.x);
     }
 }

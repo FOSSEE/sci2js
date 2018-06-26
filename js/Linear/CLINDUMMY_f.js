@@ -10,6 +10,7 @@ function CLINDUMMY_f() {
         model.dep_ut = [false,true];
         gr_i = [];
         this.x = standard_define([3,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     CLINDUMMY_f.prototype.details = function CLINDUMMY_f() {
         return this.x;
@@ -18,5 +19,6 @@ function CLINDUMMY_f() {
     }
     CLINDUMMY_f.prototype.set = function CLINDUMMY_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

@@ -13,6 +13,7 @@ function IMPSPLIT_f() {
         this.x = standard_define([1,1]/3,model,[],[]);
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I","I"];
+        return new BasicBlock(this.x);
     }
     IMPSPLIT_f.prototype.details = function IMPSPLIT_f() {
         return this.x;
@@ -21,5 +22,6 @@ function IMPSPLIT_f() {
     }
     IMPSPLIT_f.prototype.set = function IMPSPLIT_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

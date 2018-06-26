@@ -43,6 +43,7 @@ function PULSE_SC() {
         exprs = [sci2exp(E),sci2exp(W),sci2exp(F),sci2exp(A)];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     PULSE_SC.prototype.details = function PULSE_SC() {
         return this.x;
@@ -85,5 +86,6 @@ function PULSE_SC() {
                 ok = false;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

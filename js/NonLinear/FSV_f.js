@@ -11,6 +11,7 @@ function FSV_f() {
         exprs = " ";
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     FSV_f.prototype.details = function FSV_f() {
         return this.x;
@@ -19,5 +20,6 @@ function FSV_f() {
     }
     FSV_f.prototype.set = function FSV_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

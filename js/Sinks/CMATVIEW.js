@@ -20,6 +20,7 @@ function CMATVIEW() {
         exprs = [[string("jetcolormap(25)")],[string(cmin)],[string(cmax)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CMATVIEW.prototype.details = function CMATVIEW() {
         return this.x;
@@ -59,5 +60,6 @@ function CMATVIEW() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

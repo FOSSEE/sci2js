@@ -23,6 +23,7 @@ function READAU_f() {
         exprs = [[fname],[string(N)],[string(swap)]];
         gr_i = [];
         this.x = standard_define([5,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     READAU_f.prototype.details = function READAU_f() {
         return this.x;
@@ -80,5 +81,6 @@ function READAU_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

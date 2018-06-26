@@ -13,6 +13,7 @@ function Sigbuilder() {
         model = scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=1,evtin=[],evtout=1,state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list());
         gr_i = [];
         this.x = standard_define([3,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     Sigbuilder.prototype.details = function Sigbuilder() {
         return this.x;
@@ -88,5 +89,6 @@ function Sigbuilder() {
         }
         this.x = arg1;
         typ = newpar;
+        return new BasicBlock(this.x);
     }
 }

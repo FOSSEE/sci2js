@@ -22,6 +22,7 @@ function CMAT3D() {
         exprs = [[strcat(string(this.x)," ")],[strcat(string(y)," ")],[string("jetcolormap(25)")],[string(cmin)],[string(cmax)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CMAT3D.prototype.details = function CMAT3D() {
         return this.x;
@@ -63,5 +64,6 @@ function CMAT3D() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

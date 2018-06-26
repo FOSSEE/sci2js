@@ -16,6 +16,7 @@ function Ground_g() {
         exprs = [];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     Ground_g.prototype.details = function Ground_g() {
         return this.x;
@@ -24,5 +25,6 @@ function Ground_g() {
     }
     Ground_g.prototype.set = function Ground_g() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

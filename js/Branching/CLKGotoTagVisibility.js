@@ -17,6 +17,7 @@ function CLKGotoTagVisibility() {
         exprs = "A";
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CLKGotoTagVisibility.prototype.details = function CLKGotoTagVisibility() {
         return this.x;
@@ -46,5 +47,6 @@ function CLKGotoTagVisibility() {
             }
         }
         needcompile=resume(needcompile)
+        return new BasicBlock(this.x);
     }
 }

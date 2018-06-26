@@ -67,6 +67,7 @@ function MCLOCK_f() {
         this.x.model.blocktype = "h";
         this.x.model.rpar = diagram;
         this.x.graphics.peout = [[0],[0]];
+        return new BasicBlock(this.x);
     }
     MCLOCK_f.prototype.details = function MCLOCK_f() {
         return this.x;
@@ -92,5 +93,6 @@ function MCLOCK_f() {
         this.x = arg1;
         y = 0;
         typ = newpar;
+        return new BasicBlock(this.x);
     }
 }

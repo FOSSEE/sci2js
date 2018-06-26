@@ -18,6 +18,7 @@ function WFILE_f() {
         exprs = [[sci2exp(in1)],[fname],[frmt],[string(N)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     WFILE_f.prototype.details = function WFILE_f() {
         return this.x;
@@ -87,5 +88,6 @@ function WFILE_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

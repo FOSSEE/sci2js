@@ -19,6 +19,7 @@ function CFSCOPE() {
         exprs = [[strcat(string(clrs)," ")],[string(win)],[sci2exp([])],[sci2exp(wdim)],[string(ymin)],[string(ymax)],[string(per)],[string(N)],[string([1])]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CFSCOPE.prototype.details = function CFSCOPE() {
         return this.x;
@@ -92,5 +93,6 @@ function CFSCOPE() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

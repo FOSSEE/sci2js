@@ -23,6 +23,7 @@ function MATLU() {
         label = sci2exp(1);
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATLU.prototype.details = function MATLU() {
         return this.x;
@@ -66,5 +67,6 @@ function MATLU() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

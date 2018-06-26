@@ -25,6 +25,7 @@ function CMSCOPE() {
         exprs = [[strcat(string(in1)," ")],[strcat(string(clrs)," ")],[string(win)],[sci2exp([])],[sci2exp([])],[strcat(string(ymin)," ")],[strcat(string(ymax)," ")],[strcat(string(per)," ")],[string(N)],[string(0)],[emptystr()]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CMSCOPE.prototype.details = function CMSCOPE() {
         return this.x;
@@ -123,5 +124,6 @@ function CMSCOPE() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

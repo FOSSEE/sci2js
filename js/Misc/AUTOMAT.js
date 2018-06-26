@@ -25,6 +25,7 @@ function AUTOMAT() {
         model.rpar = rpar;
         gr_i = [];
         this.x = standard_define([4,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     AUTOMAT.prototype.details = function AUTOMAT() {
         return this.x;
@@ -131,5 +132,6 @@ function AUTOMAT() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

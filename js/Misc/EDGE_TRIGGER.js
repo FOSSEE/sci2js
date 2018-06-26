@@ -79,6 +79,7 @@ function EDGE_TRIGGER() {
         model.rpar = scs_m_1;
         gr_i = [];
         this.x = standard_define([3,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     EDGE_TRIGGER.prototype.details = function EDGE_TRIGGER() {
         return this.x;
@@ -153,5 +154,6 @@ function EDGE_TRIGGER() {
         }
         this.x = arg1;
         typ = newpar;
+        return new BasicBlock(this.x);
     }
 }

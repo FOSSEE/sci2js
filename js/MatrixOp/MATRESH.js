@@ -23,6 +23,7 @@ function MATRESH() {
         label = [[sci2exp(1)],[sci2exp([1,1])],[sci2exp([1,1])]];
         gr_i = [];
         this.x = standard_define([3,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATRESH.prototype.details = function MATRESH() {
         return this.x;
@@ -93,5 +94,6 @@ function MATRESH() {
             }
         }
         needcompile=resume(needcompile)
+        return new BasicBlock(this.x);
     }
 }

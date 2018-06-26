@@ -19,6 +19,7 @@ function PENDULUM_ANIM() {
         exprs = string(model.rpar);
         gr_i = [];
         this.x = standard_define([3,3],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     PENDULUM_ANIM.prototype.details = function PENDULUM_ANIM() {
         return this.x;
@@ -60,5 +61,6 @@ function PENDULUM_ANIM() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -10,6 +10,7 @@ function func_block() {
         exprs = "v=sin(u);y=u*v";
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     func_block.prototype.details = function func_block() {
         return this.x;
@@ -29,5 +30,6 @@ function func_block() {
             this.x.model = model;
             this.x.graphics = graphics;
         }
+        return new BasicBlock(this.x);
     }
 }

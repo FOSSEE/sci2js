@@ -24,6 +24,7 @@ function MATCATV() {
         label = [sci2exp(2)];
         gr_i = [];
         this.x = standard_define([2,3],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATCATV.prototype.details = function MATCATV() {
         return this.x;
@@ -59,5 +60,6 @@ function MATCATV() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

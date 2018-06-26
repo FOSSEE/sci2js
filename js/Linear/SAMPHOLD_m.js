@@ -15,6 +15,7 @@ function SAMPHOLD_m() {
         label = [sci2exp(1)];
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     SAMPHOLD_m.prototype.details = function SAMPHOLD_m() {
         return this.x;
@@ -48,5 +49,6 @@ function SAMPHOLD_m() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

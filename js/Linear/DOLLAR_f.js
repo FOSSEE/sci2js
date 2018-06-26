@@ -15,6 +15,7 @@ function DOLLAR_f() {
         model.dep_ut = [false,false];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     DOLLAR_f.prototype.details = function DOLLAR_f() {
         return this.x;
@@ -52,5 +53,6 @@ function DOLLAR_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

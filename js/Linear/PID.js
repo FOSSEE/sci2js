@@ -37,6 +37,7 @@ function PID() {
         model.rpar = scs_m;
         gr_i = [];
         this.x = standard_define([2,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     PID.prototype.details = function PID() {
         return this.x;
@@ -113,5 +114,6 @@ function PID() {
         this.x = arg1;
         y = max(y,needcompile);
         typ = newpar;
+        return new BasicBlock(this.x);
     }
 }

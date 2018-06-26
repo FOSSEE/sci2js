@@ -18,6 +18,7 @@ function fortran_block() {
         label = list([[sci2exp(model.in1)],[sci2exp(model.out)],[strcat(sci2exp(model.rpar))],[funam]],list([]));
         gr_i = [];
         this.x = standard_define([4,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     fortran_block.prototype.details = function fortran_block() {
         return this.x;
@@ -62,5 +63,6 @@ function fortran_block() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

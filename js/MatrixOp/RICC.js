@@ -23,6 +23,7 @@ function RICC() {
         label = [[sci2exp(1)],[sci2exp(1)]];
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     RICC.prototype.details = function RICC() {
         return this.x;
@@ -57,5 +58,6 @@ function RICC() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

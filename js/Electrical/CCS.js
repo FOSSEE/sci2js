@@ -47,6 +47,7 @@ function CCS() {
         this.x = standard_define([2.1,3],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = Typein;
         this.x.graphics.out_implicit = Typeout;
+        return new BasicBlock(this.x);
     }
     CCS.prototype.details = function CCS() {
         return this.x;
@@ -59,5 +60,6 @@ function CCS() {
         exprs = graphics.exprs;
         model = arg1.model;
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

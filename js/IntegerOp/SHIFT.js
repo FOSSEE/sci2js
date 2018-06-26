@@ -18,6 +18,7 @@ function SHIFT() {
         exprs = [[sci2exp(3)],[sci2exp(0)],[sci2exp(0)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     SHIFT.prototype.details = function SHIFT() {
         return this.x;
@@ -118,5 +119,6 @@ function SHIFT() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

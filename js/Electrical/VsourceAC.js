@@ -21,6 +21,7 @@ function VsourceAC() {
         this.x = standard_define([2,2],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
+        return new BasicBlock(this.x);
     }
     VsourceAC.prototype.details = function VsourceAC() {
         return this.x;
@@ -44,5 +45,6 @@ function VsourceAC() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

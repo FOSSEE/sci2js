@@ -11,6 +11,7 @@ function CLKOUTV_f() {
         model.dep_ut = [false,false];
         exprs = string(prt);
         this.x = standard_define([1,1],model,exprs," ");
+        return new BasicBlock(this.x);
     }
     CLKOUTV_f.prototype.details = function CLKOUTV_f() {
         return this.x;
@@ -39,5 +40,6 @@ function CLKOUTV_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -20,6 +20,7 @@ function SUPER_f() {
         model.dep_ut = [false,false];
         gr_i = [];
         this.x = standard_define([2,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     SUPER_f.prototype.details = function SUPER_f() {
         return this.x;
@@ -28,5 +29,6 @@ function SUPER_f() {
     }
     SUPER_f.prototype.set = function SUPER_f() {
         xcos(arg1.model.rpar);
+        return new BasicBlock(this.x);
     }
 }

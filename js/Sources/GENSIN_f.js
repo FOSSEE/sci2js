@@ -14,6 +14,7 @@ function GENSIN_f() {
         exprs = [[string(rpar[1-1])],[string(rpar[2-1])],[string(rpar[3-1])]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     GENSIN_f.prototype.details = function GENSIN_f() {
         return this.x;
@@ -45,5 +46,6 @@ function GENSIN_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

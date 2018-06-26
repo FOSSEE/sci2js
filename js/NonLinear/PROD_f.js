@@ -8,6 +8,7 @@ function PROD_f() {
         model.blocktype = "c";
         model.dep_ut = [true,false];
         this.x = standard_define([1,1],model,[],[]);
+        return new BasicBlock(this.x);
     }
     PROD_f.prototype.details = function PROD_f() {
         return this.x;
@@ -16,5 +17,6 @@ function PROD_f() {
     }
     PROD_f.prototype.set = function PROD_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

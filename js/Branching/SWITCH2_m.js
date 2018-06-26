@@ -21,6 +21,7 @@ function SWITCH2_m() {
         exprs = [[sci2exp(1)],[string(ipar)],[string(rpar)],[string(nzz)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     SWITCH2_m.prototype.details = function SWITCH2_m() {
         return this.x;
@@ -72,5 +73,6 @@ function SWITCH2_m() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

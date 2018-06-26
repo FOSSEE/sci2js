@@ -15,6 +15,7 @@ function SWITCH_f() {
         exprs = [[string(nin)],[string(i0+1)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     SWITCH_f.prototype.details = function SWITCH_f() {
         return this.x;
@@ -45,5 +46,6 @@ function SWITCH_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

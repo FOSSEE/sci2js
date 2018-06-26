@@ -21,6 +21,7 @@ function OpAmp() {
         this.x = standard_define([3,5],model,exprs,gr_i);
         this.x.graphics.in_implicit = [["I"],["I"]];
         this.x.graphics.out_implicit = ["I"];
+        return new BasicBlock(this.x);
     }
     OpAmp.prototype.details = function OpAmp() {
         return this.x;
@@ -43,5 +44,6 @@ function OpAmp() {
             this.x.model = model;
             break;
         }
+        return new BasicBlock(this.x);
     }
 }

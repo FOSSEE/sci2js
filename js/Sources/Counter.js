@@ -16,6 +16,7 @@ function Counter() {
         exprs = [[string(minim)],[string(maxim)],[string(rule)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     Counter.prototype.details = function Counter() {
         return this.x;
@@ -47,5 +48,6 @@ function Counter() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -13,6 +13,7 @@ function IN_f() {
         exprs = sci2exp(prt);
         gr_i = [];
         this.x = standard_define([1,1],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     IN_f.prototype.details = function IN_f() {
         return this.x;
@@ -58,5 +59,6 @@ function IN_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -23,6 +23,7 @@ function MATDIV() {
         label = [sci2exp(1)];
         gr_i = [];
         this.x = standard_define([2,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     MATDIV.prototype.details = function MATDIV() {
         return this.x;
@@ -68,5 +69,6 @@ function MATDIV() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

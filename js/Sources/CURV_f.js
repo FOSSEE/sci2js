@@ -17,6 +17,7 @@ function CURV_f() {
         model.dep_ut = [false,true];
         gr_i = [];
         this.x = standard_define([2,2],model,[],gr_i);
+        return new BasicBlock(this.x);
     }
     CURV_f.prototype.details = function CURV_f() {
         return this.x;
@@ -60,5 +61,6 @@ function CURV_f() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

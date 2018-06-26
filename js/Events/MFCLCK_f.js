@@ -16,6 +16,7 @@ function MFCLCK_f() {
         exprs = [[string(dt)],[string(nn)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     MFCLCK_f.prototype.details = function MFCLCK_f() {
         return this.x;
@@ -38,5 +39,6 @@ function MFCLCK_f() {
             this.x.graphics = graphics;
             this.x.model = model;
         }
+        return new BasicBlock(this.x);
     }
 }

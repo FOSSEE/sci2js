@@ -10,6 +10,7 @@ function SINBLK_f() {
         exprs = " ";
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     SINBLK_f.prototype.details = function SINBLK_f() {
         return this.x;
@@ -18,5 +19,6 @@ function SINBLK_f() {
     }
     SINBLK_f.prototype.set = function SINBLK_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

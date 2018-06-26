@@ -11,6 +11,7 @@ function CLKFROM() {
         exprs = "A";
         this.x = standard_define([2,1],model,exprs," ");
         this.x.graphics.id = "From";
+        return new BasicBlock(this.x);
     }
     CLKFROM.prototype.details = function CLKFROM() {
         return this.x;
@@ -40,5 +41,6 @@ function CLKFROM() {
             break;
         }
         needcompile=resume(needcompile)
+        return new BasicBlock(this.x);
     }
 }

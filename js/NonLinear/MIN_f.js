@@ -12,6 +12,7 @@ function MIN_f() {
         exprs = sci2exp(in1);
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     MIN_f.prototype.details = function MIN_f() {
         return this.x;
@@ -20,5 +21,6 @@ function MIN_f() {
     }
     MIN_f.prototype.set = function MIN_f() {
         this.x = arg1;
+        return new BasicBlock(this.x);
     }
 }

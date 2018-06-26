@@ -15,6 +15,7 @@ function CONST_m() {
         exprs = sci2exp(C);
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     CONST_m.prototype.details = function CONST_m() {
         return this.x;
@@ -69,5 +70,6 @@ function CONST_m() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

@@ -23,6 +23,7 @@ function EXTRACT() {
         label = [[sci2exp(1)],[sci2exp([1])],[sci2exp([1])]];
         gr_i = [];
         this.x = standard_define([3,2],model,label,gr_i);
+        return new BasicBlock(this.x);
     }
     EXTRACT.prototype.details = function EXTRACT() {
         return this.x;
@@ -89,5 +90,6 @@ function EXTRACT() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

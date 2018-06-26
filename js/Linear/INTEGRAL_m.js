@@ -17,6 +17,7 @@ function INTEGRAL_m() {
         exprs = string([[0],[0],[0],[maxp],[minp]]);
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     INTEGRAL_m.prototype.details = function INTEGRAL_m() {
         return this.x;
@@ -120,5 +121,6 @@ function INTEGRAL_m() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

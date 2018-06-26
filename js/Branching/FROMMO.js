@@ -20,6 +20,7 @@ function FROMMO() {
         gr_i = [];
         this.x = standard_define([2,1],model,exprs,gr_i);
         this.x.graphics.out_implicit = ["I"];
+        return new BasicBlock(this.x);
     }
     FROMMO.prototype.details = function FROMMO() {
         return this.x;
@@ -49,5 +50,6 @@ function FROMMO() {
             }
         }
         needcompile=resume(needcompile)
+        return new BasicBlock(this.x);
     }
 }

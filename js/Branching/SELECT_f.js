@@ -15,6 +15,7 @@ function SELECT_f() {
         exprs = [[string(nin)],[string(z0+1)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     SELECT_f.prototype.details = function SELECT_f() {
         return this.x;
@@ -44,5 +45,6 @@ function SELECT_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

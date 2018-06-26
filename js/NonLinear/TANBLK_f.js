@@ -11,6 +11,7 @@ function TANBLK_f() {
         exprs = sci2exp(in1);
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     TANBLK_f.prototype.details = function TANBLK_f() {
         return this.x;
@@ -20,5 +21,6 @@ function TANBLK_f() {
     TANBLK_f.prototype.set = function TANBLK_f() {
         this.x = arg1;
         this.x.model.firing = [];
+        return new BasicBlock(this.x);
     }
 }

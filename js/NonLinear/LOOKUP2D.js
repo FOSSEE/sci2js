@@ -19,6 +19,7 @@ function LOOKUP2D() {
         exprs = list(strcat(sci2exp(xx)),strcat(sci2exp(yy)),strcat(sci2exp(zz)),sci2exp(Method),Graf);
         gr_i = [];
         this.x = standard_define([2.5,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     LOOKUP2D.prototype.details = function LOOKUP2D() {
         return this.x;
@@ -95,5 +96,6 @@ function LOOKUP2D() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

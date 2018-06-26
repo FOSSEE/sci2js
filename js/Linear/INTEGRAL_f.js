@@ -12,6 +12,7 @@ function INTEGRAL_f() {
         exprs = strcat(sci2exp(x0));
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     INTEGRAL_f.prototype.details = function INTEGRAL_f() {
         return this.x;
@@ -35,5 +36,6 @@ function INTEGRAL_f() {
             break;
         }
         this.x.model.firing = [];
+        return new BasicBlock(this.x);
     }
 }

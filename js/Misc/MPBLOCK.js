@@ -30,6 +30,7 @@ function MPBLOCK() {
         this.x = standard_define([3,2],model,exprs,gr_i);
         this.x.graphics.in_implicit = this.intype;
         this.x.graphics.out_implicit = this.outtype;
+        return new BasicBlock(this.x);
     }
     MPBLOCK.prototype.details = function MPBLOCK() {
         return this.x;
@@ -262,5 +263,6 @@ function MPBLOCK() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }

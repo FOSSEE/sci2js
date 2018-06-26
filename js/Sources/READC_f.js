@@ -27,6 +27,7 @@ function READC_f() {
         exprs = [["[]"],[sci2exp(outmask)],[fname],[frmt],[string(M)],[string(N)],[string(offset)],[string(swap)]];
         gr_i = [];
         this.x = standard_define([4,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     READC_f.prototype.details = function READC_f() {
         return this.x;
@@ -114,5 +115,6 @@ function READC_f() {
                 }
             }
         }
+        return new BasicBlock(this.x);
     }
 }

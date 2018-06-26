@@ -17,6 +17,7 @@ function HYSTHERESIS() {
         exprs = [[string(rpar)],[string(sign(nzz))]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
+        return new BasicBlock(this.x);
     }
     HYSTHERESIS.prototype.details = function HYSTHERESIS() {
         return this.x;
@@ -47,5 +48,6 @@ function HYSTHERESIS() {
                 break;
             }
         }
+        return new BasicBlock(this.x);
     }
 }
