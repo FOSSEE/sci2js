@@ -27,55 +27,55 @@ function CBLOCK4() {
         graphics = arg1.graphics;
         label = graphics.exprs;
         while (true) {
-            [ok,function_name,impli,in1,it,out,ot,ci,co,xx,z,oz,rpar,ipar,opar,nmode,nzcr,auto0,depu,dept,lab] = scicos_getvalue("Set C-Block4 block parameters",[["Simulation function"],["Is block implicit? (y,n)"],["Input ports sizes"],["Input ports type"],["Output port sizes"],["Output ports type"],["Input event ports sizes"],["Output events ports sizes"],["Initial continuous state"],["Initial discrete state"],["Initial object state"],["Real parameters vector"],["Integer parameters vector"],["Object parameters list"],["Number of modes"],["Number of zero crossings"],["Initial firing vector (<0 for no firing)"],["Direct feedthrough (y or n)"],["Time dependence (y or n)"]],list("str",1,"str",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label[1-1]);
+            [ok,this.function_name,this.impli,this.in1,this.it,this.out,this.ot,this.ci,this.co,this.xx,this.z,this.oz,this.rpar,this.ipar,this.opar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block4 block parameters",[["Simulation function"],["Is block implicit? (y,n)"],["Input ports sizes"],["Input ports type"],["Output port sizes"],["Output ports type"],["Input event ports sizes"],["Output events ports sizes"],["Initial continuous state"],["Initial discrete state"],["Initial object state"],["Real parameters vector"],["Integer parameters vector"],["Object parameters list"],["Number of modes"],["Number of zero crossings"],["Initial firing vector (<0 for no firing)"],["Direct feedthrough (y or n)"],["Time dependence (y or n)"]],list("str",1,"str",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label[1-1]);
             if (!ok) {
                 break;
             }
-            label[1-1] = lab;
-            funam = stripblanks(function_name);
-            xx = xx.slice();
-            z = z.slice();
-            rpar = rpar.slice();
-            ipar = int(ipar.slice());
-            nx = size(xx,1);
-            nz = size(z,1);
-            ci = int(ci.slice());
-            nevin = size(ci,1);
-            co = int(co.slice());
-            nevout = size(co,1);
-            if (part(impli,1)=="y") {
+            label[1-1] = this.lab;
+            funam = stripblanks(this.function_name);
+            this.xx = this.xx.slice();
+            this.z = this.z.slice();
+            this.rpar = this.rpar.slice();
+            this.ipar = int(this.ipar.slice());
+            nx = size(this.xx,1);
+            nz = size(this.z,1);
+            this.ci = int(this.ci.slice());
+            nevin = size(this.ci,1);
+            this.co = int(this.co.slice());
+            nevout = size(this.co,1);
+            if (part(this.impli,1)=="y") {
                 funtyp = 12004;
             } else {
                 funtyp = 2004;
             }
-            if ([[ci],[co]]!=[]) {
-                if (max([[ci],[co]])>1) {
+            if ([[this.ci],[this.co]]!=[]) {
+                if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
                     ok = false;
                 }
             }
             if (ok) {
-                depu = stripblanks(depu);
-                if (part(depu,1)=="y") {
-                    depu = true;
+                this.depu = stripblanks(this.depu);
+                if (part(this.depu,1)=="y") {
+                    this.depu = true;
                 } else {
-                    depu = false;
+                    this.depu = false;
                 }
-                dept = stripblanks(dept);
-                if (part(dept,1)=="y") {
-                    dept = true;
+                this.dept = stripblanks(this.dept);
+                if (part(this.dept,1)=="y") {
+                    this.dept = true;
                 } else {
-                    dept = false;
+                    this.dept = false;
                 }
-                dep_ut = [depu,dept];
+                dep_ut = [this.depu,this.dept];
                 if (funam==" ") {
                     break;
                 }
-                if (model.sim[1-1]!=funam||sign(size(model.state,"*"))!=sign(nx)||sign(size(model.dstate,"*"))!=sign(nz)||model.nzcross!=nzcr||sign(size(model.evtout,"*"))!=sign(nevout)) {
+                if (model.sim[1-1]!=funam||sign(size(model.state,"*"))!=sign(nx)||sign(size(model.dstate,"*"))!=sign(nz)||model.nzcross!=this.nzcr||sign(size(model.evtout,"*"))!=sign(nevout)) {
                     tt = [];
                 }
                 tt = label[2-1];
-                [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),ci,co);
+                [model,graphics,ok] = set_io(model,graphics,list(this.in1,this.it),list(this.out,this.ot),this.ci,this.co);
             }
             if (ok) {
                 while (true) {
@@ -86,15 +86,15 @@ function CBLOCK4() {
                         }
                     } else {
                         model.sim = list(funam,funtyp);
-                        model.state = xx;
-                        model.dstate = z;
-                        model.odstate = oz;
-                        model.rpar = rpar;
-                        model.ipar = ipar;
-                        model.opar = opar;
-                        model.firing = auto0;
-                        model.nzcross = nzcr;
-                        model.nmode = nmode;
+                        model.state = this.xx;
+                        model.dstate = this.z;
+                        model.odstate = this.oz;
+                        model.rpar = this.rpar;
+                        model.ipar = this.ipar;
+                        model.opar = this.opar;
+                        model.firing = this.auto0;
+                        model.nzcross = this.nzcr;
+                        model.nmode = this.nmode;
                         model.dep_ut = dep_ut;
                         label[2-1] = tt;
                         this.x.model = model;

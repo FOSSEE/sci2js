@@ -4,8 +4,14 @@ p0
 ((lp1
 S'x'
 p2
-aS'arbre_decision'
+aS'okk'
 p3
-atp4
-Rp5
+aS'rdnom'
+p4
+aS'lab'
+p5
+aS'arbre_decision'
+p6
+atp7
+Rp8
 .

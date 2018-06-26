@@ -47,7 +47,7 @@ function PID() {
     PID.prototype.set = function PID() {
         ppath = list(0,0,0);
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            o = arg1.model.rpar.objs[i-1];
+            o = arg1.model.rpar.objs[this.i-1];
             if (typeof(o)=="Link") {
                 from = arg1.model.rpar.objs[o.from[1-1]-1];
                 to = arg1.model.rpar.objs[o.to[1-1]-1];
@@ -87,17 +87,17 @@ function PID() {
         d_old = xx3.model.rpar;
         y = 0;
         while (true) {
-            [ok,p,i,d,exprs0] = scicos_getvalue("Set PID parameters",[["Proportional"],["Integral"],["Derivation"]],list("vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.p,this.i,this.d,this.exprs0] = scicos_getvalue("Set PID parameters",[["Proportional"],["Integral"],["Derivation"]],list("vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
             if (ok) {
-                xx1.graphics.exprs = exprs0[1-1];
-                xx1.model.rpar = p;
-                xx2.graphics.exprs = exprs0[2-1];
-                xx2.model.rpar = i;
-                xx3.graphics.exprs = exprs0[3-1];
-                xx3.model.rpar = d;
+                xx1.graphics.exprs = this.exprs0[1-1];
+                xx1.model.rpar = this.p;
+                xx2.graphics.exprs = this.exprs0[2-1];
+                xx2.model.rpar = this.i;
+                xx3.graphics.exprs = this.exprs0[3-1];
+                xx3.model.rpar = this.d;
                 arg1.model.rpar.objs[ppath[1-1]-1] = xx1;
                 arg1.model.rpar.objs[ppath[2-1]-1] = xx2;
                 arg1.model.rpar.objs[ppath[3-1]-1] = xx3;
@@ -105,7 +105,7 @@ function PID() {
             }
         }
         needcompile = 0;
-        if (!(p_old==p&&i_old==i&&d_old==d)) {
+        if (!(p_old==this.p&&i_old==this.i&&d_old==this.d)) {
             newpar[size(newpar)+1-1] = ppath[1-1];
             newpar[size(newpar)+1-1] = ppath[2-1];
             newpar[size(newpar)+1-1] = ppath[3-1];

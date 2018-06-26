@@ -39,15 +39,15 @@ function SUBMAT() {
             label[6-1] = sci2exp([1,1]);
         }
         while (true) {
-            [ok,typ,a,b,c,d,inp,exprs] = scicos_getvalue("Set SUBMAT Block",[["Datatype (1=real double  2=Complex)"],["Starting Row Index"],["Ending Row Index"],["Starting Column Index"],["Ending Column Index"],["Input Dimensions"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label);
+            [ok,this.typ,this.a,this.b,this.c,this.d,this.inp,exprs] = scicos_getvalue("Set SUBMAT Block",[["Datatype (1=real double  2=Complex)"],["Starting Row Index"],["Ending Row Index"],["Starting Column Index"],["Ending Column Index"],["Input Dimensions"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label);
             if (!ok) {
                 break;
             }
-            if ((typ==1)) {
+            if ((this.typ==1)) {
                 function_name = "submat";
                 ot = 1;
                 it = 1;
-            } else if ((typ==2)) {
+            } else if ((this.typ==2)) {
                 function_name = "submatz";
                 ot = 2;
                 it = 2;
@@ -55,29 +55,29 @@ function SUBMAT() {
                 message("Datatype is not supported");
                 ok = false;
             }
-            if ((a<=0)||(b<=0)||(c<=0)||(d<=0)) {
+            if ((this.a<=0)||(this.b<=0)||(this.c<=0)||(this.d<=0)) {
                 message("invalid index");
                 ok = false;
             }
-            if (b<a) {
+            if (this.b<this.a) {
                 message("ending row must be greater than starting row");
                 ok = false;
             }
-            if (d<c) {
+            if (this.d<this.c) {
                 message("ending column must be greater than starting column");
                 ok = false;
             }
-            if (b>inp[1-1]) {
+            if (this.b>this.inp[1-1]) {
                 message("index of ending row is out of range");
                 ok = false;
             }
-            if (d>inp[2-1]) {
+            if (this.d>this.inp[2-1]) {
                 message("index of ending column is out of range");
                 ok = false;
             }
-            model.ipar = [[a],[b],[c],[d]];
-            in1 = [inp[1-1],inp[2-1]];
-            out = [(b-a)+1,(d-c)+1];
+            model.ipar = [[this.a],[this.b],[this.c],[this.d]];
+            in1 = [this.inp[1-1],this.inp[2-1]];
+            out = [(this.b-this.a)+1,(this.d-this.c)+1];
             funtyp = 4;
             label = exprs;
             if (ok) {

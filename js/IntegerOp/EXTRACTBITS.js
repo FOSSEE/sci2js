@@ -29,56 +29,56 @@ function EXTRACTBITS() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,Datatype,rule,bit,scal,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"EXTRACTBITS")],[" "],[gettext("Bits Extraction")],[" "],[gettext("&nbsp;- Bits to Extract:")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits")],[gettext("&nbsp;- Number of Bits or Index of bit : Index 0 is LSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Bits to extract")],[gettext("Number of Bits or Index of Bit")],[gettext("Treat Bit Field as an Integer (0:No, 1:Yes)")]],list("vec",1,"vec",1,"vec",-1,"vec",1),exprs);
+            [ok,this.Datatype,this.rule,this.bit,this.scal,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"EXTRACTBITS")],[" "],[gettext("Bits Extraction")],[" "],[gettext("&nbsp;- Bits to Extract:")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits")],[gettext("&nbsp;- Number of Bits or Index of bit : Index 0 is LSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Bits to extract")],[gettext("Number of Bits or Index of Bit")],[gettext("Treat Bit Field as an Integer (0:No, 1:Yes)")]],list("vec",1,"vec",1,"vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            bitstr = strcat(string(bit.slice())," ");
-            if ((rule<1)||(rule>5)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Bits to Extract"),rule),msprintf(gettext("Must be in the interval %s."),"[1, 5]"));
+            bitstr = strcat(string(this.bit.slice())," ");
+            if ((this.rule<1)||(this.rule>5)) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Bits to Extract"),this.rule),msprintf(gettext("Must be in the interval %s."),"[1, 5]"));
                 ok = false;
-            } else if (scal<0||scal>1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Treat Bit Field as an Integer"),scal),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+            } else if (this.scal<0||this.scal>1) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Treat Bit Field as an Integer"),this.scal),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
                 ok = false;
             } else {
                 in1 = [model.in1,model.in2];
-                bit = int(bit);
-                rule = int(rule);
-                if ((rule==3)||(rule==4)) {
-                    if ((size(bit,"*")!=1)) {
+                this.bit = int(this.bit);
+                this.rule = int(this.rule);
+                if ((this.rule==3)||(this.rule==4)) {
+                    if ((size(this.bit,"*")!=1)) {
                         block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),gettext("Must be a single value."));
                         ok = false;
                     } else {
-                        numb = bit;
+                        numb = this.bit;
                     }
-                } else if ((rule==5)) {
-                    if ((size(bit,"*")!=2)) {
+                } else if ((this.rule==5)) {
+                    if ((size(this.bit,"*")!=2)) {
                         block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),gettext("Must have this form: [Start, End]."));
                         ok = false;
-                    } else if (bit[1-1]>bit[2-1]) {
+                    } else if (this.bit[1-1]>this.bit[2-1]) {
                         block_parameter_error(msprintf(gettext("Wrong values for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("\'Start\' must be less than \'End\'.")));
                         ok = false;
                     } else {
-                        numb = bit[2-1]-bit[1-1];
+                        numb = this.bit[2-1]-this.bit[1-1];
                     }
                 } else {
-                    bit = 0;
+                    this.bit = 0;
                     numb = [];
                 }
             }
             if (ok) {
-                if ((Datatype==3||Datatype==6)) {
-                    if (or(bit.slice()>31)||or(bit.slice()<0)) {
+                if ((this.Datatype==3||this.Datatype==6)) {
+                    if (or(this.bit.slice()>31)||or(this.bit.slice()<0)) {
                         block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("Indexes must be in the interval %s."),"[0, 31]"));
                         ok = false;
                     }
-                    switch (rule) {
+                    switch (this.rule) {
                     case 1:
-                        switch (scal) {
+                        switch (this.scal) {
                         case 0:
                             model.sim = list("extract_bit_32_UH0",4);
                         case 1:
-                            switch (Datatype) {
+                            switch (this.Datatype) {
                             case 3:
                                 model.sim = list("extract_bit_32_UH1",4);
                             case 6:
@@ -88,11 +88,11 @@ function EXTRACTBITS() {
                     case 2:
                         model.sim = list("extract_bit_32_LH",4);
                     case 3:
-                        switch (scal) {
+                        switch (this.scal) {
                         case 0:
                             model.sim = list("extract_bit_32_MSB0",4);
                         case 1:
-                            switch (Datatype) {
+                            switch (this.Datatype) {
                             case 3:
                                 model.sim = list("extract_bit_32_MSB1",4);
                             case 6:
@@ -102,11 +102,11 @@ function EXTRACTBITS() {
                     case 4:
                         model.sim = list("extract_bit_32_LSB",4);
                     case 5:
-                        switch (scal) {
+                        switch (this.scal) {
                         case 0:
                             model.sim = list("extract_bit_32_RB0",4);
                         case 1:
-                            switch (Datatype) {
+                            switch (this.Datatype) {
                             case 3:
                                 model.sim = list("extract_bit_32_RB1",4);
                             case 6:
@@ -114,18 +114,18 @@ function EXTRACTBITS() {
                             }
                         }
                     }
-                } else if ((Datatype==4||Datatype==7)) {
-                    if (or(bit.slice()>15)||or(bit.slice()<0)) {
+                } else if ((this.Datatype==4||this.Datatype==7)) {
+                    if (or(this.bit.slice()>15)||or(this.bit.slice()<0)) {
                         block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("Indexes must be in the interval %s."),"[0, 15]"));
                         ok = false;
                     }
-                    switch (rule) {
+                    switch (this.rule) {
                     case 1:
-                        switch (scal) {
+                        switch (this.scal) {
                         case 0:
                             model.sim = list("extract_bit_16_UH0",4);
                         case 1:
-                            switch (Datatype) {
+                            switch (this.Datatype) {
                             case 4:
                                 model.sim = list("extract_bit_16_UH1",4);
                             case 7:
@@ -135,11 +135,11 @@ function EXTRACTBITS() {
                     case 2:
                         model.sim = list("extract_bit_16_LH",4);
                     case 3:
-                        switch (scal) {
+                        switch (this.scal) {
                         case 0:
                             model.sim = list("extract_bit_16_MSB0",4);
                         case 1:
-                            switch (Datatype) {
+                            switch (this.Datatype) {
                             case 4:
                                 model.sim = list("extract_bit_16_MSB1",4);
                             case 7:
@@ -149,11 +149,11 @@ function EXTRACTBITS() {
                     case 4:
                         model.sim = list("extract_bit_16_LSB",4);
                     case 5:
-                        switch (scal) {
+                        switch (this.scal) {
                         case 0:
                             model.sim = list("extract_bit_16_RB0",4);
                         case 1:
-                            switch (Datatype) {
+                            switch (this.Datatype) {
                             case 4:
                                 model.sim = list("extract_bit_16_RB1",4);
                             case 7:
@@ -161,18 +161,18 @@ function EXTRACTBITS() {
                             }
                         }
                     }
-                } else if ((Datatype==5||Datatype==8)) {
-                    if (or(bit.slice()>7)||or(bit.slice()<0)) {
+                } else if ((this.Datatype==5||this.Datatype==8)) {
+                    if (or(this.bit.slice()>7)||or(this.bit.slice()<0)) {
                         block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("Indexes must be in the interval %s."),"[0, 7]"));
                         ok = false;
                     }
-                    switch (rule) {
+                    switch (this.rule) {
                     case 1:
-                        switch (scal) {
+                        switch (this.scal) {
                         case 0:
                             model.sim = list("extract_bit_8_UH0",4);
                         case 1:
-                            switch (Datatype) {
+                            switch (this.Datatype) {
                             case 5:
                                 model.sim = list("extract_bit_8_UH1",4);
                             case 8:
@@ -182,11 +182,11 @@ function EXTRACTBITS() {
                     case 2:
                         model.sim = list("extract_bit_8_LH",4);
                     case 3:
-                        switch (scal) {
+                        switch (this.scal) {
                         case 0:
                             model.sim = list("extract_bit_8_MSB0",4);
                         case 1:
-                            switch (Datatype) {
+                            switch (this.Datatype) {
                             case 5:
                                 model.sim = list("extract_bit_8_MSB1",4);
                             case 8:
@@ -196,11 +196,11 @@ function EXTRACTBITS() {
                     case 4:
                         model.sim = list("extract_bit_8_LSB",4);
                     case 5:
-                        switch (scal) {
+                        switch (this.scal) {
                         case 0:
                             model.sim = list("extract_bit_8_RB0",4);
                         case 1:
-                            switch (Datatype) {
+                            switch (this.Datatype) {
                             case 5:
                                 model.sim = list("extract_bit_8_RB1",4);
                             case 8:
@@ -209,19 +209,19 @@ function EXTRACTBITS() {
                         }
                     }
                 } else {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
+                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),this.Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
                     ok = false;
                 }
             }
             if (ok) {
-                it = Datatype;
-                ot = Datatype;
+                it = this.Datatype;
+                ot = this.Datatype;
                 out = [1,1];
                 [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
-                model.ipar = [[int(bit.slice())],[int(numb.slice())]];
+                model.ipar = [[int(this.bit.slice())],[int(numb.slice())]];
                 this.x.graphics = graphics;
                 this.x.model = model;
                 break;

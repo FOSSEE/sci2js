@@ -29,17 +29,17 @@ function SAMPHOLD_m() {
         label = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,it,exprs] = scicos_getvalue("Set parameters Block",["Datatype(1=real double 2=Complex 3=int32 ...)"],list("vec",1),label);
+            [ok,this.it,exprs] = scicos_getvalue("Set parameters Block",["Datatype(1=real double 2=Complex 3=int32 ...)"],list("vec",1),label);
             if (!ok) {
                 break;
             }
-            if (((it<1)||(it>8))) {
+            if (((this.it<1)||(this.it>8))) {
                 message("Datatype is not supported");
                 ok = false;
             }
             if (ok) {
                 in1 = [model.in1,model.in2];
-                [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(in1,it),1,[]);
+                [model,graphics,ok] = set_io(model,graphics,list(in1,this.it),list(in1,this.it),1,[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     arg1.graphics = graphics;

@@ -4,27 +4,27 @@ function READC_f() {
         frmt = "d  ";
         fname = "foo";
         lunit = 0;
-        N = 20;
-        M = 1;
+        this.N = 20;
+        this.M = 1;
         rpar = [];
         tmask = 0;
-        swap = 0;
-        offset = 1;
-        outmask = 1;
+        this.swap = 0;
+        this.offset = 1;
+        this.outmask = 1;
         ievt = 0;
-        nout = size(outmask,"*");
-        ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[N],[M],[swap],[offset],[this._str2code[fname-1]],[tmask],[outmask]];
+        nout = size(this.outmask,"*");
+        ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[fname-1]],[tmask],[this.outmask]];
         model = scicos_model();
         model.sim = list("readc",2);
         model.out = nout;
         model.evtin = 1;
         model.evtout = [];
-        model.dstate = [[1],[1],[lunit],[zeros(N*M,1)]];
-        model.ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[N],[M],[swap],[offset],[this._str2code[fname-1]],[tmask],[outmask]];
+        model.dstate = [[1],[1],[lunit],[zeros(this.N*this.M,1)]];
+        model.ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[fname-1]],[tmask],[this.outmask]];
         model.blocktype = "d";
         model.firing = -1;
         model.dep_ut = [false,false];
-        exprs = [["[]"],[sci2exp(outmask)],[fname],[frmt],[string(M)],[string(N)],[string(offset)],[string(swap)]];
+        exprs = [["[]"],[sci2exp(this.outmask)],[fname],[frmt],[string(this.M)],[string(this.N)],[string(this.offset)],[string(this.swap)]];
         gr_i = [];
         this.x = standard_define([4,2],model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -48,63 +48,63 @@ function READC_f() {
         fname = exprs[3-1];
         frmt = exprs[4-1];
         while (true) {
-            [ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"READC_f")],[" "],[gettext("Read from C binary file")]],[[gettext("Time Record Selection")],[gettext("Outputs Record Selection")],[gettext("Input File Name")],[gettext("Input Format")],[gettext("Record Size")],[gettext("Buffer Size")],[gettext("Initial Record Index")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.M,this.N,this.offset,this.swap,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"READC_f")],[" "],[gettext("Read from C binary file")]],[[gettext("Time Record Selection")],[gettext("Outputs Record Selection")],[gettext("Input File Name")],[gettext("Input Format")],[gettext("Record Size")],[gettext("Buffer Size")],[gettext("Initial Record Index")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            fname1 = pathconvert(stripblanks(fname1),false,true);
-            frmt1 = stripblanks(frmt1);
+            this.fname1 = pathconvert(stripblanks(this.fname1),false,true);
+            this.frmt1 = stripblanks(this.frmt1);
             fmts = ["s","l","d","f","c","us","ul","uc","ull","uls","ubl","ubs","dl","fl","ll","sl","db","fb","lb","sb"];
-            nout = size(outmask,"*");
-            if (prod(size(tmask1))>1) {
+            nout = size(this.outmask,"*");
+            if (prod(size(this.tmask1))>1) {
                 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Time Record Selection")),gettext("Must be a scalar or an empty matrix."));
-            } else if (and(frmt1!=fmts)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Input Format"),frmt1),gettext("Valid formats are: "+strcat(fmts,", ")));
-            } else if (this.alreadyran&&fname1!=fname) {
+            } else if (and(this.frmt1!=fmts)) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Input Format"),this.frmt1),gettext("Valid formats are: "+strcat(fmts,", ")));
+            } else if (this.alreadyran&&this.fname1!=fname) {
                 block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running"),gettext("Input File Name")),gettext("End current simulation first."));
-            } else if (N!=ipar[6-1]&&this.alreadyran) {
+            } else if (this.N!=ipar[6-1]&&this.alreadyran) {
                 block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
-            } else if (this.alreadyran&&size(tmask1)!=size(tmask)) {
+            } else if (this.alreadyran&&size(this.tmask1)!=size(tmask)) {
                 block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Time Record Selection")),gettext("End current simulation first."));
-            } else if (fname1=="") {
+            } else if (this.fname1=="") {
                 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Input File Name")),gettext("You must provide a file name."));
-            } else if (M<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Record Size"),M),gettext("Strictly positive integer expected."));
-            } else if (tmask1!=[]&&(tmask1<1||tmask1>M)) {
-                block_parameter_error(msprintf(gettext("Wrong value for  \'%s\' parameter: %d."),gettext("Time Record Selection"),tmask1),msprintf(gettext("Must be in the interval %s."),gettext("[1, Record Size = ")+string(M)+"]"));
+            } else if (this.M<1) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Record Size"),this.M),gettext("Strictly positive integer expected."));
+            } else if (this.tmask1!=[]&&(this.tmask1<1||this.tmask1>this.M)) {
+                block_parameter_error(msprintf(gettext("Wrong value for  \'%s\' parameter: %d."),gettext("Time Record Selection"),this.tmask1),msprintf(gettext("Must be in the interval %s."),gettext("[1, Record Size = ")+string(this.M)+"]"));
             } else if (nout==0) {
                 block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Outputs Record Selection"),nout),gettext("Strictly positive integer expected."));
-            } else if (nout>M) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Outputs Record Selection"),nout),msprintf(gettext("Must be in the interval %s."),gettext("[1, Record Size = ")+string(M)+"]"));
-            } else if (max(outmask)>M||min(outmask)<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for indexes in \'%s\' parameter: %s."),gettext("Outputs Record Selection"),strcat(string(outmask.slice())," ")),msprintf(gettext("Must be in the interval %s."),gettext("[1, Record Size = ")+string(M)+"]"));
-            } else if (N<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),N),gettext("Strictly positive integer expected."));
-            } else if (swap!=0&&swap!=1) {
-                block_parameter_error(msprintf(gettext("Wrong value for  \'%s\' parameter: %d."),gettext("Swap Mode"),swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
-            } else if (offset<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Initial Record Index"),offset),gettext("Strictly positive integer expected."));
+            } else if (nout>this.M) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Outputs Record Selection"),nout),msprintf(gettext("Must be in the interval %s."),gettext("[1, Record Size = ")+string(this.M)+"]"));
+            } else if (max(this.outmask)>this.M||min(this.outmask)<1) {
+                block_parameter_error(msprintf(gettext("Wrong value for indexes in \'%s\' parameter: %s."),gettext("Outputs Record Selection"),strcat(string(this.outmask.slice())," ")),msprintf(gettext("Must be in the interval %s."),gettext("[1, Record Size = ")+string(this.M)+"]"));
+            } else if (this.N<1) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),this.N),gettext("Strictly positive integer expected."));
+            } else if (this.swap!=0&&this.swap!=1) {
+                block_parameter_error(msprintf(gettext("Wrong value for  \'%s\' parameter: %d."),gettext("Swap Mode"),this.swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+            } else if (this.offset<1) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Initial Record Index"),this.offset),gettext("Strictly positive integer expected."));
             } else {
-                if (tmask1==[]) {
+                if (this.tmask1==[]) {
                     ievt = 0;
-                    tmask1 = 0;
+                    this.tmask1 = 0;
                     outpt = [];
                 } else {
                     ievt = 1;
                     outpt = 1;
                 }
-                out = size(outmask,"*");
+                out = size(this.outmask,"*");
                 [model,graphics,ok] = check_io(model,graphics,[],out,1,outpt);
-                frmt1 = part(frmt1,1,3);
+                this.frmt1 = part(this.frmt1,1,3);
                 if (ok) {
                     if (ievt==0) {
                         model.firing = -1;
                     } else {
                         model.firing = 0;
                     }
-                    ipar = [[length(fname1)],[this._str2code[frmt1-1]],[ievt],[N],[M],[swap],[offset],[this._str2code[fname1-1]],[tmask1],[outmask.slice()]];
-                    if (prod(size(dstate))!=(N*M)+3) {
-                        dstate = [[-1],[-1],[lunit],[zeros(N*M,1)]];
+                    ipar = [[length(this.fname1)],[this._str2code[this.frmt1-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[this.fname1-1]],[this.tmask1],[this.outmask.slice()]];
+                    if (prod(size(dstate))!=(this.N*this.M)+3) {
+                        dstate = [[-1],[-1],[lunit],[zeros(this.N*this.M,1)]];
                     }
                     model.dstate = dstate;
                     model.ipar = ipar;

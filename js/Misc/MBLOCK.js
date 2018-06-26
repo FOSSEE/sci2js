@@ -7,9 +7,9 @@ function MBLOCK() {
         this.outtype = [["I"],["E"]];
         param = [["R"],["L"]];
         paramv = list(0.1,.0001);
-        pprop = [[0],[0]];
+        this.pprop = [[0],[0]];
         nameF = "generic";
-        exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],sci2exp(this.in1.slice()),sci2exp(this.intype.slice()),sci2exp(this.out.slice()),sci2exp(this.outtype.slice()),sci2exp(param.slice()),list(string(0.1),string(.0001)),sci2exp(pprop.slice()),nameF,[]);
+        exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],sci2exp(this.in1.slice()),sci2exp(this.intype.slice()),sci2exp(this.out.slice()),sci2exp(this.outtype.slice()),sci2exp(param.slice()),list(string(0.1),string(.0001)),sci2exp(this.pprop.slice()),nameF,[]);
         model = scicos_model();
         model.blocktype = "c";
         model.dep_ut = [false,true];
@@ -44,17 +44,17 @@ function MBLOCK() {
         exprs = graphics.exprs;
         if (this.type[exprs-1]==15) {
             paramv = list();
-            pprop = [];
+            this.pprop = [];
             for (i=1;i<=size(model.rpar,"*");i+=1) {
                 paramv[$+1-1] = string(model.rpar[i-1]);
-                pprop[$+1-1] = 0;
+                this.pprop[$+1-1] = 0;
             }
-            exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],exprs[1-1][1-1],exprs[1-1][2-1],exprs[1-1][3-1],exprs[1-1][4-1],exprs[1-1][5-1],paramv,sci2exp(pprop.slice()),exprs[1-1][7-1],exprs[2-1]);
+            exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],exprs[1-1][1-1],exprs[1-1][2-1],exprs[1-1][3-1],exprs[1-1][4-1],exprs[1-1][5-1],paramv,sci2exp(this.pprop.slice()),exprs[1-1][7-1],exprs[2-1]);
         }
-        lab_1 = list(exprs.in1,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
+        this.lab_1 = list(exprs.in1,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
         lab_2 = exprs.paramv;
         while (true) {
-            [ok,Tin,Tintype,Tout,Touttype,Tparam,pprop,Tfunam,lab_1] = scicos_getvalue("Set Modelica generic block parameters",[["Input variables:       "],["Input variables types: "],["Output variables:      "],["Output variables types:"],["Parameters in Modelica:"],["Parameters properties: "],["Function name:         "]],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),lab_1);
+            [ok,this.Tin,this.Tintype,this.Tout,this.Touttype,this.Tparam,this.pprop,this.Tfunam,this.lab_1] = scicos_getvalue("Set Modelica generic block parameters",[["Input variables:       "],["Input variables types: "],["Output variables:      "],["Output variables types:"],["Parameters in Modelica:"],["Parameters properties: "],["Function name:         "]],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),this.lab_1);
             if (!ok) {
                 break;
             }
@@ -134,14 +134,14 @@ function MBLOCK() {
                 }
             }
             if (ok) {
-                pprop = pprop.slice();
-                if ((size(param,"*")!=size(pprop,"*"))) {
+                this.pprop = this.pprop.slice();
+                if ((size(param,"*")!=size(this.pprop,"*"))) {
                     messagebox([["There is differences in"],["size of param and size "],["of param properties."]],"modal","error");
                     ok = false;
                 }
             }
             if (ok) {
-                if (max(pprop)>2||min(pprop)<0) {
+                if (max(this.pprop)>2||min(this.pprop)<0) {
                     messagebox([["Parameters properties must be :"],["0 : for simple paramater,"],["1 : for initial state value,"],["2 : for a fixed initial state value."]],"modal","error");
                     ok = false;
                 }
@@ -165,7 +165,7 @@ function MBLOCK() {
                 [model,graphics,ok] = set_io(model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
             }
             if (ok) {
-                Tparam_lab = evstr(Tparam);
+                Tparam_lab = evstr(this.Tparam);
                 Tparam_sz = size(Tparam_lab,"*");
                 if (Tparam_sz>lstsize(lab_2)) {
                     for (i=1;i<=(Tparam_sz-lstsize(lab_2));i+=1) {
@@ -186,11 +186,11 @@ function MBLOCK() {
                     rhs_txt = "";
                     for (i=1;i<=Tparam_sz;i+=1) {
                         lhs_txt = lhs_txt+"%v"+string(i)+",";
-                        if (pprop[i-1]==0) {
+                        if (this.pprop[i-1]==0) {
                             lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+"\';";
-                        } else if (pprop[i-1]==1) {
+                        } else if (this.pprop[i-1]==1) {
                             lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+" (state) \';";
-                        } else if (pprop[i-1]==2) {
+                        } else if (this.pprop[i-1]==2) {
                             lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+" (fixed state) \';";
                         }
                         rhs_txt = rhs_txt+"\'vec\',-1,";
@@ -221,7 +221,7 @@ function MBLOCK() {
                         tt = [];
                     }
                 }
-                [ok,tt] = MODCOM(this.funam,tt,this.in1,this.out,param,paramv,pprop);
+                [ok,tt] = MODCOM(this.funam,tt,this.in1,this.out,param,paramv,this.pprop);
                 if (!ok) {
                     break;
                 }
@@ -231,8 +231,8 @@ function MBLOCK() {
                 mo.model = nameF;
                 mo.inputs = this.in1;
                 mo.outputs = this.out;
-                if (max(pprop)>0) {
-                    mo.parameters = list(transpose(param),paramv,transpose(pprop));
+                if (max(this.pprop)>0) {
+                    mo.parameters = list(transpose(param),paramv,transpose(this.pprop));
                 } else {
                     mo.parameters = list(transpose(param),paramv);
                 }
@@ -242,11 +242,11 @@ function MBLOCK() {
                     model.rpar = [[model.rpar],[paramv[i-1].slice()]];
                 }
                 model.sim[1-1] = this.funam;
-                exprs.in1 = lab_1[1-1];
-                exprs.intype = lab_1[2-1];
-                exprs.out = lab_1[3-1];
-                exprs.outtype = lab_1[4-1];
-                exprs.param = lab_1[5-1];
+                exprs.in1 = this.lab_1[1-1];
+                exprs.intype = this.lab_1[2-1];
+                exprs.out = this.lab_1[3-1];
+                exprs.outtype = this.lab_1[4-1];
+                exprs.param = this.lab_1[5-1];
                 exprs.paramv = list();
                 if (Tparam_sz!=0) {
                     if (this.type[lab_2-1]==15) {
@@ -259,8 +259,8 @@ function MBLOCK() {
                         }
                     }
                 }
-                exprs.pprop = lab_1[6-1];
-                exprs.nameF = lab_1[7-1];
+                exprs.pprop = this.lab_1[6-1];
+                exprs.nameF = this.lab_1[7-1];
                 exprs.funtxt = tt;
                 this.x.model = model;
                 graphics.gr_i[1-1][1-1] = "txt=[\'Modelica\';\' "+nameF+" \'];";

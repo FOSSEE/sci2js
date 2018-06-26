@@ -23,24 +23,24 @@ function SampleCLK() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,frequ,offset,exprs] = scicos_getvalue("Set block parameters",[["Sample time"],["Offset"]],list("vec",1,"vec",1),exprs);
+            [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",[["Sample time"],["Offset"]],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            if (frequ<0) {
+            if (this.frequ<0) {
                 message("Frequency must be a positif number");
                 ok = false;
             }
-            if (abs(offset)>frequ) {
+            if (abs(this.offset)>this.frequ) {
                 message("The |Offset| must be less than the Frequency");
                 ok = false;
             }
             if (ok) {
-                if (or(model.rpar.slice()!=[[frequ],[offset]])) {
+                if (or(model.rpar.slice()!=[[this.frequ],[this.offset]])) {
                     needcompile = 4;
                     y = needcompile;
                 }
-                model.rpar = [[frequ],[offset]];
+                model.rpar = [[this.frequ],[this.offset]];
                 model.evtout = 1;
                 model.firing = -1;
                 graphics.exprs = exprs;

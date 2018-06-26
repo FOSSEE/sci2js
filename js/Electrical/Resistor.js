@@ -2,8 +2,8 @@
 function Resistor() {
     Resistor.prototype.define = function Resistor() {
         model = scicos_model();
-        R = 0.01;
-        model.rpar = R;
+        this.R = 0.01;
+        model.rpar = this.R;
         model.sim = "resistor";
         model.blocktype = "c";
         model.dep_ut = [true,false];
@@ -11,11 +11,11 @@ function Resistor() {
         mo.model = "Resistor";
         mo.inputs = "p";
         mo.outputs = "n";
-        mo.parameters = list("R",list(R));
+        mo.parameters = list("R",list(this.R));
         model.equations = mo;
         model.in1 = ones(size(mo.inputs,"*"),1);
         model.out = ones(size(mo.outputs,"*"),1);
-        exprs = string(R);
+        exprs = string(this.R);
         gr_i = [];
         this.x = standard_define([2,1],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
@@ -33,12 +33,12 @@ function Resistor() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,R,exprs] = scicos_getvalue("Set Resistor block parameter","R (ohm)",list("vec",1),exprs);
+            [ok,this.R,exprs] = scicos_getvalue("Set Resistor block parameter","R (ohm)",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            model.rpar = R;
-            model.equations.parameters[2-1] = list(R);
+            model.rpar = this.R;
+            model.equations.parameters[2-1] = list(this.R);
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = model;

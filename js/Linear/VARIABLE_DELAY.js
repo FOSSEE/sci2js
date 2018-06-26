@@ -2,18 +2,18 @@
 function VARIABLE_DELAY() {
     VARIABLE_DELAY.prototype.define = function VARIABLE_DELAY() {
         nin = 1;
-        T = 1;
-        init = 0;
-        N = 1024;
+        this.T = 1;
+        this.init = 0;
+        this.N = 1024;
         model = scicos_model();
         model.sim = list("variable_delay",4);
         model.in1 = [[nin],[1]];
         model.out = nin;
-        model.rpar = [T,init];
-        model.ipar = N;
+        model.rpar = [this.T,this.init];
+        model.ipar = this.N;
         model.blocktype = "d";
         model.dep_ut = [false,false];
-        exprs = [[string(T)],[string(init)],[string(N)]];
+        exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -30,15 +30,15 @@ function VARIABLE_DELAY() {
         model = arg1.model;
         nin = model.in1[1-1];
         while (true) {
-            [ok,T,init,N,exprs] = scicos_getvalue("Set delay parameters",[["Max delay"],["initial input"],["Buffer size"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.T,this.init,this.N,exprs] = scicos_getvalue("Set delay parameters",[["Max delay"],["initial input"],["Buffer size"]],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            if (N<2) {
+            if (this.N<2) {
                 message("Buffer must be larger than 2");
                 ok = false;
             }
-            if (T<=0) {
+            if (this.T<=0) {
                 message("Delay must be positive");
                 ok = false;
             }
@@ -47,8 +47,8 @@ function VARIABLE_DELAY() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                model.rpar = [[T],[init]];
-                model.ipar = N;
+                model.rpar = [[this.T],[this.init]];
+                model.ipar = this.N;
                 this.x.graphics = graphics;
                 this.x.model = model;
                 break;

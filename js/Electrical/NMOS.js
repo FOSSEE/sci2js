@@ -2,15 +2,15 @@
 function NMOS() {
     NMOS.prototype.define = function NMOS() {
         model = scicos_model();
-        W = 20.e-6;
-        L = 6.e-6;
-        Beta = 0.041e-3;
-        Vt = 0.8;
-        K2 = 1.144;
-        K5 = 0.7311;
-        dW = -2.5e-6;
-        dL = -1.5e-6;
-        RDS = 1.e+7;
+        this.W = 20.e-6;
+        this.L = 6.e-6;
+        this.Beta = 0.041e-3;
+        this.Vt = 0.8;
+        this.K2 = 1.144;
+        this.K5 = 0.7311;
+        this.dW = -2.5e-6;
+        this.dL = -1.5e-6;
+        this.RDS = 1.e+7;
         model.sim = "NMOS";
         model.blocktype = "c";
         model.dep_ut = [true,false];
@@ -18,11 +18,11 @@ function NMOS() {
         mo.model = "NMOS";
         mo.outputs = [["D"],["B"],["S"]];
         mo.inputs = "G";
-        mo.parameters = list([["W"],["L"],["Beta"],["Vt"],["K2"],["K5"],["dW"],["dL"],["RDS"]],[[W],[L],[Beta],[Vt],[K2],[K5],[dW],[dL],[RDS]]);
+        mo.parameters = list([["W"],["L"],["Beta"],["Vt"],["K2"],["K5"],["dW"],["dL"],["RDS"]],[[this.W],[this.L],[this.Beta],[this.Vt],[this.K2],[this.K5],[this.dW],[this.dL],[this.RDS]]);
         model.equations = mo;
         model.in1 = ones(size(mo.inputs,"*"),1);
         model.out = ones(size(mo.outputs,"*"),1);
-        exprs = [[string(W)],[string(L)],[string(Beta)],[string(Vt)],[string(K2)],[string(K5)],[string(dW)],[string(dL)],[string(RDS)]];
+        exprs = [[string(this.W)],[string(this.L)],[string(this.Beta)],[string(this.Vt)],[string(this.K2)],[string(this.K5)],[string(this.dW)],[string(this.dL)],[string(this.RDS)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
@@ -40,11 +40,11 @@ function NMOS() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,W,L,Beta,Vt,K2,K5,dW,dL,RDS,exprs] = scicos_getvalue("Set NMOS Transistor block parameters",[["Width [m]"],["Length [m]"],["Transconductance parameter [A/(V*V)]"],["Zero bias threshold voltage [V]"],["Bulk threshold parameter"],["Reduction of pinch-off region"],["Narrowing of channel [m]"],["Shortening of channel [m]"],["Drain-Source-Resistance [Ohm]"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS,exprs] = scicos_getvalue("Set NMOS Transistor block parameters",[["Width [m]"],["Length [m]"],["Transconductance parameter [A/(V*V)]"],["Zero bias threshold voltage [V]"],["Bulk threshold parameter"],["Reduction of pinch-off region"],["Narrowing of channel [m]"],["Shortening of channel [m]"],["Drain-Source-Resistance [Ohm]"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
-            model.equations.parameters[2-1] = list(W,L,Beta,Vt,K2,K5,dW,dL,RDS);
+            model.equations.parameters[2-1] = list(this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS);
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = model;

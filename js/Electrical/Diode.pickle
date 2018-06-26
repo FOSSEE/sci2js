@@ -4,6 +4,14 @@ p0
 ((lp1
 S'x'
 p2
-atp3
-Rp4
+aS'R'
+p3
+aS'Vt'
+p4
+aS'Ids'
+p5
+aS'Maxexp'
+p6
+atp7
+Rp8
 .

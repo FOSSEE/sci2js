@@ -2,15 +2,15 @@
 function PMOS() {
     PMOS.prototype.define = function PMOS() {
         model = scicos_model();
-        W = 50.0e-6;
-        L = 6.0e-6;
-        Beta = 0.0105e-3;
-        Vt = -1;
-        K2 = 0.41;
-        K5 = 0.839;
-        dW = -2.5e-6;
-        dL = -2.1e-6;
-        RDS = 1.e+7;
+        this.W = 50.0e-6;
+        this.L = 6.0e-6;
+        this.Beta = 0.0105e-3;
+        this.Vt = -1;
+        this.K2 = 0.41;
+        this.K5 = 0.839;
+        this.dW = -2.5e-6;
+        this.dL = -2.1e-6;
+        this.RDS = 1.e+7;
         model.sim = "PMOS";
         model.blocktype = "c";
         model.dep_ut = [true,false];
@@ -18,11 +18,11 @@ function PMOS() {
         mo.model = "PMOS";
         mo.outputs = [["D"],["B"],["S"]];
         mo.inputs = "G";
-        mo.parameters = list([["W"],["L"],["Beta"],["Vt"],["K2"],["K5"],["dW"],["dL"],["RDS"]],[[W],[L],[Beta],[Vt],[K2],[K5],[dW],[dL],[RDS]]);
+        mo.parameters = list([["W"],["L"],["Beta"],["Vt"],["K2"],["K5"],["dW"],["dL"],["RDS"]],[[this.W],[this.L],[this.Beta],[this.Vt],[this.K2],[this.K5],[this.dW],[this.dL],[this.RDS]]);
         model.equations = mo;
         model.in1 = ones(size(mo.inputs,"*"),1);
         model.out = ones(size(mo.outputs,"*"),1);
-        exprs = [[string(W)],[string(L)],[string(Beta)],[string(Vt)],[string(K2)],[string(K5)],[string(dW)],[string(dL)],[string(RDS)]];
+        exprs = [[string(this.W)],[string(this.L)],[string(this.Beta)],[string(this.Vt)],[string(this.K2)],[string(this.K5)],[string(this.dW)],[string(this.dL)],[string(this.RDS)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
@@ -40,11 +40,11 @@ function PMOS() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,W,L,Beta,Vt,K2,K5,dW,dL,RDS,exprs] = scicos_getvalue("Set PMOS Transistor parameters",[["Width [m]"],["Length [m]"],["Transconductance parameter [A/(V*V)]"],["Zero bias threshold voltage [V]"],["Bulk threshold parameter"],["Reduction of pinch-off region"],["Narrowing of channel [m]"],["Shortening of channel [m]"],["Drain-Source-Resistance [Ohm]"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS,exprs] = scicos_getvalue("Set PMOS Transistor parameters",[["Width [m]"],["Length [m]"],["Transconductance parameter [A/(V*V)]"],["Zero bias threshold voltage [V]"],["Bulk threshold parameter"],["Reduction of pinch-off region"],["Narrowing of channel [m]"],["Shortening of channel [m]"],["Drain-Source-Resistance [Ohm]"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
-            model.equations.parameters[2-1] = list(W,L,Beta,Vt,K2,K5,dW,dL,RDS);
+            model.equations.parameters[2-1] = list(this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS);
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = model;

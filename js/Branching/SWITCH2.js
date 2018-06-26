@@ -3,7 +3,7 @@ function SWITCH2() {
     SWITCH2.prototype.define = function SWITCH2() {
         in1 = [[-1],[1],[-1]];
         ipar = [0];
-        nzz = 1;
+        this.nzz = 1;
         rpar = 0;
         model = scicos_model();
         model.sim = list("switch2",4);
@@ -11,11 +11,11 @@ function SWITCH2() {
         model.out = -1;
         model.ipar = ipar;
         model.rpar = rpar;
-        model.nzcross = nzz;
+        model.nzcross = this.nzz;
         model.nmode = 1;
         model.blocktype = "c";
         model.dep_ut = [true,false];
-        exprs = [[string(ipar)],[string(rpar)],[string(nzz)]];
+        exprs = [[string(ipar)],[string(rpar)],[string(this.nzz)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -31,21 +31,21 @@ function SWITCH2() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,rule,thra,nzz,exprs] = scicos_getvalue("Set parameters",[["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)"],["threshold a"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.rule,this.thra,this.nzz,exprs] = scicos_getvalue("Set parameters",[["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)"],["threshold a"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            rule = int(rule);
-            if ((rule<0)) {
-                rule = 0;
+            this.rule = int(this.rule);
+            if ((this.rule<0)) {
+                this.rule = 0;
             }
-            if ((rule>2)) {
-                rule = 2;
+            if ((this.rule>2)) {
+                this.rule = 2;
             }
             graphics.exprs = exprs;
-            model.ipar = rule;
-            model.rpar = thra;
-            if (nzz!=0) {
+            model.ipar = this.rule;
+            model.rpar = this.thra;
+            if (this.nzz!=0) {
                 model.nmode = 1;
                 model.nzcross = 1;
             } else {

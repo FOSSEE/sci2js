@@ -39,15 +39,15 @@ function MATLU() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,typ,lab] = scicos_getvalue("Set MATLU block parameters",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
+            [ok,this.typ,this.lab] = scicos_getvalue("Set MATLU block parameters",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
             if (!ok) {
                 break;
             }
-            if ((typ==1)) {
+            if ((this.typ==1)) {
                 function_name = "mat_lu";
                 ot = [1,1];
                 it = 1;
-            } else if ((typ==2)) {
+            } else if ((this.typ==2)) {
                 function_name = "matz_lu";
                 ot = [2,2];
                 it = 2;
@@ -61,7 +61,7 @@ function MATLU() {
             if (ok) {
                 funtyp = 4;
                 model.sim = list(function_name,funtyp);
-                graphics.exprs = lab;
+                graphics.exprs = this.lab;
                 this.x.graphics = graphics;
                 this.x.model = model;
                 break;

@@ -27,16 +27,16 @@ function MATTRAN() {
             label[2-1] = sci2exp(1);
         }
         while (true) {
-            [ok,typ,rule,exprs] = scicos_getvalue("Set MATTRAN Block",[["Datatype(1=real double 2=Complex)"],["rule (1=.\' 2=\')"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.rule,exprs] = scicos_getvalue("Set MATTRAN Block",[["Datatype(1=real double 2=Complex)"],["rule (1=.\' 2=\')"]],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
-            if ((typ==1)) {
+            if ((this.typ==1)) {
                 function_name = "mattran_m";
                 ot = 1;
                 it = 1;
-            } else if ((typ==2)) {
-                if (rule==1) {
+            } else if ((this.typ==2)) {
+                if (this.rule==1) {
                     function_name = "matztran_m";
                 } else {
                     function_name = "mathermit_m";

@@ -12,28 +12,28 @@ function BOUNCE() {
                 k = k+1;
             }
         }
-        walls = [[0],[5],[0],[5]];
+        this.walls = [[0],[5],[0],[5]];
         this.x = [[2],[2.5]];
-        xd = [[0],[0]];
-        y = [[3],[5]];
-        yd = [[0],[0]];
-        g = 9.81;
-        C = 0;
-        rpar1 = ones(n,1);
-        rpar2 = rpar1;
-        state = [this.x,xd,y,yd];
+        this.xd = [[0],[0]];
+        this.y = [[3],[5]];
+        this.yd = [[0],[0]];
+        this.g = 9.81;
+        this.C = 0;
+        this.rpar1 = ones(n,1);
+        this.rpar2 = this.rpar1;
+        state = [this.x,this.xd,this.y,this.yd];
         state = transpose(state);
         model = scicos_model();
         model.sim = list("bounce_ball",4);
         model.in1 = [];
         model.out = [[n],[n]];
         model.state = state.slice();
-        model.rpar = [[rpar1],[rpar2],[walls],[g],[C]];
+        model.rpar = [[this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]];
         model.ipar = ipar;
         model.nzcross = n*(n-1)/2+4*n;
         model.blocktype = "c";
         model.dep_ut = [false,true];
-        exprs = [[strcat(sci2exp(rpar1))],[strcat(sci2exp(rpar2))],[strcat(sci2exp(walls))],[strcat(sci2exp(this.x))],[strcat(sci2exp(xd))],[strcat(sci2exp(y))],[strcat(sci2exp(yd))]];
+        exprs = [[strcat(sci2exp(this.rpar1))],[strcat(sci2exp(this.rpar2))],[strcat(sci2exp(this.walls))],[strcat(sci2exp(this.x))],[strcat(sci2exp(this.xd))],[strcat(sci2exp(this.y))],[strcat(sci2exp(this.yd))]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -53,28 +53,28 @@ function BOUNCE() {
             exprs[9-1] = "0";
         }
         while (true) {
-            [ok,rpar1,rpar2,walls,xt,xd,y,yd,g,C,exprs] = scicos_getvalue(["Set Bounce Block"],[["Mass"],["Radius"],["[xmin,xmax,ymin,ymax]"],["xpos"],["xdpos"],["ypos"],["ydpos"],["g (gravity)"],["C (aerodynamic coeff"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
+            [ok,this.rpar1,this.rpar2,this.walls,this.xt,this.xd,this.y,this.yd,this.g,this.C,exprs] = scicos_getvalue(["Set Bounce Block"],[["Mass"],["Radius"],["[xmin,xmax,ymin,ymax]"],["xpos"],["xdpos"],["ypos"],["ydpos"],["g (gravity)"],["C (aerodynamic coeff"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            xt = xt.slice();
-            y = y.slice();
-            xd = xd.slice();
-            yd = yd.slice();
-            rpar1 = rpar1.slice();
-            rpar2 = rpar2.slice();
-            n = size(xt,"*");
-            walls = walls.slice();
-            if (walls[1-1]>walls[2-1]) {
-                walls = walls[[2,1]-1];
+            this.xt = this.xt.slice();
+            this.y = this.y.slice();
+            this.xd = this.xd.slice();
+            this.yd = this.yd.slice();
+            this.rpar1 = this.rpar1.slice();
+            this.rpar2 = this.rpar2.slice();
+            n = size(this.xt,"*");
+            this.walls = this.walls.slice();
+            if (this.walls[1-1]>this.walls[2-1]) {
+                this.walls = this.walls[[2,1]-1];
             }
-            if (walls[3-1]>walls[3-1]) {
-                walls = walls[[3,4]-1];
+            if (this.walls[3-1]>this.walls[3-1]) {
+                this.walls = this.walls[[3,4]-1];
             }
-            if (n!=size(y,"*")||n!=size(rpar1,"*")||n!=size(rpar2,"*")||n!=size(xd,"*")||n!=size(yd,"*")) {
+            if (n!=size(this.y,"*")||n!=size(this.rpar1,"*")||n!=size(this.rpar2,"*")||n!=size(this.xd,"*")||n!=size(this.yd,"*")) {
                 message("All vectors must have equal size");
                 ok = false;
-            } else if (!(min([[rpar1],[rpar2]])>0)) {
+            } else if (!(min([[this.rpar1],[this.rpar2]])>0)) {
                 message("Mass and radius must be >0");
                 ok = false;
             }
@@ -93,9 +93,9 @@ function BOUNCE() {
                         k = k+1;
                     }
                 }
-                model.rpar = [[rpar1],[rpar2],[walls],[g],[C]];
+                model.rpar = [[this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]];
                 model.ipar = ipar;
-                state = [xt,xd,y,yd];
+                state = [this.xt,this.xd,this.y,this.yd];
                 state = transpose(state);
                 model.state = state.slice();
                 model.nzcross = n*(n-1)/2+4*n;

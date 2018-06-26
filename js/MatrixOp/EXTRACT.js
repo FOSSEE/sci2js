@@ -39,17 +39,17 @@ function EXTRACT() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,typ,a,b,exprs] = scicos_getvalue("Set EXTRACT Block",[["Datatype (1=real double  2=Complex)"],["Lines to extract"],["Columns to extract"]],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
-            a = a.slice();
-            b = b.slice();
+            [ok,this.typ,this.a,this.b,exprs] = scicos_getvalue("Set EXTRACT Block",[["Datatype (1=real double  2=Complex)"],["Lines to extract"],["Columns to extract"]],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
+            this.a = this.a.slice();
+            this.b = this.b.slice();
             if (!ok) {
                 break;
             }
-            if ((typ==1)) {
+            if ((this.typ==1)) {
                 function_name = "extract";
                 ot = 1;
                 it = 1;
-            } else if ((typ==2)) {
+            } else if ((this.typ==2)) {
                 function_name = "extractz";
                 ot = 2;
                 it = 2;
@@ -57,25 +57,25 @@ function EXTRACT() {
                 message("Datatype is not supported");
                 ok = false;
             }
-            ma = size(a,1);
-            mb = size(b,1);
+            ma = size(this.a,1);
+            mb = size(this.b,1);
             if ((ma==0||mb==0)) {
                 message("empty field");
                 ok = false;
             }
             for (i=1;i<=ma;i+=1) {
-                if ((a[i-1]<=0)) {
+                if ((this.a[i-1]<=0)) {
                     message("invalid index");
                     ok = false;
                 }
             }
             for (j=1;j<=mb;j+=1) {
-                if ((b[j-1]<=0)) {
+                if ((this.b[j-1]<=0)) {
                     message("invalid index");
                     ok = false;
                 }
             }
-            model.ipar = [[a],[b],[ma],[mb]];
+            model.ipar = [[this.a],[this.b],[ma],[mb]];
             in1 = [model.in1,model.in2];
             out = [ma,mb];
             funtyp = 4;

@@ -39,17 +39,17 @@ function EXTTRI() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,typ,decomptyp,lab] = scicos_getvalue("Set EXTTRI block parameters",[["Datatype(1=real double  2=Complex)"],["extraction type (1=lower  2=upper  3=diagonal)"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set EXTTRI block parameters",[["Datatype(1=real double  2=Complex)"],["extraction type (1=lower  2=upper  3=diagonal)"]],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
-            label = lab;
-            if ((typ==1)) {
-                if ((decomptyp==1)) {
+            label = this.lab;
+            if ((this.typ==1)) {
+                if ((this.decomptyp==1)) {
                     function_name = "exttril";
-                } else if ((decomptyp==2)) {
+                } else if ((this.decomptyp==2)) {
                     function_name = "exttriu";
-                } else if ((decomptyp==3)) {
+                } else if ((this.decomptyp==3)) {
                     function_name = "extdiag";
                 } else {
                     message("decomposition type is not supported");
@@ -57,12 +57,12 @@ function EXTTRI() {
                 }
                 it = 1;
                 ot = 1;
-            } else if ((typ==2)) {
-                if ((decomptyp==1)) {
+            } else if ((this.typ==2)) {
+                if ((this.decomptyp==1)) {
                     function_name = "exttrilz";
-                } else if ((decomptyp==2)) {
+                } else if ((this.decomptyp==2)) {
                     function_name = "exttriuz";
-                } else if ((decomptyp==3)) {
+                } else if ((this.decomptyp==3)) {
                     function_name = "extdiagz";
                 } else {
                     message("decomposition type is not supported");

@@ -30,17 +30,17 @@ function CLKGotoTagVisibility() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,tag,exprs] = scicos_getvalue("Set parameters",["GotoTag"],list("str",-1),exprs);
+            [ok,this.tag,exprs] = scicos_getvalue("Set parameters",["GotoTag"],list("str",-1),exprs);
             if (!ok) {
                 break;
             }
             if (ok) {
-                if (model.opar!=list(tag)) {
+                if (model.opar!=list(this.tag)) {
                     needcompile = 4;
                     y = needcompile;
                 }
                 graphics.exprs = exprs;
-                model.opar = list(tag);
+                model.opar = list(this.tag);
                 this.x.graphics = graphics;
                 this.x.model = model;
                 break;

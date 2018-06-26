@@ -4,10 +4,14 @@ p0
 ((lp1
 S'x'
 p2
-aS'fr'
+aS'frequ'
 p3
 aS'of'
 p4
-atp5
-Rp6
+aS'fr'
+p5
+aS'offset'
+p6
+atp7
+Rp8
 .

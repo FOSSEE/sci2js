@@ -39,19 +39,19 @@ function CUMSUM() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,typ,decomptyp,lab] = scicos_getvalue("Set CUMSUM block parameters",[["Datatype(1=real double  2=Complex)"],["Sum along (0=the first non singleton dimension  1=Rows  2=Columns)"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set CUMSUM block parameters",[["Datatype(1=real double  2=Complex)"],["Sum along (0=the first non singleton dimension  1=Rows  2=Columns)"]],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
-            label = lab;
-            if ((typ==1)) {
-                if ((decomptyp==0)) {
+            label = this.lab;
+            if ((this.typ==1)) {
+                if ((this.decomptyp==0)) {
                     function_name = "cumsum_m";
                     out = [-1,-2];
-                } else if ((decomptyp==1)) {
+                } else if ((this.decomptyp==1)) {
                     function_name = "cumsum_r";
                     out = [-1,1];
-                } else if ((decomptyp==2)) {
+                } else if ((this.decomptyp==2)) {
                     function_name = "cumsum_c";
                     out = [1,-2];
                 } else {
@@ -60,12 +60,12 @@ function CUMSUM() {
                 }
                 it = 1;
                 ot = 1;
-            } else if ((typ==2)) {
-                if ((decomptyp==0)) {
+            } else if ((this.typ==2)) {
+                if ((this.decomptyp==0)) {
                     function_name = "cumsumz_m";
-                } else if ((decomptyp==1)) {
+                } else if ((this.decomptyp==1)) {
                     function_name = "cumsumz_r";
-                } else if ((decomptyp==2)) {
+                } else if ((this.decomptyp==2)) {
                     function_name = "cumsumz_c";
                 } else {
                     message("decomposition type is not supported");

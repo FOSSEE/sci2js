@@ -26,13 +26,13 @@ function SIGNUM() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,zcr,exprs] = scicos_getvalue("Set block parameters",["use zero_crossing (1: yes) (0:no)"],list("vec",1),exprs);
+            [ok,this.zcr,exprs] = scicos_getvalue("Set block parameters",["use zero_crossing (1: yes) (0:no)"],list("vec",1),exprs);
             if (!ok) {
                 break;
             }
             graphics.exprs = exprs;
             if (ok) {
-                if (zcr!=0) {
+                if (this.zcr!=0) {
                     model.nmode = -1;
                     model.nzcross = -1;
                 } else {

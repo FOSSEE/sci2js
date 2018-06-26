@@ -62,11 +62,11 @@ function NPN() {
         this.x = arg1;
         exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,Bf,Br,Is,Vak,Tauf,Taur,Ccs,Cje,Cjc,Phie,Me,Phic,Mc,Gbc,Gbe,Vt,EMinMax,exprs] = scicos_getvalue([["Set NPN block parameters:"],[""]],[["Bf  : Forward beta"],["Br  : Reverse beta"],["Is  : Transport saturation current"],["Vak : Early voltage (inverse), 1/Volt"],["Tauf: Ideal forward transit time"],["Taur: Ideal reverse transit time"],["Ccs : Collector-substrat(ground) cap."],["Cje : Base-emitter zero bias depletion cap."],["Cjc : Base-coll. zero bias depletion cap."],["Phie: Base-emitter diffusion voltage"],["Me  : Base-emitter gradation exponent"],["Phic: Base-collector diffusion voltage"],["Mc  : Base-collector gradation exponent"],["Gbc : Base-collector conductance"],["Gbe : Base-emitter conductance"],["Vt  : Voltage equivalent of temperature"],["EMinmax: if x > EMinMax, the exp(x) is linearized"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.Bf,this.Br,this.Is,this.Vak,this.Tauf,this.Taur,this.Ccs,this.Cje,this.Cjc,this.Phie,this.Me,this.Phic,this.Mc,this.Gbc,this.Gbe,this.Vt,this.EMinMax,exprs] = scicos_getvalue([["Set NPN block parameters:"],[""]],[["Bf  : Forward beta"],["Br  : Reverse beta"],["Is  : Transport saturation current"],["Vak : Early voltage (inverse), 1/Volt"],["Tauf: Ideal forward transit time"],["Taur: Ideal reverse transit time"],["Ccs : Collector-substrat(ground) cap."],["Cje : Base-emitter zero bias depletion cap."],["Cjc : Base-coll. zero bias depletion cap."],["Phie: Base-emitter diffusion voltage"],["Me  : Base-emitter gradation exponent"],["Phic: Base-collector diffusion voltage"],["Mc  : Base-collector gradation exponent"],["Gbc : Base-collector conductance"],["Gbe : Base-emitter conductance"],["Vt  : Voltage equivalent of temperature"],["EMinmax: if x > EMinMax, the exp(x) is linearized"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            this.x.model.equations.parameters[2-1] = list(Bf,Br,Is,Vak,Tauf,Taur,Ccs,Cje,Cjc,Phie,Me,Phic,Mc,Gbc,Gbe,Vt,EMinMax);
+            this.x.model.equations.parameters[2-1] = list(this.Bf,this.Br,this.Is,this.Vak,this.Tauf,this.Taur,this.Ccs,this.Cje,this.Cjc,this.Phie,this.Me,this.Phic,this.Mc,this.Gbc,this.Gbe,this.Vt,this.EMinMax);
             this.x.graphics.exprs = exprs;
             break;
         }

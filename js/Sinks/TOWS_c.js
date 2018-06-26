@@ -2,9 +2,9 @@
 function TOWS_c() {
     TOWS_c.prototype.define = function TOWS_c() {
         nu = -1;
-        nz = 128;
-        varnam = "A";
-        herit = 0;
+        this.nz = 128;
+        this.varnam = "A";
+        this.herit = 0;
         model = scicos_model();
         model.sim = list("tows_c",4);
         model.in1 = [nu];
@@ -14,12 +14,12 @@ function TOWS_c() {
         model.evtin = [1];
         model.evtout = [];
         model.rpar = [];
-        model.ipar = [[nz],[length(varnam)],[transpose(this.ascii[varnam-1])]];
+        model.ipar = [[this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]];
         model.blocktype = "d";
         model.firing = [];
         model.dep_ut = [false,false];
         gr_i = [];
-        exprs = [[string(nz)],[string(varnam)],[string(herit)]];
+        exprs = [[string(this.nz)],[string(this.varnam)],[string(this.herit)]];
         this.x = standard_define([4,2],model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -34,29 +34,29 @@ function TOWS_c() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,nz,varnam,herit,exprs] = scicos_getvalue("Set Xcos buffer block",[["Size of buffer"],["Scilab variable name"],["Inherit (no:0, yes:1)"]],list("vec",1,"str",1,"vec",1),exprs);
+            [ok,this.nz,this.varnam,this.herit,exprs] = scicos_getvalue("Set Xcos buffer block",[["Size of buffer"],["Scilab variable name"],["Inherit (no:0, yes:1)"]],list("vec",1,"str",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            if ((nz<=0)) {
+            if ((this.nz<=0)) {
                 message("Size of buffer must be positive");
                 ok = false;
             }
             r = false;
             ierr = execstr("r = validvar(varnam)","errcatch");
-            if (!r||ierr!=0||length(varnam)>19) {
+            if (!r||ierr!=0||length(this.varnam)>19) {
                 message([["Invalid variable name."],["Please choose another variable name."]]);
                 ok = false;
             }
-            execstr("if type("+varnam+") <> 17 | or(fieldnames("+varnam+") <> [\"values\"; \"time\"]) then"+" message([\"Protected variable name.\"; \"Please choose another variable name.\"]);"+" ok = %f;"+" end","errcatch");
+            execstr("if type("+this.varnam+") <> 17 | or(fieldnames("+this.varnam+") <> [\"values\"; \"time\"]) then"+" message([\"Protected variable name.\"; \"Please choose another variable name.\"]);"+" ok = %f;"+" end","errcatch");
             if (ok) {
-                [model,graphics,ok] = set_io(model,graphics,list([-1,-2],-1),list(),ones(1-herit,1),[]);
-                if (herit==1) {
+                [model,graphics,ok] = set_io(model,graphics,list([-1,-2],-1),list(),ones(1-this.herit,1),[]);
+                if (this.herit==1) {
                     model.blocktype = "x";
                 } else {
                     model.blocktype = "d";
                 }
-                model.ipar = [[nz],[length(varnam)],[transpose(this.ascii[varnam-1])]];
+                model.ipar = [[this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]];
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = model;

@@ -4,8 +4,8 @@ function Inductor() {
         model = scicos_model();
         model.in1 = [1];
         model.out = [1];
-        L = 1.e-5;
-        model.rpar = L;
+        this.L = 1.e-5;
+        model.rpar = this.L;
         model.sim = "Inductor";
         model.blocktype = "c";
         model.dep_ut = [true,false];
@@ -13,9 +13,9 @@ function Inductor() {
         mo.model = "Inductor";
         mo.inputs = "p";
         mo.outputs = "n";
-        mo.parameters = list("L",list(L));
+        mo.parameters = list("L",list(this.L));
         model.equations = mo;
-        exprs = string(L);
+        exprs = string(this.L);
         gr_i = [];
         this.x = standard_define([2,0.9],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
@@ -33,12 +33,12 @@ function Inductor() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,L,exprs] = scicos_getvalue("Set Inductor block parameter","L (H)",list("vec",1),exprs);
+            [ok,this.L,exprs] = scicos_getvalue("Set Inductor block parameter","L (H)",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            model.rpar = L;
-            model.equations.parameters[2-1] = list(L);
+            model.rpar = this.L;
+            model.equations.parameters[2-1] = list(this.L);
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = model;

@@ -26,15 +26,15 @@ function BACKLASH() {
         model = arg1.model;
         rpar = model.rpar;
         while (true) {
-            [ok,ini,gap,zcr,exprs] = scicos_getvalue("Set backlash parameters",[["initial output"],["gap"],["use zero-crossing (0:no, 1:yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.ini,this.gap,this.zcr,exprs] = scicos_getvalue("Set backlash parameters",[["initial output"],["gap"],["use zero-crossing (0:no, 1:yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             if (ok) {
                 graphics.exprs = exprs;
-                rpar[1-1] = ini;
-                rpar[2-1] = gap;
-                if (zcr!=0) {
+                rpar[1-1] = this.ini;
+                rpar[2-1] = this.gap;
+                if (this.zcr!=0) {
                     model.nzcross = 2;
                 } else {
                     model.nzcross = 0;

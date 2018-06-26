@@ -39,12 +39,12 @@ function MATRESH() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,typ,l1,out,lab] = scicos_getvalue("Set MATRESH block parameters",[["Datatype(1=real double  2=Complex)","input size"],["output size desired"]],list("vec",-1,"vec",-1,"vec",-1),label);
+            [ok,this.typ,this.l1,this.out,this.lab] = scicos_getvalue("Set MATRESH block parameters",[["Datatype(1=real double  2=Complex)","input size"],["output size desired"]],list("vec",-1,"vec",-1,"vec",-1),label);
             if (!ok) {
                 break;
             }
-            nout = size(out);
-            nin = size(l1);
+            nout = size(this.out);
+            nin = size(this.l1);
             if (nout==0) {
                 message("output must have at least one element");
                 ok = false;
@@ -54,24 +54,24 @@ function MATRESH() {
                 ok = false;
             }
             if (ok) {
-                if (((out[1-1]>(l1[1-1]*l1[2-1])))) {
+                if (((this.out[1-1]>(this.l1[1-1]*this.l1[2-1])))) {
                     message("the first dimension of the output is too big");
                     ok = false;
                 }
-                if (((out[2-1]>(l1[1-1]*l1[2-1])))) {
+                if (((this.out[2-1]>(this.l1[1-1]*this.l1[2-1])))) {
                     message("the second dimension of the output is too big");
                     ok = false;
                 }
-                if ((((out[2-1]*out[1-1])>(l1[1-1]*l1[2-1])))) {
+                if ((((this.out[2-1]*this.out[1-1])>(this.l1[1-1]*this.l1[2-1])))) {
                     message("the dimensions of the output are too big");
                     ok = false;
                 }
             }
-            if ((typ==1)) {
+            if ((this.typ==1)) {
                 function_name = "mat_reshape";
                 ot = 1;
                 it = 1;
-            } else if ((typ==2)) {
+            } else if ((this.typ==2)) {
                 function_name = "matz_reshape";
                 ot = 2;
                 it = 2;
@@ -80,8 +80,8 @@ function MATRESH() {
                 ok = false;
             }
             if (ok) {
-                label = lab;
-                [model,graphics,ok] = set_io(model,graphics,list(l1,it),list(out,ot),[],[]);
+                label = this.lab;
+                [model,graphics,ok] = set_io(model,graphics,list(this.l1,it),list(this.out,ot),[],[]);
             }
             if (ok) {
                 funtyp = 4;

@@ -39,19 +39,19 @@ function MATSUM() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,typ,decomptyp,lab] = scicos_getvalue("Set MATSUM block parameters",[["Datatype(1=real double  2=Complex)"],["Sum along (0=all 1=lines  2=Columns)"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATSUM block parameters",[["Datatype(1=real double  2=Complex)"],["Sum along (0=all 1=lines  2=Columns)"]],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
-            label = lab;
-            if ((typ==1)) {
-                if ((decomptyp==0)) {
+            label = this.lab;
+            if ((this.typ==1)) {
+                if ((this.decomptyp==0)) {
                     function_name = "mat_sum";
                     out = [1,1];
-                } else if ((decomptyp==2)) {
+                } else if ((this.decomptyp==2)) {
                     function_name = "mat_suml";
                     out = [-1,1];
-                } else if ((decomptyp==1)) {
+                } else if ((this.decomptyp==1)) {
                     function_name = "mat_sumc";
                     out = [1,-2];
                 } else {
@@ -60,14 +60,14 @@ function MATSUM() {
                 }
                 it = 1;
                 ot = 1;
-            } else if ((typ==2)) {
-                if ((decomptyp==0)) {
+            } else if ((this.typ==2)) {
+                if ((this.decomptyp==0)) {
                     function_name = "matz_sum";
                     out = [1,1];
-                } else if ((decomptyp==2)) {
+                } else if ((this.decomptyp==2)) {
                     function_name = "matz_suml";
                     out = [-1,1];
-                } else if ((decomptyp==1)) {
+                } else if ((this.decomptyp==1)) {
                     function_name = "matz_sumc";
                     out = [1,-2];
                 } else {

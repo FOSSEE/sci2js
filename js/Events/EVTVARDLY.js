@@ -26,12 +26,12 @@ function EVTVARDLY() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,fir,exprs] = scicos_getvalue("Set parameter of variable event delay","Initial event firing time (<0 if absent)",list("vec",1),exprs);
+            [ok,this.fir,exprs] = scicos_getvalue("Set parameter of variable event delay","Initial event firing time (<0 if absent)",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
             graphics.exprs = exprs;
-            model.firing = fir;
+            model.firing = this.fir;
             this.x.graphics = graphics;
             this.x.model = model;
             break;

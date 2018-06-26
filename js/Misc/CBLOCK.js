@@ -9,10 +9,10 @@ function CBLOCK() {
         z0 = [];
         typ = "c";
         auto = [];
-        rpar = [];
-        ipar = [];
+        this.rpar = [];
+        this.ipar = [];
         funam = "toto";
-        ng = 0;
+        this.ng = 0;
         model = scicos_model();
         model.sim = list(" ",2004);
         model.in1 = in1;
@@ -21,13 +21,13 @@ function CBLOCK() {
         model.evtout = clkout;
         model.state = x0;
         model.dstate = z0;
-        model.rpar = rpar;
-        model.ipar = ipar;
+        model.rpar = this.rpar;
+        model.ipar = this.ipar;
         model.blocktype = typ;
         model.firing = auto;
         model.dep_ut = [true,false];
-        model.nzcross = ng;
-        label = list(transpose([funam,"n",sci2exp(in1),sci2exp(out),sci2exp(clkin),sci2exp(clkout),sci2exp(x0),sci2exp(0),sci2exp(z0),sci2exp(rpar),sci2exp(ipar),sci2exp(auto),"y","n"]),[]);
+        model.nzcross = this.ng;
+        label = list(transpose([funam,"n",sci2exp(in1),sci2exp(out),sci2exp(clkin),sci2exp(clkout),sci2exp(x0),sci2exp(0),sci2exp(z0),sci2exp(this.rpar),sci2exp(this.ipar),sci2exp(auto),"y","n"]),[]);
         gr_i = [];
         this.x = standard_define([4,2],model,label,gr_i);
         return new BasicBlock(this.x);
@@ -43,53 +43,53 @@ function CBLOCK() {
         graphics = arg1.graphics;
         label = graphics.exprs;
         while (true) {
-            [ok,function_name,impli,i,o,ci,co,xx,ng,z,rpar,ipar,auto0,depu,dept,lab] = scicos_getvalue("Set C-Block2 block parameters",[["simulation function"],["is block implicit? (y,n)"],["input ports sizes"],["output ports sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["number of zero crossing surfaces"],["initial discrete state"],["Real parameters vector"],["Integer parameters vector"],["initial firing vector (<0 for no firing)"],["direct feedthrough (y or n)"],["time dependence (y or n)"]],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label[1-1]);
+            [ok,this.function_name,this.impli,this.i,this.o,this.ci,this.co,this.xx,this.ng,this.z,this.rpar,this.ipar,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block2 block parameters",[["simulation function"],["is block implicit? (y,n)"],["input ports sizes"],["output ports sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["number of zero crossing surfaces"],["initial discrete state"],["Real parameters vector"],["Integer parameters vector"],["initial firing vector (<0 for no firing)"],["direct feedthrough (y or n)"],["time dependence (y or n)"]],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label[1-1]);
             if (!ok) {
                 break;
             }
-            label[1-1] = lab;
-            funam = stripblanks(function_name);
-            xx = xx.slice();
-            z = z.slice();
-            rpar = rpar.slice();
-            ipar = int(ipar.slice());
-            nx = size(xx,1);
-            nz = size(z,1);
-            i = int(i.slice());
-            o = int(o.slice());
-            nout = size(o,1);
-            ci = int(ci.slice());
-            nevin = size(ci,1);
-            co = int(co.slice());
-            nevout = size(co,1);
-            if (part(impli,1)=="y") {
+            label[1-1] = this.lab;
+            funam = stripblanks(this.function_name);
+            this.xx = this.xx.slice();
+            this.z = this.z.slice();
+            this.rpar = this.rpar.slice();
+            this.ipar = int(this.ipar.slice());
+            nx = size(this.xx,1);
+            nz = size(this.z,1);
+            this.i = int(this.i.slice());
+            this.o = int(this.o.slice());
+            nout = size(this.o,1);
+            this.ci = int(this.ci.slice());
+            nevin = size(this.ci,1);
+            this.co = int(this.co.slice());
+            nevout = size(this.co,1);
+            if (part(this.impli,1)=="y") {
                 funtyp = 12004;
             } else {
                 funtyp = 2004;
             }
-            if ([[ci],[co]]!=[]) {
-                if (max([[ci],[co]])>1) {
+            if ([[this.ci],[this.co]]!=[]) {
+                if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
                     ok = false;
                 }
             }
-            depu = stripblanks(depu);
-            if (part(depu,1)=="y") {
-                depu = true;
+            this.depu = stripblanks(this.depu);
+            if (part(this.depu,1)=="y") {
+                this.depu = true;
             } else {
-                depu = false;
+                this.depu = false;
             }
-            dept = stripblanks(dept);
-            if (part(dept,1)=="y") {
-                dept = true;
+            this.dept = stripblanks(this.dept);
+            if (part(this.dept,1)=="y") {
+                this.dept = true;
             } else {
-                dept = false;
+                this.dept = false;
             }
-            dep_ut = [depu,dept];
+            dep_ut = [this.depu,this.dept];
             if (funam==" ") {
                 break;
             }
-            if (model.sim[1-1]!=funam||sign(size(model.state,"*"))!=sign(nx)||sign(size(model.dstate,"*"))!=sign(nz)||model.nzcross!=ng||sign(size(model.evtout,"*"))!=sign(nevout)) {
+            if (model.sim[1-1]!=funam||sign(size(model.state,"*"))!=sign(nx)||sign(size(model.dstate,"*"))!=sign(nz)||model.nzcross!=this.ng||sign(size(model.evtout,"*"))!=sign(nevout)) {
                 tt = [];
             }
             tt = label[2-1];
@@ -100,20 +100,20 @@ function CBLOCK() {
                         break;
                     }
                 } else {
-                    [model,graphics,ok] = check_io(model,graphics,i,o,ci,co);
+                    [model,graphics,ok] = check_io(model,graphics,this.i,this.o,this.ci,this.co);
                     if (ok) {
                         model.sim = list(funam,funtyp);
-                        model.in1 = i;
-                        model.out = o;
-                        model.evtin = ci;
-                        model.evtout = co;
-                        model.state = xx;
-                        model.dstate = z;
-                        model.rpar = rpar;
-                        model.ipar = ipar;
-                        model.firing = auto0;
+                        model.in1 = this.i;
+                        model.out = this.o;
+                        model.evtin = this.ci;
+                        model.evtout = this.co;
+                        model.state = this.xx;
+                        model.dstate = this.z;
+                        model.rpar = this.rpar;
+                        model.ipar = this.ipar;
+                        model.firing = this.auto0;
                         model.dep_ut = dep_ut;
-                        model.nzcross = ng;
+                        model.nzcross = this.ng;
                         label[2-1] = tt;
                         this.x.model = model;
                         graphics.exprs = label;

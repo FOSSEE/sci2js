@@ -57,7 +57,7 @@ PREDEFINED_VARIABLES = {
     't': 'PREVAR_BOOLEAN',
 }
 
-FUNCTION_CALLS = {
+FUNCTION_NAMES = {
     '_',
     'ANDLOG_f',
     'AutoScale',
@@ -224,9 +224,10 @@ FUNCTION_CALLS = {
 }
 
 OBJECTS = {
-    'PREVAR_scicos_context',
-    'arg1',
-    'scicos_context',
+#    'PREVAR_scicos_context': 'PREVAR_SCICOS_CONTEXT',
+#    'arg1': 'ARG1',
+#    'model': 'MODEL',
+#    'scicos_context': 'SCICOS_CONTEXT',
 }
 
 tokens = [
@@ -241,7 +242,7 @@ tokens = [
     'DOT',
     'DQSTRING',
     'EOL',
-    'FUNCTIONCALL',
+    'FUNCTIONNAME',
     'LASTINDEX',
     'LOGICAL',
     'MULTIPLICATION',
@@ -255,7 +256,7 @@ tokens = [
     'SPACE',
     'TRANSPOSE',
     'VAR',
-] + list(SYNTAX_TOKENS.values()) + list(set(PREDEFINED_VARIABLES.values()))
+] + list(SYNTAX_TOKENS.values()) + list(set(PREDEFINED_VARIABLES.values())) + list(OBJECTS.values())
 
 states = (
     ('qstring', 'exclusive'),
@@ -321,7 +322,9 @@ def t_VAR(t):
     t.lexer.afterarray = True
     vartype = SYNTAX_TOKENS.get(t.value)
     if vartype is None:
-        vartype = 'FUNCTIONCALL' if t.value in FUNCTION_CALLS else 'VAR'
+        vartype = OBJECTS.get(t.value)
+    if vartype is None:
+        vartype = 'FUNCTIONNAME' if t.value in FUNCTION_NAMES else 'VAR'
     t.type = vartype
     return t
 

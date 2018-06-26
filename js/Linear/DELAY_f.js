@@ -92,16 +92,16 @@ function DELAY_f() {
         evtdly_exprs = evtdly.graphics.exprs;
         exprs = [[evtdly_exprs[1-1]],[register_exprs]];
         while (true) {
-            [ok,dt,z0,exprs] = scicos_getvalue([["This block implements as a discretized delay"],["it is consist of a shift register and a clock"],["value of the delay is given by;","the discretization time step multiplied by the"],["number-1 of state of the register"]],[["Discretization time step"],["Register initial state"]],list("vec",1,"vec",-1),exprs);
+            [ok,this.dt,this.z0,exprs] = scicos_getvalue([["This block implements as a discretized delay"],["it is consist of a shift register and a clock"],["value of the delay is given by;","the discretization time step multiplied by the"],["number-1 of state of the register"]],[["Discretization time step"],["Register initial state"]],list("vec",1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
             mess = [];
-            if (prod(size(z0))<1) {
+            if (prod(size(this.z0))<1) {
                 mess = [[mess],["Register length must be at least 1"],[" "]];
                 ok = false;
             }
-            if (dt<=0) {
+            if (this.dt<=0) {
                 mess = [[mess],["Discretization time step must be positive"],[" "]];
                 ok = false;
             }
@@ -109,14 +109,14 @@ function DELAY_f() {
                 message(mess);
             } else {
                 evtdly.graphics.exprs[1-1] = exprs[1-1];
-                if (evtdly.model.rpar!=dt) {
-                    evtdly.model.rpar = dt;
+                if (evtdly.model.rpar!=this.dt) {
+                    evtdly.model.rpar = this.dt;
                     newpar[$+1-1] = ppath[2-1];
                 }
                 this.x.model.rpar.objs[ppath[2-1]-1] = evtdly;
                 register.graphics.exprs = exprs[2-1];
-                if (or(register.model.dstate!=z0.slice())) {
-                    register.model.dstate = z0.slice();
+                if (or(register.model.dstate!=this.z0.slice())) {
+                    register.model.dstate = this.z0.slice();
                     newpar[$+1-1] = ppath[1-1];
                 }
                 this.x.model.rpar.objs[ppath[1-1]-1] = register;

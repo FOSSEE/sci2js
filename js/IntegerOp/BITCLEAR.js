@@ -28,51 +28,51 @@ function BITCLEAR() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,Datatype,bit,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"BITCLEAR")],[" "],[gettext("Clear a bit")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Index of Bit (0 is least significant)")]],list("vec",1,"vec",1),exprs);
+            [ok,this.Datatype,this.bit,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"BITCLEAR")],[" "],[gettext("Clear a bit")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Index of Bit (0 is least significant)")]],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             in1 = [model.in1,model.in2];
-            if (floor(bit)!=bit) {
-                block_parameter_error(msprintf(gettext("Wrong type for \'%s\' parameter: %5.1f."),gettext("Index of Bit"),bit),gettext("Must be integer."));
+            if (floor(this.bit)!=this.bit) {
+                block_parameter_error(msprintf(gettext("Wrong type for \'%s\' parameter: %5.1f."),gettext("Index of Bit"),this.bit),gettext("Must be integer."));
                 ok = false;
-            } else if ((Datatype==3)||(Datatype==6)) {
-                if (bit>31||bit<0) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),bit),msprintf(gettext("Must be in the interval %s."),"[0, 31]"));
+            } else if ((this.Datatype==3)||(this.Datatype==6)) {
+                if (this.bit>31||this.bit<0) {
+                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),this.bit),msprintf(gettext("Must be in the interval %s."),"[0, 31]"));
                     ok = false;
                 } else {
-                    bit = uint32(bit);
-                    n = (2^32-1)-2^bit;
+                    this.bit = uint32(this.bit);
+                    n = (2^32-1)-2^this.bit;
                     n = uint32(n);
                     model.sim = list("bit_clear_32",4);
                 }
-            } else if ((Datatype==4)||(Datatype==7)) {
-                if (bit>15||bit<0) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),bit),msprintf(gettext("Must be in the interval %s."),"[0, 15]"));
+            } else if ((this.Datatype==4)||(this.Datatype==7)) {
+                if (this.bit>15||this.bit<0) {
+                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),this.bit),msprintf(gettext("Must be in the interval %s."),"[0, 15]"));
                     ok = false;
                 } else {
-                    bit = uint16(bit);
-                    n = (2^16-1)-2^bit;
+                    this.bit = uint16(this.bit);
+                    n = (2^16-1)-2^this.bit;
                     n = uint16(n);
                     model.sim = list("bit_clear_16",4);
                 }
-            } else if ((Datatype==5)||(Datatype==8)) {
-                if (bit>7||bit<0) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),bit),msprintf(gettext("Must be in the interval %s."),"[0, 7]"));
+            } else if ((this.Datatype==5)||(this.Datatype==8)) {
+                if (this.bit>7||this.bit<0) {
+                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),this.bit),msprintf(gettext("Must be in the interval %s."),"[0, 7]"));
                     ok = false;
                 } else {
-                    bit = uint8(bit);
-                    n = (2^8-1)-2^bit;
+                    this.bit = uint8(this.bit);
+                    n = (2^8-1)-2^this.bit;
                     n = uint8(n);
                     model.sim = list("bit_clear_8",4);
                 }
             } else {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),this.Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
                 ok = false;
             }
             if (ok) {
-                it = Datatype;
-                ot = Datatype;
+                it = this.Datatype;
+                ot = this.Datatype;
                 out = [1,1];
                 [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
             }

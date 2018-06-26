@@ -24,15 +24,15 @@ function CLKFROM() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,tag,exprs] = scicos_getvalue("Set block parameters","Tag",list("str",-1),exprs);
+            [ok,this.tag,exprs] = scicos_getvalue("Set block parameters","Tag",list("str",-1),exprs);
             if (!ok) {
                 break;
             }
-            if (model.opar!=list(tag)) {
+            if (model.opar!=list(this.tag)) {
                 needcompile = 4;
                 y = needcompile;
             }
-            model.opar = list(tag);
+            model.opar = list(this.tag);
             model.evtout = 1;
             model.firing = -1;
             graphics.exprs = exprs;

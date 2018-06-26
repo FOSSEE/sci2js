@@ -80,14 +80,14 @@ def p_functionblock_functionstatement_statementblock_endfunction(p):
 
 def p_jobfunctionstatement_function(p):
     '''jobfunctionstatement : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL
-                            | FUNCTION lterm ASSIGNMENT FUNCTIONCALL OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL'''
+                            | FUNCTION lterm ASSIGNMENT FUNCTIONNAME OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL'''
     for var in (p[6], p[8], p[10]):
         FUNCTION_VARS.add(var)
     p[0] = '%s' % (p[4])
 
 def p_functionstatement_function(p):
     '''functionstatement : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET list CLOSEBRACKET EOL
-                         | FUNCTION lterm ASSIGNMENT FUNCTIONCALL OPENBRACKET list CLOSEBRACKET EOL'''
+                         | FUNCTION lterm ASSIGNMENT FUNCTIONNAME OPENBRACKET list CLOSEBRACKET EOL'''
     p[0] = ''
 
 # end define functionblock
@@ -376,6 +376,15 @@ def p_assignment_expression(p):
 def p_getvalueassignment_getvalue(p):
     'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET list CLOSEBRACKET'
     p[0] = '%*s%s %s %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[2], p[3], p[5])
+    lterm = p[1]
+    if lterm[0] == '[':
+        lterm = lterm[1:-1]
+        ltermvars = lterm.split(',')
+        for var in ltermvars:
+            if var in ('ok', 'exprs'):
+                continue
+            if var not in GLOBAL_VARS:
+                GLOBAL_VARS.add(var)
 
 # end define assignment
 
@@ -528,12 +537,12 @@ def p_expression_term(p):
 
 # A(2,3)
 def p_function_function_parameters(p):
-    'function : FUNCTIONCALL OPENBRACKET list CLOSEBRACKET'
+    'function : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
     p[0] = '%*s%s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3])
 
 # A()
 def p_function_function(p):
-    'function : FUNCTIONCALL OPENBRACKET CLOSEBRACKET'
+    'function : FUNCTIONNAME OPENBRACKET CLOSEBRACKET'
     p[0] = '%*s%s()' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1])
 
 # end define function
@@ -713,12 +722,12 @@ def p_term_string_parameter(p):
 
 # A(2,3)
 def p_term_function_parameters(p):
-    'term : FUNCTIONCALL OPENBRACKET list CLOSEBRACKET'
+    'term : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
     p[0] = '%s(%s)' % (p[1], p[3])
 
 # A()
 def p_term_function(p):
-    'term : FUNCTIONCALL OPENBRACKET CLOSEBRACKET'
+    'term : FUNCTIONNAME OPENBRACKET CLOSEBRACKET'
     p[0] = '%s()' % (p[1])
 
 # $
@@ -825,11 +834,25 @@ def p_term_string(p):
 
 # end define term
 
-BLOCK_TYPE = {
-}
-
 def p_error(p):
     print("Syntax error in input", p)
+
+BLOCK_TYPE = {
+    'AFFICH_m': 'AfficheBlock',
+    'BIGSOM_f': 'BigSom',
+    'CLKINV_f': 'EventInBlock',
+    'CLKOUTV_f': 'EventOutBlock',
+    'Ground': 'GroundBlock',
+    'IN_f': 'ExplicitInBlock',
+    'INIMPL_f': 'ImplicitInBlock',
+    'OUT_f': 'ExplicitOutBlock',
+    'OUTIMPL_f': 'ImplicitOutBlock',
+    'PRODUCT': 'Product',
+    'SUMMATION': 'Summation',
+    'SUPER_f': 'SuperBlock',
+    'TEXT_f': 'TextBlock',
+    'VoltageSensor': 'VoltageSensorBlock',
+}
 
 def getblocktype(module):
     '''return a block type for a module'''

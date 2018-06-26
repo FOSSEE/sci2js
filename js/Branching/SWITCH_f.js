@@ -3,7 +3,7 @@ function SWITCH_f() {
     SWITCH_f.prototype.define = function SWITCH_f() {
         i0 = 0;
         in1 = [[-1],[-1]];
-        nin = 2;
+        this.nin = 2;
         model = scicos_model();
         model.sim = list("switchn",2);
         model.in1 = in1;
@@ -12,7 +12,7 @@ function SWITCH_f() {
         model.blocktype = "c";
         model.firing = [];
         model.dep_ut = [true,true];
-        exprs = [[string(nin)],[string(i0+1)]];
+        exprs = [[string(this.nin)],[string(i0+1)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -29,17 +29,17 @@ function SWITCH_f() {
         model = arg1.model;
         ipar = model.ipar;
         while (true) {
-            [ok,nin,z0,exprs] = scicos_getvalue("Set switch parameters",[["number of inputs"],["connected input"]],list("vec",1,"vec",1),exprs);
+            [ok,this.nin,this.z0,exprs] = scicos_getvalue("Set switch parameters",[["number of inputs"],["connected input"]],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            if (z0>nin||z0<=0) {
+            if (this.z0>this.nin||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
             } else {
-                [model,graphics,ok] = check_io(model,graphics,-ones(nin,1),-1,[],[]);
+                [model,graphics,ok] = check_io(model,graphics,-ones(this.nin,1),-1,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
-                    model.ipar = z0-1;
+                    model.ipar = this.z0-1;
                     this.x.graphics = graphics;
                     this.x.model = model;
                     break;

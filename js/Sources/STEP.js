@@ -29,33 +29,33 @@ function STEP() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,temps,in1,fi,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"STEP_FUNCTION")],[" "],[gettext("Step Function")],[" "]],[[gettext("Step Time")],[gettext("Initial Value")],[gettext("Final Value")]],list("vec",1,"vec",-1,"vec",-1),exprs);
+            [ok,this.temps,this.in1,this.fi,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"STEP_FUNCTION")],[" "],[gettext("Step Function")],[" "]],[[gettext("Step Time")],[gettext("Initial Value")],[gettext("Final Value")]],list("vec",1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
-            in1 = in1.slice();
-            fi = fi.slice();
-            if (size(in1,"*")!=size(fi,"*")) {
-                if (size(in1,"*")==1) {
-                    in1 = in1*ones(fi);
-                } else if (size(fi,"*")==1) {
-                    fi = fi*ones(in1);
+            this.in1 = this.in1.slice();
+            this.fi = this.fi.slice();
+            if (size(this.in1,"*")!=size(this.fi,"*")) {
+                if (size(this.in1,"*")==1) {
+                    this.in1 = this.in1*ones(this.fi);
+                } else if (size(this.fi,"*")==1) {
+                    this.fi = this.fi*ones(this.in1);
                 } else {
-                    block_parameter_error(msprintf(gettext("\'Initial Value\' and \'Final Value\': incompatible sizes: %d and %d."),size(in1,"*"),size(fi,"*")),gettext("Same sizes expected."));
+                    block_parameter_error(msprintf(gettext("\'Initial Value\' and \'Final Value\': incompatible sizes: %d and %d."),size(this.in1,"*"),size(this.fi,"*")),gettext("Same sizes expected."));
                     ok = false;
                 }
             }
             if (ok) {
                 model.out2 = 1;
                 model.outtyp = 1;
-                [model,graphics,ok] = check_io(model,graphics,[],size(fi,"*"),1,1);
+                [model,graphics,ok] = check_io(model,graphics,[],size(this.fi,"*"),1,1);
             }
             if (ok) {
-                model.firing = temps;
-                if (temps==0) {
-                    rpar = [[fi],[fi]];
+                model.firing = this.temps;
+                if (this.temps==0) {
+                    rpar = [[this.fi],[this.fi]];
                 } else {
-                    rpar = [[in1],[fi]];
+                    rpar = [[this.in1],[this.fi]];
                 }
                 model.rpar = rpar;
                 graphics.exprs = exprs;

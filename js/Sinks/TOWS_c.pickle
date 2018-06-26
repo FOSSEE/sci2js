@@ -4,8 +4,14 @@ p0
 ((lp1
 S'x'
 p2
-aS'ascii'
+aS'nz'
 p3
-atp4
-Rp5
+aS'herit'
+p4
+aS'ascii'
+p5
+aS'varnam'
+p6
+atp7
+Rp8
 .

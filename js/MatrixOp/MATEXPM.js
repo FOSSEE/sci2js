@@ -39,15 +39,15 @@ function MATEXPM() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,typ,exprs] = scicos_getvalue("Set EXPM Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
+            [ok,this.typ,exprs] = scicos_getvalue("Set EXPM Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
             if (!ok) {
                 break;
             }
-            if ((typ==1)) {
+            if ((this.typ==1)) {
                 function_name = "mat_expm";
                 ot = 1;
                 it = 1;
-            } else if ((typ==2)) {
+            } else if ((this.typ==2)) {
                 function_name = "matz_expm";
                 ot = 2;
                 it = 2;

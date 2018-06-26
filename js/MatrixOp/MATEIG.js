@@ -39,17 +39,17 @@ function MATEIG() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,typ,decomptyp,lab] = scicos_getvalue("Set MATEIG block parameters",[["Datatype(1=real double  2=Complex)"],["decomposition type (1=eig values  2=eig values+eig vectors"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATEIG block parameters",[["Datatype(1=real double  2=Complex)"],["decomposition type (1=eig values  2=eig values+eig vectors"]],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
-            label = lab;
-            if ((typ==1)) {
-                if ((decomptyp==1)) {
+            label = this.lab;
+            if ((this.typ==1)) {
+                if ((this.decomptyp==1)) {
                     function_name = "mat_vps";
                     out = [-1,1];
                     ot = 2;
-                } else if ((decomptyp==2)) {
+                } else if ((this.decomptyp==2)) {
                     function_name = "mat_vpv";
                     out = [[-1,-1],[-1,-1]];
                     ot = [2,2];
@@ -58,12 +58,12 @@ function MATEIG() {
                     ok = false;
                 }
                 it = 1;
-            } else if ((typ==2)) {
-                if ((decomptyp==1)) {
+            } else if ((this.typ==2)) {
+                if ((this.decomptyp==1)) {
                     function_name = "matz_vps";
                     out = [-1,1];
                     ot = 2;
-                } else if ((decomptyp==2)) {
+                } else if ((this.decomptyp==2)) {
                     function_name = "matz_vpv";
                     out = [[-1,-1],[-1,-1]];
                     ot = [2,2];

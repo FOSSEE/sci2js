@@ -63,27 +63,27 @@ function CLOCK_f() {
         dt_old = model.rpar;
         model_n = model;
         while (true) {
-            [ok,dt,t0,exprs0] = scicos_getvalue("Set Clock  block parameters",[["Period"],["Init time"]],list("vec",1,"vec",1),exprs);
+            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue("Set Clock  block parameters",[["Period"],["Init time"]],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            if (dt<=0) {
+            if (this.dt<=0) {
                 message("period must be positive");
                 ok = false;
             }
             if (ok) {
-                xx.graphics.exprs = exprs0;
-                model.rpar = dt;
-                model.firing = t0;
+                xx.graphics.exprs = this.exprs0;
+                model.rpar = this.dt;
+                model.firing = this.t0;
                 xx.model = model;
                 arg1.model.rpar.objs[path-1] = xx;
                 break;
             }
         }
-        if (!and([t0_old,dt_old]==[t0,dt])||!and(exprs0==exprs)) {
+        if (!and([t0_old,dt_old]==[this.t0,this.dt])||!and(this.exprs0==exprs)) {
             newpar[size(newpar)+1-1] = path;
         }
-        if (t0_old!=t0) {
+        if (t0_old!=this.t0) {
             needcompile = 2;
         } else {
             needcompile = 0;

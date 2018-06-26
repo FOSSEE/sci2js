@@ -67,25 +67,25 @@ function JKFLIPFLOP() {
         model = xx.model;
         init_old = model.odstate[1-1];
         while (true) {
-            [ok,init,exprs0] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"JKFLIPFLOP")],[" "],[gettext("JK flip-flop")],[" "],[gettext("The \'Initial Value\' must be 0 or 1 of type int8")],[gettext("&nbsp;- Negative values are considered as int8(0)")],[gettext("&nbsp;- Positive values are considered as int8(1)")],[" "]],gettext("Initial Value"),list("vec",1),exprs);
+            [ok,this.init,this.exprs0] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"JKFLIPFLOP")],[" "],[gettext("JK flip-flop")],[" "],[gettext("The \'Initial Value\' must be 0 or 1 of type int8")],[gettext("&nbsp;- Negative values are considered as int8(0)")],[gettext("&nbsp;- Positive values are considered as int8(1)")],[" "]],gettext("Initial Value"),list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            if (init<=0) {
-                init = int8(0);
-            } else if (init>0) {
-                init = int8(1);
+            if (this.init<=0) {
+                this.init = int8(0);
+            } else if (this.init>0) {
+                this.init = int8(1);
             }
             if (ok) {
-                xx.graphics.exprs[1-1] = exprs0;
-                model.odstate[1-1] = init;
+                xx.graphics.exprs[1-1] = this.exprs0;
+                model.odstate[1-1] = this.init;
                 xx.model = model;
                 arg1.model.rpar.objs[path-1] = xx;
                 break;
             }
         }
         needcompile = 0;
-        if (init_old!=init) {
+        if (init_old!=this.init) {
             newpar[size(newpar)+1-1] = 1;
             needcompile = 2;
         }

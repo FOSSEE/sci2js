@@ -12,12 +12,12 @@ function INIMPL_f() {
         mo.model = "PORT";
         mo.outputs = "n";
         model.equations = mo;
-        prt = 1;
+        this.prt = 1;
         exprs = "1";
         gr_i = [];
         this.x = standard_define([1,1],model,exprs,gr_i);
         this.x.graphics.out_implicit = ["I"];
-        return new BasicBlock(this.x);
+        return new ImplicitInBlock(this.x);
     }
     INIMPL_f.prototype.details = function INIMPL_f() {
         return this.x;
@@ -33,25 +33,25 @@ function INIMPL_f() {
             exprs = exprs[1-1];
         }
         while (true) {
-            [ok,prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INIMPL_f")],[" "],[gettext("Implicit input port")],[" "]],"Port Number",list("vec",1),exprs);
+            [ok,this.prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INIMPL_f")],[" "],[gettext("Implicit input port")],[" "]],"Port Number",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            prt = int(prt);
-            if (prt<=0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Port Number\' parameter: %d."),prt),gettext("Strictly positive integer expected."));
+            this.prt = int(this.prt);
+            if (this.prt<=0) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'Port Number\' parameter: %d."),this.prt),gettext("Strictly positive integer expected."));
             } else {
-                if (model.ipar!=prt) {
+                if (model.ipar!=this.prt) {
                     needcompile = 4;
                     y = needcompile;
                 }
-                model.ipar = prt;
+                model.ipar = this.prt;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = model;
                 break;
             }
         }
-        return new BasicBlock(this.x);
+        return new ImplicitInBlock(this.x);
     }
 }

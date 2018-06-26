@@ -2,18 +2,18 @@
 function GENERAL_f() {
     GENERAL_f.prototype.define = function GENERAL_f() {
         rpar = [[0],[0],[0],[0]];
-        in1 = 1;
-        out = 1;
+        this.in1 = 1;
+        this.out = 1;
         model = scicos_model();
         model.sim = list("zcross",1);
-        model.nzcross = in1;
-        model.in1 = in1;
-        model.evtout = ones(out,1);
+        model.nzcross = this.in1;
+        model.in1 = this.in1;
+        model.evtout = ones(this.out,1);
         model.rpar = [[0],[0],[0],[0]];
         model.blocktype = "z";
-        model.firing = -ones(out,1);
+        model.firing = -ones(this.out,1);
         model.dep_ut = [true,false];
-        exprs = [[strcat(sci2exp(in1))],[strcat(sci2exp(out))]];
+        exprs = [[strcat(sci2exp(this.in1))],[strcat(sci2exp(this.out))]];
         gr_i = [];
         this.x = standard_define([3,2],model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -29,16 +29,16 @@ function GENERAL_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         rpar = model.rpar;
-        in1 = model.in1;
-        out = model.evtout;
-        nin = sum(in1);
-        nout = sum(out);
-        [ok,in1,out,exprs] = scicos_getvalue("Set General Zero-Crossing parameters",[["Input size"],["Number of event output"]],list("vec",1,"vec",1),exprs);
+        this.in1 = model.in1;
+        this.out = model.evtout;
+        nin = sum(this.in1);
+        nout = sum(this.out);
+        [ok,this.in1,this.out,exprs] = scicos_getvalue("Set General Zero-Crossing parameters",[["Input size"],["Number of event output"]],list("vec",1,"vec",1),exprs);
         if (ok) {
-            [model,graphics,ok] = check_io(model,graphics,in1,[],[],ones(out,1));
+            [model,graphics,ok] = check_io(model,graphics,this.in1,[],[],ones(this.out,1));
             if (ok) {
-                nout1 = out;
-                nin1 = in1;
+                nout1 = this.out;
+                nin1 = this.in1;
                 if (nout==nout1&&nin==nin1) {
                     rp = matrix(rpar,nout,2^(2*nin));
                 } else {
@@ -48,9 +48,9 @@ function GENERAL_f() {
                 result = x_mdialog("routing matrix",string(1,nout1),string(1,2^(2*nin1)),string(rp.slice().slice()));
                 if (result!=[]) {
                     rp.slice(1-1,nout1).slice(1-1,2*n) = evstr(result);
-                    model.nzcross = in1;
+                    model.nzcross = this.in1;
                     model.rpar = rp.slice();
-                    model.firing = -ones(out,1);
+                    model.firing = -ones(this.out,1);
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
                     this.x.model = model;

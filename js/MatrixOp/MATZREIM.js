@@ -39,18 +39,18 @@ function MATZREIM() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,decomptyp,lab] = scicos_getvalue("Set MATZREIM block parameters",["decomposition type (1=Complex2Real&Imag 2=Real&Imag2Complex)"],list("vec",1),label);
+            [ok,this.decomptyp,this.lab] = scicos_getvalue("Set MATZREIM block parameters",["decomposition type (1=Complex2Real&Imag 2=Real&Imag2Complex)"],list("vec",1),label);
             if (!ok) {
                 break;
             }
-            label = lab;
-            if ((decomptyp==1)) {
+            label = this.lab;
+            if ((this.decomptyp==1)) {
                 function_name = "matz_reim";
                 in1 = [-1,-2];
                 it = 2;
                 out = [[-1,-2],[-1,-2]];
                 ot = [1,1];
-            } else if ((decomptyp==2)) {
+            } else if ((this.decomptyp==2)) {
                 function_name = "matz_reimc";
                 in1 = [[-1,-2],[-1,-2]];
                 it = [1,1];

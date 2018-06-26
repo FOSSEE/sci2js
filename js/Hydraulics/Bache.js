@@ -6,16 +6,16 @@ function Bache() {
         model = scicos_model();
         model.in1 = [-transpose([1:in1])];
         model.out = [-transpose([1:out])];
-        Patm = 1.013e5;
-        A = 1;
-        ze1 = 40;
-        ze2 = 0;
-        zs1 = 40;
-        zs2 = 0;
-        z0 = 30;
-        T0 = 290;
-        p_rho = 0;
-        model.rpar = [[Patm],[A],[ze1],[ze2],[zs1],[zs2],[z0],[T0],[p_rho]];
+        this.Patm = 1.013e5;
+        this.A = 1;
+        this.ze1 = 40;
+        this.ze2 = 0;
+        this.zs1 = 40;
+        this.zs2 = 0;
+        this.z0 = 30;
+        this.T0 = 290;
+        this.p_rho = 0;
+        model.rpar = [[this.Patm],[this.A],[this.ze1],[this.ze2],[this.zs1],[this.zs2],[this.z0],[this.T0],[this.p_rho]];
         model.sim = "Bache";
         model.blocktype = "c";
         model.dep_ut = [true,false];
@@ -23,11 +23,11 @@ function Bache() {
         mo.model = "Bache";
         mo.inputs = ["Ce1","Ce2"];
         mo.outputs = ["Cs1","Cs2","yNiveau"];
-        mo.parameters = list([["Patm"],["A"],["ze1"],["ze2"],["zs1"],["zs2"],["z0"],["T0"],["p_rho"]],[[Patm],[A],[ze1],[ze2],[zs1],[zs2],[z0],[T0],[p_rho]]);
+        mo.parameters = list([["Patm"],["A"],["ze1"],["ze2"],["zs1"],["zs2"],["z0"],["T0"],["p_rho"]],[[this.Patm],[this.A],[this.ze1],[this.ze2],[this.zs1],[this.zs2],[this.z0],[this.T0],[this.p_rho]]);
         model.equations = mo;
         model.in1 = ones(size(mo.inputs,"*"),1);
         model.out = ones(size(mo.outputs,"*"),1);
-        exprs = [[string(Patm)],[string(A)],[string(ze1)],[string(ze2)],[string(zs1)],[string(zs2)],[string(z0)],[string(T0)],[string(p_rho)]];
+        exprs = [[string(this.Patm)],[string(this.A)],[string(this.ze1)],[string(this.ze2)],[string(this.zs1)],[string(this.zs2)],[string(this.z0)],[string(this.T0)],[string(this.p_rho)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = [["I"],["I"]];
@@ -45,12 +45,12 @@ function Bache() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,Patm,A,ze1,ze2,zs1,zs2,z0,T0,p_rho,exprs] = scicos_getvalue("Parametres de la bache",[["Pression dans le ciel de la bache : Patm (Pa)"],["Section de la bache : A (m2)"],["Altitude du piquage d entrée 1: ze1 (m)"],["Altitude du piquage d entrée 2: ze2 (m)"],["Altitude du piquage de sortie 1: zs1 (m)"],["Altitude du piquage de sortie 2: zs2 (m)"],["Altitude initiale du fluide : z0 (m)"],["Température initiale du fluide : T0 (K)"],["Si >0, masse volumique imposée du fluide : p_rho (kg/m3)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.Patm,this.A,this.ze1,this.ze2,this.zs1,this.zs2,this.z0,this.T0,this.p_rho,exprs] = scicos_getvalue("Parametres de la bache",[["Pression dans le ciel de la bache : Patm (Pa)"],["Section de la bache : A (m2)"],["Altitude du piquage d entrée 1: ze1 (m)"],["Altitude du piquage d entrée 2: ze2 (m)"],["Altitude du piquage de sortie 1: zs1 (m)"],["Altitude du piquage de sortie 2: zs2 (m)"],["Altitude initiale du fluide : z0 (m)"],["Température initiale du fluide : T0 (K)"],["Si >0, masse volumique imposée du fluide : p_rho (kg/m3)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
-            model.rpar = [[Patm],[A],[ze1],[ze2],[zs1],[zs2],[z0],[T0],[p_rho]];
-            model.equations.parameters[2-1] = list(Patm,A,ze1,ze2,zs1,zs2,z0,T0,p_rho);
+            model.rpar = [[this.Patm],[this.A],[this.ze1],[this.ze2],[this.zs1],[this.zs2],[this.z0],[this.T0],[this.p_rho]];
+            model.equations.parameters[2-1] = list(this.Patm,this.A,this.ze1,this.ze2,this.zs1,this.zs2,this.z0,this.T0,this.p_rho);
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = model;

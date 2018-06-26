@@ -9,7 +9,7 @@ function scifunc_block() {
         z0 = [];
         typ = "c";
         auto = [];
-        rpar = [];
+        this.rpar = [];
         model = scicos_model();
         model.sim = list("scifunc",3);
         model.in1 = in1;
@@ -18,13 +18,13 @@ function scifunc_block() {
         model.evtout = clkout;
         model.state = x0;
         model.dstate = z0;
-        model.rpar = rpar;
+        model.rpar = this.rpar;
         model.ipar = 0;
         model.opar = list();
         model.blocktype = typ;
         model.firing = auto;
         model.dep_ut = [true,false];
-        exprs = list([[sci2exp(in1)],[sci2exp(out)],[sci2exp(clkin)],[sci2exp(clkout)],[strcat(sci2exp(x0))],[strcat(sci2exp(z0))],[strcat(sci2exp(rpar))],[sci2exp(auto)]],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
+        exprs = list([[sci2exp(in1)],[sci2exp(out)],[sci2exp(clkin)],[sci2exp(clkout)],[strcat(sci2exp(x0))],[strcat(sci2exp(z0))],[strcat(sci2exp(this.rpar))],[sci2exp(auto)]],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -44,34 +44,34 @@ function scifunc_block() {
             exprs[1-1][9-1] = "0";
         }
         while (true) {
-            [ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab] = scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],[["input ports sizes"],["output port sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["initial discrete state"],["System parameters vector"],["initial firing vector (<0 for no firing)"],["is block always active (0:no, 1:yes)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%4)","vec",1),exprs[1-1]);
+            [ok,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.auto0,this.deptime,this.lab] = scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],[["input ports sizes"],["output port sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["initial discrete state"],["System parameters vector"],["initial firing vector (<0 for no firing)"],["is block always active (0:no, 1:yes)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%4)","vec",1),exprs[1-1]);
             if (!ok) {
                 break;
             }
-            exprs[1-1] = lab;
-            xx = xx.slice();
-            z = z.slice();
-            rpar = rpar.slice();
-            nrp = prod(size(rpar));
-            i = int(i.slice());
-            ni = size(i,1);
-            o = int(o.slice());
-            no = size(o,1);
-            ci = int(ci.slice());
-            nci = size(ci,1);
-            co = int(co.slice());
-            nco = size(co,1);
-            [ok,tt,dep_ut] = genfunc1(exprs[2-1],i,o,nci,nco,size(xx,1),size(z,1),nrp,"c");
-            dep_ut[2-1] = (1==deptime);
+            exprs[1-1] = this.lab;
+            this.xx = this.xx.slice();
+            this.z = this.z.slice();
+            this.rpar = this.rpar.slice();
+            nrp = prod(size(this.rpar));
+            this.i = int(this.i.slice());
+            ni = size(this.i,1);
+            this.o = int(this.o.slice());
+            no = size(this.o,1);
+            this.ci = int(this.ci.slice());
+            nci = size(this.ci,1);
+            this.co = int(this.co.slice());
+            nco = size(this.co,1);
+            [ok,tt,dep_ut] = genfunc1(exprs[2-1],this.i,this.o,nci,nco,size(this.xx,1),size(this.z,1),nrp,"c");
+            dep_ut[2-1] = (1==this.deptime);
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = check_io(model,graphics,i,o,ci,co);
+            [model,graphics,ok] = check_io(model,graphics,this.i,this.o,this.ci,this.co);
             if (ok) {
-                auto = auto0;
-                model.state = xx;
-                model.dstate = z;
-                model.rpar = rpar;
+                auto = this.auto0;
+                model.state = this.xx;
+                model.dstate = this.z;
+                model.rpar = this.rpar;
                 if (model.ipar!=0) {
                     model.opar = model.ipar;
                     model.ipar = 0;

@@ -37,18 +37,18 @@ function PDE() {
                     [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,a7,b7,k,mesures,params_pde] = setvalue_IHM_EDP(params_pde);
                 }
             }
-            okk = false;
-            rdnom = "PDE";
+            this.okk = false;
+            this.rdnom = "PDE";
             ok1 = true;
             while (true) {
-                [okk,rdnom,lab] = scicos_getvalue("PLEASE, GIVE US THE BLOCK\'s NAME. ","New block\'s name :",list("str",1),label[3-1]);
-                if (okk==false) {
+                [this.okk,this.rdnom,this.lab] = scicos_getvalue("PLEASE, GIVE US THE BLOCK\'s NAME. ","New block\'s name :",list("str",1),label[3-1]);
+                if (this.okk==false) {
                     ok1 = false;
                     return;
                 }
-                label[3-1] = lab;
-                rdnom = stripblanks(rdnom);
-                if (rdnom==emptystr()) {
+                label[3-1] = this.lab;
+                this.rdnom = stripblanks(this.rdnom);
+                if (this.rdnom==emptystr()) {
                     ok1 = false;
                     x_message("sorry C file name not defined");
                 }
@@ -79,7 +79,7 @@ function PDE() {
                 }
                 type_meth = this.arbre_decision[delta-1];
             }
-            [flag_type,rdnom,DF_type,tt] = translate(CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,type_meth,degre,a_domaine,b_domaine,Nbr_maillage,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,a7,b7,rdnom,mesures);
+            [flag_type,this.rdnom,DF_type,tt] = translate(CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,type_meth,degre,a_domaine,b_domaine,Nbr_maillage,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,a7,b7,this.rdnom,mesures);
             Nbr = Nbr_maillage;
             if (((CLa_type==1)&&(DF_type==0||DF_type==1))||((CLb_type==1)&&(DF_type==0||DF_type==2))) {
                 Nbr = Nbr+1;
@@ -90,14 +90,14 @@ function PDE() {
                 out = [[Nbr_maillage],[size(mesures,"*")]];
             }
             if ((flag_type==1)) {
-                model.sim = list(rdnom,2004);
+                model.sim = list(this.rdnom,2004);
                 if ((find(oper==1)!=[])) {
                     model.state = zeros(2*Nbr_maillage,1);
                 } else {
                     model.state = zeros(Nbr_maillage,1);
                 }
             } else if ((flag_type==2)) {
-                model.sim = list(rdnom,12004);
+                model.sim = list(this.rdnom,12004);
                 if ((find(oper==1)!=[])) {
                     if ((type_meth==3&&(find(oper==2)!=[]||find(oper==4)!=[]))) {
                         model.state = zeros(6*Nbr_maillage,1);
@@ -116,7 +116,7 @@ function PDE() {
                     }
                 }
             }
-            [ok1] = CFORTREDP(rdnom,tt);
+            [ok1] = CFORTREDP(this.rdnom,tt);
             if (!ok1) {
                 break;
             }

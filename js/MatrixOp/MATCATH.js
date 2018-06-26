@@ -39,14 +39,14 @@ function MATCATH() {
             label = "size(evstr("+label[2-1]+"),\'*\')";
         }
         while (true) {
-            [ok,nin,lab] = scicos_getvalue("Set MATCATH block parameters",["Number of input"],list("vec",1),label);
+            [ok,this.nin,this.lab] = scicos_getvalue("Set MATCATH block parameters",["Number of input"],list("vec",1),label);
             if (!ok) {
                 break;
             }
-            label = lab;
-            in1 = [-1*(ones(nin,1)),-(transpose([2:nin+1]))];
+            label = this.lab;
+            in1 = [-1*(ones(this.nin,1)),-(transpose([2:this.nin+1]))];
             out = [-1,0];
-            it = -1*(ones(nin,1));
+            it = -1*(ones(this.nin,1));
             ot = -1;
             [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {

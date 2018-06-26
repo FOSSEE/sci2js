@@ -62,11 +62,11 @@ function Flowmeter() {
         this.x = arg1;
         exprs = this.x.graphics.exprs;
         while (false) {
-            [ok,Qini,exprs] = scicos_getvalue([["Set Flowmeter block parameters:"],[""],["Qini: "]],"Qini",list("vec",1),exprs);
+            [ok,this.Qini,exprs] = scicos_getvalue([["Set Flowmeter block parameters:"],[""],["Qini: "]],"Qini",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            this.x.model.equations.parameters[2-1] = list(Qini);
+            this.x.model.equations.parameters[2-1] = list(this.Qini);
             this.x.graphics.exprs = exprs;
             break;
         }

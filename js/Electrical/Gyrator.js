@@ -62,11 +62,11 @@ function Gyrator() {
         this.x = arg1;
         exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,G1,G2,exprs] = scicos_getvalue([["Set Gyrator block parameters:"],[""],["G1: Gyration conductance"],["G2: Gyration conductance"]],[["G1"],["G2"]],list("vec",1,"vec",1),exprs);
+            [ok,this.G1,this.G2,exprs] = scicos_getvalue([["Set Gyrator block parameters:"],[""],["G1: Gyration conductance"],["G2: Gyration conductance"]],[["G1"],["G2"]],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            this.x.model.equations.parameters[2-1] = list(G1,G2);
+            this.x.model.equations.parameters[2-1] = list(this.G1,this.G2);
             this.x.graphics.exprs = exprs;
             break;
         }

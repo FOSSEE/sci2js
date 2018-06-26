@@ -4,8 +4,10 @@ p0
 ((lp1
 S'x'
 p2
-aS'type'
+aS'C'
 p3
-atp4
-Rp5
+aS'type'
+p4
+atp5
+Rp6
 .

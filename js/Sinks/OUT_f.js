@@ -2,19 +2,19 @@
 function OUT_f() {
     OUT_f.prototype.define = function OUT_f() {
         n = -1;
-        prt = 1;
+        this.prt = 1;
         model = scicos_model();
         model.sim = "output";
         model.in1 = -1;
         model.in2 = -2;
         model.intyp = -1;
-        model.ipar = prt;
+        model.ipar = this.prt;
         model.blocktype = "c";
         model.dep_ut = [false,false];
-        exprs = string(prt);
+        exprs = string(this.prt);
         gr_i = [];
         this.x = standard_define([1,1],model,exprs,gr_i);
-        return new BasicBlock(this.x);
+        return new ExplicitOutBlock(this.x);
     }
     OUT_f.prototype.details = function OUT_f() {
         return this.x;
@@ -30,21 +30,21 @@ function OUT_f() {
             exprs = exprs[1-1];
         }
         while (true) {
-            [ok,prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"OUT_f")],[" "],[gettext("Regular output port")]],gettext("Port number"),list("vec",1),exprs);
+            [ok,this.prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"OUT_f")],[" "],[gettext("Regular output port")]],gettext("Port number"),list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            prt = int(prt);
-            if (prt<=0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Port Number\' parameter: %d."),prt),gettext("Strictly positive integer expected."));
+            this.prt = int(this.prt);
+            if (this.prt<=0) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'Port Number\' parameter: %d."),this.prt),gettext("Strictly positive integer expected."));
             } else {
-                model.ipar = prt;
+                model.ipar = this.prt;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = model;
                 break;
             }
         }
-        return new BasicBlock(this.x);
+        return new ExplicitOutBlock(this.x);
     }
 }

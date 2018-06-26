@@ -39,15 +39,15 @@ function ROOTCOEF() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,typ,inp,exprs] = scicos_getvalue("Set ROOTCOEF Block",[["Datatype(1=real double  2=Complex)"],["input row size"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.inp,exprs] = scicos_getvalue("Set ROOTCOEF Block",[["Datatype(1=real double  2=Complex)"],["input row size"]],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
-            if ((typ==1)) {
+            if ((this.typ==1)) {
                 function_name = "root_coef";
                 ot = 1;
                 it = 1;
-            } else if ((typ==2)) {
+            } else if ((this.typ==2)) {
                 function_name = "rootz_coef";
                 ot = 2;
                 it = 2;
@@ -55,8 +55,8 @@ function ROOTCOEF() {
                 message("Datatype is not supported");
                 ok = false;
             }
-            in1 = [inp,model.in2];
-            out = [inp+1,model.out2];
+            in1 = [this.inp,model.in2];
+            out = [this.inp+1,model.out2];
             funtyp = 4;
             if (ok) {
                 label = exprs;

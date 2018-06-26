@@ -5,18 +5,18 @@ function WRITEAU_f() {
         nin = sum(in1);
         frmt = "uc ";
         fname = "/dev/audio";
-        swap = 0;
+        this.swap = 0;
         lunit = 0;
-        N = 2;
+        this.N = 2;
         model = scicos_model();
         model.sim = list("writeau",2);
         model.in1 = in1;
         model.evtin = 1;
-        model.dstate = [[-1],[lunit],[zeros((nin+1)*N,1)]];
-        model.ipar = [[length(fname)],[this._str2code[frmt-1]],[N],[swap],[this._str2code[fname-1]]];
+        model.dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
+        model.ipar = [[length(fname)],[this._str2code[frmt-1]],[this.N],[this.swap],[this._str2code[fname-1]]];
         model.blocktype = "d";
         model.dep_ut = [true,false];
-        exprs = [string(N),string(swap)];
+        exprs = [string(this.N),string(this.swap)];
         gr_i = [];
         this.x = standard_define([4,2],model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -35,28 +35,28 @@ function WRITEAU_f() {
         dstate = model.dstate;
         lunit = dstate[2-1];
         while (true) {
-            [ok,N,swap,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WRITEAU_f")],[" "],[gettext("Write \'.au\' sound file on audio device")]],[[gettext("Buffer Size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",1,"vec",1),exprs);
+            [ok,this.N,this.swap,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WRITEAU_f")],[" "],[gettext("Write \'.au\' sound file on audio device")]],[[gettext("Buffer Size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             nin = 1;
             fname1 = "/dev/audio";
             frmt1 = "uc ";
-            if (this.alreadyran&&(N!=ipar[5-1])) {
+            if (this.alreadyran&&(this.N!=ipar[5-1])) {
                 block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
                 ok = false;
-            } else if (N<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),N),gettext("Strictly positive integer expected."));
+            } else if (this.N<1) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),this.N),gettext("Strictly positive integer expected."));
                 ok = false;
             }
-            if (swap!=0&&swap!=1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Swap Mode"),swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+            if (this.swap!=0&&this.swap!=1) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Swap Mode"),this.swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
                 ok = false;
             }
             if (ok) {
-                ipar = [[length(fname1)],[this._str2code[frmt1-1]],[N],[swap],[this._str2code[fname1-1]]];
-                if (prod(size(dstate))!=(nin+1)*N+2) {
-                    dstate = [[-1],[lunit],[zeros((nin+1)*N,1)]];
+                ipar = [[length(fname1)],[this._str2code[frmt1-1]],[this.N],[this.swap],[this._str2code[fname1-1]]];
+                if (prod(size(dstate))!=(nin+1)*this.N+2) {
+                    dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
                 }
                 model.in1 = 1;
                 model.dstate = dstate;

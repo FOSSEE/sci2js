@@ -2,10 +2,10 @@
 function BARXY() {
     BARXY.prototype.define = function BARXY() {
         model = scicos_model();
-        xmin = -15;
-        xmax = 15;
-        ymin = -15;
-        ymax = 15;
+        this.xmin = -15;
+        this.xmax = 15;
+        this.ymin = -15;
+        this.ymax = 15;
         model.sim = list("BARXY_sim",5);
         model.blocktype = "d";
         model.dep_ut = [true,false];
@@ -13,7 +13,7 @@ function BARXY() {
         model.intyp = [1];
         model.out = [];
         model.evtin = [1];
-        model.rpar = [[xmin],[xmax],[ymin],[ymax]];
+        model.rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
         model.ipar = 1;
         this.x = standard_define([2,2],model,[],[]);
         this.x.graphics.in_implicit = ["E","E"];
@@ -32,28 +32,28 @@ function BARXY() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,xmin,xmax,ymin,ymax,thickness,exprs] = scicos_getvalue("Set Scope parameters",[["Xmin"],["Xmax"],["Ymin"],["Ymax"],["Segs Thickness"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.xmin,this.xmax,this.ymin,this.ymax,this.thickness,exprs] = scicos_getvalue("Set Scope parameters",[["Xmin"],["Xmax"],["Ymin"],["Ymax"],["Segs Thickness"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             mess = [];
-            if (ymin>=ymax) {
+            if (this.ymin>=this.ymax) {
                 mess = [[mess],["Ymax must be greater than Ymin"],[" "]];
                 ok = false;
             }
-            if (xmin>=xmax) {
+            if (this.xmin>=this.xmax) {
                 mess = [[mess],["Xmax must be greater than Xmin"],[" "]];
                 ok = false;
             }
-            if (thickness<=0) {
+            if (this.thickness<=0) {
                 mess = [[mess],["Thickness must be strictly positive."]];
                 ok = false;
             }
             if (!ok) {
                 message(mess);
             } else {
-                model.rpar = [[xmin],[xmax],[ymin],[ymax]];
-                model.ipar = thickness;
+                model.rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
+                model.ipar = this.thickness;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = model;

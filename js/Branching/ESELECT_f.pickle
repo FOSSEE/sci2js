@@ -4,6 +4,12 @@ p0
 ((lp1
 S'x'
 p2
-atp3
-Rp4
+aS'inh'
+p3
+aS'nmod'
+p4
+aS'out'
+p5
+atp6
+Rp7
 .

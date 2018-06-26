@@ -25,15 +25,15 @@ function TrigFun() {
         PREVAR_FF = [["sin"],["cos"],["tan"],["asin"],["acos"],["atan"],["sinh"],["cosh"],["tanh"],["asinh"],["acosh"],["atanh"]];
         PREVAR_GG = [["Choose among "+strcat(PREVAR_FF.slice(1-1,4),", ")],[strcat(PREVAR_FF.slice(5-1,$),", ")]];
         while (true) {
-            [ok,fun,exprs] = scicos_getvalue(PREVAR_GG,"Function",list("str",1),exprs);
+            [ok,this.fun,exprs] = scicos_getvalue(PREVAR_GG,"Function",list("str",1),exprs);
             if (!ok) {
                 break;
             }
-            if (find(PREVAR_FF==fun)==[]) {
-                message("Sorry but "+fun+" is not in the list!");
+            if (find(PREVAR_FF==this.fun)==[]) {
+                message("Sorry but "+this.fun+" is not in the list!");
             } else {
                 graphics.exprs = exprs;
-                execstr("model.sim=list(\'"+fun+"_blk\',4)");
+                execstr("model.sim=list(\'"+this.fun+"_blk\',4)");
                 this.x.graphics = graphics;
                 this.x.model = model;
                 break;

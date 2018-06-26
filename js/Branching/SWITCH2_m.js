@@ -2,7 +2,7 @@
 function SWITCH2_m() {
     SWITCH2_m.prototype.define = function SWITCH2_m() {
         ipar = [0];
-        nzz = 1;
+        this.nzz = 1;
         rpar = 0;
         model = scicos_model();
         model.sim = list("switch2_m",4);
@@ -14,11 +14,11 @@ function SWITCH2_m() {
         model.outtyp = 1;
         model.ipar = ipar;
         model.rpar = rpar;
-        model.nzcross = nzz;
+        model.nzcross = this.nzz;
         model.nmode = 1;
         model.blocktype = "c";
         model.dep_ut = [true,false];
-        exprs = [[sci2exp(1)],[string(ipar)],[string(rpar)],[string(nzz)]];
+        exprs = [[sci2exp(1)],[string(ipar)],[string(rpar)],[string(this.nzz)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -34,38 +34,38 @@ function SWITCH2_m() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,ot,rule,thra,nzz,exprs] = scicos_getvalue("Set parameters",[["Datatype (1=real double  2=complex 3=int32 ...)"],["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)"],["threshold a"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.ot,this.rule,this.thra,this.nzz,exprs] = scicos_getvalue("Set parameters",[["Datatype (1=real double  2=complex 3=int32 ...)"],["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)"],["threshold a"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            rule = int(rule);
-            if ((rule<0)) {
-                rule = 0;
+            this.rule = int(this.rule);
+            if ((this.rule<0)) {
+                this.rule = 0;
             }
-            if ((rule>2)) {
-                rule = 2;
+            if ((this.rule>2)) {
+                this.rule = 2;
             }
             graphics.exprs = exprs;
-            model.ipar = rule;
-            model.rpar = thra;
-            if (nzz!=0) {
+            model.ipar = this.rule;
+            model.rpar = this.thra;
+            if (this.nzz!=0) {
                 model.nmode = 1;
                 model.nzcross = 1;
             } else {
                 model.nmode = 0;
                 model.nzcross = 0;
             }
-            if (((ot<1)||(ot>8))&&(ot!=-1)) {
+            if (((this.ot<1)||(this.ot>8))&&(this.ot!=-1)) {
                 message("Datatype is not supported");
                 ok = false;
             }
             if (ok) {
-                it[1-1] = ot;
+                it[1-1] = this.ot;
                 it[2-1] = 1;
-                it[3-1] = ot;
+                it[3-1] = this.ot;
                 in1 = [model.in1,model.in2];
                 out = [model.out,model.out2];
-                [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
+                [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,this.ot),[],[]);
             }
             if (ok) {
                 this.x.graphics = graphics;

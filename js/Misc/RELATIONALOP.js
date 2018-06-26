@@ -30,62 +30,62 @@ function RELATIONALOP() {
             exprs = [[exprs],[sci2exp(1)]];
         }
         while (true) {
-            [ok,rule,zcr,Datatype,exprs] = scicos_getvalue("Set parameters",[["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)"],["Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.rule,this.zcr,this.Datatype,exprs] = scicos_getvalue("Set parameters",[["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)"],["Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"]],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            rule = int(rule);
-            if (zcr!=0) {
-                zcr = 1;
+            this.rule = int(this.rule);
+            if (this.zcr!=0) {
+                this.zcr = 1;
             }
-            if ((rule<0)||(rule>5)) {
-                message("Incorrect operator "+string(rule)+" ; must be 0 to 5.");
+            if ((this.rule<0)||(this.rule>5)) {
+                message("Incorrect operator "+string(this.rule)+" ; must be 0 to 5.");
                 ok = false;
             }
-            if ((Datatype==1)) {
+            if ((this.Datatype==1)) {
                 model.sim = list("relational_op",4);
-            } else if ((Datatype==3||Datatype==9)) {
+            } else if ((this.Datatype==3||this.Datatype==9)) {
                 model.sim = list("relational_op_i32",4);
-            } else if ((Datatype==4)) {
+            } else if ((this.Datatype==4)) {
                 model.sim = list("relational_op_i16",4);
-            } else if ((Datatype==5)) {
+            } else if ((this.Datatype==5)) {
                 model.sim = list("relational_op_i8",4);
-            } else if ((Datatype==6)) {
+            } else if ((this.Datatype==6)) {
                 model.sim = list("relational_op_ui32",4);
-            } else if ((Datatype==7)) {
+            } else if ((this.Datatype==7)) {
                 model.sim = list("relational_op_ui16",4);
-            } else if ((Datatype==8)) {
+            } else if ((this.Datatype==8)) {
                 model.sim = list("relational_op_ui8",4);
             } else {
                 message("Datatype is not supported");
                 ok = false;
             }
             if (ok) {
-                it = Datatype*ones(1,2);
-                ot = Datatype;
+                it = this.Datatype*ones(1,2);
+                ot = this.Datatype;
                 in1 = [[-1,-2],[-1,-2]];
                 out = [-1,-2];
                 [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
-                if (rule==0) {
+                if (this.rule==0) {
                     label = "==";
-                } else if (rule==1) {
+                } else if (this.rule==1) {
                     label = "~=";
-                } else if (rule==2) {
+                } else if (this.rule==2) {
                     label = "&#60;";
-                } else if (rule==3) {
+                } else if (this.rule==3) {
                     label = "&#8804;";
-                } else if (rule==4) {
+                } else if (this.rule==4) {
                     label = "&#62;";
-                } else if (rule==5) {
+                } else if (this.rule==5) {
                     label = "&#8805;";
                 }
                 graphics.exprs = exprs;
                 graphics.style = ["fontSize=13;fontStyle=1;displayedLabel="+label];
-                model.ipar = [rule];
-                model.nzcross = zcr;
-                model.nmode = zcr;
+                model.ipar = [this.rule];
+                model.nzcross = this.zcr;
+                model.nmode = this.zcr;
                 this.x.graphics = graphics;
                 this.x.model = model;
                 break;

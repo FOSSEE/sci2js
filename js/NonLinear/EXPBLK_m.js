@@ -2,7 +2,7 @@
 function EXPBLK_m() {
     EXPBLK_m.prototype.define = function EXPBLK_m() {
         in1 = 1;
-        a = math.E;
+        this.a = math.E;
         model = scicos_model();
         model.sim = list("expblk_m",4);
         model.in1 = -1;
@@ -11,7 +11,7 @@ function EXPBLK_m() {
         model.out2 = -2;
         model.intyp = 1;
         model.outtyp = 1;
-        model.rpar = a;
+        model.rpar = this.a;
         model.blocktype = "c";
         model.dep_ut = [true,false];
         exprs = ["%e"];
@@ -33,15 +33,15 @@ function EXPBLK_m() {
             exprs = exprs[2-1];
         }
         while (true) {
-            [ok,a,exprs] = scicos_getvalue("Set a^u  block parameters","a (>0)",list("vec",1),exprs);
+            [ok,this.a,exprs] = scicos_getvalue("Set a^u  block parameters","a (>0)",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            if (or(a<=0)) {
+            if (or(this.a<=0)) {
                 message("a^u : a must be positive");
             } else {
                 graphics.exprs = exprs;
-                model.rpar = a;
+                model.rpar = this.a;
                 this.x.graphics = graphics;
                 this.x.model = model;
                 break;

@@ -27,17 +27,17 @@ function GENSIN_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,M,F,P,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"GENSIN_f")],[" "],[gettext("Sine wave generator")],[" "]],[[gettext("Magnitude")],[gettext("Frequency (rad/s)")],[gettext("Phase (rad)")]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.M,this.F,this.P,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"GENSIN_f")],[" "],[gettext("Sine wave generator")],[" "]],[[gettext("Magnitude")],[gettext("Frequency (rad/s)")],[gettext("Phase (rad)")]],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            if (F<0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Frequency\' parameter: %e."),F),gettext("Strictly positive integer expected."));
+            if (this.F<0) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'Frequency\' parameter: %e."),this.F),gettext("Strictly positive integer expected."));
                 ok = false;
             }
             if (ok) {
                 [model,graphics,ok] = check_io(model,graphics,[],1,[],[]);
-                model.rpar = [[M],[F],[P]];
+                model.rpar = [[this.M],[this.F],[this.P]];
                 model.out2 = 1;
                 model.outtyp = 1;
                 graphics.exprs = exprs;

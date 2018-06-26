@@ -2,15 +2,15 @@
 function POWBLK_f() {
     POWBLK_f.prototype.define = function POWBLK_f() {
         in1 = 1;
-        a = 1.5;
+        this.a = 1.5;
         model = scicos_model();
         model.sim = "powblk";
         model.in1 = -1;
         model.out = -1;
-        model.rpar = a;
+        model.rpar = this.a;
         model.blocktype = "c";
         model.dep_ut = [true,false];
-        exprs = string(a);
+        exprs = string(this.a);
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -29,16 +29,16 @@ function POWBLK_f() {
             exprs = exprs[2-1];
         }
         while (true) {
-            [ok,a,exprs] = scicos_getvalue("Set u^a block parameters","to the power of",list("vec",1),exprs);
+            [ok,this.a,exprs] = scicos_getvalue("Set u^a block parameters","to the power of",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
             graphics.exprs = exprs;
-            if (a==int(a)) {
-                model.ipar = a;
+            if (this.a==int(this.a)) {
+                model.ipar = this.a;
                 model.rpar = [];
             } else {
-                model.rpar = a;
+                model.rpar = this.a;
                 model.ipar = [];
             }
             model.firing = [];

@@ -35,24 +35,24 @@ function IFTHEL_f() {
             exprs[2-1] = string(1);
         }
         while (true) {
-            [ok,inh,nmod,exprs] = scicos_getvalue("Set parameters",[["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1),exprs);
+            [ok,this.inh,this.nmod,exprs] = scicos_getvalue("Set parameters",[["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             model.dep_ut = [true,false];
-            if (nmod!=0) {
-                nmod = 1;
+            if (this.nmod!=0) {
+                this.nmod = 1;
             }
-            if (inh!=1) {
-                inh = [];
+            if (this.inh!=1) {
+                this.inh = [];
             }
-            [model,graphics,ok] = check_io(model,graphics,1,[],inh,[[1],[1]]);
+            [model,graphics,ok] = check_io(model,graphics,1,[],this.inh,[[1],[1]]);
             if (ok) {
                 graphics.exprs = exprs;
-                model.evtin = inh;
+                model.evtin = this.inh;
                 model.sim[2-1] = -1;
-                model.nmode = nmod;
-                model.nzcross = nmod;
+                model.nmode = this.nmod;
+                model.nzcross = this.nmod;
                 this.x.graphics = graphics;
                 this.x.model = model;
                 break;

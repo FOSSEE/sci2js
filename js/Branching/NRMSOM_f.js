@@ -2,14 +2,14 @@
 function NRMSOM_f() {
     NRMSOM_f.prototype.define = function NRMSOM_f() {
         in1 = [[-1],[-1]];
-        nin = 2;
+        this.nin = 2;
         model = scicos_model();
         model.sim = "junk";
         model.in1 = in1;
         model.out = -1;
         model.blocktype = "c";
         model.dep_ut = [true,false];
-        exprs = [string(nin)];
+        exprs = [string(this.nin)];
         gr_i = [];
         this.x = standard_define([.2,2],model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -25,11 +25,11 @@ function NRMSOM_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,nin,exprs] = scicos_getvalue("Set parameters",["number of inputs"],list("vec",1),exprs);
+            [ok,this.nin,exprs] = scicos_getvalue("Set parameters",["number of inputs"],list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = check_io(model,graphics,-ones(nin,1),-1,[],[]);
+            [model,graphics,ok] = check_io(model,graphics,-ones(this.nin,1),-1,[],[]);
             if (ok) {
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;

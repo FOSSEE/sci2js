@@ -39,7 +39,7 @@ function RICC() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,tpe,mod,exprs] = scicos_getvalue("Set RICC Block",[["Type (1=Cont  2=Disc)"],["Model(1=Schr  2=sign(cont) inv(disc))"]],list("vec",1,"vec",1),label);
+            [ok,this.tpe,this.mod,exprs] = scicos_getvalue("Set RICC Block",[["Type (1=Cont  2=Disc)"],["Model(1=Schr  2=sign(cont) inv(disc))"]],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
@@ -50,7 +50,7 @@ function RICC() {
             label = exprs;
             [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {
-                model.ipar = [[tpe],[mod]];
+                model.ipar = [[this.tpe],[this.mod]];
                 graphics.exprs = label;
                 arg1.graphics = graphics;
                 arg1.model = model;

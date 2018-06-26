@@ -2,12 +2,12 @@
 function LOGBLK_f() {
     LOGBLK_f.prototype.define = function LOGBLK_f() {
         in1 = 1;
-        a = math.E;
+        this.a = math.E;
         model = scicos_model();
         model.sim = "logblk";
         model.in1 = -1;
         model.out = -1;
-        model.rpar = a;
+        model.rpar = this.a;
         model.blocktype = "c";
         model.dep_ut = [true,false];
         exprs = "%e";
@@ -29,16 +29,16 @@ function LOGBLK_f() {
             exprs = exprs[2-1];
         }
         while (true) {
-            [ok,a,exprs] = scicos_getvalue("Set log block parameters","Basis (>1)",list("vec",1),exprs);
+            [ok,this.a,exprs] = scicos_getvalue("Set log block parameters","Basis (>1)",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            if (a<=1) {
+            if (this.a<=1) {
                 message("Basis must be larger than 1");
             } else {
                 if (ok) {
                     graphics.exprs = exprs;
-                    model.rpar = a;
+                    model.rpar = this.a;
                     this.x.graphics = graphics;
                     this.x.model = model;
                     break;

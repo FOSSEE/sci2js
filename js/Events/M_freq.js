@@ -26,24 +26,24 @@ function M_freq() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,frequ,offset,exprs] = scicos_getvalue("Set block parameters",[["Sample time"],["Offset"]],list("vec",-1,"vec",-1),exprs);
+            [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",[["Sample time"],["Offset"]],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
-            offset = offset.slice();
-            frequ = frequ.slice();
-            if ((size(frequ,"*"))!=(size(offset,"*"))) {
+            this.offset = this.offset.slice();
+            this.frequ = this.frequ.slice();
+            if ((size(this.frequ,"*"))!=(size(this.offset,"*"))) {
                 message("offset and frequency must have the same size");
                 ok = false;
-            } else if (or(frequ<0)) {
+            } else if (or(this.frequ<0)) {
                 message("Frequency must be a positif number");
                 ok = false;
-            } else if (or(abs(offset)>frequ)) {
+            } else if (or(abs(this.offset)>this.frequ)) {
                 message("The |Offset| must be less than the Frequency");
                 ok = false;
             }
             if (ok) {
-                [m,den,off,count,m1,fir,frequ,offset,ok] = mfrequ_clk(frequ,offset);
+                [m,den,off,count,m1,fir,this.frequ,this.offset,ok] = mfrequ_clk(this.frequ,this.offset);
             }
             if (ok) {
                 model.opar = list(m,double(den),off,count);

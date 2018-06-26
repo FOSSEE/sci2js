@@ -28,17 +28,17 @@ function MEMORY_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,a,inh,exprs] = scicos_getvalue("Set memory block parameters",[["initial condition"],["Inherit (1: no, 0: yes)"]],list("vec",-1,"vec",1),exprs);
+            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set memory block parameters",[["initial condition"],["Inherit (1: no, 0: yes)"]],list("vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            if (inh==0) {
-                inh = [];
+            if (this.inh==0) {
+                this.inh = [];
             } else {
-                inh = 1;
+                this.inh = 1;
             }
-            [model,graphics,ok] = check_io(model,graphics,-1,-1,inh,[]);
-            out = size(a,"*");
+            [model,graphics,ok] = check_io(model,graphics,-1,-1,this.inh,[]);
+            out = size(this.a,"*");
             if (out==0) {
                 ok = false;
                 messagebox("Initial condition empty","modal","error");
@@ -46,7 +46,7 @@ function MEMORY_f() {
             in1 = out;
             if (ok) {
                 graphics.exprs = exprs;
-                model.rpar = a;
+                model.rpar = this.a;
                 model.in1 = in1;
                 model.out = out;
                 this.x.graphics = graphics;

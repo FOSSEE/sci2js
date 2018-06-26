@@ -2,14 +2,14 @@
 function DOLLAR_m() {
     DOLLAR_m.prototype.define = function DOLLAR_m() {
         z = 0;
-        inh = 0;
+        this.inh = 0;
         in1 = 1;
-        exprs = string([[z],[inh]]);
+        exprs = string([[z],[this.inh]]);
         model = scicos_model();
         model.sim = list("dollar4",4);
         model.in1 = in1;
         model.out = in1;
-        model.evtin = 1-inh;
+        model.evtin = 1-this.inh;
         model.dstate = z;
         model.blocktype = "d";
         model.dep_ut = [false,false];
@@ -31,47 +31,47 @@ function DOLLAR_m() {
             exprs[2-1] = "0";
         }
         while (true) {
-            [ok,a,inh,exprs] = scicos_getvalue("Set 1/z block parameters",[["initial condition"],["Inherit (no:0, yes:1)"]],list("mat",[-1,-2],"vec",-1),exprs);
+            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set 1/z block parameters",[["initial condition"],["Inherit (no:0, yes:1)"]],list("mat",[-1,-2],"vec",-1),exprs);
             if (!ok) {
                 break;
             }
-            out = [size(a,1),size(a,2)];
+            out = [size(this.a,1),size(this.a,2)];
             if (out==0) {
                 out = [];
             }
             in1 = out;
             model.sim = list("dollar4_m",4);
-            model.odstate = list(a);
+            model.odstate = list(this.a);
             model.dstate = [];
-            if ((this.type[a-1]==1)) {
-                if (isreal(a)) {
+            if ((this.type[this.a-1]==1)) {
+                if (isreal(this.a)) {
                     it = 1;
                     ot = 1;
-                    if ((size(a,1)==1||size(a,2)==1)) {
+                    if ((size(this.a,1)==1||size(this.a,2)==1)) {
                         model.sim = list("dollar4",4);
-                        model.dstate = a.slice();
+                        model.dstate = this.a.slice();
                         model.odstate = list();
                     }
                 } else {
                     it = 2;
                     ot = 2;
                 }
-            } else if ((typeof(a)=="int32")) {
+            } else if ((typeof(this.a)=="int32")) {
                 it = 3;
                 ot = 3;
-            } else if ((typeof(a)=="int16")) {
+            } else if ((typeof(this.a)=="int16")) {
                 it = 4;
                 ot = 4;
-            } else if ((typeof(a)=="int8")) {
+            } else if ((typeof(this.a)=="int8")) {
                 it = 5;
                 ot = 5;
-            } else if ((typeof(a)=="uint32")) {
+            } else if ((typeof(this.a)=="uint32")) {
                 it = 6;
                 ot = 6;
-            } else if ((typeof(a)=="uint16")) {
+            } else if ((typeof(this.a)=="uint16")) {
                 it = 7;
                 ot = 7;
-            } else if ((typeof(a)=="uint8")) {
+            } else if ((typeof(this.a)=="uint8")) {
                 it = 8;
                 ot = 8;
             } else {
@@ -79,7 +79,7 @@ function DOLLAR_m() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),ones(1-inh,1),[]);
+                [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),ones(1-this.inh,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;

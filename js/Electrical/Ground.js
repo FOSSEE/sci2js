@@ -16,7 +16,7 @@ function Ground() {
         this.x = standard_define([1,1],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
-        return new BasicBlock(this.x);
+        return new GroundBlock(this.x);
     }
     Ground.prototype.details = function Ground() {
         return this.x;
@@ -25,6 +25,6 @@ function Ground() {
     }
     Ground.prototype.set = function Ground() {
         this.x = arg1;
-        return new BasicBlock(this.x);
+        return new GroundBlock(this.x);
     }
 }

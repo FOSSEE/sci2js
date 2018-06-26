@@ -62,11 +62,11 @@ function IdealTransformer() {
         this.x = arg1;
         exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,N,exprs] = scicos_getvalue([["Set Transformer block parameters:"],[""],["N:"+" Turn ratio (N1/N2)"]],["N"],list("vec",1),exprs);
+            [ok,this.N,exprs] = scicos_getvalue([["Set Transformer block parameters:"],[""],["N:"+" Turn ratio (N1/N2)"]],["N"],list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            this.x.model.equations.parameters[2-1] = list(N);
+            this.x.model.equations.parameters[2-1] = list(this.N);
             this.x.graphics.exprs = exprs;
             break;
         }

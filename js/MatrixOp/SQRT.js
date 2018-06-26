@@ -26,20 +26,20 @@ function SQRT() {
         label = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,typ,exprs] = scicos_getvalue("Set SQRT Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
+            [ok,this.typ,exprs] = scicos_getvalue("Set SQRT Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
             if (!ok) {
                 break;
             }
-            if ((typ==1)) {
+            if ((this.typ==1)) {
                 function_name = "mat_sqrt";
-            } else if ((typ==2)) {
+            } else if ((this.typ==2)) {
                 function_name = "matz_sqrt";
             } else {
                 message("type is not supported");
                 ok = false;
             }
-            it = typ;
-            ot = typ;
+            it = this.typ;
+            ot = this.typ;
             in1 = [model.in1,model.in2];
             out = [model.out,model.out2];
             funtyp = 4;

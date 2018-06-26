@@ -4,9 +4,9 @@ function VanneReglante() {
         model = scicos_model();
         model.in1 = [[1],[1]];
         model.out = [1];
-        Cvmax = 8005.42;
-        p_rho = 0;
-        model.rpar = [[Cvmax],[p_rho]];
+        this.Cvmax = 8005.42;
+        this.p_rho = 0;
+        model.rpar = [[this.Cvmax],[this.p_rho]];
         model.sim = "VanneReglante";
         model.blocktype = "c";
         model.dep_ut = [true,false];
@@ -14,11 +14,11 @@ function VanneReglante() {
         mo.model = "VanneReglante";
         mo.inputs = ["C1","Ouv"];
         mo.outputs = "C2";
-        mo.parameters = list([["Cvmax"],["p_rho"]],[[Cvmax],[p_rho]]);
+        mo.parameters = list([["Cvmax"],["p_rho"]],[[this.Cvmax],[this.p_rho]]);
         model.equations = mo;
         model.in1 = ones(size(mo.inputs,"*"),1);
         model.out = ones(size(mo.outputs,"*"),1);
-        exprs = [[string(Cvmax)],[string(p_rho)]];
+        exprs = [[string(this.Cvmax)],[string(this.p_rho)]];
         gr_i = [];
         this.x = standard_define([2,2],model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = [["I"],["E"]];
@@ -36,12 +36,12 @@ function VanneReglante() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,Cvmax,p_rho,exprs] = scicos_getvalue("Paramètres de la vanne reglante",[["Cvmax"],["p_rho"]],list("vec",-1,"vec",-1),exprs);
+            [ok,this.Cvmax,this.p_rho,exprs] = scicos_getvalue("Paramètres de la vanne reglante",[["Cvmax"],["p_rho"]],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
-            model.rpar = [[Cvmax],[p_rho]];
-            model.equations.parameters[2-1] = list(Cvmax,p_rho);
+            model.rpar = [[this.Cvmax],[this.p_rho]];
+            model.equations.parameters[2-1] = list(this.Cvmax,this.p_rho);
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = model;

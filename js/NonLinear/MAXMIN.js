@@ -25,36 +25,36 @@ function MAXMIN() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,mm,nin,zcr,exprs] = scicos_getvalue("Set Max/Min block parameters",[["Min (1) or Max (2) "],["Number of input vectors (1 or 2)"],["zero-crossing (1: yes, 0;no)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.mm,this.nin,this.zcr,exprs] = scicos_getvalue("Set Max/Min block parameters",[["Min (1) or Max (2) "],["Number of input vectors (1 or 2)"],["zero-crossing (1: yes, 0;no)"]],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            if (zcr!=0) {
-                zcr = -1;
+            if (this.zcr!=0) {
+                this.zcr = -1;
             }
-            if (mm!=1) {
-                mm = 2;
+            if (this.mm!=1) {
+                this.mm = 2;
             }
-            if (nin!=1&&nin!=2) {
+            if (this.nin!=1&&this.nin!=2) {
                 message("Wrong number of inputs, only 1 and 2 allowed");
                 ok = false;
             }
             if (ok) {
-                if (nin==1) {
+                if (this.nin==1) {
                     [model,graphics,ok] = check_io(model,graphics,-1,1,[],[]);
                 } else {
                     [model,graphics,ok] = check_io(model,graphics,[-1,-1],-1,[],[]);
                 }
             }
             if (ok) {
-                model.nzcross = zcr;
-                if (nin==1) {
-                    model.nmode = abs(zcr);
+                model.nzcross = this.zcr;
+                if (this.nin==1) {
+                    model.nmode = abs(this.zcr);
                 } else {
-                    model.nmode = zcr;
+                    model.nmode = this.zcr;
                 }
-                model.ipar = mm;
-                if (mm==1) {
+                model.ipar = this.mm;
+                if (this.mm==1) {
                     label = "MIN";
                 } else {
                     label = "MAX";

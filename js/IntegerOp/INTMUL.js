@@ -30,59 +30,59 @@ function INTMUL() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,Datatype,np,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INTMUL")],[" "],[gettext("Integer matrix multiplication")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")]],list("vec",1,"vec",1),exprs);
+            [ok,this.Datatype,this.np,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INTMUL")],[" "],[gettext("Integer matrix multiplication")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")]],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            it = Datatype*ones(1,2);
-            ot = Datatype;
-            if ((np!=0&&np!=1&&np!=2)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Do on Overflow"),np),msprintf(gettext("Must be in the interval %s."),"[0, 2]"));
+            it = this.Datatype*ones(1,2);
+            ot = this.Datatype;
+            if ((this.np!=0&&this.np!=1&&this.np!=2)) {
+                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Do on Overflow"),this.np),msprintf(gettext("Must be in the interval %s."),"[0, 2]"));
                 ok = false;
-            } else if (Datatype==3) {
-                if (np==0) {
+            } else if (this.Datatype==3) {
+                if (this.np==0) {
                     model.sim = list("matmul_i32n",4);
-                } else if (np==1) {
+                } else if (this.np==1) {
                     model.sim = list("matmul_i32s",4);
                 } else {
                     model.sim = list("matmul_i32e",4);
                 }
-            } else if (Datatype==4) {
-                if (np==0) {
+            } else if (this.Datatype==4) {
+                if (this.np==0) {
                     model.sim = list("matmul_i16n",4);
-                } else if (np==1) {
+                } else if (this.np==1) {
                     model.sim = list("matmul_i16s",4);
                 } else {
                     model.sim = list("matmul_i16e",4);
                 }
-            } else if (Datatype==5) {
-                if (np==0) {
+            } else if (this.Datatype==5) {
+                if (this.np==0) {
                     model.sim = list("matmul_i8n",4);
-                } else if (np==1) {
+                } else if (this.np==1) {
                     model.sim = list("matmul_i8s",4);
                 } else {
                     model.sim = list("matmul_i8e",4);
                 }
-            } else if (Datatype==6) {
-                if (np==0) {
+            } else if (this.Datatype==6) {
+                if (this.np==0) {
                     model.sim = list("matmul_ui32n",4);
-                } else if (np==1) {
+                } else if (this.np==1) {
                     model.sim = list("matmul_ui32s",4);
                 } else {
                     model.sim = list("matmul_ui32e",4);
                 }
-            } else if (Datatype==7) {
-                if (np==0) {
+            } else if (this.Datatype==7) {
+                if (this.np==0) {
                     model.sim = list("matmul_ui16n",4);
-                } else if (np==1) {
+                } else if (this.np==1) {
                     model.sim = list("matmul_ui16s",4);
                 } else {
                     model.sim = list("matmul_ui16e",4);
                 }
-            } else if (Datatype==8) {
-                if (np==0) {
+            } else if (this.Datatype==8) {
+                if (this.np==0) {
                     model.sim = list("matmul_ui8n",4);
-                } else if (np==1) {
+                } else if (this.np==1) {
                     model.sim = list("matmul_ui8s",4);
                 } else {
                     model.sim = list("matmul_ui8e",4);
@@ -97,7 +97,7 @@ function INTMUL() {
                 [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
-                model.ipar = np;
+                model.ipar = this.np;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = model;

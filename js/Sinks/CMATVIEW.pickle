@@ -4,8 +4,14 @@ p0
 ((lp1
 S'x'
 p2
-aS'jetcolormap'
+aS'cmax'
 p3
-atp4
-Rp5
+aS'jetcolormap'
+p4
+aS'colormap'
+p5
+aS'cmin'
+p6
+atp7
+Rp8
 .

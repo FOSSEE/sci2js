@@ -2,8 +2,12 @@ c__builtin__
 set
 p0
 ((lp1
-S'x'
+S'Datatype'
 p2
-atp3
-Rp4
+aS'x'
+p3
+aS'bit'
+p4
+atp5
+Rp6
 .

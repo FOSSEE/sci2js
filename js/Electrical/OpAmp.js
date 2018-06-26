@@ -34,11 +34,11 @@ function OpAmp() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (false) {
-            [ok,OLGain,SatH,SatL,exprs] = scicos_getvalue("Set the Operational Amplifier parameters",[["Open Loop Gain"],["Positive saturation voltage"],["Negative saturation voltage"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.OLGain,this.SatH,this.SatL,exprs] = scicos_getvalue("Set the Operational Amplifier parameters",[["Open Loop Gain"],["Positive saturation voltage"],["Negative saturation voltage"]],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            model.equations.parameters[2-1] = list(OLGain,SatH,SatL);
+            model.equations.parameters[2-1] = list(this.OLGain,this.SatH,this.SatL);
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = model;

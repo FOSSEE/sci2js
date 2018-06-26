@@ -37,16 +37,16 @@ function CLR_f() {
         PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.s = %s;
         while (true) {
-            [ok,num,den,exprs] = scicos_getvalue("Set continuous SISO transfer parameters",[["Numerator (s)"],["Denominator (s)"]],list("pol",1,"pol",1),exprs);
+            [ok,this.num,this.den,exprs] = scicos_getvalue("Set continuous SISO transfer parameters",[["Numerator (s)"],["Denominator (s)"]],list("pol",1,"pol",1),exprs);
             if (!ok) {
                 break;
             }
-            if (degree(num)>degree(den)) {
+            if (degree(this.num)>degree(this.den)) {
                 message("Transfer must be proper or strictly proper");
                 ok = false;
             }
             if (ok) {
-                H = cont_frm(num,den);
+                H = cont_frm(this.num,this.den);
                 [A,B,C,D] = H.slice(2-1,5);
                 graphics.exprs = exprs;
                 [ns1,ns1] = size(A);

@@ -25,22 +25,22 @@ function CLKGOTO() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,tag,tagvis,exprs] = scicos_getvalue("Set block parameters",[["Tag"],["Tag Visibility (1=Local 2=Scoped 3=Global)"]],list("str",-1,"vec",1),exprs);
+            [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set block parameters",[["Tag"],["Tag Visibility (1=Local 2=Scoped 3=Global)"]],list("str",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            if (((tagvis<1)||(tagvis>3))) {
+            if (((this.tagvis<1)||(this.tagvis>3))) {
                 message("Tag Visibility must be between 1 and 3");
                 ok = false;
             }
-            tagvis = int(tagvis);
+            this.tagvis = int(this.tagvis);
             if (ok) {
-                if (((model.opar!=list(tag))||(model.ipar!=tagvis))) {
+                if (((model.opar!=list(this.tag))||(model.ipar!=this.tagvis))) {
                     needcompile = 4;
                     y = needcompile;
                 }
-                model.opar = list(tag);
-                model.ipar = tagvis;
+                model.opar = list(this.tag);
+                model.ipar = this.tagvis;
                 model.evtin = 1;
                 model.firing = -1;
                 graphics.exprs = exprs;
