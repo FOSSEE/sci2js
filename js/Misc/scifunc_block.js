@@ -89,7 +89,7 @@ function scifunc_block() {
                 break;
             }
         }
-        needcompile=resume(needcompile)
+        needcompile = resume(needcompile)
         return new BasicBlock(this.x);
     }
 }

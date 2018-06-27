@@ -2,7 +2,7 @@
 function STEP_FUNCTION() {
     STEP_FUNCTION.prototype.define = function STEP_FUNCTION() {
         scs_m_1 = scicos_diagram();
-        scs_m_1.objs[1-1] = this.STEP["define"-1];
+        scs_m_1.objs[1-1] = STEP("define");
         scs_m_1.objs[2-1] = OUT_f("define");
         scs_m_1.objs[3-1] = scicos_link();
         scs_m_1.objs[4-1] = scicos_link();

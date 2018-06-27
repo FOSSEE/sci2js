@@ -40,7 +40,7 @@ function CLKFROM() {
             this.x.model = model;
             break;
         }
-        needcompile=resume(needcompile)
+        needcompile = resume(needcompile)
         return new BasicBlock(this.x);
     }
 }

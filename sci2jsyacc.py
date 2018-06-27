@@ -118,7 +118,7 @@ def p_statement_functionblock(p):
 
 def p_statement_resume(p):
     'statement : lterm ASSIGNMENT RESUME OPENBRACKET expression CLOSEBRACKET EOL'
-    p[0] = '%*s%s%s%s(%s)\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[2], p[3], p[5])
+    p[0] = '%*s%s = %s(%s)\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5])
 
 def p_statement_where(p):
     'statement : lterm ASSIGNMENT WHERE OPENBRACKET CLOSEBRACKET EOL'

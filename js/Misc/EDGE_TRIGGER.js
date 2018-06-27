@@ -2,7 +2,7 @@
 function EDGE_TRIGGER() {
     EDGE_TRIGGER.prototype.define = function EDGE_TRIGGER() {
         scs_m_1 = scicos_diagram();
-        scs_m_1.objs[1-1] = this.EDGETRIGGER["define"-1];
+        scs_m_1.objs[1-1] = EDGETRIGGER("define");
         scs_m_1.objs[2-1] = IFTHEL_f("define");
         scs_m_1.objs[3-1] = IN_f("define");
         scs_m_1.objs[4-1] = CLKOUTV_f("define");

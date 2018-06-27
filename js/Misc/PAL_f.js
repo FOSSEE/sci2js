@@ -27,7 +27,7 @@ function PAL_f() {
         this.x = arg1;
         y = [];
         typ = [];
-        %exit=resume(false)
+        %exit = resume(false)
         return new BasicBlock(this.x);
     }
 }

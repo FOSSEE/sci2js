@@ -96,7 +96,7 @@ function generic_block2() {
                 break;
             }
         }
-        needcompile=resume(needcompile)
+        needcompile = resume(needcompile)
         return new BasicBlock(this.x);
     }
 }
