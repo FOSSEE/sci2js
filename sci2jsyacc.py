@@ -114,6 +114,14 @@ def p_statementblock_statement(p):
     'statementblock : statement'
     p[0] = '%s' % (p[1])
 
+def p_jobsetstatementblock_jobsetstatementblock_jobsetstatement(p):
+    'jobsetstatementblock : jobsetstatementblock jobsetstatement'
+    p[0] = '%s%s' % (p[1], p[2])
+
+def p_jobsetstatementblock_jobsetstatement(p):
+    'jobsetstatementblock : jobsetstatement'
+    p[0] = '%s' % (p[1])
+
 # end define statementblock
 
 # define statement
@@ -124,21 +132,52 @@ def p_statement_assignment(p):
                  | function EOL'''
     p[0] = '%s;\n' % (p[1])
 
+def p_jobsetstatement_assignment(p):
+    '''jobsetstatement : assignment EOL
+                       | getvalueassignment EOL
+                       | function EOL'''
+    p[0] = '%s;\n' % (p[1])
+
+def p_statement_break(p):
+    '''statement : BREAK EOL
+                 | RETURN EOL'''
+    p[0] = '%*s%s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1])
+
+def p_statement_clearvar(p):
+    'statement : clearvar EOL'
+    p[0] = '%s' % (p[1])
+
+def p_statement_eol(p):
+    'statement : EOL'
+    p[0] = '\n'
+
+def p_statement_forstatementblocks(p):
+    'statement : forstatementblocks'
+    p[0] = '%s' % (p[1])
+
+def p_jobsetstatement_forstatementblocks(p):
+    'jobsetstatement : forstatementblocks'
+    p[0] = '%s' % (p[1])
+
 def p_statement_functionblock(p):
     'statement : functionblock'
     p[0] = ''
 
-def p_statement_resume(p):
-    'statement : lterm ASSIGNMENT RESUME OPENBRACKET expression CLOSEBRACKET EOL'
-    p[0] = '%*s%s = %s(%s)\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5])
+def p_statement_ifstatementblocks(p):
+    'statement : ifstatementblocks'
+    p[0] = '%s' % (p[1])
 
-def p_statement_where(p):
-    'statement : lterm ASSIGNMENT WHERE OPENBRACKET CLOSEBRACKET EOL'
-    p[0] = '%*s%s%s%s()\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[2], p[3])
+def p_jobsetstatement_ifstatementblocks(p):
+    'jobsetstatement : ifstatementblocks'
+    p[0] = '%s' % (p[1])
 
-def p_statement_forstatement_forstatementblock(p):
-    'statement : forstatementblock endstatementblock'
-    p[0] = '%s%s' % (p[1], p[2])
+def p_statement_resumestatementblocks(p):
+    'statement : resumestatementblocks'
+    p[0] = '%s' % (p[1])
+
+def p_jobsetstatement_resumestatementblocks(p):
+    'jobsetstatement : resumestatementblocks'
+    p[0] = '%s' % (p[1])
 
 def p_statement_selectstatement_casestatementblock(p):
     'statement : selectstatement casestatementblock endstatementblock'
@@ -148,50 +187,29 @@ def p_statement_selectjobstatement_casejobstatementblock(p):
     'statement : selectjobstatement casejobstatementblock endstatementblock'
     p[0] = ''
 
-def p_statement_whilestatement_whilestatementblock(p):
-    'statement : whilestatementblock endstatementblock'
-    p[0] = '%s%s' % (p[1], p[2])
+def p_statement_trystatementblocks(p):
+    'statement : trystatementblocks'
+    p[0] = '%s' % (p[1])
 
-def p_statement_whilestatement_whilestatementblock_elsestatementblock(p):
-    'statement : whilestatementblock elsestatementblock endstatementblock'
-    p[0] = '%s%s%s%s' % (p[1], p[2], p[3], p[4])
+def p_jobsetstatement_trystatementblocks(p):
+    'jobsetstatement : trystatementblocks'
+    p[0] = '%s' % (p[1])
 
-def p_statement_ifstatement_ifstatementblock(p):
-    'statement : ifstatementblock endstatementblock'
-    p[0] = '%s%s' % (p[1], p[2])
+def p_statement_where(p):
+    'statement : lterm ASSIGNMENT WHERE OPENBRACKET CLOSEBRACKET EOL'
+    p[0] = '%*s%s%s%s()\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[2], p[3])
 
-def p_statement_ifstatement_ifstatementblock_elsestatementblock(p):
-    'statement : ifstatementblock elsestatementblock endstatementblock'
-    p[0] = '%s%s%s' % (p[1], p[2], p[3])
+def p_statement_whilestatementblocks(p):
+    'statement : whilestatementblocks'
+    p[0] = '%s' % (p[1])
 
-def p_statement_ifstatement_ifstatementblock_elseifstatementblock(p):
-    'statement : ifstatementblock elseifstatementblock endstatementblock'
-    p[0] = '%s%s%s' % (p[1], p[2], p[3])
-
-def p_statement_ifstatement_ifstatementblock_elseifstatementblock_elsestatementblock(p):
-    'statement : ifstatementblock elseifstatementblock elsestatementblock endstatementblock'
-    p[0] = '%s%s%s%s' % (p[1], p[2], p[3], p[4])
-
-def p_statement_trystatement_try_statementblock_catch_statementblock_end(p):
-    'statement : trystatement statementblock catchstatement statementblock endstatementblock'
-    p[0] = '%s%s%s%s%s' % (p[1], p[2], p[3], p[4], p[5])
-
-def p_statement_break(p):
-    '''statement : BREAK EOL
-                 | RETURN EOL'''
-    p[0] = '%*s%s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1])
-
-def p_statement_eol(p):
-    'statement : EOL'
-    p[0] = '\n'
-
-def p_statement_clearvar(p):
-    'statement : clearvar EOL'
+def p_jobsetstatement_whilestatementblocks(p):
+    'jobsetstatement : whilestatementblocks'
     p[0] = '%s' % (p[1])
 
 # end define statement
 
-# define for, case, while, if, elseif, else statement block
+# define case, for, if, elseif, else, try, while statement block
 
 def p_endstatementblock_endstatement(p):
     'endstatementblock : END EOL'
@@ -199,40 +217,71 @@ def p_endstatementblock_endstatement(p):
     INDENT_LEVEL -= 1
     p[0] = '%*s}\n' % (INDENT_LEVEL * INDENT_SIZE, ' ')
 
-def p_forstatementblock_forstatement(p):
-    'forstatementblock : forstatement statementblock'
-    p[0] = '%s%s' % (p[1], p[2])
-
 def p_casestatementblock_casestatementblock_casestatement_statementblock(p):
     'casestatementblock : casestatementblock casestatement statementblock'
     p[0] = '%s%s%s' % (p[1], p[2], p[3])
-
-def p_casestatementblock_casestatementblock_casestatement(p):
-    'casestatementblock : casestatementblock casestatement'
-    p[0] = '%s%s%s' % (p[1], p[2], '')
-
-def p_casestatementblock_casestatement_statementblock(p):
-    'casestatementblock : casestatement statementblock'
-    p[0] = '%s%s' % (p[1], p[2])
 
 def p_casejobstatementblock_casejobstatementblock_casejobstatement_statementblock(p):
     'casejobstatementblock : casejobstatementblock casejobstatement statementblock'
     JOB_BLOCKS[p[2]] = p[3]
     p[0] = ''
 
+def p_casejobstatementblock_casejobstatementblock_casejobsetstatement_jobsetstatementblock(p):
+    'casejobstatementblock : casejobstatementblock casejobsetstatement jobsetstatementblock'
+    JOB_BLOCKS[p[2]] = p[3]
+    p[0] = ''
+
+def p_casestatementblock_casestatementblock_casestatement(p):
+    'casestatementblock : casestatementblock casestatement'
+    p[0] = '%s%s%s' % (p[1], p[2], '')
+
 def p_casejobstatementblock_casejobstatementblock_casejobstatement(p):
     'casejobstatementblock : casejobstatementblock casejobstatement'
     JOB_BLOCKS[p[2]] = ''
     p[0] = ''
+
+def p_casejobstatementblock_casejobstatementblock_casejobsetstatement(p):
+    'casejobstatementblock : casejobstatementblock casejobsetstatement'
+    JOB_BLOCKS[p[2]] = ''
+    p[0] = ''
+
+def p_casestatementblock_casestatement_statementblock(p):
+    'casestatementblock : casestatement statementblock'
+    p[0] = '%s%s' % (p[1], p[2])
 
 def p_casejobstatementblock_casejobstatement_statementblock(p):
     'casejobstatementblock : casejobstatement statementblock'
     JOB_BLOCKS[p[1]] = p[2]
     p[0] = ''
 
-def p_whilestatementblock_whilestatement(p):
-    'whilestatementblock : whilestatement statementblock'
+def p_casejobstatementblock_casejobsetstatement_jobsetstatementblock(p):
+    'casejobstatementblock : casejobsetstatement jobsetstatementblock'
+    JOB_BLOCKS[p[1]] = p[2]
+    p[0] = ''
+
+def p_forstatementblocks_forstatementblock(p):
+    'forstatementblocks : forstatementblock endstatementblock'
     p[0] = '%s%s' % (p[1], p[2])
+
+def p_forstatementblock_forstatement(p):
+    'forstatementblock : forstatement statementblock'
+    p[0] = '%s%s' % (p[1], p[2])
+
+def p_ifstatementblocks_ifstatementblock(p):
+    'ifstatementblocks : ifstatementblock endstatementblock'
+    p[0] = '%s%s' % (p[1], p[2])
+
+def p_ifstatementblocks_ifstatementblock_elsestatementblock(p):
+    'ifstatementblocks : ifstatementblock elsestatementblock endstatementblock'
+    p[0] = '%s%s%s' % (p[1], p[2], p[3])
+
+def p_ifstatementblocks_ifstatementblock_elseifstatementblock(p):
+    'ifstatementblocks : ifstatementblock elseifstatementblock endstatementblock'
+    p[0] = '%s%s%s' % (p[1], p[2], p[3])
+
+def p_ifstatementblocks_ifstatementblock_elseifstatementblock_elsestatementblock(p):
+    'ifstatementblocks : ifstatementblock elseifstatementblock elsestatementblock endstatementblock'
+    p[0] = '%s%s%s%s' % (p[1], p[2], p[3], p[4])
 
 def p_ifstatementblock_ifstatement(p):
     'ifstatementblock : ifstatement statementblock'
@@ -250,15 +299,23 @@ def p_elsestatementblock_elsestatement(p):
     'elsestatementblock : elsestatement statementblock'
     p[0] = '%s%s' % (p[1], p[2])
 
-def p_clearvar_clear_var(p):
-    'clearvar : CLEAR VAR'
-    p[0] = '%*s%s={};\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[2])
+def p_trystatementblocks_trystatement_statementblock_catchstatement_statementblock(p):
+    'trystatementblocks : trystatement statementblock catchstatement statementblock endstatementblock'
+    p[0] = '%s%s%s%s%s' % (p[1], p[2], p[3], p[4], p[5])
 
-def p_clearvar_clearvar_var(p):
-    'clearvar : clearvar VAR'
-    p[0] = '%s%*s%s={};\n' % (p[1], INDENT_LEVEL * INDENT_SIZE, ' ', p[2])
+def p_whilestatementblocks_whilestatementblock(p):
+    'whilestatementblocks : whilestatementblock endstatementblock'
+    p[0] = '%s%s' % (p[1], p[2])
 
-# end define for, case, if, elseif, else statement block
+def p_whilestatementblocks_whilestatementblock_elsestatementblock(p):
+    'whilestatementblocks : whilestatementblock elsestatementblock endstatementblock'
+    p[0] = '%s%s%s%s' % (p[1], p[2], p[3], p[4])
+
+def p_whilestatementblock_whilestatement(p):
+    'whilestatementblock : whilestatement statementblock'
+    p[0] = '%s%s' % (p[1], p[2])
+
+# end define case, for, if, elseif, else, try, while statement block
 
 # define for, select, case, while, if, elseif, else
 
@@ -343,51 +400,24 @@ def p_casestatement_case(p):
     p[0] = '%*scase %s:\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[2])
     INDENT_LEVEL += 1
 
-def p_casejobstatement_case(p):
-    '''casejobstatement : CASE expression THEN EOL
-                        | CASE expression EOL'''
-    LOCAL_VARS.clear()
-    LOCAL_VARS.update(FUNCTION_VARS)
-    p[0] = '%s' % (p[2])
-
 def p_casejobstatement_case_job_define(p):
     '''casejobstatement : CASE JOB_DEFINE THEN EOL
-                        | CASE JOB_DEFINE EOL'''
-    LOCAL_VARS.clear()
-    LOCAL_VARS.update(FUNCTION_VARS)
-    p[0] = '%s' % (p[2])
-
-def p_casejobstatement_case_job_getinputs(p):
-    '''casejobstatement : CASE JOB_GETINPUTS THEN EOL
-                        | CASE JOB_GETINPUTS EOL'''
-    LOCAL_VARS.clear()
-    LOCAL_VARS.update(FUNCTION_VARS)
-    p[0] = '%s' % (p[2])
-
-def p_casejobstatement_case_job_getorigin(p):
-    '''casejobstatement : CASE JOB_GETORIGIN THEN EOL
-                        | CASE JOB_GETORIGIN EOL'''
-    LOCAL_VARS.clear()
-    LOCAL_VARS.update(FUNCTION_VARS)
-    p[0] = '%s' % (p[2])
-
-def p_casejobstatement_case_job_getoutputs(p):
-    '''casejobstatement : CASE JOB_GETOUTPUTS THEN EOL
-                        | CASE JOB_GETOUTPUTS EOL'''
-    LOCAL_VARS.clear()
-    LOCAL_VARS.update(FUNCTION_VARS)
-    p[0] = '%s' % (p[2])
-
-def p_casejobstatement_case_job_plot(p):
-    '''casejobstatement : CASE JOB_PLOT THEN EOL
+                        | CASE JOB_DEFINE EOL
+                        | CASE JOB_GETINPUTS THEN EOL
+                        | CASE JOB_GETINPUTS EOL
+                        | CASE JOB_GETORIGIN THEN EOL
+                        | CASE JOB_GETORIGIN EOL
+                        | CASE JOB_GETOUTPUTS THEN EOL
+                        | CASE JOB_GETOUTPUTS EOL
+                        | CASE JOB_PLOT THEN EOL
                         | CASE JOB_PLOT EOL'''
     LOCAL_VARS.clear()
     LOCAL_VARS.update(FUNCTION_VARS)
     p[0] = '%s' % (p[2])
 
-def p_casejobstatement_case_job_set(p):
-    '''casejobstatement : CASE JOB_SET THEN EOL
-                        | CASE JOB_SET EOL'''
+def p_casejobsetstatement_case_job_set(p):
+    '''casejobsetstatement : CASE JOB_SET THEN EOL
+                           | CASE JOB_SET EOL'''
     LOCAL_VARS.clear()
     LOCAL_VARS.update(FUNCTION_VARS)
     p[0] = '%s' % (p[2])
@@ -601,6 +631,18 @@ def p_function_function_parameters(p):
 def p_function_function(p):
     'function : FUNCTIONNAME OPENBRACKET CLOSEBRACKET'
     p[0] = '%*s%s()' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1])
+
+def p_resumestatementblocks_resume(p):
+    'resumestatementblocks : lterm ASSIGNMENT RESUME OPENBRACKET expression CLOSEBRACKET EOL'
+    p[0] = '%*s%s = %s(%s)\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5])
+
+def p_clearvar_clear_var(p):
+    'clearvar : CLEAR VAR'
+    p[0] = '%*s%s={};\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[2])
+
+def p_clearvar_clearvar_var(p):
+    'clearvar : clearvar VAR'
+    p[0] = '%s%*s%s={};\n' % (p[1], INDENT_LEVEL * INDENT_SIZE, ' ', p[2])
 
 # end define function
 
