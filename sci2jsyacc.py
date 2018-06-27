@@ -15,7 +15,7 @@ import sys
 import pickle
 import ply.yacc as yacc
 
-from sci2jslex import tokens
+from sci2jslex import tokens, JOBTYPES
 
 precedence = (
     ('left', 'COLON'),
@@ -62,17 +62,29 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     INDENT_LEVEL += 1
     blocktype = getblocktype(fname)
 
-    jdefine = JOB_BLOCKS['"define"'] if '"define"' in JOB_BLOCKS else ''
+    jdefine = JOB_BLOCKS['"define"']
+    jget = JOB_BLOCKS['"get"']
+    jgetinputs = JOB_BLOCKS['"getinputs"']
+    jgetorigin = JOB_BLOCKS['"getorigin"']
+    jgetoutputs = JOB_BLOCKS['"getoutputs"']
+    jplot = JOB_BLOCKS['"plot"']
+    jset = JOB_BLOCKS['"set"']
+
     jdefine = '%s%s.prototype.define = function %s() {\n%s%*sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, jdefine, INDENT_LEVEL * INDENT_SIZE, ' ', blocktype, indent)
-    jdetails = JOB_BLOCKS['"details"'] if '"details"' in JOB_BLOCKS else ''
-    jdetails = '%s%s.prototype.details = function %s() {\n%s%*sreturn this.x;\n%s}\n' % (indent, fname, fname, jdetails, INDENT_LEVEL * INDENT_SIZE, ' ', indent)
-    jget = JOB_BLOCKS['"get"'] if '"get"' in JOB_BLOCKS else ''
+    jdetails = '%s%s.prototype.details = function %s() {\n%*sreturn this.x;\n%s}\n' % (indent, fname, fname, INDENT_LEVEL * INDENT_SIZE, ' ', indent)
     jget = '%s%s.prototype.get = function %s() {\n%s%s}\n' % (indent, fname, fname, jget, indent)
-    jset = JOB_BLOCKS['"set"'] if '"set"' in JOB_BLOCKS else ''
+    if jgetinputs != '':
+        jgetinputs = '%s%s.prototype.getinputs = function %s() {\n%s%s}\n' % (indent, fname, fname, jgetinputs, indent)
+    if jgetorigin != '':
+        jgetorigin = '%s%s.prototype.getorigin = function %s() {\n%s%s}\n' % (indent, fname, fname, jgetorigin, indent)
+    if jgetoutputs != '':
+        jgetoutputs = '%s%s.prototype.getoutputs = function %s() {\n%s%s}\n' % (indent, fname, fname, jgetoutputs, indent)
+    if jplot != '':
+        jplot = '%s%s.prototype.plot = function %s() {\n%s%s}\n' % (indent, fname, fname, jplot, indent)
     jset = '%s%s.prototype.set = function %s() {\n%s%*sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, jset, INDENT_LEVEL * INDENT_SIZE, ' ', blocktype, indent)
 
     INDENT_LEVEL -= 1
-    p[0] = 'function %s() {\n%s%s%s%s}' % (fname, jdefine, jdetails, jget, jset)
+    p[0] = 'function %s() {\n%s%s%s%s%s%s%s%s}' % (fname, jdefine, jdetails, jget, jset, jgetinputs, jgetorigin, jgetoutputs, jplot)
 
 def p_functionblock_functionstatement_statementblock_endfunction(p):
     'functionblock : functionstatement statementblock ENDFUNCTION EOL'
@@ -318,6 +330,9 @@ def p_selectstatement_select(p):
 
 def p_selectjobstatement_select(p):
     'selectjobstatement : SELECT JOB EOL'
+    JOB_BLOCKS['"get"'] = ''
+    for t in JOBTYPES.keys():
+        JOB_BLOCKS[t] = ''
     p[0] = ''
 
 def p_casestatement_case(p):
@@ -330,18 +345,48 @@ def p_casestatement_case(p):
 
 def p_casejobstatement_case(p):
     '''casejobstatement : CASE expression THEN EOL
-                        | CASE expression EOL
-                        | CASE JOB_DEFINE THEN EOL
-                        | CASE JOB_DEFINE EOL
-                        | CASE JOB_GETINPUTS THEN EOL
-                        | CASE JOB_GETINPUTS EOL
-                        | CASE JOB_GETORIGIN THEN EOL
-                        | CASE JOB_GETORIGIN EOL
-                        | CASE JOB_GETOUTPUTS THEN EOL
-                        | CASE JOB_GETOUTPUTS EOL
-                        | CASE JOB_PLOT THEN EOL
-                        | CASE JOB_PLOT EOL
-                        | CASE JOB_SET THEN EOL
+                        | CASE expression EOL'''
+    LOCAL_VARS.clear()
+    LOCAL_VARS.update(FUNCTION_VARS)
+    p[0] = '%s' % (p[2])
+
+def p_casejobstatement_case_job_define(p):
+    '''casejobstatement : CASE JOB_DEFINE THEN EOL
+                        | CASE JOB_DEFINE EOL'''
+    LOCAL_VARS.clear()
+    LOCAL_VARS.update(FUNCTION_VARS)
+    p[0] = '%s' % (p[2])
+
+def p_casejobstatement_case_job_getinputs(p):
+    '''casejobstatement : CASE JOB_GETINPUTS THEN EOL
+                        | CASE JOB_GETINPUTS EOL'''
+    LOCAL_VARS.clear()
+    LOCAL_VARS.update(FUNCTION_VARS)
+    p[0] = '%s' % (p[2])
+
+def p_casejobstatement_case_job_getorigin(p):
+    '''casejobstatement : CASE JOB_GETORIGIN THEN EOL
+                        | CASE JOB_GETORIGIN EOL'''
+    LOCAL_VARS.clear()
+    LOCAL_VARS.update(FUNCTION_VARS)
+    p[0] = '%s' % (p[2])
+
+def p_casejobstatement_case_job_getoutputs(p):
+    '''casejobstatement : CASE JOB_GETOUTPUTS THEN EOL
+                        | CASE JOB_GETOUTPUTS EOL'''
+    LOCAL_VARS.clear()
+    LOCAL_VARS.update(FUNCTION_VARS)
+    p[0] = '%s' % (p[2])
+
+def p_casejobstatement_case_job_plot(p):
+    '''casejobstatement : CASE JOB_PLOT THEN EOL
+                        | CASE JOB_PLOT EOL'''
+    LOCAL_VARS.clear()
+    LOCAL_VARS.update(FUNCTION_VARS)
+    p[0] = '%s' % (p[2])
+
+def p_casejobstatement_case_job_set(p):
+    '''casejobstatement : CASE JOB_SET THEN EOL
                         | CASE JOB_SET EOL'''
     LOCAL_VARS.clear()
     LOCAL_VARS.update(FUNCTION_VARS)
