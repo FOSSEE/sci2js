@@ -234,6 +234,15 @@ OBJECTS = {
 #    'scicos_context': 'SCICOS_CONTEXT',
 }
 
+JOBTYPES = {
+    '"define"': 'JOB_DEFINE',
+    '"getinputs"': 'JOB_GETINPUTS',
+    '"getorigin"': 'JOB_GETORIGIN',
+    '"getoutputs"': 'JOB_GETOUTPUTS',
+    '"plot"': 'JOB_PLOT',
+    '"set"': 'JOB_SET',
+}
+
 tokens = [
     'ADDITION',
     'ASSIGNMENT',
@@ -260,7 +269,7 @@ tokens = [
     'SPACE',
     'TRANSPOSE',
     'VAR',
-] + list(SYNTAX_TOKENS.values()) + list(set(PREDEFINED_VARIABLES.values())) + list(OBJECTS.values())
+] + list(SYNTAX_TOKENS.values()) + list(set(PREDEFINED_VARIABLES.values())) + list(OBJECTS.values()) + list(JOBTYPES.values())
 
 states = (
     ('qstring', 'exclusive'),
@@ -270,6 +279,7 @@ states = (
 def t_COMMA(t):
     r'[ \t]*,([ \t]*(//.*)?\n?)*'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     if BRACKET_STACK[-1] != ' ':
         return t
     t.type = 'EOL'
@@ -278,6 +288,7 @@ def t_COMMA(t):
 def t_SEMICOLON(t):
     r'[ \t]*;([ \t]*(//.*)?\n?)*'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     if BRACKET_STACK[-1] != ' ':
         return t
     t.type = 'EOL'
@@ -286,6 +297,7 @@ def t_SEMICOLON(t):
 def t_CLOSESQBRACKET(t):
     r'([ \t]*\.\.+[ \t]*\n)?[ \t]*\]'
     t.lexer.afterarray = True
+    t.lexer.aftercase = False
     if BRACKET_STACK.pop() != '[':
         print("Syntax error: Mismatched ]")
     return t
@@ -293,11 +305,13 @@ def t_CLOSESQBRACKET(t):
 def t_CLOSEOPENBRACKET(t):
     r'[ \t]*\)\(([ \t]*(//.*)?\n?)*'
     t.lexer.afterarray = True
+    t.lexer.aftercase = False
     return t
 
 def t_CLOSEBRACKET(t):
     r'([ \t]*\.\.+[ \t]*\n)?[ \t]*\)'
     t.lexer.afterarray = True
+    t.lexer.aftercase = False
     if BRACKET_STACK.pop() != '(':
         print("Syntax error: Mismatched )")
     return t
@@ -309,11 +323,13 @@ def t_COMMENT(t):
 def t_NUMBER(t):
     r'(\d+(\.\d*)?|\.\d+)([dDeE][+-]?\d+)?'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     return t
 
 def t_PREVAR(t):
     r'%[a-zA-Z_][a-zA-Z0-9_]*'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     base = t.value[1:]
     t.type = PREDEFINED_VARIABLES.get(base, 'PREVAR')
     if t.type == 'PREVAR_SUBSTITUTE':
@@ -323,23 +339,27 @@ def t_PREVAR(t):
 
 def t_VAR(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
-    t.lexer.afterarray = True
+    global CASEEXPRESSION
     vartype = SYNTAX_TOKENS.get(t.value)
     if vartype is None:
         vartype = OBJECTS.get(t.value)
     if vartype is None:
         vartype = 'FUNCTIONNAME' if t.value in FUNCTION_NAMES else 'VAR'
+    t.lexer.afterarray = vartype != 'FUNCTIONNAME'
+    t.lexer.aftercase = vartype == 'CASE'
     t.type = vartype
     return t
 
 def t_COMPARISON(t):
     r'<>|[<>~=]=|[<>]'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     return t
 
 def t_LASTINDEX(t):
     r'\$'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     return t
 
 def t_EOL(t):
@@ -347,6 +367,7 @@ def t_EOL(t):
     lastbracket = BRACKET_STACK[-1]
     if lastbracket == ' ':
         t.lexer.afterarray = False
+        t.lexer.aftercase = False
         return t
     if lastbracket == '[':
         t.type = 'SPACE'
@@ -355,48 +376,57 @@ def t_EOL(t):
 def t_DOT(t):
     r'\.'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     return t
 
 def t_MULTIPLICATION(t):
     r'\*\*|[*/^\\]'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     return t
 
 def t_ADDITION(t):
     r'[+\-]'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     return t
 
 def t_OPENSQBRACKET(t):
     r'\[([ \t]*(//.*)?\n?)*'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     BRACKET_STACK.append('[')
     return t
 
 def t_OPENBRACKET(t):
     r'\(([ \t]*(//.*)?\n?)*'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     BRACKET_STACK.append('(')
     return t
 
 def t_NOT(t):
     r'~'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     return t
 
 def t_LOGICAL(t):
     r'[&|]'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     return t
 
 def t_ASSIGNMENT(t):
     r'='
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     return t
 
 def t_COLON(t):
     r':'
     t.lexer.afterarray = False
+    t.lexer.aftercase = False
     return t
 
 def t_SPACE(t):
@@ -412,6 +442,7 @@ def t_TRANSPOSE(t):
     r"'"
     if t.lexer.afterarray:
         t.lexer.afterarray = False
+        t.lexer.aftercase = False
         return t
     t.lexer.push_state('qstring')
     t.lexer.qstring = t.value
@@ -450,6 +481,7 @@ def t_qstring_end(t):
     r"'"
     t.lexer.pop_state()
     t.lexer.qstring += t.value
+    t.lexer.aftercase = False
     t.type = 'QSTRING'
     t.value = t.lexer.qstring
     return t
@@ -458,7 +490,11 @@ def t_dqstring_end(t):
     r'"'
     t.lexer.pop_state()
     t.lexer.dqstring += t.value
-    t.type = 'DQSTRING'
+    if t.lexer.aftercase:
+        t.lexer.aftercase = False
+        t.type = JOBTYPES.get(t.lexer.dqstring, 'DQSTRING')
+    else:
+        t.type = 'DQSTRING'
     t.value = t.lexer.dqstring
     return t
 

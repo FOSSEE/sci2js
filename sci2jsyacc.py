@@ -330,7 +330,19 @@ def p_casestatement_case(p):
 
 def p_casejobstatement_case(p):
     '''casejobstatement : CASE expression THEN EOL
-                        | CASE expression EOL'''
+                        | CASE expression EOL
+                        | CASE JOB_DEFINE THEN EOL
+                        | CASE JOB_DEFINE EOL
+                        | CASE JOB_GETINPUTS THEN EOL
+                        | CASE JOB_GETINPUTS EOL
+                        | CASE JOB_GETORIGIN THEN EOL
+                        | CASE JOB_GETORIGIN EOL
+                        | CASE JOB_GETOUTPUTS THEN EOL
+                        | CASE JOB_GETOUTPUTS EOL
+                        | CASE JOB_PLOT THEN EOL
+                        | CASE JOB_PLOT EOL
+                        | CASE JOB_SET THEN EOL
+                        | CASE JOB_SET EOL'''
     LOCAL_VARS.clear()
     LOCAL_VARS.update(FUNCTION_VARS)
     p[0] = '%s' % (p[2])
