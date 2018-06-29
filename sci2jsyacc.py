@@ -461,8 +461,8 @@ def p_assignment_expression(p):
     p[0] = '%*s%s %s %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[2], p[3])
 
 def p_getvalueassignment_getvalue(p):
-    'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET list CLOSEBRACKET'
-    p[0] = '%*s%s %s %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[2], p[3], p[5])
+    'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET expression COMMA expression COMMA expression COMMA expression CLOSEBRACKET'
+    p[0] = '%*s%s %s %s(%s,%s,%s,%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[2], p[3], p[5], p[7], p[9], p[11])
     lterm = p[1]
     if lterm[0] == '[':
         lterm = lterm[1:-1]
@@ -824,9 +824,19 @@ def p_term_function_parameters(p):
     'term : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
     p[0] = '%s(%s)' % (p[1], p[3])
 
+# list(2,3)
+def p_term_list_parameters(p):
+    'term : LIST OPENBRACKET list CLOSEBRACKET'
+    p[0] = '%s(%s)' % (p[1], p[3])
+
 # A()
 def p_term_function(p):
     'term : FUNCTIONNAME OPENBRACKET CLOSEBRACKET'
+    p[0] = '%s()' % (p[1])
+
+# list()
+def p_term_list(p):
+    'term : LIST OPENBRACKET CLOSEBRACKET'
     p[0] = '%s()' % (p[1])
 
 # $
