@@ -20,6 +20,12 @@ function TKSCALE() {
         return this.x;
     }
     TKSCALE.prototype.get = function TKSCALE() {
+        var options = {
+        a:["Min value",this.a],
+        b:["Max value",this.b],
+        f:["Normalization",this.f],
+        }
+        return options;
     }
     TKSCALE.prototype.set = function TKSCALE() {
         this.a = parseFloat((arguments[0]["a"]))

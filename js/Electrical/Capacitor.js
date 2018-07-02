@@ -27,6 +27,11 @@ function Capacitor() {
         return this.x;
     }
     Capacitor.prototype.get = function Capacitor() {
+        var options = {
+            C:["C (F)",this.C],
+            v:["Initial Voltage",this.v],
+        }
+        return options;
     }
     Capacitor.prototype.set = function Capacitor() {
         this.C = parseFloat((arguments[0]["C"]))

@@ -19,6 +19,11 @@ function INTRPLBLK_f() {
         return this.x;
     }
     INTRPLBLK_f.prototype.get = function INTRPLBLK_f() {
+        var options = {
+            a:["X coord.",this.a],
+            b:["Y coord.",this.b],
+        }
+        return options;
     }
     INTRPLBLK_f.prototype.set = function INTRPLBLK_f() {
         this.a = parseFloat((arguments[0]["a"]))

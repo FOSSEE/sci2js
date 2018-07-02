@@ -18,6 +18,9 @@ function BIGSOM_f() {
         return this.x;
     }
     BIGSOM_f.prototype.get = function BIGSOM_f() {
+        var options = {
+        }
+        return options;
     }
     BIGSOM_f.prototype.set = function BIGSOM_f() {
         this.sgn = parseFloat((arguments[0]["sgn"]))

@@ -42,6 +42,18 @@ function BOUNCE() {
         return this.x;
     }
     BOUNCE.prototype.get = function BOUNCE() {
+        var options = {
+            rpar1:["Mass",this.rpar1],
+            rpar2:["Radius",this.rpar2],
+            walls:["[xmin,xmax,ymin,ymax]",this.walls],
+            xt:["xpos",this.xt],
+            xd:["xdpos",this.xd],
+            y:["ypos",this.y],
+            yd:["ydpos",this.yd],
+            g:["g (gravity)",this.g],
+            C:["C (aerodynamic coeff",this.C],
+        }
+        return options;
     }
     BOUNCE.prototype.set = function BOUNCE() {
         this.rpar1 = parseFloat((arguments[0]["rpar1"]))

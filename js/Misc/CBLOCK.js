@@ -36,6 +36,23 @@ function CBLOCK() {
         return this.x;
     }
     CBLOCK.prototype.get = function CBLOCK() {
+        var options = {
+            function_name:["simulation function",this.function_name],
+            impli:["is block implicit? (y,n)",this.impli],
+            i:["input ports sizes",this.i],
+            o:["output ports sizes",this.o],
+            ci:["input event ports sizes",this.ci],
+            co:["output events ports sizes",this.co],
+            xx:["initial continuous state",this.xx],
+            ng:["number of zero crossing surfaces",this.ng],
+            z:["initial discrete state",this.z],
+            rpar:["Real parameters vector",this.rpar],
+            ipar:["Integer parameters vector",this.ipar],
+            auto0:["initial firing vector (<0 for no firing)",this.auto0],
+            depu:["direct feedthrough (y or n)",this.depu],
+            dept:["time dependence (y or n)",this.dept],
+        }
+        return options;
     }
     CBLOCK.prototype.set = function CBLOCK() {
         this.function_name = parseFloat((arguments[0]["function_name"]))

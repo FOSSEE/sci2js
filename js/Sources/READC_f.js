@@ -33,6 +33,17 @@ function READC_f() {
         return this.x;
     }
     READC_f.prototype.get = function READC_f() {
+        var options = {
+            tmask1:["Time Record Selection",this.tmask1],
+            outmask:["Outputs Record Selection",this.outmask],
+            fname1:["Input File Name",this.fname1],
+            frmt1:["Input Format",this.frmt1],
+            M:["Record Size",this.M],
+            N:["Buffer Size",this.N],
+            offset:["Initial Record Index",this.offset],
+            swap:["Swap Mode (0:No, 1:Yes)",this.swap],
+        }
+        return options;
     }
     READC_f.prototype.set = function READC_f() {
         this.tmask1 = parseFloat((arguments[0]["tmask1"]))

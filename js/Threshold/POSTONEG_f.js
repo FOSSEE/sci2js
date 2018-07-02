@@ -19,6 +19,9 @@ function POSTONEG_f() {
         return this.x;
     }
     POSTONEG_f.prototype.get = function POSTONEG_f() {
+        var options = {
+        }
+        return options;
     }
     POSTONEG_f.prototype.set = function POSTONEG_f() {
         this.x = arg1;

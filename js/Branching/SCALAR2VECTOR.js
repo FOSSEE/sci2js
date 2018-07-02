@@ -17,6 +17,10 @@ function SCALAR2VECTOR() {
         return this.x;
     }
     SCALAR2VECTOR.prototype.get = function SCALAR2VECTOR() {
+        var options = {
+            nout:["size of output (-1: if don\'t know)",this.nout],
+        }
+        return options;
     }
     SCALAR2VECTOR.prototype.set = function SCALAR2VECTOR() {
         this.nout = parseFloat((arguments[0]["nout"]))

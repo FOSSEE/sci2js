@@ -29,6 +29,14 @@ function RFILE_f() {
         return this.x;
     }
     RFILE_f.prototype.get = function RFILE_f() {
+        var options = {
+            tmask1:["Time Record Selection",this.tmask1],
+            outmask:["Outputs Record Selection",this.outmask],
+            fname1:["Input File Name",this.fname1],
+            frmt1:["Input Format",this.frmt1],
+            N:["Buffer Size",this.N],
+        }
+        return options;
     }
     RFILE_f.prototype.set = function RFILE_f() {
         this.tmask1 = parseFloat((arguments[0]["tmask1"]))

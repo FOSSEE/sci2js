@@ -18,6 +18,9 @@ function MIN_f() {
         return this.x;
     }
     MIN_f.prototype.get = function MIN_f() {
+        var options = {
+        }
+        return options;
     }
     MIN_f.prototype.set = function MIN_f() {
         this.x = arg1;

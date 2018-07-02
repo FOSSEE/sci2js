@@ -38,6 +38,18 @@ function Bache() {
         return this.x;
     }
     Bache.prototype.get = function Bache() {
+        var options = {
+            Patm:["Pression dans le ciel de la bache : Patm (Pa)",this.Patm],
+            A:["Section de la bache : A (m2)",this.A],
+            ze1:["Altitude du piquage d entrée 1: ze1 (m)",this.ze1],
+            ze2:["Altitude du piquage d entrée 2: ze2 (m)",this.ze2],
+            zs1:["Altitude du piquage de sortie 1: zs1 (m)",this.zs1],
+            zs2:["Altitude du piquage de sortie 2: zs2 (m)",this.zs2],
+            z0:["Altitude initiale du fluide : z0 (m)",this.z0],
+            T0:["Température initiale du fluide : T0 (K)",this.T0],
+            p_rho:["Si >0, masse volumique imposée du fluide : p_rho (kg/m3)",this.p_rho],
+        }
+        return options;
     }
     Bache.prototype.set = function Bache() {
         this.Patm = parseFloat((arguments[0]["Patm"]))

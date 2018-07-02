@@ -18,6 +18,9 @@ function PRODUCT() {
         return this.x;
     }
     PRODUCT.prototype.get = function PRODUCT() {
+        var options = {
+        }
+        return options;
     }
     PRODUCT.prototype.set = function PRODUCT() {
         this.sgn = parseFloat((arguments[0]["sgn"]))

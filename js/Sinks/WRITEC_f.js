@@ -25,6 +25,14 @@ function WRITEC_f() {
         return this.x;
     }
     WRITEC_f.prototype.get = function WRITEC_f() {
+        var options = {
+            in1:["Input Size",this.in1],
+            fname1:["Output File Name",this.fname1],
+            frmt1:["Output Format",this.frmt1],
+            N:["Buffer Size",this.N],
+            swap:["Swap Mode (0:No, 1:Yes)",this.swap],
+        }
+        return options;
     }
     WRITEC_f.prototype.set = function WRITEC_f() {
         this.in1 = parseFloat((arguments[0]["in1"]))

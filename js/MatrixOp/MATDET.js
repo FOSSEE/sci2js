@@ -29,6 +29,10 @@ function MATDET() {
         return this.x;
     }
     MATDET.prototype.get = function MATDET() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATDET.prototype.set = function MATDET() {
         this.typ = parseFloat((arguments[0]["typ"]))

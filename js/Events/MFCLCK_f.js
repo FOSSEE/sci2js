@@ -22,6 +22,11 @@ function MFCLCK_f() {
         return this.x;
     }
     MFCLCK_f.prototype.get = function MFCLCK_f() {
+        var options = {
+        dt:["basic period (1/f)",this.dt],
+        nn:["multiply by (n)",this.nn],
+        }
+        return options;
     }
     MFCLCK_f.prototype.set = function MFCLCK_f() {
         this.dt = parseFloat((arguments[0]["dt"]))

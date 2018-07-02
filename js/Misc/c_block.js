@@ -33,6 +33,13 @@ function c_block() {
         return this.x;
     }
     c_block.prototype.get = function c_block() {
+        var options = {
+            i:["input ports sizes",this.i],
+            o:["output port sizes",this.o],
+            rpar:["System parameters vector",this.rpar],
+            funam:["function name",this.funam],
+        }
+        return options;
     }
     c_block.prototype.set = function c_block() {
         this.i = parseFloat((arguments[0]["i"]))

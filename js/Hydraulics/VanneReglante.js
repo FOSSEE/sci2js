@@ -29,6 +29,11 @@ function VanneReglante() {
         return this.x;
     }
     VanneReglante.prototype.get = function VanneReglante() {
+        var options = {
+            Cvmax:["Cvmax",this.Cvmax],
+            p_rho:["p_rho",this.p_rho],
+        }
+        return options;
     }
     VanneReglante.prototype.set = function VanneReglante() {
         this.Cvmax = parseFloat((arguments[0]["Cvmax"]))

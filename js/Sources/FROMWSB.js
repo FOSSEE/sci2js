@@ -15,6 +15,9 @@ function FROMWSB() {
         return this.x;
     }
     FROMWSB.prototype.get = function FROMWSB() {
+        var options = {
+        }
+        return options;
     }
     FROMWSB.prototype.set = function FROMWSB() {
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {

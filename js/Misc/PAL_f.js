@@ -19,6 +19,9 @@ function PAL_f() {
         return this.x;
     }
     PAL_f.prototype.get = function PAL_f() {
+        var options = {
+        }
+        return options;
     }
     PAL_f.prototype.set = function PAL_f() {
         [this.x,newparameters,needcompile,edited] = scicos(arg1.model.rpar);

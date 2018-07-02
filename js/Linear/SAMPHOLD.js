@@ -17,6 +17,9 @@ function SAMPHOLD() {
         return this.x;
     }
     SAMPHOLD.prototype.get = function SAMPHOLD() {
+        var options = {
+        }
+        return options;
     }
     SAMPHOLD.prototype.set = function SAMPHOLD() {
         this.x = arg1;

@@ -16,6 +16,9 @@ function SUM_f() {
         return this.x;
     }
     SUM_f.prototype.get = function SUM_f() {
+        var options = {
+        }
+        return options;
     }
     SUM_f.prototype.set = function SUM_f() {
         this.x = arg1;

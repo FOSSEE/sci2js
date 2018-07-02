@@ -19,6 +19,9 @@ function POWBLK_f() {
         return this.x;
     }
     POWBLK_f.prototype.get = function POWBLK_f() {
+        var options = {
+        }
+        return options;
     }
     POWBLK_f.prototype.set = function POWBLK_f() {
         this.a = parseFloat((arguments[0]["a"]))

@@ -17,6 +17,9 @@ function SAWTOOTH_f() {
         return this.x;
     }
     SAWTOOTH_f.prototype.get = function SAWTOOTH_f() {
+        var options = {
+        }
+        return options;
     }
     SAWTOOTH_f.prototype.set = function SAWTOOTH_f() {
         this.x = arg1;

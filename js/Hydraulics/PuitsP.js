@@ -26,6 +26,13 @@ function PuitsP() {
         return this.x;
     }
     PuitsP.prototype.get = function PuitsP() {
+        var options = {
+            P0:["Pression de la source : P0 (Pa)",this.P0],
+            T0:["Temperature de la source : T0 (K)",this.T0],
+            H0:["Enthalpie spécifique de la source : H0 (J/kg)",this.H0],
+            option_temperature:["1:température fixée - 2:enthalpie fixée : option_temperature",this.option_temperature],
+        }
+        return options;
     }
     PuitsP.prototype.set = function PuitsP() {
         this.P0 = parseFloat((arguments[0]["P0"]))

@@ -19,6 +19,10 @@ function ABS_VALUE() {
         return this.x;
     }
     ABS_VALUE.prototype.get = function ABS_VALUE() {
+        var options = {
+            zcr:["use zero_crossing (1: yes) (0:no)",this.zcr],
+        }
+        return options;
     }
     ABS_VALUE.prototype.set = function ABS_VALUE() {
         this.zcr = parseFloat((arguments[0]["zcr"]))

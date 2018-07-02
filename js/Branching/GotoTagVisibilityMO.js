@@ -23,6 +23,10 @@ function GotoTagVisibilityMO() {
         return this.x;
     }
     GotoTagVisibilityMO.prototype.get = function GotoTagVisibilityMO() {
+        var options = {
+            tag:["GotoTag",this.tag],
+        }
+        return options;
     }
     GotoTagVisibilityMO.prototype.set = function GotoTagVisibilityMO() {
         this.tag = parseFloat((arguments[0]["tag"]))

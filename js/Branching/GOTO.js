@@ -23,6 +23,11 @@ function GOTO() {
         return this.x;
     }
     GOTO.prototype.get = function GOTO() {
+        var options = {
+            tag:["Tag",this.tag],
+            tagvis:["Tag Visibility(1=Local 2=scoped 3= global)",this.tagvis],
+        }
+        return options;
     }
     GOTO.prototype.set = function GOTO() {
         this.tag = parseFloat((arguments[0]["tag"]))

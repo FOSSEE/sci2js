@@ -23,6 +23,11 @@ function CLR() {
         return this.x;
     }
     CLR.prototype.get = function CLR() {
+        var options = {
+            num:["Numerator (s)",this.num],
+            den:["Denominator (s)",this.den],
+        }
+        return options;
     }
     CLR.prototype.set = function CLR() {
         this.num = parseFloat((arguments[0]["num"]))

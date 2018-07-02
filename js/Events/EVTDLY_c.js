@@ -20,6 +20,11 @@ function EVTDLY_c() {
         return this.x;
     }
     EVTDLY_c.prototype.get = function EVTDLY_c() {
+        var options = {
+            dt:["Delay",this.dt],
+            ff:["Date of initial output event",this.ff],
+        }
+        return options;
     }
     EVTDLY_c.prototype.set = function EVTDLY_c() {
         this.dt = parseFloat((arguments[0]["dt"]))

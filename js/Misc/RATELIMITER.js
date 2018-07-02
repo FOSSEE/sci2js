@@ -20,6 +20,11 @@ function RATELIMITER() {
         return this.x;
     }
     RATELIMITER.prototype.get = function RATELIMITER() {
+        var options = {
+            maxp:["max slope",this.maxp],
+            minp:["min slope",this.minp],
+        }
+        return options;
     }
     RATELIMITER.prototype.set = function RATELIMITER() {
         this.maxp = parseFloat((arguments[0]["maxp"]))

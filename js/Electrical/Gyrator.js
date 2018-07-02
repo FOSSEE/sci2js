@@ -53,6 +53,11 @@ function Gyrator() {
         return this.x;
     }
     Gyrator.prototype.get = function Gyrator() {
+        var options = {
+            G1:["G1",this.G1],
+            G2:["G2",this.G2],
+        }
+        return options;
     }
     Gyrator.prototype.set = function Gyrator() {
         this.G1 = parseFloat((arguments[0]["G1"]))

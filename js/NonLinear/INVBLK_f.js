@@ -17,6 +17,9 @@ function INVBLK_f() {
         return this.x;
     }
     INVBLK_f.prototype.get = function INVBLK_f() {
+        var options = {
+        }
+        return options;
     }
     INVBLK_f.prototype.set = function INVBLK_f() {
         this.x = arg1;

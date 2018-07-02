@@ -7,6 +7,9 @@ function DSUPER() {
         return this.x;
     }
     DSUPER.prototype.get = function DSUPER() {
+        var options = {
+        }
+        return options;
     }
     DSUPER.prototype.set = function DSUPER() {
         y = this.needcompile;

@@ -32,6 +32,20 @@ function CANIMXY() {
         return this.x;
     }
     CANIMXY.prototype.get = function CANIMXY() {
+        var options = {
+            nbr_curves:["Number of Curves",this.nbr_curves],
+            clrs:["color (>0) or mark (<0)",this.clrs],
+            siz:["line or mark size",this.siz],
+            win:["Output window number (-1 for automatic)",this.win],
+            wpos:["Output window position",this.wpos],
+            wdim:["Output window sizes",this.wdim],
+            xmin:["Xmin",this.xmin],
+            xmax:["Xmax",this.xmax],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+            N:["Buffer size",this.N],
+        }
+        return options;
     }
     CANIMXY.prototype.set = function CANIMXY() {
         this.nbr_curves = parseFloat((arguments[0]["nbr_curves"]))

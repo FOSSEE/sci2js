@@ -17,6 +17,9 @@ function CLKFROM() {
         return this.x;
     }
     CLKFROM.prototype.get = function CLKFROM() {
+        var options = {
+        }
+        return options;
     }
     CLKFROM.prototype.set = function CLKFROM() {
         this.tag = parseFloat((arguments[0]["tag"]))
@@ -65,6 +68,11 @@ function CLKGOTO() {
         return this.x;
     }
     CLKGOTO.prototype.get = function CLKGOTO() {
+        var options = {
+            tag:["Tag",this.tag],
+            tagvis:["Tag Visibility (1=Local 2=Scoped 3=Global)",this.tagvis],
+        }
+        return options;
     }
     CLKGOTO.prototype.set = function CLKGOTO() {
         this.tag = parseFloat((arguments[0]["tag"]))
@@ -127,6 +135,10 @@ function CLKGotoTagVisibility() {
         return this.x;
     }
     CLKGotoTagVisibility.prototype.get = function CLKGotoTagVisibility() {
+        var options = {
+            tag:["GotoTag",this.tag],
+        }
+        return options;
     }
     CLKGotoTagVisibility.prototype.set = function CLKGotoTagVisibility() {
         this.tag = parseFloat((arguments[0]["tag"]))
@@ -176,6 +188,10 @@ function DEMUX() {
         return this.x;
     }
     DEMUX.prototype.get = function DEMUX() {
+        var options = {
+            out:["number of output ports or vector of sizes",this.out],
+        }
+        return options;
     }
     DEMUX.prototype.set = function DEMUX() {
         this.out = parseFloat((arguments[0]["out"]))
@@ -243,6 +259,10 @@ function DEMUX_f() {
         return this.x;
     }
     DEMUX_f.prototype.get = function DEMUX_f() {
+        var options = {
+            out:["number of output ports or vector of sizes",this.out],
+        }
+        return options;
     }
     DEMUX_f.prototype.set = function DEMUX_f() {
         this.out = parseFloat((arguments[0]["out"]))
@@ -314,6 +334,12 @@ function ESELECT_f() {
         return this.x;
     }
     ESELECT_f.prototype.get = function ESELECT_f() {
+        var options = {
+            out:["number of output event ports",this.out],
+            inh:["Inherit (1: no, 0: yes)",this.inh],
+            nmod:["zero-crossing (0: no, 1: yes)",this.nmod],
+        }
+        return options;
     }
     ESELECT_f.prototype.set = function ESELECT_f() {
         this.out = parseFloat((arguments[0]["out"]))
@@ -382,6 +408,10 @@ function EXTRACTOR() {
         return this.x;
     }
     EXTRACTOR.prototype.get = function EXTRACTOR() {
+        var options = {
+            ind:["indices to extract",this.ind],
+        }
+        return options;
     }
     EXTRACTOR.prototype.set = function EXTRACTOR() {
         this.ind = parseFloat((arguments[0]["ind"]))
@@ -433,6 +463,10 @@ function FROM() {
         return this.x;
     }
     FROM.prototype.get = function FROM() {
+        var options = {
+            tag:["Tag",this.tag],
+        }
+        return options;
     }
     FROM.prototype.set = function FROM() {
         this.tag = parseFloat((arguments[0]["tag"]))
@@ -489,6 +523,10 @@ function FROMMO() {
         return this.x;
     }
     FROMMO.prototype.get = function FROMMO() {
+        var options = {
+            tag:["Tag",this.tag],
+        }
+        return options;
     }
     FROMMO.prototype.set = function FROMMO() {
         this.tag = parseFloat((arguments[0]["tag"]))
@@ -542,6 +580,11 @@ function GOTO() {
         return this.x;
     }
     GOTO.prototype.get = function GOTO() {
+        var options = {
+            tag:["Tag",this.tag],
+            tagvis:["Tag Visibility(1=Local 2=scoped 3= global)",this.tagvis],
+        }
+        return options;
     }
     GOTO.prototype.set = function GOTO() {
         this.tag = parseFloat((arguments[0]["tag"]))
@@ -606,6 +649,11 @@ function GOTOMO() {
         return this.x;
     }
     GOTOMO.prototype.get = function GOTOMO() {
+        var options = {
+            tag:["Tag",this.tag],
+            tagvis:["Tag Visibility(1=Local 2=scoped 3= global)",this.tagvis],
+        }
+        return options;
     }
     GOTOMO.prototype.set = function GOTOMO() {
         this.tag = parseFloat((arguments[0]["tag"]))
@@ -667,6 +715,10 @@ function GotoTagVisibility() {
         return this.x;
     }
     GotoTagVisibility.prototype.get = function GotoTagVisibility() {
+        var options = {
+            tag:["GotoTag",this.tag],
+        }
+        return options;
     }
     GotoTagVisibility.prototype.set = function GotoTagVisibility() {
         this.tag = parseFloat((arguments[0]["tag"]))
@@ -720,6 +772,10 @@ function GotoTagVisibilityMO() {
         return this.x;
     }
     GotoTagVisibilityMO.prototype.get = function GotoTagVisibilityMO() {
+        var options = {
+            tag:["GotoTag",this.tag],
+        }
+        return options;
     }
     GotoTagVisibilityMO.prototype.set = function GotoTagVisibilityMO() {
         this.tag = parseFloat((arguments[0]["tag"]))
@@ -771,6 +827,11 @@ function ISELECT_f() {
         return this.x;
     }
     ISELECT_f.prototype.get = function ISELECT_f() {
+        var options = {
+            nout:["number of outputs",this.nout],
+            z0:["initial connected output",this.z0],
+        }
+        return options;
     }
     ISELECT_f.prototype.set = function ISELECT_f() {
         this.nout = parseFloat((arguments[0]["nout"]))
@@ -831,6 +892,12 @@ function ISELECT_m() {
         return this.x;
     }
     ISELECT_m.prototype.get = function ISELECT_m() {
+        var options = {
+            typ:["Datatype(1= real double  2=Complex 3=int32 ...)",this.typ],
+            nout:["number of outputs",this.nout],
+            z0:["initial connected output",this.z0],
+        }
+        return options;
     }
     ISELECT_m.prototype.set = function ISELECT_m() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -890,6 +957,9 @@ function MUX() {
         return this.x;
     }
     MUX.prototype.get = function MUX() {
+        var options = {
+        }
+        return options;
     }
     MUX.prototype.set = function MUX() {
         this.in1 = parseFloat((arguments[0]["in1"]))
@@ -956,6 +1026,9 @@ function MUX_f() {
         return this.x;
     }
     MUX_f.prototype.get = function MUX_f() {
+        var options = {
+        }
+        return options;
     }
     MUX_f.prototype.set = function MUX_f() {
         this.in1 = parseFloat((arguments[0]["in1"]))
@@ -1024,6 +1097,12 @@ function M_SWITCH() {
         return this.x;
     }
     M_SWITCH.prototype.get = function M_SWITCH() {
+        var options = {
+            nin:["number of inputs",this.nin],
+            base:["zero base indexing (0), otherwise 1",this.base],
+            rule:["rounding rule: int (0), round (1), ceil (2), floor (3)",this.rule],
+        }
+        return options;
     }
     M_SWITCH.prototype.set = function M_SWITCH() {
         this.nin = parseFloat((arguments[0]["nin"]))
@@ -1091,6 +1170,10 @@ function NRMSOM_f() {
         return this.x;
     }
     NRMSOM_f.prototype.get = function NRMSOM_f() {
+        var options = {
+            nin:["number of inputs",this.nin],
+        }
+        return options;
     }
     NRMSOM_f.prototype.set = function NRMSOM_f() {
         this.nin = parseFloat((arguments[0]["nin"]))
@@ -1138,6 +1221,11 @@ function RELAY_f() {
         return this.x;
     }
     RELAY_f.prototype.get = function RELAY_f() {
+        var options = {
+            nin:["number of inputs",this.nin],
+            z0:["initial connected input",this.z0],
+        }
+        return options;
     }
     RELAY_f.prototype.set = function RELAY_f() {
         this.nin = parseFloat((arguments[0]["nin"]))
@@ -1187,6 +1275,10 @@ function SCALAR2VECTOR() {
         return this.x;
     }
     SCALAR2VECTOR.prototype.get = function SCALAR2VECTOR() {
+        var options = {
+            nout:["size of output (-1: if don\'t know)",this.nout],
+        }
+        return options;
     }
     SCALAR2VECTOR.prototype.set = function SCALAR2VECTOR() {
         this.nout = parseFloat((arguments[0]["nout"]))
@@ -1240,6 +1332,11 @@ function SELECT_f() {
         return this.x;
     }
     SELECT_f.prototype.get = function SELECT_f() {
+        var options = {
+            nin:["number of inputs",this.nin],
+            z0:["initial connected input",this.z0],
+        }
+        return options;
     }
     SELECT_f.prototype.set = function SELECT_f() {
         this.nin = parseFloat((arguments[0]["nin"]))
@@ -1300,6 +1397,12 @@ function SELECT_m() {
         return this.x;
     }
     SELECT_m.prototype.get = function SELECT_m() {
+        var options = {
+            typ:["Datatype(1= real double  2=Complex 3=int32 ..)",this.typ],
+            nin:["number of inputs",this.nin],
+            z0:["initial connected input",this.z0],
+        }
+        return options;
     }
     SELECT_m.prototype.set = function SELECT_m() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -1365,6 +1468,12 @@ function SWITCH2() {
         return this.x;
     }
     SWITCH2.prototype.get = function SWITCH2() {
+        var options = {
+            rule:["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)",this.rule],
+            thra:["threshold a",this.thra],
+            nzz:["use zero crossing: yes (1), no (0)",this.nzz],
+        }
+        return options;
     }
     SWITCH2.prototype.set = function SWITCH2() {
         this.rule = parseFloat((arguments[0]["rule"]))
@@ -1432,6 +1541,13 @@ function SWITCH2_m() {
         return this.x;
     }
     SWITCH2_m.prototype.get = function SWITCH2_m() {
+        var options = {
+            ot:["Datatype (1=real double  2=complex 3=int32 ...)",this.ot],
+            rule:["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)",this.rule],
+            thra:["threshold a",this.thra],
+            nzz:["use zero crossing: yes (1), no (0)",this.nzz],
+        }
+        return options;
     }
     SWITCH2_m.prototype.set = function SWITCH2_m() {
         this.ot = parseFloat((arguments[0]["ot"]))
@@ -1508,6 +1624,11 @@ function SWITCH_f() {
         return this.x;
     }
     SWITCH_f.prototype.get = function SWITCH_f() {
+        var options = {
+            nin:["number of inputs",this.nin],
+            z0:["connected input",this.z0],
+        }
+        return options;
     }
     SWITCH_f.prototype.set = function SWITCH_f() {
         this.nin = parseFloat((arguments[0]["nin"]))
@@ -1593,6 +1714,9 @@ function CCS() {
         return this.x;
     }
     CCS.prototype.get = function CCS() {
+        var options = {
+        }
+        return options;
     }
     CCS.prototype.set = function CCS() {
         this.x = arg1;
@@ -1658,6 +1782,9 @@ function CVS() {
         return this.x;
     }
     CVS.prototype.get = function CVS() {
+        var options = {
+        }
+        return options;
     }
     CVS.prototype.set = function CVS() {
         this.x = arg1;
@@ -1697,6 +1824,11 @@ function Capacitor() {
         return this.x;
     }
     Capacitor.prototype.get = function Capacitor() {
+        var options = {
+            C:["C (F)",this.C],
+            v:["Initial Voltage",this.v],
+        }
+        return options;
     }
     Capacitor.prototype.set = function Capacitor() {
         this.C = parseFloat((arguments[0]["C"]))
@@ -1748,6 +1880,9 @@ function ConstantVoltage() {
         return this.x;
     }
     ConstantVoltage.prototype.get = function ConstantVoltage() {
+        var options = {
+        }
+        return options;
     }
     ConstantVoltage.prototype.set = function ConstantVoltage() {
         this.V = parseFloat((arguments[0]["V"]))
@@ -1795,6 +1930,9 @@ function CurrentSensor() {
         return this.x;
     }
     CurrentSensor.prototype.get = function CurrentSensor() {
+        var options = {
+        }
+        return options;
     }
     CurrentSensor.prototype.set = function CurrentSensor() {
         this.x = arg1;
@@ -1832,6 +1970,13 @@ function Diode() {
         return this.x;
     }
     Diode.prototype.get = function Diode() {
+        var options = {
+            Ids:["Saturation cuurent (A)",this.Ids],
+            Vt:["Voltage equivalent to temperature (Volt)",this.Vt],
+            Maxexp:["Max exponent for linear continuation",this.Maxexp],
+            R:["R (ohm)",this.R],
+        }
+        return options;
     }
     Diode.prototype.set = function Diode() {
         this.Ids = parseFloat((arguments[0]["Ids"]))
@@ -1881,6 +2026,9 @@ function Ground() {
         return this.x;
     }
     Ground.prototype.get = function Ground() {
+        var options = {
+        }
+        return options;
     }
     Ground.prototype.set = function Ground() {
         this.x = arg1;
@@ -1942,6 +2090,11 @@ function Gyrator() {
         return this.x;
     }
     Gyrator.prototype.get = function Gyrator() {
+        var options = {
+            G1:["G1",this.G1],
+            G2:["G2",this.G2],
+        }
+        return options;
     }
     Gyrator.prototype.set = function Gyrator() {
         this.G1 = parseFloat((arguments[0]["G1"]))
@@ -2019,6 +2172,10 @@ function IdealTransformer() {
         return this.x;
     }
     IdealTransformer.prototype.get = function IdealTransformer() {
+        var options = {
+            N:["N",this.N],
+        }
+        return options;
     }
     IdealTransformer.prototype.set = function IdealTransformer() {
         this.N = parseFloat((arguments[0]["N"]))
@@ -2068,6 +2225,9 @@ function Inductor() {
         return this.x;
     }
     Inductor.prototype.get = function Inductor() {
+        var options = {
+        }
+        return options;
     }
     Inductor.prototype.set = function Inductor() {
         this.L = parseFloat((arguments[0]["L"]))
@@ -2110,6 +2270,9 @@ function MOTOR() {
         return this.x;
     }
     MOTOR.prototype.get = function MOTOR() {
+        var options = {
+        }
+        return options;
     }
     MOTOR.prototype.set = function MOTOR() {
         this.x = arg1;
@@ -2151,6 +2314,18 @@ function NMOS() {
         return this.x;
     }
     NMOS.prototype.get = function NMOS() {
+        var options = {
+            W:["Width [m]",this.W],
+            L:["Length [m]",this.L],
+            Beta:["Transconductance parameter [A/(V*V)]",this.Beta],
+            Vt:["Zero bias threshold voltage [V]",this.Vt],
+            K2:["Bulk threshold parameter",this.K2],
+            K5:["Reduction of pinch-off region",this.K5],
+            dW:["Narrowing of channel [m]",this.dW],
+            dL:["Shortening of channel [m]",this.dL],
+            RDS:["Drain-Source-Resistance [Ohm]",this.RDS],
+        }
+        return options;
     }
     NMOS.prototype.set = function NMOS() {
         this.W = parseFloat((arguments[0]["W"]))
@@ -2235,6 +2410,26 @@ function NPN() {
         return this.x;
     }
     NPN.prototype.get = function NPN() {
+        var options = {
+            Bf:["Bf  : Forward beta",this.Bf],
+            Br:["Br  : Reverse beta",this.Br],
+            Is:["Is  : Transport saturation current",this.Is],
+            Vak:["Vak : Early voltage (inverse), 1/Volt",this.Vak],
+            Tauf:["Tauf: Ideal forward transit time",this.Tauf],
+            Taur:["Taur: Ideal reverse transit time",this.Taur],
+            Ccs:["Ccs : Collector-substrat(ground) cap.",this.Ccs],
+            Cje:["Cje : Base-emitter zero bias depletion cap.",this.Cje],
+            Cjc:["Cjc : Base-coll. zero bias depletion cap.",this.Cjc],
+            Phie:["Phie: Base-emitter diffusion voltage",this.Phie],
+            Me:["Me  : Base-emitter gradation exponent",this.Me],
+            Phic:["Phic: Base-collector diffusion voltage",this.Phic],
+            Mc:["Mc  : Base-collector gradation exponent",this.Mc],
+            Gbc:["Gbc : Base-collector conductance",this.Gbc],
+            Gbe:["Gbe : Base-emitter conductance",this.Gbe],
+            Vt:["Vt  : Voltage equivalent of temperature",this.Vt],
+            EMinMax:["EMinmax: if x > EMinMax, the exp(x) is linearized",this.EMinMax],
+        }
+        return options;
     }
     NPN.prototype.set = function NPN() {
         this.Bf = parseFloat((arguments[0]["Bf"]))
@@ -2301,6 +2496,12 @@ function OpAmp() {
         return this.x;
     }
     OpAmp.prototype.get = function OpAmp() {
+        var options = {
+            OLGain:["Open Loop Gain",this.OLGain],
+            SatH:["Positive saturation voltage",this.SatH],
+            SatL:["Negative saturation voltage",this.SatL],
+        }
+        return options;
     }
     OpAmp.prototype.set = function OpAmp() {
         this.OLGain = parseFloat((arguments[0]["OLGain"]))
@@ -2359,6 +2560,18 @@ function PMOS() {
         return this.x;
     }
     PMOS.prototype.get = function PMOS() {
+        var options = {
+            W:["Width [m]",this.W],
+            L:["Length [m]",this.L],
+            Beta:["Transconductance parameter [A/(V*V)]",this.Beta],
+            Vt:["Zero bias threshold voltage [V]",this.Vt],
+            K2:["Bulk threshold parameter",this.K2],
+            K5:["Reduction of pinch-off region",this.K5],
+            dW:["Narrowing of channel [m]",this.dW],
+            dL:["Shortening of channel [m]",this.dL],
+            RDS:["Drain-Source-Resistance [Ohm]",this.RDS],
+        }
+        return options;
     }
     PMOS.prototype.set = function PMOS() {
         this.W = parseFloat((arguments[0]["W"]))
@@ -2443,6 +2656,26 @@ function PNP() {
         return this.x;
     }
     PNP.prototype.get = function PNP() {
+        var options = {
+            Bf:["Bf  : Forward beta",this.Bf],
+            Br:["Br  : Reverse beta",this.Br],
+            Is:["Is  : Transport saturation current",this.Is],
+            Vak:["Vak : Early voltage (inverse), 1/Volt",this.Vak],
+            Tauf:["Tauf: Ideal forward transit time",this.Tauf],
+            Taur:["Taur: Ideal reverse transit time",this.Taur],
+            Ccs:["Ccs : Collector-substrat(ground) cap.",this.Ccs],
+            Cje:["Cje : Base-emitter zero bias depletion cap.",this.Cje],
+            Cjc:["Cjc : Base-coll. zero bias depletion cap.",this.Cjc],
+            Phie:["Phie: Base-emitter diffusion voltage",this.Phie],
+            Me:["Me  : Base-emitter gradation exponent",this.Me],
+            Phic:["Phic: Base-collector diffusion voltage",this.Phic],
+            Mc:["Mc  : Base-collector gradation exponent",this.Mc],
+            Gbc:["Gbc : Base-collector conductance",this.Gbc],
+            Gbe:["Gbe : Base-emitter conductance",this.Gbe],
+            Vt:["Vt  : Voltage equivalent of temperature",this.Vt],
+            EMinMax:["EMinMax: if x > EMinMax, the exp(x) function is linearized",this.EMinMax],
+        }
+        return options;
     }
     PNP.prototype.set = function PNP() {
         this.Bf = parseFloat((arguments[0]["Bf"]))
@@ -2505,6 +2738,9 @@ function PotentialSensor() {
         return this.x;
     }
     PotentialSensor.prototype.get = function PotentialSensor() {
+        var options = {
+        }
+        return options;
     }
     PotentialSensor.prototype.set = function PotentialSensor() {
         this.x = arg1;
@@ -2539,6 +2775,9 @@ function Resistor() {
         return this.x;
     }
     Resistor.prototype.get = function Resistor() {
+        var options = {
+        }
+        return options;
     }
     Resistor.prototype.set = function Resistor() {
         this.R = parseFloat((arguments[0]["R"]))
@@ -2593,6 +2832,14 @@ function SineVoltage() {
         return this.x;
     }
     SineVoltage.prototype.get = function SineVoltage() {
+        var options = {
+            V:["Amplitude (Volt)",this.V],
+            ph:["phase (rad)",this.ph],
+            frq:["Frequency (Hz)",this.frq],
+            offset:["Voltageoffset (V)",this.offset],
+            start:["Timeoffset (s)",this.start],
+        }
+        return options;
     }
     SineVoltage.prototype.set = function SineVoltage() {
         this.V = parseFloat((arguments[0]["V"]))
@@ -2650,6 +2897,11 @@ function Switch() {
         return this.x;
     }
     Switch.prototype.get = function Switch() {
+        var options = {
+            Ron:["Resistance in On state (Ohm)",this.Ron],
+            Roff:["Resistance in Off state (Ohm)",this.Roff],
+        }
+        return options;
     }
     Switch.prototype.set = function Switch() {
         this.Ron = parseFloat((arguments[0]["Ron"]))
@@ -2701,6 +2953,10 @@ function VVsourceAC() {
         return this.x;
     }
     VVsourceAC.prototype.get = function VVsourceAC() {
+        var options = {
+            FR:["Frequency (Hz)",this.FR],
+        }
+        return options;
     }
     VVsourceAC.prototype.set = function VVsourceAC() {
         this.FR = parseFloat((arguments[0]["FR"]))
@@ -2748,6 +3004,9 @@ function VariableResistor() {
         return this.x;
     }
     VariableResistor.prototype.get = function VariableResistor() {
+        var options = {
+        }
+        return options;
     }
     VariableResistor.prototype.set = function VariableResistor() {
         this.x = arg1;
@@ -2779,6 +3038,9 @@ function VoltageSensor() {
         return this.x;
     }
     VoltageSensor.prototype.get = function VoltageSensor() {
+        var options = {
+        }
+        return options;
     }
     VoltageSensor.prototype.set = function VoltageSensor() {
         this.x = arg1;
@@ -2814,6 +3076,11 @@ function VsourceAC() {
         return this.x;
     }
     VsourceAC.prototype.get = function VsourceAC() {
+        var options = {
+            VA:["Amplitude (Volt)",this.VA],
+            FR:["Frequency (Hz)",this.FR],
+        }
+        return options;
     }
     VsourceAC.prototype.set = function VsourceAC() {
         this.VA = parseFloat((arguments[0]["VA"]))
@@ -2910,6 +3177,9 @@ function ANDBLK() {
         return this.x;
     }
     ANDBLK.prototype.get = function ANDBLK() {
+        var options = {
+        }
+        return options;
     }
     ANDBLK.prototype.set = function ANDBLK() {
         this.x = arg1;
@@ -2934,6 +3204,9 @@ function ANDLOG_f() {
         return this.x;
     }
     ANDLOG_f.prototype.get = function ANDLOG_f() {
+        var options = {
+        }
+        return options;
     }
     ANDLOG_f.prototype.set = function ANDLOG_f() {
         this.x = arg1;
@@ -2958,6 +3231,9 @@ function CLKSOMV_f() {
         return this.x;
     }
     CLKSOMV_f.prototype.get = function CLKSOMV_f() {
+        var options = {
+        }
+        return options;
     }
     CLKSOMV_f.prototype.set = function CLKSOMV_f() {
         this.x = arg1;
@@ -2982,6 +3258,9 @@ function CLKSOM_f() {
         return this.x;
     }
     CLKSOM_f.prototype.get = function CLKSOM_f() {
+        var options = {
+        }
+        return options;
     }
     CLKSOM_f.prototype.set = function CLKSOM_f() {
         this.x = arg1;
@@ -3005,6 +3284,9 @@ function CLKSPLIT_f() {
         return this.x;
     }
     CLKSPLIT_f.prototype.get = function CLKSPLIT_f() {
+        var options = {
+        }
+        return options;
     }
     CLKSPLIT_f.prototype.set = function CLKSPLIT_f() {
         this.x = arg1;
@@ -3031,6 +3313,10 @@ function END_c() {
         return this.x;
     }
     END_c.prototype.get = function END_c() {
+        var options = {
+            tf:["Final simulation time",this.tf],
+        }
+        return options;
     }
     END_c.prototype.set = function END_c() {
         this.tf = parseFloat((arguments[0]["tf"]))
@@ -3076,6 +3362,11 @@ function EVTDLY_c() {
         return this.x;
     }
     EVTDLY_c.prototype.get = function EVTDLY_c() {
+        var options = {
+            dt:["Delay",this.dt],
+            ff:["Date of initial output event",this.ff],
+        }
+        return options;
     }
     EVTDLY_c.prototype.set = function EVTDLY_c() {
         this.dt = parseFloat((arguments[0]["dt"]))
@@ -3127,6 +3418,11 @@ function EVTDLY_f() {
         return this.x;
     }
     EVTDLY_f.prototype.get = function EVTDLY_f() {
+        var options = {
+            dt:["Delay",this.dt],
+            ff:["Date of initial output event",this.ff],
+        }
+        return options;
     }
     EVTDLY_f.prototype.set = function EVTDLY_f() {
         this.dt = parseFloat((arguments[0]["dt"]))
@@ -3175,6 +3471,10 @@ function EVTGEN_f() {
         return this.x;
     }
     EVTGEN_f.prototype.get = function EVTGEN_f() {
+        var options = {
+            tt:["Event Time",this.tt],
+        }
+        return options;
     }
     EVTGEN_f.prototype.set = function EVTGEN_f() {
         this.tt = parseFloat((arguments[0]["tt"]))
@@ -3219,6 +3519,9 @@ function EVTVARDLY() {
         return this.x;
     }
     EVTVARDLY.prototype.get = function EVTVARDLY() {
+        var options = {
+        }
+        return options;
     }
     EVTVARDLY.prototype.set = function EVTVARDLY() {
         this.fir = parseFloat((arguments[0]["fir"]))
@@ -3260,6 +3563,10 @@ function HALT_f() {
         return this.x;
     }
     HALT_f.prototype.get = function HALT_f() {
+        var options = {
+            n:["State on halt",this.n],
+        }
+        return options;
     }
     HALT_f.prototype.set = function HALT_f() {
         this.n = parseFloat((arguments[0]["n"]))
@@ -3307,6 +3614,11 @@ function IFTHEL_f() {
         return this.x;
     }
     IFTHEL_f.prototype.get = function IFTHEL_f() {
+        var options = {
+            inh:["Inherit (1: no, 0: yes)",this.inh],
+            nmod:["zero-crossing (0: no, 1: yes)",this.nmod],
+        }
+        return options;
     }
     IFTHEL_f.prototype.set = function IFTHEL_f() {
         this.inh = parseFloat((arguments[0]["inh"]))
@@ -3423,6 +3735,9 @@ function MCLOCK_f() {
         return this.x;
     }
     MCLOCK_f.prototype.get = function MCLOCK_f() {
+        var options = {
+        }
+        return options;
     }
     MCLOCK_f.prototype.set = function MCLOCK_f() {
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
@@ -3470,6 +3785,11 @@ function MFCLCK_f() {
         return this.x;
     }
     MFCLCK_f.prototype.get = function MFCLCK_f() {
+        var options = {
+        dt:["basic period (1/f)",this.dt],
+        nn:["multiply by (n)",this.nn],
+        }
+        return options;
     }
     MFCLCK_f.prototype.set = function MFCLCK_f() {
         this.dt = parseFloat((arguments[0]["dt"]))
@@ -3513,6 +3833,11 @@ function M_freq() {
         return this.x;
     }
     M_freq.prototype.get = function M_freq() {
+        var options = {
+            frequ:["Sample time",this.frequ],
+            offset:["Offset",this.offset],
+        }
+        return options;
     }
     M_freq.prototype.set = function M_freq() {
         this.frequ = parseFloat((arguments[0]["frequ"]))
@@ -3579,6 +3904,9 @@ function VirtualCLK0() {
         return this.x;
     }
     VirtualCLK0.prototype.get = function VirtualCLK0() {
+        var options = {
+        }
+        return options;
     }
     VirtualCLK0.prototype.set = function VirtualCLK0() {
         this.x = arg1;
@@ -3698,6 +4026,11 @@ function freq_div() {
         return this.x;
     }
     freq_div.prototype.get = function freq_div() {
+        var options = {
+            %ph:["Phase (0 to division factor -1)",%ph],
+            %df:["Division factor",%df],
+        }
+        return options;
     }
     freq_div.prototype.set = function freq_div() {
         %ph = parseFloat((arguments[0]["%ph"]))
@@ -3828,6 +4161,18 @@ function Bache() {
         return this.x;
     }
     Bache.prototype.get = function Bache() {
+        var options = {
+            Patm:["Pression dans le ciel de la bache : Patm (Pa)",this.Patm],
+            A:["Section de la bache : A (m2)",this.A],
+            ze1:["Altitude du piquage d entrée 1: ze1 (m)",this.ze1],
+            ze2:["Altitude du piquage d entrée 2: ze2 (m)",this.ze2],
+            zs1:["Altitude du piquage de sortie 1: zs1 (m)",this.zs1],
+            zs2:["Altitude du piquage de sortie 2: zs2 (m)",this.zs2],
+            z0:["Altitude initiale du fluide : z0 (m)",this.z0],
+            T0:["Température initiale du fluide : T0 (K)",this.T0],
+            p_rho:["Si >0, masse volumique imposée du fluide : p_rho (kg/m3)",this.p_rho],
+        }
+        return options;
     }
     Bache.prototype.set = function Bache() {
         this.Patm = parseFloat((arguments[0]["Patm"]))
@@ -3913,6 +4258,9 @@ function Flowmeter() {
         return this.x;
     }
     Flowmeter.prototype.get = function Flowmeter() {
+        var options = {
+        }
+        return options;
     }
     Flowmeter.prototype.set = function Flowmeter() {
         this.Qini = parseFloat((arguments[0]["Qini"]))
@@ -3969,6 +4317,15 @@ function PerteDP() {
         return this.x;
     }
     PerteDP.prototype.get = function PerteDP() {
+        var options = {
+            L:["Longueur du tube : L (m)",this.L],
+            D:["Diamètre interne du tube : D (m)",this.D],
+            lambda:["Coefficient de perte de charge-frottement(S.U) : lambda",this.lambda],
+            z1:["Altitude entrée tuyauterie : z1 (m)",this.z1],
+            z2:["Altitude sortie tuyauterie : z2 (m)",this.z2],
+            p_rho:["Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)",this.p_rho],
+        }
+        return options;
     }
     PerteDP.prototype.set = function PerteDP() {
         this.L = parseFloat((arguments[0]["L"]))
@@ -4024,6 +4381,13 @@ function PuitsP() {
         return this.x;
     }
     PuitsP.prototype.get = function PuitsP() {
+        var options = {
+            P0:["Pression de la source : P0 (Pa)",this.P0],
+            T0:["Temperature de la source : T0 (K)",this.T0],
+            H0:["Enthalpie spécifique de la source : H0 (J/kg)",this.H0],
+            option_temperature:["1:température fixée - 2:enthalpie fixée : option_temperature",this.option_temperature],
+        }
+        return options;
     }
     PuitsP.prototype.set = function PuitsP() {
         this.P0 = parseFloat((arguments[0]["P0"]))
@@ -4079,6 +4443,13 @@ function SourceP() {
         return this.x;
     }
     SourceP.prototype.get = function SourceP() {
+        var options = {
+            P0:["Pression de la source : P0 (Pa)",this.P0],
+            T0:["Temperature de la source : T0 (K)",this.T0],
+            H0:["Enthalpie spécifique de la source : H0 (J/kg)",this.H0],
+            option_temperature:["1:température fixée - 2:enthalpie fixée : option_temperature",this.option_temperature],
+        }
+        return options;
     }
     SourceP.prototype.set = function SourceP() {
         this.P0 = parseFloat((arguments[0]["P0"]))
@@ -4135,6 +4506,11 @@ function VanneReglante() {
         return this.x;
     }
     VanneReglante.prototype.get = function VanneReglante() {
+        var options = {
+            Cvmax:["Cvmax",this.Cvmax],
+            p_rho:["p_rho",this.p_rho],
+        }
+        return options;
     }
     VanneReglante.prototype.set = function VanneReglante() {
         this.Cvmax = parseFloat((arguments[0]["Cvmax"]))
@@ -4181,6 +4557,11 @@ function BITCLEAR() {
         return this.x;
     }
     BITCLEAR.prototype.get = function BITCLEAR() {
+        var options = {
+            Datatype:[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),this.Datatype],
+            bit:["Index of Bit (0 is least significant)",this.bit],
+        }
+        return options;
     }
     BITCLEAR.prototype.set = function BITCLEAR() {
         this.Datatype = parseFloat((arguments[0]["Datatype"]))
@@ -4272,6 +4653,11 @@ function BITSET() {
         return this.x;
     }
     BITSET.prototype.get = function BITSET() {
+        var options = {
+            Datatype:[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),this.Datatype],
+            bit:["Index of Bit (0 is least significant)",this.bit],
+        }
+        return options;
     }
     BITSET.prototype.set = function BITSET() {
         this.Datatype = parseFloat((arguments[0]["Datatype"]))
@@ -4363,6 +4749,12 @@ function CONVERT() {
         return this.x;
     }
     CONVERT.prototype.get = function CONVERT() {
+        var options = {
+            it:["Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)",this.it],
+            ot:["Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)",this.ot],
+            np:["Do on Overflow (0:Nothing, 1:Saturate, 2:Error)",this.np],
+        }
+        return options;
     }
     CONVERT.prototype.set = function CONVERT() {
         this.it = parseFloat((arguments[0]["it"]))
@@ -4812,6 +5204,9 @@ function DFLIPFLOP() {
         return this.x;
     }
     DFLIPFLOP.prototype.get = function DFLIPFLOP() {
+        var options = {
+        }
+        return options;
     }
     DFLIPFLOP.prototype.set = function DFLIPFLOP() {
         this.x = arg1;
@@ -4861,6 +5256,9 @@ function DLATCH() {
         return this.x;
     }
     DLATCH.prototype.get = function DLATCH() {
+        var options = {
+        }
+        return options;
     }
     DLATCH.prototype.set = function DLATCH() {
         this.x = arg1;
@@ -4891,6 +5289,13 @@ function EXTRACTBITS() {
         return this.x;
     }
     EXTRACTBITS.prototype.get = function EXTRACTBITS() {
+        var options = {
+            Datatype:[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),this.Datatype],
+            rule:["Bits to extract",this.rule],
+            bit:["Number of Bits or Index of Bit",this.bit],
+            scal:["Treat Bit Field as an Integer (0:No, 1:Yes)",this.scal],
+        }
+        return options;
     }
     EXTRACTBITS.prototype.set = function EXTRACTBITS() {
         this.Datatype = parseFloat((arguments[0]["Datatype"]))
@@ -5128,6 +5533,11 @@ function INTMUL() {
         return this.x;
     }
     INTMUL.prototype.get = function INTMUL() {
+        var options = {
+            Datatype:[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),this.Datatype],
+            np:["Do on Overflow (0:Nothing, 1:Saturate, 2:Error)",this.np],
+        }
+        return options;
     }
     INTMUL.prototype.set = function INTMUL() {
         this.Datatype = parseFloat((arguments[0]["Datatype"]))
@@ -5268,6 +5678,9 @@ function JKFLIPFLOP() {
         return this.x;
     }
     JKFLIPFLOP.prototype.get = function JKFLIPFLOP() {
+        var options = {
+        }
+        return options;
     }
     JKFLIPFLOP.prototype.set = function JKFLIPFLOP() {
         this.init = parseFloat((arguments[0]["init"]))
@@ -5339,6 +5752,11 @@ function LOGIC() {
         return this.x;
     }
     LOGIC.prototype.get = function LOGIC() {
+        var options = {
+            mat:["Truth Table (matrix of outputs)",this.mat],
+            herit:["Accepts Inherited Events (0:No, 1:Yes)",this.herit],
+        }
+        return options;
     }
     LOGIC.prototype.set = function LOGIC() {
         this.mat = parseFloat((arguments[0]["mat"]))
@@ -5410,6 +5828,12 @@ function SHIFT() {
         return this.x;
     }
     SHIFT.prototype.get = function SHIFT() {
+        var options = {
+            Datatype:[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),this.Datatype],
+            nb:["Number of Bits to Shift Left (Negative number to shift right)",this.nb],
+            np:["Shift Type (0:Arithmetic, 1:Circular)",this.np],
+        }
+        return options;
     }
     SHIFT.prototype.set = function SHIFT() {
         this.Datatype = parseFloat((arguments[0]["Datatype"]))
@@ -5549,6 +5973,9 @@ function SRFLIPFLOP() {
         return this.x;
     }
     SRFLIPFLOP.prototype.get = function SRFLIPFLOP() {
+        var options = {
+        }
+        return options;
     }
     SRFLIPFLOP.prototype.set = function SRFLIPFLOP() {
         this.init = parseFloat((arguments[0]["init"]))
@@ -5614,6 +6041,9 @@ function BIGSOM_f() {
         return this.x;
     }
     BIGSOM_f.prototype.get = function BIGSOM_f() {
+        var options = {
+        }
+        return options;
     }
     BIGSOM_f.prototype.set = function BIGSOM_f() {
         this.sgn = parseFloat((arguments[0]["sgn"]))
@@ -5657,6 +6087,9 @@ function CLINDUMMY_f() {
         return this.x;
     }
     CLINDUMMY_f.prototype.get = function CLINDUMMY_f() {
+        var options = {
+        }
+        return options;
     }
     CLINDUMMY_f.prototype.set = function CLINDUMMY_f() {
         this.x = arg1;
@@ -5688,6 +6121,11 @@ function CLR() {
         return this.x;
     }
     CLR.prototype.get = function CLR() {
+        var options = {
+            num:["Numerator (s)",this.num],
+            den:["Denominator (s)",this.den],
+        }
+        return options;
     }
     CLR.prototype.set = function CLR() {
         this.num = parseFloat((arguments[0]["num"]))
@@ -5766,6 +6204,11 @@ function CLR_f() {
         return this.x;
     }
     CLR_f.prototype.get = function CLR_f() {
+        var options = {
+            num:["Numerator (s)",this.num],
+            den:["Denominator (s)",this.den],
+        }
+        return options;
     }
     CLR_f.prototype.set = function CLR_f() {
         this.num = parseFloat((arguments[0]["num"]))
@@ -5846,6 +6289,14 @@ function CLSS() {
         return this.x;
     }
     CLSS.prototype.get = function CLSS() {
+        var options = {
+            A:["A matrix",this.A],
+            B:["B matrix",this.B],
+            C:["C matrix",this.C],
+            D:["D matrix",this.D],
+            x0:["Initial state",this.x0],
+        }
+        return options;
     }
     CLSS.prototype.set = function CLSS() {
         this.A = parseFloat((arguments[0]["A"]))
@@ -5941,6 +6392,14 @@ function CLSS_f() {
         return this.x;
     }
     CLSS_f.prototype.get = function CLSS_f() {
+        var options = {
+            A:["A matrix",this.A],
+            B:["B matrix",this.B],
+            C:["C matrix",this.C],
+            D:["D matrix",this.D],
+            x0:["Initial state",this.x0],
+        }
+        return options;
     }
     CLSS_f.prototype.set = function CLSS_f() {
         this.A = parseFloat((arguments[0]["A"]))
@@ -6026,6 +6485,12 @@ function DELAYV_f() {
         return this.x;
     }
     DELAYV_f.prototype.get = function DELAYV_f() {
+        var options = {
+            nin:["Number of inputs",this.nin],
+            zz0:["Register initial condition",this.zz0],
+            T:["Max delay",this.T],
+        }
+        return options;
     }
     DELAYV_f.prototype.set = function DELAYV_f() {
         this.nin = parseFloat((arguments[0]["nin"]))
@@ -6138,6 +6603,11 @@ function DELAY_f() {
         return this.x;
     }
     DELAY_f.prototype.get = function DELAY_f() {
+        var options = {
+            dt:["Discretization time step",this.dt],
+            z0:["Register initial state",this.z0],
+        }
+        return options;
     }
     DELAY_f.prototype.set = function DELAY_f() {
         this.dt = parseFloat((arguments[0]["dt"]))
@@ -6218,6 +6688,9 @@ function DERIV() {
         return this.x;
     }
     DERIV.prototype.get = function DERIV() {
+        var options = {
+        }
+        return options;
     }
     DERIV.prototype.set = function DERIV() {
         this.x = arg1;
@@ -6244,6 +6717,11 @@ function DIFF_c() {
         return this.x;
     }
     DIFF_c.prototype.get = function DIFF_c() {
+        var options = {
+            x0:["Initial state",this.x0],
+            xd0:["Initial Derivative",this.xd0],
+        }
+        return options;
     }
     DIFF_c.prototype.set = function DIFF_c() {
         this.x0 = parseFloat((arguments[0]["x0"]))
@@ -6310,6 +6788,11 @@ function DLR() {
         return this.x;
     }
     DLR.prototype.get = function DLR() {
+        var options = {
+            num:["Numerator (z)",this.num],
+            den:["Denominator (z)",this.den],
+        }
+        return options;
     }
     DLR.prototype.set = function DLR() {
         this.num = parseFloat((arguments[0]["num"]))
@@ -6387,6 +6870,11 @@ function DLR_f() {
         return this.x;
     }
     DLR_f.prototype.get = function DLR_f() {
+        var options = {
+            num:["Numerator (z)",this.num],
+            den:["Denominator (z)",this.den],
+        }
+        return options;
     }
     DLR_f.prototype.set = function DLR_f() {
         this.num = parseFloat((arguments[0]["num"]))
@@ -6464,6 +6952,14 @@ function DLSS() {
         return this.x;
     }
     DLSS.prototype.get = function DLSS() {
+        var options = {
+            A:["A matrix",this.A],
+            B:["B matrix",this.B],
+            C:["C matrix",this.C],
+            D:["D matrix",this.D],
+            x0:["Initial state",this.x0],
+        }
+        return options;
     }
     DLSS.prototype.set = function DLSS() {
         this.A = parseFloat((arguments[0]["A"]))
@@ -6558,6 +7054,14 @@ function DLSS_f() {
         return this.x;
     }
     DLSS_f.prototype.get = function DLSS_f() {
+        var options = {
+            A:["A matrix",this.A],
+            B:["B matrix",this.B],
+            C:["C matrix",this.C],
+            D:["D matrix",this.D],
+            x0:["Initial state",this.x0],
+        }
+        return options;
     }
     DLSS_f.prototype.set = function DLSS_f() {
         this.A = parseFloat((arguments[0]["A"]))
@@ -6639,6 +7143,11 @@ function DOLLAR() {
         return this.x;
     }
     DOLLAR.prototype.get = function DOLLAR() {
+        var options = {
+            a:["initial condition",this.a],
+            inh:["Inherit (no:0, yes:1)",this.inh],
+        }
+        return options;
     }
     DOLLAR.prototype.set = function DOLLAR() {
         this.a = parseFloat((arguments[0]["a"]))
@@ -6734,6 +7243,11 @@ function DOLLAR_f() {
         return this.x;
     }
     DOLLAR_f.prototype.get = function DOLLAR_f() {
+        var options = {
+            a:["initial condition",this.a],
+            inh:["Inherit (no:0, yes:1)",this.inh],
+        }
+        return options;
     }
     DOLLAR_f.prototype.set = function DOLLAR_f() {
         this.a = parseFloat((arguments[0]["a"]))
@@ -6794,6 +7308,11 @@ function DOLLAR_m() {
         return this.x;
     }
     DOLLAR_m.prototype.get = function DOLLAR_m() {
+        var options = {
+            a:["initial condition",this.a],
+            inh:["Inherit (no:0, yes:1)",this.inh],
+        }
+        return options;
     }
     DOLLAR_m.prototype.set = function DOLLAR_m() {
         this.a = parseFloat((arguments[0]["a"]))
@@ -6892,6 +7411,11 @@ function GAINBLK() {
         return this.x;
     }
     GAINBLK.prototype.get = function GAINBLK() {
+        var options = {
+            gain:["Gain",this.gain],
+            over:["Do On Overflow(0=Nothing 1=Saturate 2=Error)",this.over],
+        }
+        return options;
     }
     GAINBLK.prototype.set = function GAINBLK() {
         this.gain = parseFloat((arguments[0]["gain"]))
@@ -7040,6 +7564,10 @@ function GAINBLK_f() {
         return this.x;
     }
     GAINBLK_f.prototype.get = function GAINBLK_f() {
+        var options = {
+            gain:["Gain",this.gain],
+        }
+        return options;
     }
     GAINBLK_f.prototype.set = function GAINBLK_f() {
         this.gain = parseFloat((arguments[0]["gain"]))
@@ -7091,6 +7619,10 @@ function GAIN_f() {
         return this.x;
     }
     GAIN_f.prototype.get = function GAIN_f() {
+        var options = {
+            gain:["Gain",this.gain],
+        }
+        return options;
     }
     GAIN_f.prototype.set = function GAIN_f() {
         this.gain = parseFloat((arguments[0]["gain"]))
@@ -7144,6 +7676,14 @@ function INTEGRAL() {
         return this.x;
     }
     INTEGRAL.prototype.get = function INTEGRAL() {
+        var options = {
+            x0:["Initial Condition",this.x0],
+            reinit:["With re-intialization (1:yes, 0:no)",this.reinit],
+            satur:["With saturation (1:yes, 0:no)",this.satur],
+            maxp:["Upper limit",this.maxp],
+            lowp:["Lower limit",this.lowp],
+        }
+        return options;
     }
     INTEGRAL.prototype.set = function INTEGRAL() {
         this.x0 = parseFloat((arguments[0]["x0"]))
@@ -7228,6 +7768,9 @@ function INTEGRAL_f() {
         return this.x;
     }
     INTEGRAL_f.prototype.get = function INTEGRAL_f() {
+        var options = {
+        }
+        return options;
     }
     INTEGRAL_f.prototype.set = function INTEGRAL_f() {
         this.x0 = parseFloat((arguments[0]["x0"]))
@@ -7275,6 +7818,14 @@ function INTEGRAL_m() {
         return this.x;
     }
     INTEGRAL_m.prototype.get = function INTEGRAL_m() {
+        var options = {
+            x0:["Initial Condition",this.x0],
+            reinit:["With re-intialization (1:yes, 0:no)",this.reinit],
+            satur:["With saturation (1:yes, 0:no)",this.satur],
+            maxp:["Upper limit",this.maxp],
+            lowp:["Lower limit",this.lowp],
+        }
+        return options;
     }
     INTEGRAL_m.prototype.set = function INTEGRAL_m() {
         this.x0 = parseFloat((arguments[0]["x0"]))
@@ -7426,6 +7977,12 @@ function PID() {
         return this.x;
     }
     PID.prototype.get = function PID() {
+        var options = {
+            p:["Proportional",this.p],
+            i:["Integral",this.i],
+            d:["Derivation",this.d],
+        }
+        return options;
     }
     PID.prototype.set = function PID() {
         this.p = parseFloat((arguments[0]["p"]))
@@ -7525,6 +8082,11 @@ function REGISTER() {
         return this.x;
     }
     REGISTER.prototype.get = function REGISTER() {
+        var options = {
+            z0:["Register initial condition",this.z0],
+            it:["Datatype (1=double 3=int32 ...)",this.it],
+        }
+        return options;
     }
     REGISTER.prototype.set = function REGISTER() {
         this.z0 = parseFloat((arguments[0]["z0"]))
@@ -7611,6 +8173,9 @@ function REGISTER_f() {
         return this.x;
     }
     REGISTER_f.prototype.get = function REGISTER_f() {
+        var options = {
+        }
+        return options;
     }
     REGISTER_f.prototype.set = function REGISTER_f() {
         this.z0 = parseFloat((arguments[0]["z0"]))
@@ -7657,6 +8222,9 @@ function SAMPHOLD() {
         return this.x;
     }
     SAMPHOLD.prototype.get = function SAMPHOLD() {
+        var options = {
+        }
+        return options;
     }
     SAMPHOLD.prototype.set = function SAMPHOLD() {
         this.x = arg1;
@@ -7687,6 +8255,10 @@ function SAMPHOLD_m() {
         return this.x;
     }
     SAMPHOLD_m.prototype.get = function SAMPHOLD_m() {
+        var options = {
+            it:["Datatype(1=real double 2=Complex 3=int32 ...)",this.it],
+        }
+        return options;
     }
     SAMPHOLD_m.prototype.set = function SAMPHOLD_m() {
         this.it = parseFloat((arguments[0]["it"]))
@@ -7738,6 +8310,9 @@ function SAMPLEHOLD_f() {
         return this.x;
     }
     SAMPLEHOLD_f.prototype.get = function SAMPLEHOLD_f() {
+        var options = {
+        }
+        return options;
     }
     SAMPLEHOLD_f.prototype.set = function SAMPLEHOLD_f() {
         this.x = arg1;
@@ -7765,6 +8340,9 @@ function SOM_f() {
         return this.x;
     }
     SOM_f.prototype.get = function SOM_f() {
+        var options = {
+        }
+        return options;
     }
     SOM_f.prototype.set = function SOM_f() {
         this.x = arg1;
@@ -7810,6 +8388,12 @@ function SUMMATION() {
         return this.x;
     }
     SUMMATION.prototype.get = function SUMMATION() {
+        var options = {
+            Datatype:["Datatype (1=real double  2=complex 3=int32 ...)",this.Datatype],
+            sgn:["Number of inputs or sign vector (of +1, -1)",this.sgn],
+            satur:["Do on Overflow(0=Nothing 1=Saturate 2=Error)",this.satur],
+        }
+        return options;
     }
     SUMMATION.prototype.set = function SUMMATION() {
         this.Datatype = parseFloat((arguments[0]["Datatype"]))
@@ -7949,6 +8533,9 @@ function SUM_f() {
         return this.x;
     }
     SUM_f.prototype.get = function SUM_f() {
+        var options = {
+        }
+        return options;
     }
     SUM_f.prototype.set = function SUM_f() {
         this.x = arg1;
@@ -7984,6 +8571,14 @@ function TCLSS() {
         return this.x;
     }
     TCLSS.prototype.get = function TCLSS() {
+        var options = {
+            A:["A matrix",this.A],
+            B:["B matrix",this.B],
+            C:["C matrix",this.C],
+            D:["D matrix",this.D],
+            x0:["Initial state",this.x0],
+        }
+        return options;
     }
     TCLSS.prototype.set = function TCLSS() {
         this.A = parseFloat((arguments[0]["A"]))
@@ -8076,6 +8671,14 @@ function TCLSS_f() {
         return this.x;
     }
     TCLSS_f.prototype.get = function TCLSS_f() {
+        var options = {
+            A:["A matrix",this.A],
+            B:["B matrix",this.B],
+            C:["C matrix",this.C],
+            D:["D matrix",this.D],
+            x0:["Initial state",this.x0],
+        }
+        return options;
     }
     TCLSS_f.prototype.set = function TCLSS_f() {
         this.A = parseFloat((arguments[0]["A"]))
@@ -8163,6 +8766,12 @@ function TIME_DELAY() {
         return this.x;
     }
     TIME_DELAY.prototype.get = function TIME_DELAY() {
+        var options = {
+            T:["Delay",this.T],
+            init:["initial input",this.init],
+            N:["Buffer size",this.N],
+        }
+        return options;
     }
     TIME_DELAY.prototype.set = function TIME_DELAY() {
         this.T = parseFloat((arguments[0]["T"]))
@@ -8226,6 +8835,12 @@ function VARIABLE_DELAY() {
         return this.x;
     }
     VARIABLE_DELAY.prototype.get = function VARIABLE_DELAY() {
+        var options = {
+            T:["Max delay",this.T],
+            init:["initial input",this.init],
+            N:["Buffer size",this.N],
+        }
+        return options;
     }
     VARIABLE_DELAY.prototype.set = function VARIABLE_DELAY() {
         this.T = parseFloat((arguments[0]["T"]))
@@ -8295,6 +8910,11 @@ function CUMSUM() {
         return this.x;
     }
     CUMSUM.prototype.get = function CUMSUM() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            decomptyp:["Sum along (0=the first non singleton dimension  1=Rows  2=Columns)",this.decomptyp],
+        }
+        return options;
     }
     CUMSUM.prototype.set = function CUMSUM() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -8395,6 +9015,12 @@ function EXTRACT() {
         return this.x;
     }
     EXTRACT.prototype.get = function EXTRACT() {
+        var options = {
+            typ:["Datatype (1=real double  2=Complex)",this.typ],
+            a:["Lines to extract",this.a],
+            b:["Columns to extract",this.b],
+        }
+        return options;
     }
     EXTRACT.prototype.set = function EXTRACT() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -8493,6 +9119,11 @@ function EXTTRI() {
         return this.x;
     }
     EXTTRI.prototype.get = function EXTTRI() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            decomptyp:["extraction type (1=lower  2=upper  3=diagonal)",this.decomptyp],
+        }
+        return options;
     }
     EXTTRI.prototype.set = function EXTTRI() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -8590,6 +9221,10 @@ function MATBKSL() {
         return this.x;
     }
     MATBKSL.prototype.get = function MATBKSL() {
+        var options = {
+            typ:["Datatype (1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATBKSL.prototype.set = function MATBKSL() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -8665,6 +9300,10 @@ function MATCATH() {
         return this.x;
     }
     MATCATH.prototype.get = function MATCATH() {
+        var options = {
+            nin:["Number of input",this.nin],
+        }
+        return options;
     }
     MATCATH.prototype.set = function MATCATH() {
         this.nin = parseFloat((arguments[0]["nin"]))
@@ -8732,6 +9371,10 @@ function MATCATV() {
         return this.x;
     }
     MATCATV.prototype.get = function MATCATV() {
+        var options = {
+            nin:["Number od inputs",this.nin],
+        }
+        return options;
     }
     MATCATV.prototype.set = function MATCATV() {
         this.nin = parseFloat((arguments[0]["nin"]))
@@ -8798,6 +9441,10 @@ function MATDET() {
         return this.x;
     }
     MATDET.prototype.get = function MATDET() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATDET.prototype.set = function MATDET() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -8873,6 +9520,10 @@ function MATDIAG() {
         return this.x;
     }
     MATDIAG.prototype.get = function MATDIAG() {
+        var options = {
+            typ:["Datatype (1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATDIAG.prototype.set = function MATDIAG() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -8948,6 +9599,10 @@ function MATDIV() {
         return this.x;
     }
     MATDIV.prototype.get = function MATDIV() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATDIV.prototype.set = function MATDIV() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -9023,6 +9678,11 @@ function MATEIG() {
         return this.x;
     }
     MATEIG.prototype.get = function MATEIG() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            decomptyp:["decomposition type (1=eig values  2=eig values+eig vectors",this.decomptyp],
+        }
+        return options;
     }
     MATEIG.prototype.set = function MATEIG() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -9121,6 +9781,10 @@ function MATEXPM() {
         return this.x;
     }
     MATEXPM.prototype.get = function MATEXPM() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATEXPM.prototype.set = function MATEXPM() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -9196,6 +9860,10 @@ function MATINV() {
         return this.x;
     }
     MATINV.prototype.get = function MATINV() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATINV.prototype.set = function MATINV() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -9271,6 +9939,10 @@ function MATLU() {
         return this.x;
     }
     MATLU.prototype.get = function MATLU() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATLU.prototype.set = function MATLU() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -9345,6 +10017,10 @@ function MATMAGPHI() {
         return this.x;
     }
     MATMAGPHI.prototype.get = function MATMAGPHI() {
+        var options = {
+            decomptyp:["decomposition type (1=Complex2MAG&PHI 2=MAG&PHI2Complex)",this.decomptyp],
+        }
+        return options;
     }
     MATMAGPHI.prototype.set = function MATMAGPHI() {
         this.decomptyp = parseFloat((arguments[0]["decomptyp"]))
@@ -9414,6 +10090,12 @@ function MATMUL() {
         return this.x;
     }
     MATMUL.prototype.get = function MATMUL() {
+        var options = {
+            dtype:["Datatype(1=real double 2=Complex 3=int32 ...)",this.dtype],
+            rule:["Multiplication rule",this.rule],
+            np:["Do on Overflow(0=Nothing 1=Saturate 2=Error)",this.np],
+        }
+        return options;
     }
     MATMUL.prototype.set = function MATMUL() {
         this.dtype = parseFloat((arguments[0]["dtype"]))
@@ -9582,6 +10264,10 @@ function MATPINV() {
         return this.x;
     }
     MATPINV.prototype.get = function MATPINV() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATPINV.prototype.set = function MATPINV() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -9657,6 +10343,12 @@ function MATRESH() {
         return this.x;
     }
     MATRESH.prototype.get = function MATRESH() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            l1:["input size",this.l1],
+            out:["output size desired",this.out],
+        }
+        return options;
     }
     MATRESH.prototype.set = function MATRESH() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -9760,6 +10452,11 @@ function MATSING() {
         return this.x;
     }
     MATSING.prototype.get = function MATSING() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            decomptyp:["decomposition type (1=singular values  2=sing values+matrix U & V)",this.decomptyp],
+        }
+        return options;
     }
     MATSING.prototype.set = function MATSING() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -9861,6 +10558,11 @@ function MATSUM() {
         return this.x;
     }
     MATSUM.prototype.get = function MATSUM() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            decomptyp:["Sum along (0=all 1=lines  2=Columns)",this.decomptyp],
+        }
+        return options;
     }
     MATSUM.prototype.set = function MATSUM() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -9951,6 +10653,11 @@ function MATTRAN() {
         return this.x;
     }
     MATTRAN.prototype.get = function MATTRAN() {
+        var options = {
+            typ:["Datatype(1=real double 2=Complex)",this.typ],
+            rule:["rule (1=.\' 2=\')",this.rule],
+        }
+        return options;
     }
     MATTRAN.prototype.set = function MATTRAN() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -10031,6 +10738,9 @@ function MATZCONJ() {
         return this.x;
     }
     MATZCONJ.prototype.get = function MATZCONJ() {
+        var options = {
+        }
+        return options;
     }
     MATZCONJ.prototype.set = function MATZCONJ() {
         this.x = arg1;
@@ -10068,6 +10778,10 @@ function MATZREIM() {
         return this.x;
     }
     MATZREIM.prototype.get = function MATZREIM() {
+        var options = {
+            decomptyp:["decomposition type (1=Complex2Real&Imag 2=Real&Imag2Complex)",this.decomptyp],
+        }
+        return options;
     }
     MATZREIM.prototype.set = function MATZREIM() {
         this.decomptyp = parseFloat((arguments[0]["decomptyp"]))
@@ -10148,6 +10862,11 @@ function RICC() {
         return this.x;
     }
     RICC.prototype.get = function RICC() {
+        var options = {
+            tpe:["Type (1=Cont  2=Disc)",this.tpe],
+            mod:["Model(1=Schr  2=sign(cont) inv(disc))",this.mod],
+        }
+        return options;
     }
     RICC.prototype.set = function RICC() {
         this.tpe = parseFloat((arguments[0]["tpe"]))
@@ -10213,6 +10932,11 @@ function ROOTCOEF() {
         return this.x;
     }
     ROOTCOEF.prototype.get = function ROOTCOEF() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            inp:["input row size",this.inp],
+        }
+        return options;
     }
     ROOTCOEF.prototype.set = function ROOTCOEF() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -10279,6 +11003,10 @@ function SQRT() {
         return this.x;
     }
     SQRT.prototype.get = function SQRT() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     SQRT.prototype.set = function SQRT() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -10349,6 +11077,15 @@ function SUBMAT() {
         return this.x;
     }
     SUBMAT.prototype.get = function SUBMAT() {
+        var options = {
+            typ:["Datatype (1=real double  2=Complex)",this.typ],
+            a:["Starting Row Index",this.a],
+            b:["Ending Row Index",this.b],
+            c:["Starting Column Index",this.c],
+            d:["Ending Column Index",this.d],
+            inp:["Input Dimensions",this.inp],
+        }
+        return options;
     }
     SUBMAT.prototype.set = function SUBMAT() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -10452,6 +11189,9 @@ function AUTOMAT() {
         return this.x;
     }
     AUTOMAT.prototype.get = function AUTOMAT() {
+        var options = {
+        }
+        return options;
     }
     AUTOMAT.prototype.set = function AUTOMAT() {
         this.x = arg1;
@@ -10576,6 +11316,12 @@ function BACKLASH() {
         return this.x;
     }
     BACKLASH.prototype.get = function BACKLASH() {
+        var options = {
+            ini:["initial output",this.ini],
+            gap:["gap",this.gap],
+            zcr:["use zero-crossing (0:no, 1:yes)",this.zcr],
+        }
+        return options;
     }
     BACKLASH.prototype.set = function BACKLASH() {
         this.ini = parseFloat((arguments[0]["ini"]))
@@ -10653,6 +11399,18 @@ function BOUNCE() {
         return this.x;
     }
     BOUNCE.prototype.get = function BOUNCE() {
+        var options = {
+            rpar1:["Mass",this.rpar1],
+            rpar2:["Radius",this.rpar2],
+            walls:["[xmin,xmax,ymin,ymax]",this.walls],
+            xt:["xpos",this.xt],
+            xd:["xdpos",this.xd],
+            y:["ypos",this.y],
+            yd:["ydpos",this.yd],
+            g:["g (gravity)",this.g],
+            C:["C (aerodynamic coeff",this.C],
+        }
+        return options;
     }
     BOUNCE.prototype.set = function BOUNCE() {
         this.rpar1 = parseFloat((arguments[0]["rpar1"]))
@@ -10769,6 +11527,17 @@ function BOUNCEXY() {
         return this.x;
     }
     BOUNCEXY.prototype.get = function BOUNCEXY() {
+        var options = {
+            clrs:["colors",this.clrs],
+            siz:["radii",this.siz],
+            win:["window number (-1 for automatic)",this.win],
+            imode:["animation mode (0,1)",this.imode],
+            xmin:["Xmin",this.xmin],
+            xmax:["Xmax",this.xmax],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+        }
+        return options;
     }
     BOUNCEXY.prototype.set = function BOUNCEXY() {
         this.clrs = parseFloat((arguments[0]["clrs"]))
@@ -10859,6 +11628,16 @@ function BPLATFORM() {
         return this.x;
     }
     BPLATFORM.prototype.get = function BPLATFORM() {
+        var options = {
+            plen:["pendulum length",this.plen],
+            csiz:["cart size (square side)",this.csiz],
+            phi:["slope",this.phi],
+            xmin:["Xmin",this.xmin],
+            xmax:["Xmax",this.xmax],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+        }
+        return options;
     }
     BPLATFORM.prototype.set = function BPLATFORM() {
         this.plen = parseFloat((arguments[0]["plen"]))
@@ -10943,6 +11722,23 @@ function CBLOCK() {
         return this.x;
     }
     CBLOCK.prototype.get = function CBLOCK() {
+        var options = {
+            function_name:["simulation function",this.function_name],
+            impli:["is block implicit? (y,n)",this.impli],
+            i:["input ports sizes",this.i],
+            o:["output ports sizes",this.o],
+            ci:["input event ports sizes",this.ci],
+            co:["output events ports sizes",this.co],
+            xx:["initial continuous state",this.xx],
+            ng:["number of zero crossing surfaces",this.ng],
+            z:["initial discrete state",this.z],
+            rpar:["Real parameters vector",this.rpar],
+            ipar:["Integer parameters vector",this.ipar],
+            auto0:["initial firing vector (<0 for no firing)",this.auto0],
+            depu:["direct feedthrough (y or n)",this.depu],
+            dept:["time dependence (y or n)",this.dept],
+        }
+        return options;
     }
     CBLOCK.prototype.set = function CBLOCK() {
         this.function_name = parseFloat((arguments[0]["function_name"]))
@@ -11073,6 +11869,28 @@ function CBLOCK4() {
         return this.x;
     }
     CBLOCK4.prototype.get = function CBLOCK4() {
+        var options = {
+            function_name:["Simulation function",this.function_name],
+            impli:["Is block implicit? (y,n)",this.impli],
+            in1:["Input ports sizes",this.in1],
+            it:["Input ports type",this.it],
+            out:["Output port sizes",this.out],
+            ot:["Output ports type",this.ot],
+            ci:["Input event ports sizes",this.ci],
+            co:["Output events ports sizes",this.co],
+            xx:["Initial continuous state",this.xx],
+            z:["Initial discrete state",this.z],
+            oz:["Initial object state",this.oz],
+            rpar:["Real parameters vector",this.rpar],
+            ipar:["Integer parameters vector",this.ipar],
+            opar:["Object parameters list",this.opar],
+            nmode:["Number of modes",this.nmode],
+            nzcr:["Number of zero crossings",this.nzcr],
+            auto0:["Initial firing vector (<0 for no firing)",this.auto0],
+            depu:["Direct feedthrough (y or n)",this.depu],
+            dept:["Time dependence (y or n)",this.dept],
+        }
+        return options;
     }
     CBLOCK4.prototype.set = function CBLOCK4() {
         this.function_name = parseFloat((arguments[0]["function_name"]))
@@ -11207,6 +12025,12 @@ function CONSTRAINT2_c() {
         return this.x;
     }
     CONSTRAINT2_c.prototype.get = function CONSTRAINT2_c() {
+        var options = {
+            x0:["Initial guess values of states x",this.x0],
+            xd0:["Initial guess values of derivative x\'",this.xd0],
+            id:["Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0",this.id],
+        }
+        return options;
     }
     CONSTRAINT2_c.prototype.set = function CONSTRAINT2_c() {
         this.x0 = parseFloat((arguments[0]["x0"]))
@@ -11283,6 +12107,9 @@ function CONSTRAINT_c() {
         return this.x;
     }
     CONSTRAINT_c.prototype.get = function CONSTRAINT_c() {
+        var options = {
+        }
+        return options;
     }
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
         this.x0 = parseFloat((arguments[0]["x0"]))
@@ -11340,6 +12167,12 @@ function DEADBAND() {
         return this.x;
     }
     DEADBAND.prototype.get = function DEADBAND() {
+        var options = {
+            maxp:["End of dead band",this.maxp],
+            minp:["Start of dead band",this.minp],
+            zeroc:["zero crossing (0:no, 1:yes)",this.zeroc],
+        }
+        return options;
     }
     DEADBAND.prototype.set = function DEADBAND() {
         this.maxp = parseFloat((arguments[0]["maxp"]))
@@ -11390,6 +12223,9 @@ function DEBUG() {
         return this.x;
     }
     DEBUG.prototype.get = function DEBUG() {
+        var options = {
+        }
+        return options;
     }
     DEBUG.prototype.set = function DEBUG() {
         this.x = arg1;
@@ -11436,6 +12272,9 @@ function DEBUG_SCICOS() {
         return this.x;
     }
     DEBUG_SCICOS.prototype.get = function DEBUG_SCICOS() {
+        var options = {
+        }
+        return options;
     }
     DEBUG_SCICOS.prototype.set = function DEBUG_SCICOS() {
         arg1.gui = "DEBUG";
@@ -11463,6 +12302,11 @@ function DIFF_f() {
         return this.x;
     }
     DIFF_f.prototype.get = function DIFF_f() {
+        var options = {
+            x0:["Initial state",this.x0],
+            xd0:["Initial Derivative",this.xd0],
+        }
+        return options;
     }
     DIFF_f.prototype.set = function DIFF_f() {
         this.x0 = parseFloat((arguments[0]["x0"]))
@@ -11495,6 +12339,9 @@ function DSUPER() {
         return this.x;
     }
     DSUPER.prototype.get = function DSUPER() {
+        var options = {
+        }
+        return options;
     }
     DSUPER.prototype.set = function DSUPER() {
         y = this.needcompile;
@@ -11562,6 +12409,10 @@ function EDGETRIGGER() {
         return this.x;
     }
     EDGETRIGGER.prototype.get = function EDGETRIGGER() {
+        var options = {
+            edge:["rising (1), falling (-1), both (0)",this.edge],
+        }
+        return options;
     }
     EDGETRIGGER.prototype.set = function EDGETRIGGER() {
         this.edge = parseFloat((arguments[0]["edge"]))
@@ -11670,6 +12521,9 @@ function EDGE_TRIGGER() {
         return this.x;
     }
     EDGE_TRIGGER.prototype.get = function EDGE_TRIGGER() {
+        var options = {
+        }
+        return options;
     }
     EDGE_TRIGGER.prototype.set = function EDGE_TRIGGER() {
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
@@ -11757,6 +12611,9 @@ function ENDBLK() {
         return this.x;
     }
     ENDBLK.prototype.get = function ENDBLK() {
+        var options = {
+        }
+        return options;
     }
     ENDBLK.prototype.set = function ENDBLK() {
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
@@ -11921,6 +12778,9 @@ function Extract_Activation() {
         return this.x;
     }
     Extract_Activation.prototype.get = function Extract_Activation() {
+        var options = {
+        }
+        return options;
     }
     Extract_Activation.prototype.set = function Extract_Activation() {
         this.x = arg1;
@@ -11952,6 +12812,14 @@ function HYSTHERESIS() {
         return this.x;
     }
     HYSTHERESIS.prototype.get = function HYSTHERESIS() {
+        var options = {
+            high_lim:["switch on at",this.high_lim],
+            low_lim:["switch off at",this.low_lim],
+            out_high:["output when on",this.out_high],
+            out_low:["output when off",this.out_low],
+            nzz:["use zero crossing: yes (1), no (0)",this.nzz],
+        }
+        return options;
     }
     HYSTHERESIS.prototype.set = function HYSTHERESIS() {
         this.high_lim = parseFloat((arguments[0]["high_lim"]))
@@ -12006,6 +12874,9 @@ function IMPSPLIT_f() {
         return this.x;
     }
     IMPSPLIT_f.prototype.get = function IMPSPLIT_f() {
+        var options = {
+        }
+        return options;
     }
     IMPSPLIT_f.prototype.set = function IMPSPLIT_f() {
         this.x = arg1;
@@ -12034,6 +12905,13 @@ function LOGICAL_OP() {
         return this.x;
     }
     LOGICAL_OP.prototype.get = function LOGICAL_OP() {
+        var options = {
+            nin:["number of inputs",this.nin],
+            rule:["Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)",this.rule],
+            Datatype:["Datatype (1=double 3=int32 ...)",this.Datatype],
+            tp:["Bitwise Rule(0=No 1=yes)",this.tp],
+        }
+        return options;
     }
     LOGICAL_OP.prototype.set = function LOGICAL_OP() {
         this.nin = parseFloat((arguments[0]["nin"]))
@@ -12169,6 +13047,16 @@ function MBLOCK() {
         return this.x;
     }
     MBLOCK.prototype.get = function MBLOCK() {
+        var options = {
+            Tin:["Input variables:       ",this.Tin],
+            Tintype:["Input variables types: ",this.Tintype],
+            Tout:["Output variables:      ",this.Tout],
+            Touttype:["Output variables types:",this.Touttype],
+            Tparam:["Parameters in Modelica:",this.Tparam],
+            pprop:["Parameters properties: ",this.pprop],
+            Tfunam:["Function name:         ",this.Tfunam],
+        }
+        return options;
     }
     MBLOCK.prototype.set = function MBLOCK() {
         this.Tin = parseFloat((arguments[0]["Tin"]))
@@ -12438,6 +13326,11 @@ function MEMORY_f() {
         return this.x;
     }
     MEMORY_f.prototype.get = function MEMORY_f() {
+        var options = {
+            a:["initial condition",this.a],
+            inh:["Inherit (1: no, 0: yes)",this.inh],
+        }
+        return options;
     }
     MEMORY_f.prototype.set = function MEMORY_f() {
         this.a = parseFloat((arguments[0]["a"]))
@@ -12514,6 +13407,9 @@ function MPBLOCK() {
         return this.x;
     }
     MPBLOCK.prototype.get = function MPBLOCK() {
+        var options = {
+        }
+        return options;
     }
     MPBLOCK.prototype.set = function MPBLOCK() {
         this.x = arg1;
@@ -12765,6 +13661,9 @@ function PAL_f() {
         return this.x;
     }
     PAL_f.prototype.get = function PAL_f() {
+        var options = {
+        }
+        return options;
     }
     PAL_f.prototype.set = function PAL_f() {
         [this.x,newparameters,needcompile,edited] = scicos(arg1.model.rpar);
@@ -12804,6 +13703,16 @@ function PENDULUM_ANIM() {
         return this.x;
     }
     PENDULUM_ANIM.prototype.get = function PENDULUM_ANIM() {
+        var options = {
+            plen:["pendulum length",this.plen],
+            csiz:["cart size (square side)",this.csiz],
+            phi:["slope",this.phi],
+            xmin:["Xmin",this.xmin],
+            xmax:["Xmax",this.xmax],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+        }
+        return options;
     }
     PENDULUM_ANIM.prototype.set = function PENDULUM_ANIM() {
         this.plen = parseFloat((arguments[0]["plen"]))
@@ -12872,6 +13781,11 @@ function RATELIMITER() {
         return this.x;
     }
     RATELIMITER.prototype.get = function RATELIMITER() {
+        var options = {
+            maxp:["max slope",this.maxp],
+            minp:["min slope",this.minp],
+        }
+        return options;
     }
     RATELIMITER.prototype.set = function RATELIMITER() {
         this.maxp = parseFloat((arguments[0]["maxp"]))
@@ -12921,6 +13835,12 @@ function RELATIONALOP() {
         return this.x;
     }
     RELATIONALOP.prototype.get = function RELATIONALOP() {
+        var options = {
+            rule:["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)",this.rule],
+            zcr:["Use zero crossing (no: 0), (yes: 1)",this.zcr],
+            Datatype:["Datatype (1=double 3=int32 ...)",this.Datatype],
+        }
+        return options;
     }
     RELATIONALOP.prototype.set = function RELATIONALOP() {
         this.rule = parseFloat((arguments[0]["rule"]))
@@ -13014,6 +13934,9 @@ function SPLIT_f() {
         return this.x;
     }
     SPLIT_f.prototype.get = function SPLIT_f() {
+        var options = {
+        }
+        return options;
     }
     SPLIT_f.prototype.set = function SPLIT_f() {
         this.x = arg1;
@@ -13048,6 +13971,9 @@ function SUPER_f() {
         return this.x;
     }
     SUPER_f.prototype.get = function SUPER_f() {
+        var options = {
+        }
+        return options;
     }
     SUPER_f.prototype.set = function SUPER_f() {
         xcos(arg1.model.rpar);
@@ -13075,6 +14001,12 @@ function TEXT_f() {
         return this.x;
     }
     TEXT_f.prototype.get = function TEXT_f() {
+        var options = {
+            txt:["Text",this.txt],
+            font:["Font number",this.font],
+            siz:["Font size",this.siz],
+        }
+        return options;
     }
     TEXT_f.prototype.set = function TEXT_f() {
         this.txt = parseFloat((arguments[0]["txt"]))
@@ -13161,6 +14093,13 @@ function c_block() {
         return this.x;
     }
     c_block.prototype.get = function c_block() {
+        var options = {
+            i:["input ports sizes",this.i],
+            o:["output port sizes",this.o],
+            rpar:["System parameters vector",this.rpar],
+            funam:["function name",this.funam],
+        }
+        return options;
     }
     c_block.prototype.set = function c_block() {
         this.i = parseFloat((arguments[0]["i"]))
@@ -13234,6 +14173,13 @@ function fortran_block() {
         return this.x;
     }
     fortran_block.prototype.get = function fortran_block() {
+        var options = {
+            i:["input ports sizes",this.i],
+            o:["output port sizes",this.o],
+            rpar:["System parameters vector",this.rpar],
+            funam:["function name",this.funam],
+        }
+        return options;
     }
     fortran_block.prototype.set = function fortran_block() {
         this.i = parseFloat((arguments[0]["i"]))
@@ -13299,6 +14245,9 @@ function func_block() {
         return this.x;
     }
     func_block.prototype.get = function func_block() {
+        var options = {
+        }
+        return options;
     }
     func_block.prototype.set = function func_block() {
         model = arg1.model;
@@ -13343,6 +14292,22 @@ function generic_block() {
         return this.x;
     }
     generic_block.prototype.get = function generic_block() {
+        var options = {
+            function_name:["simulation function",this.function_name],
+            funtyp:["function type (0,1,2,..)",this.funtyp],
+            i:["input ports sizes",this.i],
+            o:["output port sizes",this.o],
+            ci:["input event ports sizes",this.ci],
+            co:["output events ports sizes",this.co],
+            xx:["initial continuous state",this.xx],
+            z:["initial discrete state",this.z],
+            rpar:["Real parameters vector",this.rpar],
+            ipar:["Integer parameters vector",this.ipar],
+            auto0:["initial firing vector (<0 for no firing)",this.auto0],
+            depu:["direct feedthrough (y or n)",this.depu],
+            dept:["time dependence (y or n)",this.dept],
+        }
+        return options;
     }
     generic_block.prototype.set = function generic_block() {
         this.function_name = parseFloat((arguments[0]["function_name"]))
@@ -13457,6 +14422,24 @@ function generic_block2() {
         return this.x;
     }
     generic_block2.prototype.get = function generic_block2() {
+        var options = {
+            function_name:["simulation function",this.function_name],
+            funtyp:["function type (0,1,2,..)",this.funtyp],
+            i:["input ports sizes",this.i],
+            o:["output port sizes",this.o],
+            ci:["input event ports sizes",this.ci],
+            co:["output events ports sizes",this.co],
+            xx:["initial continuous state",this.xx],
+            z:["initial discrete state",this.z],
+            rpar:["Real parameters vector",this.rpar],
+            ipar:["Integer parameters vector",this.ipar],
+            nmode:["number of modes",this.nmode],
+            nzcr:["number of zero_crossings",this.nzcr],
+            auto0:["initial firing vector (<0 for no firing)",this.auto0],
+            depu:["direct feedthrough (y or n)",this.depu],
+            dept:["time dependence (y or n)",this.dept],
+        }
+        return options;
     }
     generic_block2.prototype.set = function generic_block2() {
         this.function_name = parseFloat((arguments[0]["function_name"]))
@@ -13571,6 +14554,28 @@ function generic_block3() {
         return this.x;
     }
     generic_block3.prototype.get = function generic_block3() {
+        var options = {
+            function_name:["Simulation function",this.function_name],
+            funtyp:["Function type (0,1,2,..)",this.funtyp],
+            in1:["Input ports sizes",this.in1],
+            it:["Input ports type",this.it],
+            out:["Output port sizes",this.out],
+            ot:["Output ports type",this.ot],
+            ci:["Input event ports sizes",this.ci],
+            co:["Output events ports sizes",this.co],
+            xx:["Initial continuous state",this.xx],
+            z:["Initial discrete state",this.z],
+            oz:["Initial object state",this.oz],
+            rpar:["Real parameters vector",this.rpar],
+            ipar:["Integer parameters vector",this.ipar],
+            opar:["Object parameters list",this.opar],
+            nmode:["Number of modes",this.nmode],
+            nzcr:["Number of zero crossings",this.nzcr],
+            auto0:["Initial firing vector (<0 for no firing)",this.auto0],
+            depu:["Direct feedthrough (y or n)",this.depu],
+            dept:["Time dependence (y or n)",this.dept],
+        }
+        return options;
     }
     generic_block3.prototype.set = function generic_block3() {
         this.function_name = parseFloat((arguments[0]["function_name"]))
@@ -13709,6 +14714,18 @@ function scifunc_block() {
         return this.x;
     }
     scifunc_block.prototype.get = function scifunc_block() {
+        var options = {
+            i:["input ports sizes",this.i],
+            o:["output port sizes",this.o],
+            ci:["input event ports sizes",this.ci],
+            co:["output events ports sizes",this.co],
+            xx:["initial continuous state",this.xx],
+            z:["initial discrete state",this.z],
+            rpar:["System parameters vector",this.rpar],
+            auto0:["initial firing vector (<0 for no firing)",this.auto0],
+            deptime:["is block always active (0:no, 1:yes)",this.deptime],
+        }
+        return options;
     }
     scifunc_block.prototype.set = function scifunc_block() {
         this.i = parseFloat((arguments[0]["i"]))
@@ -13819,6 +14836,18 @@ function scifunc_block_m() {
         return this.x;
     }
     scifunc_block_m.prototype.get = function scifunc_block_m() {
+        var options = {
+            i:["input ports sizes",this.i],
+            o:["output port sizes",this.o],
+            ci:["input event ports sizes",this.ci],
+            co:["output events ports sizes",this.co],
+            xx:["initial continuous state",this.xx],
+            z:["initial discrete state",this.z],
+            rpar:["System parameters vector",this.rpar],
+            auto0:["initial firing vector (<0 for no firing)",this.auto0],
+            deptime:["is block always active (0:no, 1:yes)",this.deptime],
+        }
+        return options;
     }
     scifunc_block_m.prototype.set = function scifunc_block_m() {
         this.i = parseFloat((arguments[0]["i"]))
@@ -13903,6 +14932,9 @@ function ABSBLK_f() {
         return this.x;
     }
     ABSBLK_f.prototype.get = function ABSBLK_f() {
+        var options = {
+        }
+        return options;
     }
     ABSBLK_f.prototype.set = function ABSBLK_f() {
         this.x = arg1;
@@ -13930,6 +14962,10 @@ function ABS_VALUE() {
         return this.x;
     }
     ABS_VALUE.prototype.get = function ABS_VALUE() {
+        var options = {
+            zcr:["use zero_crossing (1: yes) (0:no)",this.zcr],
+        }
+        return options;
     }
     ABS_VALUE.prototype.set = function ABS_VALUE() {
         this.zcr = parseFloat((arguments[0]["zcr"]))
@@ -13977,6 +15013,9 @@ function COSBLK_f() {
         return this.x;
     }
     COSBLK_f.prototype.get = function COSBLK_f() {
+        var options = {
+        }
+        return options;
     }
     COSBLK_f.prototype.set = function COSBLK_f() {
         this.x = arg1;
@@ -14012,6 +15051,15 @@ function DLRADAPT_f() {
         return this.x;
     }
     DLRADAPT_f.prototype.get = function DLRADAPT_f() {
+        var options = {
+            p:["Vector of p mesh points",this.p],
+            rn:["Numerator roots (one line for each mesh)",this.rn],
+            rd:["Denominator roots (one line for each mesh)",this.rd],
+            g:["Vector of gain at mesh points",this.g],
+            last_u:["past inputs (Num degree values)",this.last_u],
+            last_y:["past outputs (Den degree values)",this.last_y],
+        }
+        return options;
     }
     DLRADAPT_f.prototype.set = function DLRADAPT_f() {
         this.p = parseFloat((arguments[0]["p"]))
@@ -14071,6 +15119,9 @@ function EXPBLK_f() {
         return this.x;
     }
     EXPBLK_f.prototype.get = function EXPBLK_f() {
+        var options = {
+        }
+        return options;
     }
     EXPBLK_f.prototype.set = function EXPBLK_f() {
         this.a = parseFloat((arguments[0]["a"]))
@@ -14124,6 +15175,9 @@ function EXPBLK_m() {
         return this.x;
     }
     EXPBLK_m.prototype.get = function EXPBLK_m() {
+        var options = {
+        }
+        return options;
     }
     EXPBLK_m.prototype.set = function EXPBLK_m() {
         this.a = parseFloat((arguments[0]["a"]))
@@ -14171,6 +15225,9 @@ function FSV_f() {
         return this.x;
     }
     FSV_f.prototype.get = function FSV_f() {
+        var options = {
+        }
+        return options;
     }
     FSV_f.prototype.set = function FSV_f() {
         this.x = arg1;
@@ -14200,6 +15257,12 @@ function INTRP2BLK_f() {
         return this.x;
     }
     INTRP2BLK_f.prototype.get = function INTRP2BLK_f() {
+        var options = {
+            a:["X coord.",this.a],
+            b:["Y coord.",this.b],
+            c:["Z values",this.c],
+        }
+        return options;
     }
     INTRP2BLK_f.prototype.set = function INTRP2BLK_f() {
         this.a = parseFloat((arguments[0]["a"]))
@@ -14253,6 +15316,11 @@ function INTRPLBLK_f() {
         return this.x;
     }
     INTRPLBLK_f.prototype.get = function INTRPLBLK_f() {
+        var options = {
+            a:["X coord.",this.a],
+            b:["Y coord.",this.b],
+        }
+        return options;
     }
     INTRPLBLK_f.prototype.set = function INTRPLBLK_f() {
         this.a = parseFloat((arguments[0]["a"]))
@@ -14302,6 +15370,9 @@ function INVBLK() {
         return this.x;
     }
     INVBLK.prototype.get = function INVBLK() {
+        var options = {
+        }
+        return options;
     }
     INVBLK.prototype.set = function INVBLK() {
         this.x = arg1;
@@ -14327,6 +15398,9 @@ function INVBLK_f() {
         return this.x;
     }
     INVBLK_f.prototype.get = function INVBLK_f() {
+        var options = {
+        }
+        return options;
     }
     INVBLK_f.prototype.set = function INVBLK_f() {
         this.x = arg1;
@@ -14354,6 +15428,9 @@ function LOGBLK_f() {
         return this.x;
     }
     LOGBLK_f.prototype.get = function LOGBLK_f() {
+        var options = {
+        }
+        return options;
     }
     LOGBLK_f.prototype.set = function LOGBLK_f() {
         this.a = parseFloat((arguments[0]["a"]))
@@ -14411,6 +15488,14 @@ function LOOKUP2D() {
         return this.x;
     }
     LOOKUP2D.prototype.get = function LOOKUP2D() {
+        var options = {
+            xx:["Row index input values",this.xx],
+            yy:["Column index input values",this.yy],
+            zz:["Table data",this.zz],
+            Method:["Lookup method(1..5)",this.Method],
+            graf:["Launch graphic window(y/n)?",this.graf],
+        }
+        return options;
     }
     LOOKUP2D.prototype.set = function LOOKUP2D() {
         this.xx = parseFloat((arguments[0]["xx"]))
@@ -14508,6 +15593,9 @@ function LOOKUP_f() {
         return this.x;
     }
     LOOKUP_f.prototype.get = function LOOKUP_f() {
+        var options = {
+        }
+        return options;
     }
     LOOKUP_f.prototype.set = function LOOKUP_f() {
         this.x = arg1;
@@ -14563,6 +15651,12 @@ function MAXMIN() {
         return this.x;
     }
     MAXMIN.prototype.get = function MAXMIN() {
+        var options = {
+            mm:["Min (1) or Max (2) ",this.mm],
+            nin:["Number of input vectors (1 or 2)",this.nin],
+            zcr:["zero-crossing (1: yes, 0;no)",this.zcr],
+        }
+        return options;
     }
     MAXMIN.prototype.set = function MAXMIN() {
         this.mm = parseFloat((arguments[0]["mm"]))
@@ -14637,6 +15731,9 @@ function MAX_f() {
         return this.x;
     }
     MAX_f.prototype.get = function MAX_f() {
+        var options = {
+        }
+        return options;
     }
     MAX_f.prototype.set = function MAX_f() {
         this.x = arg1;
@@ -14663,6 +15760,9 @@ function MIN_f() {
         return this.x;
     }
     MIN_f.prototype.get = function MIN_f() {
+        var options = {
+        }
+        return options;
     }
     MIN_f.prototype.set = function MIN_f() {
         this.x = arg1;
@@ -14690,6 +15790,9 @@ function POWBLK_f() {
         return this.x;
     }
     POWBLK_f.prototype.get = function POWBLK_f() {
+        var options = {
+        }
+        return options;
     }
     POWBLK_f.prototype.set = function POWBLK_f() {
         this.a = parseFloat((arguments[0]["a"]))
@@ -14741,6 +15844,9 @@ function PRODUCT() {
         return this.x;
     }
     PRODUCT.prototype.get = function PRODUCT() {
+        var options = {
+        }
+        return options;
     }
     PRODUCT.prototype.set = function PRODUCT() {
         this.sgn = parseFloat((arguments[0]["sgn"]))
@@ -14806,6 +15912,9 @@ function PROD_f() {
         return this.x;
     }
     PROD_f.prototype.get = function PROD_f() {
+        var options = {
+        }
+        return options;
     }
     PROD_f.prototype.set = function PROD_f() {
         this.x = arg1;
@@ -14834,6 +15943,11 @@ function QUANT_f() {
         return this.x;
     }
     QUANT_f.prototype.get = function QUANT_f() {
+        var options = {
+            pas:["Step",this.pas],
+            meth:["Quantization Type (1-4)",this.meth],
+        }
+        return options;
     }
     QUANT_f.prototype.set = function QUANT_f() {
         this.pas = parseFloat((arguments[0]["pas"]))
@@ -14896,6 +16010,12 @@ function SATURATION() {
         return this.x;
     }
     SATURATION.prototype.get = function SATURATION() {
+        var options = {
+            maxp:["Upper limit",this.maxp],
+            minp:["Lower limit",this.minp],
+            zeroc:["zero crossing (0:no, 1:yes)",this.zeroc],
+        }
+        return options;
     }
     SATURATION.prototype.set = function SATURATION() {
         this.maxp = parseFloat((arguments[0]["maxp"]))
@@ -14955,6 +16075,12 @@ function SAT_f() {
         return this.x;
     }
     SAT_f.prototype.get = function SAT_f() {
+        var options = {
+            minp:["Min",this.minp],
+            maxp:["Max",this.maxp],
+            pente:["Slope",this.pente],
+        }
+        return options;
     }
     SAT_f.prototype.set = function SAT_f() {
         this.minp = parseFloat((arguments[0]["minp"]))
@@ -15007,6 +16133,10 @@ function SIGNUM() {
         return this.x;
     }
     SIGNUM.prototype.get = function SIGNUM() {
+        var options = {
+            zcr:["use zero_crossing (1: yes) (0:no)",this.zcr],
+        }
+        return options;
     }
     SIGNUM.prototype.set = function SIGNUM() {
         this.zcr = parseFloat((arguments[0]["zcr"]))
@@ -15054,6 +16184,9 @@ function SINBLK_f() {
         return this.x;
     }
     SINBLK_f.prototype.get = function SINBLK_f() {
+        var options = {
+        }
+        return options;
     }
     SINBLK_f.prototype.set = function SINBLK_f() {
         this.x = arg1;
@@ -15079,6 +16212,9 @@ function TANBLK_f() {
         return this.x;
     }
     TANBLK_f.prototype.get = function TANBLK_f() {
+        var options = {
+        }
+        return options;
     }
     TANBLK_f.prototype.set = function TANBLK_f() {
         this.x = arg1;
@@ -15104,6 +16240,9 @@ function TrigFun() {
         return this.x;
     }
     TrigFun.prototype.get = function TrigFun() {
+        var options = {
+        }
+        return options;
     }
     TrigFun.prototype.set = function TrigFun() {
         this.fun = parseFloat((arguments[0]["fun"]))
@@ -15151,6 +16290,9 @@ function PDE() {
         return this.x;
     }
     PDE.prototype.get = function PDE() {
+        var options = {
+        }
+        return options;
     }
     PDE.prototype.set = function PDE() {
         this.okk = parseFloat((arguments[0]["okk"]))
@@ -15298,6 +16440,16 @@ function AFFICH_m() {
         return this.x;
     }
     AFFICH_m.prototype.get = function AFFICH_m() {
+        var options = {
+            in1:["Input Size",this.in1],
+            font:["Font number",this.font],
+            fontsize:["Font size",this.fontsize],
+            colr:["Color",this.colr],
+            nt:["Total number of digits",this.nt],
+            nd:["Number of rational part digits",this.nd],
+            herit:["Block inherits (1) or not (0)",this.herit],
+        }
+        return options;
     }
     AFFICH_m.prototype.set = function AFFICH_m() {
         this.in1 = parseFloat((arguments[0]["in1"]))
@@ -15386,6 +16538,14 @@ function BARXY() {
         return this.x;
     }
     BARXY.prototype.get = function BARXY() {
+        var options = {
+            xmin:["Xmin",this.xmin],
+            xmax:["Xmax",this.xmax],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+            thickness:["Segs Thickness",this.thickness],
+        }
+        return options;
     }
     BARXY.prototype.set = function BARXY() {
         this.xmin = parseFloat((arguments[0]["xmin"]))
@@ -15463,6 +16623,20 @@ function CANIMXY() {
         return this.x;
     }
     CANIMXY.prototype.get = function CANIMXY() {
+        var options = {
+            nbr_curves:["Number of Curves",this.nbr_curves],
+            clrs:["color (>0) or mark (<0)",this.clrs],
+            siz:["line or mark size",this.siz],
+            win:["Output window number (-1 for automatic)",this.win],
+            wpos:["Output window position",this.wpos],
+            wdim:["Output window sizes",this.wdim],
+            xmin:["Xmin",this.xmin],
+            xmax:["Xmax",this.xmax],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+            N:["Buffer size",this.N],
+        }
+        return options;
     }
     CANIMXY.prototype.set = function CANIMXY() {
         this.nbr_curves = parseFloat((arguments[0]["nbr_curves"]))
@@ -15577,6 +16751,20 @@ function CANIMXY3D() {
         return this.x;
     }
     CANIMXY3D.prototype.get = function CANIMXY3D() {
+        var options = {
+            nbr_curves:["Number of curves",this.nbr_curves],
+            clrs:["color (>0) or mark (<0)",this.clrs],
+            siz:["line or mark size",this.siz],
+            win:["Output window number (-1 for automatic)",this.win],
+            wpos:["Output window position",this.wpos],
+            wdim:["Output window sizes",this.wdim],
+            vec_x:["Xmin and Xmax",this.vec_x],
+            vec_y:["Ymin and Ymax",this.vec_y],
+            vec_z:["Zmin and Zmax",this.vec_z],
+            param3ds:["Alpha and Theta",this.param3ds],
+            N:["Buffer size",this.N],
+        }
+        return options;
     }
     CANIMXY3D.prototype.set = function CANIMXY3D() {
         this.nbr_curves = parseFloat((arguments[0]["nbr_curves"]))
@@ -15699,6 +16887,15 @@ function CEVENTSCOPE() {
         return this.x;
     }
     CEVENTSCOPE.prototype.get = function CEVENTSCOPE() {
+        var options = {
+            nclock:["Number of event inputs",this.nclock],
+            clrs:["colors c (>0) or mark (<0)",this.clrs],
+            win:["Output window number (-1 for automatic)",this.win],
+            wpos:["Output window position",this.wpos],
+            wdim:["Output window sizes",this.wdim],
+            per:["Refresh period",this.per],
+        }
+        return options;
     }
     CEVENTSCOPE.prototype.set = function CEVENTSCOPE() {
         this.nclock = parseFloat((arguments[0]["nclock"]))
@@ -15796,6 +16993,18 @@ function CFSCOPE() {
         return this.x;
     }
     CFSCOPE.prototype.get = function CFSCOPE() {
+        var options = {
+            clrs:["Color (>0) or mark (<0) vector (8 entries)",this.clrs],
+            win:["Output window number (-1 for automatic)",this.win],
+            wpos:["Output window position",this.wpos],
+            wdim:["Output window sizes",this.wdim],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+            per:["Refresh period",this.per],
+            N:["Buffer size",this.N],
+            wu:["Links to view",this.wu],
+        }
+        return options;
     }
     CFSCOPE.prototype.set = function CFSCOPE() {
         this.clrs = parseFloat((arguments[0]["clrs"]))
@@ -15895,6 +17104,9 @@ function CLKOUTV_f() {
         return this.x;
     }
     CLKOUTV_f.prototype.get = function CLKOUTV_f() {
+        var options = {
+        }
+        return options;
     }
     CLKOUTV_f.prototype.set = function CLKOUTV_f() {
         this.prt = parseFloat((arguments[0]["prt"]))
@@ -16001,6 +17213,9 @@ function CLKOUT_f() {
         return this.x;
     }
     CLKOUT_f.prototype.get = function CLKOUT_f() {
+        var options = {
+        }
+        return options;
     }
     CLKOUT_f.prototype.set = function CLKOUT_f() {
         this.prt = parseFloat((arguments[0]["prt"]))
@@ -16060,6 +17275,14 @@ function CMAT3D() {
         return this.x;
     }
     CMAT3D.prototype.get = function CMAT3D() {
+        var options = {
+            vec_x:["Bounds Vector X (-1 for standard)",this.vec_x],
+            vec_y:["Bounds Vector Y (-1 for standard)",this.vec_y],
+            colormap:["ColorMap",this.colormap],
+            cmin:["Zmin",this.cmin],
+            cmax:["Zmax",this.cmax],
+        }
+        return options;
     }
     CMAT3D.prototype.set = function CMAT3D() {
         this.vec_x = parseFloat((arguments[0]["vec_x"]))
@@ -16132,6 +17355,12 @@ function CMATVIEW() {
         return this.x;
     }
     CMATVIEW.prototype.get = function CMATVIEW() {
+        var options = {
+            colormap:["ColorMap",this.colormap],
+            cmin:["Minimum level range",this.cmin],
+            cmax:["Maximum level range",this.cmax],
+        }
+        return options;
     }
     CMATVIEW.prototype.set = function CMATVIEW() {
         this.colormap = parseFloat((arguments[0]["colormap"]))
@@ -16205,6 +17434,20 @@ function CMSCOPE() {
         return this.x;
     }
     CMSCOPE.prototype.get = function CMSCOPE() {
+        var options = {
+            in1:["Input ports sizes",this.in1],
+            clrs:["Drawing colors (>0) or mark (<0)",this.clrs],
+            win:["Output window number (-1 for automatic)",this.win],
+            wpos:["Output window position",this.wpos],
+            wdim:["Output window sizes",this.wdim],
+            ymin:["Ymin vector",this.ymin],
+            ymax:["Ymax vector",this.ymax],
+            per:["Refresh period",this.per],
+            N:["Buffer size",this.N],
+            heritance:["Accept herited events 0/1",this.heritance],
+            nom:["Name of Scope (label&Id)",this.nom],
+        }
+        return options;
     }
     CMSCOPE.prototype.set = function CMSCOPE() {
         this.in1 = parseFloat((arguments[0]["in1"]))
@@ -16341,6 +17584,19 @@ function CSCOPE() {
         return this.x;
     }
     CSCOPE.prototype.get = function CSCOPE() {
+        var options = {
+            clrs:["Color (>0) or mark (<0) vector (8 entries)",this.clrs],
+            win:["Output window number (-1 for automatic)",this.win],
+            wpos:["Output window position",this.wpos],
+            wdim:["Output window sizes",this.wdim],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+            per:["Refresh period",this.per],
+            N:["Buffer size",this.N],
+            heritance:["Accept herited events 0/1",this.heritance],
+            nom:["Name of Scope (label&Id)",this.nom],
+        }
+        return options;
     }
     CSCOPE.prototype.set = function CSCOPE() {
         this.clrs = parseFloat((arguments[0]["clrs"]))
@@ -16453,6 +17709,20 @@ function CSCOPXY() {
         return this.x;
     }
     CSCOPXY.prototype.get = function CSCOPXY() {
+        var options = {
+            nbr_curves:["Number of Curves",this.nbr_curves],
+            clrs:["color (>0) or mark (<0)",this.clrs],
+            siz:["line or mark size",this.siz],
+            win:["Output window number (-1 for automatic)",this.win],
+            wpos:["Output window position",this.wpos],
+            wdim:["Output window sizes",this.wdim],
+            xmin:["Xmin",this.xmin],
+            xmax:["Xmax",this.xmax],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+            N:["Buffer size",this.N],
+        }
+        return options;
     }
     CSCOPXY.prototype.set = function CSCOPXY() {
         this.nbr_curves = parseFloat((arguments[0]["nbr_curves"]))
@@ -16566,6 +17836,20 @@ function CSCOPXY3D() {
         return this.x;
     }
     CSCOPXY3D.prototype.get = function CSCOPXY3D() {
+        var options = {
+            nbr_curves:["Number of curves",this.nbr_curves],
+            clrs:["color (>0) or mark (<0)",this.clrs],
+            siz:["Line or Mark Size",this.siz],
+            win:["Output window number (-1 for automatic)",this.win],
+            wpos:["Output window position",this.wpos],
+            wdim:["Output window sizes",this.wdim],
+            vec_x:["Xmin and Xmax",this.vec_x],
+            vec_y:["Ymin and Ymax",this.vec_y],
+            vec_z:["Zmin and Zmax",this.vec_z],
+            param3ds:["Alpha and Theta",this.param3ds],
+            N:["Buffer size",this.N],
+        }
+        return options;
     }
     CSCOPXY3D.prototype.set = function CSCOPXY3D() {
         this.nbr_curves = parseFloat((arguments[0]["nbr_curves"]))
@@ -16684,6 +17968,9 @@ function OUTIMPL_f() {
         return this.x;
     }
     OUTIMPL_f.prototype.get = function OUTIMPL_f() {
+        var options = {
+        }
+        return options;
     }
     OUTIMPL_f.prototype.set = function OUTIMPL_f() {
         this.prt = parseFloat((arguments[0]["prt"]))
@@ -16739,6 +18026,9 @@ function OUT_f() {
         return this.x;
     }
     OUT_f.prototype.get = function OUT_f() {
+        var options = {
+        }
+        return options;
     }
     OUT_f.prototype.set = function OUT_f() {
         this.prt = parseFloat((arguments[0]["prt"]))
@@ -16797,6 +18087,12 @@ function TOWS_c() {
         return this.x;
     }
     TOWS_c.prototype.get = function TOWS_c() {
+        var options = {
+            nz:["Size of buffer",this.nz],
+            varnam:["Scilab variable name",this.varnam],
+            herit:["Inherit (no:0, yes:1)",this.herit],
+        }
+        return options;
     }
     TOWS_c.prototype.set = function TOWS_c() {
         this.nz = parseFloat((arguments[0]["nz"]))
@@ -16858,6 +18154,9 @@ function TRASH_f() {
         return this.x;
     }
     TRASH_f.prototype.get = function TRASH_f() {
+        var options = {
+        }
+        return options;
     }
     TRASH_f.prototype.set = function TRASH_f() {
         this.x = arg1;
@@ -16890,6 +18189,13 @@ function WFILE_f() {
         return this.x;
     }
     WFILE_f.prototype.get = function WFILE_f() {
+        var options = {
+            in1:["Input Size",this.in1],
+            fname1:["Output File Name",this.fname1],
+            frmt1:["Output Format",this.frmt1],
+            N:["Buffer Size",this.N],
+        }
+        return options;
     }
     WFILE_f.prototype.set = function WFILE_f() {
         this.in1 = parseFloat((arguments[0]["in1"]))
@@ -16988,6 +18294,11 @@ function WRITEAU_f() {
         return this.x;
     }
     WRITEAU_f.prototype.get = function WRITEAU_f() {
+        var options = {
+            N:["Buffer Size",this.N],
+            swap:["Swap Mode (0:No, 1:Yes)",this.swap],
+        }
+        return options;
     }
     WRITEAU_f.prototype.set = function WRITEAU_f() {
         this.N = parseFloat((arguments[0]["N"]))
@@ -17062,6 +18373,14 @@ function WRITEC_f() {
         return this.x;
     }
     WRITEC_f.prototype.get = function WRITEC_f() {
+        var options = {
+            in1:["Input Size",this.in1],
+            fname1:["Output File Name",this.fname1],
+            frmt1:["Output Format",this.frmt1],
+            N:["Buffer Size",this.N],
+            swap:["Swap Mode (0:No, 1:Yes)",this.swap],
+        }
+        return options;
     }
     WRITEC_f.prototype.set = function WRITEC_f() {
         this.in1 = parseFloat((arguments[0]["in1"]))
@@ -17153,6 +18472,9 @@ function CLKINV_f() {
         return this.x;
     }
     CLKINV_f.prototype.get = function CLKINV_f() {
+        var options = {
+        }
+        return options;
     }
     CLKINV_f.prototype.set = function CLKINV_f() {
         this.prt = parseFloat((arguments[0]["prt"]))
@@ -17201,6 +18523,9 @@ function CLKIN_f() {
         return this.x;
     }
     CLKIN_f.prototype.get = function CLKIN_f() {
+        var options = {
+        }
+        return options;
     }
     CLKIN_f.prototype.set = function CLKIN_f() {
         this.prt = parseFloat((arguments[0]["prt"]))
@@ -17278,6 +18603,11 @@ function CLOCK_c() {
         return this.x;
     }
     CLOCK_c.prototype.get = function CLOCK_c() {
+        var options = {
+            dt:["Period",this.dt],
+            t0:["Initialisation Time",this.t0],
+        }
+        return options;
     }
     CLOCK_c.prototype.set = function CLOCK_c() {
         this.dt = parseFloat((arguments[0]["dt"]))
@@ -17377,6 +18707,11 @@ function CLOCK_f() {
         return this.x;
     }
     CLOCK_f.prototype.get = function CLOCK_f() {
+        var options = {
+            dt:["Period",this.dt],
+            t0:["Init time",this.t0],
+        }
+        return options;
     }
     CLOCK_f.prototype.set = function CLOCK_f() {
         this.dt = parseFloat((arguments[0]["dt"]))
@@ -17448,6 +18783,9 @@ function CONST() {
         return this.x;
     }
     CONST.prototype.get = function CONST() {
+        var options = {
+        }
+        return options;
     }
     CONST.prototype.set = function CONST() {
         this.C = parseFloat((arguments[0]["C"]))
@@ -17498,6 +18836,9 @@ function CONST_f() {
         return this.x;
     }
     CONST_f.prototype.get = function CONST_f() {
+        var options = {
+        }
+        return options;
     }
     CONST_f.prototype.set = function CONST_f() {
         this.C = parseFloat((arguments[0]["C"]))
@@ -17548,6 +18889,9 @@ function CONST_m() {
         return this.x;
     }
     CONST_m.prototype.get = function CONST_m() {
+        var options = {
+        }
+        return options;
     }
     CONST_m.prototype.set = function CONST_m() {
         this.C = parseFloat((arguments[0]["C"]))
@@ -17626,6 +18970,9 @@ function CURV_f() {
         return this.x;
     }
     CURV_f.prototype.get = function CURV_f() {
+        var options = {
+        }
+        return options;
     }
     CURV_f.prototype.set = function CURV_f() {
         this.x = arg1;
@@ -17691,6 +19038,12 @@ function Counter() {
         return this.x;
     }
     Counter.prototype.get = function Counter() {
+        var options = {
+            minim:["Minimum",this.minim],
+            maxim:["Maximum",this.maxim],
+            rule:["Rule (1:Increment, 2:Decrement)",this.rule],
+        }
+        return options;
     }
     Counter.prototype.set = function Counter() {
         this.minim = parseFloat((arguments[0]["minim"]))
@@ -17740,6 +19093,9 @@ function FROMWSB() {
         return this.x;
     }
     FROMWSB.prototype.get = function FROMWSB() {
+        var options = {
+        }
+        return options;
     }
     FROMWSB.prototype.set = function FROMWSB() {
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
@@ -17839,6 +19195,13 @@ function FROMWS_c() {
         return this.x;
     }
     FROMWS_c.prototype.get = function FROMWS_c() {
+        var options = {
+            varnam:["Variable name",this.varnam],
+            Method:["Interpolation Method",this.Method],
+            ZC:["Enable zero crossing(0:No, 1:Yes)?",this.ZC],
+            OutEnd:["Output at end(0:Zero, 1:Hold, 2:Repeat)",this.OutEnd],
+        }
+        return options;
     }
     FROMWS_c.prototype.set = function FROMWS_c() {
         this.varnam = parseFloat((arguments[0]["varnam"]))
@@ -17908,6 +19271,12 @@ function GENSIN_f() {
         return this.x;
     }
     GENSIN_f.prototype.get = function GENSIN_f() {
+        var options = {
+            M:["Magnitude",this.M],
+            F:["Frequency (rad/s)",this.F],
+            P:["Phase (rad)",this.P],
+        }
+        return options;
     }
     GENSIN_f.prototype.set = function GENSIN_f() {
         this.M = parseFloat((arguments[0]["M"]))
@@ -17962,6 +19331,10 @@ function GENSQR_f() {
         return this.x;
     }
     GENSQR_f.prototype.get = function GENSQR_f() {
+        var options = {
+            Amplitude:["Amplitude",this.Amplitude],
+        }
+        return options;
     }
     GENSQR_f.prototype.set = function GENSQR_f() {
         this.Amplitude = parseFloat((arguments[0]["Amplitude"]))
@@ -18044,6 +19417,9 @@ function GEN_SQR() {
         return this.x;
     }
     GEN_SQR.prototype.get = function GEN_SQR() {
+        var options = {
+        }
+        return options;
     }
     GEN_SQR.prototype.set = function GEN_SQR() {
         scicos_context.Amin = parseFloat((arguments[0]["scicos_context.Amin"]))
@@ -18110,6 +19486,9 @@ function Ground_g() {
         return this.x;
     }
     Ground_g.prototype.get = function Ground_g() {
+        var options = {
+        }
+        return options;
     }
     Ground_g.prototype.set = function Ground_g() {
         this.x = arg1;
@@ -18141,6 +19520,9 @@ function INIMPL_f() {
         return this.x;
     }
     INIMPL_f.prototype.get = function INIMPL_f() {
+        var options = {
+        }
+        return options;
     }
     INIMPL_f.prototype.set = function INIMPL_f() {
         this.prt = parseFloat((arguments[0]["prt"]))
@@ -18195,6 +19577,9 @@ function IN_f() {
         return this.x;
     }
     IN_f.prototype.get = function IN_f() {
+        var options = {
+        }
+        return options;
     }
     IN_f.prototype.set = function IN_f() {
         this.x = arg1;
@@ -18260,6 +19645,11 @@ function Modulo_Count() {
         return this.x;
     }
     Modulo_Count.prototype.get = function Modulo_Count() {
+        var options = {
+            ini_c:["Initial State (zero or positive number)",this.ini_c],
+            base:["Upper Limit (positive number)",this.base],
+        }
+        return options;
     }
     Modulo_Count.prototype.set = function Modulo_Count() {
         this.ini_c = parseFloat((arguments[0]["ini_c"]))
@@ -18342,6 +19732,9 @@ function PULSE_SC() {
         return this.x;
     }
     PULSE_SC.prototype.get = function PULSE_SC() {
+        var options = {
+        }
+        return options;
     }
     PULSE_SC.prototype.set = function PULSE_SC() {
         scicos_context.E = parseFloat((arguments[0]["scicos_context.E"]))
@@ -18411,6 +19804,12 @@ function RAMP() {
         return this.x;
     }
     RAMP.prototype.get = function RAMP() {
+        var options = {
+            slope:["Slope",this.slope],
+            stt:["Start Time",this.stt],
+            iout:["Initial Value",this.iout],
+        }
+        return options;
     }
     RAMP.prototype.set = function RAMP() {
         this.slope = parseFloat((arguments[0]["slope"]))
@@ -18464,6 +19863,13 @@ function RAND_f() {
         return this.x;
     }
     RAND_f.prototype.get = function RAND_f() {
+        var options = {
+            flag:["flag",this.flag],
+            a:["A",this.a],
+            b:["B",this.b],
+            seed_c:["seed",this.seed_c],
+        }
+        return options;
     }
     RAND_f.prototype.set = function RAND_f() {
         this.flag = parseFloat((arguments[0]["flag"]))
@@ -18537,6 +19943,14 @@ function RAND_m() {
         return this.x;
     }
     RAND_m.prototype.get = function RAND_m() {
+        var options = {
+            typ:["Datatype(1=real double  2=complex)",this.typ],
+            flag:["flag",this.flag],
+            a:["A",this.a],
+            b:["B",this.b],
+            seed_c:["SEED",this.seed_c],
+        }
+        return options;
     }
     RAND_m.prototype.set = function RAND_m() {
         this.typ = parseFloat((arguments[0]["typ"]))
@@ -18621,6 +20035,12 @@ function READAU_f() {
         return this.x;
     }
     READAU_f.prototype.get = function READAU_f() {
+        var options = {
+            fname1:["Input File Name",this.fname1],
+            N:["Buffer size",this.N],
+            swap:["Swap Mode (0:No, 1:Yes)",this.swap],
+        }
+        return options;
     }
     READAU_f.prototype.set = function READAU_f() {
         this.fname1 = parseFloat((arguments[0]["fname1"]))
@@ -18714,6 +20134,17 @@ function READC_f() {
         return this.x;
     }
     READC_f.prototype.get = function READC_f() {
+        var options = {
+            tmask1:["Time Record Selection",this.tmask1],
+            outmask:["Outputs Record Selection",this.outmask],
+            fname1:["Input File Name",this.fname1],
+            frmt1:["Input Format",this.frmt1],
+            M:["Record Size",this.M],
+            N:["Buffer Size",this.N],
+            offset:["Initial Record Index",this.offset],
+            swap:["Swap Mode (0:No, 1:Yes)",this.swap],
+        }
+        return options;
     }
     READC_f.prototype.set = function READC_f() {
         this.tmask1 = parseFloat((arguments[0]["tmask1"]))
@@ -18838,6 +20269,14 @@ function RFILE_f() {
         return this.x;
     }
     RFILE_f.prototype.get = function RFILE_f() {
+        var options = {
+            tmask1:["Time Record Selection",this.tmask1],
+            outmask:["Outputs Record Selection",this.outmask],
+            fname1:["Input File Name",this.fname1],
+            frmt1:["Input Format",this.frmt1],
+            N:["Buffer Size",this.N],
+        }
+        return options;
     }
     RFILE_f.prototype.set = function RFILE_f() {
         this.tmask1 = parseFloat((arguments[0]["tmask1"]))
@@ -18940,6 +20379,9 @@ function SAWTOOTH_f() {
         return this.x;
     }
     SAWTOOTH_f.prototype.get = function SAWTOOTH_f() {
+        var options = {
+        }
+        return options;
     }
     SAWTOOTH_f.prototype.set = function SAWTOOTH_f() {
         this.x = arg1;
@@ -18970,6 +20412,12 @@ function STEP() {
         return this.x;
     }
     STEP.prototype.get = function STEP() {
+        var options = {
+            temps:["Step Time",this.temps],
+            in1:["Initial Value",this.in1],
+            fi:["Final Value",this.fi],
+        }
+        return options;
     }
     STEP.prototype.set = function STEP() {
         this.temps = parseFloat((arguments[0]["temps"]))
@@ -19075,6 +20523,9 @@ function STEP_FUNCTION() {
         return this.x;
     }
     STEP_FUNCTION.prototype.get = function STEP_FUNCTION() {
+        var options = {
+        }
+        return options;
     }
     STEP_FUNCTION.prototype.set = function STEP_FUNCTION() {
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
@@ -19161,6 +20612,11 @@ function SampleCLK() {
         return this.x;
     }
     SampleCLK.prototype.get = function SampleCLK() {
+        var options = {
+            frequ:["Sample time",this.frequ],
+            offset:["Offset",this.offset],
+        }
+        return options;
     }
     SampleCLK.prototype.set = function SampleCLK() {
         this.frequ = parseFloat((arguments[0]["frequ"]))
@@ -19221,6 +20677,9 @@ function Sigbuilder() {
         return this.x;
     }
     Sigbuilder.prototype.get = function Sigbuilder() {
+        var options = {
+        }
+        return options;
     }
     Sigbuilder.prototype.set = function Sigbuilder() {
         ppath = list(0);
@@ -19310,6 +20769,9 @@ function TIME_f() {
         return this.x;
     }
     TIME_f.prototype.get = function TIME_f() {
+        var options = {
+        }
+        return options;
     }
     TIME_f.prototype.set = function TIME_f() {
         this.x = arg1;
@@ -19338,6 +20800,12 @@ function TKSCALE() {
         return this.x;
     }
     TKSCALE.prototype.get = function TKSCALE() {
+        var options = {
+        a:["Min value",this.a],
+        b:["Max value",this.b],
+        f:["Normalization",this.f],
+        }
+        return options;
     }
     TKSCALE.prototype.set = function TKSCALE() {
         this.a = parseFloat((arguments[0]["a"]))
@@ -19381,6 +20849,11 @@ function GENERAL_f() {
         return this.x;
     }
     GENERAL_f.prototype.get = function GENERAL_f() {
+        var options = {
+        in1:["Input size",this.in1],
+        out:["Number of event output",this.out],
+        }
+        return options;
     }
     GENERAL_f.prototype.set = function GENERAL_f() {
         this.in1 = parseFloat((arguments[0]["in1"]))
@@ -19441,6 +20914,9 @@ function NEGTOPOS_f() {
         return this.x;
     }
     NEGTOPOS_f.prototype.get = function NEGTOPOS_f() {
+        var options = {
+        }
+        return options;
     }
     NEGTOPOS_f.prototype.set = function NEGTOPOS_f() {
         this.x = arg1;
@@ -19469,6 +20945,9 @@ function POSTONEG_f() {
         return this.x;
     }
     POSTONEG_f.prototype.get = function POSTONEG_f() {
+        var options = {
+        }
+        return options;
     }
     POSTONEG_f.prototype.set = function POSTONEG_f() {
         this.x = arg1;
@@ -19499,6 +20978,9 @@ function ZCROSS_f() {
         return this.x;
     }
     ZCROSS_f.prototype.get = function ZCROSS_f() {
+        var options = {
+        }
+        return options;
     }
     ZCROSS_f.prototype.set = function ZCROSS_f() {
         this.in1 = parseFloat((arguments[0]["in1"]))

@@ -20,6 +20,12 @@ function RELATIONALOP() {
         return this.x;
     }
     RELATIONALOP.prototype.get = function RELATIONALOP() {
+        var options = {
+            rule:["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)",this.rule],
+            zcr:["Use zero crossing (no: 0), (yes: 1)",this.zcr],
+            Datatype:["Datatype (1=double 3=int32 ...)",this.Datatype],
+        }
+        return options;
     }
     RELATIONALOP.prototype.set = function RELATIONALOP() {
         this.rule = parseFloat((arguments[0]["rule"]))

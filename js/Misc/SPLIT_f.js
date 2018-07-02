@@ -14,6 +14,9 @@ function SPLIT_f() {
         return this.x;
     }
     SPLIT_f.prototype.get = function SPLIT_f() {
+        var options = {
+        }
+        return options;
     }
     SPLIT_f.prototype.set = function SPLIT_f() {
         this.x = arg1;

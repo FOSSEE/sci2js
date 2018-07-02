@@ -23,6 +23,9 @@ function OUTIMPL_f() {
         return this.x;
     }
     OUTIMPL_f.prototype.get = function OUTIMPL_f() {
+        var options = {
+        }
+        return options;
     }
     OUTIMPL_f.prototype.set = function OUTIMPL_f() {
         this.prt = parseFloat((arguments[0]["prt"]))

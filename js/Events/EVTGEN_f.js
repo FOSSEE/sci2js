@@ -17,6 +17,10 @@ function EVTGEN_f() {
         return this.x;
     }
     EVTGEN_f.prototype.get = function EVTGEN_f() {
+        var options = {
+            tt:["Event Time",this.tt],
+        }
+        return options;
     }
     EVTGEN_f.prototype.set = function EVTGEN_f() {
         this.tt = parseFloat((arguments[0]["tt"]))

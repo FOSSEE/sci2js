@@ -20,6 +20,11 @@ function QUANT_f() {
         return this.x;
     }
     QUANT_f.prototype.get = function QUANT_f() {
+        var options = {
+            pas:["Step",this.pas],
+            meth:["Quantization Type (1-4)",this.meth],
+        }
+        return options;
     }
     QUANT_f.prototype.set = function QUANT_f() {
         this.pas = parseFloat((arguments[0]["pas"]))

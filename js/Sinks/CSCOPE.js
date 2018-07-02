@@ -27,6 +27,19 @@ function CSCOPE() {
         return this.x;
     }
     CSCOPE.prototype.get = function CSCOPE() {
+        var options = {
+            clrs:["Color (>0) or mark (<0) vector (8 entries)",this.clrs],
+            win:["Output window number (-1 for automatic)",this.win],
+            wpos:["Output window position",this.wpos],
+            wdim:["Output window sizes",this.wdim],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+            per:["Refresh period",this.per],
+            N:["Buffer size",this.N],
+            heritance:["Accept herited events 0/1",this.heritance],
+            nom:["Name of Scope (label&Id)",this.nom],
+        }
+        return options;
     }
     CSCOPE.prototype.set = function CSCOPE() {
         this.clrs = parseFloat((arguments[0]["clrs"]))

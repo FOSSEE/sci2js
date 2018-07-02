@@ -29,6 +29,12 @@ function ISELECT_m() {
         return this.x;
     }
     ISELECT_m.prototype.get = function ISELECT_m() {
+        var options = {
+            typ:["Datatype(1= real double  2=Complex 3=int32 ...)",this.typ],
+            nout:["number of outputs",this.nout],
+            z0:["initial connected output",this.z0],
+        }
+        return options;
     }
     ISELECT_m.prototype.set = function ISELECT_m() {
         this.typ = parseFloat((arguments[0]["typ"]))

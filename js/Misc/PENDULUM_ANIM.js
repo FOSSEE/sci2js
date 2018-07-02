@@ -25,6 +25,16 @@ function PENDULUM_ANIM() {
         return this.x;
     }
     PENDULUM_ANIM.prototype.get = function PENDULUM_ANIM() {
+        var options = {
+            plen:["pendulum length",this.plen],
+            csiz:["cart size (square side)",this.csiz],
+            phi:["slope",this.phi],
+            xmin:["Xmin",this.xmin],
+            xmax:["Xmax",this.xmax],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+        }
+        return options;
     }
     PENDULUM_ANIM.prototype.set = function PENDULUM_ANIM() {
         this.plen = parseFloat((arguments[0]["plen"]))

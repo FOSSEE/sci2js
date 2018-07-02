@@ -29,6 +29,10 @@ function MATDIV() {
         return this.x;
     }
     MATDIV.prototype.get = function MATDIV() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATDIV.prototype.set = function MATDIV() {
         this.typ = parseFloat((arguments[0]["typ"]))

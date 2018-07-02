@@ -25,6 +25,16 @@ function BPLATFORM() {
         return this.x;
     }
     BPLATFORM.prototype.get = function BPLATFORM() {
+        var options = {
+            plen:["pendulum length",this.plen],
+            csiz:["cart size (square side)",this.csiz],
+            phi:["slope",this.phi],
+            xmin:["Xmin",this.xmin],
+            xmax:["Xmax",this.xmax],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+        }
+        return options;
     }
     BPLATFORM.prototype.set = function BPLATFORM() {
         this.plen = parseFloat((arguments[0]["plen"]))

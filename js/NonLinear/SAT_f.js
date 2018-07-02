@@ -22,6 +22,12 @@ function SAT_f() {
         return this.x;
     }
     SAT_f.prototype.get = function SAT_f() {
+        var options = {
+            minp:["Min",this.minp],
+            maxp:["Max",this.maxp],
+            pente:["Slope",this.pente],
+        }
+        return options;
     }
     SAT_f.prototype.set = function SAT_f() {
         this.minp = parseFloat((arguments[0]["minp"]))

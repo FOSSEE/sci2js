@@ -29,6 +29,12 @@ function SELECT_m() {
         return this.x;
     }
     SELECT_m.prototype.get = function SELECT_m() {
+        var options = {
+            typ:["Datatype(1= real double  2=Complex 3=int32 ..)",this.typ],
+            nin:["number of inputs",this.nin],
+            z0:["initial connected input",this.z0],
+        }
+        return options;
     }
     SELECT_m.prototype.set = function SELECT_m() {
         this.typ = parseFloat((arguments[0]["typ"]))

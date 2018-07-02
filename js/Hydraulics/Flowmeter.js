@@ -53,6 +53,9 @@ function Flowmeter() {
         return this.x;
     }
     Flowmeter.prototype.get = function Flowmeter() {
+        var options = {
+        }
+        return options;
     }
     Flowmeter.prototype.set = function Flowmeter() {
         this.Qini = parseFloat((arguments[0]["Qini"]))

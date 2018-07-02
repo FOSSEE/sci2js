@@ -26,6 +26,9 @@ function Resistor() {
         return this.x;
     }
     Resistor.prototype.get = function Resistor() {
+        var options = {
+        }
+        return options;
     }
     Resistor.prototype.set = function Resistor() {
         this.R = parseFloat((arguments[0]["R"]))

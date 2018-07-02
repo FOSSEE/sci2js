@@ -16,6 +16,9 @@ function COSBLK_f() {
         return this.x;
     }
     COSBLK_f.prototype.get = function COSBLK_f() {
+        var options = {
+        }
+        return options;
     }
     COSBLK_f.prototype.set = function COSBLK_f() {
         this.x = arg1;

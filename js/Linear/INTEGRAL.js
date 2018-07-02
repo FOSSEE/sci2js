@@ -22,6 +22,14 @@ function INTEGRAL() {
         return this.x;
     }
     INTEGRAL.prototype.get = function INTEGRAL() {
+        var options = {
+            x0:["Initial Condition",this.x0],
+            reinit:["With re-intialization (1:yes, 0:no)",this.reinit],
+            satur:["With saturation (1:yes, 0:no)",this.satur],
+            maxp:["Upper limit",this.maxp],
+            lowp:["Lower limit",this.lowp],
+        }
+        return options;
     }
     INTEGRAL.prototype.set = function INTEGRAL() {
         this.x0 = parseFloat((arguments[0]["x0"]))

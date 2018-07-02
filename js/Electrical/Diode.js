@@ -29,6 +29,13 @@ function Diode() {
         return this.x;
     }
     Diode.prototype.get = function Diode() {
+        var options = {
+            Ids:["Saturation cuurent (A)",this.Ids],
+            Vt:["Voltage equivalent to temperature (Volt)",this.Vt],
+            Maxexp:["Max exponent for linear continuation",this.Maxexp],
+            R:["R (ohm)",this.R],
+        }
+        return options;
     }
     Diode.prototype.set = function Diode() {
         this.Ids = parseFloat((arguments[0]["Ids"]))

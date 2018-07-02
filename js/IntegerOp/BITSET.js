@@ -21,6 +21,11 @@ function BITSET() {
         return this.x;
     }
     BITSET.prototype.get = function BITSET() {
+        var options = {
+            Datatype:[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),this.Datatype],
+            bit:["Index of Bit (0 is least significant)",this.bit],
+        }
+        return options;
     }
     BITSET.prototype.set = function BITSET() {
         this.Datatype = parseFloat((arguments[0]["Datatype"]))

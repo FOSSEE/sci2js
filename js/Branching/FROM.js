@@ -23,6 +23,10 @@ function FROM() {
         return this.x;
     }
     FROM.prototype.get = function FROM() {
+        var options = {
+            tag:["Tag",this.tag],
+        }
+        return options;
     }
     FROM.prototype.set = function FROM() {
         this.tag = parseFloat((arguments[0]["tag"]))

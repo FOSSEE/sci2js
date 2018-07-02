@@ -29,6 +29,11 @@ function CUMSUM() {
         return this.x;
     }
     CUMSUM.prototype.get = function CUMSUM() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            decomptyp:["Sum along (0=the first non singleton dimension  1=Rows  2=Columns)",this.decomptyp],
+        }
+        return options;
     }
     CUMSUM.prototype.set = function CUMSUM() {
         this.typ = parseFloat((arguments[0]["typ"]))

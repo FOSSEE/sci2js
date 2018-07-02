@@ -53,6 +53,26 @@ function PNP() {
         return this.x;
     }
     PNP.prototype.get = function PNP() {
+        var options = {
+            Bf:["Bf  : Forward beta",this.Bf],
+            Br:["Br  : Reverse beta",this.Br],
+            Is:["Is  : Transport saturation current",this.Is],
+            Vak:["Vak : Early voltage (inverse), 1/Volt",this.Vak],
+            Tauf:["Tauf: Ideal forward transit time",this.Tauf],
+            Taur:["Taur: Ideal reverse transit time",this.Taur],
+            Ccs:["Ccs : Collector-substrat(ground) cap.",this.Ccs],
+            Cje:["Cje : Base-emitter zero bias depletion cap.",this.Cje],
+            Cjc:["Cjc : Base-coll. zero bias depletion cap.",this.Cjc],
+            Phie:["Phie: Base-emitter diffusion voltage",this.Phie],
+            Me:["Me  : Base-emitter gradation exponent",this.Me],
+            Phic:["Phic: Base-collector diffusion voltage",this.Phic],
+            Mc:["Mc  : Base-collector gradation exponent",this.Mc],
+            Gbc:["Gbc : Base-collector conductance",this.Gbc],
+            Gbe:["Gbe : Base-emitter conductance",this.Gbe],
+            Vt:["Vt  : Voltage equivalent of temperature",this.Vt],
+            EMinMax:["EMinMax: if x > EMinMax, the exp(x) function is linearized",this.EMinMax],
+        }
+        return options;
     }
     PNP.prototype.set = function PNP() {
         this.Bf = parseFloat((arguments[0]["Bf"]))

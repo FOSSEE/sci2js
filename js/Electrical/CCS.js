@@ -53,6 +53,9 @@ function CCS() {
         return this.x;
     }
     CCS.prototype.get = function CCS() {
+        var options = {
+        }
+        return options;
     }
     CCS.prototype.set = function CCS() {
         this.x = arg1;

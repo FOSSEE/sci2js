@@ -22,6 +22,12 @@ function TIME_DELAY() {
         return this.x;
     }
     TIME_DELAY.prototype.get = function TIME_DELAY() {
+        var options = {
+            T:["Delay",this.T],
+            init:["initial input",this.init],
+            N:["Buffer size",this.N],
+        }
+        return options;
     }
     TIME_DELAY.prototype.set = function TIME_DELAY() {
         this.T = parseFloat((arguments[0]["T"]))

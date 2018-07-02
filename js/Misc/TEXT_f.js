@@ -19,6 +19,12 @@ function TEXT_f() {
         return this.x;
     }
     TEXT_f.prototype.get = function TEXT_f() {
+        var options = {
+            txt:["Text",this.txt],
+            font:["Font number",this.font],
+            siz:["Font size",this.siz],
+        }
+        return options;
     }
     TEXT_f.prototype.set = function TEXT_f() {
         this.txt = parseFloat((arguments[0]["txt"]))

@@ -27,6 +27,12 @@ function TOWS_c() {
         return this.x;
     }
     TOWS_c.prototype.get = function TOWS_c() {
+        var options = {
+            nz:["Size of buffer",this.nz],
+            varnam:["Scilab variable name",this.varnam],
+            herit:["Inherit (no:0, yes:1)",this.herit],
+        }
+        return options;
     }
     TOWS_c.prototype.set = function TOWS_c() {
         this.nz = parseFloat((arguments[0]["nz"]))

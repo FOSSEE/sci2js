@@ -26,6 +26,11 @@ function GOTOMO() {
         return this.x;
     }
     GOTOMO.prototype.get = function GOTOMO() {
+        var options = {
+            tag:["Tag",this.tag],
+            tagvis:["Tag Visibility(1=Local 2=scoped 3= global)",this.tagvis],
+        }
+        return options;
     }
     GOTOMO.prototype.set = function GOTOMO() {
         this.tag = parseFloat((arguments[0]["tag"]))

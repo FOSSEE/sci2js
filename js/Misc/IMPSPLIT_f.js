@@ -19,6 +19,9 @@ function IMPSPLIT_f() {
         return this.x;
     }
     IMPSPLIT_f.prototype.get = function IMPSPLIT_f() {
+        var options = {
+        }
+        return options;
     }
     IMPSPLIT_f.prototype.set = function IMPSPLIT_f() {
         this.x = arg1;

@@ -21,6 +21,11 @@ function MEMORY_f() {
         return this.x;
     }
     MEMORY_f.prototype.get = function MEMORY_f() {
+        var options = {
+            a:["initial condition",this.a],
+            inh:["Inherit (1: no, 0: yes)",this.inh],
+        }
+        return options;
     }
     MEMORY_f.prototype.set = function MEMORY_f() {
         this.a = parseFloat((arguments[0]["a"]))

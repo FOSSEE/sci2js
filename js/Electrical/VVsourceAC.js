@@ -27,6 +27,10 @@ function VVsourceAC() {
         return this.x;
     }
     VVsourceAC.prototype.get = function VVsourceAC() {
+        var options = {
+            FR:["Frequency (Hz)",this.FR],
+        }
+        return options;
     }
     VVsourceAC.prototype.set = function VVsourceAC() {
         this.FR = parseFloat((arguments[0]["FR"]))

@@ -29,6 +29,10 @@ function MATINV() {
         return this.x;
     }
     MATINV.prototype.get = function MATINV() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATINV.prototype.set = function MATINV() {
         this.typ = parseFloat((arguments[0]["typ"]))

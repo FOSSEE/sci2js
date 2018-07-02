@@ -17,6 +17,9 @@ function TANBLK_f() {
         return this.x;
     }
     TANBLK_f.prototype.get = function TANBLK_f() {
+        var options = {
+        }
+        return options;
     }
     TANBLK_f.prototype.set = function TANBLK_f() {
         this.x = arg1;

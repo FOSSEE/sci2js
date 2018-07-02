@@ -18,6 +18,12 @@ function MATMUL() {
         return this.x;
     }
     MATMUL.prototype.get = function MATMUL() {
+        var options = {
+            dtype:["Datatype(1=real double 2=Complex 3=int32 ...)",this.dtype],
+            rule:["Multiplication rule",this.rule],
+            np:["Do on Overflow(0=Nothing 1=Saturate 2=Error)",this.np],
+        }
+        return options;
     }
     MATMUL.prototype.set = function MATMUL() {
         this.dtype = parseFloat((arguments[0]["dtype"]))

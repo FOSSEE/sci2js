@@ -29,6 +29,15 @@ function SUBMAT() {
         return this.x;
     }
     SUBMAT.prototype.get = function SUBMAT() {
+        var options = {
+            typ:["Datatype (1=real double  2=Complex)",this.typ],
+            a:["Starting Row Index",this.a],
+            b:["Ending Row Index",this.b],
+            c:["Starting Column Index",this.c],
+            d:["Ending Column Index",this.d],
+            inp:["Input Dimensions",this.inp],
+        }
+        return options;
     }
     SUBMAT.prototype.set = function SUBMAT() {
         this.typ = parseFloat((arguments[0]["typ"]))

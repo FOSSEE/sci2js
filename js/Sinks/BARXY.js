@@ -25,6 +25,14 @@ function BARXY() {
         return this.x;
     }
     BARXY.prototype.get = function BARXY() {
+        var options = {
+            xmin:["Xmin",this.xmin],
+            xmax:["Xmax",this.xmax],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+            thickness:["Segs Thickness",this.thickness],
+        }
+        return options;
     }
     BARXY.prototype.set = function BARXY() {
         this.xmin = parseFloat((arguments[0]["xmin"]))

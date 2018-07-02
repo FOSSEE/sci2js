@@ -26,6 +26,12 @@ function CMATVIEW() {
         return this.x;
     }
     CMATVIEW.prototype.get = function CMATVIEW() {
+        var options = {
+            colormap:["ColorMap",this.colormap],
+            cmin:["Minimum level range",this.cmin],
+            cmax:["Maximum level range",this.cmax],
+        }
+        return options;
     }
     CMATVIEW.prototype.set = function CMATVIEW() {
         this.colormap = parseFloat((arguments[0]["colormap"]))

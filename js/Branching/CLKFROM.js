@@ -17,6 +17,9 @@ function CLKFROM() {
         return this.x;
     }
     CLKFROM.prototype.get = function CLKFROM() {
+        var options = {
+        }
+        return options;
     }
     CLKFROM.prototype.set = function CLKFROM() {
         this.tag = parseFloat((arguments[0]["tag"]))

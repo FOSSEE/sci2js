@@ -18,6 +18,12 @@ function BACKLASH() {
         return this.x;
     }
     BACKLASH.prototype.get = function BACKLASH() {
+        var options = {
+            ini:["initial output",this.ini],
+            gap:["gap",this.gap],
+            zcr:["use zero-crossing (0:no, 1:yes)",this.zcr],
+        }
+        return options;
     }
     BACKLASH.prototype.set = function BACKLASH() {
         this.ini = parseFloat((arguments[0]["ini"]))

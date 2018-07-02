@@ -20,6 +20,12 @@ function GENSIN_f() {
         return this.x;
     }
     GENSIN_f.prototype.get = function GENSIN_f() {
+        var options = {
+            M:["Magnitude",this.M],
+            F:["Frequency (rad/s)",this.F],
+            P:["Phase (rad)",this.P],
+        }
+        return options;
     }
     GENSIN_f.prototype.set = function GENSIN_f() {
         this.M = parseFloat((arguments[0]["M"]))

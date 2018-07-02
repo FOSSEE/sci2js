@@ -18,6 +18,10 @@ function NRMSOM_f() {
         return this.x;
     }
     NRMSOM_f.prototype.get = function NRMSOM_f() {
+        var options = {
+            nin:["number of inputs",this.nin],
+        }
+        return options;
     }
     NRMSOM_f.prototype.set = function NRMSOM_f() {
         this.nin = parseFloat((arguments[0]["nin"]))

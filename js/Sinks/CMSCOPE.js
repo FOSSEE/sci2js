@@ -31,6 +31,20 @@ function CMSCOPE() {
         return this.x;
     }
     CMSCOPE.prototype.get = function CMSCOPE() {
+        var options = {
+            in1:["Input ports sizes",this.in1],
+            clrs:["Drawing colors (>0) or mark (<0)",this.clrs],
+            win:["Output window number (-1 for automatic)",this.win],
+            wpos:["Output window position",this.wpos],
+            wdim:["Output window sizes",this.wdim],
+            ymin:["Ymin vector",this.ymin],
+            ymax:["Ymax vector",this.ymax],
+            per:["Refresh period",this.per],
+            N:["Buffer size",this.N],
+            heritance:["Accept herited events 0/1",this.heritance],
+            nom:["Name of Scope (label&Id)",this.nom],
+        }
+        return options;
     }
     CMSCOPE.prototype.set = function CMSCOPE() {
         this.in1 = parseFloat((arguments[0]["in1"]))

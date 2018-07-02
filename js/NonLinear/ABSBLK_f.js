@@ -15,6 +15,9 @@ function ABSBLK_f() {
         return this.x;
     }
     ABSBLK_f.prototype.get = function ABSBLK_f() {
+        var options = {
+        }
+        return options;
     }
     ABSBLK_f.prototype.set = function ABSBLK_f() {
         this.x = arg1;

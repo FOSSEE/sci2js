@@ -19,6 +19,10 @@ function DEMUX() {
         return this.x;
     }
     DEMUX.prototype.get = function DEMUX() {
+        var options = {
+            out:["number of output ports or vector of sizes",this.out],
+        }
+        return options;
     }
     DEMUX.prototype.set = function DEMUX() {
         this.out = parseFloat((arguments[0]["out"]))

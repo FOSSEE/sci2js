@@ -36,6 +36,9 @@ function MPBLOCK() {
         return this.x;
     }
     MPBLOCK.prototype.get = function MPBLOCK() {
+        var options = {
+        }
+        return options;
     }
     MPBLOCK.prototype.set = function MPBLOCK() {
         this.x = arg1;

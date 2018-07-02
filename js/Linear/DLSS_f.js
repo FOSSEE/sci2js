@@ -24,6 +24,14 @@ function DLSS_f() {
         return this.x;
     }
     DLSS_f.prototype.get = function DLSS_f() {
+        var options = {
+            A:["A matrix",this.A],
+            B:["B matrix",this.B],
+            C:["C matrix",this.C],
+            D:["D matrix",this.D],
+            x0:["Initial state",this.x0],
+        }
+        return options;
     }
     DLSS_f.prototype.set = function DLSS_f() {
         this.A = parseFloat((arguments[0]["A"]))

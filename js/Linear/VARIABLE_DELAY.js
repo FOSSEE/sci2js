@@ -22,6 +22,12 @@ function VARIABLE_DELAY() {
         return this.x;
     }
     VARIABLE_DELAY.prototype.get = function VARIABLE_DELAY() {
+        var options = {
+            T:["Max delay",this.T],
+            init:["initial input",this.init],
+            N:["Buffer size",this.N],
+        }
+        return options;
     }
     VARIABLE_DELAY.prototype.set = function VARIABLE_DELAY() {
         this.T = parseFloat((arguments[0]["T"]))

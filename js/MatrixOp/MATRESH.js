@@ -29,6 +29,12 @@ function MATRESH() {
         return this.x;
     }
     MATRESH.prototype.get = function MATRESH() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            l1:["input size",this.l1],
+            out:["output size desired",this.out],
+        }
+        return options;
     }
     MATRESH.prototype.set = function MATRESH() {
         this.typ = parseFloat((arguments[0]["typ"]))

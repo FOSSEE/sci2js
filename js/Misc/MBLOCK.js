@@ -36,6 +36,16 @@ function MBLOCK() {
         return this.x;
     }
     MBLOCK.prototype.get = function MBLOCK() {
+        var options = {
+            Tin:["Input variables:       ",this.Tin],
+            Tintype:["Input variables types: ",this.Tintype],
+            Tout:["Output variables:      ",this.Tout],
+            Touttype:["Output variables types:",this.Touttype],
+            Tparam:["Parameters in Modelica:",this.Tparam],
+            pprop:["Parameters properties: ",this.pprop],
+            Tfunam:["Function name:         ",this.Tfunam],
+        }
+        return options;
     }
     MBLOCK.prototype.set = function MBLOCK() {
         this.Tin = parseFloat((arguments[0]["Tin"]))

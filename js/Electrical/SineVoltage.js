@@ -30,6 +30,14 @@ function SineVoltage() {
         return this.x;
     }
     SineVoltage.prototype.get = function SineVoltage() {
+        var options = {
+            V:["Amplitude (Volt)",this.V],
+            ph:["phase (rad)",this.ph],
+            frq:["Frequency (Hz)",this.frq],
+            offset:["Voltageoffset (V)",this.offset],
+            start:["Timeoffset (s)",this.start],
+        }
+        return options;
     }
     SineVoltage.prototype.set = function SineVoltage() {
         this.V = parseFloat((arguments[0]["V"]))

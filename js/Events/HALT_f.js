@@ -18,6 +18,10 @@ function HALT_f() {
         return this.x;
     }
     HALT_f.prototype.get = function HALT_f() {
+        var options = {
+            n:["State on halt",this.n],
+        }
+        return options;
     }
     HALT_f.prototype.set = function HALT_f() {
         this.n = parseFloat((arguments[0]["n"]))

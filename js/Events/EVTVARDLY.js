@@ -19,6 +19,9 @@ function EVTVARDLY() {
         return this.x;
     }
     EVTVARDLY.prototype.get = function EVTVARDLY() {
+        var options = {
+        }
+        return options;
     }
     EVTVARDLY.prototype.set = function EVTVARDLY() {
         this.fir = parseFloat((arguments[0]["fir"]))

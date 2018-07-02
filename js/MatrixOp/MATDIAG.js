@@ -29,6 +29,10 @@ function MATDIAG() {
         return this.x;
     }
     MATDIAG.prototype.get = function MATDIAG() {
+        var options = {
+            typ:["Datatype (1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATDIAG.prototype.set = function MATDIAG() {
         this.typ = parseFloat((arguments[0]["typ"]))

@@ -18,6 +18,9 @@ function MAX_f() {
         return this.x;
     }
     MAX_f.prototype.get = function MAX_f() {
+        var options = {
+        }
+        return options;
     }
     MAX_f.prototype.set = function MAX_f() {
         this.x = arg1;

@@ -22,6 +22,12 @@ function STEP() {
         return this.x;
     }
     STEP.prototype.get = function STEP() {
+        var options = {
+            temps:["Step Time",this.temps],
+            in1:["Initial Value",this.in1],
+            fi:["Final Value",this.fi],
+        }
+        return options;
     }
     STEP.prototype.set = function STEP() {
         this.temps = parseFloat((arguments[0]["temps"]))

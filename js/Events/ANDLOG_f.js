@@ -16,6 +16,9 @@ function ANDLOG_f() {
         return this.x;
     }
     ANDLOG_f.prototype.get = function ANDLOG_f() {
+        var options = {
+        }
+        return options;
     }
     ANDLOG_f.prototype.set = function ANDLOG_f() {
         this.x = arg1;

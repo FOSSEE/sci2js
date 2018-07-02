@@ -18,6 +18,9 @@ function NEGTOPOS_f() {
         return this.x;
     }
     NEGTOPOS_f.prototype.get = function NEGTOPOS_f() {
+        var options = {
+        }
+        return options;
     }
     NEGTOPOS_f.prototype.set = function NEGTOPOS_f() {
         this.x = arg1;

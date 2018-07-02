@@ -53,6 +53,9 @@ function CVS() {
         return this.x;
     }
     CVS.prototype.get = function CVS() {
+        var options = {
+        }
+        return options;
     }
     CVS.prototype.set = function CVS() {
         this.x = arg1;

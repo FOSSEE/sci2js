@@ -16,6 +16,9 @@ function LOOKUP_f() {
         return this.x;
     }
     LOOKUP_f.prototype.get = function LOOKUP_f() {
+        var options = {
+        }
+        return options;
     }
     LOOKUP_f.prototype.set = function LOOKUP_f() {
         this.x = arg1;

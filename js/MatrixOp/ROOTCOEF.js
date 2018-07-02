@@ -29,6 +29,11 @@ function ROOTCOEF() {
         return this.x;
     }
     ROOTCOEF.prototype.get = function ROOTCOEF() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            inp:["input row size",this.inp],
+        }
+        return options;
     }
     ROOTCOEF.prototype.set = function ROOTCOEF() {
         this.typ = parseFloat((arguments[0]["typ"]))

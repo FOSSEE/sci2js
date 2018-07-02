@@ -14,6 +14,9 @@ function PROD_f() {
         return this.x;
     }
     PROD_f.prototype.get = function PROD_f() {
+        var options = {
+        }
+        return options;
     }
     PROD_f.prototype.set = function PROD_f() {
         this.x = arg1;

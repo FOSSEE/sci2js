@@ -24,6 +24,12 @@ function SHIFT() {
         return this.x;
     }
     SHIFT.prototype.get = function SHIFT() {
+        var options = {
+            Datatype:[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),this.Datatype],
+            nb:["Number of Bits to Shift Left (Negative number to shift right)",this.nb],
+            np:["Shift Type (0:Arithmetic, 1:Circular)",this.np],
+        }
+        return options;
     }
     SHIFT.prototype.set = function SHIFT() {
         this.Datatype = parseFloat((arguments[0]["Datatype"]))

@@ -18,6 +18,9 @@ function MUX_f() {
         return this.x;
     }
     MUX_f.prototype.get = function MUX_f() {
+        var options = {
+        }
+        return options;
     }
     MUX_f.prototype.set = function MUX_f() {
         this.in1 = parseFloat((arguments[0]["in1"]))

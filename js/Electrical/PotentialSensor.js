@@ -23,6 +23,9 @@ function PotentialSensor() {
         return this.x;
     }
     PotentialSensor.prototype.get = function PotentialSensor() {
+        var options = {
+        }
+        return options;
     }
     PotentialSensor.prototype.set = function PotentialSensor() {
         this.x = arg1;

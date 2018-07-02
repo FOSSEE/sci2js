@@ -18,6 +18,12 @@ function MAXMIN() {
         return this.x;
     }
     MAXMIN.prototype.get = function MAXMIN() {
+        var options = {
+            mm:["Min (1) or Max (2) ",this.mm],
+            nin:["Number of input vectors (1 or 2)",this.nin],
+            zcr:["zero-crossing (1: yes, 0;no)",this.zcr],
+        }
+        return options;
     }
     MAXMIN.prototype.set = function MAXMIN() {
         this.mm = parseFloat((arguments[0]["mm"]))

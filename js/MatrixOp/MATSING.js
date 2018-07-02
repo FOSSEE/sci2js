@@ -29,6 +29,11 @@ function MATSING() {
         return this.x;
     }
     MATSING.prototype.get = function MATSING() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            decomptyp:["decomposition type (1=singular values  2=sing values+matrix U & V)",this.decomptyp],
+        }
+        return options;
     }
     MATSING.prototype.set = function MATSING() {
         this.typ = parseFloat((arguments[0]["typ"]))

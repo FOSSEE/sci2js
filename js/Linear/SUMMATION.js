@@ -20,6 +20,12 @@ function SUMMATION() {
         return this.x;
     }
     SUMMATION.prototype.get = function SUMMATION() {
+        var options = {
+            Datatype:["Datatype (1=real double  2=complex 3=int32 ...)",this.Datatype],
+            sgn:["Number of inputs or sign vector (of +1, -1)",this.sgn],
+            satur:["Do on Overflow(0=Nothing 1=Saturate 2=Error)",this.satur],
+        }
+        return options;
     }
     SUMMATION.prototype.set = function SUMMATION() {
         this.Datatype = parseFloat((arguments[0]["Datatype"]))

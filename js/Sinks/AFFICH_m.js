@@ -27,6 +27,16 @@ function AFFICH_m() {
         return this.x;
     }
     AFFICH_m.prototype.get = function AFFICH_m() {
+        var options = {
+            in1:["Input Size",this.in1],
+            font:["Font number",this.font],
+            fontsize:["Font size",this.fontsize],
+            colr:["Color",this.colr],
+            nt:["Total number of digits",this.nt],
+            nd:["Number of rational part digits",this.nd],
+            herit:["Block inherits (1) or not (0)",this.herit],
+        }
+        return options;
     }
     AFFICH_m.prototype.set = function AFFICH_m() {
         this.in1 = parseFloat((arguments[0]["in1"]))

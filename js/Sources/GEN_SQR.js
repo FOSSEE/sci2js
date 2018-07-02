@@ -54,6 +54,9 @@ function GEN_SQR() {
         return this.x;
     }
     GEN_SQR.prototype.get = function GEN_SQR() {
+        var options = {
+        }
+        return options;
     }
     GEN_SQR.prototype.set = function GEN_SQR() {
         scicos_context.Amin = parseFloat((arguments[0]["scicos_context.Amin"]))

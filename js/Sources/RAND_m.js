@@ -33,6 +33,14 @@ function RAND_m() {
         return this.x;
     }
     RAND_m.prototype.get = function RAND_m() {
+        var options = {
+            typ:["Datatype(1=real double  2=complex)",this.typ],
+            flag:["flag",this.flag],
+            a:["A",this.a],
+            b:["B",this.b],
+            seed_c:["SEED",this.seed_c],
+        }
+        return options;
     }
     RAND_m.prototype.set = function RAND_m() {
         this.typ = parseFloat((arguments[0]["typ"]))

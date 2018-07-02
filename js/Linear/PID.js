@@ -43,6 +43,12 @@ function PID() {
         return this.x;
     }
     PID.prototype.get = function PID() {
+        var options = {
+            p:["Proportional",this.p],
+            i:["Integral",this.i],
+            d:["Derivation",this.d],
+        }
+        return options;
     }
     PID.prototype.set = function PID() {
         this.p = parseFloat((arguments[0]["p"]))

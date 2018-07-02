@@ -23,6 +23,15 @@ function CEVENTSCOPE() {
         return this.x;
     }
     CEVENTSCOPE.prototype.get = function CEVENTSCOPE() {
+        var options = {
+            nclock:["Number of event inputs",this.nclock],
+            clrs:["colors c (>0) or mark (<0)",this.clrs],
+            win:["Output window number (-1 for automatic)",this.win],
+            wpos:["Output window position",this.wpos],
+            wdim:["Output window sizes",this.wdim],
+            per:["Refresh period",this.per],
+        }
+        return options;
     }
     CEVENTSCOPE.prototype.set = function CEVENTSCOPE() {
         this.nclock = parseFloat((arguments[0]["nclock"]))

@@ -21,6 +21,12 @@ function INTRP2BLK_f() {
         return this.x;
     }
     INTRP2BLK_f.prototype.get = function INTRP2BLK_f() {
+        var options = {
+            a:["X coord.",this.a],
+            b:["Y coord.",this.b],
+            c:["Z values",this.c],
+        }
+        return options;
     }
     INTRP2BLK_f.prototype.set = function INTRP2BLK_f() {
         this.a = parseFloat((arguments[0]["a"]))

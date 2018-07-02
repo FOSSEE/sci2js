@@ -23,6 +23,9 @@ function EXPBLK_m() {
         return this.x;
     }
     EXPBLK_m.prototype.get = function EXPBLK_m() {
+        var options = {
+        }
+        return options;
     }
     EXPBLK_m.prototype.set = function EXPBLK_m() {
         this.a = parseFloat((arguments[0]["a"]))

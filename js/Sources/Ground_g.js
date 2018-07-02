@@ -22,6 +22,9 @@ function Ground_g() {
         return this.x;
     }
     Ground_g.prototype.get = function Ground_g() {
+        var options = {
+        }
+        return options;
     }
     Ground_g.prototype.set = function Ground_g() {
         this.x = arg1;

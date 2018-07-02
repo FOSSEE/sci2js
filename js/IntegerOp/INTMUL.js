@@ -23,6 +23,11 @@ function INTMUL() {
         return this.x;
     }
     INTMUL.prototype.get = function INTMUL() {
+        var options = {
+            Datatype:[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),this.Datatype],
+            np:["Do on Overflow (0:Nothing, 1:Saturate, 2:Error)",this.np],
+        }
+        return options;
     }
     INTMUL.prototype.set = function INTMUL() {
         this.Datatype = parseFloat((arguments[0]["Datatype"]))

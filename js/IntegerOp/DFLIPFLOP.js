@@ -96,6 +96,9 @@ function DFLIPFLOP() {
         return this.x;
     }
     DFLIPFLOP.prototype.get = function DFLIPFLOP() {
+        var options = {
+        }
+        return options;
     }
     DFLIPFLOP.prototype.set = function DFLIPFLOP() {
         this.x = arg1;

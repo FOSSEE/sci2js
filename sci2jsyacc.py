@@ -36,6 +36,7 @@ JOB_BLOCKS = {}
 FUNCTION_VARS = set()
 LOCAL_VARS = set()
 GLOBAL_VARS = {'x'}
+LABELS = []
 
 INDENT_LEVEL = 2
 INDENT_SIZE = 4
@@ -55,6 +56,7 @@ def p_functionblocks_jobfunctionblock(p):
 # define functionblock
 
 SET_BLOCK = ''
+OPTIONS_BLOCK = ''
 
 def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     'jobfunctionblock : jobfunctionstatement statementblock ENDFUNCTION EOL'
@@ -62,18 +64,19 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     fname = '%s' % (p[1])
     indent = '%*s' % (INDENT_LEVEL * INDENT_SIZE, ' ')
     INDENT_LEVEL += 1
+    indent2 = '%*s' % (INDENT_LEVEL * INDENT_SIZE, ' ')
     blocktype = getblocktype(fname)
 
     jdefine = JOB_BLOCKS['"define"']
-    jget = JOB_BLOCKS['"get"']
+    jget = '%svar options = {\n%s%s}\n%sreturn options;\n' % (indent2, OPTIONS_BLOCK, indent2, indent2)
     jgetinputs = JOB_BLOCKS['"getinputs"']
     jgetorigin = JOB_BLOCKS['"getorigin"']
     jgetoutputs = JOB_BLOCKS['"getoutputs"']
     jplot = JOB_BLOCKS['"plot"']
     jset = JOB_BLOCKS['"set"']
 
-    jdefine = '%s%s.prototype.define = function %s() {\n%s%*sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, jdefine, INDENT_LEVEL * INDENT_SIZE, ' ', blocktype, indent)
-    jdetails = '%s%s.prototype.details = function %s() {\n%*sreturn this.x;\n%s}\n' % (indent, fname, fname, INDENT_LEVEL * INDENT_SIZE, ' ', indent)
+    jdefine = '%s%s.prototype.define = function %s() {\n%s%sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, jdefine, indent2, blocktype, indent)
+    jdetails = '%s%s.prototype.details = function %s() {\n%sreturn this.x;\n%s}\n' % (indent, fname, fname, indent2, indent)
     jget = '%s%s.prototype.get = function %s() {\n%s%s}\n' % (indent, fname, fname, jget, indent)
     if jgetinputs != '':
         jgetinputs = '%s%s.prototype.getinputs = function %s() {\n%s%s}\n' % (indent, fname, fname, jgetinputs, indent)
@@ -83,7 +86,7 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
         jgetoutputs = '%s%s.prototype.getoutputs = function %s() {\n%s%s}\n' % (indent, fname, fname, jgetoutputs, indent)
     if jplot != '':
         jplot = '%s%s.prototype.plot = function %s() {\n%s%s}\n' % (indent, fname, fname, jplot, indent)
-    jset = '%s%s.prototype.set = function %s() {\n%s%s%*sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, SET_BLOCK, jset, INDENT_LEVEL * INDENT_SIZE, ' ', blocktype, indent)
+    jset = '%s%s.prototype.set = function %s() {\n%s%s%sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, SET_BLOCK, jset, indent2, blocktype, indent)
 
     INDENT_LEVEL -= 1
     p[0] = 'function %s() {\n%s%s%s%s%s%s%s%s}' % (fname, jdefine, jdetails, jget, jset, jgetinputs, jgetorigin, jgetoutputs, jplot)
@@ -465,11 +468,12 @@ def p_assignment_expression(p):
 def p_getvalueassignment_getvalue_arguments(p):
     'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET getvaluearguments CLOSEBRACKET'
     p[0] = '%*s%s = %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5])
-    global SET_BLOCK
+    global SET_BLOCK, OPTIONS_BLOCK
     lterm = p[1]
     if lterm[0] == '[':
         lterm = lterm[1:-1]
         ltermvars = lterm.split(',')
+        idx = 0
         for var in ltermvars:
             if var in ('ok', 'exprs'):
                 continue
@@ -480,6 +484,9 @@ def p_getvalueassignment_getvalue_arguments(p):
                 if var not in GLOBAL_VARS:
                     GLOBAL_VARS.add(var)
             SET_BLOCK += "%*s%s = parseFloat((arguments[%d][\"%s\"]))\n" % (2 * INDENT_SIZE, ' ', var, 0, basevar)
+            if idx < len(LABELS):
+                OPTIONS_BLOCK += '%*s%s:[%s,%s],\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', basevar, LABELS[idx], var)
+                idx += 1
 
 def p_getvaluearguments_arg1_arg2_arg3_arg4(p):
     'getvaluearguments : getvaluearg1 COMMA getvaluearg2 COMMA getvaluearg3 COMMA getvaluearg4'
@@ -519,18 +526,22 @@ def p_getvaluearg2arraylist_arraylistitem(p):
 def p_getvaluearg2arraylistitem_gettext_string(p):
     'getvaluearg2arraylistitem : GETTEXT OPENBRACKET DQSTRING CLOSEBRACKET'
     p[0] = '%s' % (p[3])
+    LABELS.append(p[0])
 
 def p_getvaluearg2arraylistitem_string(p):
     'getvaluearg2arraylistitem : DQSTRING'
     p[0] = '%s' % (p[1])
+    LABELS.append(p[0])
 
 def p_getvaluearg2arraylistitem_string_string(p):
     'getvaluearg2arraylistitem : DQSTRING ADDITION DQSTRING'
     p[0] = '%s%s' % (p[1][:-1], p[3][1:])
+    LABELS.append(p[0])
 
 def p_getvaluearg2arraylistitem_functionname_parameters(p):
     'getvaluearg2arraylistitem : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
     p[0] = '%s(%s)' % (p[1], p[3])
+    LABELS.append(p[0])
 
 def p_getvaluearg3_list(p):
     'getvaluearg3 : LIST OPENBRACKET getvaluelist CLOSEBRACKET'

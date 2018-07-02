@@ -22,6 +22,11 @@ function IFTHEL_f() {
         return this.x;
     }
     IFTHEL_f.prototype.get = function IFTHEL_f() {
+        var options = {
+            inh:["Inherit (1: no, 0: yes)",this.inh],
+            nmod:["zero-crossing (0: no, 1: yes)",this.nmod],
+        }
+        return options;
     }
     IFTHEL_f.prototype.set = function IFTHEL_f() {
         this.inh = parseFloat((arguments[0]["inh"]))

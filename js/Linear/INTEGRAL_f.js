@@ -18,6 +18,9 @@ function INTEGRAL_f() {
         return this.x;
     }
     INTEGRAL_f.prototype.get = function INTEGRAL_f() {
+        var options = {
+        }
+        return options;
     }
     INTEGRAL_f.prototype.set = function INTEGRAL_f() {
         this.x0 = parseFloat((arguments[0]["x0"]))

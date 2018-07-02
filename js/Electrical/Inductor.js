@@ -26,6 +26,9 @@ function Inductor() {
         return this.x;
     }
     Inductor.prototype.get = function Inductor() {
+        var options = {
+        }
+        return options;
     }
     Inductor.prototype.set = function Inductor() {
         this.L = parseFloat((arguments[0]["L"]))

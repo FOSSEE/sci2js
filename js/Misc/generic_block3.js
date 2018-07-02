@@ -21,6 +21,28 @@ function generic_block3() {
         return this.x;
     }
     generic_block3.prototype.get = function generic_block3() {
+        var options = {
+            function_name:["Simulation function",this.function_name],
+            funtyp:["Function type (0,1,2,..)",this.funtyp],
+            in1:["Input ports sizes",this.in1],
+            it:["Input ports type",this.it],
+            out:["Output port sizes",this.out],
+            ot:["Output ports type",this.ot],
+            ci:["Input event ports sizes",this.ci],
+            co:["Output events ports sizes",this.co],
+            xx:["Initial continuous state",this.xx],
+            z:["Initial discrete state",this.z],
+            oz:["Initial object state",this.oz],
+            rpar:["Real parameters vector",this.rpar],
+            ipar:["Integer parameters vector",this.ipar],
+            opar:["Object parameters list",this.opar],
+            nmode:["Number of modes",this.nmode],
+            nzcr:["Number of zero crossings",this.nzcr],
+            auto0:["Initial firing vector (<0 for no firing)",this.auto0],
+            depu:["Direct feedthrough (y or n)",this.depu],
+            dept:["Time dependence (y or n)",this.dept],
+        }
+        return options;
     }
     generic_block3.prototype.set = function generic_block3() {
         this.function_name = parseFloat((arguments[0]["function_name"]))

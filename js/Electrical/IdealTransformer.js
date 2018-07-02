@@ -53,6 +53,10 @@ function IdealTransformer() {
         return this.x;
     }
     IdealTransformer.prototype.get = function IdealTransformer() {
+        var options = {
+            N:["N",this.N],
+        }
+        return options;
     }
     IdealTransformer.prototype.set = function IdealTransformer() {
         this.N = parseFloat((arguments[0]["N"]))

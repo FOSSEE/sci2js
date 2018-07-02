@@ -29,6 +29,11 @@ function Switch() {
         return this.x;
     }
     Switch.prototype.get = function Switch() {
+        var options = {
+            Ron:["Resistance in On state (Ohm)",this.Ron],
+            Roff:["Resistance in Off state (Ohm)",this.Roff],
+        }
+        return options;
     }
     Switch.prototype.set = function Switch() {
         this.Ron = parseFloat((arguments[0]["Ron"]))

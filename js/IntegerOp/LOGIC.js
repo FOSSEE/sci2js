@@ -24,6 +24,11 @@ function LOGIC() {
         return this.x;
     }
     LOGIC.prototype.get = function LOGIC() {
+        var options = {
+            mat:["Truth Table (matrix of outputs)",this.mat],
+            herit:["Accepts Inherited Events (0:No, 1:Yes)",this.herit],
+        }
+        return options;
     }
     LOGIC.prototype.set = function LOGIC() {
         this.mat = parseFloat((arguments[0]["mat"]))

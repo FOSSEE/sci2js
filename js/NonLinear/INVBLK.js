@@ -17,6 +17,9 @@ function INVBLK() {
         return this.x;
     }
     INVBLK.prototype.get = function INVBLK() {
+        var options = {
+        }
+        return options;
     }
     INVBLK.prototype.set = function INVBLK() {
         this.x = arg1;

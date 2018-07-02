@@ -16,6 +16,9 @@ function CLKSOM_f() {
         return this.x;
     }
     CLKSOM_f.prototype.get = function CLKSOM_f() {
+        var options = {
+        }
+        return options;
     }
     CLKSOM_f.prototype.set = function CLKSOM_f() {
         this.x = arg1;

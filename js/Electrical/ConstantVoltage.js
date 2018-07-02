@@ -26,6 +26,9 @@ function ConstantVoltage() {
         return this.x;
     }
     ConstantVoltage.prototype.get = function ConstantVoltage() {
+        var options = {
+        }
+        return options;
     }
     ConstantVoltage.prototype.set = function ConstantVoltage() {
         this.V = parseFloat((arguments[0]["V"]))

@@ -25,6 +25,18 @@ function CFSCOPE() {
         return this.x;
     }
     CFSCOPE.prototype.get = function CFSCOPE() {
+        var options = {
+            clrs:["Color (>0) or mark (<0) vector (8 entries)",this.clrs],
+            win:["Output window number (-1 for automatic)",this.win],
+            wpos:["Output window position",this.wpos],
+            wdim:["Output window sizes",this.wdim],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+            per:["Refresh period",this.per],
+            N:["Buffer size",this.N],
+            wu:["Links to view",this.wu],
+        }
+        return options;
     }
     CFSCOPE.prototype.set = function CFSCOPE() {
         this.clrs = parseFloat((arguments[0]["clrs"]))

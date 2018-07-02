@@ -23,6 +23,9 @@ function VariableResistor() {
         return this.x;
     }
     VariableResistor.prototype.get = function VariableResistor() {
+        var options = {
+        }
+        return options;
     }
     VariableResistor.prototype.set = function VariableResistor() {
         this.x = arg1;

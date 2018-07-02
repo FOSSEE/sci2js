@@ -20,6 +20,12 @@ function M_SWITCH() {
         return this.x;
     }
     M_SWITCH.prototype.get = function M_SWITCH() {
+        var options = {
+            nin:["number of inputs",this.nin],
+            base:["zero base indexing (0), otherwise 1",this.base],
+            rule:["rounding rule: int (0), round (1), ceil (2), floor (3)",this.rule],
+        }
+        return options;
     }
     M_SWITCH.prototype.set = function M_SWITCH() {
         this.nin = parseFloat((arguments[0]["nin"]))

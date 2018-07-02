@@ -49,6 +49,9 @@ function PULSE_SC() {
         return this.x;
     }
     PULSE_SC.prototype.get = function PULSE_SC() {
+        var options = {
+        }
+        return options;
     }
     PULSE_SC.prototype.set = function PULSE_SC() {
         scicos_context.E = parseFloat((arguments[0]["scicos_context.E"]))

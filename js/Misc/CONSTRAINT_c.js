@@ -19,6 +19,9 @@ function CONSTRAINT_c() {
         return this.x;
     }
     CONSTRAINT_c.prototype.get = function CONSTRAINT_c() {
+        var options = {
+        }
+        return options;
     }
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
         this.x0 = parseFloat((arguments[0]["x0"]))

@@ -27,6 +27,11 @@ function VsourceAC() {
         return this.x;
     }
     VsourceAC.prototype.get = function VsourceAC() {
+        var options = {
+            VA:["Amplitude (Volt)",this.VA],
+            FR:["Frequency (Hz)",this.FR],
+        }
+        return options;
     }
     VsourceAC.prototype.set = function VsourceAC() {
         this.VA = parseFloat((arguments[0]["VA"]))

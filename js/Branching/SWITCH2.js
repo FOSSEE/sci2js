@@ -24,6 +24,12 @@ function SWITCH2() {
         return this.x;
     }
     SWITCH2.prototype.get = function SWITCH2() {
+        var options = {
+            rule:["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)",this.rule],
+            thra:["threshold a",this.thra],
+            nzz:["use zero crossing: yes (1), no (0)",this.nzz],
+        }
+        return options;
     }
     SWITCH2.prototype.set = function SWITCH2() {
         this.rule = parseFloat((arguments[0]["rule"]))

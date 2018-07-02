@@ -16,6 +16,11 @@ function SampleCLK() {
         return this.x;
     }
     SampleCLK.prototype.get = function SampleCLK() {
+        var options = {
+            frequ:["Sample time",this.frequ],
+            offset:["Offset",this.offset],
+        }
+        return options;
     }
     SampleCLK.prototype.set = function SampleCLK() {
         this.frequ = parseFloat((arguments[0]["frequ"]))

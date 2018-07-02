@@ -73,6 +73,9 @@ function MCLOCK_f() {
         return this.x;
     }
     MCLOCK_f.prototype.get = function MCLOCK_f() {
+        var options = {
+        }
+        return options;
     }
     MCLOCK_f.prototype.set = function MCLOCK_f() {
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {

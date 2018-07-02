@@ -19,6 +19,9 @@ function IN_f() {
         return this.x;
     }
     IN_f.prototype.get = function IN_f() {
+        var options = {
+        }
+        return options;
     }
     IN_f.prototype.set = function IN_f() {
         this.x = arg1;

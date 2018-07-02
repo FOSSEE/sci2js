@@ -29,6 +29,11 @@ function EXTTRI() {
         return this.x;
     }
     EXTTRI.prototype.get = function EXTTRI() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            decomptyp:["extraction type (1=lower  2=upper  3=diagonal)",this.decomptyp],
+        }
+        return options;
     }
     EXTTRI.prototype.set = function EXTTRI() {
         this.typ = parseFloat((arguments[0]["typ"]))

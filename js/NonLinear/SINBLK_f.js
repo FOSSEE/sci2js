@@ -16,6 +16,9 @@ function SINBLK_f() {
         return this.x;
     }
     SINBLK_f.prototype.get = function SINBLK_f() {
+        var options = {
+        }
+        return options;
     }
     SINBLK_f.prototype.set = function SINBLK_f() {
         this.x = arg1;

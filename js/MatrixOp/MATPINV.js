@@ -29,6 +29,10 @@ function MATPINV() {
         return this.x;
     }
     MATPINV.prototype.get = function MATPINV() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATPINV.prototype.set = function MATPINV() {
         this.typ = parseFloat((arguments[0]["typ"]))

@@ -21,6 +21,10 @@ function SAMPHOLD_m() {
         return this.x;
     }
     SAMPHOLD_m.prototype.get = function SAMPHOLD_m() {
+        var options = {
+            it:["Datatype(1=real double 2=Complex 3=int32 ...)",this.it],
+        }
+        return options;
     }
     SAMPHOLD_m.prototype.set = function SAMPHOLD_m() {
         this.it = parseFloat((arguments[0]["it"]))

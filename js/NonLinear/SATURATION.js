@@ -22,6 +22,12 @@ function SATURATION() {
         return this.x;
     }
     SATURATION.prototype.get = function SATURATION() {
+        var options = {
+            maxp:["Upper limit",this.maxp],
+            minp:["Lower limit",this.minp],
+            zeroc:["zero crossing (0:no, 1:yes)",this.zeroc],
+        }
+        return options;
     }
     SATURATION.prototype.set = function SATURATION() {
         this.maxp = parseFloat((arguments[0]["maxp"]))

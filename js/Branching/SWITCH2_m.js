@@ -27,6 +27,13 @@ function SWITCH2_m() {
         return this.x;
     }
     SWITCH2_m.prototype.get = function SWITCH2_m() {
+        var options = {
+            ot:["Datatype (1=real double  2=complex 3=int32 ...)",this.ot],
+            rule:["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)",this.rule],
+            thra:["threshold a",this.thra],
+            nzz:["use zero crossing: yes (1), no (0)",this.nzz],
+        }
+        return options;
     }
     SWITCH2_m.prototype.set = function SWITCH2_m() {
         this.ot = parseFloat((arguments[0]["ot"]))

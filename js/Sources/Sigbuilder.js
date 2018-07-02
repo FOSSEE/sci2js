@@ -19,6 +19,9 @@ function Sigbuilder() {
         return this.x;
     }
     Sigbuilder.prototype.get = function Sigbuilder() {
+        var options = {
+        }
+        return options;
     }
     Sigbuilder.prototype.set = function Sigbuilder() {
         ppath = list(0);

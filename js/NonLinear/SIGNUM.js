@@ -19,6 +19,10 @@ function SIGNUM() {
         return this.x;
     }
     SIGNUM.prototype.get = function SIGNUM() {
+        var options = {
+            zcr:["use zero_crossing (1: yes) (0:no)",this.zcr],
+        }
+        return options;
     }
     SIGNUM.prototype.set = function SIGNUM() {
         this.zcr = parseFloat((arguments[0]["zcr"]))

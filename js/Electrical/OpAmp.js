@@ -27,6 +27,12 @@ function OpAmp() {
         return this.x;
     }
     OpAmp.prototype.get = function OpAmp() {
+        var options = {
+            OLGain:["Open Loop Gain",this.OLGain],
+            SatH:["Positive saturation voltage",this.SatH],
+            SatL:["Negative saturation voltage",this.SatL],
+        }
+        return options;
     }
     OpAmp.prototype.set = function OpAmp() {
         this.OLGain = parseFloat((arguments[0]["OLGain"]))

@@ -27,6 +27,14 @@ function TCLSS_f() {
         return this.x;
     }
     TCLSS_f.prototype.get = function TCLSS_f() {
+        var options = {
+            A:["A matrix",this.A],
+            B:["B matrix",this.B],
+            C:["C matrix",this.C],
+            D:["D matrix",this.D],
+            x0:["Initial state",this.x0],
+        }
+        return options;
     }
     TCLSS_f.prototype.set = function TCLSS_f() {
         this.A = parseFloat((arguments[0]["A"]))

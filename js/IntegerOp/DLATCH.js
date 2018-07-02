@@ -41,6 +41,9 @@ function DLATCH() {
         return this.x;
     }
     DLATCH.prototype.get = function DLATCH() {
+        var options = {
+        }
+        return options;
     }
     DLATCH.prototype.set = function DLATCH() {
         this.x = arg1;

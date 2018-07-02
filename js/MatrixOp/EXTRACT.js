@@ -29,6 +29,12 @@ function EXTRACT() {
         return this.x;
     }
     EXTRACT.prototype.get = function EXTRACT() {
+        var options = {
+            typ:["Datatype (1=real double  2=Complex)",this.typ],
+            a:["Lines to extract",this.a],
+            b:["Columns to extract",this.b],
+        }
+        return options;
     }
     EXTRACT.prototype.set = function EXTRACT() {
         this.typ = parseFloat((arguments[0]["typ"]))

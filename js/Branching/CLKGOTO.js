@@ -18,6 +18,11 @@ function CLKGOTO() {
         return this.x;
     }
     CLKGOTO.prototype.get = function CLKGOTO() {
+        var options = {
+            tag:["Tag",this.tag],
+            tagvis:["Tag Visibility (1=Local 2=Scoped 3=Global)",this.tagvis],
+        }
+        return options;
     }
     CLKGOTO.prototype.set = function CLKGOTO() {
         this.tag = parseFloat((arguments[0]["tag"]))

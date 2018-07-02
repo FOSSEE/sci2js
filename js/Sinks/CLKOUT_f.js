@@ -17,6 +17,9 @@ function CLKOUT_f() {
         return this.x;
     }
     CLKOUT_f.prototype.get = function CLKOUT_f() {
+        var options = {
+        }
+        return options;
     }
     CLKOUT_f.prototype.set = function CLKOUT_f() {
         this.prt = parseFloat((arguments[0]["prt"]))

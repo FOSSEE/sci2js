@@ -23,6 +23,9 @@ function INIMPL_f() {
         return this.x;
     }
     INIMPL_f.prototype.get = function INIMPL_f() {
+        var options = {
+        }
+        return options;
     }
     INIMPL_f.prototype.set = function INIMPL_f() {
         this.prt = parseFloat((arguments[0]["prt"]))

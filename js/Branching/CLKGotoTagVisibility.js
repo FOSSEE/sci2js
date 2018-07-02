@@ -23,6 +23,10 @@ function CLKGotoTagVisibility() {
         return this.x;
     }
     CLKGotoTagVisibility.prototype.get = function CLKGotoTagVisibility() {
+        var options = {
+            tag:["GotoTag",this.tag],
+        }
+        return options;
     }
     CLKGotoTagVisibility.prototype.set = function CLKGotoTagVisibility() {
         this.tag = parseFloat((arguments[0]["tag"]))

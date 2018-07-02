@@ -22,6 +22,12 @@ function DEADBAND() {
         return this.x;
     }
     DEADBAND.prototype.get = function DEADBAND() {
+        var options = {
+            maxp:["End of dead band",this.maxp],
+            minp:["Start of dead band",this.minp],
+            zeroc:["zero crossing (0:no, 1:yes)",this.zeroc],
+        }
+        return options;
     }
     DEADBAND.prototype.set = function DEADBAND() {
         this.maxp = parseFloat((arguments[0]["maxp"]))

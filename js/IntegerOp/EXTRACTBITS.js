@@ -22,6 +22,13 @@ function EXTRACTBITS() {
         return this.x;
     }
     EXTRACTBITS.prototype.get = function EXTRACTBITS() {
+        var options = {
+            Datatype:[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),this.Datatype],
+            rule:["Bits to extract",this.rule],
+            bit:["Number of Bits or Index of Bit",this.bit],
+            scal:["Treat Bit Field as an Integer (0:No, 1:Yes)",this.scal],
+        }
+        return options;
     }
     EXTRACTBITS.prototype.set = function EXTRACTBITS() {
         this.Datatype = parseFloat((arguments[0]["Datatype"]))

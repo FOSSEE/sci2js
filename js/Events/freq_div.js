@@ -111,6 +111,11 @@ function freq_div() {
         return this.x;
     }
     freq_div.prototype.get = function freq_div() {
+        var options = {
+            %ph:["Phase (0 to division factor -1)",%ph],
+            %df:["Division factor",%df],
+        }
+        return options;
     }
     freq_div.prototype.set = function freq_div() {
         %ph = parseFloat((arguments[0]["%ph"]))

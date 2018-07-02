@@ -22,6 +22,12 @@ function Counter() {
         return this.x;
     }
     Counter.prototype.get = function Counter() {
+        var options = {
+            minim:["Minimum",this.minim],
+            maxim:["Maximum",this.maxim],
+            rule:["Rule (1:Increment, 2:Decrement)",this.rule],
+        }
+        return options;
     }
     Counter.prototype.set = function Counter() {
         this.minim = parseFloat((arguments[0]["minim"]))

@@ -18,6 +18,10 @@ function END_c() {
         return this.x;
     }
     END_c.prototype.get = function END_c() {
+        var options = {
+            tf:["Final simulation time",this.tf],
+        }
+        return options;
     }
     END_c.prototype.set = function END_c() {
         this.tf = parseFloat((arguments[0]["tf"]))

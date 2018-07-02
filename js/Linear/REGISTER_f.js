@@ -19,6 +19,9 @@ function REGISTER_f() {
         return this.x;
     }
     REGISTER_f.prototype.get = function REGISTER_f() {
+        var options = {
+        }
+        return options;
     }
     REGISTER_f.prototype.set = function REGISTER_f() {
         this.z0 = parseFloat((arguments[0]["z0"]))

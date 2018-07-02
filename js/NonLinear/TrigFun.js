@@ -16,6 +16,9 @@ function TrigFun() {
         return this.x;
     }
     TrigFun.prototype.get = function TrigFun() {
+        var options = {
+        }
+        return options;
     }
     TrigFun.prototype.set = function TrigFun() {
         this.fun = parseFloat((arguments[0]["fun"]))

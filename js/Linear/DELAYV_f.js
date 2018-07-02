@@ -25,6 +25,12 @@ function DELAYV_f() {
         return this.x;
     }
     DELAYV_f.prototype.get = function DELAYV_f() {
+        var options = {
+            nin:["Number of inputs",this.nin],
+            zz0:["Register initial condition",this.zz0],
+            T:["Max delay",this.T],
+        }
+        return options;
     }
     DELAYV_f.prototype.set = function DELAYV_f() {
         this.nin = parseFloat((arguments[0]["nin"]))

@@ -25,6 +25,14 @@ function LOOKUP2D() {
         return this.x;
     }
     LOOKUP2D.prototype.get = function LOOKUP2D() {
+        var options = {
+            xx:["Row index input values",this.xx],
+            yy:["Column index input values",this.yy],
+            zz:["Table data",this.zz],
+            Method:["Lookup method(1..5)",this.Method],
+            graf:["Launch graphic window(y/n)?",this.graf],
+        }
+        return options;
     }
     LOOKUP2D.prototype.set = function LOOKUP2D() {
         this.xx = parseFloat((arguments[0]["xx"]))

@@ -27,6 +27,15 @@ function DLRADAPT_f() {
         return this.x;
     }
     DLRADAPT_f.prototype.get = function DLRADAPT_f() {
+        var options = {
+            p:["Vector of p mesh points",this.p],
+            rn:["Numerator roots (one line for each mesh)",this.rn],
+            rd:["Denominator roots (one line for each mesh)",this.rd],
+            g:["Vector of gain at mesh points",this.g],
+            last_u:["past inputs (Num degree values)",this.last_u],
+            last_y:["past outputs (Den degree values)",this.last_y],
+        }
+        return options;
     }
     DLRADAPT_f.prototype.set = function DLRADAPT_f() {
         this.p = parseFloat((arguments[0]["p"]))

@@ -17,6 +17,9 @@ function FSV_f() {
         return this.x;
     }
     FSV_f.prototype.get = function FSV_f() {
+        var options = {
+        }
+        return options;
     }
     FSV_f.prototype.set = function FSV_f() {
         this.x = arg1;

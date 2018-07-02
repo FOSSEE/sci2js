@@ -21,6 +21,12 @@ function CONSTRAINT2_c() {
         return this.x;
     }
     CONSTRAINT2_c.prototype.get = function CONSTRAINT2_c() {
+        var options = {
+            x0:["Initial guess values of states x",this.x0],
+            xd0:["Initial guess values of derivative x\'",this.xd0],
+            id:["Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0",this.id],
+        }
+        return options;
     }
     CONSTRAINT2_c.prototype.set = function CONSTRAINT2_c() {
         this.x0 = parseFloat((arguments[0]["x0"]))

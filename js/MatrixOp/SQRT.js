@@ -19,6 +19,10 @@ function SQRT() {
         return this.x;
     }
     SQRT.prototype.get = function SQRT() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     SQRT.prototype.set = function SQRT() {
         this.typ = parseFloat((arguments[0]["typ"]))

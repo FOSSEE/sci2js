@@ -85,6 +85,9 @@ function EDGE_TRIGGER() {
         return this.x;
     }
     EDGE_TRIGGER.prototype.get = function EDGE_TRIGGER() {
+        var options = {
+        }
+        return options;
     }
     EDGE_TRIGGER.prototype.set = function EDGE_TRIGGER() {
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {

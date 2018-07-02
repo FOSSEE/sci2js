@@ -24,6 +24,13 @@ function WFILE_f() {
         return this.x;
     }
     WFILE_f.prototype.get = function WFILE_f() {
+        var options = {
+            in1:["Input Size",this.in1],
+            fname1:["Output File Name",this.fname1],
+            frmt1:["Output Format",this.frmt1],
+            N:["Buffer Size",this.N],
+        }
+        return options;
     }
     WFILE_f.prototype.set = function WFILE_f() {
         this.in1 = parseFloat((arguments[0]["in1"]))

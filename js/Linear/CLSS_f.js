@@ -25,6 +25,14 @@ function CLSS_f() {
         return this.x;
     }
     CLSS_f.prototype.get = function CLSS_f() {
+        var options = {
+            A:["A matrix",this.A],
+            B:["B matrix",this.B],
+            C:["C matrix",this.C],
+            D:["D matrix",this.D],
+            x0:["Initial state",this.x0],
+        }
+        return options;
     }
     CLSS_f.prototype.set = function CLSS_f() {
         this.A = parseFloat((arguments[0]["A"]))

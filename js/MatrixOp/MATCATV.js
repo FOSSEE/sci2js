@@ -30,6 +30,10 @@ function MATCATV() {
         return this.x;
     }
     MATCATV.prototype.get = function MATCATV() {
+        var options = {
+            nin:["Number od inputs",this.nin],
+        }
+        return options;
     }
     MATCATV.prototype.set = function MATCATV() {
         this.nin = parseFloat((arguments[0]["nin"]))

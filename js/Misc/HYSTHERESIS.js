@@ -23,6 +23,14 @@ function HYSTHERESIS() {
         return this.x;
     }
     HYSTHERESIS.prototype.get = function HYSTHERESIS() {
+        var options = {
+            high_lim:["switch on at",this.high_lim],
+            low_lim:["switch off at",this.low_lim],
+            out_high:["output when on",this.out_high],
+            out_low:["output when off",this.out_low],
+            nzz:["use zero crossing: yes (1), no (0)",this.nzz],
+        }
+        return options;
     }
     HYSTHERESIS.prototype.set = function HYSTHERESIS() {
         this.high_lim = parseFloat((arguments[0]["high_lim"]))

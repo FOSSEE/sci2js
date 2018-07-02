@@ -55,6 +55,9 @@ function STEP_FUNCTION() {
         return this.x;
     }
     STEP_FUNCTION.prototype.get = function STEP_FUNCTION() {
+        var options = {
+        }
+        return options;
     }
     STEP_FUNCTION.prototype.set = function STEP_FUNCTION() {
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {

@@ -21,6 +21,11 @@ function DOLLAR_m() {
         return this.x;
     }
     DOLLAR_m.prototype.get = function DOLLAR_m() {
+        var options = {
+            a:["initial condition",this.a],
+            inh:["Inherit (no:0, yes:1)",this.inh],
+        }
+        return options;
     }
     DOLLAR_m.prototype.set = function DOLLAR_m() {
         this.a = parseFloat((arguments[0]["a"]))

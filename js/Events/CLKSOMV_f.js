@@ -16,6 +16,9 @@ function CLKSOMV_f() {
         return this.x;
     }
     CLKSOMV_f.prototype.get = function CLKSOMV_f() {
+        var options = {
+        }
+        return options;
     }
     CLKSOMV_f.prototype.set = function CLKSOMV_f() {
         this.x = arg1;

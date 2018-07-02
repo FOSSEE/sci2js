@@ -69,6 +69,11 @@ function DELAY_f() {
         return this.x;
     }
     DELAY_f.prototype.get = function DELAY_f() {
+        var options = {
+            dt:["Discretization time step",this.dt],
+            z0:["Register initial state",this.z0],
+        }
+        return options;
     }
     DELAY_f.prototype.set = function DELAY_f() {
         this.dt = parseFloat((arguments[0]["dt"]))

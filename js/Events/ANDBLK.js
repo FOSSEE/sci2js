@@ -71,6 +71,9 @@ function ANDBLK() {
         return this.x;
     }
     ANDBLK.prototype.get = function ANDBLK() {
+        var options = {
+        }
+        return options;
     }
     ANDBLK.prototype.set = function ANDBLK() {
         this.x = arg1;

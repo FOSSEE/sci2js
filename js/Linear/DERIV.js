@@ -16,6 +16,9 @@ function DERIV() {
         return this.x;
     }
     DERIV.prototype.get = function DERIV() {
+        var options = {
+        }
+        return options;
     }
     DERIV.prototype.set = function DERIV() {
         this.x = arg1;

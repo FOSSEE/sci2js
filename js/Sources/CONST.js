@@ -18,6 +18,9 @@ function CONST() {
         return this.x;
     }
     CONST.prototype.get = function CONST() {
+        var options = {
+        }
+        return options;
     }
     CONST.prototype.set = function CONST() {
         this.C = parseFloat((arguments[0]["C"]))

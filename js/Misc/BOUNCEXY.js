@@ -39,6 +39,17 @@ function BOUNCEXY() {
         return this.x;
     }
     BOUNCEXY.prototype.get = function BOUNCEXY() {
+        var options = {
+            clrs:["colors",this.clrs],
+            siz:["radii",this.siz],
+            win:["window number (-1 for automatic)",this.win],
+            imode:["animation mode (0,1)",this.imode],
+            xmin:["Xmin",this.xmin],
+            xmax:["Xmax",this.xmax],
+            ymin:["Ymin",this.ymin],
+            ymax:["Ymax",this.ymax],
+        }
+        return options;
     }
     BOUNCEXY.prototype.set = function BOUNCEXY() {
         this.clrs = parseFloat((arguments[0]["clrs"]))

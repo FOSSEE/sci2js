@@ -29,6 +29,11 @@ function MATEIG() {
         return this.x;
     }
     MATEIG.prototype.get = function MATEIG() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            decomptyp:["decomposition type (1=eig values  2=eig values+eig vectors",this.decomptyp],
+        }
+        return options;
     }
     MATEIG.prototype.set = function MATEIG() {
         this.typ = parseFloat((arguments[0]["typ"]))

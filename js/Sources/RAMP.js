@@ -23,6 +23,12 @@ function RAMP() {
         return this.x;
     }
     RAMP.prototype.get = function RAMP() {
+        var options = {
+            slope:["Slope",this.slope],
+            stt:["Start Time",this.stt],
+            iout:["Initial Value",this.iout],
+        }
+        return options;
     }
     RAMP.prototype.set = function RAMP() {
         this.slope = parseFloat((arguments[0]["slope"]))

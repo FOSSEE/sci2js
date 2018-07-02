@@ -20,6 +20,10 @@ function EDGETRIGGER() {
         return this.x;
     }
     EDGETRIGGER.prototype.get = function EDGETRIGGER() {
+        var options = {
+            edge:["rising (1), falling (-1), both (0)",this.edge],
+        }
+        return options;
     }
     EDGETRIGGER.prototype.set = function EDGETRIGGER() {
         this.edge = parseFloat((arguments[0]["edge"]))

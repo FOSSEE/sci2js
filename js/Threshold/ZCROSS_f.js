@@ -21,6 +21,9 @@ function ZCROSS_f() {
         return this.x;
     }
     ZCROSS_f.prototype.get = function ZCROSS_f() {
+        var options = {
+        }
+        return options;
     }
     ZCROSS_f.prototype.set = function ZCROSS_f() {
         this.in1 = parseFloat((arguments[0]["in1"]))

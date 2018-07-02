@@ -29,6 +29,10 @@ function MATMAGPHI() {
         return this.x;
     }
     MATMAGPHI.prototype.get = function MATMAGPHI() {
+        var options = {
+            decomptyp:["decomposition type (1=Complex2MAG&PHI 2=MAG&PHI2Complex)",this.decomptyp],
+        }
+        return options;
     }
     MATMAGPHI.prototype.set = function MATMAGPHI() {
         this.decomptyp = parseFloat((arguments[0]["decomptyp"]))

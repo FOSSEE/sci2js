@@ -36,6 +36,9 @@ function SRFLIPFLOP() {
         return this.x;
     }
     SRFLIPFLOP.prototype.get = function SRFLIPFLOP() {
+        var options = {
+        }
+        return options;
     }
     SRFLIPFLOP.prototype.set = function SRFLIPFLOP() {
         this.init = parseFloat((arguments[0]["init"]))

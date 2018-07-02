@@ -23,6 +23,9 @@ function CURV_f() {
         return this.x;
     }
     CURV_f.prototype.get = function CURV_f() {
+        var options = {
+        }
+        return options;
     }
     CURV_f.prototype.set = function CURV_f() {
         this.x = arg1;

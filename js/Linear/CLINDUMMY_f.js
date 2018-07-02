@@ -16,6 +16,9 @@ function CLINDUMMY_f() {
         return this.x;
     }
     CLINDUMMY_f.prototype.get = function CLINDUMMY_f() {
+        var options = {
+        }
+        return options;
     }
     CLINDUMMY_f.prototype.set = function CLINDUMMY_f() {
         this.x = arg1;

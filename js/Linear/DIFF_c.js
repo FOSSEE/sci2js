@@ -18,6 +18,11 @@ function DIFF_c() {
         return this.x;
     }
     DIFF_c.prototype.get = function DIFF_c() {
+        var options = {
+            x0:["Initial state",this.x0],
+            xd0:["Initial Derivative",this.xd0],
+        }
+        return options;
     }
     DIFF_c.prototype.set = function DIFF_c() {
         this.x0 = parseFloat((arguments[0]["x0"]))

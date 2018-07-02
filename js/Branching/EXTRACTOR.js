@@ -18,6 +18,10 @@ function EXTRACTOR() {
         return this.x;
     }
     EXTRACTOR.prototype.get = function EXTRACTOR() {
+        var options = {
+            ind:["indices to extract",this.ind],
+        }
+        return options;
     }
     EXTRACTOR.prototype.set = function EXTRACTOR() {
         this.ind = parseFloat((arguments[0]["ind"]))

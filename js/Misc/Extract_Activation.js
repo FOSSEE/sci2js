@@ -90,6 +90,9 @@ function Extract_Activation() {
         return this.x;
     }
     Extract_Activation.prototype.get = function Extract_Activation() {
+        var options = {
+        }
+        return options;
     }
     Extract_Activation.prototype.set = function Extract_Activation() {
         this.x = arg1;

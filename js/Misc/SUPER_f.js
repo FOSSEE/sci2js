@@ -26,6 +26,9 @@ function SUPER_f() {
         return this.x;
     }
     SUPER_f.prototype.get = function SUPER_f() {
+        var options = {
+        }
+        return options;
     }
     SUPER_f.prototype.set = function SUPER_f() {
         xcos(arg1.model.rpar);

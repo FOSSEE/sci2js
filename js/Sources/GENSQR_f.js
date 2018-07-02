@@ -20,6 +20,10 @@ function GENSQR_f() {
         return this.x;
     }
     GENSQR_f.prototype.get = function GENSQR_f() {
+        var options = {
+            Amplitude:["Amplitude",this.Amplitude],
+        }
+        return options;
     }
     GENSQR_f.prototype.set = function GENSQR_f() {
         this.Amplitude = parseFloat((arguments[0]["Amplitude"]))

@@ -52,6 +52,9 @@ function JKFLIPFLOP() {
         return this.x;
     }
     JKFLIPFLOP.prototype.get = function JKFLIPFLOP() {
+        var options = {
+        }
+        return options;
     }
     JKFLIPFLOP.prototype.set = function JKFLIPFLOP() {
         this.init = parseFloat((arguments[0]["init"]))

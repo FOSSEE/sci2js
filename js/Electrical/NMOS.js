@@ -33,6 +33,18 @@ function NMOS() {
         return this.x;
     }
     NMOS.prototype.get = function NMOS() {
+        var options = {
+            W:["Width [m]",this.W],
+            L:["Length [m]",this.L],
+            Beta:["Transconductance parameter [A/(V*V)]",this.Beta],
+            Vt:["Zero bias threshold voltage [V]",this.Vt],
+            K2:["Bulk threshold parameter",this.K2],
+            K5:["Reduction of pinch-off region",this.K5],
+            dW:["Narrowing of channel [m]",this.dW],
+            dL:["Shortening of channel [m]",this.dL],
+            RDS:["Drain-Source-Resistance [Ohm]",this.RDS],
+        }
+        return options;
     }
     NMOS.prototype.set = function NMOS() {
         this.W = parseFloat((arguments[0]["W"]))

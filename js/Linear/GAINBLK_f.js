@@ -20,6 +20,10 @@ function GAINBLK_f() {
         return this.x;
     }
     GAINBLK_f.prototype.get = function GAINBLK_f() {
+        var options = {
+            gain:["Gain",this.gain],
+        }
+        return options;
     }
     GAINBLK_f.prototype.set = function GAINBLK_f() {
         this.gain = parseFloat((arguments[0]["gain"]))

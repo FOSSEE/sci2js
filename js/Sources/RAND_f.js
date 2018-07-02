@@ -24,6 +24,13 @@ function RAND_f() {
         return this.x;
     }
     RAND_f.prototype.get = function RAND_f() {
+        var options = {
+            flag:["flag",this.flag],
+            a:["A",this.a],
+            b:["B",this.b],
+            seed_c:["seed",this.seed_c],
+        }
+        return options;
     }
     RAND_f.prototype.set = function RAND_f() {
         this.flag = parseFloat((arguments[0]["flag"]))

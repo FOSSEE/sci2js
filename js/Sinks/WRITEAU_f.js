@@ -25,6 +25,11 @@ function WRITEAU_f() {
         return this.x;
     }
     WRITEAU_f.prototype.get = function WRITEAU_f() {
+        var options = {
+            N:["Buffer Size",this.N],
+            swap:["Swap Mode (0:No, 1:Yes)",this.swap],
+        }
+        return options;
     }
     WRITEAU_f.prototype.set = function WRITEAU_f() {
         this.N = parseFloat((arguments[0]["N"]))

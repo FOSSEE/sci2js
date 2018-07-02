@@ -22,6 +22,11 @@ function GENERAL_f() {
         return this.x;
     }
     GENERAL_f.prototype.get = function GENERAL_f() {
+        var options = {
+        in1:["Input size",this.in1],
+        out:["Number of event output",this.out],
+        }
+        return options;
     }
     GENERAL_f.prototype.set = function GENERAL_f() {
         this.in1 = parseFloat((arguments[0]["in1"]))

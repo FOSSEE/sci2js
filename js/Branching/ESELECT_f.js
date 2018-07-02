@@ -23,6 +23,12 @@ function ESELECT_f() {
         return this.x;
     }
     ESELECT_f.prototype.get = function ESELECT_f() {
+        var options = {
+            out:["number of output event ports",this.out],
+            inh:["Inherit (1: no, 0: yes)",this.inh],
+            nmod:["zero-crossing (0: no, 1: yes)",this.nmod],
+        }
+        return options;
     }
     ESELECT_f.prototype.set = function ESELECT_f() {
         this.out = parseFloat((arguments[0]["out"]))

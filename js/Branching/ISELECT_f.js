@@ -21,6 +21,11 @@ function ISELECT_f() {
         return this.x;
     }
     ISELECT_f.prototype.get = function ISELECT_f() {
+        var options = {
+            nout:["number of outputs",this.nout],
+            z0:["initial connected output",this.z0],
+        }
+        return options;
     }
     ISELECT_f.prototype.set = function ISELECT_f() {
         this.nout = parseFloat((arguments[0]["nout"]))

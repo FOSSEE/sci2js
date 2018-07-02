@@ -21,6 +21,11 @@ function SWITCH_f() {
         return this.x;
     }
     SWITCH_f.prototype.get = function SWITCH_f() {
+        var options = {
+            nin:["number of inputs",this.nin],
+            z0:["connected input",this.z0],
+        }
+        return options;
     }
     SWITCH_f.prototype.set = function SWITCH_f() {
         this.nin = parseFloat((arguments[0]["nin"]))

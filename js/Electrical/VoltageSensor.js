@@ -23,6 +23,9 @@ function VoltageSensor() {
         return this.x;
     }
     VoltageSensor.prototype.get = function VoltageSensor() {
+        var options = {
+        }
+        return options;
     }
     VoltageSensor.prototype.set = function VoltageSensor() {
         this.x = arg1;

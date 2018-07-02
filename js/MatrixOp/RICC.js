@@ -29,6 +29,11 @@ function RICC() {
         return this.x;
     }
     RICC.prototype.get = function RICC() {
+        var options = {
+            tpe:["Type (1=Cont  2=Disc)",this.tpe],
+            mod:["Model(1=Schr  2=sign(cont) inv(disc))",this.mod],
+        }
+        return options;
     }
     RICC.prototype.set = function RICC() {
         this.tpe = parseFloat((arguments[0]["tpe"]))

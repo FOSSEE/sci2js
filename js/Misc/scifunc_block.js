@@ -33,6 +33,18 @@ function scifunc_block() {
         return this.x;
     }
     scifunc_block.prototype.get = function scifunc_block() {
+        var options = {
+            i:["input ports sizes",this.i],
+            o:["output port sizes",this.o],
+            ci:["input event ports sizes",this.ci],
+            co:["output events ports sizes",this.co],
+            xx:["initial continuous state",this.xx],
+            z:["initial discrete state",this.z],
+            rpar:["System parameters vector",this.rpar],
+            auto0:["initial firing vector (<0 for no firing)",this.auto0],
+            deptime:["is block always active (0:no, 1:yes)",this.deptime],
+        }
+        return options;
     }
     scifunc_block.prototype.set = function scifunc_block() {
         this.i = parseFloat((arguments[0]["i"]))

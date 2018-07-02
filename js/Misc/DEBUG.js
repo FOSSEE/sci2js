@@ -13,6 +13,9 @@ function DEBUG() {
         return this.x;
     }
     DEBUG.prototype.get = function DEBUG() {
+        var options = {
+        }
+        return options;
     }
     DEBUG.prototype.set = function DEBUG() {
         this.x = arg1;

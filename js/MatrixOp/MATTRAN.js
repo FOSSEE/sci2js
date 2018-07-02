@@ -17,6 +17,11 @@ function MATTRAN() {
         return this.x;
     }
     MATTRAN.prototype.get = function MATTRAN() {
+        var options = {
+            typ:["Datatype(1=real double 2=Complex)",this.typ],
+            rule:["rule (1=.\' 2=\')",this.rule],
+        }
+        return options;
     }
     MATTRAN.prototype.set = function MATTRAN() {
         this.typ = parseFloat((arguments[0]["typ"]))

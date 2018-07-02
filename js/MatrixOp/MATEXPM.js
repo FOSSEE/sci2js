@@ -29,6 +29,10 @@ function MATEXPM() {
         return this.x;
     }
     MATEXPM.prototype.get = function MATEXPM() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATEXPM.prototype.set = function MATEXPM() {
         this.typ = parseFloat((arguments[0]["typ"]))

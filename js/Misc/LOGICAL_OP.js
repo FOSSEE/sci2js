@@ -20,6 +20,13 @@ function LOGICAL_OP() {
         return this.x;
     }
     LOGICAL_OP.prototype.get = function LOGICAL_OP() {
+        var options = {
+            nin:["number of inputs",this.nin],
+            rule:["Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)",this.rule],
+            Datatype:["Datatype (1=double 3=int32 ...)",this.Datatype],
+            tp:["Bitwise Rule(0=No 1=yes)",this.tp],
+        }
+        return options;
     }
     LOGICAL_OP.prototype.set = function LOGICAL_OP() {
         this.nin = parseFloat((arguments[0]["nin"]))

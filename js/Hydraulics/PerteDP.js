@@ -33,6 +33,15 @@ function PerteDP() {
         return this.x;
     }
     PerteDP.prototype.get = function PerteDP() {
+        var options = {
+            L:["Longueur du tube : L (m)",this.L],
+            D:["Diamètre interne du tube : D (m)",this.D],
+            lambda:["Coefficient de perte de charge-frottement(S.U) : lambda",this.lambda],
+            z1:["Altitude entrée tuyauterie : z1 (m)",this.z1],
+            z2:["Altitude sortie tuyauterie : z2 (m)",this.z2],
+            p_rho:["Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)",this.p_rho],
+        }
+        return options;
     }
     PerteDP.prototype.set = function PerteDP() {
         this.L = parseFloat((arguments[0]["L"]))

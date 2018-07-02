@@ -24,6 +24,13 @@ function fortran_block() {
         return this.x;
     }
     fortran_block.prototype.get = function fortran_block() {
+        var options = {
+            i:["input ports sizes",this.i],
+            o:["output port sizes",this.o],
+            rpar:["System parameters vector",this.rpar],
+            funam:["function name",this.funam],
+        }
+        return options;
     }
     fortran_block.prototype.set = function fortran_block() {
         this.i = parseFloat((arguments[0]["i"]))

@@ -24,6 +24,11 @@ function GAINBLK() {
         return this.x;
     }
     GAINBLK.prototype.get = function GAINBLK() {
+        var options = {
+            gain:["Gain",this.gain],
+            over:["Do On Overflow(0=Nothing 1=Saturate 2=Error)",this.over],
+        }
+        return options;
     }
     GAINBLK.prototype.set = function GAINBLK() {
         this.gain = parseFloat((arguments[0]["gain"]))

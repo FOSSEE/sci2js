@@ -19,6 +19,11 @@ function M_freq() {
         return this.x;
     }
     M_freq.prototype.get = function M_freq() {
+        var options = {
+            frequ:["Sample time",this.frequ],
+            offset:["Offset",this.offset],
+        }
+        return options;
     }
     M_freq.prototype.set = function M_freq() {
         this.frequ = parseFloat((arguments[0]["frequ"]))

@@ -18,6 +18,9 @@ function MOTOR() {
         return this.x;
     }
     MOTOR.prototype.get = function MOTOR() {
+        var options = {
+        }
+        return options;
     }
     MOTOR.prototype.set = function MOTOR() {
         this.x = arg1;

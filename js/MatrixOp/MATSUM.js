@@ -29,6 +29,11 @@ function MATSUM() {
         return this.x;
     }
     MATSUM.prototype.get = function MATSUM() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+            decomptyp:["Sum along (0=all 1=lines  2=Columns)",this.decomptyp],
+        }
+        return options;
     }
     MATSUM.prototype.set = function MATSUM() {
         this.typ = parseFloat((arguments[0]["typ"]))

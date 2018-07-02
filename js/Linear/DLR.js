@@ -24,6 +24,11 @@ function DLR() {
         return this.x;
     }
     DLR.prototype.get = function DLR() {
+        var options = {
+            num:["Numerator (z)",this.num],
+            den:["Denominator (z)",this.den],
+        }
+        return options;
     }
     DLR.prototype.set = function DLR() {
         this.num = parseFloat((arguments[0]["num"]))

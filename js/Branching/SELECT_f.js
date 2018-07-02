@@ -21,6 +21,11 @@ function SELECT_f() {
         return this.x;
     }
     SELECT_f.prototype.get = function SELECT_f() {
+        var options = {
+            nin:["number of inputs",this.nin],
+            z0:["initial connected input",this.z0],
+        }
+        return options;
     }
     SELECT_f.prototype.set = function SELECT_f() {
         this.nin = parseFloat((arguments[0]["nin"]))

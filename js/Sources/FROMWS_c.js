@@ -25,6 +25,13 @@ function FROMWS_c() {
         return this.x;
     }
     FROMWS_c.prototype.get = function FROMWS_c() {
+        var options = {
+            varnam:["Variable name",this.varnam],
+            Method:["Interpolation Method",this.Method],
+            ZC:["Enable zero crossing(0:No, 1:Yes)?",this.ZC],
+            OutEnd:["Output at end(0:Zero, 1:Hold, 2:Repeat)",this.OutEnd],
+        }
+        return options;
     }
     FROMWS_c.prototype.set = function FROMWS_c() {
         this.varnam = parseFloat((arguments[0]["varnam"]))

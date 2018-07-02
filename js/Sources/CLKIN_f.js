@@ -17,6 +17,9 @@ function CLKIN_f() {
         return this.x;
     }
     CLKIN_f.prototype.get = function CLKIN_f() {
+        var options = {
+        }
+        return options;
     }
     CLKIN_f.prototype.set = function CLKIN_f() {
         this.prt = parseFloat((arguments[0]["prt"]))

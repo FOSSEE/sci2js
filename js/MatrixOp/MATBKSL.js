@@ -29,6 +29,10 @@ function MATBKSL() {
         return this.x;
     }
     MATBKSL.prototype.get = function MATBKSL() {
+        var options = {
+            typ:["Datatype (1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATBKSL.prototype.set = function MATBKSL() {
         this.typ = parseFloat((arguments[0]["typ"]))

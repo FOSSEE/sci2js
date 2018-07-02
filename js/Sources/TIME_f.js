@@ -14,6 +14,9 @@ function TIME_f() {
         return this.x;
     }
     TIME_f.prototype.get = function TIME_f() {
+        var options = {
+        }
+        return options;
     }
     TIME_f.prototype.set = function TIME_f() {
         this.x = arg1;

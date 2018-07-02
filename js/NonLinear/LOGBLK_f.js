@@ -19,6 +19,9 @@ function LOGBLK_f() {
         return this.x;
     }
     LOGBLK_f.prototype.get = function LOGBLK_f() {
+        var options = {
+        }
+        return options;
     }
     LOGBLK_f.prototype.set = function LOGBLK_f() {
         this.a = parseFloat((arguments[0]["a"]))

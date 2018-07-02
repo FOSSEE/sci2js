@@ -28,6 +28,14 @@ function CMAT3D() {
         return this.x;
     }
     CMAT3D.prototype.get = function CMAT3D() {
+        var options = {
+            vec_x:["Bounds Vector X (-1 for standard)",this.vec_x],
+            vec_y:["Bounds Vector Y (-1 for standard)",this.vec_y],
+            colormap:["ColorMap",this.colormap],
+            cmin:["Zmin",this.cmin],
+            cmax:["Zmax",this.cmax],
+        }
+        return options;
     }
     CMAT3D.prototype.set = function CMAT3D() {
         this.vec_x = parseFloat((arguments[0]["vec_x"]))

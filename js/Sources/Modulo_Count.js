@@ -20,6 +20,11 @@ function Modulo_Count() {
         return this.x;
     }
     Modulo_Count.prototype.get = function Modulo_Count() {
+        var options = {
+            ini_c:["Initial State (zero or positive number)",this.ini_c],
+            base:["Upper Limit (positive number)",this.base],
+        }
+        return options;
     }
     Modulo_Count.prototype.set = function Modulo_Count() {
         this.ini_c = parseFloat((arguments[0]["ini_c"]))

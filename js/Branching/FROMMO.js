@@ -26,6 +26,10 @@ function FROMMO() {
         return this.x;
     }
     FROMMO.prototype.get = function FROMMO() {
+        var options = {
+            tag:["Tag",this.tag],
+        }
+        return options;
     }
     FROMMO.prototype.set = function FROMMO() {
         this.tag = parseFloat((arguments[0]["tag"]))

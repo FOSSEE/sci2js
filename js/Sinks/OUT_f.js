@@ -20,6 +20,9 @@ function OUT_f() {
         return this.x;
     }
     OUT_f.prototype.get = function OUT_f() {
+        var options = {
+        }
+        return options;
     }
     OUT_f.prototype.set = function OUT_f() {
         this.prt = parseFloat((arguments[0]["prt"]))

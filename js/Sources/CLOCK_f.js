@@ -46,6 +46,11 @@ function CLOCK_f() {
         return this.x;
     }
     CLOCK_f.prototype.get = function CLOCK_f() {
+        var options = {
+            dt:["Period",this.dt],
+            t0:["Init time",this.t0],
+        }
+        return options;
     }
     CLOCK_f.prototype.set = function CLOCK_f() {
         this.dt = parseFloat((arguments[0]["dt"]))

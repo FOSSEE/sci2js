@@ -19,6 +19,11 @@ function REGISTER() {
         return this.x;
     }
     REGISTER.prototype.get = function REGISTER() {
+        var options = {
+            z0:["Register initial condition",this.z0],
+            it:["Datatype (1=double 3=int32 ...)",this.it],
+        }
+        return options;
     }
     REGISTER.prototype.set = function REGISTER() {
         this.z0 = parseFloat((arguments[0]["z0"]))

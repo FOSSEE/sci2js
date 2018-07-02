@@ -29,6 +29,9 @@ function MATZCONJ() {
         return this.x;
     }
     MATZCONJ.prototype.get = function MATZCONJ() {
+        var options = {
+        }
+        return options;
     }
     MATZCONJ.prototype.set = function MATZCONJ() {
         this.x = arg1;

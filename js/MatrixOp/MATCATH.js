@@ -29,6 +29,10 @@ function MATCATH() {
         return this.x;
     }
     MATCATH.prototype.get = function MATCATH() {
+        var options = {
+            nin:["Number of input",this.nin],
+        }
+        return options;
     }
     MATCATH.prototype.set = function MATCATH() {
         this.nin = parseFloat((arguments[0]["nin"]))

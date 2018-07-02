@@ -18,6 +18,9 @@ function PDE() {
         return this.x;
     }
     PDE.prototype.get = function PDE() {
+        var options = {
+        }
+        return options;
     }
     PDE.prototype.set = function PDE() {
         this.okk = parseFloat((arguments[0]["okk"]))

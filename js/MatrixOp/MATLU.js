@@ -29,6 +29,10 @@ function MATLU() {
         return this.x;
     }
     MATLU.prototype.get = function MATLU() {
+        var options = {
+            typ:["Datatype(1=real double  2=Complex)",this.typ],
+        }
+        return options;
     }
     MATLU.prototype.set = function MATLU() {
         this.typ = parseFloat((arguments[0]["typ"]))

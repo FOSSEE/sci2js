@@ -29,6 +29,10 @@ function MATZREIM() {
         return this.x;
     }
     MATZREIM.prototype.get = function MATZREIM() {
+        var options = {
+            decomptyp:["decomposition type (1=Complex2Real&Imag 2=Real&Imag2Complex)",this.decomptyp],
+        }
+        return options;
     }
     MATZREIM.prototype.set = function MATZREIM() {
         this.decomptyp = parseFloat((arguments[0]["decomptyp"]))

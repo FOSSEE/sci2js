@@ -23,6 +23,9 @@ function CurrentSensor() {
         return this.x;
     }
     CurrentSensor.prototype.get = function CurrentSensor() {
+        var options = {
+        }
+        return options;
     }
     CurrentSensor.prototype.set = function CurrentSensor() {
         this.x = arg1;

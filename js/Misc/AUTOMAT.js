@@ -31,6 +31,9 @@ function AUTOMAT() {
         return this.x;
     }
     AUTOMAT.prototype.get = function AUTOMAT() {
+        var options = {
+        }
+        return options;
     }
     AUTOMAT.prototype.set = function AUTOMAT() {
         this.x = arg1;

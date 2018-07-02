@@ -13,6 +13,9 @@ function ENDBLK() {
         return this.x;
     }
     ENDBLK.prototype.get = function ENDBLK() {
+        var options = {
+        }
+        return options;
     }
     ENDBLK.prototype.set = function ENDBLK() {
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {

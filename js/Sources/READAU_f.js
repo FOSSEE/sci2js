@@ -29,6 +29,12 @@ function READAU_f() {
         return this.x;
     }
     READAU_f.prototype.get = function READAU_f() {
+        var options = {
+            fname1:["Input File Name",this.fname1],
+            N:["Buffer size",this.N],
+            swap:["Swap Mode (0:No, 1:Yes)",this.swap],
+        }
+        return options;
     }
     READAU_f.prototype.set = function READAU_f() {
         this.fname1 = parseFloat((arguments[0]["fname1"]))

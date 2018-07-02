@@ -16,6 +16,9 @@ function func_block() {
         return this.x;
     }
     func_block.prototype.get = function func_block() {
+        var options = {
+        }
+        return options;
     }
     func_block.prototype.set = function func_block() {
         model = arg1.model;

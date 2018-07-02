@@ -18,6 +18,9 @@ function SOM_f() {
         return this.x;
     }
     SOM_f.prototype.get = function SOM_f() {
+        var options = {
+        }
+        return options;
     }
     SOM_f.prototype.set = function SOM_f() {
         this.x = arg1;

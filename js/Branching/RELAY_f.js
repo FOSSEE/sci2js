@@ -22,6 +22,11 @@ function RELAY_f() {
         return this.x;
     }
     RELAY_f.prototype.get = function RELAY_f() {
+        var options = {
+            nin:["number of inputs",this.nin],
+            z0:["initial connected input",this.z0],
+        }
+        return options;
     }
     RELAY_f.prototype.set = function RELAY_f() {
         this.nin = parseFloat((arguments[0]["nin"]))
