@@ -460,9 +460,9 @@ def p_assignment_expression(p):
     'assignment : lterm ASSIGNMENT expression'
     p[0] = '%*s%s %s %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[2], p[3])
 
-def p_getvalueassignment_getvalue_list_list(p):
-    'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET expression COMMA expression COMMA LIST OPENBRACKET getvaluelist CLOSEBRACKET COMMA expression CLOSEBRACKET'
-    p[0] = '%*s%s = %s(%s,%s,%s(%s),%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5], p[7], p[9], p[11], p[14])
+def p_getvalueassignment_getvalue_arguments(p):
+    'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET getvaluearguments CLOSEBRACKET'
+    p[0] = '%*s%s = %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5])
     lterm = p[1]
     if lterm[0] == '[':
         lterm = lterm[1:-1]
@@ -473,18 +473,29 @@ def p_getvalueassignment_getvalue_list_list(p):
             if var not in GLOBAL_VARS:
                 GLOBAL_VARS.add(var)
 
-def p_getvalueassignment_getvalue_var_var(p):
-    'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET expression COMMA expression COMMA VAR COMMA expression CLOSEBRACKET'
-    p[0] = '%*s%s = %s(%s,%s,%s,%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5], p[7], p[9], p[11])
-    lterm = p[1]
-    if lterm[0] == '[':
-        lterm = lterm[1:-1]
-        ltermvars = lterm.split(',')
-        for var in ltermvars:
-            if var in ('ok', 'exprs'):
-                continue
-            if var not in GLOBAL_VARS:
-                GLOBAL_VARS.add(var)
+def p_getvaluearguments_getvalue_list_list(p):
+    'getvaluearguments : expression COMMA OPENSQBRACKET termarrayarraylist CLOSESQBRACKET COMMA LIST OPENBRACKET getvaluelist CLOSEBRACKET COMMA expression'
+    p[0] = '%s,[%s],%s(%s),%s' % (p[1], p[4], p[7], p[9], p[12])
+
+def p_getvaluearguments_getvalue_list_semicolon_list(p):
+    'getvaluearguments : expression COMMA OPENSQBRACKET termarrayarraylist SEMICOLON CLOSESQBRACKET COMMA LIST OPENBRACKET getvaluelist CLOSEBRACKET COMMA expression'
+    p[0] = '%s,[%s],%s(%s),%s' % (p[1], p[4], p[8], p[10], p[13])
+
+def p_getvaluearguments_getvalue_list_string_list(p):
+    'getvaluearguments : expression COMMA OPENSQBRACKET DQSTRING CLOSESQBRACKET COMMA LIST OPENBRACKET getvaluelist CLOSEBRACKET COMMA expression'
+    p[0] = '%s,[%s],%s(%s),%s' % (p[1], p[4], p[7], p[9], p[12])
+
+def p_getvaluearguments_getvalue_string_list(p):
+    'getvaluearguments : expression COMMA DQSTRING COMMA LIST OPENBRACKET getvaluelist CLOSEBRACKET COMMA expression'
+    p[0] = '%s,%s,%s(%s),%s' % (p[1], p[3], p[5], p[7], p[10])
+
+def p_getvaluearguments_getvalue_gettext_string_list(p):
+    'getvaluearguments : expression COMMA FUNCTIONNAME OPENBRACKET DQSTRING CLOSEBRACKET COMMA LIST OPENBRACKET getvaluelist CLOSEBRACKET COMMA expression'
+    p[0] = '%s,%s(%s),%s(%s),%s' % (p[1], p[3], p[5], p[8], p[10], p[13])
+
+def p_getvaluearguments_getvalue_var_var(p):
+    'getvaluearguments : expression COMMA VAR COMMA VAR COMMA expression'
+    p[0] = '%s,%s,%s,%s' % (p[1], p[3], p[5], p[7])
 
 # end define assignment
 
