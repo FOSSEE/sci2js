@@ -20,6 +20,7 @@ function BIGSOM_f() {
     BIGSOM_f.prototype.get = function BIGSOM_f() {
     }
     BIGSOM_f.prototype.set = function BIGSOM_f() {
+        this.sgn = parseFloat((arguments[0]["sgn"]))
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

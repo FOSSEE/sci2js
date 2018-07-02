@@ -22,6 +22,9 @@ function M_SWITCH() {
     M_SWITCH.prototype.get = function M_SWITCH() {
     }
     M_SWITCH.prototype.set = function M_SWITCH() {
+        this.nin = parseFloat((arguments[0]["nin"]))
+        this.base = parseFloat((arguments[0]["base"]))
+        this.rule = parseFloat((arguments[0]["rule"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

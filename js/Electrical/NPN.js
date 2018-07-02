@@ -55,6 +55,23 @@ function NPN() {
     NPN.prototype.get = function NPN() {
     }
     NPN.prototype.set = function NPN() {
+        this.Bf = parseFloat((arguments[0]["Bf"]))
+        this.Br = parseFloat((arguments[0]["Br"]))
+        this.Is = parseFloat((arguments[0]["Is"]))
+        this.Vak = parseFloat((arguments[0]["Vak"]))
+        this.Tauf = parseFloat((arguments[0]["Tauf"]))
+        this.Taur = parseFloat((arguments[0]["Taur"]))
+        this.Ccs = parseFloat((arguments[0]["Ccs"]))
+        this.Cje = parseFloat((arguments[0]["Cje"]))
+        this.Cjc = parseFloat((arguments[0]["Cjc"]))
+        this.Phie = parseFloat((arguments[0]["Phie"]))
+        this.Me = parseFloat((arguments[0]["Me"]))
+        this.Phic = parseFloat((arguments[0]["Phic"]))
+        this.Mc = parseFloat((arguments[0]["Mc"]))
+        this.Gbc = parseFloat((arguments[0]["Gbc"]))
+        this.Gbe = parseFloat((arguments[0]["Gbe"]))
+        this.Vt = parseFloat((arguments[0]["Vt"]))
+        this.EMinMax = parseFloat((arguments[0]["EMinMax"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

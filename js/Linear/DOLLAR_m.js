@@ -23,6 +23,8 @@ function DOLLAR_m() {
     DOLLAR_m.prototype.get = function DOLLAR_m() {
     }
     DOLLAR_m.prototype.set = function DOLLAR_m() {
+        this.a = parseFloat((arguments[0]["a"]))
+        this.inh = parseFloat((arguments[0]["inh"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

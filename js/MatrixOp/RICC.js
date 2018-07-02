@@ -31,6 +31,8 @@ function RICC() {
     RICC.prototype.get = function RICC() {
     }
     RICC.prototype.set = function RICC() {
+        this.tpe = parseFloat((arguments[0]["tpe"]))
+        this.mod = parseFloat((arguments[0]["mod"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;

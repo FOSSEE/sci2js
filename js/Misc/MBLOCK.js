@@ -38,6 +38,14 @@ function MBLOCK() {
     MBLOCK.prototype.get = function MBLOCK() {
     }
     MBLOCK.prototype.set = function MBLOCK() {
+        this.Tin = parseFloat((arguments[0]["Tin"]))
+        this.Tintype = parseFloat((arguments[0]["Tintype"]))
+        this.Tout = parseFloat((arguments[0]["Tout"]))
+        this.Touttype = parseFloat((arguments[0]["Touttype"]))
+        this.Tparam = parseFloat((arguments[0]["Tparam"]))
+        this.pprop = parseFloat((arguments[0]["pprop"]))
+        this.Tfunam = parseFloat((arguments[0]["Tfunam"]))
+        this.lab_1 = parseFloat((arguments[0]["lab_1"]))
         this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;

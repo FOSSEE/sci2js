@@ -22,6 +22,9 @@ function SUMMATION() {
     SUMMATION.prototype.get = function SUMMATION() {
     }
     SUMMATION.prototype.set = function SUMMATION() {
+        this.Datatype = parseFloat((arguments[0]["Datatype"]))
+        this.sgn = parseFloat((arguments[0]["sgn"]))
+        this.satur = parseFloat((arguments[0]["satur"]))
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

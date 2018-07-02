@@ -21,6 +21,7 @@ function REGISTER_f() {
     REGISTER_f.prototype.get = function REGISTER_f() {
     }
     REGISTER_f.prototype.set = function REGISTER_f() {
+        this.z0 = parseFloat((arguments[0]["z0"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

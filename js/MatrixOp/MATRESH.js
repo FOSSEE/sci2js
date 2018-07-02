@@ -31,6 +31,10 @@ function MATRESH() {
     MATRESH.prototype.get = function MATRESH() {
     }
     MATRESH.prototype.set = function MATRESH() {
+        this.typ = parseFloat((arguments[0]["typ"]))
+        this.l1 = parseFloat((arguments[0]["l1"]))
+        this.out = parseFloat((arguments[0]["out"]))
+        this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;

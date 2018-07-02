@@ -25,6 +25,12 @@ function CEVENTSCOPE() {
     CEVENTSCOPE.prototype.get = function CEVENTSCOPE() {
     }
     CEVENTSCOPE.prototype.set = function CEVENTSCOPE() {
+        this.nclock = parseFloat((arguments[0]["nclock"]))
+        this.clrs = parseFloat((arguments[0]["clrs"]))
+        this.win = parseFloat((arguments[0]["win"]))
+        this.wpos = parseFloat((arguments[0]["wpos"]))
+        this.wdim = parseFloat((arguments[0]["wdim"]))
+        this.per = parseFloat((arguments[0]["per"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

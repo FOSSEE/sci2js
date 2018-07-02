@@ -24,6 +24,11 @@ function INTEGRAL() {
     INTEGRAL.prototype.get = function INTEGRAL() {
     }
     INTEGRAL.prototype.set = function INTEGRAL() {
+        this.x0 = parseFloat((arguments[0]["x0"]))
+        this.reinit = parseFloat((arguments[0]["reinit"]))
+        this.satur = parseFloat((arguments[0]["satur"]))
+        this.maxp = parseFloat((arguments[0]["maxp"]))
+        this.lowp = parseFloat((arguments[0]["lowp"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

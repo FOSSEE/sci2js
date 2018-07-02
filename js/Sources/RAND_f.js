@@ -26,6 +26,10 @@ function RAND_f() {
     RAND_f.prototype.get = function RAND_f() {
     }
     RAND_f.prototype.set = function RAND_f() {
+        this.flag = parseFloat((arguments[0]["flag"]))
+        this.a = parseFloat((arguments[0]["a"]))
+        this.b = parseFloat((arguments[0]["b"]))
+        this.seed_c = parseFloat((arguments[0]["seed_c"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

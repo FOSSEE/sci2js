@@ -24,6 +24,8 @@ function GENERAL_f() {
     GENERAL_f.prototype.get = function GENERAL_f() {
     }
     GENERAL_f.prototype.set = function GENERAL_f() {
+        this.in1 = parseFloat((arguments[0]["in1"]))
+        this.out = parseFloat((arguments[0]["out"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

@@ -27,6 +27,22 @@ function generic_block2() {
     generic_block2.prototype.get = function generic_block2() {
     }
     generic_block2.prototype.set = function generic_block2() {
+        this.function_name = parseFloat((arguments[0]["function_name"]))
+        this.funtyp = parseFloat((arguments[0]["funtyp"]))
+        this.i = parseFloat((arguments[0]["i"]))
+        this.o = parseFloat((arguments[0]["o"]))
+        this.ci = parseFloat((arguments[0]["ci"]))
+        this.co = parseFloat((arguments[0]["co"]))
+        this.xx = parseFloat((arguments[0]["xx"]))
+        this.z = parseFloat((arguments[0]["z"]))
+        this.rpar = parseFloat((arguments[0]["rpar"]))
+        this.ipar = parseFloat((arguments[0]["ipar"]))
+        this.nmode = parseFloat((arguments[0]["nmode"]))
+        this.nzcr = parseFloat((arguments[0]["nzcr"]))
+        this.auto0 = parseFloat((arguments[0]["auto0"]))
+        this.depu = parseFloat((arguments[0]["depu"]))
+        this.dept = parseFloat((arguments[0]["dept"]))
+        this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;

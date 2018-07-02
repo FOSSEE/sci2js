@@ -22,6 +22,8 @@ function EVTDLY_f() {
     EVTDLY_f.prototype.get = function EVTDLY_f() {
     }
     EVTDLY_f.prototype.set = function EVTDLY_f() {
+        this.dt = parseFloat((arguments[0]["dt"]))
+        this.ff = parseFloat((arguments[0]["ff"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

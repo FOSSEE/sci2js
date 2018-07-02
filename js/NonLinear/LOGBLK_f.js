@@ -21,6 +21,7 @@ function LOGBLK_f() {
     LOGBLK_f.prototype.get = function LOGBLK_f() {
     }
     LOGBLK_f.prototype.set = function LOGBLK_f() {
+        this.a = parseFloat((arguments[0]["a"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

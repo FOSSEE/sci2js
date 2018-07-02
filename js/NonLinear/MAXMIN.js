@@ -20,6 +20,9 @@ function MAXMIN() {
     MAXMIN.prototype.get = function MAXMIN() {
     }
     MAXMIN.prototype.set = function MAXMIN() {
+        this.mm = parseFloat((arguments[0]["mm"]))
+        this.nin = parseFloat((arguments[0]["nin"]))
+        this.zcr = parseFloat((arguments[0]["zcr"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

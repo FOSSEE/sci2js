@@ -31,6 +31,7 @@ function MATBKSL() {
     MATBKSL.prototype.get = function MATBKSL() {
     }
     MATBKSL.prototype.set = function MATBKSL() {
+        this.typ = parseFloat((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;

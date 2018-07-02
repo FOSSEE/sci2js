@@ -113,6 +113,8 @@ function freq_div() {
     freq_div.prototype.get = function freq_div() {
     }
     freq_div.prototype.set = function freq_div() {
+        %ph = parseFloat((arguments[0]["%ph"]))
+        %df = parseFloat((arguments[0]["%df"]))
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
             o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="Modulo_Count") {

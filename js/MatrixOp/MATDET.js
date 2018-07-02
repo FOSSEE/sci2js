@@ -31,6 +31,7 @@ function MATDET() {
     MATDET.prototype.get = function MATDET() {
     }
     MATDET.prototype.set = function MATDET() {
+        this.typ = parseFloat((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;

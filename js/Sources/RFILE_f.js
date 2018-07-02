@@ -31,6 +31,11 @@ function RFILE_f() {
     RFILE_f.prototype.get = function RFILE_f() {
     }
     RFILE_f.prototype.set = function RFILE_f() {
+        this.tmask1 = parseFloat((arguments[0]["tmask1"]))
+        this.outmask = parseFloat((arguments[0]["outmask"]))
+        this.fname1 = parseFloat((arguments[0]["fname1"]))
+        this.frmt1 = parseFloat((arguments[0]["frmt1"]))
+        this.N = parseFloat((arguments[0]["N"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

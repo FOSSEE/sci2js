@@ -31,6 +31,7 @@ function MATEXPM() {
     MATEXPM.prototype.get = function MATEXPM() {
     }
     MATEXPM.prototype.set = function MATEXPM() {
+        this.typ = parseFloat((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;

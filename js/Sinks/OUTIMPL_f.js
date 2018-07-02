@@ -25,6 +25,7 @@ function OUTIMPL_f() {
     OUTIMPL_f.prototype.get = function OUTIMPL_f() {
     }
     OUTIMPL_f.prototype.set = function OUTIMPL_f() {
+        this.prt = parseFloat((arguments[0]["prt"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

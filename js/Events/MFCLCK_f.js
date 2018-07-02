@@ -24,6 +24,8 @@ function MFCLCK_f() {
     MFCLCK_f.prototype.get = function MFCLCK_f() {
     }
     MFCLCK_f.prototype.set = function MFCLCK_f() {
+        this.dt = parseFloat((arguments[0]["dt"]))
+        this.nn = parseFloat((arguments[0]["nn"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

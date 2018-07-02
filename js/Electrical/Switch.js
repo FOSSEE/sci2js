@@ -31,6 +31,8 @@ function Switch() {
     Switch.prototype.get = function Switch() {
     }
     Switch.prototype.set = function Switch() {
+        this.Ron = parseFloat((arguments[0]["Ron"]))
+        this.Roff = parseFloat((arguments[0]["Roff"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

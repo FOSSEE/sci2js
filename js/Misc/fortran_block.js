@@ -26,6 +26,11 @@ function fortran_block() {
     fortran_block.prototype.get = function fortran_block() {
     }
     fortran_block.prototype.set = function fortran_block() {
+        this.i = parseFloat((arguments[0]["i"]))
+        this.o = parseFloat((arguments[0]["o"]))
+        this.rpar = parseFloat((arguments[0]["rpar"]))
+        this.funam = parseFloat((arguments[0]["funam"]))
+        this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;

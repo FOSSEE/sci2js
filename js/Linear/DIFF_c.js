@@ -20,6 +20,8 @@ function DIFF_c() {
     DIFF_c.prototype.get = function DIFF_c() {
     }
     DIFF_c.prototype.set = function DIFF_c() {
+        this.x0 = parseFloat((arguments[0]["x0"]))
+        this.xd0 = parseFloat((arguments[0]["xd0"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

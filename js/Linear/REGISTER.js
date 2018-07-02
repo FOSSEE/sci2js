@@ -21,6 +21,8 @@ function REGISTER() {
     REGISTER.prototype.get = function REGISTER() {
     }
     REGISTER.prototype.set = function REGISTER() {
+        this.z0 = parseFloat((arguments[0]["z0"]))
+        this.it = parseFloat((arguments[0]["it"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

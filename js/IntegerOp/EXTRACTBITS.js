@@ -24,6 +24,10 @@ function EXTRACTBITS() {
     EXTRACTBITS.prototype.get = function EXTRACTBITS() {
     }
     EXTRACTBITS.prototype.set = function EXTRACTBITS() {
+        this.Datatype = parseFloat((arguments[0]["Datatype"]))
+        this.rule = parseFloat((arguments[0]["rule"]))
+        this.bit = parseFloat((arguments[0]["bit"]))
+        this.scal = parseFloat((arguments[0]["scal"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

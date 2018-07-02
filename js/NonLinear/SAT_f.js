@@ -24,6 +24,9 @@ function SAT_f() {
     SAT_f.prototype.get = function SAT_f() {
     }
     SAT_f.prototype.set = function SAT_f() {
+        this.minp = parseFloat((arguments[0]["minp"]))
+        this.maxp = parseFloat((arguments[0]["maxp"]))
+        this.pente = parseFloat((arguments[0]["pente"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

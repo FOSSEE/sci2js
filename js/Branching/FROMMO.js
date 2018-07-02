@@ -28,6 +28,7 @@ function FROMMO() {
     FROMMO.prototype.get = function FROMMO() {
     }
     FROMMO.prototype.set = function FROMMO() {
+        this.tag = parseFloat((arguments[0]["tag"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

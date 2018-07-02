@@ -21,6 +21,7 @@ function ABS_VALUE() {
     ABS_VALUE.prototype.get = function ABS_VALUE() {
     }
     ABS_VALUE.prototype.set = function ABS_VALUE() {
+        this.zcr = parseFloat((arguments[0]["zcr"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

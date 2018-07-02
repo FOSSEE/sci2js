@@ -31,6 +31,7 @@ function MATDIV() {
     MATDIV.prototype.get = function MATDIV() {
     }
     MATDIV.prototype.set = function MATDIV() {
+        this.typ = parseFloat((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;

@@ -26,6 +26,9 @@ function SHIFT() {
     SHIFT.prototype.get = function SHIFT() {
     }
     SHIFT.prototype.set = function SHIFT() {
+        this.Datatype = parseFloat((arguments[0]["Datatype"]))
+        this.nb = parseFloat((arguments[0]["nb"]))
+        this.np = parseFloat((arguments[0]["np"]))
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

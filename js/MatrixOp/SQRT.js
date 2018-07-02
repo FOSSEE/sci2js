@@ -21,6 +21,7 @@ function SQRT() {
     SQRT.prototype.get = function SQRT() {
     }
     SQRT.prototype.set = function SQRT() {
+        this.typ = parseFloat((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;

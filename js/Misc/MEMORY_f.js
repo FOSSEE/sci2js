@@ -23,6 +23,8 @@ function MEMORY_f() {
     MEMORY_f.prototype.get = function MEMORY_f() {
     }
     MEMORY_f.prototype.set = function MEMORY_f() {
+        this.a = parseFloat((arguments[0]["a"]))
+        this.inh = parseFloat((arguments[0]["inh"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

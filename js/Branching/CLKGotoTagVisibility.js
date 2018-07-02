@@ -25,6 +25,7 @@ function CLKGotoTagVisibility() {
     CLKGotoTagVisibility.prototype.get = function CLKGotoTagVisibility() {
     }
     CLKGotoTagVisibility.prototype.set = function CLKGotoTagVisibility() {
+        this.tag = parseFloat((arguments[0]["tag"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

@@ -31,6 +31,12 @@ function SUBMAT() {
     SUBMAT.prototype.get = function SUBMAT() {
     }
     SUBMAT.prototype.set = function SUBMAT() {
+        this.typ = parseFloat((arguments[0]["typ"]))
+        this.a = parseFloat((arguments[0]["a"]))
+        this.b = parseFloat((arguments[0]["b"]))
+        this.c = parseFloat((arguments[0]["c"]))
+        this.d = parseFloat((arguments[0]["d"]))
+        this.inp = parseFloat((arguments[0]["inp"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;

@@ -25,6 +25,7 @@ function GotoTagVisibility() {
     GotoTagVisibility.prototype.get = function GotoTagVisibility() {
     }
     GotoTagVisibility.prototype.set = function GotoTagVisibility() {
+        this.tag = parseFloat((arguments[0]["tag"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

@@ -20,6 +20,9 @@ function PDE() {
     PDE.prototype.get = function PDE() {
     }
     PDE.prototype.set = function PDE() {
+        this.okk = parseFloat((arguments[0]["okk"]))
+        this.rdnom = parseFloat((arguments[0]["rdnom"]))
+        this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;

@@ -45,6 +45,10 @@ function PID() {
     PID.prototype.get = function PID() {
     }
     PID.prototype.set = function PID() {
+        this.p = parseFloat((arguments[0]["p"]))
+        this.i = parseFloat((arguments[0]["i"]))
+        this.d = parseFloat((arguments[0]["d"]))
+        this.exprs0 = parseFloat((arguments[0]["exprs0"]))
         ppath = list(0,0,0);
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
             o = arg1.model.rpar.objs[this.i-1];

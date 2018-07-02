@@ -26,6 +26,8 @@ function LOGIC() {
     LOGIC.prototype.get = function LOGIC() {
     }
     LOGIC.prototype.set = function LOGIC() {
+        this.mat = parseFloat((arguments[0]["mat"]))
+        this.herit = parseFloat((arguments[0]["herit"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

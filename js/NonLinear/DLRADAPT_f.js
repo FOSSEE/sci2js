@@ -29,6 +29,12 @@ function DLRADAPT_f() {
     DLRADAPT_f.prototype.get = function DLRADAPT_f() {
     }
     DLRADAPT_f.prototype.set = function DLRADAPT_f() {
+        this.p = parseFloat((arguments[0]["p"]))
+        this.rn = parseFloat((arguments[0]["rn"]))
+        this.rd = parseFloat((arguments[0]["rd"]))
+        this.g = parseFloat((arguments[0]["g"]))
+        this.last_u = parseFloat((arguments[0]["last_u"]))
+        this.last_y = parseFloat((arguments[0]["last_y"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

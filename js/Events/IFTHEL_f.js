@@ -24,6 +24,8 @@ function IFTHEL_f() {
     IFTHEL_f.prototype.get = function IFTHEL_f() {
     }
     IFTHEL_f.prototype.set = function IFTHEL_f() {
+        this.inh = parseFloat((arguments[0]["inh"]))
+        this.nmod = parseFloat((arguments[0]["nmod"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

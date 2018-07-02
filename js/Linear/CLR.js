@@ -25,6 +25,8 @@ function CLR() {
     CLR.prototype.get = function CLR() {
     }
     CLR.prototype.set = function CLR() {
+        this.num = parseFloat((arguments[0]["num"]))
+        this.den = parseFloat((arguments[0]["den"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

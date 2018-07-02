@@ -21,6 +21,7 @@ function DEMUX_f() {
     DEMUX_f.prototype.get = function DEMUX_f() {
     }
     DEMUX_f.prototype.set = function DEMUX_f() {
+        this.out = parseFloat((arguments[0]["out"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

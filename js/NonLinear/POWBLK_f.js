@@ -21,6 +21,7 @@ function POWBLK_f() {
     POWBLK_f.prototype.get = function POWBLK_f() {
     }
     POWBLK_f.prototype.set = function POWBLK_f() {
+        this.a = parseFloat((arguments[0]["a"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

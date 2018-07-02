@@ -23,6 +23,9 @@ function CONSTRAINT2_c() {
     CONSTRAINT2_c.prototype.get = function CONSTRAINT2_c() {
     }
     CONSTRAINT2_c.prototype.set = function CONSTRAINT2_c() {
+        this.x0 = parseFloat((arguments[0]["x0"]))
+        this.xd0 = parseFloat((arguments[0]["xd0"]))
+        this.id = parseFloat((arguments[0]["id"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

@@ -28,6 +28,7 @@ function Inductor() {
     Inductor.prototype.get = function Inductor() {
     }
     Inductor.prototype.set = function Inductor() {
+        this.L = parseFloat((arguments[0]["L"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

@@ -33,6 +33,17 @@ function CSCOPXY3D() {
     CSCOPXY3D.prototype.get = function CSCOPXY3D() {
     }
     CSCOPXY3D.prototype.set = function CSCOPXY3D() {
+        this.nbr_curves = parseFloat((arguments[0]["nbr_curves"]))
+        this.clrs = parseFloat((arguments[0]["clrs"]))
+        this.siz = parseFloat((arguments[0]["siz"]))
+        this.win = parseFloat((arguments[0]["win"]))
+        this.wpos = parseFloat((arguments[0]["wpos"]))
+        this.wdim = parseFloat((arguments[0]["wdim"]))
+        this.vec_x = parseFloat((arguments[0]["vec_x"]))
+        this.vec_y = parseFloat((arguments[0]["vec_y"]))
+        this.vec_z = parseFloat((arguments[0]["vec_z"]))
+        this.param3ds = parseFloat((arguments[0]["param3ds"]))
+        this.N = parseFloat((arguments[0]["N"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

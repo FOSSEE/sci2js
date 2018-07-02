@@ -22,6 +22,7 @@ function OUT_f() {
     OUT_f.prototype.get = function OUT_f() {
     }
     OUT_f.prototype.set = function OUT_f() {
+        this.prt = parseFloat((arguments[0]["prt"]))
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

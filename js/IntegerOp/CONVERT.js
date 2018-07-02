@@ -25,6 +25,9 @@ function CONVERT() {
     CONVERT.prototype.get = function CONVERT() {
     }
     CONVERT.prototype.set = function CONVERT() {
+        this.it = parseFloat((arguments[0]["it"]))
+        this.ot = parseFloat((arguments[0]["ot"]))
+        this.np = parseFloat((arguments[0]["np"]))
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

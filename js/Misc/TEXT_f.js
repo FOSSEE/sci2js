@@ -21,6 +21,9 @@ function TEXT_f() {
     TEXT_f.prototype.get = function TEXT_f() {
     }
     TEXT_f.prototype.set = function TEXT_f() {
+        this.txt = parseFloat((arguments[0]["txt"]))
+        this.font = parseFloat((arguments[0]["font"]))
+        this.siz = parseFloat((arguments[0]["siz"]))
         this.x = arg1;
         graphics = arg1.graphics;
         orig = graphics.orig;

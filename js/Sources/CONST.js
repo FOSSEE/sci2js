@@ -20,6 +20,7 @@ function CONST() {
     CONST.prototype.get = function CONST() {
     }
     CONST.prototype.set = function CONST() {
+        this.C = parseFloat((arguments[0]["C"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

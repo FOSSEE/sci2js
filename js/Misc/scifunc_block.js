@@ -35,6 +35,16 @@ function scifunc_block() {
     scifunc_block.prototype.get = function scifunc_block() {
     }
     scifunc_block.prototype.set = function scifunc_block() {
+        this.i = parseFloat((arguments[0]["i"]))
+        this.o = parseFloat((arguments[0]["o"]))
+        this.ci = parseFloat((arguments[0]["ci"]))
+        this.co = parseFloat((arguments[0]["co"]))
+        this.xx = parseFloat((arguments[0]["xx"]))
+        this.z = parseFloat((arguments[0]["z"]))
+        this.rpar = parseFloat((arguments[0]["rpar"]))
+        this.auto0 = parseFloat((arguments[0]["auto0"]))
+        this.deptime = parseFloat((arguments[0]["deptime"]))
+        this.lab = parseFloat((arguments[0]["lab"]))
         needcompile = 0;
         this.x = arg1;
         model = arg1.model;

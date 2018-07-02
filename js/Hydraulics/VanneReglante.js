@@ -31,6 +31,8 @@ function VanneReglante() {
     VanneReglante.prototype.get = function VanneReglante() {
     }
     VanneReglante.prototype.set = function VanneReglante() {
+        this.Cvmax = parseFloat((arguments[0]["Cvmax"]))
+        this.p_rho = parseFloat((arguments[0]["p_rho"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

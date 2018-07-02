@@ -22,6 +22,8 @@ function Modulo_Count() {
     Modulo_Count.prototype.get = function Modulo_Count() {
     }
     Modulo_Count.prototype.set = function Modulo_Count() {
+        this.ini_c = parseFloat((arguments[0]["ini_c"]))
+        this.base = parseFloat((arguments[0]["base"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

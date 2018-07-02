@@ -25,6 +25,11 @@ function HYSTHERESIS() {
     HYSTHERESIS.prototype.get = function HYSTHERESIS() {
     }
     HYSTHERESIS.prototype.set = function HYSTHERESIS() {
+        this.high_lim = parseFloat((arguments[0]["high_lim"]))
+        this.low_lim = parseFloat((arguments[0]["low_lim"]))
+        this.out_high = parseFloat((arguments[0]["out_high"]))
+        this.out_low = parseFloat((arguments[0]["out_low"]))
+        this.nzz = parseFloat((arguments[0]["nzz"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

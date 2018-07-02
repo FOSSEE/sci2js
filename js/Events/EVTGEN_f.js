@@ -19,6 +19,7 @@ function EVTGEN_f() {
     EVTGEN_f.prototype.get = function EVTGEN_f() {
     }
     EVTGEN_f.prototype.set = function EVTGEN_f() {
+        this.tt = parseFloat((arguments[0]["tt"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

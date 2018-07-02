@@ -24,6 +24,9 @@ function STEP() {
     STEP.prototype.get = function STEP() {
     }
     STEP.prototype.set = function STEP() {
+        this.temps = parseFloat((arguments[0]["temps"]))
+        this.in1 = parseFloat((arguments[0]["in1"]))
+        this.fi = parseFloat((arguments[0]["fi"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

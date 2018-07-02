@@ -22,6 +22,9 @@ function TKSCALE() {
     TKSCALE.prototype.get = function TKSCALE() {
     }
     TKSCALE.prototype.set = function TKSCALE() {
+        this.a = parseFloat((arguments[0]["a"]))
+        this.b = parseFloat((arguments[0]["b"]))
+        this.f = parseFloat((arguments[0]["f"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

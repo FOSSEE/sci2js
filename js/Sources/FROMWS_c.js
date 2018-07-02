@@ -27,6 +27,10 @@ function FROMWS_c() {
     FROMWS_c.prototype.get = function FROMWS_c() {
     }
     FROMWS_c.prototype.set = function FROMWS_c() {
+        this.varnam = parseFloat((arguments[0]["varnam"]))
+        this.Method = parseFloat((arguments[0]["Method"]))
+        this.ZC = parseFloat((arguments[0]["ZC"]))
+        this.OutEnd = parseFloat((arguments[0]["OutEnd"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

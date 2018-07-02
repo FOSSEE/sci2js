@@ -28,6 +28,7 @@ function Resistor() {
     Resistor.prototype.get = function Resistor() {
     }
     Resistor.prototype.set = function Resistor() {
+        this.R = parseFloat((arguments[0]["R"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

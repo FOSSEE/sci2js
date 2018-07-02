@@ -35,6 +35,15 @@ function NMOS() {
     NMOS.prototype.get = function NMOS() {
     }
     NMOS.prototype.set = function NMOS() {
+        this.W = parseFloat((arguments[0]["W"]))
+        this.L = parseFloat((arguments[0]["L"]))
+        this.Beta = parseFloat((arguments[0]["Beta"]))
+        this.Vt = parseFloat((arguments[0]["Vt"]))
+        this.K2 = parseFloat((arguments[0]["K2"]))
+        this.K5 = parseFloat((arguments[0]["K5"]))
+        this.dW = parseFloat((arguments[0]["dW"]))
+        this.dL = parseFloat((arguments[0]["dL"]))
+        this.RDS = parseFloat((arguments[0]["RDS"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

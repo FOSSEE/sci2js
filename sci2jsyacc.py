@@ -83,8 +83,7 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
         jgetoutputs = '%s%s.prototype.getoutputs = function %s() {\n%s%s}\n' % (indent, fname, fname, jgetoutputs, indent)
     if jplot != '':
         jplot = '%s%s.prototype.plot = function %s() {\n%s%s}\n' % (indent, fname, fname, jplot, indent)
-    jset = '%s%s.prototype.set = function %s() {\n%s%*sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, jset, INDENT_LEVEL * INDENT_SIZE, ' ', blocktype, indent)
-    #jset = '%s%s.prototype.set = function %s() {\n%s%s%*sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, SET_BLOCK, jset, INDENT_LEVEL * INDENT_SIZE, ' ', blocktype, indent)
+    jset = '%s%s.prototype.set = function %s() {\n%s%s%*sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, SET_BLOCK, jset, INDENT_LEVEL * INDENT_SIZE, ' ', blocktype, indent)
 
     INDENT_LEVEL -= 1
     p[0] = 'function %s() {\n%s%s%s%s%s%s%s%s}' % (fname, jdefine, jdetails, jget, jset, jgetinputs, jgetorigin, jgetoutputs, jplot)
@@ -480,7 +479,7 @@ def p_getvalueassignment_getvalue_arguments(p):
                 basevar = var
                 if var not in GLOBAL_VARS:
                     GLOBAL_VARS.add(var)
-            SET_BLOCK += "%*s%s = parseFloat((arguments[%d][\"%s\"]))\n" % (INDENT_LEVEL * INDENT_SIZE, ' ', var, 0, basevar)
+            SET_BLOCK += "%*s%s = parseFloat((arguments[%d][\"%s\"]))\n" % (2 * INDENT_SIZE, ' ', var, 0, basevar)
 
 def p_getvaluearguments_arg1_arg2_arg3_arg4(p):
     'getvaluearguments : getvaluearg1 COMMA getvaluearg2 COMMA getvaluearg3 COMMA getvaluearg4'
@@ -527,7 +526,7 @@ def p_getvaluearg2arraylistitem_string(p):
 
 def p_getvaluearg2arraylistitem_string_string(p):
     'getvaluearg2arraylistitem : DQSTRING ADDITION DQSTRING'
-    p[0] = '%s%s%s' % (p[1], p[2], p[3])
+    p[0] = '%s%s' % (p[1][:-1], p[3][1:])
 
 def p_getvaluearg2arraylistitem_functionname_parameters(p):
     'getvaluearg2arraylistitem : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'

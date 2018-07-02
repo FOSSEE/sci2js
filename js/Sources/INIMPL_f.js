@@ -25,6 +25,7 @@ function INIMPL_f() {
     INIMPL_f.prototype.get = function INIMPL_f() {
     }
     INIMPL_f.prototype.set = function INIMPL_f() {
+        this.prt = parseFloat((arguments[0]["prt"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

@@ -41,6 +41,14 @@ function BOUNCEXY() {
     BOUNCEXY.prototype.get = function BOUNCEXY() {
     }
     BOUNCEXY.prototype.set = function BOUNCEXY() {
+        this.clrs = parseFloat((arguments[0]["clrs"]))
+        this.siz = parseFloat((arguments[0]["siz"]))
+        this.win = parseFloat((arguments[0]["win"]))
+        this.imode = parseFloat((arguments[0]["imode"]))
+        this.xmin = parseFloat((arguments[0]["xmin"]))
+        this.xmax = parseFloat((arguments[0]["xmax"]))
+        this.ymin = parseFloat((arguments[0]["ymin"]))
+        this.ymax = parseFloat((arguments[0]["ymax"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

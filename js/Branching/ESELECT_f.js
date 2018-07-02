@@ -25,6 +25,9 @@ function ESELECT_f() {
     ESELECT_f.prototype.get = function ESELECT_f() {
     }
     ESELECT_f.prototype.set = function ESELECT_f() {
+        this.out = parseFloat((arguments[0]["out"]))
+        this.inh = parseFloat((arguments[0]["inh"]))
+        this.nmod = parseFloat((arguments[0]["nmod"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

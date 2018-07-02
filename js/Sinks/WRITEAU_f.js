@@ -27,6 +27,8 @@ function WRITEAU_f() {
     WRITEAU_f.prototype.get = function WRITEAU_f() {
     }
     WRITEAU_f.prototype.set = function WRITEAU_f() {
+        this.N = parseFloat((arguments[0]["N"]))
+        this.swap = parseFloat((arguments[0]["swap"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

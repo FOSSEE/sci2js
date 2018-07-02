@@ -20,6 +20,7 @@ function NRMSOM_f() {
     NRMSOM_f.prototype.get = function NRMSOM_f() {
     }
     NRMSOM_f.prototype.set = function NRMSOM_f() {
+        this.nin = parseFloat((arguments[0]["nin"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

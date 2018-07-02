@@ -20,6 +20,8 @@ function CLKGOTO() {
     CLKGOTO.prototype.get = function CLKGOTO() {
     }
     CLKGOTO.prototype.set = function CLKGOTO() {
+        this.tag = parseFloat((arguments[0]["tag"]))
+        this.tagvis = parseFloat((arguments[0]["tagvis"]))
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

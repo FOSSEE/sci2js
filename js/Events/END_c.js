@@ -20,6 +20,7 @@ function END_c() {
     END_c.prototype.get = function END_c() {
     }
     END_c.prototype.set = function END_c() {
+        this.tf = parseFloat((arguments[0]["tf"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

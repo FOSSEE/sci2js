@@ -55,6 +55,7 @@ function IdealTransformer() {
     IdealTransformer.prototype.get = function IdealTransformer() {
     }
     IdealTransformer.prototype.set = function IdealTransformer() {
+        this.N = parseFloat((arguments[0]["N"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

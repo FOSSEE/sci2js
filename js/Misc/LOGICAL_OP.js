@@ -22,6 +22,10 @@ function LOGICAL_OP() {
     LOGICAL_OP.prototype.get = function LOGICAL_OP() {
     }
     LOGICAL_OP.prototype.set = function LOGICAL_OP() {
+        this.nin = parseFloat((arguments[0]["nin"]))
+        this.rule = parseFloat((arguments[0]["rule"]))
+        this.Datatype = parseFloat((arguments[0]["Datatype"]))
+        this.tp = parseFloat((arguments[0]["tp"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

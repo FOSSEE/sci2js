@@ -27,6 +27,15 @@ function CFSCOPE() {
     CFSCOPE.prototype.get = function CFSCOPE() {
     }
     CFSCOPE.prototype.set = function CFSCOPE() {
+        this.clrs = parseFloat((arguments[0]["clrs"]))
+        this.win = parseFloat((arguments[0]["win"]))
+        this.wpos = parseFloat((arguments[0]["wpos"]))
+        this.wdim = parseFloat((arguments[0]["wdim"]))
+        this.ymin = parseFloat((arguments[0]["ymin"]))
+        this.ymax = parseFloat((arguments[0]["ymax"]))
+        this.per = parseFloat((arguments[0]["per"]))
+        this.N = parseFloat((arguments[0]["N"]))
+        this.wu = parseFloat((arguments[0]["wu"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

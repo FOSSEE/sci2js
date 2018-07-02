@@ -20,6 +20,7 @@ function PRODUCT() {
     PRODUCT.prototype.get = function PRODUCT() {
     }
     PRODUCT.prototype.set = function PRODUCT() {
+        this.sgn = parseFloat((arguments[0]["sgn"]))
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

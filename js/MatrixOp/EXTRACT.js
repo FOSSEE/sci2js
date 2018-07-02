@@ -31,6 +31,9 @@ function EXTRACT() {
     EXTRACT.prototype.get = function EXTRACT() {
     }
     EXTRACT.prototype.set = function EXTRACT() {
+        this.typ = parseFloat((arguments[0]["typ"]))
+        this.a = parseFloat((arguments[0]["a"]))
+        this.b = parseFloat((arguments[0]["b"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;

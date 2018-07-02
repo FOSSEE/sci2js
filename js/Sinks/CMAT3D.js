@@ -30,6 +30,11 @@ function CMAT3D() {
     CMAT3D.prototype.get = function CMAT3D() {
     }
     CMAT3D.prototype.set = function CMAT3D() {
+        this.vec_x = parseFloat((arguments[0]["vec_x"]))
+        this.vec_y = parseFloat((arguments[0]["vec_y"]))
+        this.colormap = parseFloat((arguments[0]["colormap"]))
+        this.cmin = parseFloat((arguments[0]["cmin"]))
+        this.cmax = parseFloat((arguments[0]["cmax"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

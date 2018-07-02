@@ -23,6 +23,8 @@ function BITSET() {
     BITSET.prototype.get = function BITSET() {
     }
     BITSET.prototype.set = function BITSET() {
+        this.Datatype = parseFloat((arguments[0]["Datatype"]))
+        this.bit = parseFloat((arguments[0]["bit"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

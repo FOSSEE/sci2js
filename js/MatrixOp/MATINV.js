@@ -31,6 +31,7 @@ function MATINV() {
     MATINV.prototype.get = function MATINV() {
     }
     MATINV.prototype.set = function MATINV() {
+        this.typ = parseFloat((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;

@@ -22,6 +22,9 @@ function RELATIONALOP() {
     RELATIONALOP.prototype.get = function RELATIONALOP() {
     }
     RELATIONALOP.prototype.set = function RELATIONALOP() {
+        this.rule = parseFloat((arguments[0]["rule"]))
+        this.zcr = parseFloat((arguments[0]["zcr"]))
+        this.Datatype = parseFloat((arguments[0]["Datatype"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

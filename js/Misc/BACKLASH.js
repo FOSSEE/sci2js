@@ -20,6 +20,9 @@ function BACKLASH() {
     BACKLASH.prototype.get = function BACKLASH() {
     }
     BACKLASH.prototype.set = function BACKLASH() {
+        this.ini = parseFloat((arguments[0]["ini"]))
+        this.gap = parseFloat((arguments[0]["gap"]))
+        this.zcr = parseFloat((arguments[0]["zcr"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

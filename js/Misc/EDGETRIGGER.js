@@ -22,6 +22,7 @@ function EDGETRIGGER() {
     EDGETRIGGER.prototype.get = function EDGETRIGGER() {
     }
     EDGETRIGGER.prototype.set = function EDGETRIGGER() {
+        this.edge = parseFloat((arguments[0]["edge"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

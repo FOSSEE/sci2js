@@ -32,6 +32,11 @@ function SineVoltage() {
     SineVoltage.prototype.get = function SineVoltage() {
     }
     SineVoltage.prototype.set = function SineVoltage() {
+        this.V = parseFloat((arguments[0]["V"]))
+        this.ph = parseFloat((arguments[0]["ph"]))
+        this.frq = parseFloat((arguments[0]["frq"]))
+        this.offset = parseFloat((arguments[0]["offset"]))
+        this.start = parseFloat((arguments[0]["start"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

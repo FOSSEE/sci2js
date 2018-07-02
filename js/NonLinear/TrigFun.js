@@ -18,6 +18,7 @@ function TrigFun() {
     TrigFun.prototype.get = function TrigFun() {
     }
     TrigFun.prototype.set = function TrigFun() {
+        this.fun = parseFloat((arguments[0]["fun"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

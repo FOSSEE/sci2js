@@ -20,6 +20,7 @@ function CLKINV_f() {
     CLKINV_f.prototype.get = function CLKINV_f() {
     }
     CLKINV_f.prototype.set = function CLKINV_f() {
+        this.prt = parseFloat((arguments[0]["prt"]))
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

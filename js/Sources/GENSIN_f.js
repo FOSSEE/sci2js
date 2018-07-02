@@ -22,6 +22,9 @@ function GENSIN_f() {
     GENSIN_f.prototype.get = function GENSIN_f() {
     }
     GENSIN_f.prototype.set = function GENSIN_f() {
+        this.M = parseFloat((arguments[0]["M"]))
+        this.F = parseFloat((arguments[0]["F"]))
+        this.P = parseFloat((arguments[0]["P"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

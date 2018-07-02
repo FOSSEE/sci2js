@@ -24,6 +24,9 @@ function VARIABLE_DELAY() {
     VARIABLE_DELAY.prototype.get = function VARIABLE_DELAY() {
     }
     VARIABLE_DELAY.prototype.set = function VARIABLE_DELAY() {
+        this.T = parseFloat((arguments[0]["T"]))
+        this.init = parseFloat((arguments[0]["init"]))
+        this.N = parseFloat((arguments[0]["N"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

@@ -26,6 +26,8 @@ function DLR() {
     DLR.prototype.get = function DLR() {
     }
     DLR.prototype.set = function DLR() {
+        this.num = parseFloat((arguments[0]["num"]))
+        this.den = parseFloat((arguments[0]["den"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

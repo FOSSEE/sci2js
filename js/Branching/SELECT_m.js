@@ -31,6 +31,9 @@ function SELECT_m() {
     SELECT_m.prototype.get = function SELECT_m() {
     }
     SELECT_m.prototype.set = function SELECT_m() {
+        this.typ = parseFloat((arguments[0]["typ"]))
+        this.nin = parseFloat((arguments[0]["nin"]))
+        this.z0 = parseFloat((arguments[0]["z0"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

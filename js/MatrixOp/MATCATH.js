@@ -31,6 +31,8 @@ function MATCATH() {
     MATCATH.prototype.get = function MATCATH() {
     }
     MATCATH.prototype.set = function MATCATH() {
+        this.nin = parseFloat((arguments[0]["nin"]))
+        this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;

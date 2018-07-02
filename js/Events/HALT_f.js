@@ -20,6 +20,7 @@ function HALT_f() {
     HALT_f.prototype.get = function HALT_f() {
     }
     HALT_f.prototype.set = function HALT_f() {
+        this.n = parseFloat((arguments[0]["n"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
