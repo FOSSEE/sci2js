@@ -36,7 +36,7 @@ function Switch() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.Ron,this.Roff,exprs] = scicos_getvalue("Set non-ideal electrical switch parameters",[["Resistance in On state (Ohm)"],["Resistance in Off state (Ohm)"]],list("vec",1,"vec",1),exprs);
+            [ok,this.Ron,this.Roff,exprs] = scicos_getvalue("Set non-ideal electrical switch parameters",["Resistance in On state (Ohm)","Resistance in Off state (Ohm)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

@@ -33,7 +33,7 @@ function GENERAL_f() {
         this.out = model.evtout;
         nin = sum(this.in1);
         nout = sum(this.out);
-        [ok,this.in1,this.out,exprs] = scicos_getvalue("Set General Zero-Crossing parameters",[["Input size"],["Number of event output"]],list("vec",1,"vec",1),exprs);
+        [ok,this.in1,this.out,exprs] = scicos_getvalue("Set General Zero-Crossing parameters",["Input size","Number of event output"],list("vec",1,"vec",1),exprs);
         if (ok) {
             [model,graphics,ok] = check_io(model,graphics,this.in1,[],[],ones(this.out,1));
             if (ok) {

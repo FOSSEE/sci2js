@@ -30,7 +30,7 @@ function LOGICAL_OP() {
             exprs = [[exprs],[sci2exp(1)],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.nin,this.rule,this.Datatype,this.tp,exprs] = scicos_getvalue("Set parameters",[["number of inputs"],["Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)","Datatype (1=double 3=int32 ...)"],["Bitwise Rule(0=No 1=yes)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.nin,this.rule,this.Datatype,this.tp,exprs] = scicos_getvalue("Set parameters",["number of inputs","Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)","Datatype (1=double 3=int32 ...)","Bitwise Rule(0=No 1=yes)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

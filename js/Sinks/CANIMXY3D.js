@@ -39,7 +39,7 @@ function CANIMXY3D() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,exprs] = scicos_getvalue("Set Scope parameters",[["Number of curves"],["color (>0) or mark (<0)"],["line or mark size"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Xmin and Xmax"],["Ymin and Ymax"],["Zmin and Zmax"],["Alpha and Theta"],["Buffer size"]],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs);
+            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,exprs] = scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

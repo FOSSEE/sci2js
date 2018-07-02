@@ -39,7 +39,7 @@ function MATEIG() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATEIG block parameters",[["Datatype(1=real double  2=Complex)"],["decomposition type (1=eig values  2=eig values+eig vectors"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATEIG block parameters",["Datatype(1=real double  2=Complex)","decomposition type (1=eig values  2=eig values+eig vectors"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }

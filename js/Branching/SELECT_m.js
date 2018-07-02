@@ -36,7 +36,7 @@ function SELECT_m() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.typ,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",[["Datatype(1= real double  2=Complex 3=int32 ..)"],["number of inputs"],["initial connected input"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.typ,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ..)","number of inputs","initial connected input"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

@@ -34,7 +34,7 @@ function TOWS_c() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.nz,this.varnam,this.herit,exprs] = scicos_getvalue("Set Xcos buffer block",[["Size of buffer"],["Scilab variable name"],["Inherit (no:0, yes:1)"]],list("vec",1,"str",1,"vec",1),exprs);
+            [ok,this.nz,this.varnam,this.herit,exprs] = scicos_getvalue("Set Xcos buffer block",["Size of buffer","Scilab variable name","Inherit (no:0, yes:1)"],list("vec",1,"str",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

@@ -30,7 +30,7 @@ function VARIABLE_DELAY() {
         model = arg1.model;
         nin = model.in1[1-1];
         while (true) {
-            [ok,this.T,this.init,this.N,exprs] = scicos_getvalue("Set delay parameters",[["Max delay"],["initial input"],["Buffer size"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.T,this.init,this.N,exprs] = scicos_getvalue("Set delay parameters",["Max delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

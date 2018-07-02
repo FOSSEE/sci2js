@@ -35,7 +35,7 @@ function generic_block() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.function_name,this.funtyp,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.ipar,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set GENERIC block parameters",[["simulation function"],["function type (0,1,2,..)"],["input ports sizes"],["output port sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["initial discrete state"],["Real parameters vector"],["Integer parameters vector"],["initial firing vector (<0 for no firing)"],["direct feedthrough (y or n)"],["time dependence (y or n)"]],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label);
+            [ok,this.function_name,this.funtyp,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.ipar,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set GENERIC block parameters",["simulation function","function type (0,1,2,..)","input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","Real parameters vector","Integer parameters vector","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label);
             if (!ok) {
                 break;
             }

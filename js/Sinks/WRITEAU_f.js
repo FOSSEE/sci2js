@@ -35,7 +35,7 @@ function WRITEAU_f() {
         dstate = model.dstate;
         lunit = dstate[2-1];
         while (true) {
-            [ok,this.N,this.swap,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WRITEAU_f")],[" "],[gettext("Write \'.au\' sound file on audio device")]],[[gettext("Buffer Size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",1,"vec",1),exprs);
+            [ok,this.N,this.swap,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WRITEAU_f")],[" "],["Write \'.au\' sound file on audio device"]],["Buffer Size","Swap Mode (0:No, 1:Yes)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -43,14 +43,14 @@ function WRITEAU_f() {
             fname1 = "/dev/audio";
             frmt1 = "uc ";
             if (this.alreadyran&&(this.N!=ipar[5-1])) {
-                block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
+                block_parameter_error(msprintf("You cannot modify \'%s\' when running.","Buffer Size"),"End current simulation first");
                 ok = false;
             } else if (this.N<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),this.N),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Buffer Size",this.N),"Strictly positive integer expected.");
                 ok = false;
             }
             if (this.swap!=0&&this.swap!=1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Swap Mode"),this.swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Swap Mode",this.swap),msprintf("Must be in the interval %s.","[0, 1]"));
                 ok = false;
             }
             if (ok) {

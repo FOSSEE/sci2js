@@ -28,7 +28,7 @@ function MEMORY_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set memory block parameters",[["initial condition"],["Inherit (1: no, 0: yes)"]],list("vec",-1,"vec",1),exprs);
+            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set memory block parameters",["initial condition","Inherit (1: no, 0: yes)"],list("vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

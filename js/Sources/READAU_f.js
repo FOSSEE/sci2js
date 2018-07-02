@@ -43,7 +43,7 @@ function READAU_f() {
         lunit = dstate[3-1];
         fname = exprs[1-1];
         while (true) {
-            [ok,this.fname1,this.N,this.swap,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"READAU_f")],[" "],[gettext("(Read Audio File)")],[" "],[gettext("Read is done on a binary \'.au\' file")]],[[gettext("Input File Name")],[gettext("Buffer size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("str",1,"vec",1,"vec",1),exprs);
+            [ok,this.fname1,this.N,this.swap,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","READAU_f")],[" "],["(Read Audio File)"],[" "],["Read is done on a binary \'.au\' file"]],["Input File Name","Buffer size","Swap Mode (0:No, 1:Yes)"],list("str",1,"vec",1,"vec",1),exprs);
             tmask1 = [];
             outmask = 1;
             frmt1 = "uc";
@@ -55,15 +55,15 @@ function READAU_f() {
             this.fname1 = stripblanks(this.fname1);
             frmt1 = stripblanks(frmt1);
             if (this.alreadyran&&this.fname1!=fname) {
-                block_parameter_error(gettext("Simulation running !!! You cannot modify Input file name"),gettext("End current simulation first."));
+                block_parameter_error("Simulation running !!! You cannot modify Input file name","End current simulation first.");
             } else if (this.fname1=="") {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Input File Name")),gettext("You must provide a filename."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Input File Name"),"You must provide a filename.");
             } else if (this.N<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer size"),this.N),msprintf(gettext("Must be greater than %d."),1));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Buffer size",this.N),msprintf("Must be greater than %d.",1));
             } else if (this.alreadyran&&(this.N!=ipar[6-1])) {
-                block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first."));
+                block_parameter_error(msprintf("You cannot modify \'%s\' when running.","Buffer Size"),"End current simulation first.");
             } else if (this.swap!=0&&this.swap!=1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Swap Mode"),this.swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Swap Mode",this.swap),msprintf("Must be in the interval %s.","[0, 1]"));
             } else {
                 [model,graphics,ok] = check_io(model,graphics,[],1,1,[]);
                 frmt1 = part(frmt1,1,3);

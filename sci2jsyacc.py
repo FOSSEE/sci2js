@@ -54,6 +54,8 @@ def p_functionblocks_jobfunctionblock(p):
 
 # define functionblock
 
+SET_BLOCK = ''
+
 def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     'jobfunctionblock : jobfunctionstatement statementblock ENDFUNCTION EOL'
     global INDENT_LEVEL
@@ -82,6 +84,7 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     if jplot != '':
         jplot = '%s%s.prototype.plot = function %s() {\n%s%s}\n' % (indent, fname, fname, jplot, indent)
     jset = '%s%s.prototype.set = function %s() {\n%s%*sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, jset, INDENT_LEVEL * INDENT_SIZE, ' ', blocktype, indent)
+    #jset = '%s%s.prototype.set = function %s() {\n%s%s%*sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, SET_BLOCK, jset, INDENT_LEVEL * INDENT_SIZE, ' ', blocktype, indent)
 
     INDENT_LEVEL -= 1
     p[0] = 'function %s() {\n%s%s%s%s%s%s%s%s}' % (fname, jdefine, jdetails, jget, jset, jgetinputs, jgetorigin, jgetoutputs, jplot)
@@ -463,6 +466,7 @@ def p_assignment_expression(p):
 def p_getvalueassignment_getvalue_arguments(p):
     'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET getvaluearguments CLOSEBRACKET'
     p[0] = '%*s%s = %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5])
+    global SET_BLOCK
     lterm = p[1]
     if lterm[0] == '[':
         lterm = lterm[1:-1]
@@ -470,8 +474,13 @@ def p_getvalueassignment_getvalue_arguments(p):
         for var in ltermvars:
             if var in ('ok', 'exprs'):
                 continue
-            if var not in GLOBAL_VARS:
-                GLOBAL_VARS.add(var)
+            if var[:5] == 'this.':
+                basevar = var[5:]
+            else:
+                basevar = var
+                if var not in GLOBAL_VARS:
+                    GLOBAL_VARS.add(var)
+            SET_BLOCK += "%*s%s = parseFloat((arguments[%d][\"%s\"]))\n" % (INDENT_LEVEL * INDENT_SIZE, ' ', var, 0, basevar)
 
 def p_getvaluearguments_arg1_arg2_arg3_arg4(p):
     'getvaluearguments : getvaluearg1 COMMA getvaluearg2 COMMA getvaluearg3 COMMA getvaluearg4'
@@ -482,12 +491,8 @@ def p_getvaluearg1_expression(p):
     p[0] = '%s' % (p[1])
 
 def p_getvaluearg2_list(p):
-    '''getvaluearg2 : OPENSQBRACKET termarrayarraylist CLOSESQBRACKET
-                    | OPENSQBRACKET termarrayarraylist SEMICOLON CLOSESQBRACKET'''
-    p[0] = '[%s]' % (p[2])
-
-def p_getvaluearg2_list_string(p):
-    'getvaluearg2 : OPENSQBRACKET DQSTRING CLOSESQBRACKET'
+    '''getvaluearg2 : OPENSQBRACKET getvaluearg2arraylist CLOSESQBRACKET
+                    | OPENSQBRACKET getvaluearg2arraylist SEMICOLON CLOSESQBRACKET'''
     p[0] = '[%s]' % (p[2])
 
 def p_getvaluearg2_string(p):
@@ -495,12 +500,38 @@ def p_getvaluearg2_string(p):
     p[0] = '%s' % (p[1])
 
 def p_getvaluearg2_gettext_string(p):
-    'getvaluearg2 : FUNCTIONNAME OPENBRACKET DQSTRING CLOSEBRACKET'
-    p[0] = '%s(%s)' % (p[1], p[3])
+    'getvaluearg2 : GETTEXT OPENBRACKET DQSTRING CLOSEBRACKET'
+    p[0] = '%s' % (p[3])
 
 def p_getvaluearg2_var(p):
     'getvaluearg2 : VAR'
     p[0] = '%s' % (p[1])
+
+def p_getvaluearg2arraylist_arraylist_arraylistitem(p):
+    '''getvaluearg2arraylist : getvaluearg2arraylist SEMICOLON getvaluearg2arraylistitem
+                             | getvaluearg2arraylist COMMA getvaluearg2arraylistitem
+                             | getvaluearg2arraylist SPACE getvaluearg2arraylistitem'''
+    p[0] = '%s,%s' % (p[1], p[3])
+
+def p_getvaluearg2arraylist_arraylistitem(p):
+    'getvaluearg2arraylist : getvaluearg2arraylistitem'
+    p[0] = '%s' % (p[1])
+
+def p_getvaluearg2arraylistitem_gettext_string(p):
+    'getvaluearg2arraylistitem : GETTEXT OPENBRACKET DQSTRING CLOSEBRACKET'
+    p[0] = '%s' % (p[3])
+
+def p_getvaluearg2arraylistitem_string(p):
+    'getvaluearg2arraylistitem : DQSTRING'
+    p[0] = '%s' % (p[1])
+
+def p_getvaluearg2arraylistitem_string_string(p):
+    'getvaluearg2arraylistitem : DQSTRING ADDITION DQSTRING'
+    p[0] = '%s%s%s' % (p[1], p[2], p[3])
+
+def p_getvaluearg2arraylistitem_functionname_parameters(p):
+    'getvaluearg2arraylistitem : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
+    p[0] = '%s(%s)' % (p[1], p[3])
 
 def p_getvaluearg3_list(p):
     'getvaluearg3 : LIST OPENBRACKET getvaluelist CLOSEBRACKET'
@@ -877,6 +908,11 @@ def p_term_function_parameters(p):
 def p_term_list_parameters(p):
     'term : LIST OPENBRACKET list CLOSEBRACKET'
     p[0] = '%s(%s)' % (p[1], p[3])
+
+# gettext("abc")
+def p_term_gettext_parameter(p):
+    'term : GETTEXT OPENBRACKET expression CLOSEBRACKET'
+    p[0] = '%s' % (p[3])
 
 # A()
 def p_term_function(p):

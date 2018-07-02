@@ -30,14 +30,14 @@ function INTMUL() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.Datatype,this.np,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INTMUL")],[" "],[gettext("Integer matrix multiplication")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")]],list("vec",1,"vec",1),exprs);
+            [ok,this.Datatype,this.np,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","INTMUL")],[" "],["Integer matrix multiplication"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             it = this.Datatype*ones(1,2);
             ot = this.Datatype;
             if ((this.np!=0&&this.np!=1&&this.np!=2)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Do on Overflow"),this.np),msprintf(gettext("Must be in the interval %s."),"[0, 2]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Do on Overflow",this.np),msprintf("Must be in the interval %s.","[0, 2]"));
                 ok = false;
             } else if (this.Datatype==3) {
                 if (this.np==0) {
@@ -88,7 +88,7 @@ function INTMUL() {
                     model.sim = list("matmul_ui8e",4);
                 }
             } else {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),ot),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Data Type",ot),msprintf("Must be in the interval %s.","[3, 8]"));
                 ok = false;
             }
             in1 = [model.in1,model.in2];

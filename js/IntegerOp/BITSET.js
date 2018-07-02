@@ -28,18 +28,18 @@ function BITSET() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.Datatype,this.bit,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"BITSET")],[" "],[gettext("Set a bit")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Index of Bit (0 is least significant)")]],list("vec",1,"vec",1),exprs);
+            [ok,this.Datatype,this.bit,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","BITSET")],[" "],["Set a bit"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Index of Bit (0 is least significant)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             in1 = [model.in1,model.in2];
             if (floor(this.bit)!=this.bit) {
-                block_parameter_error(msprintf(gettext("Wrong type for \'%s\' parameter: %5.1f."),gettext("Index of Bit"),this.bit),gettext("Must be integer."));
+                block_parameter_error(msprintf("Wrong type for \'%s\' parameter: %5.1f.","Index of Bit",this.bit),"Must be integer.");
                 ok = false;
             }
             if ((this.Datatype==3)||(this.Datatype==6)) {
                 if (this.bit>31||this.bit<0) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),this.bit),msprintf(gettext("Must be in the interval %s."),"[0, 31]"));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Index of Bit",this.bit),msprintf("Must be in the interval %s.","[0, 31]"));
                     ok = false;
                 }
                 this.bit = uint32(this.bit);
@@ -48,7 +48,7 @@ function BITSET() {
                 model.sim = list("bit_set_32",4);
             } else if ((this.Datatype==4)||(this.Datatype==7)) {
                 if (this.bit>15||this.bit<0) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),this.bit),msprintf(gettext("Must be in the interval %s."),"[0, 15]"));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Index of Bit",this.bit),msprintf("Must be in the interval %s.","[0, 15]"));
                     ok = false;
                 }
                 this.bit = uint16(this.bit);
@@ -57,7 +57,7 @@ function BITSET() {
                 model.sim = list("bit_set_16",4);
             } else if ((this.Datatype==5)||(this.Datatype==8)) {
                 if (this.bit>7||this.bit<0) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),this.bit),msprintf(gettext("Must be in the interval %s."),"[0, 7]"));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Index of Bit",this.bit),msprintf("Must be in the interval %s.","[0, 7]"));
                     ok = false;
                 }
                 this.bit = uint8(this.bit);
@@ -65,7 +65,7 @@ function BITSET() {
                 n = uint8(n);
                 model.sim = list("bit_set_8",4);
             } else {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),this.Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Data Type",this.Datatype),msprintf("Must be in the interval %s.","[3, 8]"));
                 ok = false;
             }
             if (ok) {

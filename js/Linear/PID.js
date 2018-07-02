@@ -87,7 +87,7 @@ function PID() {
         d_old = xx3.model.rpar;
         y = 0;
         while (true) {
-            [ok,this.p,this.i,this.d,this.exprs0] = scicos_getvalue("Set PID parameters",[["Proportional"],["Integral"],["Derivation"]],list("vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.p,this.i,this.d,this.exprs0] = scicos_getvalue("Set PID parameters",["Proportional","Integral","Derivation"],list("vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }

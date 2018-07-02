@@ -29,16 +29,16 @@ function Counter() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.minim,this.maxim,this.rule,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"Counter")],[" "],[gettext("Integer counter generator")],[" "]],[[gettext("Minimum")],[gettext("Maximum")],[gettext("Rule (1:Increment, 2:Decrement)")]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.minim,this.maxim,this.rule,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Counter")],[" "],["Integer counter generator"],[" "]],["Minimum","Maximum","Rule (1:Increment, 2:Decrement)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             this.maxim = int(this.maxim);
             this.minim = int(this.minim);
             if (this.maxim<this.minim) {
-                block_parameter_error(msprintf(gettext("Wrong values for \'Maximum\' and \'Minimum\' parameters: %d &lt; %d"),this.minim,this.maxim),msprintf(gettext("\'Minimum\' must be less than \'Maximum\'.")));
+                block_parameter_error(msprintf("Wrong values for \'Maximum\' and \'Minimum\' parameters: %d &lt; %d",this.minim,this.maxim),msprintf("\'Minimum\' must be less than \'Maximum\'."));
             } else if ((this.rule!=1&&this.rule!=2)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Rule\' parameter: %d"),this.rule),msprintf(gettext("Must be in the interval %s."),"[1,2]"));
+                block_parameter_error(msprintf("Wrong value for \'Rule\' parameter: %d",this.rule),msprintf("Must be in the interval %s.","[1,2]"));
             } else {
                 graphics.exprs = exprs;
                 model.dstate = 0;

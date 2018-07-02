@@ -30,7 +30,7 @@ function CONVERT() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.it,this.ot,this.np,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CONVERT")],[" "],[gettext("Type conversion")],[" "]],[[gettext("Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)")],[gettext("Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)")],[gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.it,this.ot,this.np,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONVERT")],[" "],["Type conversion"],[" "]],["Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -41,13 +41,13 @@ function CONVERT() {
                 this.ot = 1;
             }
             if ((this.np!=0&&this.np!=1&&this.np!=2)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Do on Overflow"),this.np),msprintf(gettext("Must be in the interval %s."),"[0, 2]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Do on Overflow",this.np),msprintf("Must be in the interval %s.","[0, 2]"));
                 ok = false;
             } else if ((this.it>8||this.it<1)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Input Type"),this.it),msprintf(gettext("Must be in the interval %s."),"[1, 8]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Input Type",this.it),msprintf("Must be in the interval %s.","[1, 8]"));
                 ok = false;
             } else if ((this.ot>8||this.ot<1)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Output Type"),this.ot),msprintf(gettext("Must be in the interval %s."),"[1, 8]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Output Type",this.ot),msprintf("Must be in the interval %s.","[1, 8]"));
                 ok = false;
             }
             model.sim = list("convert",4);

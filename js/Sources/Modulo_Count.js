@@ -27,16 +27,16 @@ function Modulo_Count() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.ini_c,this.base,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"Modulo_Count")],[" "],[gettext("Modulo counter (0 to N counter)")],[" "]],[[gettext("Initial State (zero or positive number)")],[gettext("Upper Limit (positive number)")]],list("vec",1,"vec",1),exprs);
+            [ok,this.ini_c,this.base,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Modulo_Count")],[" "],["Modulo counter (0 to N counter)"],[" "]],["Initial State (zero or positive number)","Upper Limit (positive number)"],list("vec",1,"vec",1),exprs);
             this.ini_c = int(this.ini_c);
             this.base = int(this.base);
             if (!ok) {
                 break;
             }
             if (this.ini_c<0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Initial State\' parameter: %d."),this.ini_c),gettext("Null or positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'Initial State\' parameter: %d.",this.ini_c),"Null or positive integer expected.");
             } else if (this.base<=0) {
-                block_parameter_error(msprintf(gettext("Wrong values for \'Upper Limit\' parameter: %d."),this.base),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong values for \'Upper Limit\' parameter: %d.",this.base),"Strictly positive integer expected.");
             } else {
                 graphics.exprs = exprs;
                 model.ipar = this.base;

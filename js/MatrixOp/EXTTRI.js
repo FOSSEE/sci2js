@@ -39,7 +39,7 @@ function EXTTRI() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set EXTTRI block parameters",[["Datatype(1=real double  2=Complex)"],["extraction type (1=lower  2=upper  3=diagonal)"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set EXTTRI block parameters",["Datatype(1=real double  2=Complex)","extraction type (1=lower  2=upper  3=diagonal)"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }

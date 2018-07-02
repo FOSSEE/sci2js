@@ -39,7 +39,7 @@ function EXTRACT() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.a,this.b,exprs] = scicos_getvalue("Set EXTRACT Block",[["Datatype (1=real double  2=Complex)"],["Lines to extract"],["Columns to extract"]],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
+            [ok,this.typ,this.a,this.b,exprs] = scicos_getvalue("Set EXTRACT Block",["Datatype (1=real double  2=Complex)","Lines to extract","Columns to extract"],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
             this.a = this.a.slice();
             this.b = this.b.slice();
             if (!ok) {

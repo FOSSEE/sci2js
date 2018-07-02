@@ -33,7 +33,7 @@ function PENDULUM_ANIM() {
         model = arg1.model;
         dstate = model.dstate;
         while (true) {
-            [ok,this.plen,this.csiz,this.phi,this.xmin,this.xmax,this.ymin,this.ymax,exprs] = scicos_getvalue("Set Scope parameters",[["pendulum length"],["cart size (square side)"],["slope"],["Xmin"],["Xmax"],["Ymin"],["Ymax"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.plen,this.csiz,this.phi,this.xmin,this.xmax,this.ymin,this.ymax,exprs] = scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

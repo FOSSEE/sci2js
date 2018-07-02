@@ -30,7 +30,7 @@ function RELAY_f() {
         model = arg1.model;
         ipar = model.ipar;
         while (true) {
-            [ok,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",[["number of inputs"],["initial connected input"]],list("vec",1,"vec",1),exprs);
+            [ok,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

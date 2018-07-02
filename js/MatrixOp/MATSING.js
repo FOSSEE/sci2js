@@ -39,7 +39,7 @@ function MATSING() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATSVD block parameters",[["Datatype(1=real double  2=Complex)"],["decomposition type (1=singular values  2=sing values+matrix U & V)"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATSVD block parameters",["Datatype(1=real double  2=Complex)","decomposition type (1=singular values  2=sing values+matrix U & V)"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }

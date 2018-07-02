@@ -13,7 +13,7 @@ function DSUPER() {
         typ = list();
         graphics = arg1.graphics;
         if ((length(graphics.exprs)==0)) {
-            warnBlockByUID(arg1.model.label,gettext("Invalid masked block."));
+            warnBlockByUID(arg1.model.label,"Invalid masked block.");
             this.x = arg1;
             return;
         }

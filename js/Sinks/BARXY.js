@@ -32,7 +32,7 @@ function BARXY() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.xmin,this.xmax,this.ymin,this.ymax,this.thickness,exprs] = scicos_getvalue("Set Scope parameters",[["Xmin"],["Xmax"],["Ymin"],["Ymax"],["Segs Thickness"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.xmin,this.xmax,this.ymin,this.ymax,this.thickness,exprs] = scicos_getvalue("Set Scope parameters",["Xmin","Xmax","Ymin","Ymax","Segs Thickness"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

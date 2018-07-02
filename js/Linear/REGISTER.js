@@ -29,7 +29,7 @@ function REGISTER() {
             exprs = [[exprs],[sci2exp(1)]];
         }
         while (true) {
-            [ok,this.z0,this.it,exprs] = scicos_getvalue("Set delay parameters",[["Register initial condition"],["Datatype (1=double 3=int32 ...)"]],list("vec",-1,"vec",1),exprs);
+            [ok,this.z0,this.it,exprs] = scicos_getvalue("Set delay parameters",["Register initial condition","Datatype (1=double 3=int32 ...)"],list("vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

@@ -35,7 +35,7 @@ function IFTHEL_f() {
             exprs[2-1] = string(1);
         }
         while (true) {
-            [ok,this.inh,this.nmod,exprs] = scicos_getvalue("Set parameters",[["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1),exprs);
+            [ok,this.inh,this.nmod,exprs] = scicos_getvalue("Set parameters",["Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

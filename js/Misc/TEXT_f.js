@@ -30,7 +30,7 @@ function TEXT_f() {
             exprs = [[exprs],["3"],["1"]];
         }
         while (true) {
-            [ok,this.txt,this.font,this.siz,exprs] = scicos_getvalue("Set Text block parameters",[["Text"],["Font number"],["Font size"]],list("str",-1,"vec",1,"vec",1),exprs);
+            [ok,this.txt,this.font,this.siz,exprs] = scicos_getvalue("Set Text block parameters",["Text","Font number","Font size"],list("str",-1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

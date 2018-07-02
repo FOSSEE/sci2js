@@ -45,7 +45,7 @@ function Bache() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.Patm,this.A,this.ze1,this.ze2,this.zs1,this.zs2,this.z0,this.T0,this.p_rho,exprs] = scicos_getvalue("Parametres de la bache",[["Pression dans le ciel de la bache : Patm (Pa)"],["Section de la bache : A (m2)"],["Altitude du piquage d entrée 1: ze1 (m)"],["Altitude du piquage d entrée 2: ze2 (m)"],["Altitude du piquage de sortie 1: zs1 (m)"],["Altitude du piquage de sortie 2: zs2 (m)"],["Altitude initiale du fluide : z0 (m)"],["Température initiale du fluide : T0 (K)"],["Si >0, masse volumique imposée du fluide : p_rho (kg/m3)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.Patm,this.A,this.ze1,this.ze2,this.zs1,this.zs2,this.z0,this.T0,this.p_rho,exprs] = scicos_getvalue("Parametres de la bache",["Pression dans le ciel de la bache : Patm (Pa)","Section de la bache : A (m2)","Altitude du piquage d entrée 1: ze1 (m)","Altitude du piquage d entrée 2: ze2 (m)","Altitude du piquage de sortie 1: zs1 (m)","Altitude du piquage de sortie 2: zs2 (m)","Altitude initiale du fluide : z0 (m)","Température initiale du fluide : T0 (K)","Si >0, masse volumique imposée du fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }

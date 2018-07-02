@@ -47,7 +47,7 @@ function BOUNCEXY() {
         model = arg1.model;
         dstate = model.dstate;
         while (true) {
-            [ok,this.clrs,this.siz,this.win,this.imode,this.xmin,this.xmax,this.ymin,this.ymax,exprs] = scicos_getvalue("Set Scope parameters",[["colors"],["radii"],["window number (-1 for automatic)"],["animation mode (0,1)"],["Xmin"],["Xmax"],["Ymin"],["Ymax"]],list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.clrs,this.siz,this.win,this.imode,this.xmin,this.xmax,this.ymin,this.ymax,exprs] = scicos_getvalue("Set Scope parameters",["colors","radii","window number (-1 for automatic)","animation mode (0,1)","Xmin","Xmax","Ymin","Ymax"],list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

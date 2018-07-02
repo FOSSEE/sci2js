@@ -63,12 +63,12 @@ function CLOCK_c() {
         dt_old = model.rpar[1-1];
         model_n = model;
         while (true) {
-            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLOCK_c")],[" "],[gettext("Event clock generator")],[" "],[gettext("&nbsp; Do not start if \'Initialisation Time\' is negative")],[" "]],[[gettext("Period")],[gettext("Initialisation Time")]],list("vec",1,"vec",1),exprs);
+            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue([[msprintf("Set %s block parameters","CLOCK_c")],[" "],["Event clock generator"],[" "],["&nbsp; Do not start if \'Initialisation Time\' is negative"],[" "]],["Period","Initialisation Time"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             if (this.dt<=0) {
-                block_parameter_error(msprintf(gettext("Wrong values for \'%s\' parameter: %5.1e."),gettext("Period"),this.dt),gettext("Strictly positive number expected."));
+                block_parameter_error(msprintf("Wrong values for \'%s\' parameter: %5.1e.","Period",this.dt),"Strictly positive number expected.");
                 ok = false;
             }
             if (ok) {

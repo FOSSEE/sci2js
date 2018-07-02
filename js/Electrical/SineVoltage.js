@@ -37,7 +37,7 @@ function SineVoltage() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.V,this.ph,this.frq,this.offset,this.start,exprs] = scicos_getvalue("Set voltage source parameter",[["Amplitude (Volt)"],["phase (rad)"],["Frequency (Hz)"],["Voltageoffset (V)"],["Timeoffset (s)"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.V,this.ph,this.frq,this.offset,this.start,exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","phase (rad)","Frequency (Hz)","Voltageoffset (V)","Timeoffset (s)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

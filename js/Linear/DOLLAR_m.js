@@ -31,7 +31,7 @@ function DOLLAR_m() {
             exprs[2-1] = "0";
         }
         while (true) {
-            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set 1/z block parameters",[["initial condition"],["Inherit (no:0, yes:1)"]],list("mat",[-1,-2],"vec",-1),exprs);
+            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("mat",[-1,-2],"vec",-1),exprs);
             if (!ok) {
                 break;
             }

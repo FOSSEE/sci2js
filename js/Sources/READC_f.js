@@ -48,7 +48,7 @@ function READC_f() {
         fname = exprs[3-1];
         frmt = exprs[4-1];
         while (true) {
-            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.M,this.N,this.offset,this.swap,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"READC_f")],[" "],[gettext("Read from C binary file")]],[[gettext("Time Record Selection")],[gettext("Outputs Record Selection")],[gettext("Input File Name")],[gettext("Input Format")],[gettext("Record Size")],[gettext("Buffer Size")],[gettext("Initial Record Index")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.M,this.N,this.offset,this.swap,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","READC_f")],[" "],["Read from C binary file"]],["Time Record Selection","Outputs Record Selection","Input File Name","Input Format","Record Size","Buffer Size","Initial Record Index","Swap Mode (0:No, 1:Yes)"],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -57,33 +57,33 @@ function READC_f() {
             fmts = ["s","l","d","f","c","us","ul","uc","ull","uls","ubl","ubs","dl","fl","ll","sl","db","fb","lb","sb"];
             nout = size(this.outmask,"*");
             if (prod(size(this.tmask1))>1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Time Record Selection")),gettext("Must be a scalar or an empty matrix."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Time Record Selection"),"Must be a scalar or an empty matrix.");
             } else if (and(this.frmt1!=fmts)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Input Format"),this.frmt1),gettext("Valid formats are: "+strcat(fmts,", ")));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Input Format",this.frmt1),"Valid formats are: "+strcat(fmts,", "));
             } else if (this.alreadyran&&this.fname1!=fname) {
-                block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running"),gettext("Input File Name")),gettext("End current simulation first."));
+                block_parameter_error(msprintf("You cannot modify \'%s\' when running","Input File Name"),"End current simulation first.");
             } else if (this.N!=ipar[6-1]&&this.alreadyran) {
-                block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
+                block_parameter_error(msprintf("You cannot modify \'%s\' when running.","Buffer Size"),"End current simulation first");
             } else if (this.alreadyran&&size(this.tmask1)!=size(tmask)) {
-                block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Time Record Selection")),gettext("End current simulation first."));
+                block_parameter_error(msprintf("You cannot modify \'%s\' when running.","Time Record Selection"),"End current simulation first.");
             } else if (this.fname1=="") {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Input File Name")),gettext("You must provide a file name."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Input File Name"),"You must provide a file name.");
             } else if (this.M<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Record Size"),this.M),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Record Size",this.M),"Strictly positive integer expected.");
             } else if (this.tmask1!=[]&&(this.tmask1<1||this.tmask1>this.M)) {
-                block_parameter_error(msprintf(gettext("Wrong value for  \'%s\' parameter: %d."),gettext("Time Record Selection"),this.tmask1),msprintf(gettext("Must be in the interval %s."),gettext("[1, Record Size = ")+string(this.M)+"]"));
+                block_parameter_error(msprintf("Wrong value for  \'%s\' parameter: %d.","Time Record Selection",this.tmask1),msprintf("Must be in the interval %s.","[1, Record Size = "+string(this.M)+"]"));
             } else if (nout==0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Outputs Record Selection"),nout),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Outputs Record Selection",nout),"Strictly positive integer expected.");
             } else if (nout>this.M) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Outputs Record Selection"),nout),msprintf(gettext("Must be in the interval %s."),gettext("[1, Record Size = ")+string(this.M)+"]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Outputs Record Selection",nout),msprintf("Must be in the interval %s.","[1, Record Size = "+string(this.M)+"]"));
             } else if (max(this.outmask)>this.M||min(this.outmask)<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for indexes in \'%s\' parameter: %s."),gettext("Outputs Record Selection"),strcat(string(this.outmask.slice())," ")),msprintf(gettext("Must be in the interval %s."),gettext("[1, Record Size = ")+string(this.M)+"]"));
+                block_parameter_error(msprintf("Wrong value for indexes in \'%s\' parameter: %s.","Outputs Record Selection",strcat(string(this.outmask.slice())," ")),msprintf("Must be in the interval %s.","[1, Record Size = "+string(this.M)+"]"));
             } else if (this.N<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),this.N),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Buffer Size",this.N),"Strictly positive integer expected.");
             } else if (this.swap!=0&&this.swap!=1) {
-                block_parameter_error(msprintf(gettext("Wrong value for  \'%s\' parameter: %d."),gettext("Swap Mode"),this.swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                block_parameter_error(msprintf("Wrong value for  \'%s\' parameter: %d.","Swap Mode",this.swap),msprintf("Must be in the interval %s.","[0, 1]"));
             } else if (this.offset<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Initial Record Index"),this.offset),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Initial Record Index",this.offset),"Strictly positive integer expected.");
             } else {
                 if (this.tmask1==[]) {
                     ievt = 0;

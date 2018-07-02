@@ -133,7 +133,7 @@ function freq_div() {
         exprs = graphics.exprs;
         model = xx.model;
         while (true) {
-            [ok,%ph,%df,exprs] = scicos_getvalue("Set frequency division block parameters",[["Phase (0 to division factor -1)"],["Division factor"]],list("vec",1,"vec",1),exprs);
+            [ok,%ph,%df,exprs] = scicos_getvalue("Set frequency division block parameters",["Phase (0 to division factor -1)","Division factor"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

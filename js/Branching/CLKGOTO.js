@@ -25,7 +25,7 @@ function CLKGOTO() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set block parameters",[["Tag"],["Tag Visibility (1=Local 2=Scoped 3=Global)"]],list("str",-1,"vec",1),exprs);
+            [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set block parameters",["Tag","Tag Visibility (1=Local 2=Scoped 3=Global)"],list("str",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

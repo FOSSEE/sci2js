@@ -28,7 +28,7 @@ function SELECT_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",[["number of inputs"],["initial connected input"]],list("vec",1,"vec",1),exprs);
+            [ok,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

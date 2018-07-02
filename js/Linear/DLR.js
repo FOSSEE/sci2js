@@ -35,7 +35,7 @@ function DLR() {
         PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.z = %z;
         while (true) {
-            [ok,this.num,this.den,exprs] = scicos_getvalue("Set discrete SISO transfer parameters",[["Numerator (z)"],["Denominator (z)"]],list("pol",1,"pol",1),exprs);
+            [ok,this.num,this.den,exprs] = scicos_getvalue("Set discrete SISO transfer parameters",["Numerator (z)","Denominator (z)"],list("pol",1,"pol",1),exprs);
             if (!ok) {
                 break;
             }

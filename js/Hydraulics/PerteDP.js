@@ -40,7 +40,7 @@ function PerteDP() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.L,this.D,this.lambda,this.z1,this.z2,this.p_rho,exprs] = scicos_getvalue("Parametres du tuyau",[["Longueur du tube : L (m)"],["Diamètre interne du tube : D (m)"],["Coefficient de perte de charge-frottement(S.U) : lambda"],["Altitude entrée tuyauterie : z1 (m)"],["Altitude sortie tuyauterie : z2 (m)"],["Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.L,this.D,this.lambda,this.z1,this.z2,this.p_rho,exprs] = scicos_getvalue("Parametres du tuyau",["Longueur du tube : L (m)","Diamètre interne du tube : D (m)","Coefficient de perte de charge-frottement(S.U) : lambda","Altitude entrée tuyauterie : z1 (m)","Altitude sortie tuyauterie : z2 (m)","Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }

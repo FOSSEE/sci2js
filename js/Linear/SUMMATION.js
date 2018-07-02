@@ -32,7 +32,7 @@ function SUMMATION() {
             exprs = [[exprs],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.Datatype,this.sgn,this.satur,exprs] = scicos_getvalue("Set sum block parameters",[["Datatype (1=real double  2=complex 3=int32 ...)"],["Number of inputs or sign vector (of +1, -1)"],["Do on Overflow(0=Nothing 1=Saturate 2=Error)"]],list("vec",1,"vec",-1,"vec",1),exprs);
+            [ok,this.Datatype,this.sgn,this.satur,exprs] = scicos_getvalue("Set sum block parameters",["Datatype (1=real double  2=complex 3=int32 ...)","Number of inputs or sign vector (of +1, -1)","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

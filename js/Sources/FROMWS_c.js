@@ -32,7 +32,7 @@ function FROMWS_c() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.varnam,this.Method,this.ZC,this.OutEnd,exprs] = scicos_getvalue("Set From_Workspace block parameters",[["Variable name"],["Interpolation Method"],["Enable zero crossing(0:No, 1:Yes)?"],["Output at end(0:Zero, 1:Hold, 2:Repeat)"]],list("str",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.varnam,this.Method,this.ZC,this.OutEnd,exprs] = scicos_getvalue("Set From_Workspace block parameters",["Variable name","Interpolation Method","Enable zero crossing(0:No, 1:Yes)?","Output at end(0:Zero, 1:Hold, 2:Repeat)"],list("str",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

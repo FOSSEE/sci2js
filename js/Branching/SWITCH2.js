@@ -31,7 +31,7 @@ function SWITCH2() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.rule,this.thra,this.nzz,exprs] = scicos_getvalue("Set parameters",[["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)"],["threshold a"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.rule,this.thra,this.nzz,exprs] = scicos_getvalue("Set parameters",["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

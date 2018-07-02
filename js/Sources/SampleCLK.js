@@ -23,7 +23,7 @@ function SampleCLK() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",[["Sample time"],["Offset"]],list("vec",1,"vec",1),exprs);
+            [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

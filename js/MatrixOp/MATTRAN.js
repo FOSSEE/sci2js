@@ -27,7 +27,7 @@ function MATTRAN() {
             label[2-1] = sci2exp(1);
         }
         while (true) {
-            [ok,this.typ,this.rule,exprs] = scicos_getvalue("Set MATTRAN Block",[["Datatype(1=real double 2=Complex)"],["rule (1=.\' 2=\')"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.rule,exprs] = scicos_getvalue("Set MATTRAN Block",["Datatype(1=real double 2=Complex)","rule (1=.\' 2=\')"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }

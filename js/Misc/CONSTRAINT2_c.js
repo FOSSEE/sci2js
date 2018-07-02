@@ -29,7 +29,7 @@ function CONSTRAINT2_c() {
         model = arg1.model;
         while (true) {
             ask_again = false;
-            [ok,this.x0,this.xd0,this.id,exprs] = scicos_getvalue("Set Constraint block parameters",[["Initial guess values of states x"],["Initial guess values of derivative x\'"],["Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0"]],list("vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.x0,this.xd0,this.id,exprs] = scicos_getvalue("Set Constraint block parameters",["Initial guess values of states x","Initial guess values of derivative x\'","Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0"],list("vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }

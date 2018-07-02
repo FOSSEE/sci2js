@@ -63,7 +63,7 @@ function CLOCK_f() {
         dt_old = model.rpar;
         model_n = model;
         while (true) {
-            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue("Set Clock  block parameters",[["Period"],["Init time"]],list("vec",1,"vec",1),exprs);
+            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue("Set Clock  block parameters",["Period","Init time"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

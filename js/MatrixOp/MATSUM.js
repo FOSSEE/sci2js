@@ -39,7 +39,7 @@ function MATSUM() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATSUM block parameters",[["Datatype(1=real double  2=Complex)"],["Sum along (0=all 1=lines  2=Columns)"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATSUM block parameters",["Datatype(1=real double  2=Complex)","Sum along (0=all 1=lines  2=Columns)"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }

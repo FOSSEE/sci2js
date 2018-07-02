@@ -37,7 +37,7 @@ function RAND_f() {
             exprs = [[exprs],[string(model.dstate[1-1])]];
         }
         while (true) {
-            [ok,this.flag,this.a,this.b,this.seed_c,exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be vector with equal sizes"],["seed is the seed of random number generator (integer<2**31)"]],[["flag"],["A"],["B"],["seed"]],list("vec",1,"vec",-1,"vec","size(%2,\'*\')","vec",1),exprs);
+            [ok,this.flag,this.a,this.b,this.seed_c,exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be vector with equal sizes"],["seed is the seed of random number generator (integer<2**31)"]],["flag","A","B","seed"],list("vec",1,"vec",-1,"vec","size(%2,\'*\')","vec",1),exprs);
             if (!ok) {
                 break;
             }

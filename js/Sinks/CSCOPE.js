@@ -34,7 +34,7 @@ function CSCOPE() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,exprs] = scicos_getvalue("Set Scope parameters",[["Color (>0) or mark (<0) vector (8 entries)"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Ymin"],["Ymax"],["Refresh period"],["Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"]],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"str",1),exprs);
+            [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"str",1),exprs);
             if (!ok) {
                 break;
             }

@@ -35,7 +35,7 @@ function LOOKUP2D() {
         SaveExit = false;
         while (true) {
             Ask_again = false;
-            [ok,this.xx,this.yy,this.zz,this.Method,this.graf,exprs] = scicos_getvalue("2D Lookup table parameters",[["Row index input values"],["Column index input values"],["Table data"],["Lookup method(1..5)"],["Launch graphic window(y/n)?"]],list("vec",-1,"vec",-1,"mat",[-1,-1],"vec",1,"str",1),exprs);
+            [ok,this.xx,this.yy,this.zz,this.Method,this.graf,exprs] = scicos_getvalue("2D Lookup table parameters",["Row index input values","Column index input values","Table data","Lookup method(1..5)","Launch graphic window(y/n)?"],list("vec",-1,"vec",-1,"mat",[-1,-1],"vec",1,"str",1),exprs);
             if (!ok) {
                 break;
             }

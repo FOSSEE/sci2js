@@ -30,12 +30,12 @@ function RAMP() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.slope,this.stt,this.iout,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"RAMP")],[" "],[gettext("Ramp function")],[" "]],[[gettext("Slope")],[gettext("Start Time")],[gettext("Initial Value")]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.slope,this.stt,this.iout,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","RAMP")],[" "],["Ramp function"],[" "]],["Slope","Start Time","Initial Value"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             if (this.stt<0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Start Time\' parameter: %e."),this.stt),gettext("Null or positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'Start Time\' parameter: %e.",this.stt),"Null or positive integer expected.");
             } else {
                 model.rpar = [[this.slope],[this.stt],[this.iout]];
                 graphics.exprs = exprs;

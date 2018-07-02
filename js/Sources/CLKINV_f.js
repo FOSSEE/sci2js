@@ -26,13 +26,13 @@ function CLKINV_f() {
         exprs = graphics.exprs;
         exprs = exprs[1-1];
         while (true) {
-            [ok,this.prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLKINV_f")],[" "],[gettext("Event input port")],[" "]],"Port Number",list("vec",1),exprs);
+            [ok,this.prt,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CLKINV_f")],[" "],["Event input port"],[" "]],"Port Number",list("vec",1),exprs);
             this.prt = int(this.prt);
             if (!ok) {
                 break;
             }
             if (this.prt<=0) {
-                block_parameter_error(msprintf(gettext("Wrong values for \'Port Number\' parameter: %d."),this.prt),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong values for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
                 model.ipar = this.prt;
                 model.evtout = 1;

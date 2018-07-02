@@ -28,7 +28,7 @@ function INTRP2BLK_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.a,this.b,this.c,exprs] = scicos_getvalue("Set Interpolation block parameters",[["X coord."],["Y coord."],["Z values"]],list("vec",-1,"vec",-1,"mat",[-1,-1]),exprs);
+            [ok,this.a,this.b,this.c,exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord.","Z values"],list("vec",-1,"vec",-1,"mat",[-1,-1]),exprs);
             if (!ok) {
                 break;
             }

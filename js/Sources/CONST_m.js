@@ -28,13 +28,13 @@ function CONST_m() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.C,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CONST_m")],[" "],[gettext("Constant value generator")],[" "]],gettext("Constant Value"),list("vec",-1),exprs);
+            [ok,this.C,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONST_m")],[" "],["Constant value generator"],[" "]],"Constant Value",list("vec",-1),exprs);
             if (!ok) {
                 break;
             }
             nout = size(this.C);
             if (find(nout==0)!=[]) {
-                block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter"),gettext("Constant Value")),gettext("Constant value must have at least one element."));
+                block_parameter_error(msprintf("Wrong size for \'%s\' parameter","Constant Value"),"Constant value must have at least one element.");
             } else {
                 model.sim = list("cstblk4_m",4);
                 model.opar = list(this.C);
@@ -57,7 +57,7 @@ function CONST_m() {
                 } else if ((typeof(this.C)=="uint8")) {
                     ot = 8;
                 } else {
-                    block_parameter_error(msprintf(gettext("Wrong type for \'%s\' parameter"),gettext("Constant Value")),gettext("Value type must be a numeric type (double, complex, int, int8, ...)."));
+                    block_parameter_error(msprintf("Wrong type for \'%s\' parameter","Constant Value"),"Value type must be a numeric type (double, complex, int, int8, ...).");
                     ok = false;
                 }
                 if (ok) {

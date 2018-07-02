@@ -26,7 +26,7 @@ function TKSCALE() {
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
-        [ok,this.a,this.b,this.f,exprs] = scicos_getvalue("Set scale block parameters",[["Min value"],["Max value"],["Normalization"]],list("vec",1,"vec",1,"vec",1),exprs);
+        [ok,this.a,this.b,this.f,exprs] = scicos_getvalue("Set scale block parameters",["Min value","Max value","Normalization"],list("vec",1,"vec",1,"vec",1),exprs);
         if (ok) {
             graphics.exprs = exprs;
             model.rpar = [[this.a],[this.b],[this.f]];

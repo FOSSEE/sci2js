@@ -27,7 +27,7 @@ function EVTDLY_c() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.dt,this.ff,exprs] = scicos_getvalue([["Set Event Delay block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       to disable any output event."]],[["Delay"],["Date of initial output event"]],list("vec",1,"vec",1),exprs);
+            [ok,this.dt,this.ff,exprs] = scicos_getvalue([["Set Event Delay block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       to disable any output event."]],["Delay","Date of initial output event"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

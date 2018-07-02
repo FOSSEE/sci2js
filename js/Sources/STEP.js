@@ -29,7 +29,7 @@ function STEP() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.temps,this.in1,this.fi,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"STEP_FUNCTION")],[" "],[gettext("Step Function")],[" "]],[[gettext("Step Time")],[gettext("Initial Value")],[gettext("Final Value")]],list("vec",1,"vec",-1,"vec",-1),exprs);
+            [ok,this.temps,this.in1,this.fi,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","STEP_FUNCTION")],[" "],["Step Function"],[" "]],["Step Time","Initial Value","Final Value"],list("vec",1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -41,7 +41,7 @@ function STEP() {
                 } else if (size(this.fi,"*")==1) {
                     this.fi = this.fi*ones(this.in1);
                 } else {
-                    block_parameter_error(msprintf(gettext("\'Initial Value\' and \'Final Value\': incompatible sizes: %d and %d."),size(this.in1,"*"),size(this.fi,"*")),gettext("Same sizes expected."));
+                    block_parameter_error(msprintf("\'Initial Value\' and \'Final Value\': incompatible sizes: %d and %d.",size(this.in1,"*"),size(this.fi,"*")),"Same sizes expected.");
                     ok = false;
                 }
             }

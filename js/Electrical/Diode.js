@@ -36,7 +36,7 @@ function Diode() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.Ids,this.Vt,this.Maxexp,this.R,exprs] = scicos_getvalue("Set Diode block parameter",[["Saturation cuurent (A)"],["Voltage equivalent to temperature (Volt)"],["Max exponent for linear continuation"],["R (ohm)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.Ids,this.Vt,this.Maxexp,this.R,exprs] = scicos_getvalue("Set Diode block parameter",["Saturation cuurent (A)","Voltage equivalent to temperature (Volt)","Max exponent for linear continuation","R (ohm)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

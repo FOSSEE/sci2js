@@ -33,7 +33,7 @@ function CMATVIEW() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.colormap,this.cmin,this.cmax,exprs] = scicos_getvalue("Set Scope parameters",[["ColorMap"],["Minimum level range"],["Maximum level range"]],list("vec",-1,"vec",1,"vec",1),exprs);
+            [ok,this.colormap,this.cmin,this.cmax,exprs] = scicos_getvalue("Set Scope parameters",["ColorMap","Minimum level range","Maximum level range"],list("vec",-1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

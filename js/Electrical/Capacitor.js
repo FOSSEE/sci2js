@@ -34,7 +34,7 @@ function Capacitor() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.C,this.v,exprs] = scicos_getvalue("Set Capacitor block parameter",[["C (F)"],["Initial Voltage"]],list("vec",1,"vec",1),exprs);
+            [ok,this.C,this.v,exprs] = scicos_getvalue("Set Capacitor block parameter",["C (F)","Initial Voltage"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

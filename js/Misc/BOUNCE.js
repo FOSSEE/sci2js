@@ -53,7 +53,7 @@ function BOUNCE() {
             exprs[9-1] = "0";
         }
         while (true) {
-            [ok,this.rpar1,this.rpar2,this.walls,this.xt,this.xd,this.y,this.yd,this.g,this.C,exprs] = scicos_getvalue(["Set Bounce Block"],[["Mass"],["Radius"],["[xmin,xmax,ymin,ymax]"],["xpos"],["xdpos"],["ypos"],["ydpos"],["g (gravity)"],["C (aerodynamic coeff"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
+            [ok,this.rpar1,this.rpar2,this.walls,this.xt,this.xd,this.y,this.yd,this.g,this.C,exprs] = scicos_getvalue(["Set Bounce Block"],["Mass","Radius","[xmin,xmax,ymin,ymax]","xpos","xdpos","ypos","ydpos","g (gravity)","C (aerodynamic coeff"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

@@ -34,7 +34,7 @@ function VsourceAC() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.VA,this.FR,exprs] = scicos_getvalue("Set voltage source parameter",[["Amplitude (Volt)"],["Frequency (Hz)"]],list("vec",-1,"vec",-1),exprs);
+            [ok,this.VA,this.FR,exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","Frequency (Hz)"],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }

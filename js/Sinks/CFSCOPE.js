@@ -32,7 +32,7 @@ function CFSCOPE() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.wu,exprs] = scicos_getvalue("Set Scope parameters",[["Color (>0) or mark (<0) vector (8 entries)"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Ymin"],["Ymax"],["Refresh period"],["Buffer size","Links to view"]],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",-1),exprs);
+            [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.wu,exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Links to view"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }

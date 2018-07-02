@@ -30,13 +30,13 @@ function OUT_f() {
             exprs = exprs[1-1];
         }
         while (true) {
-            [ok,this.prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"OUT_f")],[" "],[gettext("Regular output port")]],gettext("Port number"),list("vec",1),exprs);
+            [ok,this.prt,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","OUT_f")],[" "],["Regular output port"]],"Port number",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
             this.prt = int(this.prt);
             if (this.prt<=0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Port Number\' parameter: %d."),this.prt),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
                 model.ipar = this.prt;
                 graphics.exprs = exprs;

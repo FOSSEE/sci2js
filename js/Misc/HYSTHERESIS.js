@@ -30,7 +30,7 @@ function HYSTHERESIS() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.high_lim,this.low_lim,this.out_high,this.out_low,this.nzz,exprs] = scicos_getvalue("Set parameters",[["switch on at"],["switch off at"],["output when on"],["output when off"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.high_lim,this.low_lim,this.out_high,this.out_low,this.nzz,exprs] = scicos_getvalue("Set parameters",["switch on at","switch off at","output when on","output when off","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

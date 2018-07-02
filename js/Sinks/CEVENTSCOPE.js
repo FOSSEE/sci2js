@@ -30,7 +30,7 @@ function CEVENTSCOPE() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.nclock,this.clrs,this.win,this.wpos,this.wdim,this.per,exprs] = scicos_getvalue("Set Scope parameters",[["Number of event inputs"],["colors c (>0) or mark (<0)"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Refresh period"]],list("vec",1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",1),exprs);
+            [ok,this.nclock,this.clrs,this.win,this.wpos,this.wdim,this.per,exprs] = scicos_getvalue("Set Scope parameters",["Number of event inputs","colors c (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Refresh period"],list("vec",1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",1),exprs);
             this.nclock = int(this.nclock);
             this.clrs = int(this.clrs);
             this.win = int(this.win);

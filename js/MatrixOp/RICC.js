@@ -39,7 +39,7 @@ function RICC() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.tpe,this.mod,exprs] = scicos_getvalue("Set RICC Block",[["Type (1=Cont  2=Disc)"],["Model(1=Schr  2=sign(cont) inv(disc))"]],list("vec",1,"vec",1),label);
+            [ok,this.tpe,this.mod,exprs] = scicos_getvalue("Set RICC Block",["Type (1=Cont  2=Disc)","Model(1=Schr  2=sign(cont) inv(disc))"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }

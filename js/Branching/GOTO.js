@@ -30,7 +30,7 @@ function GOTO() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set parameters",[["Tag"],["Tag Visibility(1=Local 2=scoped 3= global)"]],list("str",-1,"vec",1),exprs);
+            [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

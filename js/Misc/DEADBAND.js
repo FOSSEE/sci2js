@@ -29,7 +29,7 @@ function DEADBAND() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.maxp,this.minp,this.zeroc,exprs] = scicos_getvalue("Set Deadband parameters",[["End of dead band"],["Start of dead band"],["zero crossing (0:no, 1:yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.maxp,this.minp,this.zeroc,exprs] = scicos_getvalue("Set Deadband parameters",["End of dead band","Start of dead band","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

@@ -27,12 +27,12 @@ function GENSIN_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.M,this.F,this.P,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"GENSIN_f")],[" "],[gettext("Sine wave generator")],[" "]],[[gettext("Magnitude")],[gettext("Frequency (rad/s)")],[gettext("Phase (rad)")]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.M,this.F,this.P,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","GENSIN_f")],[" "],["Sine wave generator"],[" "]],["Magnitude","Frequency (rad/s)","Phase (rad)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             if (this.F<0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Frequency\' parameter: %e."),this.F),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'Frequency\' parameter: %e.",this.F),"Strictly positive integer expected.");
                 ok = false;
             }
             if (ok) {

@@ -34,7 +34,7 @@ function GAINBLK() {
             exprs = [[exprs],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.gain,this.over,exprs] = scicos_getvalue("Set gain block parameters",[["Gain"],["Do On Overflow(0=Nothing 1=Saturate 2=Error)"]],list("mat",[-1,-1],"vec",1),exprs);
+            [ok,this.gain,this.over,exprs] = scicos_getvalue("Set gain block parameters",["Gain","Do On Overflow(0=Nothing 1=Saturate 2=Error)"],list("mat",[-1,-1],"vec",1),exprs);
             if (!ok) {
                 break;
             }

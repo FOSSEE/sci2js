@@ -28,7 +28,7 @@ function MFCLCK_f() {
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
-        [ok,this.dt,this.nn,exprs] = scicos_getvalue("Set Multifrequency clock parameters",[["basic period (1/f)"],["multiply by (n)"]],list("vec",1,"vec",1),exprs);
+        [ok,this.dt,this.nn,exprs] = scicos_getvalue("Set Multifrequency clock parameters",["basic period (1/f)","multiply by (n)"],list("vec",1,"vec",1),exprs);
         if (ok) {
             model.ipar = this.nn;
             model.rpar = this.dt;

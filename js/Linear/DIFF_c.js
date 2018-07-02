@@ -26,7 +26,7 @@ function DIFF_c() {
         model = arg1.model;
         while (true) {
             ask_again = false;
-            [ok,this.x0,this.xd0,exprs] = scicos_getvalue("Set continuous linear system parameters",[["Initial state"],["Initial Derivative"]],list("vec",-1,"vec",-1),exprs);
+            [ok,this.x0,this.xd0,exprs] = scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }

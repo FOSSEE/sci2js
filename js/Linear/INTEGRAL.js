@@ -29,7 +29,7 @@ function INTEGRAL() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,exprs] = scicos_getvalue("Set Integral block parameters",[["Initial Condition"],["With re-intialization (1:yes, 0:no)"],["With saturation (1:yes, 0:no)"],["Upper limit"],["Lower limit"]],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),exprs);
+            [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }

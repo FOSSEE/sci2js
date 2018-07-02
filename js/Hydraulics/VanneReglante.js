@@ -36,7 +36,7 @@ function VanneReglante() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.Cvmax,this.p_rho,exprs] = scicos_getvalue("Paramètres de la vanne reglante",[["Cvmax"],["p_rho"]],list("vec",-1,"vec",-1),exprs);
+            [ok,this.Cvmax,this.p_rho,exprs] = scicos_getvalue("Paramètres de la vanne reglante",["Cvmax","p_rho"],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }

@@ -36,7 +36,7 @@ function DELAYV_f() {
         this.zz0 = z0.slice(1-1,$-1);
         told = z0[$-1];
         while (true) {
-            [ok,this.nin,this.zz0,this.T,exprs] = scicos_getvalue("Set delay parameters",[["Number of inputs"],["Register initial condition"],["Max delay"]],list("vec",1,"vec",-1,"vec",1),exprs);
+            [ok,this.nin,this.zz0,this.T,exprs] = scicos_getvalue("Set delay parameters",["Number of inputs","Register initial condition","Max delay"],list("vec",1,"vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

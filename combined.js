@@ -71,7 +71,7 @@ function CLKGOTO() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set block parameters",[["Tag"],["Tag Visibility (1=Local 2=Scoped 3=Global)"]],list("str",-1,"vec",1),exprs);
+            [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set block parameters",["Tag","Tag Visibility (1=Local 2=Scoped 3=Global)"],list("str",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -321,7 +321,7 @@ function ESELECT_f() {
         }
         model = arg1.model;
         while (true) {
-            [ok,this.out,this.inh,this.nmod,exprs] = scicos_getvalue("Set ESELECT block parameters",[["number of output event ports"],["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.out,this.inh,this.nmod,exprs] = scicos_getvalue("Set ESELECT block parameters",["number of output event ports","Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -537,7 +537,7 @@ function GOTO() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set parameters",[["Tag"],["Tag Visibility(1=Local 2=scoped 3= global)"]],list("str",-1,"vec",1),exprs);
+            [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -599,7 +599,7 @@ function GOTOMO() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set parameters",[["Tag"],["Tag Visibility(1=Local 2=scoped 3= global)"]],list("str",-1,"vec",1),exprs);
+            [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -760,7 +760,7 @@ function ISELECT_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.nout,this.z0,exprs] = scicos_getvalue("Set parameters",[["number of outputs"],["initial connected output"]],list("vec",1,"vec",1),exprs);
+            [ok,this.nout,this.z0,exprs] = scicos_getvalue("Set parameters",["number of outputs","initial connected output"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -818,7 +818,7 @@ function ISELECT_m() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.typ,this.nout,this.z0,exprs] = scicos_getvalue("Set parameters",[["Datatype(1= real double  2=Complex 3=int32 ...)"],["number of outputs"],["initial connected output"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.typ,this.nout,this.z0,exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ...)","number of outputs","initial connected output"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -1006,7 +1006,7 @@ function M_SWITCH() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.nin,this.base,this.rule,exprs] = scicos_getvalue("Set parameters",[["number of inputs"],["zero base indexing (0), otherwise 1"],["rounding rule: int (0), round (1), ceil (2), floor (3)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.nin,this.base,this.rule,exprs] = scicos_getvalue("Set parameters",["number of inputs","zero base indexing (0), otherwise 1","rounding rule: int (0), round (1), ceil (2), floor (3)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -1117,7 +1117,7 @@ function RELAY_f() {
         model = arg1.model;
         ipar = model.ipar;
         while (true) {
-            [ok,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",[["number of inputs"],["initial connected input"]],list("vec",1,"vec",1),exprs);
+            [ok,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -1215,7 +1215,7 @@ function SELECT_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",[["number of inputs"],["initial connected input"]],list("vec",1,"vec",1),exprs);
+            [ok,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -1273,7 +1273,7 @@ function SELECT_m() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.typ,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",[["Datatype(1= real double  2=Complex 3=int32 ..)"],["number of inputs"],["initial connected input"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.typ,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ..)","number of inputs","initial connected input"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -1335,7 +1335,7 @@ function SWITCH2() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.rule,this.thra,this.nzz,exprs] = scicos_getvalue("Set parameters",[["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)"],["threshold a"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.rule,this.thra,this.nzz,exprs] = scicos_getvalue("Set parameters",["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -1399,7 +1399,7 @@ function SWITCH2_m() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.ot,this.rule,this.thra,this.nzz,exprs] = scicos_getvalue("Set parameters",[["Datatype (1=real double  2=complex 3=int32 ...)"],["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)"],["threshold a"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.ot,this.rule,this.thra,this.nzz,exprs] = scicos_getvalue("Set parameters",["Datatype (1=real double  2=complex 3=int32 ...)","pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -1472,7 +1472,7 @@ function SWITCH_f() {
         model = arg1.model;
         ipar = model.ipar;
         while (true) {
-            [ok,this.nin,this.z0,exprs] = scicos_getvalue("Set switch parameters",[["number of inputs"],["connected input"]],list("vec",1,"vec",1),exprs);
+            [ok,this.nin,this.z0,exprs] = scicos_getvalue("Set switch parameters",["number of inputs","connected input"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -1658,7 +1658,7 @@ function Capacitor() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.C,this.v,exprs] = scicos_getvalue("Set Capacitor block parameter",[["C (F)"],["Initial Voltage"]],list("vec",1,"vec",1),exprs);
+            [ok,this.C,this.v,exprs] = scicos_getvalue("Set Capacitor block parameter",["C (F)","Initial Voltage"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -1790,7 +1790,7 @@ function Diode() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.Ids,this.Vt,this.Maxexp,this.R,exprs] = scicos_getvalue("Set Diode block parameter",[["Saturation cuurent (A)"],["Voltage equivalent to temperature (Volt)"],["Max exponent for linear continuation"],["R (ohm)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.Ids,this.Vt,this.Maxexp,this.R,exprs] = scicos_getvalue("Set Diode block parameter",["Saturation cuurent (A)","Voltage equivalent to temperature (Volt)","Max exponent for linear continuation","R (ohm)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -1898,7 +1898,7 @@ function Gyrator() {
         this.x = arg1;
         exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,this.G1,this.G2,exprs] = scicos_getvalue([["Set Gyrator block parameters:"],[""],["G1: Gyration conductance"],["G2: Gyration conductance"]],[["G1"],["G2"]],list("vec",1,"vec",1),exprs);
+            [ok,this.G1,this.G2,exprs] = scicos_getvalue([["Set Gyrator block parameters:"],[""],["G1: Gyration conductance"],["G2: Gyration conductance"]],["G1","G2"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -2101,7 +2101,7 @@ function NMOS() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS,exprs] = scicos_getvalue("Set NMOS Transistor block parameters",[["Width [m]"],["Length [m]"],["Transconductance parameter [A/(V*V)]"],["Zero bias threshold voltage [V]"],["Bulk threshold parameter"],["Reduction of pinch-off region"],["Narrowing of channel [m]"],["Shortening of channel [m]"],["Drain-Source-Resistance [Ohm]"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS,exprs] = scicos_getvalue("Set NMOS Transistor block parameters",["Width [m]","Length [m]","Transconductance parameter [A/(V*V)]","Zero bias threshold voltage [V]","Bulk threshold parameter","Reduction of pinch-off region","Narrowing of channel [m]","Shortening of channel [m]","Drain-Source-Resistance [Ohm]"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -2178,7 +2178,7 @@ function NPN() {
         this.x = arg1;
         exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,this.Bf,this.Br,this.Is,this.Vak,this.Tauf,this.Taur,this.Ccs,this.Cje,this.Cjc,this.Phie,this.Me,this.Phic,this.Mc,this.Gbc,this.Gbe,this.Vt,this.EMinMax,exprs] = scicos_getvalue([["Set NPN block parameters:"],[""]],[["Bf  : Forward beta"],["Br  : Reverse beta"],["Is  : Transport saturation current"],["Vak : Early voltage (inverse), 1/Volt"],["Tauf: Ideal forward transit time"],["Taur: Ideal reverse transit time"],["Ccs : Collector-substrat(ground) cap."],["Cje : Base-emitter zero bias depletion cap."],["Cjc : Base-coll. zero bias depletion cap."],["Phie: Base-emitter diffusion voltage"],["Me  : Base-emitter gradation exponent"],["Phic: Base-collector diffusion voltage"],["Mc  : Base-collector gradation exponent"],["Gbc : Base-collector conductance"],["Gbe : Base-emitter conductance"],["Vt  : Voltage equivalent of temperature"],["EMinmax: if x > EMinMax, the exp(x) is linearized"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.Bf,this.Br,this.Is,this.Vak,this.Tauf,this.Taur,this.Ccs,this.Cje,this.Cjc,this.Phie,this.Me,this.Phic,this.Mc,this.Gbc,this.Gbe,this.Vt,this.EMinMax,exprs] = scicos_getvalue([["Set NPN block parameters:"],[""]],["Bf  : Forward beta","Br  : Reverse beta","Is  : Transport saturation current","Vak : Early voltage (inverse), 1/Volt","Tauf: Ideal forward transit time","Taur: Ideal reverse transit time","Ccs : Collector-substrat(ground) cap.","Cje : Base-emitter zero bias depletion cap.","Cjc : Base-coll. zero bias depletion cap.","Phie: Base-emitter diffusion voltage","Me  : Base-emitter gradation exponent","Phic: Base-collector diffusion voltage","Mc  : Base-collector gradation exponent","Gbc : Base-collector conductance","Gbe : Base-emitter conductance","Vt  : Voltage equivalent of temperature","EMinmax: if x > EMinMax, the exp(x) is linearized"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -2225,7 +2225,7 @@ function OpAmp() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (false) {
-            [ok,this.OLGain,this.SatH,this.SatL,exprs] = scicos_getvalue("Set the Operational Amplifier parameters",[["Open Loop Gain"],["Positive saturation voltage"],["Negative saturation voltage"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.OLGain,this.SatH,this.SatL,exprs] = scicos_getvalue("Set the Operational Amplifier parameters",["Open Loop Gain","Positive saturation voltage","Negative saturation voltage"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -2280,7 +2280,7 @@ function PMOS() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS,exprs] = scicos_getvalue("Set PMOS Transistor parameters",[["Width [m]"],["Length [m]"],["Transconductance parameter [A/(V*V)]"],["Zero bias threshold voltage [V]"],["Bulk threshold parameter"],["Reduction of pinch-off region"],["Narrowing of channel [m]"],["Shortening of channel [m]"],["Drain-Source-Resistance [Ohm]"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS,exprs] = scicos_getvalue("Set PMOS Transistor parameters",["Width [m]","Length [m]","Transconductance parameter [A/(V*V)]","Zero bias threshold voltage [V]","Bulk threshold parameter","Reduction of pinch-off region","Narrowing of channel [m]","Shortening of channel [m]","Drain-Source-Resistance [Ohm]"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -2357,7 +2357,7 @@ function PNP() {
         this.x = arg1;
         exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,this.Bf,this.Br,this.Is,this.Vak,this.Tauf,this.Taur,this.Ccs,this.Cje,this.Cjc,this.Phie,this.Me,this.Phic,this.Mc,this.Gbc,this.Gbe,this.Vt,this.EMinMax,exprs] = scicos_getvalue([["Set PNP block parameters:"],[""]],[["Bf  : Forward beta"],["Br  : Reverse beta"],["Is  : Transport saturation current"],["Vak : Early voltage (inverse), 1/Volt"],["Tauf: Ideal forward transit time"],["Taur: Ideal reverse transit time"],["Ccs : Collector-substrat(ground) cap."],["Cje : Base-emitter zero bias depletion cap."],["Cjc : Base-coll. zero bias depletion cap."],["Phie: Base-emitter diffusion voltage"],["Me  : Base-emitter gradation exponent"],["Phic: Base-collector diffusion voltage"],["Mc  : Base-collector gradation exponent"],["Gbc : Base-collector conductance"],["Gbe : Base-emitter conductance"],["Vt  : Voltage equivalent of temperature"],["EMinMax: if x > EMinMax, the exp(x) function is linearized"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.Bf,this.Br,this.Is,this.Vak,this.Tauf,this.Taur,this.Ccs,this.Cje,this.Cjc,this.Phie,this.Me,this.Phic,this.Mc,this.Gbc,this.Gbe,this.Vt,this.EMinMax,exprs] = scicos_getvalue([["Set PNP block parameters:"],[""]],["Bf  : Forward beta","Br  : Reverse beta","Is  : Transport saturation current","Vak : Early voltage (inverse), 1/Volt","Tauf: Ideal forward transit time","Taur: Ideal reverse transit time","Ccs : Collector-substrat(ground) cap.","Cje : Base-emitter zero bias depletion cap.","Cjc : Base-coll. zero bias depletion cap.","Phie: Base-emitter diffusion voltage","Me  : Base-emitter gradation exponent","Phic: Base-collector diffusion voltage","Mc  : Base-collector gradation exponent","Gbc : Base-collector conductance","Gbe : Base-emitter conductance","Vt  : Voltage equivalent of temperature","EMinMax: if x > EMinMax, the exp(x) function is linearized"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -2487,7 +2487,7 @@ function SineVoltage() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.V,this.ph,this.frq,this.offset,this.start,exprs] = scicos_getvalue("Set voltage source parameter",[["Amplitude (Volt)"],["phase (rad)"],["Frequency (Hz)"],["Voltageoffset (V)"],["Timeoffset (s)"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.V,this.ph,this.frq,this.offset,this.start,exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","phase (rad)","Frequency (Hz)","Voltageoffset (V)","Timeoffset (s)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -2539,7 +2539,7 @@ function Switch() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.Ron,this.Roff,exprs] = scicos_getvalue("Set non-ideal electrical switch parameters",[["Resistance in On state (Ohm)"],["Resistance in Off state (Ohm)"]],list("vec",1,"vec",1),exprs);
+            [ok,this.Ron,this.Roff,exprs] = scicos_getvalue("Set non-ideal electrical switch parameters",["Resistance in On state (Ohm)","Resistance in Off state (Ohm)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -2700,7 +2700,7 @@ function VsourceAC() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.VA,this.FR,exprs] = scicos_getvalue("Set voltage source parameter",[["Amplitude (Volt)"],["Frequency (Hz)"]],list("vec",-1,"vec",-1),exprs);
+            [ok,this.VA,this.FR,exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","Frequency (Hz)"],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -2959,7 +2959,7 @@ function EVTDLY_c() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.dt,this.ff,exprs] = scicos_getvalue([["Set Event Delay block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       to disable any output event."]],[["Delay"],["Date of initial output event"]],list("vec",1,"vec",1),exprs);
+            [ok,this.dt,this.ff,exprs] = scicos_getvalue([["Set Event Delay block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       to disable any output event."]],["Delay","Date of initial output event"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -3008,7 +3008,7 @@ function EVTDLY_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.dt,this.ff,exprs] = scicos_getvalue([["Set Event Delay  block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       if no initial event required"]],[["Delay"],["Date of initial output event"]],list("vec",1,"vec",1),exprs);
+            [ok,this.dt,this.ff,exprs] = scicos_getvalue([["Set Event Delay  block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       if no initial event required"]],["Delay","Date of initial output event"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -3189,7 +3189,7 @@ function IFTHEL_f() {
             exprs[2-1] = string(1);
         }
         while (true) {
-            [ok,this.inh,this.nmod,exprs] = scicos_getvalue("Set parameters",[["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1),exprs);
+            [ok,this.inh,this.nmod,exprs] = scicos_getvalue("Set parameters",["Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -3343,7 +3343,7 @@ function MFCLCK_f() {
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
-        [ok,this.dt,this.nn,exprs] = scicos_getvalue("Set Multifrequency clock parameters",[["basic period (1/f)"],["multiply by (n)"]],list("vec",1,"vec",1),exprs);
+        [ok,this.dt,this.nn,exprs] = scicos_getvalue("Set Multifrequency clock parameters",["basic period (1/f)","multiply by (n)"],list("vec",1,"vec",1),exprs);
         if (ok) {
             model.ipar = this.nn;
             model.rpar = this.dt;
@@ -3385,7 +3385,7 @@ function M_freq() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",[["Sample time"],["Offset"]],list("vec",-1,"vec",-1),exprs);
+            [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -3583,7 +3583,7 @@ function freq_div() {
         exprs = graphics.exprs;
         model = xx.model;
         while (true) {
-            [ok,%ph,%df,exprs] = scicos_getvalue("Set frequency division block parameters",[["Phase (0 to division factor -1)"],["Division factor"]],list("vec",1,"vec",1),exprs);
+            [ok,%ph,%df,exprs] = scicos_getvalue("Set frequency division block parameters",["Phase (0 to division factor -1)","Division factor"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -3696,7 +3696,7 @@ function Bache() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.Patm,this.A,this.ze1,this.ze2,this.zs1,this.zs2,this.z0,this.T0,this.p_rho,exprs] = scicos_getvalue("Parametres de la bache",[["Pression dans le ciel de la bache : Patm (Pa)"],["Section de la bache : A (m2)"],["Altitude du piquage d entrée 1: ze1 (m)"],["Altitude du piquage d entrée 2: ze2 (m)"],["Altitude du piquage de sortie 1: zs1 (m)"],["Altitude du piquage de sortie 2: zs2 (m)"],["Altitude initiale du fluide : z0 (m)"],["Température initiale du fluide : T0 (K)"],["Si >0, masse volumique imposée du fluide : p_rho (kg/m3)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.Patm,this.A,this.ze1,this.ze2,this.zs1,this.zs2,this.z0,this.T0,this.p_rho,exprs] = scicos_getvalue("Parametres de la bache",["Pression dans le ciel de la bache : Patm (Pa)","Section de la bache : A (m2)","Altitude du piquage d entrée 1: ze1 (m)","Altitude du piquage d entrée 2: ze2 (m)","Altitude du piquage de sortie 1: zs1 (m)","Altitude du piquage de sortie 2: zs2 (m)","Altitude initiale du fluide : z0 (m)","Température initiale du fluide : T0 (K)","Si >0, masse volumique imposée du fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -3827,7 +3827,7 @@ function PerteDP() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.L,this.D,this.lambda,this.z1,this.z2,this.p_rho,exprs] = scicos_getvalue("Parametres du tuyau",[["Longueur du tube : L (m)"],["Diamètre interne du tube : D (m)"],["Coefficient de perte de charge-frottement(S.U) : lambda"],["Altitude entrée tuyauterie : z1 (m)"],["Altitude sortie tuyauterie : z2 (m)"],["Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.L,this.D,this.lambda,this.z1,this.z2,this.p_rho,exprs] = scicos_getvalue("Parametres du tuyau",["Longueur du tube : L (m)","Diamètre interne du tube : D (m)","Coefficient de perte de charge-frottement(S.U) : lambda","Altitude entrée tuyauterie : z1 (m)","Altitude sortie tuyauterie : z2 (m)","Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -3876,7 +3876,7 @@ function PuitsP() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.P0,this.T0,this.H0,this.option_temperature,exprs] = scicos_getvalue("Paramètres du puits",[["Pression de la source : P0 (Pa)"],["Temperature de la source : T0 (K)"],["Enthalpie spécifique de la source : H0 (J/kg)"],["1:température fixée - 2:enthalpie fixée : option_temperature"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.P0,this.T0,this.H0,this.option_temperature,exprs] = scicos_getvalue("Paramètres du puits",["Pression de la source : P0 (Pa)","Temperature de la source : T0 (K)","Enthalpie spécifique de la source : H0 (J/kg)","1:température fixée - 2:enthalpie fixée : option_temperature"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -3927,7 +3927,7 @@ function SourceP() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.P0,this.T0,this.H0,this.option_temperature,exprs] = scicos_getvalue("Paramètres du puits",[["Pression de la source : P0 (Pa)"],["Temperature de la source : T0 (K)"],["Enthalpie spécifique de la source : H0 (J/kg)"],["1:température fixée - 2:enthalpie fixée : option_temperature"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.P0,this.T0,this.H0,this.option_temperature,exprs] = scicos_getvalue("Paramètres du puits",["Pression de la source : P0 (Pa)","Temperature de la source : T0 (K)","Enthalpie spécifique de la source : H0 (J/kg)","1:température fixée - 2:enthalpie fixée : option_temperature"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -3979,7 +3979,7 @@ function VanneReglante() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.Cvmax,this.p_rho,exprs] = scicos_getvalue("Paramètres de la vanne reglante",[["Cvmax"],["p_rho"]],list("vec",-1,"vec",-1),exprs);
+            [ok,this.Cvmax,this.p_rho,exprs] = scicos_getvalue("Paramètres de la vanne reglante",["Cvmax","p_rho"],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -4023,17 +4023,17 @@ function BITCLEAR() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.Datatype,this.bit,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"BITCLEAR")],[" "],[gettext("Clear a bit")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Index of Bit (0 is least significant)")]],list("vec",1,"vec",1),exprs);
+            [ok,this.Datatype,this.bit,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","BITCLEAR")],[" "],["Clear a bit"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Index of Bit (0 is least significant)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             in1 = [model.in1,model.in2];
             if (floor(this.bit)!=this.bit) {
-                block_parameter_error(msprintf(gettext("Wrong type for \'%s\' parameter: %5.1f."),gettext("Index of Bit"),this.bit),gettext("Must be integer."));
+                block_parameter_error(msprintf("Wrong type for \'%s\' parameter: %5.1f.","Index of Bit",this.bit),"Must be integer.");
                 ok = false;
             } else if ((this.Datatype==3)||(this.Datatype==6)) {
                 if (this.bit>31||this.bit<0) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),this.bit),msprintf(gettext("Must be in the interval %s."),"[0, 31]"));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Index of Bit",this.bit),msprintf("Must be in the interval %s.","[0, 31]"));
                     ok = false;
                 } else {
                     this.bit = uint32(this.bit);
@@ -4043,7 +4043,7 @@ function BITCLEAR() {
                 }
             } else if ((this.Datatype==4)||(this.Datatype==7)) {
                 if (this.bit>15||this.bit<0) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),this.bit),msprintf(gettext("Must be in the interval %s."),"[0, 15]"));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Index of Bit",this.bit),msprintf("Must be in the interval %s.","[0, 15]"));
                     ok = false;
                 } else {
                     this.bit = uint16(this.bit);
@@ -4053,7 +4053,7 @@ function BITCLEAR() {
                 }
             } else if ((this.Datatype==5)||(this.Datatype==8)) {
                 if (this.bit>7||this.bit<0) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),this.bit),msprintf(gettext("Must be in the interval %s."),"[0, 7]"));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Index of Bit",this.bit),msprintf("Must be in the interval %s.","[0, 7]"));
                     ok = false;
                 } else {
                     this.bit = uint8(this.bit);
@@ -4062,7 +4062,7 @@ function BITCLEAR() {
                     model.sim = list("bit_clear_8",4);
                 }
             } else {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),this.Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Data Type",this.Datatype),msprintf("Must be in the interval %s.","[3, 8]"));
                 ok = false;
             }
             if (ok) {
@@ -4112,18 +4112,18 @@ function BITSET() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.Datatype,this.bit,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"BITSET")],[" "],[gettext("Set a bit")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Index of Bit (0 is least significant)")]],list("vec",1,"vec",1),exprs);
+            [ok,this.Datatype,this.bit,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","BITSET")],[" "],["Set a bit"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Index of Bit (0 is least significant)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             in1 = [model.in1,model.in2];
             if (floor(this.bit)!=this.bit) {
-                block_parameter_error(msprintf(gettext("Wrong type for \'%s\' parameter: %5.1f."),gettext("Index of Bit"),this.bit),gettext("Must be integer."));
+                block_parameter_error(msprintf("Wrong type for \'%s\' parameter: %5.1f.","Index of Bit",this.bit),"Must be integer.");
                 ok = false;
             }
             if ((this.Datatype==3)||(this.Datatype==6)) {
                 if (this.bit>31||this.bit<0) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),this.bit),msprintf(gettext("Must be in the interval %s."),"[0, 31]"));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Index of Bit",this.bit),msprintf("Must be in the interval %s.","[0, 31]"));
                     ok = false;
                 }
                 this.bit = uint32(this.bit);
@@ -4132,7 +4132,7 @@ function BITSET() {
                 model.sim = list("bit_set_32",4);
             } else if ((this.Datatype==4)||(this.Datatype==7)) {
                 if (this.bit>15||this.bit<0) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),this.bit),msprintf(gettext("Must be in the interval %s."),"[0, 15]"));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Index of Bit",this.bit),msprintf("Must be in the interval %s.","[0, 15]"));
                     ok = false;
                 }
                 this.bit = uint16(this.bit);
@@ -4141,7 +4141,7 @@ function BITSET() {
                 model.sim = list("bit_set_16",4);
             } else if ((this.Datatype==5)||(this.Datatype==8)) {
                 if (this.bit>7||this.bit<0) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Index of Bit"),this.bit),msprintf(gettext("Must be in the interval %s."),"[0, 7]"));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Index of Bit",this.bit),msprintf("Must be in the interval %s.","[0, 7]"));
                     ok = false;
                 }
                 this.bit = uint8(this.bit);
@@ -4149,7 +4149,7 @@ function BITSET() {
                 n = uint8(n);
                 model.sim = list("bit_set_8",4);
             } else {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),this.Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Data Type",this.Datatype),msprintf("Must be in the interval %s.","[3, 8]"));
                 ok = false;
             }
             if (ok) {
@@ -4201,7 +4201,7 @@ function CONVERT() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.it,this.ot,this.np,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CONVERT")],[" "],[gettext("Type conversion")],[" "]],[[gettext("Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)")],[gettext("Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)")],[gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.it,this.ot,this.np,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONVERT")],[" "],["Type conversion"],[" "]],["Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -4212,13 +4212,13 @@ function CONVERT() {
                 this.ot = 1;
             }
             if ((this.np!=0&&this.np!=1&&this.np!=2)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Do on Overflow"),this.np),msprintf(gettext("Must be in the interval %s."),"[0, 2]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Do on Overflow",this.np),msprintf("Must be in the interval %s.","[0, 2]"));
                 ok = false;
             } else if ((this.it>8||this.it<1)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Input Type"),this.it),msprintf(gettext("Must be in the interval %s."),"[1, 8]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Input Type",this.it),msprintf("Must be in the interval %s.","[1, 8]"));
                 ok = false;
             } else if ((this.ot>8||this.ot<1)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Output Type"),this.ot),msprintf(gettext("Must be in the interval %s."),"[1, 8]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Output Type",this.ot),msprintf("Must be in the interval %s.","[1, 8]"));
                 ok = false;
             }
             model.sim = list("convert",4);
@@ -4726,16 +4726,16 @@ function EXTRACTBITS() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.Datatype,this.rule,this.bit,this.scal,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"EXTRACTBITS")],[" "],[gettext("Bits Extraction")],[" "],[gettext("&nbsp;- Bits to Extract:")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits")],[gettext("&nbsp;- Number of Bits or Index of bit : Index 0 is LSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Bits to extract")],[gettext("Number of Bits or Index of Bit")],[gettext("Treat Bit Field as an Integer (0:No, 1:Yes)")]],list("vec",1,"vec",1,"vec",-1,"vec",1),exprs);
+            [ok,this.Datatype,this.rule,this.bit,this.scal,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","EXTRACTBITS")],[" "],["Bits Extraction"],[" "],["&nbsp;- Bits to Extract:"],["&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"],["&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"],["&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"],["&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"],["&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"],["&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"],["&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Bits to extract","Number of Bits or Index of Bit","Treat Bit Field as an Integer (0:No, 1:Yes)"],list("vec",1,"vec",1,"vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             bitstr = strcat(string(this.bit.slice())," ");
             if ((this.rule<1)||(this.rule>5)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Bits to Extract"),this.rule),msprintf(gettext("Must be in the interval %s."),"[1, 5]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Bits to Extract",this.rule),msprintf("Must be in the interval %s.","[1, 5]"));
                 ok = false;
             } else if (this.scal<0||this.scal>1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Treat Bit Field as an Integer"),this.scal),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Treat Bit Field as an Integer",this.scal),msprintf("Must be in the interval %s.","[0, 1]"));
                 ok = false;
             } else {
                 in1 = [model.in1,model.in2];
@@ -4743,17 +4743,17 @@ function EXTRACTBITS() {
                 this.rule = int(this.rule);
                 if ((this.rule==3)||(this.rule==4)) {
                     if ((size(this.bit,"*")!=1)) {
-                        block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),gettext("Must be a single value."));
+                        block_parameter_error(msprintf("Wrong size for \'%s\' parameter: %s.","Number of Bits or Index of Bit",bitstr),"Must be a single value.");
                         ok = false;
                     } else {
                         numb = this.bit;
                     }
                 } else if ((this.rule==5)) {
                     if ((size(this.bit,"*")!=2)) {
-                        block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),gettext("Must have this form: [Start, End]."));
+                        block_parameter_error(msprintf("Wrong size for \'%s\' parameter: %s.","Number of Bits or Index of Bit",bitstr),"Must have this form: [Start, End].");
                         ok = false;
                     } else if (this.bit[1-1]>this.bit[2-1]) {
-                        block_parameter_error(msprintf(gettext("Wrong values for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("\'Start\' must be less than \'End\'.")));
+                        block_parameter_error(msprintf("Wrong values for \'%s\' parameter: %s.","Number of Bits or Index of Bit",bitstr),msprintf("\'Start\' must be less than \'End\'."));
                         ok = false;
                     } else {
                         numb = this.bit[2-1]-this.bit[1-1];
@@ -4766,7 +4766,7 @@ function EXTRACTBITS() {
             if (ok) {
                 if ((this.Datatype==3||this.Datatype==6)) {
                     if (or(this.bit.slice()>31)||or(this.bit.slice()<0)) {
-                        block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("Indexes must be in the interval %s."),"[0, 31]"));
+                        block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Number of Bits or Index of Bit",bitstr),msprintf("Indexes must be in the interval %s.","[0, 31]"));
                         ok = false;
                     }
                     switch (this.rule) {
@@ -4813,7 +4813,7 @@ function EXTRACTBITS() {
                     }
                 } else if ((this.Datatype==4||this.Datatype==7)) {
                     if (or(this.bit.slice()>15)||or(this.bit.slice()<0)) {
-                        block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("Indexes must be in the interval %s."),"[0, 15]"));
+                        block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Number of Bits or Index of Bit",bitstr),msprintf("Indexes must be in the interval %s.","[0, 15]"));
                         ok = false;
                     }
                     switch (this.rule) {
@@ -4860,7 +4860,7 @@ function EXTRACTBITS() {
                     }
                 } else if ((this.Datatype==5||this.Datatype==8)) {
                     if (or(this.bit.slice()>7)||or(this.bit.slice()<0)) {
-                        block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("Indexes must be in the interval %s."),"[0, 7]"));
+                        block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Number of Bits or Index of Bit",bitstr),msprintf("Indexes must be in the interval %s.","[0, 7]"));
                         ok = false;
                     }
                     switch (this.rule) {
@@ -4906,7 +4906,7 @@ function EXTRACTBITS() {
                         }
                     }
                 } else {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),this.Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Data Type",this.Datatype),msprintf("Must be in the interval %s.","[3, 8]"));
                     ok = false;
                 }
             }
@@ -4959,14 +4959,14 @@ function INTMUL() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.Datatype,this.np,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INTMUL")],[" "],[gettext("Integer matrix multiplication")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")]],list("vec",1,"vec",1),exprs);
+            [ok,this.Datatype,this.np,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","INTMUL")],[" "],["Integer matrix multiplication"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             it = this.Datatype*ones(1,2);
             ot = this.Datatype;
             if ((this.np!=0&&this.np!=1&&this.np!=2)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Do on Overflow"),this.np),msprintf(gettext("Must be in the interval %s."),"[0, 2]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Do on Overflow",this.np),msprintf("Must be in the interval %s.","[0, 2]"));
                 ok = false;
             } else if (this.Datatype==3) {
                 if (this.np==0) {
@@ -5017,7 +5017,7 @@ function INTMUL() {
                     model.sim = list("matmul_ui8e",4);
                 }
             } else {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),ot),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Data Type",ot),msprintf("Must be in the interval %s.","[3, 8]"));
                 ok = false;
             }
             in1 = [model.in1,model.in2];
@@ -5105,7 +5105,7 @@ function JKFLIPFLOP() {
         model = xx.model;
         init_old = model.odstate[1-1];
         while (true) {
-            [ok,this.init,this.exprs0] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"JKFLIPFLOP")],[" "],[gettext("JK flip-flop")],[" "],[gettext("The \'Initial Value\' must be 0 or 1 of type int8")],[gettext("&nbsp;- Negative values are considered as int8(0)")],[gettext("&nbsp;- Positive values are considered as int8(1)")],[" "]],gettext("Initial Value"),list("vec",1),exprs);
+            [ok,this.init,this.exprs0] = scicos_getvalue([[msprintf("Set %s block parameters","JKFLIPFLOP")],[" "],["JK flip-flop"],[" "],["The \'Initial Value\' must be 0 or 1 of type int8"],["&nbsp;- Negative values are considered as int8(0)"],["&nbsp;- Positive values are considered as int8(1)"],[" "]],"Initial Value",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -5166,7 +5166,7 @@ function LOGIC() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.mat,this.herit,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"LOGIC")],[" "],[gettext("Combinatorial logic")],[" "],[gettext("&nbsp; Rows of the matrix are the output values")],[gettext("&nbsp; Number of rows must be a power of two.")],[gettext("&nbsp; Number of columns gives the number of outputs.")],[" "]],[[gettext("Truth Table (matrix of outputs)")],[gettext("Accepts Inherited Events (0:No, 1:Yes)")]],list("mat",[-1,-2],"vec",1),exprs);
+            [ok,this.mat,this.herit,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","LOGIC")],[" "],["Combinatorial logic"],[" "],["&nbsp; Rows of the matrix are the output values"],["&nbsp; Number of rows must be a power of two."],["&nbsp; Number of columns gives the number of outputs."],[" "]],["Truth Table (matrix of outputs)","Accepts Inherited Events (0:No, 1:Yes)"],list("mat",[-1,-2],"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -5174,13 +5174,13 @@ function LOGIC() {
             nin = (log(size(this.mat,1))/log(2));
             u1 = floor(nin);
             if ((u1!=nin)) {
-                block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter: %d."),gettext("Truth Table"),size(this.mat,1)),gettext("Number of rows must be a power of two."));
+                block_parameter_error(msprintf("Wrong size for \'%s\' parameter: %d.","Truth Table",size(this.mat,1)),"Number of rows must be a power of two.");
                 ok = false;
             } else if ((find(this.mat.slice()!=0&&this.mat.slice()!=1)!=[])) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Truth Table")),msprintf(gettext("Elements must be in the interval %s."),"[0, 1]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Truth Table"),msprintf("Elements must be in the interval %s.","[0, 1]"));
                 ok = false;
             } else if (this.herit<0||this.herit>1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Accepts Inherited Events"),this.herit),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Accepts Inherited Events",this.herit),msprintf("Must be in the interval %s.","[0, 1]"));
                 ok = false;
             }
             if (ok) {
@@ -5235,12 +5235,12 @@ function SHIFT() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.Datatype,this.nb,this.np,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"SHIFT")],[" "],[gettext("Shift/Rotates bits")]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Number of Bits to Shift Left (Negative number to shift right)")],[gettext("Shift Type (0:Arithmetic, 1:Circular)")]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.Datatype,this.nb,this.np,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","SHIFT")],[" "],["Shift/Rotates bits"]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Number of Bits to Shift Left (Negative number to shift right)","Shift Type (0:Arithmetic, 1:Circular)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             if ((this.np!=0&&this.np!=1)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Shift Type"),this.np),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Shift Type",this.np),msprintf("Must be in the interval %s.","[0, 1]"));
                 ok = false;
             }
             it = this.Datatype;
@@ -5309,7 +5309,7 @@ function SHIFT() {
                     }
                 }
             } else {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),this.Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Data Type",this.Datatype),msprintf("Must be in the interval %s.","[3, 8]"));
                 ok = false;
             }
             if (ok) {
@@ -5379,7 +5379,7 @@ function SRFLIPFLOP() {
         model = xx.model;
         init_old = model.odstate[1-1];
         while (true) {
-            [ok,this.init,this.exprs0] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"SRFLIPFLOP")],[" "],[gettext("SR flip-flop")],[" "],[gettext("The \'Initial Value\' must be 0 or 1 of type int8")],[gettext("&nbsp;- Negative values are considered as int8(0)")],[gettext("&nbsp;- Positive values are considered as int8(1)")],[" "]],gettext("Initial Value"),list("vec",1),exprs);
+            [ok,this.init,this.exprs0] = scicos_getvalue([[msprintf("Set %s block parameters","SRFLIPFLOP")],[" "],["SR flip-flop"],[" "],["The \'Initial Value\' must be 0 or 1 of type int8"],["&nbsp;- Negative values are considered as int8(0)"],["&nbsp;- Positive values are considered as int8(1)"],[" "]],"Initial Value",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -5514,7 +5514,7 @@ function CLR() {
         PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.s = %s;
         while (true) {
-            [ok,this.num,this.den,exprs] = scicos_getvalue("Set continuous SISO transfer parameters",[["Numerator (s)"],["Denominator (s)"]],list("pol",1,"pol",1),exprs);
+            [ok,this.num,this.den,exprs] = scicos_getvalue("Set continuous SISO transfer parameters",["Numerator (s)","Denominator (s)"],list("pol",1,"pol",1),exprs);
             if (!ok) {
                 break;
             }
@@ -5590,7 +5590,7 @@ function CLR_f() {
         PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.s = %s;
         while (true) {
-            [ok,this.num,this.den,exprs] = scicos_getvalue("Set continuous SISO transfer parameters",[["Numerator (s)"],["Denominator (s)"]],list("pol",1,"pol",1),exprs);
+            [ok,this.num,this.den,exprs] = scicos_getvalue("Set continuous SISO transfer parameters",["Numerator (s)","Denominator (s)"],list("pol",1,"pol",1),exprs);
             if (!ok) {
                 break;
             }
@@ -5664,7 +5664,7 @@ function CLSS() {
         }
         model = arg1.model;
         while (true) {
-            [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set continuous linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+            [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
             if (!ok) {
                 break;
             }
@@ -5754,7 +5754,7 @@ function CLSS_f() {
         }
         model = arg1.model;
         while (true) {
-            [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set continuous linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+            [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
             if (!ok) {
                 break;
             }
@@ -5835,7 +5835,7 @@ function DELAYV_f() {
         this.zz0 = z0.slice(1-1,$-1);
         told = z0[$-1];
         while (true) {
-            [ok,this.nin,this.zz0,this.T,exprs] = scicos_getvalue("Set delay parameters",[["Number of inputs"],["Register initial condition"],["Max delay"]],list("vec",1,"vec",-1,"vec",1),exprs);
+            [ok,this.nin,this.zz0,this.T,exprs] = scicos_getvalue("Set delay parameters",["Number of inputs","Register initial condition","Max delay"],list("vec",1,"vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -5956,7 +5956,7 @@ function DELAY_f() {
         evtdly_exprs = evtdly.graphics.exprs;
         exprs = [[evtdly_exprs[1-1]],[register_exprs]];
         while (true) {
-            [ok,this.dt,this.z0,exprs] = scicos_getvalue([["This block implements as a discretized delay"],["it is consist of a shift register and a clock"],["value of the delay is given by;","the discretization time step multiplied by the"],["number-1 of state of the register"]],[["Discretization time step"],["Register initial state"]],list("vec",1,"vec",-1),exprs);
+            [ok,this.dt,this.z0,exprs] = scicos_getvalue([["This block implements as a discretized delay"],["it is consist of a shift register and a clock"],["value of the delay is given by;","the discretization time step multiplied by the"],["number-1 of state of the register"]],["Discretization time step","Register initial state"],list("vec",1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -6045,7 +6045,7 @@ function DIFF_c() {
         model = arg1.model;
         while (true) {
             ask_again = false;
-            [ok,this.x0,this.xd0,exprs] = scicos_getvalue("Set continuous linear system parameters",[["Initial state"],["Initial Derivative"]],list("vec",-1,"vec",-1),exprs);
+            [ok,this.x0,this.xd0,exprs] = scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -6112,7 +6112,7 @@ function DLR() {
         PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.z = %z;
         while (true) {
-            [ok,this.num,this.den,exprs] = scicos_getvalue("Set discrete SISO transfer parameters",[["Numerator (z)"],["Denominator (z)"]],list("pol",1,"pol",1),exprs);
+            [ok,this.num,this.den,exprs] = scicos_getvalue("Set discrete SISO transfer parameters",["Numerator (z)","Denominator (z)"],list("pol",1,"pol",1),exprs);
             if (!ok) {
                 break;
             }
@@ -6187,7 +6187,7 @@ function DLR_f() {
         PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.z = %z;
         while (true) {
-            [ok,this.num,this.den,exprs] = scicos_getvalue("Set discrete SISO transfer parameters",[["Numerator (z)"],["Denominator (z)"]],list("pol",1,"pol",1),exprs);
+            [ok,this.num,this.den,exprs] = scicos_getvalue("Set discrete SISO transfer parameters",["Numerator (z)","Denominator (z)"],list("pol",1,"pol",1),exprs);
             if (!ok) {
                 break;
             }
@@ -6261,7 +6261,7 @@ function DLSS() {
         }
         model = arg1.model;
         while (true) {
-            [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set discrete linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+            [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set discrete linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
             if (!ok) {
                 break;
             }
@@ -6350,7 +6350,7 @@ function DLSS_f() {
         }
         model = arg1.model;
         while (true) {
-            [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set discrete linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+            [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set discrete linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
             if (!ok) {
                 break;
             }
@@ -6426,7 +6426,7 @@ function DOLLAR() {
             exprs[2-1] = "0";
         }
         while (true) {
-            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set 1/z block parameters",[["initial condition"],["Inherit (no:0, yes:1)"]],list("mat",[-1,-2],"vec",-1),exprs);
+            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("mat",[-1,-2],"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -6519,7 +6519,7 @@ function DOLLAR_f() {
             exprs[2-1] = "0";
         }
         while (true) {
-            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set 1/z block parameters",[["initial condition"],["Inherit (no:0, yes:1)"]],list("vec",-1,"vec",-1),exprs);
+            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -6577,7 +6577,7 @@ function DOLLAR_m() {
             exprs[2-1] = "0";
         }
         while (true) {
-            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set 1/z block parameters",[["initial condition"],["Inherit (no:0, yes:1)"]],list("mat",[-1,-2],"vec",-1),exprs);
+            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("mat",[-1,-2],"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -6673,7 +6673,7 @@ function GAINBLK() {
             exprs = [[exprs],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.gain,this.over,exprs] = scicos_getvalue("Set gain block parameters",[["Gain"],["Do On Overflow(0=Nothing 1=Saturate 2=Error)"]],list("mat",[-1,-1],"vec",1),exprs);
+            [ok,this.gain,this.over,exprs] = scicos_getvalue("Set gain block parameters",["Gain","Do On Overflow(0=Nothing 1=Saturate 2=Error)"],list("mat",[-1,-1],"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -6918,7 +6918,7 @@ function INTEGRAL() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,exprs] = scicos_getvalue("Set Integral block parameters",[["Initial Condition"],["With re-intialization (1:yes, 0:no)"],["With saturation (1:yes, 0:no)"],["Upper limit"],["Lower limit"]],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),exprs);
+            [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -7043,7 +7043,7 @@ function INTEGRAL_m() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,exprs] = scicos_getvalue("Set Integral block parameters",[["Initial Condition"],["With re-intialization (1:yes, 0:no)"],["With saturation (1:yes, 0:no)"],["Upper limit"],["Lower limit"]],list("mat",[-1,-1],"vec",1,"vec",1,"mat",[-1,-1],"mat",[-1,-1]),exprs);
+            [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("mat",[-1,-1],"vec",1,"vec",1,"mat",[-1,-1],"mat",[-1,-1]),exprs);
             if (!ok) {
                 break;
             }
@@ -7226,7 +7226,7 @@ function PID() {
         d_old = xx3.model.rpar;
         y = 0;
         while (true) {
-            [ok,this.p,this.i,this.d,this.exprs0] = scicos_getvalue("Set PID parameters",[["Proportional"],["Integral"],["Derivation"]],list("vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.p,this.i,this.d,this.exprs0] = scicos_getvalue("Set PID parameters",["Proportional","Integral","Derivation"],list("vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -7287,7 +7287,7 @@ function REGISTER() {
             exprs = [[exprs],[sci2exp(1)]];
         }
         while (true) {
-            [ok,this.z0,this.it,exprs] = scicos_getvalue("Set delay parameters",[["Register initial condition"],["Datatype (1=double 3=int32 ...)"]],list("vec",-1,"vec",1),exprs);
+            [ok,this.z0,this.it,exprs] = scicos_getvalue("Set delay parameters",["Register initial condition","Datatype (1=double 3=int32 ...)"],list("vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -7570,7 +7570,7 @@ function SUMMATION() {
             exprs = [[exprs],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.Datatype,this.sgn,this.satur,exprs] = scicos_getvalue("Set sum block parameters",[["Datatype (1=real double  2=complex 3=int32 ...)"],["Number of inputs or sign vector (of +1, -1)"],["Do on Overflow(0=Nothing 1=Saturate 2=Error)"]],list("vec",1,"vec",-1,"vec",1),exprs);
+            [ok,this.Datatype,this.sgn,this.satur,exprs] = scicos_getvalue("Set sum block parameters",["Datatype (1=real double  2=complex 3=int32 ...)","Number of inputs or sign vector (of +1, -1)","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -7739,7 +7739,7 @@ function TCLSS() {
             exprs = exprs[[1:4,7]-1];
         }
         while (true) {
-            [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set continuous linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+            [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
             if (!ok) {
                 break;
             }
@@ -7826,7 +7826,7 @@ function TCLSS_f() {
             exprs = exprs[[1:4,7]-1];
         }
         while (true) {
-            [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set continuous linear system parameters",[["A matrix"],["B matrix"],["C matrix"],["D matrix"],["Initial state"]],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
+            [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
             if (!ok) {
                 break;
             }
@@ -7906,7 +7906,7 @@ function TIME_DELAY() {
         model = arg1.model;
         nin = model.in1[1-1];
         while (true) {
-            [ok,this.T,this.init,this.N,exprs] = scicos_getvalue("Set delay parameters",[["Delay"],["initial input"],["Buffer size"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.T,this.init,this.N,exprs] = scicos_getvalue("Set delay parameters",["Delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -7966,7 +7966,7 @@ function VARIABLE_DELAY() {
         model = arg1.model;
         nin = model.in1[1-1];
         while (true) {
-            [ok,this.T,this.init,this.N,exprs] = scicos_getvalue("Set delay parameters",[["Max delay"],["initial input"],["Buffer size"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.T,this.init,this.N,exprs] = scicos_getvalue("Set delay parameters",["Max delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -8034,7 +8034,7 @@ function CUMSUM() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set CUMSUM block parameters",[["Datatype(1=real double  2=Complex)"],["Sum along (0=the first non singleton dimension  1=Rows  2=Columns)"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set CUMSUM block parameters",["Datatype(1=real double  2=Complex)","Sum along (0=the first non singleton dimension  1=Rows  2=Columns)"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
@@ -8131,7 +8131,7 @@ function EXTRACT() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.a,this.b,exprs] = scicos_getvalue("Set EXTRACT Block",[["Datatype (1=real double  2=Complex)"],["Lines to extract"],["Columns to extract"]],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
+            [ok,this.typ,this.a,this.b,exprs] = scicos_getvalue("Set EXTRACT Block",["Datatype (1=real double  2=Complex)","Lines to extract","Columns to extract"],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
             this.a = this.a.slice();
             this.b = this.b.slice();
             if (!ok) {
@@ -8226,7 +8226,7 @@ function EXTTRI() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set EXTTRI block parameters",[["Datatype(1=real double  2=Complex)"],["extraction type (1=lower  2=upper  3=diagonal)"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set EXTTRI block parameters",["Datatype(1=real double  2=Complex)","extraction type (1=lower  2=upper  3=diagonal)"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
@@ -8745,7 +8745,7 @@ function MATEIG() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATEIG block parameters",[["Datatype(1=real double  2=Complex)"],["decomposition type (1=eig values  2=eig values+eig vectors"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATEIG block parameters",["Datatype(1=real double  2=Complex)","decomposition type (1=eig values  2=eig values+eig vectors"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
@@ -9133,7 +9133,7 @@ function MATMUL() {
             label[3-1] = sci2exp(1);
         }
         while (true) {
-            [ok,this.dtype,this.rule,this.np,exprs] = scicos_getvalue([["Set MATMUL parameter"],["For the Multipication rule:"],["    1= Matrix by Matrix"],["    2= Matrix by Matrix element wise "],["    3= Matrix by Scalar"],["In the third case the second input will be the scalar"]],[["Datatype(1=real double 2=Complex 3=int32 ...)"],["Multiplication rule"],["Do on Overflow(0=Nothing 1=Saturate 2=Error)"]],list("vec",1,"vec",1,"vec",1),label);
+            [ok,this.dtype,this.rule,this.np,exprs] = scicos_getvalue([["Set MATMUL parameter"],["For the Multipication rule:"],["    1= Matrix by Matrix"],["    2= Matrix by Matrix element wise "],["    3= Matrix by Scalar"],["In the third case the second input will be the scalar"]],["Datatype(1=real double 2=Complex 3=int32 ...)","Multiplication rule","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
@@ -9366,7 +9366,7 @@ function MATRESH() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.l1,this.out,this.lab] = scicos_getvalue("Set MATRESH block parameters",[["Datatype(1=real double  2=Complex)","input size"],["output size desired"]],list("vec",-1,"vec",-1,"vec",-1),label);
+            [ok,this.typ,this.l1,this.out,this.lab] = scicos_getvalue("Set MATRESH block parameters",["Datatype(1=real double  2=Complex)","input size","output size desired"],list("vec",-1,"vec",-1,"vec",-1),label);
             if (!ok) {
                 break;
             }
@@ -9465,7 +9465,7 @@ function MATSING() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATSVD block parameters",[["Datatype(1=real double  2=Complex)"],["decomposition type (1=singular values  2=sing values+matrix U & V)"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATSVD block parameters",["Datatype(1=real double  2=Complex)","decomposition type (1=singular values  2=sing values+matrix U & V)"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
@@ -9563,7 +9563,7 @@ function MATSUM() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATSUM block parameters",[["Datatype(1=real double  2=Complex)"],["Sum along (0=all 1=lines  2=Columns)"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATSUM block parameters",["Datatype(1=real double  2=Complex)","Sum along (0=all 1=lines  2=Columns)"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
@@ -9650,7 +9650,7 @@ function MATTRAN() {
             label[2-1] = sci2exp(1);
         }
         while (true) {
-            [ok,this.typ,this.rule,exprs] = scicos_getvalue("Set MATTRAN Block",[["Datatype(1=real double 2=Complex)"],["rule (1=.\' 2=\')"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.rule,exprs] = scicos_getvalue("Set MATTRAN Block",["Datatype(1=real double 2=Complex)","rule (1=.\' 2=\')"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
@@ -9843,7 +9843,7 @@ function RICC() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.tpe,this.mod,exprs] = scicos_getvalue("Set RICC Block",[["Type (1=Cont  2=Disc)"],["Model(1=Schr  2=sign(cont) inv(disc))"]],list("vec",1,"vec",1),label);
+            [ok,this.tpe,this.mod,exprs] = scicos_getvalue("Set RICC Block",["Type (1=Cont  2=Disc)","Model(1=Schr  2=sign(cont) inv(disc))"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
@@ -9906,7 +9906,7 @@ function ROOTCOEF() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.inp,exprs] = scicos_getvalue("Set ROOTCOEF Block",[["Datatype(1=real double  2=Complex)"],["input row size"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.inp,exprs] = scicos_getvalue("Set ROOTCOEF Block",["Datatype(1=real double  2=Complex)","input row size"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
@@ -10039,7 +10039,7 @@ function SUBMAT() {
             label[6-1] = sci2exp([1,1]);
         }
         while (true) {
-            [ok,this.typ,this.a,this.b,this.c,this.d,this.inp,exprs] = scicos_getvalue("Set SUBMAT Block",[["Datatype (1=real double  2=Complex)"],["Starting Row Index"],["Ending Row Index"],["Starting Column Index"],["Ending Column Index"],["Input Dimensions"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label);
+            [ok,this.typ,this.a,this.b,this.c,this.d,this.inp,exprs] = scicos_getvalue("Set SUBMAT Block",["Datatype (1=real double  2=Complex)","Starting Row Index","Ending Row Index","Starting Column Index","Ending Column Index","Input Dimensions"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label);
             if (!ok) {
                 break;
             }
@@ -10258,7 +10258,7 @@ function BACKLASH() {
         model = arg1.model;
         rpar = model.rpar;
         while (true) {
-            [ok,this.ini,this.gap,this.zcr,exprs] = scicos_getvalue("Set backlash parameters",[["initial output"],["gap"],["use zero-crossing (0:no, 1:yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.ini,this.gap,this.zcr,exprs] = scicos_getvalue("Set backlash parameters",["initial output","gap","use zero-crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -10335,7 +10335,7 @@ function BOUNCE() {
             exprs[9-1] = "0";
         }
         while (true) {
-            [ok,this.rpar1,this.rpar2,this.walls,this.xt,this.xd,this.y,this.yd,this.g,this.C,exprs] = scicos_getvalue(["Set Bounce Block"],[["Mass"],["Radius"],["[xmin,xmax,ymin,ymax]"],["xpos"],["xdpos"],["ypos"],["ydpos"],["g (gravity)"],["C (aerodynamic coeff"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
+            [ok,this.rpar1,this.rpar2,this.walls,this.xt,this.xd,this.y,this.yd,this.g,this.C,exprs] = scicos_getvalue(["Set Bounce Block"],["Mass","Radius","[xmin,xmax,ymin,ymax]","xpos","xdpos","ypos","ydpos","g (gravity)","C (aerodynamic coeff"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -10439,7 +10439,7 @@ function BOUNCEXY() {
         model = arg1.model;
         dstate = model.dstate;
         while (true) {
-            [ok,this.clrs,this.siz,this.win,this.imode,this.xmin,this.xmax,this.ymin,this.ymax,exprs] = scicos_getvalue("Set Scope parameters",[["colors"],["radii"],["window number (-1 for automatic)"],["animation mode (0,1)"],["Xmin"],["Xmax"],["Ymin"],["Ymax"]],list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.clrs,this.siz,this.win,this.imode,this.xmin,this.xmax,this.ymin,this.ymax,exprs] = scicos_getvalue("Set Scope parameters",["colors","radii","window number (-1 for automatic)","animation mode (0,1)","Xmin","Xmax","Ymin","Ymax"],list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -10521,7 +10521,7 @@ function BPLATFORM() {
         model = arg1.model;
         dstate = model.dstate;
         while (true) {
-            [ok,this.plen,this.csiz,this.phi,this.xmin,this.xmax,this.ymin,this.ymax,exprs] = scicos_getvalue("Set Scope parameters",[["pendulum length"],["cart size (square side)"],["slope"],["Xmin"],["Xmax"],["Ymin"],["Ymax"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.plen,this.csiz,this.phi,this.xmin,this.xmax,this.ymin,this.ymax,exprs] = scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -10597,7 +10597,7 @@ function CBLOCK() {
         graphics = arg1.graphics;
         label = graphics.exprs;
         while (true) {
-            [ok,this.function_name,this.impli,this.i,this.o,this.ci,this.co,this.xx,this.ng,this.z,this.rpar,this.ipar,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block2 block parameters",[["simulation function"],["is block implicit? (y,n)"],["input ports sizes"],["output ports sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["number of zero crossing surfaces"],["initial discrete state"],["Real parameters vector"],["Integer parameters vector"],["initial firing vector (<0 for no firing)"],["direct feedthrough (y or n)"],["time dependence (y or n)"]],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label[1-1]);
+            [ok,this.function_name,this.impli,this.i,this.o,this.ci,this.co,this.xx,this.ng,this.z,this.rpar,this.ipar,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block2 block parameters",["simulation function","is block implicit? (y,n)","input ports sizes","output ports sizes","input event ports sizes","output events ports sizes","initial continuous state","number of zero crossing surfaces","initial discrete state","Real parameters vector","Integer parameters vector","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label[1-1]);
             if (!ok) {
                 break;
             }
@@ -10712,7 +10712,7 @@ function CBLOCK4() {
         graphics = arg1.graphics;
         label = graphics.exprs;
         while (true) {
-            [ok,this.function_name,this.impli,this.in1,this.it,this.out,this.ot,this.ci,this.co,this.xx,this.z,this.oz,this.rpar,this.ipar,this.opar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block4 block parameters",[["Simulation function"],["Is block implicit? (y,n)"],["Input ports sizes"],["Input ports type"],["Output port sizes"],["Output ports type"],["Input event ports sizes"],["Output events ports sizes"],["Initial continuous state"],["Initial discrete state"],["Initial object state"],["Real parameters vector"],["Integer parameters vector"],["Object parameters list"],["Number of modes"],["Number of zero crossings"],["Initial firing vector (<0 for no firing)"],["Direct feedthrough (y or n)"],["Time dependence (y or n)"]],list("str",1,"str",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label[1-1]);
+            [ok,this.function_name,this.impli,this.in1,this.it,this.out,this.ot,this.ci,this.co,this.xx,this.z,this.oz,this.rpar,this.ipar,this.opar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block4 block parameters",["Simulation function","Is block implicit? (y,n)","Input ports sizes","Input ports type","Output port sizes","Output ports type","Input event ports sizes","Output events ports sizes","Initial continuous state","Initial discrete state","Initial object state","Real parameters vector","Integer parameters vector","Object parameters list","Number of modes","Number of zero crossings","Initial firing vector (<0 for no firing)","Direct feedthrough (y or n)","Time dependence (y or n)"],list("str",1,"str",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label[1-1]);
             if (!ok) {
                 break;
             }
@@ -10827,7 +10827,7 @@ function CONSTRAINT2_c() {
         model = arg1.model;
         while (true) {
             ask_again = false;
-            [ok,this.x0,this.xd0,this.id,exprs] = scicos_getvalue("Set Constraint block parameters",[["Initial guess values of states x"],["Initial guess values of derivative x\'"],["Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0"]],list("vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.x0,this.xd0,this.id,exprs] = scicos_getvalue("Set Constraint block parameters",["Initial guess values of states x","Initial guess values of derivative x\'","Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0"],list("vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -10955,7 +10955,7 @@ function DEADBAND() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.maxp,this.minp,this.zeroc,exprs] = scicos_getvalue("Set Deadband parameters",[["End of dead band"],["Start of dead band"],["zero crossing (0:no, 1:yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.maxp,this.minp,this.zeroc,exprs] = scicos_getvalue("Set Deadband parameters",["End of dead band","Start of dead band","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -11075,7 +11075,7 @@ function DIFF_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.x0,this.xd0,exprs] = scicos_getvalue("Set continuous linear system parameters",[["Initial state"],["Initial Derivative"]],list("vec",1,"vec",1),exprs);
+            [ok,this.x0,this.xd0,exprs] = scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -11104,7 +11104,7 @@ function DSUPER() {
         typ = list();
         graphics = arg1.graphics;
         if ((length(graphics.exprs)==0)) {
-            warnBlockByUID(arg1.model.label,gettext("Invalid masked block."));
+            warnBlockByUID(arg1.model.label,"Invalid masked block.");
             this.x = arg1;
             return;
         }
@@ -11561,7 +11561,7 @@ function HYSTHERESIS() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.high_lim,this.low_lim,this.out_high,this.out_low,this.nzz,exprs] = scicos_getvalue("Set parameters",[["switch on at"],["switch off at"],["output when on"],["output when off"],["use zero crossing: yes (1), no (0)"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.high_lim,this.low_lim,this.out_high,this.out_low,this.nzz,exprs] = scicos_getvalue("Set parameters",["switch on at","switch off at","output when on","output when off","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -11641,7 +11641,7 @@ function LOGICAL_OP() {
             exprs = [[exprs],[sci2exp(1)],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.nin,this.rule,this.Datatype,this.tp,exprs] = scicos_getvalue("Set parameters",[["number of inputs"],["Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)","Datatype (1=double 3=int32 ...)"],["Bitwise Rule(0=No 1=yes)"]],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.nin,this.rule,this.Datatype,this.tp,exprs] = scicos_getvalue("Set parameters",["number of inputs","Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)","Datatype (1=double 3=int32 ...)","Bitwise Rule(0=No 1=yes)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -11780,7 +11780,7 @@ function MBLOCK() {
         this.lab_1 = list(exprs.in1,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
         lab_2 = exprs.paramv;
         while (true) {
-            [ok,this.Tin,this.Tintype,this.Tout,this.Touttype,this.Tparam,this.pprop,this.Tfunam,this.lab_1] = scicos_getvalue("Set Modelica generic block parameters",[["Input variables:       "],["Input variables types: "],["Output variables:      "],["Output variables types:"],["Parameters in Modelica:"],["Parameters properties: "],["Function name:         "]],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),this.lab_1);
+            [ok,this.Tin,this.Tintype,this.Tout,this.Touttype,this.Tparam,this.pprop,this.Tfunam,this.lab_1] = scicos_getvalue("Set Modelica generic block parameters",["Input variables:       ","Input variables types: ","Output variables:      ","Output variables types:","Parameters in Modelica:","Parameters properties: ","Function name:         "],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),this.lab_1);
             if (!ok) {
                 break;
             }
@@ -12030,7 +12030,7 @@ function MEMORY_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set memory block parameters",[["initial condition"],["Inherit (1: no, 0: yes)"]],list("vec",-1,"vec",1),exprs);
+            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set memory block parameters",["initial condition","Inherit (1: no, 0: yes)"],list("vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -12395,7 +12395,7 @@ function PENDULUM_ANIM() {
         model = arg1.model;
         dstate = model.dstate;
         while (true) {
-            [ok,this.plen,this.csiz,this.phi,this.xmin,this.xmax,this.ymin,this.ymax,exprs] = scicos_getvalue("Set Scope parameters",[["pendulum length"],["cart size (square side)"],["slope"],["Xmin"],["Xmax"],["Ymin"],["Ymax"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.plen,this.csiz,this.phi,this.xmin,this.xmax,this.ymin,this.ymax,exprs] = scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -12455,7 +12455,7 @@ function RATELIMITER() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.maxp,this.minp,exprs] = scicos_getvalue("Set rate limiter parameters",[["max slope"],["min slope"]],list("vec",1,"vec",1),exprs);
+            [ok,this.maxp,this.minp,exprs] = scicos_getvalue("Set rate limiter parameters",["max slope","min slope"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -12505,7 +12505,7 @@ function RELATIONALOP() {
             exprs = [[exprs],[sci2exp(1)]];
         }
         while (true) {
-            [ok,this.rule,this.zcr,this.Datatype,exprs] = scicos_getvalue("Set parameters",[["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)"],["Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.rule,this.zcr,this.Datatype,exprs] = scicos_getvalue("Set parameters",["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)","Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -12657,7 +12657,7 @@ function TEXT_f() {
             exprs = [[exprs],["3"],["1"]];
         }
         while (true) {
-            [ok,this.txt,this.font,this.siz,exprs] = scicos_getvalue("Set Text block parameters",[["Text"],["Font number"],["Font size"]],list("str",-1,"vec",1,"vec",1),exprs);
+            [ok,this.txt,this.font,this.siz,exprs] = scicos_getvalue("Set Text block parameters",["Text","Font number","Font size"],list("str",-1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -12736,7 +12736,7 @@ function c_block() {
         graphics = arg1.graphics;
         label = graphics.exprs;
         while (true) {
-            [ok,this.i,this.o,this.rpar,this.funam,this.lab] = scicos_getvalue("Set C_block parameters",[["input ports sizes"],["output port sizes"],["System parameters vector"],["function name"]],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
+            [ok,this.i,this.o,this.rpar,this.funam,this.lab] = scicos_getvalue("Set C_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
             if (!ok) {
                 break;
             }
@@ -12804,7 +12804,7 @@ function fortran_block() {
         graphics = arg1.graphics;
         label = graphics.exprs;
         while (true) {
-            [ok,this.i,this.o,this.rpar,this.funam,this.lab] = scicos_getvalue("Set fortran_block parameters",[["input ports sizes"],["output port sizes"],["System parameters vector"],["function name"]],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
+            [ok,this.i,this.o,this.rpar,this.funam,this.lab] = scicos_getvalue("Set fortran_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
             if (!ok) {
                 break;
             }
@@ -12911,7 +12911,7 @@ function generic_block() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.function_name,this.funtyp,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.ipar,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set GENERIC block parameters",[["simulation function"],["function type (0,1,2,..)"],["input ports sizes"],["output port sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["initial discrete state"],["Real parameters vector"],["Integer parameters vector"],["initial firing vector (<0 for no firing)"],["direct feedthrough (y or n)"],["time dependence (y or n)"]],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label);
+            [ok,this.function_name,this.funtyp,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.ipar,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set GENERIC block parameters",["simulation function","function type (0,1,2,..)","input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","Real parameters vector","Integer parameters vector","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label);
             if (!ok) {
                 break;
             }
@@ -13011,7 +13011,7 @@ function generic_block2() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.function_name,this.funtyp,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.ipar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set GENERIC block parameters",[["simulation function"],["function type (0,1,2,..)"],["input ports sizes"],["output port sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["initial discrete state"],["Real parameters vector"],["Integer parameters vector"],["number of modes"],["number of zero_crossings"],["initial firing vector (<0 for no firing)"],["direct feedthrough (y or n)"],["time dependence (y or n)"]],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec","sum(%6)","str",1,"str",1),label);
+            [ok,this.function_name,this.funtyp,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.ipar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set GENERIC block parameters",["simulation function","function type (0,1,2,..)","input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","Real parameters vector","Integer parameters vector","number of modes","number of zero_crossings","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec","sum(%6)","str",1,"str",1),label);
             if (!ok) {
                 break;
             }
@@ -13109,7 +13109,7 @@ function generic_block3() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.function_name,this.funtyp,this.in1,this.it,this.out,this.ot,this.ci,this.co,this.xx,this.z,this.oz,this.rpar,this.ipar,this.opar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set GENERIC block parameters",[["Simulation function"],["Function type (0,1,2,..)"],["Input ports sizes"],["Input ports type"],["Output port sizes"],["Output ports type"],["Input event ports sizes"],["Output events ports sizes"],["Initial continuous state"],["Initial discrete state"],["Initial object state"],["Real parameters vector"],["Integer parameters vector"],["Object parameters list"],["Number of modes"],["Number of zero crossings"],["Initial firing vector (<0 for no firing)"],["Direct feedthrough (y or n)"],["Time dependence (y or n)"]],list("str",1,"vec",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label);
+            [ok,this.function_name,this.funtyp,this.in1,this.it,this.out,this.ot,this.ci,this.co,this.xx,this.z,this.oz,this.rpar,this.ipar,this.opar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set GENERIC block parameters",["Simulation function","Function type (0,1,2,..)","Input ports sizes","Input ports type","Output port sizes","Output ports type","Input event ports sizes","Output events ports sizes","Initial continuous state","Initial discrete state","Initial object state","Real parameters vector","Integer parameters vector","Object parameters list","Number of modes","Number of zero crossings","Initial firing vector (<0 for no firing)","Direct feedthrough (y or n)","Time dependence (y or n)"],list("str",1,"vec",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label);
             if (!ok) {
                 break;
             }
@@ -13228,7 +13228,7 @@ function scifunc_block() {
             exprs[1-1][9-1] = "0";
         }
         while (true) {
-            [ok,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.auto0,this.deptime,this.lab] = scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],[["input ports sizes"],["output port sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["initial discrete state"],["System parameters vector"],["initial firing vector (<0 for no firing)"],["is block always active (0:no, 1:yes)"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%4)","vec",1),exprs[1-1]);
+            [ok,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.auto0,this.deptime,this.lab] = scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],["input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","System parameters vector","initial firing vector (<0 for no firing)","is block always active (0:no, 1:yes)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%4)","vec",1),exprs[1-1]);
             if (!ok) {
                 break;
             }
@@ -13325,7 +13325,7 @@ function scifunc_block_m() {
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.auto0,this.deptime,this.lab] = scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],[["input ports sizes"],["output port sizes"],["input event ports sizes"],["output events ports sizes"],["initial continuous state"],["initial discrete state"],["System parameters vector"],["initial firing vector (<0 for no firing)"],["is block always active (0:no, 1:yes)"]],list("mat",[-1,2],"mat",[-2,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs[1-1]);
+            [ok,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.auto0,this.deptime,this.lab] = scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],["input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","System parameters vector","initial firing vector (<0 for no firing)","is block always active (0:no, 1:yes)"],list("mat",[-1,2],"mat",[-2,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs[1-1]);
             if (!ok) {
                 break;
             }
@@ -13506,7 +13506,7 @@ function DLRADAPT_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.p,this.rn,this.rd,this.g,this.last_u,this.last_y,exprs] = scicos_getvalue("Set block parameters",[["Vector of p mesh points"],["Numerator roots (one line for each mesh)"],["Denominator roots (one line for each mesh)"],["Vector of gain at mesh points"],["past inputs (Num degree values)"],["past outputs (Den degree values)"]],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),exprs);
+            [ok,this.p,this.rn,this.rd,this.g,this.last_u,this.last_y,exprs] = scicos_getvalue("Set block parameters",["Vector of p mesh points","Numerator roots (one line for each mesh)","Denominator roots (one line for each mesh)","Vector of gain at mesh points","past inputs (Num degree values)","past outputs (Den degree values)"],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),exprs);
             if (!ok) {
                 break;
             }
@@ -13686,7 +13686,7 @@ function INTRP2BLK_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.a,this.b,this.c,exprs] = scicos_getvalue("Set Interpolation block parameters",[["X coord."],["Y coord."],["Z values"]],list("vec",-1,"vec",-1,"mat",[-1,-1]),exprs);
+            [ok,this.a,this.b,this.c,exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord.","Z values"],list("vec",-1,"vec",-1,"mat",[-1,-1]),exprs);
             if (!ok) {
                 break;
             }
@@ -13736,7 +13736,7 @@ function INTRPLBLK_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.a,this.b,exprs] = scicos_getvalue("Set Interpolation block parameters",[["X coord."],["Y coord."]],list("vec",-1,"vec",-1),exprs);
+            [ok,this.a,this.b,exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord."],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -13894,7 +13894,7 @@ function LOOKUP2D() {
         SaveExit = false;
         while (true) {
             Ask_again = false;
-            [ok,this.xx,this.yy,this.zz,this.Method,this.graf,exprs] = scicos_getvalue("2D Lookup table parameters",[["Row index input values"],["Column index input values"],["Table data"],["Lookup method(1..5)"],["Launch graphic window(y/n)?"]],list("vec",-1,"vec",-1,"mat",[-1,-1],"vec",1,"str",1),exprs);
+            [ok,this.xx,this.yy,this.zz,this.Method,this.graf,exprs] = scicos_getvalue("2D Lookup table parameters",["Row index input values","Column index input values","Table data","Lookup method(1..5)","Launch graphic window(y/n)?"],list("vec",-1,"vec",-1,"mat",[-1,-1],"vec",1,"str",1),exprs);
             if (!ok) {
                 break;
             }
@@ -14038,7 +14038,7 @@ function MAXMIN() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.mm,this.nin,this.zcr,exprs] = scicos_getvalue("Set Max/Min block parameters",[["Min (1) or Max (2) "],["Number of input vectors (1 or 2)"],["zero-crossing (1: yes, 0;no)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.mm,this.nin,this.zcr,exprs] = scicos_getvalue("Set Max/Min block parameters",["Min (1) or Max (2) ","Number of input vectors (1 or 2)","zero-crossing (1: yes, 0;no)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -14304,7 +14304,7 @@ function QUANT_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.pas,this.meth,exprs] = scicos_getvalue("Set parameters",[["Step"],["Quantization Type (1-4)"]],list("vec",1,"vec",1),exprs);
+            [ok,this.pas,this.meth,exprs] = scicos_getvalue("Set parameters",["Step","Quantization Type (1-4)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -14364,7 +14364,7 @@ function SATURATION() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.maxp,this.minp,this.zeroc,exprs] = scicos_getvalue("Set Saturation parameters",[["Upper limit"],["Lower limit"],["zero crossing (0:no, 1:yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.maxp,this.minp,this.zeroc,exprs] = scicos_getvalue("Set Saturation parameters",["Upper limit","Lower limit","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -14420,7 +14420,7 @@ function SAT_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.minp,this.maxp,this.pente,exprs] = scicos_getvalue("Set Saturation parameters",[["Min"],["Max"],["Slope"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.minp,this.maxp,this.pente,exprs] = scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -14755,7 +14755,7 @@ function AFFICH_m() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.in1,this.font,this.fontsize,this.colr,this.nt,this.nd,this.herit,exprs] = scicos_getvalue("Set  parameters",[["Input Size","Font number"],["Font size"],["Color"],["Total number of digits"],["Number of rational part digits"],["Block inherits (1) or not (0)"]],list("mat",[1,2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.in1,this.font,this.fontsize,this.colr,this.nt,this.nd,this.herit,exprs] = scicos_getvalue("Set  parameters",["Input Size","Font number","Font size","Color","Total number of digits","Number of rational part digits","Block inherits (1) or not (0)"],list("mat",[1,2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -14836,7 +14836,7 @@ function BARXY() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.xmin,this.xmax,this.ymin,this.ymax,this.thickness,exprs] = scicos_getvalue("Set Scope parameters",[["Xmin"],["Xmax"],["Ymin"],["Ymax"],["Segs Thickness"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.xmin,this.xmax,this.ymin,this.ymax,this.thickness,exprs] = scicos_getvalue("Set Scope parameters",["Xmin","Xmax","Ymin","Ymax","Segs Thickness"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -14908,7 +14908,7 @@ function CANIMXY() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.xmin,this.xmax,this.ymin,this.ymax,this.N,exprs] = scicos_getvalue("Set Scope parameters",[["Number of Curves"],["color (>0) or mark (<0)"],["line or mark size"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Xmin"],["Xmax"],["Ymin"],["Ymax"],["Buffer size"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.xmin,this.xmax,this.ymin,this.ymax,this.N,exprs] = scicos_getvalue("Set Scope parameters",["Number of Curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin","Xmax","Ymin","Ymax","Buffer size"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -15011,7 +15011,7 @@ function CANIMXY3D() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,exprs] = scicos_getvalue("Set Scope parameters",[["Number of curves"],["color (>0) or mark (<0)"],["line or mark size"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Xmin and Xmax"],["Ymin and Ymax"],["Zmin and Zmax"],["Alpha and Theta"],["Buffer size"]],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs);
+            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,exprs] = scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -15122,7 +15122,7 @@ function CEVENTSCOPE() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.nclock,this.clrs,this.win,this.wpos,this.wdim,this.per,exprs] = scicos_getvalue("Set Scope parameters",[["Number of event inputs"],["colors c (>0) or mark (<0)"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Refresh period"]],list("vec",1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",1),exprs);
+            [ok,this.nclock,this.clrs,this.win,this.wpos,this.wdim,this.per,exprs] = scicos_getvalue("Set Scope parameters",["Number of event inputs","colors c (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Refresh period"],list("vec",1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",1),exprs);
             this.nclock = int(this.nclock);
             this.clrs = int(this.clrs);
             this.win = int(this.win);
@@ -15213,7 +15213,7 @@ function CFSCOPE() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.wu,exprs] = scicos_getvalue("Set Scope parameters",[["Color (>0) or mark (<0) vector (8 entries)"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Ymin"],["Ymax"],["Refresh period"],["Buffer size","Links to view"]],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",-1),exprs);
+            [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.wu,exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Links to view"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -15303,13 +15303,13 @@ function CLKOUTV_f() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLKOUTV_f")],[" "],[gettext("Event output port")]],gettext("Port number"),list("vec",1),exprs);
+            [ok,this.prt,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CLKOUTV_f")],[" "],["Event output port"]],"Port number",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
             this.prt = int(this.prt);
             if (this.prt<=0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Port Number\' parameter: %d."),this.prt),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
                 model.ipar = this.prt;
                 model.evtin = 1;
@@ -15466,7 +15466,7 @@ function CMAT3D() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.vec_x,this.vec_y,this.colormap,this.cmin,this.cmax,exprs] = scicos_getvalue("Set Scope parameters",[["Bounds Vector X (-1 for standard)"],["Bounds Vector Y (-1 for standard)"],["ColorMap"],["Zmin"],["Zmax"]],list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
+            [ok,this.vec_x,this.vec_y,this.colormap,this.cmin,this.cmax,exprs] = scicos_getvalue("Set Scope parameters",["Bounds Vector X (-1 for standard)","Bounds Vector Y (-1 for standard)","ColorMap","Zmin","Zmax"],list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -15533,7 +15533,7 @@ function CMATVIEW() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.colormap,this.cmin,this.cmax,exprs] = scicos_getvalue("Set Scope parameters",[["ColorMap"],["Minimum level range"],["Maximum level range"]],list("vec",-1,"vec",1,"vec",1),exprs);
+            [ok,this.colormap,this.cmin,this.cmax,exprs] = scicos_getvalue("Set Scope parameters",["ColorMap","Minimum level range","Maximum level range"],list("vec",-1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -15603,7 +15603,7 @@ function CMSCOPE() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.in1,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,exprs] = scicos_getvalue("Set Scope parameters",[["Input ports sizes"],["Drawing colors (>0) or mark (<0)"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Ymin vector"],["Ymax vector"],["Refresh period"],["Buffer size"],["Accept herited events 0/1","Name of Scope (label&Id)"]],list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec",1,"vec",1,"str",1),exprs);
+            [ok,this.in1,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,exprs] = scicos_getvalue("Set Scope parameters",["Input ports sizes","Drawing colors (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin vector","Ymax vector","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec",1,"vec",1,"str",1),exprs);
             if (!ok) {
                 break;
             }
@@ -15728,7 +15728,7 @@ function CSCOPE() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,exprs] = scicos_getvalue("Set Scope parameters",[["Color (>0) or mark (<0) vector (8 entries)"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Ymin"],["Ymax"],["Refresh period"],["Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"]],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"str",1),exprs);
+            [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"str",1),exprs);
             if (!ok) {
                 break;
             }
@@ -15830,7 +15830,7 @@ function CSCOPXY() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.xmin,this.xmax,this.ymin,this.ymax,this.N,exprs] = scicos_getvalue("Set Scope parameters",[["Number of Curves"],["color (>0) or mark (<0)"],["line or mark size"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Xmin"],["Xmax"],["Ymin"],["Ymax"],["Buffer size"]],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.xmin,this.xmax,this.ymin,this.ymax,this.N,exprs] = scicos_getvalue("Set Scope parameters",["Number of Curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin","Xmax","Ymin","Ymax","Buffer size"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -15932,7 +15932,7 @@ function CSCOPXY3D() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,exprs] = scicos_getvalue("Set Scope parameters",[["Number of curves"],["color (>0) or mark (<0)"],["Line or Mark Size"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Xmin and Xmax"],["Ymin and Ymax"],["Zmin and Zmax"],["Alpha and Theta"],["Buffer size"]],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",2,"vec",2,"vec",2,"vec",2,"vec",1),exprs);
+            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,exprs] = scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","Line or Mark Size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",2,"vec",2,"vec",2,"vec",2,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -16042,13 +16042,13 @@ function OUTIMPL_f() {
             exprs = exprs[1-1];
         }
         while (true) {
-            [ok,this.prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"OUTIMPL_f")],[" "],[gettext("Implicit output port")]],gettext("Port number"),list("vec",1),exprs);
+            [ok,this.prt,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","OUTIMPL_f")],[" "],["Implicit output port"]],"Port number",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
             this.prt = int(this.prt);
             if (this.prt<=0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Port Number\' parameter: %d."),this.prt),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
                 if (model.ipar!=this.prt) {
                     needcompile = 4;
@@ -16096,13 +16096,13 @@ function OUT_f() {
             exprs = exprs[1-1];
         }
         while (true) {
-            [ok,this.prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"OUT_f")],[" "],[gettext("Regular output port")]],gettext("Port number"),list("vec",1),exprs);
+            [ok,this.prt,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","OUT_f")],[" "],["Regular output port"]],"Port number",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
             this.prt = int(this.prt);
             if (this.prt<=0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Port Number\' parameter: %d."),this.prt),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
                 model.ipar = this.prt;
                 graphics.exprs = exprs;
@@ -16150,7 +16150,7 @@ function TOWS_c() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.nz,this.varnam,this.herit,exprs] = scicos_getvalue("Set Xcos buffer block",[["Size of buffer"],["Scilab variable name"],["Inherit (no:0, yes:1)"]],list("vec",1,"str",1,"vec",1),exprs);
+            [ok,this.nz,this.varnam,this.herit,exprs] = scicos_getvalue("Set Xcos buffer block",["Size of buffer","Scilab variable name","Inherit (no:0, yes:1)"],list("vec",1,"str",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -16249,7 +16249,7 @@ function WFILE_f() {
         fname = exprs[2-1];
         frmt = exprs[3-1];
         while (true) {
-            [ok,this.in1,this.fname1,this.frmt1,this.N,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WFILE_f")],[" "],[gettext("Write to output file")],[" "],[gettext("Write is done on:")],[gettext("&nbsp; - A binary file if no format given")],[gettext("&nbsp; - A formatted text file if a  format (Fortran type) is given")]],[[gettext("Input Size")],[gettext("Output File Name")],[gettext("Output Format")],[gettext("Buffer Size")]],list("vec",1,"str",1,"str",1,"vec",1),exprs);
+            [ok,this.in1,this.fname1,this.frmt1,this.N,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WFILE_f")],[" "],["Write to output file"],[" "],["Write is done on:"],["&nbsp; - A binary file if no format given"],["&nbsp; - A formatted text file if a  format (Fortran type) is given"]],["Input Size","Output File Name","Output Format","Buffer Size"],list("vec",1,"str",1,"str",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -16258,28 +16258,28 @@ function WFILE_f() {
             this.fname1 = pathconvert(stripblanks(this.fname1),false,true);
             this.frmt1 = stripblanks(this.frmt1);
             if (lunit>0&&min(length(frmt),1)!=min(length(this.frmt1),1)) {
-                block_parameter_error(gettext("Simulation running !!! You cannot switch<br />between formatted and unformatted when running"),gettext("End current simulation first."));
+                block_parameter_error("Simulation running !!! You cannot switch<br />between formatted and unformatted when running","End current simulation first.");
                 ok = false;
             } else if (lunit>0&&this.fname1!=fname) {
-                block_parameter_error(gettext("You cannot modify \'Output File Name\' when running."),gettext("End current simulation first."));
+                block_parameter_error("You cannot modify \'Output File Name\' when running.","End current simulation first.");
                 ok = false;
             } else if (this.fname1=="") {
-                block_parameter_error(gettext("Wrong value for \'Output File Name\' parameter"),gettext("You must provide a filename."));
+                block_parameter_error("Wrong value for \'Output File Name\' parameter","You must provide a filename.");
                 ok = false;
             } else if (fileparts(this.fname1)!="") {
                 [pa,fn,ex] = fileparts(this.fname1);
                 if (!this.isdir[pa-1]) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Output File Name")),msprintf(gettext("Directory \'%s\' does not exist"),pa));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Output File Name"),msprintf("Directory \'%s\' does not exist",pa));
                     ok = false;
                 }
             } else if (this.frmt1!=""&&(part(this.frmt1,1)!="("||part(this.frmt1,length(this.frmt1))!=")")) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Input Format"),this.frmt1),gettext("You must enclose the format\'s string between parentheses."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Input Format",this.frmt1),"You must enclose the format\'s string between parentheses.");
                 ok = false;
             } else if (this.N<2) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),this.N),gettext("Must be greater than 1."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Buffer Size",this.N),"Must be greater than 1.");
                 ok = false;
             } else if (this.in1<=0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Input Size"),this.in1),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Input Size",this.in1),"Strictly positive integer expected.");
                 ok = false;
             }
             if (ok) {
@@ -16337,7 +16337,7 @@ function WRITEAU_f() {
         dstate = model.dstate;
         lunit = dstate[2-1];
         while (true) {
-            [ok,this.N,this.swap,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WRITEAU_f")],[" "],[gettext("Write \'.au\' sound file on audio device")]],[[gettext("Buffer Size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",1,"vec",1),exprs);
+            [ok,this.N,this.swap,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WRITEAU_f")],[" "],["Write \'.au\' sound file on audio device"]],["Buffer Size","Swap Mode (0:No, 1:Yes)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -16345,14 +16345,14 @@ function WRITEAU_f() {
             fname1 = "/dev/audio";
             frmt1 = "uc ";
             if (this.alreadyran&&(this.N!=ipar[5-1])) {
-                block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
+                block_parameter_error(msprintf("You cannot modify \'%s\' when running.","Buffer Size"),"End current simulation first");
                 ok = false;
             } else if (this.N<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),this.N),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Buffer Size",this.N),"Strictly positive integer expected.");
                 ok = false;
             }
             if (this.swap!=0&&this.swap!=1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Swap Mode"),this.swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Swap Mode",this.swap),msprintf("Must be in the interval %s.","[0, 1]"));
                 ok = false;
             }
             if (ok) {
@@ -16411,7 +16411,7 @@ function WRITEC_f() {
         fname = exprs[2-1];
         frmt = exprs[3-1];
         while (true) {
-            [ok,this.in1,this.fname1,this.frmt1,this.N,this.swap,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WRITEC_f")],[" "],[gettext("Write to C binary file")]],[[gettext("Input Size")],[gettext("Output File Name")],[gettext("Output Format")],[gettext("Buffer Size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",1,"str",1,"str",1,"vec",1,"vec",1),exprs);
+            [ok,this.in1,this.fname1,this.frmt1,this.N,this.swap,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WRITEC_f")],[" "],["Write to C binary file"]],["Input Size","Output File Name","Output Format","Buffer Size","Swap Mode (0:No, 1:Yes)"],list("vec",1,"str",1,"str",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -16421,30 +16421,30 @@ function WRITEC_f() {
             this.frmt1 = stripblanks(this.frmt1);
             fmts = ["s","l","d","f","c","us","ul","uc","ull","uls","ubl","ubs","dl","fl","ll","sl","db","fb","lb","sb"];
             if (and(this.frmt1!=fmts)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Input Format"),this.frmt1),gettext("Valid formats are: "+strcat(fmts,", ")));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Input Format",this.frmt1),"Valid formats are: "+strcat(fmts,", "));
                 ok = false;
             } else if (this.alreadyran&&this.fname1!=fname) {
-                block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running"),gettext("Input Format")),gettext("End current simulation first."));
+                block_parameter_error(msprintf("You cannot modify \'%s\' when running","Input Format"),"End current simulation first.");
                 ok = false;
             } else if (this.alreadyran&&this.N!=ipar[5-1]) {
-                block_parameter_error(msprintf(gettext("You cannot modify \'Buffer Size\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
+                block_parameter_error(msprintf("You cannot modify \'Buffer Size\' when running.","Buffer Size"),"End current simulation first");
                 ok = false;
             } else if (this.fname1=="") {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Output File Name")),gettext("You must provide a filename."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Output File Name"),"You must provide a filename.");
             } else if (fileparts(this.fname1)!="") {
                 [pa,fn,ex] = fileparts(this.fname1);
                 if (!this.isdir[pa-1]) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Output File Name")),msprintf(gettext("Directory \'%s\' does not exist"),pa));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Output File Name"),msprintf("Directory \'%s\' does not exist",pa));
                     ok = false;
                 }
             } else if (this.N<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),this.N),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Buffer Size",this.N),"Strictly positive integer expected.");
                 ok = false;
             } else if (this.in1<=0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Input Size"),this.in1),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Input Size",this.in1),"Strictly positive integer expected.");
                 ok = false;
             } else if (this.swap!=0&&this.swap!=1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Swap Mode"),this.swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Swap Mode",this.swap),msprintf("Must be in the interval %s.","[0, 1]"));
                 ok = false;
             }
             this.frmt1 = part(this.frmt1,1,3);
@@ -16493,13 +16493,13 @@ function CLKINV_f() {
         exprs = graphics.exprs;
         exprs = exprs[1-1];
         while (true) {
-            [ok,this.prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLKINV_f")],[" "],[gettext("Event input port")],[" "]],"Port Number",list("vec",1),exprs);
+            [ok,this.prt,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CLKINV_f")],[" "],["Event input port"],[" "]],"Port Number",list("vec",1),exprs);
             this.prt = int(this.prt);
             if (!ok) {
                 break;
             }
             if (this.prt<=0) {
-                block_parameter_error(msprintf(gettext("Wrong values for \'Port Number\' parameter: %d."),this.prt),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong values for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
                 model.ipar = this.prt;
                 model.evtout = 1;
@@ -16625,12 +16625,12 @@ function CLOCK_c() {
         dt_old = model.rpar[1-1];
         model_n = model;
         while (true) {
-            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CLOCK_c")],[" "],[gettext("Event clock generator")],[" "],[gettext("&nbsp; Do not start if \'Initialisation Time\' is negative")],[" "]],[[gettext("Period")],[gettext("Initialisation Time")]],list("vec",1,"vec",1),exprs);
+            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue([[msprintf("Set %s block parameters","CLOCK_c")],[" "],["Event clock generator"],[" "],["&nbsp; Do not start if \'Initialisation Time\' is negative"],[" "]],["Period","Initialisation Time"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             if (this.dt<=0) {
-                block_parameter_error(msprintf(gettext("Wrong values for \'%s\' parameter: %5.1e."),gettext("Period"),this.dt),gettext("Strictly positive number expected."));
+                block_parameter_error(msprintf("Wrong values for \'%s\' parameter: %5.1e.","Period",this.dt),"Strictly positive number expected.");
                 ok = false;
             }
             if (ok) {
@@ -16721,7 +16721,7 @@ function CLOCK_f() {
         dt_old = model.rpar;
         model_n = model;
         while (true) {
-            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue("Set Clock  block parameters",[["Period"],["Init time"]],list("vec",1,"vec",1),exprs);
+            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue("Set Clock  block parameters",["Period","Init time"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -16877,13 +16877,13 @@ function CONST_m() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.C,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"CONST_m")],[" "],[gettext("Constant value generator")],[" "]],gettext("Constant Value"),list("vec",-1),exprs);
+            [ok,this.C,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONST_m")],[" "],["Constant value generator"],[" "]],"Constant Value",list("vec",-1),exprs);
             if (!ok) {
                 break;
             }
             nout = size(this.C);
             if (find(nout==0)!=[]) {
-                block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter"),gettext("Constant Value")),gettext("Constant value must have at least one element."));
+                block_parameter_error(msprintf("Wrong size for \'%s\' parameter","Constant Value"),"Constant value must have at least one element.");
             } else {
                 model.sim = list("cstblk4_m",4);
                 model.opar = list(this.C);
@@ -16906,7 +16906,7 @@ function CONST_m() {
                 } else if ((typeof(this.C)=="uint8")) {
                     ot = 8;
                 } else {
-                    block_parameter_error(msprintf(gettext("Wrong type for \'%s\' parameter"),gettext("Constant Value")),gettext("Value type must be a numeric type (double, complex, int, int8, ...)."));
+                    block_parameter_error(msprintf("Wrong type for \'%s\' parameter","Constant Value"),"Value type must be a numeric type (double, complex, int, int8, ...).");
                     ok = false;
                 }
                 if (ok) {
@@ -17019,16 +17019,16 @@ function Counter() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.minim,this.maxim,this.rule,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"Counter")],[" "],[gettext("Integer counter generator")],[" "]],[[gettext("Minimum")],[gettext("Maximum")],[gettext("Rule (1:Increment, 2:Decrement)")]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.minim,this.maxim,this.rule,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Counter")],[" "],["Integer counter generator"],[" "]],["Minimum","Maximum","Rule (1:Increment, 2:Decrement)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             this.maxim = int(this.maxim);
             this.minim = int(this.minim);
             if (this.maxim<this.minim) {
-                block_parameter_error(msprintf(gettext("Wrong values for \'Maximum\' and \'Minimum\' parameters: %d &lt; %d"),this.minim,this.maxim),msprintf(gettext("\'Minimum\' must be less than \'Maximum\'.")));
+                block_parameter_error(msprintf("Wrong values for \'Maximum\' and \'Minimum\' parameters: %d &lt; %d",this.minim,this.maxim),msprintf("\'Minimum\' must be less than \'Maximum\'."));
             } else if ((this.rule!=1&&this.rule!=2)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Rule\' parameter: %d"),this.rule),msprintf(gettext("Must be in the interval %s."),"[1,2]"));
+                block_parameter_error(msprintf("Wrong value for \'Rule\' parameter: %d",this.rule),msprintf("Must be in the interval %s.","[1,2]"));
             } else {
                 graphics.exprs = exprs;
                 model.dstate = 0;
@@ -17164,7 +17164,7 @@ function FROMWS_c() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.varnam,this.Method,this.ZC,this.OutEnd,exprs] = scicos_getvalue("Set From_Workspace block parameters",[["Variable name"],["Interpolation Method"],["Enable zero crossing(0:No, 1:Yes)?"],["Output at end(0:Zero, 1:Hold, 2:Repeat)"]],list("str",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.varnam,this.Method,this.ZC,this.OutEnd,exprs] = scicos_getvalue("Set From_Workspace block parameters",["Variable name","Interpolation Method","Enable zero crossing(0:No, 1:Yes)?","Output at end(0:Zero, 1:Hold, 2:Repeat)"],list("str",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -17229,12 +17229,12 @@ function GENSIN_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.M,this.F,this.P,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"GENSIN_f")],[" "],[gettext("Sine wave generator")],[" "]],[[gettext("Magnitude")],[gettext("Frequency (rad/s)")],[gettext("Phase (rad)")]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.M,this.F,this.P,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","GENSIN_f")],[" "],["Sine wave generator"],[" "]],["Magnitude","Frequency (rad/s)","Phase (rad)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             if (this.F<0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Frequency\' parameter: %e."),this.F),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'Frequency\' parameter: %e.",this.F),"Strictly positive integer expected.");
                 ok = false;
             }
             if (ok) {
@@ -17457,13 +17457,13 @@ function INIMPL_f() {
             exprs = exprs[1-1];
         }
         while (true) {
-            [ok,this.prt,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"INIMPL_f")],[" "],[gettext("Implicit input port")],[" "]],"Port Number",list("vec",1),exprs);
+            [ok,this.prt,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","INIMPL_f")],[" "],["Implicit input port"],[" "]],"Port Number",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
             this.prt = int(this.prt);
             if (this.prt<=0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Port Number\' parameter: %d."),this.prt),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
                 if (model.ipar!=this.prt) {
                     needcompile = 4;
@@ -17572,16 +17572,16 @@ function Modulo_Count() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.ini_c,this.base,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"Modulo_Count")],[" "],[gettext("Modulo counter (0 to N counter)")],[" "]],[[gettext("Initial State (zero or positive number)")],[gettext("Upper Limit (positive number)")]],list("vec",1,"vec",1),exprs);
+            [ok,this.ini_c,this.base,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Modulo_Count")],[" "],["Modulo counter (0 to N counter)"],[" "]],["Initial State (zero or positive number)","Upper Limit (positive number)"],list("vec",1,"vec",1),exprs);
             this.ini_c = int(this.ini_c);
             this.base = int(this.base);
             if (!ok) {
                 break;
             }
             if (this.ini_c<0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Initial State\' parameter: %d."),this.ini_c),gettext("Null or positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'Initial State\' parameter: %d.",this.ini_c),"Null or positive integer expected.");
             } else if (this.base<=0) {
-                block_parameter_error(msprintf(gettext("Wrong values for \'Upper Limit\' parameter: %d."),this.base),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong values for \'Upper Limit\' parameter: %d.",this.base),"Strictly positive integer expected.");
             } else {
                 graphics.exprs = exprs;
                 model.ipar = this.base;
@@ -17717,12 +17717,12 @@ function RAMP() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.slope,this.stt,this.iout,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"RAMP")],[" "],[gettext("Ramp function")],[" "]],[[gettext("Slope")],[gettext("Start Time")],[gettext("Initial Value")]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.slope,this.stt,this.iout,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","RAMP")],[" "],["Ramp function"],[" "]],["Slope","Start Time","Initial Value"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             if (this.stt<0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'Start Time\' parameter: %e."),this.stt),gettext("Null or positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'Start Time\' parameter: %e.",this.stt),"Null or positive integer expected.");
             } else {
                 model.rpar = [[this.slope],[this.stt],[this.iout]];
                 graphics.exprs = exprs;
@@ -17773,7 +17773,7 @@ function RAND_f() {
             exprs = [[exprs],[string(model.dstate[1-1])]];
         }
         while (true) {
-            [ok,this.flag,this.a,this.b,this.seed_c,exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be vector with equal sizes"],["seed is the seed of random number generator (integer<2**31)"]],[["flag"],["A"],["B"],["seed"]],list("vec",1,"vec",-1,"vec","size(%2,\'*\')","vec",1),exprs);
+            [ok,this.flag,this.a,this.b,this.seed_c,exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be vector with equal sizes"],["seed is the seed of random number generator (integer<2**31)"]],["flag","A","B","seed"],list("vec",1,"vec",-1,"vec","size(%2,\'*\')","vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -17839,7 +17839,7 @@ function RAND_m() {
             exprs[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.flag,this.a,this.b,this.seed_c,exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be matrix with equal sizes"]],[["Datatype(1=real double  2=complex)"],["flag"],["A"],["B"],["SEED"]],list("vec",1,"vec",1,"mat",[-1,-2],"mat","[-1 -2]","mat",[1,2]),exprs);
+            [ok,this.typ,this.flag,this.a,this.b,this.seed_c,exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be matrix with equal sizes"]],["Datatype(1=real double  2=complex)","flag","A","B","SEED"],list("vec",1,"vec",1,"mat",[-1,-2],"mat","[-1 -2]","mat",[1,2]),exprs);
             if (!ok) {
                 break;
             }
@@ -17922,7 +17922,7 @@ function READAU_f() {
         lunit = dstate[3-1];
         fname = exprs[1-1];
         while (true) {
-            [ok,this.fname1,this.N,this.swap,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"READAU_f")],[" "],[gettext("(Read Audio File)")],[" "],[gettext("Read is done on a binary \'.au\' file")]],[[gettext("Input File Name")],[gettext("Buffer size")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("str",1,"vec",1,"vec",1),exprs);
+            [ok,this.fname1,this.N,this.swap,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","READAU_f")],[" "],["(Read Audio File)"],[" "],["Read is done on a binary \'.au\' file"]],["Input File Name","Buffer size","Swap Mode (0:No, 1:Yes)"],list("str",1,"vec",1,"vec",1),exprs);
             tmask1 = [];
             outmask = 1;
             frmt1 = "uc";
@@ -17934,15 +17934,15 @@ function READAU_f() {
             this.fname1 = stripblanks(this.fname1);
             frmt1 = stripblanks(frmt1);
             if (this.alreadyran&&this.fname1!=fname) {
-                block_parameter_error(gettext("Simulation running !!! You cannot modify Input file name"),gettext("End current simulation first."));
+                block_parameter_error("Simulation running !!! You cannot modify Input file name","End current simulation first.");
             } else if (this.fname1=="") {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Input File Name")),gettext("You must provide a filename."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Input File Name"),"You must provide a filename.");
             } else if (this.N<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer size"),this.N),msprintf(gettext("Must be greater than %d."),1));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Buffer size",this.N),msprintf("Must be greater than %d.",1));
             } else if (this.alreadyran&&(this.N!=ipar[6-1])) {
-                block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first."));
+                block_parameter_error(msprintf("You cannot modify \'%s\' when running.","Buffer Size"),"End current simulation first.");
             } else if (this.swap!=0&&this.swap!=1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Swap Mode"),this.swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Swap Mode",this.swap),msprintf("Must be in the interval %s.","[0, 1]"));
             } else {
                 [model,graphics,ok] = check_io(model,graphics,[],1,1,[]);
                 frmt1 = part(frmt1,1,3);
@@ -18013,7 +18013,7 @@ function READC_f() {
         fname = exprs[3-1];
         frmt = exprs[4-1];
         while (true) {
-            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.M,this.N,this.offset,this.swap,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"READC_f")],[" "],[gettext("Read from C binary file")]],[[gettext("Time Record Selection")],[gettext("Outputs Record Selection")],[gettext("Input File Name")],[gettext("Input Format")],[gettext("Record Size")],[gettext("Buffer Size")],[gettext("Initial Record Index")],[gettext("Swap Mode (0:No, 1:Yes)")]],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.M,this.N,this.offset,this.swap,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","READC_f")],[" "],["Read from C binary file"]],["Time Record Selection","Outputs Record Selection","Input File Name","Input Format","Record Size","Buffer Size","Initial Record Index","Swap Mode (0:No, 1:Yes)"],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -18022,33 +18022,33 @@ function READC_f() {
             fmts = ["s","l","d","f","c","us","ul","uc","ull","uls","ubl","ubs","dl","fl","ll","sl","db","fb","lb","sb"];
             nout = size(this.outmask,"*");
             if (prod(size(this.tmask1))>1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Time Record Selection")),gettext("Must be a scalar or an empty matrix."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Time Record Selection"),"Must be a scalar or an empty matrix.");
             } else if (and(this.frmt1!=fmts)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Input Format"),this.frmt1),gettext("Valid formats are: "+strcat(fmts,", ")));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Input Format",this.frmt1),"Valid formats are: "+strcat(fmts,", "));
             } else if (this.alreadyran&&this.fname1!=fname) {
-                block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running"),gettext("Input File Name")),gettext("End current simulation first."));
+                block_parameter_error(msprintf("You cannot modify \'%s\' when running","Input File Name"),"End current simulation first.");
             } else if (this.N!=ipar[6-1]&&this.alreadyran) {
-                block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Buffer Size")),gettext("End current simulation first"));
+                block_parameter_error(msprintf("You cannot modify \'%s\' when running.","Buffer Size"),"End current simulation first");
             } else if (this.alreadyran&&size(this.tmask1)!=size(tmask)) {
-                block_parameter_error(msprintf(gettext("You cannot modify \'%s\' when running."),gettext("Time Record Selection")),gettext("End current simulation first."));
+                block_parameter_error(msprintf("You cannot modify \'%s\' when running.","Time Record Selection"),"End current simulation first.");
             } else if (this.fname1=="") {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Input File Name")),gettext("You must provide a file name."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Input File Name"),"You must provide a file name.");
             } else if (this.M<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Record Size"),this.M),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Record Size",this.M),"Strictly positive integer expected.");
             } else if (this.tmask1!=[]&&(this.tmask1<1||this.tmask1>this.M)) {
-                block_parameter_error(msprintf(gettext("Wrong value for  \'%s\' parameter: %d."),gettext("Time Record Selection"),this.tmask1),msprintf(gettext("Must be in the interval %s."),gettext("[1, Record Size = ")+string(this.M)+"]"));
+                block_parameter_error(msprintf("Wrong value for  \'%s\' parameter: %d.","Time Record Selection",this.tmask1),msprintf("Must be in the interval %s.","[1, Record Size = "+string(this.M)+"]"));
             } else if (nout==0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Outputs Record Selection"),nout),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Outputs Record Selection",nout),"Strictly positive integer expected.");
             } else if (nout>this.M) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Outputs Record Selection"),nout),msprintf(gettext("Must be in the interval %s."),gettext("[1, Record Size = ")+string(this.M)+"]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Outputs Record Selection",nout),msprintf("Must be in the interval %s.","[1, Record Size = "+string(this.M)+"]"));
             } else if (max(this.outmask)>this.M||min(this.outmask)<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for indexes in \'%s\' parameter: %s."),gettext("Outputs Record Selection"),strcat(string(this.outmask.slice())," ")),msprintf(gettext("Must be in the interval %s."),gettext("[1, Record Size = ")+string(this.M)+"]"));
+                block_parameter_error(msprintf("Wrong value for indexes in \'%s\' parameter: %s.","Outputs Record Selection",strcat(string(this.outmask.slice())," ")),msprintf("Must be in the interval %s.","[1, Record Size = "+string(this.M)+"]"));
             } else if (this.N<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),this.N),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Buffer Size",this.N),"Strictly positive integer expected.");
             } else if (this.swap!=0&&this.swap!=1) {
-                block_parameter_error(msprintf(gettext("Wrong value for  \'%s\' parameter: %d."),gettext("Swap Mode"),this.swap),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                block_parameter_error(msprintf("Wrong value for  \'%s\' parameter: %d.","Swap Mode",this.swap),msprintf("Must be in the interval %s.","[0, 1]"));
             } else if (this.offset<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Initial Record Index"),this.offset),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Initial Record Index",this.offset),"Strictly positive integer expected.");
             } else {
                 if (this.tmask1==[]) {
                     ievt = 0;
@@ -18133,7 +18133,7 @@ function RFILE_f() {
             exprs[6-1] = [];
         }
         while (true) {
-            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.N,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"RFILE_f")],[" "],[gettext("Read from an input file")],[" "],[gettext("Read is done on:")],[gettext("&nbsp; - A binary file if no format given")],[gettext("&nbsp; - A formatted text file if a  format (fortran type) is given")]],[[gettext("Time Record Selection")],[gettext("Outputs Record Selection")],[gettext("Input File Name")],[gettext("Input Format")],[gettext("Buffer Size")]],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1),exprs);
+            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.N,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","RFILE_f")],[" "],["Read from an input file"],[" "],["Read is done on:"],["&nbsp; - A binary file if no format given"],["&nbsp; - A formatted text file if a  format (fortran type) is given"]],["Time Record Selection","Outputs Record Selection","Input File Name","Input Format","Buffer Size"],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -18141,25 +18141,25 @@ function RFILE_f() {
             this.frmt1 = stripblanks(this.frmt1);
             nout = size(this.outmask,"*");
             if (prod(size(this.tmask1))>1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Time Record Selection"),strcat(string(this.tmask1.slice())," ")),gettext("Empty matrix or scalar expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Time Record Selection",strcat(string(this.tmask1.slice())," ")),"Empty matrix or scalar expected.");
             } else if (this.tmask1!=[]&&this.tmask1<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d"),gettext("Time Record Selection"),this.tmask1),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d","Time Record Selection",this.tmask1),"Strictly positive integer expected.");
             } else if (lunit>0&&min(length(frmt),1)!=min(length(this.frmt1),1)) {
-                block_parameter_error([gettext("Simulation running !!! You cannot switch <br />between formatted and unformatted")],gettext("End current simulation first."));
+                block_parameter_error(["Simulation running !!! You cannot switch <br />between formatted and unformatted"],"End current simulation first.");
             } else if (lunit>0&&this.fname1!=fname) {
-                block_parameter_error(gettext("Simulation running !!! You cannot modify \'Input File Name\'"),gettext("End current simulation first."));
+                block_parameter_error("Simulation running !!! You cannot modify \'Input File Name\'","End current simulation first.");
             } else if (lunit>0&&size(this.tmask1)!=size(tmask)) {
-                block_parameter_error(gettext("Simulation running !!! You cannot modify \'Time Record Selection\'"),gettext("End current simulation first."));
+                block_parameter_error("Simulation running !!! You cannot modify \'Time Record Selection\'","End current simulation first.");
             } else if (this.fname1=="") {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s"),gettext("Input File Name"),this.fname1),gettext("You must provide a filename."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s","Input File Name",this.fname1),"You must provide a filename.");
             } else if (this.frmt1!=""&&(part(this.frmt1,1)!="("||part(this.frmt1,length(this.frmt1))!=")")) {
-                block_parameter_error(msprintf(gettext("Wrong format for \'%s\' parameter: %s."),gettext("Input Format"),this.frmt1),gettext("You must enclose the format\'s string between parentheses."));
+                block_parameter_error(msprintf("Wrong format for \'%s\' parameter: %s.","Input Format",this.frmt1),"You must enclose the format\'s string between parentheses.");
             } else if (this.N<2) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),this.N),gettext("Buffer size must be at least 2."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Buffer Size",this.N),"Buffer size must be at least 2.");
             } else if (nout==0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Outputs Record Selection"),nout),gettext("You must read at least one field in record."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Outputs Record Selection",nout),"You must read at least one field in record.");
             } else if (min(this.outmask)<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s"),gettext("Outputs Record Selection"),strcat(string(this.outmask.slice())," ")),gettext("Strictly positive indexes expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s","Outputs Record Selection",strcat(string(this.outmask.slice())," ")),"Strictly positive indexes expected.");
             } else {
                 if (this.tmask1==[]) {
                     ievt = 0;
@@ -18248,7 +18248,7 @@ function STEP() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.temps,this.in1,this.fi,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"STEP_FUNCTION")],[" "],[gettext("Step Function")],[" "]],[[gettext("Step Time")],[gettext("Initial Value")],[gettext("Final Value")]],list("vec",1,"vec",-1,"vec",-1),exprs);
+            [ok,this.temps,this.in1,this.fi,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","STEP_FUNCTION")],[" "],["Step Function"],[" "]],["Step Time","Initial Value","Final Value"],list("vec",1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
@@ -18260,7 +18260,7 @@ function STEP() {
                 } else if (size(this.fi,"*")==1) {
                     this.fi = this.fi*ones(this.in1);
                 } else {
-                    block_parameter_error(msprintf(gettext("\'Initial Value\' and \'Final Value\': incompatible sizes: %d and %d."),size(this.in1,"*"),size(this.fi,"*")),gettext("Same sizes expected."));
+                    block_parameter_error(msprintf("\'Initial Value\' and \'Final Value\': incompatible sizes: %d and %d.",size(this.in1,"*"),size(this.fi,"*")),"Same sizes expected.");
                     ok = false;
                 }
             }
@@ -18436,7 +18436,7 @@ function SampleCLK() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",[["Sample time"],["Offset"]],list("vec",1,"vec",1),exprs);
+            [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -18610,7 +18610,7 @@ function TKSCALE() {
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         model = arg1.model;
-        [ok,this.a,this.b,this.f,exprs] = scicos_getvalue("Set scale block parameters",[["Min value"],["Max value"],["Normalization"]],list("vec",1,"vec",1,"vec",1),exprs);
+        [ok,this.a,this.b,this.f,exprs] = scicos_getvalue("Set scale block parameters",["Min value","Max value","Normalization"],list("vec",1,"vec",1,"vec",1),exprs);
         if (ok) {
             graphics.exprs = exprs;
             model.rpar = [[this.a],[this.b],[this.f]];
@@ -18655,7 +18655,7 @@ function GENERAL_f() {
         this.out = model.evtout;
         nin = sum(this.in1);
         nout = sum(this.out);
-        [ok,this.in1,this.out,exprs] = scicos_getvalue("Set General Zero-Crossing parameters",[["Input size"],["Number of event output"]],list("vec",1,"vec",1),exprs);
+        [ok,this.in1,this.out,exprs] = scicos_getvalue("Set General Zero-Crossing parameters",["Input size","Number of event output"],list("vec",1,"vec",1),exprs);
         if (ok) {
             [model,graphics,ok] = check_io(model,graphics,this.in1,[],[],ones(this.out,1));
             if (ok) {

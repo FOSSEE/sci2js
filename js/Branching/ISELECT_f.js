@@ -28,7 +28,7 @@ function ISELECT_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.nout,this.z0,exprs] = scicos_getvalue("Set parameters",[["number of outputs"],["initial connected output"]],list("vec",1,"vec",1),exprs);
+            [ok,this.nout,this.z0,exprs] = scicos_getvalue("Set parameters",["number of outputs","initial connected output"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

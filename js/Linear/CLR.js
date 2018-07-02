@@ -37,7 +37,7 @@ function CLR() {
         PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.s = %s;
         while (true) {
-            [ok,this.num,this.den,exprs] = scicos_getvalue("Set continuous SISO transfer parameters",[["Numerator (s)"],["Denominator (s)"]],list("pol",1,"pol",1),exprs);
+            [ok,this.num,this.den,exprs] = scicos_getvalue("Set continuous SISO transfer parameters",["Numerator (s)","Denominator (s)"],list("pol",1,"pol",1),exprs);
             if (!ok) {
                 break;
             }

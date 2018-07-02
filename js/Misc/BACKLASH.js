@@ -26,7 +26,7 @@ function BACKLASH() {
         model = arg1.model;
         rpar = model.rpar;
         while (true) {
-            [ok,this.ini,this.gap,this.zcr,exprs] = scicos_getvalue("Set backlash parameters",[["initial output"],["gap"],["use zero-crossing (0:no, 1:yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.ini,this.gap,this.zcr,exprs] = scicos_getvalue("Set backlash parameters",["initial output","gap","use zero-crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

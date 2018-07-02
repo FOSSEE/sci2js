@@ -29,7 +29,7 @@ function SAT_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.minp,this.maxp,this.pente,exprs] = scicos_getvalue("Set Saturation parameters",[["Min"],["Max"],["Slope"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.minp,this.maxp,this.pente,exprs] = scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

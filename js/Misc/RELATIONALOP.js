@@ -30,7 +30,7 @@ function RELATIONALOP() {
             exprs = [[exprs],[sci2exp(1)]];
         }
         while (true) {
-            [ok,this.rule,this.zcr,this.Datatype,exprs] = scicos_getvalue("Set parameters",[["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)"],["Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.rule,this.zcr,this.Datatype,exprs] = scicos_getvalue("Set parameters",["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)","Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

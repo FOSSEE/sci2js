@@ -54,7 +54,7 @@ function MBLOCK() {
         this.lab_1 = list(exprs.in1,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
         lab_2 = exprs.paramv;
         while (true) {
-            [ok,this.Tin,this.Tintype,this.Tout,this.Touttype,this.Tparam,this.pprop,this.Tfunam,this.lab_1] = scicos_getvalue("Set Modelica generic block parameters",[["Input variables:       "],["Input variables types: "],["Output variables:      "],["Output variables types:"],["Parameters in Modelica:"],["Parameters properties: "],["Function name:         "]],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),this.lab_1);
+            [ok,this.Tin,this.Tintype,this.Tout,this.Touttype,this.Tparam,this.pprop,this.Tfunam,this.lab_1] = scicos_getvalue("Set Modelica generic block parameters",["Input variables:       ","Input variables types: ","Output variables:      ","Output variables types:","Parameters in Modelica:","Parameters properties: ","Function name:         "],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),this.lab_1);
             if (!ok) {
                 break;
             }

@@ -40,7 +40,7 @@ function WFILE_f() {
         fname = exprs[2-1];
         frmt = exprs[3-1];
         while (true) {
-            [ok,this.in1,this.fname1,this.frmt1,this.N,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"WFILE_f")],[" "],[gettext("Write to output file")],[" "],[gettext("Write is done on:")],[gettext("&nbsp; - A binary file if no format given")],[gettext("&nbsp; - A formatted text file if a  format (Fortran type) is given")]],[[gettext("Input Size")],[gettext("Output File Name")],[gettext("Output Format")],[gettext("Buffer Size")]],list("vec",1,"str",1,"str",1,"vec",1),exprs);
+            [ok,this.in1,this.fname1,this.frmt1,this.N,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WFILE_f")],[" "],["Write to output file"],[" "],["Write is done on:"],["&nbsp; - A binary file if no format given"],["&nbsp; - A formatted text file if a  format (Fortran type) is given"]],["Input Size","Output File Name","Output Format","Buffer Size"],list("vec",1,"str",1,"str",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -49,28 +49,28 @@ function WFILE_f() {
             this.fname1 = pathconvert(stripblanks(this.fname1),false,true);
             this.frmt1 = stripblanks(this.frmt1);
             if (lunit>0&&min(length(frmt),1)!=min(length(this.frmt1),1)) {
-                block_parameter_error(gettext("Simulation running !!! You cannot switch<br />between formatted and unformatted when running"),gettext("End current simulation first."));
+                block_parameter_error("Simulation running !!! You cannot switch<br />between formatted and unformatted when running","End current simulation first.");
                 ok = false;
             } else if (lunit>0&&this.fname1!=fname) {
-                block_parameter_error(gettext("You cannot modify \'Output File Name\' when running."),gettext("End current simulation first."));
+                block_parameter_error("You cannot modify \'Output File Name\' when running.","End current simulation first.");
                 ok = false;
             } else if (this.fname1=="") {
-                block_parameter_error(gettext("Wrong value for \'Output File Name\' parameter"),gettext("You must provide a filename."));
+                block_parameter_error("Wrong value for \'Output File Name\' parameter","You must provide a filename.");
                 ok = false;
             } else if (fileparts(this.fname1)!="") {
                 [pa,fn,ex] = fileparts(this.fname1);
                 if (!this.isdir[pa-1]) {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter."),gettext("Output File Name")),msprintf(gettext("Directory \'%s\' does not exist"),pa));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Output File Name"),msprintf("Directory \'%s\' does not exist",pa));
                     ok = false;
                 }
             } else if (this.frmt1!=""&&(part(this.frmt1,1)!="("||part(this.frmt1,length(this.frmt1))!=")")) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Input Format"),this.frmt1),gettext("You must enclose the format\'s string between parentheses."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Input Format",this.frmt1),"You must enclose the format\'s string between parentheses.");
                 ok = false;
             } else if (this.N<2) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),this.N),gettext("Must be greater than 1."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Buffer Size",this.N),"Must be greater than 1.");
                 ok = false;
             } else if (this.in1<=0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Input Size"),this.in1),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Input Size",this.in1),"Strictly positive integer expected.");
                 ok = false;
             }
             if (ok) {

@@ -29,16 +29,16 @@ function EXTRACTBITS() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.Datatype,this.rule,this.bit,this.scal,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"EXTRACTBITS")],[" "],[gettext("Bits Extraction")],[" "],[gettext("&nbsp;- Bits to Extract:")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits")],[gettext("&nbsp;- Number of Bits or Index of bit : Index 0 is LSB")],[gettext("&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]")],[" "]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Bits to extract")],[gettext("Number of Bits or Index of Bit")],[gettext("Treat Bit Field as an Integer (0:No, 1:Yes)")]],list("vec",1,"vec",1,"vec",-1,"vec",1),exprs);
+            [ok,this.Datatype,this.rule,this.bit,this.scal,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","EXTRACTBITS")],[" "],["Bits Extraction"],[" "],["&nbsp;- Bits to Extract:"],["&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"],["&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"],["&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"],["&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"],["&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"],["&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"],["&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Bits to extract","Number of Bits or Index of Bit","Treat Bit Field as an Integer (0:No, 1:Yes)"],list("vec",1,"vec",1,"vec",-1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             bitstr = strcat(string(this.bit.slice())," ");
             if ((this.rule<1)||(this.rule>5)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Bits to Extract"),this.rule),msprintf(gettext("Must be in the interval %s."),"[1, 5]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Bits to Extract",this.rule),msprintf("Must be in the interval %s.","[1, 5]"));
                 ok = false;
             } else if (this.scal<0||this.scal>1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Treat Bit Field as an Integer"),this.scal),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Treat Bit Field as an Integer",this.scal),msprintf("Must be in the interval %s.","[0, 1]"));
                 ok = false;
             } else {
                 in1 = [model.in1,model.in2];
@@ -46,17 +46,17 @@ function EXTRACTBITS() {
                 this.rule = int(this.rule);
                 if ((this.rule==3)||(this.rule==4)) {
                     if ((size(this.bit,"*")!=1)) {
-                        block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),gettext("Must be a single value."));
+                        block_parameter_error(msprintf("Wrong size for \'%s\' parameter: %s.","Number of Bits or Index of Bit",bitstr),"Must be a single value.");
                         ok = false;
                     } else {
                         numb = this.bit;
                     }
                 } else if ((this.rule==5)) {
                     if ((size(this.bit,"*")!=2)) {
-                        block_parameter_error(msprintf(gettext("Wrong size for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),gettext("Must have this form: [Start, End]."));
+                        block_parameter_error(msprintf("Wrong size for \'%s\' parameter: %s.","Number of Bits or Index of Bit",bitstr),"Must have this form: [Start, End].");
                         ok = false;
                     } else if (this.bit[1-1]>this.bit[2-1]) {
-                        block_parameter_error(msprintf(gettext("Wrong values for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("\'Start\' must be less than \'End\'.")));
+                        block_parameter_error(msprintf("Wrong values for \'%s\' parameter: %s.","Number of Bits or Index of Bit",bitstr),msprintf("\'Start\' must be less than \'End\'."));
                         ok = false;
                     } else {
                         numb = this.bit[2-1]-this.bit[1-1];
@@ -69,7 +69,7 @@ function EXTRACTBITS() {
             if (ok) {
                 if ((this.Datatype==3||this.Datatype==6)) {
                     if (or(this.bit.slice()>31)||or(this.bit.slice()<0)) {
-                        block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("Indexes must be in the interval %s."),"[0, 31]"));
+                        block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Number of Bits or Index of Bit",bitstr),msprintf("Indexes must be in the interval %s.","[0, 31]"));
                         ok = false;
                     }
                     switch (this.rule) {
@@ -116,7 +116,7 @@ function EXTRACTBITS() {
                     }
                 } else if ((this.Datatype==4||this.Datatype==7)) {
                     if (or(this.bit.slice()>15)||or(this.bit.slice()<0)) {
-                        block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("Indexes must be in the interval %s."),"[0, 15]"));
+                        block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Number of Bits or Index of Bit",bitstr),msprintf("Indexes must be in the interval %s.","[0, 15]"));
                         ok = false;
                     }
                     switch (this.rule) {
@@ -163,7 +163,7 @@ function EXTRACTBITS() {
                     }
                 } else if ((this.Datatype==5||this.Datatype==8)) {
                     if (or(this.bit.slice()>7)||or(this.bit.slice()<0)) {
-                        block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Number of Bits or Index of Bit"),bitstr),msprintf(gettext("Indexes must be in the interval %s."),"[0, 7]"));
+                        block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Number of Bits or Index of Bit",bitstr),msprintf("Indexes must be in the interval %s.","[0, 7]"));
                         ok = false;
                     }
                     switch (this.rule) {
@@ -209,7 +209,7 @@ function EXTRACTBITS() {
                         }
                     }
                 } else {
-                    block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),this.Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
+                    block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Data Type",this.Datatype),msprintf("Must be in the interval %s.","[3, 8]"));
                     ok = false;
                 }
             }

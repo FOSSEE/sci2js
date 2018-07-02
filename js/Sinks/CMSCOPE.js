@@ -38,7 +38,7 @@ function CMSCOPE() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.in1,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,exprs] = scicos_getvalue("Set Scope parameters",[["Input ports sizes"],["Drawing colors (>0) or mark (<0)"],["Output window number (-1 for automatic)"],["Output window position"],["Output window sizes"],["Ymin vector"],["Ymax vector"],["Refresh period"],["Buffer size"],["Accept herited events 0/1","Name of Scope (label&Id)"]],list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec",1,"vec",1,"str",1),exprs);
+            [ok,this.in1,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,exprs] = scicos_getvalue("Set Scope parameters",["Input ports sizes","Drawing colors (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin vector","Ymax vector","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec",1,"vec",1,"str",1),exprs);
             if (!ok) {
                 break;
             }

@@ -27,7 +27,7 @@ function M_SWITCH() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.nin,this.base,this.rule,exprs] = scicos_getvalue("Set parameters",[["number of inputs"],["zero base indexing (0), otherwise 1"],["rounding rule: int (0), round (1), ceil (2), floor (3)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.nin,this.base,this.rule,exprs] = scicos_getvalue("Set parameters",["number of inputs","zero base indexing (0), otherwise 1","rounding rule: int (0), round (1), ceil (2), floor (3)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

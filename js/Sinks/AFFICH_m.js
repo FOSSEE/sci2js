@@ -34,7 +34,7 @@ function AFFICH_m() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.in1,this.font,this.fontsize,this.colr,this.nt,this.nd,this.herit,exprs] = scicos_getvalue("Set  parameters",[["Input Size","Font number"],["Font size"],["Color"],["Total number of digits"],["Number of rational part digits"],["Block inherits (1) or not (0)"]],list("mat",[1,2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.in1,this.font,this.fontsize,this.colr,this.nt,this.nd,this.herit,exprs] = scicos_getvalue("Set  parameters",["Input Size","Font number","Font size","Color","Total number of digits","Number of rational part digits","Block inherits (1) or not (0)"],list("mat",[1,2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

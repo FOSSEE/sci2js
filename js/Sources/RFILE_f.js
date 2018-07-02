@@ -48,7 +48,7 @@ function RFILE_f() {
             exprs[6-1] = [];
         }
         while (true) {
-            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.N,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"RFILE_f")],[" "],[gettext("Read from an input file")],[" "],[gettext("Read is done on:")],[gettext("&nbsp; - A binary file if no format given")],[gettext("&nbsp; - A formatted text file if a  format (fortran type) is given")]],[[gettext("Time Record Selection")],[gettext("Outputs Record Selection")],[gettext("Input File Name")],[gettext("Input Format")],[gettext("Buffer Size")]],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1),exprs);
+            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.N,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","RFILE_f")],[" "],["Read from an input file"],[" "],["Read is done on:"],["&nbsp; - A binary file if no format given"],["&nbsp; - A formatted text file if a  format (fortran type) is given"]],["Time Record Selection","Outputs Record Selection","Input File Name","Input Format","Buffer Size"],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
@@ -56,25 +56,25 @@ function RFILE_f() {
             this.frmt1 = stripblanks(this.frmt1);
             nout = size(this.outmask,"*");
             if (prod(size(this.tmask1))>1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s."),gettext("Time Record Selection"),strcat(string(this.tmask1.slice())," ")),gettext("Empty matrix or scalar expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Time Record Selection",strcat(string(this.tmask1.slice())," ")),"Empty matrix or scalar expected.");
             } else if (this.tmask1!=[]&&this.tmask1<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d"),gettext("Time Record Selection"),this.tmask1),gettext("Strictly positive integer expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d","Time Record Selection",this.tmask1),"Strictly positive integer expected.");
             } else if (lunit>0&&min(length(frmt),1)!=min(length(this.frmt1),1)) {
-                block_parameter_error([gettext("Simulation running !!! You cannot switch <br />between formatted and unformatted")],gettext("End current simulation first."));
+                block_parameter_error(["Simulation running !!! You cannot switch <br />between formatted and unformatted"],"End current simulation first.");
             } else if (lunit>0&&this.fname1!=fname) {
-                block_parameter_error(gettext("Simulation running !!! You cannot modify \'Input File Name\'"),gettext("End current simulation first."));
+                block_parameter_error("Simulation running !!! You cannot modify \'Input File Name\'","End current simulation first.");
             } else if (lunit>0&&size(this.tmask1)!=size(tmask)) {
-                block_parameter_error(gettext("Simulation running !!! You cannot modify \'Time Record Selection\'"),gettext("End current simulation first."));
+                block_parameter_error("Simulation running !!! You cannot modify \'Time Record Selection\'","End current simulation first.");
             } else if (this.fname1=="") {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s"),gettext("Input File Name"),this.fname1),gettext("You must provide a filename."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s","Input File Name",this.fname1),"You must provide a filename.");
             } else if (this.frmt1!=""&&(part(this.frmt1,1)!="("||part(this.frmt1,length(this.frmt1))!=")")) {
-                block_parameter_error(msprintf(gettext("Wrong format for \'%s\' parameter: %s."),gettext("Input Format"),this.frmt1),gettext("You must enclose the format\'s string between parentheses."));
+                block_parameter_error(msprintf("Wrong format for \'%s\' parameter: %s.","Input Format",this.frmt1),"You must enclose the format\'s string between parentheses.");
             } else if (this.N<2) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Buffer Size"),this.N),gettext("Buffer size must be at least 2."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Buffer Size",this.N),"Buffer size must be at least 2.");
             } else if (nout==0) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Outputs Record Selection"),nout),gettext("You must read at least one field in record."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Outputs Record Selection",nout),"You must read at least one field in record.");
             } else if (min(this.outmask)<1) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %s"),gettext("Outputs Record Selection"),strcat(string(this.outmask.slice())," ")),gettext("Strictly positive indexes expected."));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s","Outputs Record Selection",strcat(string(this.outmask.slice())," ")),"Strictly positive indexes expected.");
             } else {
                 if (this.tmask1==[]) {
                     ievt = 0;

@@ -34,7 +34,7 @@ function DLRADAPT_f() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.p,this.rn,this.rd,this.g,this.last_u,this.last_y,exprs] = scicos_getvalue("Set block parameters",[["Vector of p mesh points"],["Numerator roots (one line for each mesh)"],["Denominator roots (one line for each mesh)"],["Vector of gain at mesh points"],["past inputs (Num degree values)"],["past outputs (Den degree values)"]],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),exprs);
+            [ok,this.p,this.rn,this.rd,this.g,this.last_u,this.last_y,exprs] = scicos_getvalue("Set block parameters",["Vector of p mesh points","Numerator roots (one line for each mesh)","Denominator roots (one line for each mesh)","Vector of gain at mesh points","past inputs (Num degree values)","past outputs (Den degree values)"],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),exprs);
             if (!ok) {
                 break;
             }

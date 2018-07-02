@@ -51,7 +51,7 @@ function SRFLIPFLOP() {
         model = xx.model;
         init_old = model.odstate[1-1];
         while (true) {
-            [ok,this.init,this.exprs0] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"SRFLIPFLOP")],[" "],[gettext("SR flip-flop")],[" "],[gettext("The \'Initial Value\' must be 0 or 1 of type int8")],[gettext("&nbsp;- Negative values are considered as int8(0)")],[gettext("&nbsp;- Positive values are considered as int8(1)")],[" "]],gettext("Initial Value"),list("vec",1),exprs);
+            [ok,this.init,this.exprs0] = scicos_getvalue([[msprintf("Set %s block parameters","SRFLIPFLOP")],[" "],["SR flip-flop"],[" "],["The \'Initial Value\' must be 0 or 1 of type int8"],["&nbsp;- Negative values are considered as int8(0)"],["&nbsp;- Positive values are considered as int8(1)"],[" "]],"Initial Value",list("vec",1),exprs);
             if (!ok) {
                 break;
             }

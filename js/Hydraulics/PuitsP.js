@@ -33,7 +33,7 @@ function PuitsP() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.P0,this.T0,this.H0,this.option_temperature,exprs] = scicos_getvalue("Paramètres du puits",[["Pression de la source : P0 (Pa)"],["Temperature de la source : T0 (K)"],["Enthalpie spécifique de la source : H0 (J/kg)"],["1:température fixée - 2:enthalpie fixée : option_temperature"]],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.P0,this.T0,this.H0,this.option_temperature,exprs] = scicos_getvalue("Paramètres du puits",["Pression de la source : P0 (Pa)","Temperature de la source : T0 (K)","Enthalpie spécifique de la source : H0 (J/kg)","1:température fixée - 2:enthalpie fixée : option_temperature"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }

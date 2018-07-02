@@ -36,7 +36,7 @@ function ESELECT_f() {
         }
         model = arg1.model;
         while (true) {
-            [ok,this.out,this.inh,this.nmod,exprs] = scicos_getvalue("Set ESELECT block parameters",[["number of output event ports"],["Inherit (1: no, 0: yes)"],["zero-crossing (0: no, 1: yes)"]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.out,this.inh,this.nmod,exprs] = scicos_getvalue("Set ESELECT block parameters",["number of output event ports","Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

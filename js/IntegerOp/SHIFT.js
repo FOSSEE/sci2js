@@ -31,12 +31,12 @@ function SHIFT() {
         model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
-            [ok,this.Datatype,this.nb,this.np,exprs] = scicos_getvalue([[msprintf(gettext("Set %s block parameters"),"SHIFT")],[" "],[gettext("Shift/Rotates bits")]],[[msprintf(gettext("Data Type %s"),"(3:int32, 4:int16, 5:int8, ...)")],[gettext("Number of Bits to Shift Left (Negative number to shift right)")],[gettext("Shift Type (0:Arithmetic, 1:Circular)")]],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.Datatype,this.nb,this.np,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","SHIFT")],[" "],["Shift/Rotates bits"]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Number of Bits to Shift Left (Negative number to shift right)","Shift Type (0:Arithmetic, 1:Circular)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             if ((this.np!=0&&this.np!=1)) {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Shift Type"),this.np),msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Shift Type",this.np),msprintf("Must be in the interval %s.","[0, 1]"));
                 ok = false;
             }
             it = this.Datatype;
@@ -105,7 +105,7 @@ function SHIFT() {
                     }
                 }
             } else {
-                block_parameter_error(msprintf(gettext("Wrong value for \'%s\' parameter: %d."),gettext("Data Type"),this.Datatype),msprintf(gettext("Must be in the interval %s."),"[3, 8]"));
+                block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Data Type",this.Datatype),msprintf("Must be in the interval %s.","[3, 8]"));
                 ok = false;
             }
             if (ok) {

@@ -43,7 +43,7 @@ function RAND_m() {
             exprs[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.flag,this.a,this.b,this.seed_c,exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be matrix with equal sizes"]],[["Datatype(1=real double  2=complex)"],["flag"],["A"],["B"],["SEED"]],list("vec",1,"vec",1,"mat",[-1,-2],"mat","[-1 -2]","mat",[1,2]),exprs);
+            [ok,this.typ,this.flag,this.a,this.b,this.seed_c,exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be matrix with equal sizes"]],["Datatype(1=real double  2=complex)","flag","A","B","SEED"],list("vec",1,"vec",1,"mat",[-1,-2],"mat","[-1 -2]","mat",[1,2]),exprs);
             if (!ok) {
                 break;
             }

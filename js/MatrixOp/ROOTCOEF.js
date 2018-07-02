@@ -39,7 +39,7 @@ function ROOTCOEF() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.inp,exprs] = scicos_getvalue("Set ROOTCOEF Block",[["Datatype(1=real double  2=Complex)"],["input row size"]],list("vec",1,"vec",1),label);
+            [ok,this.typ,this.inp,exprs] = scicos_getvalue("Set ROOTCOEF Block",["Datatype(1=real double  2=Complex)","input row size"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }

@@ -35,7 +35,7 @@ function CMAT3D() {
         exprs = graphics.exprs;
         model = arg1.model;
         while (true) {
-            [ok,this.vec_x,this.vec_y,this.colormap,this.cmin,this.cmax,exprs] = scicos_getvalue("Set Scope parameters",[["Bounds Vector X (-1 for standard)"],["Bounds Vector Y (-1 for standard)"],["ColorMap"],["Zmin"],["Zmax"]],list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
+            [ok,this.vec_x,this.vec_y,this.colormap,this.cmin,this.cmax,exprs] = scicos_getvalue("Set Scope parameters",["Bounds Vector X (-1 for standard)","Bounds Vector Y (-1 for standard)","ColorMap","Zmin","Zmax"],list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }

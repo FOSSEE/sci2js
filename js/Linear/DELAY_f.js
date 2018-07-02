@@ -92,7 +92,7 @@ function DELAY_f() {
         evtdly_exprs = evtdly.graphics.exprs;
         exprs = [[evtdly_exprs[1-1]],[register_exprs]];
         while (true) {
-            [ok,this.dt,this.z0,exprs] = scicos_getvalue([["This block implements as a discretized delay"],["it is consist of a shift register and a clock"],["value of the delay is given by;","the discretization time step multiplied by the"],["number-1 of state of the register"]],[["Discretization time step"],["Register initial state"]],list("vec",1,"vec",-1),exprs);
+            [ok,this.dt,this.z0,exprs] = scicos_getvalue([["This block implements as a discretized delay"],["it is consist of a shift register and a clock"],["value of the delay is given by;","the discretization time step multiplied by the"],["number-1 of state of the register"]],["Discretization time step","Register initial state"],list("vec",1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
