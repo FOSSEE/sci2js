@@ -473,29 +473,46 @@ def p_getvalueassignment_getvalue_arguments(p):
             if var not in GLOBAL_VARS:
                 GLOBAL_VARS.add(var)
 
-def p_getvaluearguments_getvalue_list_list(p):
-    'getvaluearguments : expression COMMA OPENSQBRACKET termarrayarraylist CLOSESQBRACKET COMMA LIST OPENBRACKET getvaluelist CLOSEBRACKET COMMA expression'
-    p[0] = '%s,[%s],%s(%s),%s' % (p[1], p[4], p[7], p[9], p[12])
-
-def p_getvaluearguments_getvalue_list_semicolon_list(p):
-    'getvaluearguments : expression COMMA OPENSQBRACKET termarrayarraylist SEMICOLON CLOSESQBRACKET COMMA LIST OPENBRACKET getvaluelist CLOSEBRACKET COMMA expression'
-    p[0] = '%s,[%s],%s(%s),%s' % (p[1], p[4], p[8], p[10], p[13])
-
-def p_getvaluearguments_getvalue_list_string_list(p):
-    'getvaluearguments : expression COMMA OPENSQBRACKET DQSTRING CLOSESQBRACKET COMMA LIST OPENBRACKET getvaluelist CLOSEBRACKET COMMA expression'
-    p[0] = '%s,[%s],%s(%s),%s' % (p[1], p[4], p[7], p[9], p[12])
-
-def p_getvaluearguments_getvalue_string_list(p):
-    'getvaluearguments : expression COMMA DQSTRING COMMA LIST OPENBRACKET getvaluelist CLOSEBRACKET COMMA expression'
-    p[0] = '%s,%s,%s(%s),%s' % (p[1], p[3], p[5], p[7], p[10])
-
-def p_getvaluearguments_getvalue_gettext_string_list(p):
-    'getvaluearguments : expression COMMA FUNCTIONNAME OPENBRACKET DQSTRING CLOSEBRACKET COMMA LIST OPENBRACKET getvaluelist CLOSEBRACKET COMMA expression'
-    p[0] = '%s,%s(%s),%s(%s),%s' % (p[1], p[3], p[5], p[8], p[10], p[13])
-
-def p_getvaluearguments_getvalue_var_var(p):
-    'getvaluearguments : expression COMMA VAR COMMA VAR COMMA expression'
+def p_getvaluearguments_arg1_arg2_arg3_arg4(p):
+    'getvaluearguments : getvaluearg1 COMMA getvaluearg2 COMMA getvaluearg3 COMMA getvaluearg4'
     p[0] = '%s,%s,%s,%s' % (p[1], p[3], p[5], p[7])
+
+def p_getvaluearg1_expression(p):
+    'getvaluearg1 : expression'
+    p[0] = '%s' % (p[1])
+
+def p_getvaluearg2_list(p):
+    '''getvaluearg2 : OPENSQBRACKET termarrayarraylist CLOSESQBRACKET
+                    | OPENSQBRACKET termarrayarraylist SEMICOLON CLOSESQBRACKET'''
+    p[0] = '[%s]' % (p[2])
+
+def p_getvaluearg2_list_string(p):
+    'getvaluearg2 : OPENSQBRACKET DQSTRING CLOSESQBRACKET'
+    p[0] = '[%s]' % (p[2])
+
+def p_getvaluearg2_string(p):
+    'getvaluearg2 : DQSTRING'
+    p[0] = '%s' % (p[1])
+
+def p_getvaluearg2_gettext_string(p):
+    'getvaluearg2 : FUNCTIONNAME OPENBRACKET DQSTRING CLOSEBRACKET'
+    p[0] = '%s(%s)' % (p[1], p[3])
+
+def p_getvaluearg2_var(p):
+    'getvaluearg2 : VAR'
+    p[0] = '%s' % (p[1])
+
+def p_getvaluearg3_list(p):
+    'getvaluearg3 : LIST OPENBRACKET getvaluelist CLOSEBRACKET'
+    p[0] = '%s(%s)' % (p[1], p[3])
+
+def p_getvaluearg3_var(p):
+    'getvaluearg3 : VAR'
+    p[0] = '%s' % (p[1])
+
+def p_getvaluearg4_expression(p):
+    'getvaluearg4 : expression'
+    p[0] = '%s' % (p[1])
 
 # end define assignment
 
