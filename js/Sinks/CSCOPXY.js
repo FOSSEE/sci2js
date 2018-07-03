@@ -10,7 +10,7 @@ function CSCOPXY() {
         this.xmin = -15;
         this.xmax = 15;
         this.ymin = -15;
-        this.ymax = +15;
+        this.ymax = 15;
         this.nbr_curves = 1;
         model = scicos_model();
         model.sim = list("cscopxy",4);

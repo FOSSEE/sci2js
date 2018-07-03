@@ -16601,7 +16601,7 @@ function CANIMXY() {
         this.xmin = -15;
         this.xmax = 15;
         this.ymin = -15;
-        this.ymax = +15;
+        this.ymax = 15;
         this.nbr_curves = 1;
         model = scicos_model();
         model.sim = list("canimxy",4);
@@ -16975,7 +16975,7 @@ function CFSCOPE() {
         this.clrs = [[1],[3],[5],[7],[9],[11],[13],[15]];
         this.N = 2;
         this.ymin = -15;
-        this.ymax = +15;
+        this.ymax = 15;
         this.per = 30;
         model = scicos_model();
         model.sim = list("cfscope",4);
@@ -17564,7 +17564,7 @@ function CSCOPE() {
         this.clrs = [[1],[3],[5],[7],[9],[11],[13],[15]];
         this.N = 20;
         this.ymin = -15;
-        this.ymax = +15;
+        this.ymax = 15;
         this.per = 30;
         model = scicos_model();
         model.sim = list("cscope",4);
@@ -17688,7 +17688,7 @@ function CSCOPXY() {
         this.xmin = -15;
         this.xmax = 15;
         this.ymin = -15;
-        this.ymax = +15;
+        this.ymax = 15;
         this.nbr_curves = 1;
         model = scicos_model();
         model.sim = list("cscopxy",4);

@@ -351,9 +351,7 @@ def p_forstatement_for_start_step_end(p):
     else:
         endop = '>='
         stepop = '-='
-    if var not in GLOBAL_VARS:
-        if var not in LOCAL_VARS:
-            LOCAL_VARS.add(var)
+    add_local_var(var)
     p[0] = '%*sfor (%s=%s;%s%s%s;%s%s%s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, lstart, var, endop, lend, var, stepop, lstep)
     INDENT_LEVEL += 1
 
@@ -367,9 +365,7 @@ def p_forstatement_for_start_end(p):
     lend = p[6]
     endop = '<='
     stepop = '+='
-    if var not in GLOBAL_VARS:
-        if var not in LOCAL_VARS:
-            LOCAL_VARS.add(var)
+    add_local_var(var)
     p[0] = '%*sfor (%s=%s;%s%s%s;%s%s%s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, lstart, var, endop, lend, var, stepop, lstep)
     INDENT_LEVEL += 1
 
@@ -378,9 +374,7 @@ def p_forstatement_for_list(p):
                     | FOR VAR ASSIGNMENT VAR DO EOL'''
     global INDENT_LEVEL
     var = p[2]
-    if var not in GLOBAL_VARS:
-        if var not in LOCAL_VARS:
-            LOCAL_VARS.add(var)
+    add_local_var(var)
     p[0] = '%*sfor (%s in %s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, p[4])
     INDENT_LEVEL += 1
 
@@ -463,7 +457,7 @@ def p_elsestatement_else(p):
 
 def p_assignment_expression(p):
     'assignment : lterm ASSIGNMENT expression'
-    p[0] = '%*s%s %s %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[2], p[3])
+    p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3])
 
 def p_getvalueassignment_getvalue_arguments(p):
     'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET getvaluearguments CLOSEBRACKET'
@@ -481,8 +475,7 @@ def p_getvalueassignment_getvalue_arguments(p):
                 basevar = var[5:]
             else:
                 basevar = var
-                if var not in GLOBAL_VARS:
-                    GLOBAL_VARS.add(var)
+                add_global_var(var, force=True)
             SET_BLOCK += "%*s%s = parseFloat((arguments[%d][\"%s\"]))\n" % (2 * INDENT_SIZE, ' ', var, 0, basevar)
             if idx < len(LABELS):
                 OPTIONS_BLOCK += '%*s%s:[%s,%s],\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', basevar, LABELS[idx], var)
@@ -697,7 +690,10 @@ def p_expression_expression_logical_expression(p):
 
 def p_expression_addition_term(p):
     'expression : ADDITION expression %prec UNARYADDITION'
-    p[0] = '%s%s' % (p[1], p[2])
+    if p[1] == '-':
+        p[0] = '%s%s' % (p[1], p[2])
+    else:
+        p[0] = '%s' % (p[2])
 
 def p_expression_not_expression(p):
     'expression : NOT expression'
@@ -781,9 +777,7 @@ def p_ltermvar_ltermvar_dot_in(p):
 def p_ltermvar_var(p):
     'ltermvar : VAR'
     var = p[1]
-    if var not in GLOBAL_VARS:
-        if var not in LOCAL_VARS:
-            LOCAL_VARS.add(var)
+    add_local_var(var)
     if var in GLOBAL_VARS:
         p[0] = 'this.%s' % (var)
     else:
@@ -793,9 +787,7 @@ def p_ltermvar_var(p):
 def p_ltermvar_in(p):
     'ltermvar : IN'
     var = p[1] + '1'
-    if var not in GLOBAL_VARS:
-        if var not in LOCAL_VARS:
-            LOCAL_VARS.add(var)
+    add_local_var(var)
     if var in GLOBAL_VARS:
         p[0] = 'this.%s' % (var)
     else:
@@ -1000,9 +992,7 @@ def p_termvar_termvar_dot_in(p):
 def p_termvar_var(p):
     'termvar : VAR'
     var = p[1]
-    if var not in GLOBAL_VARS:
-        if var not in LOCAL_VARS:
-            GLOBAL_VARS.add(var)
+    add_global_var(var)
     if var in GLOBAL_VARS:
         p[0] = 'this.%s' % (var)
     else:
@@ -1012,9 +1002,7 @@ def p_termvar_var(p):
 def p_termvar_in(p):
     'termvar : IN'
     var = p[1] + '1'
-    if var not in GLOBAL_VARS:
-        if var not in LOCAL_VARS:
-            GLOBAL_VARS.add(var)
+    add_global_var(var)
     if var in GLOBAL_VARS:
         p[0] = 'this.%s' % (var)
     else:
@@ -1061,6 +1049,18 @@ BLOCK_TYPE = {
 def getblocktype(module):
     '''return a block type for a module'''
     return BLOCK_TYPE.get(module, 'BasicBlock')
+
+def add_local_var(var, force=False):
+    if force and var in GLOBAL_VARS:
+        GLOBAL_VARS.remove(var)
+    if var not in GLOBAL_VARS:
+        LOCAL_VARS.add(var)
+
+def add_global_var(var, force=False):
+    if force and var in LOCAL_VARS:
+        LOCAL_VARS.remove(var)
+    if var not in LOCAL_VARS:
+        GLOBAL_VARS.add(var)
 
 def processfile(filename, picklefilename, passnumber):
     '''convert a sci file to a js file'''
