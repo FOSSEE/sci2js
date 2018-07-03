@@ -227,6 +227,27 @@ FUNCTION_NAMES = {
     'zeros',
 }
 
+BOOLEAN_FUNCTION_NAMES = {
+}
+
+DOUBLE_FUNCTION_NAMES = {
+}
+
+MATRIX_DOUBLE_FUNCTION_NAMES = {
+}
+
+NULL_FUNCTION_NAMES = {
+}
+
+OBJECT_FUNCTION_NAMES = {
+}
+
+STRING_FUNCTION_NAMES = {
+}
+
+VECTOR_DOUBLE_FUNCTION_NAMES = {
+}
+
 OBJECTS = {
 #    'PREVAR_scicos_context': 'PREVAR_SCICOS_CONTEXT',
 #    'arg1': 'ARG1',
@@ -246,6 +267,7 @@ JOBTYPES = {
 tokens = [
     'ADDITION',
     'ASSIGNMENT',
+    'BOOLEAN_FUNCTIONNAME',
     'CLOSEBRACKET',
     'CLOSEOPENBRACKET',
     'CLOSESQBRACKET',
@@ -253,22 +275,28 @@ tokens = [
     'COMMA',
     'COMPARISON',
     'DOT',
+    'DOUBLE_FUNCTIONNAME',
     'DQSTRING',
     'EOL',
     'FUNCTIONNAME',
     'LASTINDEX',
     'LOGICAL',
+    'MATRIX_DOUBLE_FUNCTIONNAME',
     'MULTIPLICATION',
     'NOT',
+    'NULL_FUNCTIONNAME',
     'NUMBER',
+    'OBJECT_FUNCTIONNAME',
     'OPENBRACKET',
     'OPENSQBRACKET',
     'PREVAR',
     'QSTRING',
     'SEMICOLON',
     'SPACE',
+    'STRING_FUNCTIONNAME',
     'TRANSPOSE',
     'VAR',
+    'VECTOR_DOUBLE_FUNCTIONNAME',
 ] + list(SYNTAX_TOKENS.values()) + list(set(PREDEFINED_VARIABLES.values())) + list(OBJECTS.values()) + list(JOBTYPES.values())
 
 states = (
@@ -344,8 +372,25 @@ def t_VAR(t):
     if vartype is None:
         vartype = OBJECTS.get(t.value)
     if vartype is None:
-        vartype = 'FUNCTIONNAME' if t.value in FUNCTION_NAMES else 'VAR'
-    t.lexer.afterarray = vartype != 'FUNCTIONNAME'
+        if t.value in BOOLEAN_FUNCTION_NAMES:
+            vartype = 'BOOLEAN_FUNCTIONNAME'
+        elif t.value in DOUBLE_FUNCTION_NAMES:
+            vartype = 'DOUBLE_FUNCTIONNAME'
+        elif t.value in MATRIX_DOUBLE_FUNCTION_NAMES:
+            vartype = 'MATRIX_DOUBLE_FUNCTIONNAME'
+        elif t.value in NULL_FUNCTION_NAMES:
+            vartype = 'NULL_FUNCTIONNAME'
+        elif t.value in OBJECT_FUNCTION_NAMES:
+            vartype = 'OBJECT_FUNCTIONNAME'
+        elif t.value in STRING_FUNCTION_NAMES:
+            vartype = 'STRING_FUNCTIONNAME'
+        elif t.value in VECTOR_DOUBLE_FUNCTION_NAMES:
+            vartype = 'VECTOR_DOUBLE_FUNCTIONNAME'
+        elif t.value in FUNCTION_NAMES:
+            vartype = 'FUNCTIONNAME'
+        else:
+            vartype = 'VAR'
+    t.lexer.afterarray = vartype == 'VAR'
     t.lexer.aftercase = vartype == 'CASE'
     t.type = vartype
     return t

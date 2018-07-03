@@ -29,6 +29,14 @@ precedence = (
     ('left', 'DOT'),
 )
 
+BOOLEAN_TYPE = 'boolean'
+DOUBLE_TYPE = 'double'
+MATRIX_DOUBLE_TYPE = 'matrix_double'
+NULL_TYPE = 'null'
+OBJECT_TYPE = 'object'
+STRING_TYPE = 'string'
+VECTOR_DOUBLE_TYPE = 'vector_double'
+
 start = 'functionblocks'
 
 JOB_BLOCKS = {}
@@ -37,11 +45,7 @@ FUNCTION_VARS = set()
 LOCAL_VARS = set()
 GLOBAL_VARS = {'x'}
 
-BOOLEAN_VARS = set()
-DOUBLE_VARS = set()
-STRING_VARS = set()
-VECTOR_DOUBLE_VARS = set()
-MATRIX_DOUBLE_VARS = set()
+VAR_TYPES = {}
 
 LABELS = []
 
@@ -1069,61 +1073,44 @@ def add_global_var(var, force=False):
     if var not in LOCAL_VARS:
         GLOBAL_VARS.add(var)
 
-VAR_FUNCS = {}
+def add_var_vartype(var, vartype):
+    VAR_TYPES[var] = vartype
 
 def add_boolean_var(var):
-    BOOLEAN_VARS.add(var)
-
-VAR_FUNCS['boolean'] = add_boolean_var
+    add_var_vartype(var, BOOLEAN_TYPE)
 
 def add_double_var(var):
-    DOUBLE_VARS.add(var)
-
-VAR_FUNCS['double'] = add_double_var
-
-def add_string_var(var):
-    STRING_VARS.add(var)
-
-VAR_FUNCS['string'] = add_string_var
-
-def add_vector_double_var(var):
-    VECTOR_DOUBLE_VARS.add(var)
-
-VAR_FUNCS['vector_double'] = add_vector_double_var
+    add_var_vartype(var, DOUBLE_TYPE)
 
 def add_matrix_double_var(var):
-    MATRIX_DOUBLE_VARS.add(var)
+    add_var_vartype(var, MATRIX_DOUBLE_TYPE)
 
-VAR_FUNCS['matrix_double'] = add_matrix_double_var
+def add_null_var(var):
+    add_var_vartype(var, NULL_TYPE)
 
-def add_var_vartype(var, vartype):
-    if vartype in VAR_FUNCS:
-        VAR_FUNCS[vartype](var)
-    else:
-        print("Syntax error: unknown var type", vartype, "for", var)
+def add_object_var(var):
+    add_var_vartype(var, OBJECT_TYPE)
+
+def add_string_var(var):
+    add_var_vartype(var, STRING_TYPE)
+
+def add_vector_double_var(var):
+    add_var_vartype(var, VECTOR_DOUBLE_TYPE)
 
 def dump_vars(picklefilename):
     with open(picklefilename, 'w') as cfile:
         pickle.dump(GLOBAL_VARS, cfile)
 
-        pickle.dump(BOOLEAN_VARS, cfile)
-        pickle.dump(DOUBLE_VARS, cfile)
-        pickle.dump(STRING_VARS, cfile)
-        pickle.dump(VECTOR_DOUBLE_VARS, cfile)
-        pickle.dump(MATRIX_DOUBLE_VARS, cfile)
+        pickle.dump(VAR_TYPES, cfile)
 
 def load_vars(picklefilename):
     global GLOBAL_VARS
-    global BOOLEAN_VARS, DOUBLE_VARS, STRING_VARS, VECTOR_DOUBLE_VARS, MATRIX_DOUBLE_VARS
+    global VAR_TYPES
 
     with open(picklefilename, 'r') as cfile:
         GLOBAL_VARS = pickle.load(cfile)
 
-        BOOLEAN_VARS = pickle.load(cfile)
-        DOUBLE_VARS = pickle.load(cfile)
-        STRING_VARS = pickle.load(cfile)
-        VECTOR_DOUBLE_VARS = pickle.load(cfile)
-        MATRIX_DOUBLE_VARS = pickle.load(cfile)
+        VAR_TYPES = pickle.load(cfile)
 
 def processfile(filename, picklefilename, passnumber):
     '''convert a sci file to a js file'''
