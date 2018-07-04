@@ -31,11 +31,11 @@ precedence = (
 
 BOOLEAN_TYPE = 'boolean'
 DOUBLE_TYPE = 'double'
-MATRIX_DOUBLE_TYPE = 'matrix_double'
+MATRIX_TYPE = 'matrix'
 NULL_TYPE = 'null'
 OBJECT_TYPE = 'object'
 STRING_TYPE = 'string'
-VECTOR_DOUBLE_TYPE = 'vector_double'
+VECTOR_TYPE = 'vector'
 
 start = 'functionblocks'
 
@@ -1082,8 +1082,8 @@ def add_boolean_var(var):
 def add_double_var(var):
     add_var_vartype(var, DOUBLE_TYPE)
 
-def add_matrix_double_var(var):
-    add_var_vartype(var, MATRIX_DOUBLE_TYPE)
+def add_matrix_var(var):
+    add_var_vartype(var, MATRIX_TYPE)
 
 def add_null_var(var):
     add_var_vartype(var, NULL_TYPE)
@@ -1094,8 +1094,8 @@ def add_object_var(var):
 def add_string_var(var):
     add_var_vartype(var, STRING_TYPE)
 
-def add_vector_double_var(var):
-    add_var_vartype(var, VECTOR_DOUBLE_TYPE)
+def add_vector_var(var):
+    add_var_vartype(var, VECTOR_TYPE)
 
 def dump_vars(picklefilename):
     with open(picklefilename, 'w') as cfile:

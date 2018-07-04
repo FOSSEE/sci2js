@@ -233,7 +233,7 @@ BOOLEAN_FUNCTION_NAMES = {
 DOUBLE_FUNCTION_NAMES = {
 }
 
-MATRIX_DOUBLE_FUNCTION_NAMES = {
+MATRIX_FUNCTION_NAMES = {
 }
 
 NULL_FUNCTION_NAMES = {
@@ -245,7 +245,7 @@ OBJECT_FUNCTION_NAMES = {
 STRING_FUNCTION_NAMES = {
 }
 
-VECTOR_DOUBLE_FUNCTION_NAMES = {
+VECTOR_FUNCTION_NAMES = {
 }
 
 OBJECTS = {
@@ -281,7 +281,7 @@ tokens = [
     'FUNCTIONNAME',
     'LASTINDEX',
     'LOGICAL',
-    'MATRIX_DOUBLE_FUNCTIONNAME',
+    'MATRIX_FUNCTIONNAME',
     'MULTIPLICATION',
     'NOT',
     'NULL_FUNCTIONNAME',
@@ -296,7 +296,7 @@ tokens = [
     'STRING_FUNCTIONNAME',
     'TRANSPOSE',
     'VAR',
-    'VECTOR_DOUBLE_FUNCTIONNAME',
+    'VECTOR_FUNCTIONNAME',
 ] + list(SYNTAX_TOKENS.values()) + list(set(PREDEFINED_VARIABLES.values())) + list(OBJECTS.values()) + list(JOBTYPES.values())
 
 states = (
@@ -376,16 +376,16 @@ def t_VAR(t):
             vartype = 'BOOLEAN_FUNCTIONNAME'
         elif t.value in DOUBLE_FUNCTION_NAMES:
             vartype = 'DOUBLE_FUNCTIONNAME'
-        elif t.value in MATRIX_DOUBLE_FUNCTION_NAMES:
-            vartype = 'MATRIX_DOUBLE_FUNCTIONNAME'
+        elif t.value in MATRIX_FUNCTION_NAMES:
+            vartype = 'MATRIX_FUNCTIONNAME'
         elif t.value in NULL_FUNCTION_NAMES:
             vartype = 'NULL_FUNCTIONNAME'
         elif t.value in OBJECT_FUNCTION_NAMES:
             vartype = 'OBJECT_FUNCTIONNAME'
         elif t.value in STRING_FUNCTION_NAMES:
             vartype = 'STRING_FUNCTIONNAME'
-        elif t.value in VECTOR_DOUBLE_FUNCTION_NAMES:
-            vartype = 'VECTOR_DOUBLE_FUNCTIONNAME'
+        elif t.value in VECTOR_FUNCTION_NAMES:
+            vartype = 'VECTOR_FUNCTIONNAME'
         elif t.value in FUNCTION_NAMES:
             vartype = 'FUNCTIONNAME'
         else:
