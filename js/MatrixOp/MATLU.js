@@ -35,7 +35,7 @@ function MATLU() {
         return options;
     }
     MATLU.prototype.set = function MATLU() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
         model = arg1.model;

@@ -900,7 +900,7 @@ function ISELECT_m() {
         return options;
     }
     ISELECT_m.prototype.set = function ISELECT_m() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.nout = parseFloat((arguments[0]["nout"]))
         this.z0 = parseFloat((arguments[0]["z0"]))
         this.x = arg1;
@@ -1405,7 +1405,7 @@ function SELECT_m() {
         return options;
     }
     SELECT_m.prototype.set = function SELECT_m() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.nin = parseFloat((arguments[0]["nin"]))
         this.z0 = parseFloat((arguments[0]["z0"]))
         this.x = arg1;
@@ -6494,7 +6494,7 @@ function DELAYV_f() {
     }
     DELAYV_f.prototype.set = function DELAYV_f() {
         this.nin = parseFloat((arguments[0]["nin"]))
-        this.zz0 = parseFloat((arguments[0]["zz0"]))
+        this.zz0 = inverse((arguments[0]["zz0"]))
         this.T = parseFloat((arguments[0]["T"]))
         this.x = arg1;
         graphics = arg1.graphics;
@@ -8917,7 +8917,7 @@ function CUMSUM() {
         return options;
     }
     CUMSUM.prototype.set = function CUMSUM() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.decomptyp = parseFloat((arguments[0]["decomptyp"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
@@ -9023,7 +9023,7 @@ function EXTRACT() {
         return options;
     }
     EXTRACT.prototype.set = function EXTRACT() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.a = parseFloat((arguments[0]["a"]))
         this.b = parseFloat((arguments[0]["b"]))
         this.x = arg1;
@@ -9126,7 +9126,7 @@ function EXTTRI() {
         return options;
     }
     EXTTRI.prototype.set = function EXTTRI() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.decomptyp = parseFloat((arguments[0]["decomptyp"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
@@ -9227,7 +9227,7 @@ function MATBKSL() {
         return options;
     }
     MATBKSL.prototype.set = function MATBKSL() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;
@@ -9447,7 +9447,7 @@ function MATDET() {
         return options;
     }
     MATDET.prototype.set = function MATDET() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;
@@ -9526,7 +9526,7 @@ function MATDIAG() {
         return options;
     }
     MATDIAG.prototype.set = function MATDIAG() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;
@@ -9605,7 +9605,7 @@ function MATDIV() {
         return options;
     }
     MATDIV.prototype.set = function MATDIV() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;
@@ -9685,7 +9685,7 @@ function MATEIG() {
         return options;
     }
     MATEIG.prototype.set = function MATEIG() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.decomptyp = parseFloat((arguments[0]["decomptyp"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
@@ -9787,7 +9787,7 @@ function MATEXPM() {
         return options;
     }
     MATEXPM.prototype.set = function MATEXPM() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;
@@ -9866,7 +9866,7 @@ function MATINV() {
         return options;
     }
     MATINV.prototype.set = function MATINV() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;
@@ -9945,7 +9945,7 @@ function MATLU() {
         return options;
     }
     MATLU.prototype.set = function MATLU() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
         model = arg1.model;
@@ -10270,7 +10270,7 @@ function MATPINV() {
         return options;
     }
     MATPINV.prototype.set = function MATPINV() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;
@@ -10351,7 +10351,7 @@ function MATRESH() {
         return options;
     }
     MATRESH.prototype.set = function MATRESH() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.l1 = parseFloat((arguments[0]["l1"]))
         this.out = parseFloat((arguments[0]["out"]))
         this.lab = parseFloat((arguments[0]["lab"]))
@@ -10459,7 +10459,7 @@ function MATSING() {
         return options;
     }
     MATSING.prototype.set = function MATSING() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.decomptyp = parseFloat((arguments[0]["decomptyp"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
@@ -10565,7 +10565,7 @@ function MATSUM() {
         return options;
     }
     MATSUM.prototype.set = function MATSUM() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.decomptyp = parseFloat((arguments[0]["decomptyp"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
@@ -10660,7 +10660,7 @@ function MATTRAN() {
         return options;
     }
     MATTRAN.prototype.set = function MATTRAN() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.rule = parseFloat((arguments[0]["rule"]))
         this.x = arg1;
         graphics = arg1.graphics;
@@ -10939,7 +10939,7 @@ function ROOTCOEF() {
         return options;
     }
     ROOTCOEF.prototype.set = function ROOTCOEF() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.inp = parseFloat((arguments[0]["inp"]))
         this.x = arg1;
         graphics = arg1.graphics;
@@ -11009,7 +11009,7 @@ function SQRT() {
         return options;
     }
     SQRT.prototype.set = function SQRT() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;
@@ -11088,7 +11088,7 @@ function SUBMAT() {
         return options;
     }
     SUBMAT.prototype.set = function SUBMAT() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.a = parseFloat((arguments[0]["a"]))
         this.b = parseFloat((arguments[0]["b"]))
         this.c = parseFloat((arguments[0]["c"]))
@@ -11418,7 +11418,7 @@ function BOUNCE() {
         this.walls = parseFloat((arguments[0]["walls"]))
         this.xt = parseFloat((arguments[0]["xt"]))
         this.xd = parseFloat((arguments[0]["xd"]))
-        this.y = parseFloat((arguments[0]["y"]))
+        this.y = inverse((arguments[0]["y"]))
         this.yd = parseFloat((arguments[0]["yd"]))
         this.g = parseFloat((arguments[0]["g"]))
         this.C = parseFloat((arguments[0]["C"]))
@@ -13064,9 +13064,9 @@ function MBLOCK() {
         this.Tout = parseFloat((arguments[0]["Tout"]))
         this.Touttype = parseFloat((arguments[0]["Touttype"]))
         this.Tparam = parseFloat((arguments[0]["Tparam"]))
-        this.pprop = parseFloat((arguments[0]["pprop"]))
+        this.pprop = inverse((arguments[0]["pprop"]))
         this.Tfunam = parseFloat((arguments[0]["Tfunam"]))
-        this.lab_1 = parseFloat((arguments[0]["lab_1"]))
+        this.lab_1 = inverse((arguments[0]["lab_1"]))
         this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;
@@ -16295,7 +16295,7 @@ function PDE() {
         return options;
     }
     PDE.prototype.set = function PDE() {
-        this.okk = parseFloat((arguments[0]["okk"]))
+        this.okk = parseBoolean((arguments[0]["okk"]))
         this.rdnom = parseFloat((arguments[0]["rdnom"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
@@ -19953,7 +19953,7 @@ function RAND_m() {
         return options;
     }
     RAND_m.prototype.set = function RAND_m() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.flag = parseFloat((arguments[0]["flag"]))
         this.a = parseFloat((arguments[0]["a"]))
         this.b = parseFloat((arguments[0]["b"]))

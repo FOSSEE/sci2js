@@ -53,9 +53,9 @@ function MBLOCK() {
         this.Tout = parseFloat((arguments[0]["Tout"]))
         this.Touttype = parseFloat((arguments[0]["Touttype"]))
         this.Tparam = parseFloat((arguments[0]["Tparam"]))
-        this.pprop = parseFloat((arguments[0]["pprop"]))
+        this.pprop = inverse((arguments[0]["pprop"]))
         this.Tfunam = parseFloat((arguments[0]["Tfunam"]))
-        this.lab_1 = parseFloat((arguments[0]["lab_1"]))
+        this.lab_1 = inverse((arguments[0]["lab_1"]))
         this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;

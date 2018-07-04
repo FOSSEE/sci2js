@@ -36,7 +36,7 @@ function ROOTCOEF() {
         return options;
     }
     ROOTCOEF.prototype.set = function ROOTCOEF() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.inp = parseFloat((arguments[0]["inp"]))
         this.x = arg1;
         graphics = arg1.graphics;

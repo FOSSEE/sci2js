@@ -43,7 +43,7 @@ function RAND_m() {
         return options;
     }
     RAND_m.prototype.set = function RAND_m() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.flag = parseFloat((arguments[0]["flag"]))
         this.a = parseFloat((arguments[0]["a"]))
         this.b = parseFloat((arguments[0]["b"]))

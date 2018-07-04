@@ -61,7 +61,7 @@ function BOUNCE() {
         this.walls = parseFloat((arguments[0]["walls"]))
         this.xt = parseFloat((arguments[0]["xt"]))
         this.xd = parseFloat((arguments[0]["xd"]))
-        this.y = parseFloat((arguments[0]["y"]))
+        this.y = inverse((arguments[0]["y"]))
         this.yd = parseFloat((arguments[0]["yd"]))
         this.g = parseFloat((arguments[0]["g"]))
         this.C = parseFloat((arguments[0]["C"]))

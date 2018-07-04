@@ -37,7 +37,7 @@ function EXTRACT() {
         return options;
     }
     EXTRACT.prototype.set = function EXTRACT() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.a = parseFloat((arguments[0]["a"]))
         this.b = parseFloat((arguments[0]["b"]))
         this.x = arg1;

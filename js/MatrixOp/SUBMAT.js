@@ -40,7 +40,7 @@ function SUBMAT() {
         return options;
     }
     SUBMAT.prototype.set = function SUBMAT() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.a = parseFloat((arguments[0]["a"]))
         this.b = parseFloat((arguments[0]["b"]))
         this.c = parseFloat((arguments[0]["c"]))

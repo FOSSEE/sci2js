@@ -36,7 +36,7 @@ function MATSUM() {
         return options;
     }
     MATSUM.prototype.set = function MATSUM() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.decomptyp = parseFloat((arguments[0]["decomptyp"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;

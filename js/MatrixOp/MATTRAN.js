@@ -24,7 +24,7 @@ function MATTRAN() {
         return options;
     }
     MATTRAN.prototype.set = function MATTRAN() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.rule = parseFloat((arguments[0]["rule"]))
         this.x = arg1;
         graphics = arg1.graphics;

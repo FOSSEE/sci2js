@@ -23,7 +23,7 @@ function PDE() {
         return options;
     }
     PDE.prototype.set = function PDE() {
-        this.okk = parseFloat((arguments[0]["okk"]))
+        this.okk = parseBoolean((arguments[0]["okk"]))
         this.rdnom = parseFloat((arguments[0]["rdnom"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;

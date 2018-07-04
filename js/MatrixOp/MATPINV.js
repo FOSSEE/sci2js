@@ -35,7 +35,7 @@ function MATPINV() {
         return options;
     }
     MATPINV.prototype.set = function MATPINV() {
-        this.typ = parseFloat((arguments[0]["typ"]))
+        this.typ = inverse((arguments[0]["typ"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;
