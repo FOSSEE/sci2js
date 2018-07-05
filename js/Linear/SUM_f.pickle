@@ -43,8 +43,9 @@ p14
 g4
 sS'model'
 p15
-g2
-sS'typ'
+S'object'
 p16
+sS'typ'
+p17
 g4
 s.

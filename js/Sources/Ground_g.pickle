@@ -54,11 +54,12 @@ p17
 g4
 sS'model'
 p18
-g2
-sS'typ'
+S'object'
 p19
+sS'typ'
+p20
 g4
 sS'model.outtyp'
-p20
+p21
 g2
 s.

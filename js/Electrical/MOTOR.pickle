@@ -43,11 +43,12 @@ p14
 g6
 sS'model'
 p15
-g2
-sS'this.x.graphics.in_implicit'
+S'object'
 p16
+sS'this.x.graphics.in_implicit'
+p17
 g6
 sS'typ'
-p17
+p18
 g6
 s.

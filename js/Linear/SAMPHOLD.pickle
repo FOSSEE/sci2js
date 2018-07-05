@@ -41,12 +41,13 @@ p12
 g4
 sS'model'
 p13
-g2
-sS'typ'
+S'object'
 p14
+sS'typ'
+p15
 g4
 sS'model.blocktype'
-p15
-S'string'
 p16
+S'string'
+p17
 s.

@@ -39,8 +39,9 @@ p12
 g4
 sS'model'
 p13
-g2
-sS'model.firing'
+S'object'
 p14
+sS'model.firing'
+p15
 g4
 s.

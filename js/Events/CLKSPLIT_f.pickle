@@ -34,11 +34,12 @@ p11
 g9
 sS'model'
 p12
-g2
-sS'typ'
+S'object'
 p13
+sS'typ'
+p14
 g9
 sS'model.firing'
-p14
+p15
 g9
 s.
