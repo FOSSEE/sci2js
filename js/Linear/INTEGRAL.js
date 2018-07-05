@@ -32,7 +32,7 @@ function INTEGRAL() {
         return options;
     }
     INTEGRAL.prototype.set = function INTEGRAL() {
-        this.x0 = parseFloat((arguments[0]["x0"]))
+        this.x0 = inverse((arguments[0]["x0"]))
         this.reinit = parseFloat((arguments[0]["reinit"]))
         this.satur = parseFloat((arguments[0]["satur"]))
         this.maxp = parseFloat((arguments[0]["maxp"]))

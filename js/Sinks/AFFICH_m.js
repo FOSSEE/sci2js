@@ -39,7 +39,7 @@ function AFFICH_m() {
         return options;
     }
     AFFICH_m.prototype.set = function AFFICH_m() {
-        this.in1 = parseFloat((arguments[0]["in1"]))
+        this.in1 = inverse((arguments[0]["in1"]))
         this.font = parseFloat((arguments[0]["font"]))
         this.fontsize = parseFloat((arguments[0]["fontsize"]))
         this.colr = parseFloat((arguments[0]["colr"]))

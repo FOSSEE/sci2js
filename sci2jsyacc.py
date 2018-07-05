@@ -1131,6 +1131,8 @@ def add_global_var(var, force=False):
         GLOBAL_VARS.add(var)
 
 def add_var_vartype(var, vartype):
+    if var[:5] == 'this.':
+        var = var[5:]
     VAR_TYPES[var] = vartype
 
 def add_boolean_var(var):

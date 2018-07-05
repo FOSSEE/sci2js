@@ -26,8 +26,8 @@ function M_freq() {
         return options;
     }
     M_freq.prototype.set = function M_freq() {
-        this.frequ = parseFloat((arguments[0]["frequ"]))
-        this.offset = parseFloat((arguments[0]["offset"]))
+        this.frequ = inverse((arguments[0]["frequ"]))
+        this.offset = inverse((arguments[0]["offset"]))
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

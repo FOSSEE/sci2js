@@ -47,14 +47,14 @@ function CMSCOPE() {
         return options;
     }
     CMSCOPE.prototype.set = function CMSCOPE() {
-        this.in1 = parseFloat((arguments[0]["in1"]))
-        this.clrs = parseFloat((arguments[0]["clrs"]))
+        this.in1 = inverse((arguments[0]["in1"]))
+        this.clrs = inverse((arguments[0]["clrs"]))
         this.win = parseFloat((arguments[0]["win"]))
-        this.wpos = parseFloat((arguments[0]["wpos"]))
-        this.wdim = parseFloat((arguments[0]["wdim"]))
-        this.ymin = parseFloat((arguments[0]["ymin"]))
-        this.ymax = parseFloat((arguments[0]["ymax"]))
-        this.per = parseFloat((arguments[0]["per"]))
+        this.wpos = inverse((arguments[0]["wpos"]))
+        this.wdim = inverse((arguments[0]["wdim"]))
+        this.ymin = inverse((arguments[0]["ymin"]))
+        this.ymax = inverse((arguments[0]["ymax"]))
+        this.per = inverse((arguments[0]["per"]))
         this.N = parseFloat((arguments[0]["N"]))
         this.heritance = parseFloat((arguments[0]["heritance"]))
         this.nom = parseFloat((arguments[0]["nom"]))

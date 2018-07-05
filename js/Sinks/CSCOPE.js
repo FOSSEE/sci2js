@@ -42,10 +42,10 @@ function CSCOPE() {
         return options;
     }
     CSCOPE.prototype.set = function CSCOPE() {
-        this.clrs = parseFloat((arguments[0]["clrs"]))
+        this.clrs = inverse((arguments[0]["clrs"]))
         this.win = parseFloat((arguments[0]["win"]))
-        this.wpos = parseFloat((arguments[0]["wpos"]))
-        this.wdim = parseFloat((arguments[0]["wdim"]))
+        this.wpos = inverse((arguments[0]["wpos"]))
+        this.wdim = inverse((arguments[0]["wdim"]))
         this.ymin = parseFloat((arguments[0]["ymin"]))
         this.ymax = parseFloat((arguments[0]["ymax"]))
         this.per = parseFloat((arguments[0]["per"]))

@@ -52,8 +52,8 @@ function BOUNCEXY() {
         return options;
     }
     BOUNCEXY.prototype.set = function BOUNCEXY() {
-        this.clrs = parseFloat((arguments[0]["clrs"]))
-        this.siz = parseFloat((arguments[0]["siz"]))
+        this.clrs = inverse((arguments[0]["clrs"]))
+        this.siz = inverse((arguments[0]["siz"]))
         this.win = parseFloat((arguments[0]["win"]))
         this.imode = parseFloat((arguments[0]["imode"]))
         this.xmin = parseFloat((arguments[0]["xmin"]))

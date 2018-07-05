@@ -35,9 +35,9 @@ function LOOKUP2D() {
         return options;
     }
     LOOKUP2D.prototype.set = function LOOKUP2D() {
-        this.xx = parseFloat((arguments[0]["xx"]))
-        this.yy = parseFloat((arguments[0]["yy"]))
-        this.zz = parseFloat((arguments[0]["zz"]))
+        this.xx = inverse((arguments[0]["xx"]))
+        this.yy = inverse((arguments[0]["yy"]))
+        this.zz = inverse((arguments[0]["zz"]))
         this.Method = parseFloat((arguments[0]["Method"]))
         this.graf = parseFloat((arguments[0]["graf"]))
         this.x = arg1;

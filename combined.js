@@ -3621,7 +3621,7 @@ function IFTHEL_f() {
         return options;
     }
     IFTHEL_f.prototype.set = function IFTHEL_f() {
-        this.inh = parseFloat((arguments[0]["inh"]))
+        this.inh = inverse((arguments[0]["inh"]))
         this.nmod = parseFloat((arguments[0]["nmod"]))
         this.x = arg1;
         graphics = arg1.graphics;
@@ -3840,8 +3840,8 @@ function M_freq() {
         return options;
     }
     M_freq.prototype.set = function M_freq() {
-        this.frequ = parseFloat((arguments[0]["frequ"]))
-        this.offset = parseFloat((arguments[0]["offset"]))
+        this.frequ = inverse((arguments[0]["frequ"]))
+        this.offset = inverse((arguments[0]["offset"]))
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;
@@ -5759,7 +5759,7 @@ function LOGIC() {
         return options;
     }
     LOGIC.prototype.set = function LOGIC() {
-        this.mat = parseFloat((arguments[0]["mat"]))
+        this.mat = inverse((arguments[0]["mat"]))
         this.herit = parseFloat((arguments[0]["herit"]))
         this.x = arg1;
         graphics = arg1.graphics;
@@ -6046,7 +6046,7 @@ function BIGSOM_f() {
         return options;
     }
     BIGSOM_f.prototype.set = function BIGSOM_f() {
-        this.sgn = parseFloat((arguments[0]["sgn"]))
+        this.sgn = inverse((arguments[0]["sgn"]))
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;
@@ -6724,8 +6724,8 @@ function DIFF_c() {
         return options;
     }
     DIFF_c.prototype.set = function DIFF_c() {
-        this.x0 = parseFloat((arguments[0]["x0"]))
-        this.xd0 = parseFloat((arguments[0]["xd0"]))
+        this.x0 = inverse((arguments[0]["x0"]))
+        this.xd0 = inverse((arguments[0]["xd0"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
@@ -7686,7 +7686,7 @@ function INTEGRAL() {
         return options;
     }
     INTEGRAL.prototype.set = function INTEGRAL() {
-        this.x0 = parseFloat((arguments[0]["x0"]))
+        this.x0 = inverse((arguments[0]["x0"]))
         this.reinit = parseFloat((arguments[0]["reinit"]))
         this.satur = parseFloat((arguments[0]["satur"]))
         this.maxp = parseFloat((arguments[0]["maxp"]))
@@ -8397,7 +8397,7 @@ function SUMMATION() {
     }
     SUMMATION.prototype.set = function SUMMATION() {
         this.Datatype = parseFloat((arguments[0]["Datatype"]))
-        this.sgn = parseFloat((arguments[0]["sgn"]))
+        this.sgn = inverse((arguments[0]["sgn"]))
         this.satur = parseFloat((arguments[0]["satur"]))
         this.x = arg1;
         graphics = arg1.graphics;
@@ -9024,8 +9024,8 @@ function EXTRACT() {
     }
     EXTRACT.prototype.set = function EXTRACT() {
         this.typ = inverse((arguments[0]["typ"]))
-        this.a = parseFloat((arguments[0]["a"]))
-        this.b = parseFloat((arguments[0]["b"]))
+        this.a = inverse((arguments[0]["a"]))
+        this.b = inverse((arguments[0]["b"]))
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;
@@ -11415,11 +11415,11 @@ function BOUNCE() {
     BOUNCE.prototype.set = function BOUNCE() {
         this.rpar1 = parseFloat((arguments[0]["rpar1"]))
         this.rpar2 = parseFloat((arguments[0]["rpar2"]))
-        this.walls = parseFloat((arguments[0]["walls"]))
-        this.xt = parseFloat((arguments[0]["xt"]))
-        this.xd = parseFloat((arguments[0]["xd"]))
+        this.walls = inverse((arguments[0]["walls"]))
+        this.xt = inverse((arguments[0]["xt"]))
+        this.xd = inverse((arguments[0]["xd"]))
         this.y = inverse((arguments[0]["y"]))
-        this.yd = parseFloat((arguments[0]["yd"]))
+        this.yd = inverse((arguments[0]["yd"]))
         this.g = parseFloat((arguments[0]["g"]))
         this.C = parseFloat((arguments[0]["C"]))
         this.x = arg1;
@@ -11540,8 +11540,8 @@ function BOUNCEXY() {
         return options;
     }
     BOUNCEXY.prototype.set = function BOUNCEXY() {
-        this.clrs = parseFloat((arguments[0]["clrs"]))
-        this.siz = parseFloat((arguments[0]["siz"]))
+        this.clrs = inverse((arguments[0]["clrs"]))
+        this.siz = inverse((arguments[0]["siz"]))
         this.win = parseFloat((arguments[0]["win"]))
         this.imode = parseFloat((arguments[0]["imode"]))
         this.xmin = parseFloat((arguments[0]["xmin"]))
@@ -11747,14 +11747,14 @@ function CBLOCK() {
         this.o = parseFloat((arguments[0]["o"]))
         this.ci = parseFloat((arguments[0]["ci"]))
         this.co = parseFloat((arguments[0]["co"]))
-        this.xx = parseFloat((arguments[0]["xx"]))
+        this.xx = inverse((arguments[0]["xx"]))
         this.ng = parseFloat((arguments[0]["ng"]))
-        this.z = parseFloat((arguments[0]["z"]))
-        this.rpar = parseFloat((arguments[0]["rpar"]))
-        this.ipar = parseFloat((arguments[0]["ipar"]))
+        this.z = inverse((arguments[0]["z"]))
+        this.rpar = inverse((arguments[0]["rpar"]))
+        this.ipar = inverse((arguments[0]["ipar"]))
         this.auto0 = parseFloat((arguments[0]["auto0"]))
-        this.depu = parseFloat((arguments[0]["depu"]))
-        this.dept = parseFloat((arguments[0]["dept"]))
+        this.depu = parseBoolean((arguments[0]["depu"]))
+        this.dept = parseBoolean((arguments[0]["dept"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
         model = arg1.model;
@@ -11901,17 +11901,17 @@ function CBLOCK4() {
         this.ot = parseFloat((arguments[0]["ot"]))
         this.ci = parseFloat((arguments[0]["ci"]))
         this.co = parseFloat((arguments[0]["co"]))
-        this.xx = parseFloat((arguments[0]["xx"]))
-        this.z = parseFloat((arguments[0]["z"]))
+        this.xx = inverse((arguments[0]["xx"]))
+        this.z = inverse((arguments[0]["z"]))
         this.oz = parseFloat((arguments[0]["oz"]))
-        this.rpar = parseFloat((arguments[0]["rpar"]))
+        this.rpar = inverse((arguments[0]["rpar"]))
         this.ipar = parseFloat((arguments[0]["ipar"]))
         this.opar = parseFloat((arguments[0]["opar"]))
         this.nmode = parseFloat((arguments[0]["nmode"]))
         this.nzcr = parseFloat((arguments[0]["nzcr"]))
         this.auto0 = parseFloat((arguments[0]["auto0"]))
-        this.depu = parseFloat((arguments[0]["depu"]))
-        this.dept = parseFloat((arguments[0]["dept"]))
+        this.depu = parseBoolean((arguments[0]["depu"]))
+        this.dept = parseBoolean((arguments[0]["dept"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
         model = arg1.model;
@@ -12033,9 +12033,9 @@ function CONSTRAINT2_c() {
         return options;
     }
     CONSTRAINT2_c.prototype.set = function CONSTRAINT2_c() {
-        this.x0 = parseFloat((arguments[0]["x0"]))
-        this.xd0 = parseFloat((arguments[0]["xd0"]))
-        this.id = parseFloat((arguments[0]["id"]))
+        this.x0 = inverse((arguments[0]["x0"]))
+        this.xd0 = inverse((arguments[0]["xd0"]))
+        this.id = inverse((arguments[0]["id"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
@@ -12112,7 +12112,7 @@ function CONSTRAINT_c() {
         return options;
     }
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
-        this.x0 = parseFloat((arguments[0]["x0"]))
+        this.x0 = inverse((arguments[0]["x0"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
@@ -12309,7 +12309,7 @@ function DIFF_f() {
         return options;
     }
     DIFF_f.prototype.set = function DIFF_f() {
-        this.x0 = parseFloat((arguments[0]["x0"]))
+        this.x0 = inverse((arguments[0]["x0"]))
         this.xd0 = parseFloat((arguments[0]["xd0"]))
         this.x = arg1;
         graphics = arg1.graphics;
@@ -14104,7 +14104,7 @@ function c_block() {
     c_block.prototype.set = function c_block() {
         this.i = parseFloat((arguments[0]["i"]))
         this.o = parseFloat((arguments[0]["o"]))
-        this.rpar = parseFloat((arguments[0]["rpar"]))
+        this.rpar = inverse((arguments[0]["rpar"]))
         this.funam = parseFloat((arguments[0]["funam"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
@@ -14184,7 +14184,7 @@ function fortran_block() {
     fortran_block.prototype.set = function fortran_block() {
         this.i = parseFloat((arguments[0]["i"]))
         this.o = parseFloat((arguments[0]["o"]))
-        this.rpar = parseFloat((arguments[0]["rpar"]))
+        this.rpar = inverse((arguments[0]["rpar"]))
         this.funam = parseFloat((arguments[0]["funam"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
@@ -14316,13 +14316,13 @@ function generic_block() {
         this.o = parseFloat((arguments[0]["o"]))
         this.ci = parseFloat((arguments[0]["ci"]))
         this.co = parseFloat((arguments[0]["co"]))
-        this.xx = parseFloat((arguments[0]["xx"]))
-        this.z = parseFloat((arguments[0]["z"]))
-        this.rpar = parseFloat((arguments[0]["rpar"]))
+        this.xx = inverse((arguments[0]["xx"]))
+        this.z = inverse((arguments[0]["z"]))
+        this.rpar = inverse((arguments[0]["rpar"]))
         this.ipar = parseFloat((arguments[0]["ipar"]))
         this.auto0 = parseFloat((arguments[0]["auto0"]))
-        this.depu = parseFloat((arguments[0]["depu"]))
-        this.dept = parseFloat((arguments[0]["dept"]))
+        this.depu = parseBoolean((arguments[0]["depu"]))
+        this.dept = parseBoolean((arguments[0]["dept"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
         model = arg1.model;
@@ -14448,15 +14448,15 @@ function generic_block2() {
         this.o = parseFloat((arguments[0]["o"]))
         this.ci = parseFloat((arguments[0]["ci"]))
         this.co = parseFloat((arguments[0]["co"]))
-        this.xx = parseFloat((arguments[0]["xx"]))
-        this.z = parseFloat((arguments[0]["z"]))
-        this.rpar = parseFloat((arguments[0]["rpar"]))
+        this.xx = inverse((arguments[0]["xx"]))
+        this.z = inverse((arguments[0]["z"]))
+        this.rpar = inverse((arguments[0]["rpar"]))
         this.ipar = parseFloat((arguments[0]["ipar"]))
         this.nmode = parseFloat((arguments[0]["nmode"]))
         this.nzcr = parseFloat((arguments[0]["nzcr"]))
         this.auto0 = parseFloat((arguments[0]["auto0"]))
-        this.depu = parseFloat((arguments[0]["depu"]))
-        this.dept = parseFloat((arguments[0]["dept"]))
+        this.depu = parseBoolean((arguments[0]["depu"]))
+        this.dept = parseBoolean((arguments[0]["dept"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
         model = arg1.model;
@@ -14586,17 +14586,17 @@ function generic_block3() {
         this.ot = parseFloat((arguments[0]["ot"]))
         this.ci = parseFloat((arguments[0]["ci"]))
         this.co = parseFloat((arguments[0]["co"]))
-        this.xx = parseFloat((arguments[0]["xx"]))
-        this.z = parseFloat((arguments[0]["z"]))
+        this.xx = inverse((arguments[0]["xx"]))
+        this.z = inverse((arguments[0]["z"]))
         this.oz = parseFloat((arguments[0]["oz"]))
-        this.rpar = parseFloat((arguments[0]["rpar"]))
+        this.rpar = inverse((arguments[0]["rpar"]))
         this.ipar = parseFloat((arguments[0]["ipar"]))
         this.opar = parseFloat((arguments[0]["opar"]))
         this.nmode = parseFloat((arguments[0]["nmode"]))
         this.nzcr = parseFloat((arguments[0]["nzcr"]))
         this.auto0 = parseFloat((arguments[0]["auto0"]))
-        this.depu = parseFloat((arguments[0]["depu"]))
-        this.dept = parseFloat((arguments[0]["dept"]))
+        this.depu = parseBoolean((arguments[0]["depu"]))
+        this.dept = parseBoolean((arguments[0]["dept"]))
         this.lab = parseFloat((arguments[0]["lab"]))
         this.x = arg1;
         model = arg1.model;
@@ -14732,9 +14732,9 @@ function scifunc_block() {
         this.o = parseFloat((arguments[0]["o"]))
         this.ci = parseFloat((arguments[0]["ci"]))
         this.co = parseFloat((arguments[0]["co"]))
-        this.xx = parseFloat((arguments[0]["xx"]))
-        this.z = parseFloat((arguments[0]["z"]))
-        this.rpar = parseFloat((arguments[0]["rpar"]))
+        this.xx = inverse((arguments[0]["xx"]))
+        this.z = inverse((arguments[0]["z"]))
+        this.rpar = inverse((arguments[0]["rpar"]))
         this.auto0 = parseFloat((arguments[0]["auto0"]))
         this.deptime = parseFloat((arguments[0]["deptime"]))
         this.lab = parseFloat((arguments[0]["lab"]))
@@ -14854,9 +14854,9 @@ function scifunc_block_m() {
         this.o = parseFloat((arguments[0]["o"]))
         this.ci = parseFloat((arguments[0]["ci"]))
         this.co = parseFloat((arguments[0]["co"]))
-        this.xx = parseFloat((arguments[0]["xx"]))
-        this.z = parseFloat((arguments[0]["z"]))
-        this.rpar = parseFloat((arguments[0]["rpar"]))
+        this.xx = inverse((arguments[0]["xx"]))
+        this.z = inverse((arguments[0]["z"]))
+        this.rpar = inverse((arguments[0]["rpar"]))
         this.auto0 = parseFloat((arguments[0]["auto0"]))
         this.deptime = parseFloat((arguments[0]["deptime"]))
         this.lab = parseFloat((arguments[0]["lab"]))
@@ -15062,12 +15062,12 @@ function DLRADAPT_f() {
         return options;
     }
     DLRADAPT_f.prototype.set = function DLRADAPT_f() {
-        this.p = parseFloat((arguments[0]["p"]))
-        this.rn = parseFloat((arguments[0]["rn"]))
-        this.rd = parseFloat((arguments[0]["rd"]))
-        this.g = parseFloat((arguments[0]["g"]))
-        this.last_u = parseFloat((arguments[0]["last_u"]))
-        this.last_y = parseFloat((arguments[0]["last_y"]))
+        this.p = inverse((arguments[0]["p"]))
+        this.rn = inverse((arguments[0]["rn"]))
+        this.rd = inverse((arguments[0]["rd"]))
+        this.g = inverse((arguments[0]["g"]))
+        this.last_u = inverse((arguments[0]["last_u"]))
+        this.last_y = inverse((arguments[0]["last_y"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
@@ -15265,9 +15265,9 @@ function INTRP2BLK_f() {
         return options;
     }
     INTRP2BLK_f.prototype.set = function INTRP2BLK_f() {
-        this.a = parseFloat((arguments[0]["a"]))
-        this.b = parseFloat((arguments[0]["b"]))
-        this.c = parseFloat((arguments[0]["c"]))
+        this.a = inverse((arguments[0]["a"]))
+        this.b = inverse((arguments[0]["b"]))
+        this.c = inverse((arguments[0]["c"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
@@ -15323,8 +15323,8 @@ function INTRPLBLK_f() {
         return options;
     }
     INTRPLBLK_f.prototype.set = function INTRPLBLK_f() {
-        this.a = parseFloat((arguments[0]["a"]))
-        this.b = parseFloat((arguments[0]["b"]))
+        this.a = inverse((arguments[0]["a"]))
+        this.b = inverse((arguments[0]["b"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
@@ -15498,9 +15498,9 @@ function LOOKUP2D() {
         return options;
     }
     LOOKUP2D.prototype.set = function LOOKUP2D() {
-        this.xx = parseFloat((arguments[0]["xx"]))
-        this.yy = parseFloat((arguments[0]["yy"]))
-        this.zz = parseFloat((arguments[0]["zz"]))
+        this.xx = inverse((arguments[0]["xx"]))
+        this.yy = inverse((arguments[0]["yy"]))
+        this.zz = inverse((arguments[0]["zz"]))
         this.Method = parseFloat((arguments[0]["Method"]))
         this.graf = parseFloat((arguments[0]["graf"]))
         this.x = arg1;
@@ -15849,7 +15849,7 @@ function PRODUCT() {
         return options;
     }
     PRODUCT.prototype.set = function PRODUCT() {
-        this.sgn = parseFloat((arguments[0]["sgn"]))
+        this.sgn = inverse((arguments[0]["sgn"]))
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;
@@ -16452,7 +16452,7 @@ function AFFICH_m() {
         return options;
     }
     AFFICH_m.prototype.set = function AFFICH_m() {
-        this.in1 = parseFloat((arguments[0]["in1"]))
+        this.in1 = inverse((arguments[0]["in1"]))
         this.font = parseFloat((arguments[0]["font"]))
         this.fontsize = parseFloat((arguments[0]["fontsize"]))
         this.colr = parseFloat((arguments[0]["colr"]))
@@ -16643,8 +16643,8 @@ function CANIMXY() {
         this.clrs = parseFloat((arguments[0]["clrs"]))
         this.siz = parseFloat((arguments[0]["siz"]))
         this.win = parseFloat((arguments[0]["win"]))
-        this.wpos = parseFloat((arguments[0]["wpos"]))
-        this.wdim = parseFloat((arguments[0]["wdim"]))
+        this.wpos = inverse((arguments[0]["wpos"]))
+        this.wdim = inverse((arguments[0]["wdim"]))
         this.xmin = parseFloat((arguments[0]["xmin"]))
         this.xmax = parseFloat((arguments[0]["xmax"]))
         this.ymin = parseFloat((arguments[0]["ymin"]))
@@ -16768,15 +16768,15 @@ function CANIMXY3D() {
     }
     CANIMXY3D.prototype.set = function CANIMXY3D() {
         this.nbr_curves = parseFloat((arguments[0]["nbr_curves"]))
-        this.clrs = parseFloat((arguments[0]["clrs"]))
-        this.siz = parseFloat((arguments[0]["siz"]))
+        this.clrs = inverse((arguments[0]["clrs"]))
+        this.siz = inverse((arguments[0]["siz"]))
         this.win = parseFloat((arguments[0]["win"]))
-        this.wpos = parseFloat((arguments[0]["wpos"]))
-        this.wdim = parseFloat((arguments[0]["wdim"]))
-        this.vec_x = parseFloat((arguments[0]["vec_x"]))
-        this.vec_y = parseFloat((arguments[0]["vec_y"]))
-        this.vec_z = parseFloat((arguments[0]["vec_z"]))
-        this.param3ds = parseFloat((arguments[0]["param3ds"]))
+        this.wpos = inverse((arguments[0]["wpos"]))
+        this.wdim = inverse((arguments[0]["wdim"]))
+        this.vec_x = inverse((arguments[0]["vec_x"]))
+        this.vec_y = inverse((arguments[0]["vec_y"]))
+        this.vec_z = inverse((arguments[0]["vec_z"]))
+        this.param3ds = inverse((arguments[0]["param3ds"]))
         this.N = parseFloat((arguments[0]["N"]))
         this.x = arg1;
         graphics = arg1.graphics;
@@ -16899,10 +16899,10 @@ function CEVENTSCOPE() {
     }
     CEVENTSCOPE.prototype.set = function CEVENTSCOPE() {
         this.nclock = parseFloat((arguments[0]["nclock"]))
-        this.clrs = parseFloat((arguments[0]["clrs"]))
+        this.clrs = inverse((arguments[0]["clrs"]))
         this.win = parseFloat((arguments[0]["win"]))
-        this.wpos = parseFloat((arguments[0]["wpos"]))
-        this.wdim = parseFloat((arguments[0]["wdim"]))
+        this.wpos = inverse((arguments[0]["wpos"]))
+        this.wdim = inverse((arguments[0]["wdim"]))
         this.per = parseFloat((arguments[0]["per"]))
         this.x = arg1;
         graphics = arg1.graphics;
@@ -17007,10 +17007,10 @@ function CFSCOPE() {
         return options;
     }
     CFSCOPE.prototype.set = function CFSCOPE() {
-        this.clrs = parseFloat((arguments[0]["clrs"]))
+        this.clrs = inverse((arguments[0]["clrs"]))
         this.win = parseFloat((arguments[0]["win"]))
-        this.wpos = parseFloat((arguments[0]["wpos"]))
-        this.wdim = parseFloat((arguments[0]["wdim"]))
+        this.wpos = inverse((arguments[0]["wpos"]))
+        this.wdim = inverse((arguments[0]["wdim"]))
         this.ymin = parseFloat((arguments[0]["ymin"]))
         this.ymax = parseFloat((arguments[0]["ymax"]))
         this.per = parseFloat((arguments[0]["per"]))
@@ -17450,14 +17450,14 @@ function CMSCOPE() {
         return options;
     }
     CMSCOPE.prototype.set = function CMSCOPE() {
-        this.in1 = parseFloat((arguments[0]["in1"]))
-        this.clrs = parseFloat((arguments[0]["clrs"]))
+        this.in1 = inverse((arguments[0]["in1"]))
+        this.clrs = inverse((arguments[0]["clrs"]))
         this.win = parseFloat((arguments[0]["win"]))
-        this.wpos = parseFloat((arguments[0]["wpos"]))
-        this.wdim = parseFloat((arguments[0]["wdim"]))
-        this.ymin = parseFloat((arguments[0]["ymin"]))
-        this.ymax = parseFloat((arguments[0]["ymax"]))
-        this.per = parseFloat((arguments[0]["per"]))
+        this.wpos = inverse((arguments[0]["wpos"]))
+        this.wdim = inverse((arguments[0]["wdim"]))
+        this.ymin = inverse((arguments[0]["ymin"]))
+        this.ymax = inverse((arguments[0]["ymax"]))
+        this.per = inverse((arguments[0]["per"]))
         this.N = parseFloat((arguments[0]["N"]))
         this.heritance = parseFloat((arguments[0]["heritance"]))
         this.nom = parseFloat((arguments[0]["nom"]))
@@ -17599,10 +17599,10 @@ function CSCOPE() {
         return options;
     }
     CSCOPE.prototype.set = function CSCOPE() {
-        this.clrs = parseFloat((arguments[0]["clrs"]))
+        this.clrs = inverse((arguments[0]["clrs"]))
         this.win = parseFloat((arguments[0]["win"]))
-        this.wpos = parseFloat((arguments[0]["wpos"]))
-        this.wdim = parseFloat((arguments[0]["wdim"]))
+        this.wpos = inverse((arguments[0]["wpos"]))
+        this.wdim = inverse((arguments[0]["wdim"]))
         this.ymin = parseFloat((arguments[0]["ymin"]))
         this.ymax = parseFloat((arguments[0]["ymax"]))
         this.per = parseFloat((arguments[0]["per"]))
@@ -17729,8 +17729,8 @@ function CSCOPXY() {
         this.clrs = parseFloat((arguments[0]["clrs"]))
         this.siz = parseFloat((arguments[0]["siz"]))
         this.win = parseFloat((arguments[0]["win"]))
-        this.wpos = parseFloat((arguments[0]["wpos"]))
-        this.wdim = parseFloat((arguments[0]["wdim"]))
+        this.wpos = inverse((arguments[0]["wpos"]))
+        this.wdim = inverse((arguments[0]["wdim"]))
         this.xmin = parseFloat((arguments[0]["xmin"]))
         this.xmax = parseFloat((arguments[0]["xmax"]))
         this.ymin = parseFloat((arguments[0]["ymin"]))
@@ -17853,15 +17853,15 @@ function CSCOPXY3D() {
     }
     CSCOPXY3D.prototype.set = function CSCOPXY3D() {
         this.nbr_curves = parseFloat((arguments[0]["nbr_curves"]))
-        this.clrs = parseFloat((arguments[0]["clrs"]))
-        this.siz = parseFloat((arguments[0]["siz"]))
+        this.clrs = inverse((arguments[0]["clrs"]))
+        this.siz = inverse((arguments[0]["siz"]))
         this.win = parseFloat((arguments[0]["win"]))
-        this.wpos = parseFloat((arguments[0]["wpos"]))
-        this.wdim = parseFloat((arguments[0]["wdim"]))
-        this.vec_x = parseFloat((arguments[0]["vec_x"]))
-        this.vec_y = parseFloat((arguments[0]["vec_y"]))
-        this.vec_z = parseFloat((arguments[0]["vec_z"]))
-        this.param3ds = parseFloat((arguments[0]["param3ds"]))
+        this.wpos = inverse((arguments[0]["wpos"]))
+        this.wdim = inverse((arguments[0]["wdim"]))
+        this.vec_x = inverse((arguments[0]["vec_x"]))
+        this.vec_y = inverse((arguments[0]["vec_y"]))
+        this.vec_z = inverse((arguments[0]["vec_z"]))
+        this.param3ds = inverse((arguments[0]["param3ds"]))
         this.N = parseFloat((arguments[0]["N"]))
         this.x = arg1;
         graphics = arg1.graphics;
@@ -18894,7 +18894,7 @@ function CONST_m() {
         return options;
     }
     CONST_m.prototype.set = function CONST_m() {
-        this.C = parseFloat((arguments[0]["C"]))
+        this.C = inverse((arguments[0]["C"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

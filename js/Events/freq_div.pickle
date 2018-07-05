@@ -86,9 +86,9 @@ g2
 sS'scs_m_1.objs[2-1]'
 p28
 g8
-sS'this.x'
+sS'graphics.sz'
 p29
-g4
+g2
 sS'model.sim'
 p30
 S'string'
@@ -177,9 +177,9 @@ p60
 NsS'y'
 p61
 g4
-sS'graphics.sz'
+sS'x'
 p62
-g2
+g4
 sS'model'
 p63
 g8

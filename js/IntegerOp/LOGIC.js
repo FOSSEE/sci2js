@@ -31,7 +31,7 @@ function LOGIC() {
         return options;
     }
     LOGIC.prototype.set = function LOGIC() {
-        this.mat = parseFloat((arguments[0]["mat"]))
+        this.mat = inverse((arguments[0]["mat"]))
         this.herit = parseFloat((arguments[0]["herit"]))
         this.x = arg1;
         graphics = arg1.graphics;

@@ -29,9 +29,9 @@ function INTRP2BLK_f() {
         return options;
     }
     INTRP2BLK_f.prototype.set = function INTRP2BLK_f() {
-        this.a = parseFloat((arguments[0]["a"]))
-        this.b = parseFloat((arguments[0]["b"]))
-        this.c = parseFloat((arguments[0]["c"]))
+        this.a = inverse((arguments[0]["a"]))
+        this.b = inverse((arguments[0]["b"]))
+        this.c = inverse((arguments[0]["c"]))
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
