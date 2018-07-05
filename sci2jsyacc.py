@@ -15,7 +15,7 @@ import sys
 import pickle
 import ply.yacc as yacc
 
-from sci2jslex import tokens, JOBTYPES
+from sci2jslex import tokens, JOBTYPES, BOOLEAN_TYPE, DOUBLE_TYPE, MATRIX_TYPE, NULL_TYPE, OBJECT_TYPE, STRING_TYPE, VECTOR_TYPE
 
 precedence = (
     ('left', 'COLON'),
@@ -28,14 +28,6 @@ precedence = (
     ('right', 'TRANSPOSE'),
     ('left', 'DOT'),
 )
-
-BOOLEAN_TYPE = 'boolean'
-DOUBLE_TYPE = 'double'
-MATRIX_TYPE = 'matrix'
-NULL_TYPE = 'null'
-OBJECT_TYPE = 'object'
-STRING_TYPE = 'string'
-VECTOR_TYPE = 'vector'
 
 PARSE_MAP = {
     BOOLEAN_TYPE: 'parseBoolean',
@@ -114,16 +106,24 @@ def p_functionblock_functionstatement_statementblock_endfunction(p):
     'functionblock : functionstatement statementblock ENDFUNCTION EOL'
     p[0] = ''
 
-def p_jobfunctionstatement_function(p):
-    '''jobfunctionstatement : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL
-                            | FUNCTION lterm ASSIGNMENT FUNCTIONNAME OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL'''
+def p_jobfunctionstatement_function_var(p):
+    'jobfunctionstatement : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL'
     for var in (p[6], p[8], p[10]):
         FUNCTION_VARS.add(var)
     p[0] = '%s' % (p[4])
 
-def p_functionstatement_function(p):
-    '''functionstatement : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET list CLOSEBRACKET EOL
-                         | FUNCTION lterm ASSIGNMENT FUNCTIONNAME OPENBRACKET list CLOSEBRACKET EOL'''
+def p_jobfunctionstatement_function_functionname(p):
+    'jobfunctionstatement : FUNCTION lterm ASSIGNMENT FUNCTIONNAME OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL'
+    for var in (p[6], p[8], p[10]):
+        FUNCTION_VARS.add(var)
+    p[0] = '%s' % (p[4][0])
+
+def p_functionstatement_function_var(p):
+    'functionstatement : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET list CLOSEBRACKET EOL'
+    p[0] = ''
+
+def p_functionstatement_function_functionname(p):
+    'functionstatement : FUNCTION lterm ASSIGNMENT FUNCTIONNAME OPENBRACKET list CLOSEBRACKET EOL'
     p[0] = ''
 
 # end define functionblock
@@ -559,7 +559,7 @@ def p_getvaluearg2arraylistitem_string_string(p):
 
 def p_getvaluearg2arraylistitem_functionname_parameters(p):
     'getvaluearg2arraylistitem : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
-    p[0] = '%s(%s)' % (p[1], p[3][0])
+    p[0] = '%s(%s)' % (p[1][0], p[3][0])
     LABELS.append(p[0])
 
 def p_getvaluearg3_list(p):
@@ -745,12 +745,12 @@ def p_expression_term(p):
 # A(2,3)
 def p_function_function_parameters(p):
     'function : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
-    p[0] = '%*s%s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3][0])
+    p[0] = '%*s%s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1][0], p[3][0])
 
 # A()
 def p_function_function(p):
     'function : FUNCTIONNAME OPENBRACKET CLOSEBRACKET'
-    p[0] = '%*s%s()' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1])
+    p[0] = '%*s%s()' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1][0])
 
 def p_resumestatementblocks_resume(p):
     'resumestatementblocks : lterm ASSIGNMENT RESUME OPENBRACKET expression CLOSEBRACKET EOL'
@@ -937,7 +937,7 @@ def p_term_string_parameter(p):
 # A(2,3)
 def p_term_function_parameters(p):
     'term : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
-    p[0] = ('%s(%s)' % (p[1], p[3][0]), DOUBLE_TYPE)
+    p[0] = ('%s(%s)' % (p[1][0], p[3][0]), p[1][1])
 
 # list(2,3)
 def p_term_list_parameters(p):
@@ -952,7 +952,7 @@ def p_term_gettext_parameter(p):
 # A()
 def p_term_function(p):
     'term : FUNCTIONNAME OPENBRACKET CLOSEBRACKET'
-    p[0] = ('%s()' % (p[1]), DOUBLE_TYPE)
+    p[0] = ('%s()' % (p[1][0]), p[1][1])
 
 # list()
 def p_term_list(p):

@@ -59,7 +59,12 @@ PREDEFINED_VARIABLES = {
     't': 'PREVAR_BOOLEAN',
 }
 
-FUNCTION_NAMES = {
+BOOLEAN_TYPE = 'boolean'
+BOOLEAN_FUNCTION_NAMES = {
+}
+
+DOUBLE_TYPE = 'double'
+DOUBLE_FUNCTION_NAMES = {
     '_',
     'ANDLOG_f',
     'AutoScale',
@@ -227,26 +232,34 @@ FUNCTION_NAMES = {
     'zeros',
 }
 
-BOOLEAN_FUNCTION_NAMES = {
-}
-
-DOUBLE_FUNCTION_NAMES = {
-}
-
+MATRIX_TYPE = 'matrix'
 MATRIX_FUNCTION_NAMES = {
 }
 
+NULL_TYPE = 'null'
 NULL_FUNCTION_NAMES = {
 }
 
+OBJECT_TYPE = 'object'
 OBJECT_FUNCTION_NAMES = {
 }
 
+STRING_TYPE = 'string'
 STRING_FUNCTION_NAMES = {
 }
 
+VECTOR_TYPE = 'vector'
 VECTOR_FUNCTION_NAMES = {
 }
+
+FUNCTION_NAMES = { }
+FUNCTION_NAMES.update(dict.fromkeys(BOOLEAN_FUNCTION_NAMES, BOOLEAN_TYPE))
+FUNCTION_NAMES.update(dict.fromkeys(DOUBLE_FUNCTION_NAMES, DOUBLE_TYPE))
+FUNCTION_NAMES.update(dict.fromkeys(MATRIX_FUNCTION_NAMES, MATRIX_TYPE))
+FUNCTION_NAMES.update(dict.fromkeys(NULL_FUNCTION_NAMES, NULL_TYPE))
+FUNCTION_NAMES.update(dict.fromkeys(OBJECT_FUNCTION_NAMES, OBJECT_TYPE))
+FUNCTION_NAMES.update(dict.fromkeys(STRING_FUNCTION_NAMES, STRING_TYPE))
+FUNCTION_NAMES.update(dict.fromkeys(VECTOR_FUNCTION_NAMES, VECTOR_TYPE))
 
 OBJECTS = {
 #    'PREVAR_scicos_context': 'PREVAR_SCICOS_CONTEXT',
@@ -267,7 +280,6 @@ JOBTYPES = {
 tokens = [
     'ADDITION',
     'ASSIGNMENT',
-    'BOOLEAN_FUNCTIONNAME',
     'CLOSEBRACKET',
     'CLOSEOPENBRACKET',
     'CLOSESQBRACKET',
@@ -275,28 +287,22 @@ tokens = [
     'COMMA',
     'COMPARISON',
     'DOT',
-    'DOUBLE_FUNCTIONNAME',
     'DQSTRING',
     'EOL',
     'FUNCTIONNAME',
     'LASTINDEX',
     'LOGICAL',
-    'MATRIX_FUNCTIONNAME',
     'MULTIPLICATION',
     'NOT',
-    'NULL_FUNCTIONNAME',
     'NUMBER',
-    'OBJECT_FUNCTIONNAME',
     'OPENBRACKET',
     'OPENSQBRACKET',
     'PREVAR',
     'QSTRING',
     'SEMICOLON',
     'SPACE',
-    'STRING_FUNCTIONNAME',
     'TRANSPOSE',
     'VAR',
-    'VECTOR_FUNCTIONNAME',
 ] + list(SYNTAX_TOKENS.values()) + list(set(PREDEFINED_VARIABLES.values())) + list(OBJECTS.values()) + list(JOBTYPES.values())
 
 states = (
@@ -372,22 +378,10 @@ def t_VAR(t):
     if vartype is None:
         vartype = OBJECTS.get(t.value)
     if vartype is None:
-        if t.value in BOOLEAN_FUNCTION_NAMES:
-            vartype = 'BOOLEAN_FUNCTIONNAME'
-        elif t.value in DOUBLE_FUNCTION_NAMES:
-            vartype = 'DOUBLE_FUNCTIONNAME'
-        elif t.value in MATRIX_FUNCTION_NAMES:
-            vartype = 'MATRIX_FUNCTIONNAME'
-        elif t.value in NULL_FUNCTION_NAMES:
-            vartype = 'NULL_FUNCTIONNAME'
-        elif t.value in OBJECT_FUNCTION_NAMES:
-            vartype = 'OBJECT_FUNCTIONNAME'
-        elif t.value in STRING_FUNCTION_NAMES:
-            vartype = 'STRING_FUNCTIONNAME'
-        elif t.value in VECTOR_FUNCTION_NAMES:
-            vartype = 'VECTOR_FUNCTIONNAME'
-        elif t.value in FUNCTION_NAMES:
+        if t.value in FUNCTION_NAMES:
             vartype = 'FUNCTIONNAME'
+            functiontype = FUNCTION_NAMES[t.value]
+            t.value = (t.value, functiontype)
         else:
             vartype = 'VAR'
     t.lexer.afterarray = vartype == 'VAR'
