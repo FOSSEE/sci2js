@@ -27,8 +27,8 @@ function EVTDLY_c() {
         return options;
     }
     EVTDLY_c.prototype.set = function EVTDLY_c() {
-        this.dt = parseFloat((arguments[0]["dt"]))
-        this.ff = parseFloat((arguments[0]["ff"]))
+        this.dt = parseFloat(arguments[0]["dt"])
+        this.ff = parseFloat(arguments[0]["ff"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

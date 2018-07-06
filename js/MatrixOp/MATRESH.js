@@ -37,10 +37,10 @@ function MATRESH() {
         return options;
     }
     MATRESH.prototype.set = function MATRESH() {
-        this.typ = inverse((arguments[0]["typ"]))
-        this.l1 = parseFloat((arguments[0]["l1"]))
-        this.out = parseFloat((arguments[0]["out"]))
-        this.lab = parseFloat((arguments[0]["lab"]))
+        this.typ = inverse(arguments[0]["typ"])
+        this.l1 = arguments[0]["l1"]
+        this.out = arguments[0]["out"]
+        this.lab = arguments[0]["lab"]
         this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;

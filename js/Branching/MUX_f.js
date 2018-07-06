@@ -23,7 +23,7 @@ function MUX_f() {
         return options;
     }
     MUX_f.prototype.set = function MUX_f() {
-        this.in1 = parseFloat((arguments[0]["in1"]))
+        this.in1 = parseFloat(arguments[0]["in1"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

@@ -26,7 +26,7 @@ function ZCROSS_f() {
         return options;
     }
     ZCROSS_f.prototype.set = function ZCROSS_f() {
-        this.in1 = parseFloat((arguments[0]["in1"]))
+        this.in1 = parseFloat(arguments[0]["in1"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

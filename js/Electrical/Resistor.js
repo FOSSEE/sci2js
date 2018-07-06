@@ -31,7 +31,7 @@ function Resistor() {
         return options;
     }
     Resistor.prototype.set = function Resistor() {
-        this.R = parseFloat((arguments[0]["R"]))
+        this.R = parseFloat(arguments[0]["R"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

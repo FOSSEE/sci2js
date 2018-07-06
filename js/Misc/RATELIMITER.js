@@ -27,8 +27,8 @@ function RATELIMITER() {
         return options;
     }
     RATELIMITER.prototype.set = function RATELIMITER() {
-        this.maxp = parseFloat((arguments[0]["maxp"]))
-        this.minp = parseFloat((arguments[0]["minp"]))
+        this.maxp = parseFloat(arguments[0]["maxp"])
+        this.minp = parseFloat(arguments[0]["minp"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

@@ -48,17 +48,17 @@ function CANIMXY3D() {
         return options;
     }
     CANIMXY3D.prototype.set = function CANIMXY3D() {
-        this.nbr_curves = parseFloat((arguments[0]["nbr_curves"]))
-        this.clrs = inverse((arguments[0]["clrs"]))
-        this.siz = inverse((arguments[0]["siz"]))
-        this.win = parseFloat((arguments[0]["win"]))
-        this.wpos = inverse((arguments[0]["wpos"]))
-        this.wdim = inverse((arguments[0]["wdim"]))
-        this.vec_x = inverse((arguments[0]["vec_x"]))
-        this.vec_y = inverse((arguments[0]["vec_y"]))
-        this.vec_z = inverse((arguments[0]["vec_z"]))
-        this.param3ds = inverse((arguments[0]["param3ds"]))
-        this.N = parseFloat((arguments[0]["N"]))
+        this.nbr_curves = parseFloat(arguments[0]["nbr_curves"])
+        this.clrs = inverse(arguments[0]["clrs"])
+        this.siz = inverse(arguments[0]["siz"])
+        this.win = parseFloat(arguments[0]["win"])
+        this.wpos = inverse(arguments[0]["wpos"])
+        this.wdim = inverse(arguments[0]["wdim"])
+        this.vec_x = inverse(arguments[0]["vec_x"])
+        this.vec_y = inverse(arguments[0]["vec_y"])
+        this.vec_z = inverse(arguments[0]["vec_z"])
+        this.param3ds = inverse(arguments[0]["param3ds"])
+        this.N = parseFloat(arguments[0]["N"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

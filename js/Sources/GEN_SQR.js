@@ -59,10 +59,10 @@ function GEN_SQR() {
         return options;
     }
     GEN_SQR.prototype.set = function GEN_SQR() {
-        scicos_context.Amin = parseFloat((arguments[0]["scicos_context.Amin"]))
-        scicos_context.Amax = parseFloat((arguments[0]["scicos_context.Amax"]))
-        scicos_context.rule = parseFloat((arguments[0]["scicos_context.rule"]))
-        scicos_context.F = parseFloat((arguments[0]["scicos_context.F"]))
+        scicos_context.Amin = arguments[0]["scicos_context.Amin"]
+        scicos_context.Amax = arguments[0]["scicos_context.Amax"]
+        scicos_context.rule = arguments[0]["scicos_context.rule"]
+        scicos_context.F = arguments[0]["scicos_context.F"]
         y = this.needcompile;
         arg1.model.ipar = 1;
         typ = list();

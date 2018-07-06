@@ -41,8 +41,8 @@ function SRFLIPFLOP() {
         return options;
     }
     SRFLIPFLOP.prototype.set = function SRFLIPFLOP() {
-        this.init = parseFloat((arguments[0]["init"]))
-        this.exprs0 = parseFloat((arguments[0]["exprs0"]))
+        this.init = parseFloat(arguments[0]["init"])
+        this.exprs0 = arguments[0]["exprs0"]
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
             o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {

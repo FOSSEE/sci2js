@@ -44,12 +44,12 @@ function PerteDP() {
         return options;
     }
     PerteDP.prototype.set = function PerteDP() {
-        this.L = parseFloat((arguments[0]["L"]))
-        this.D = parseFloat((arguments[0]["D"]))
-        this.lambda = parseFloat((arguments[0]["lambda"]))
-        this.z1 = parseFloat((arguments[0]["z1"]))
-        this.z2 = parseFloat((arguments[0]["z2"]))
-        this.p_rho = parseFloat((arguments[0]["p_rho"]))
+        this.L = parseFloat(arguments[0]["L"])
+        this.D = parseFloat(arguments[0]["D"])
+        this.lambda = parseFloat(arguments[0]["lambda"])
+        this.z1 = parseFloat(arguments[0]["z1"])
+        this.z2 = parseFloat(arguments[0]["z2"])
+        this.p_rho = parseFloat(arguments[0]["p_rho"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

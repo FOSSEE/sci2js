@@ -35,9 +35,9 @@ function OpAmp() {
         return options;
     }
     OpAmp.prototype.set = function OpAmp() {
-        this.OLGain = parseFloat((arguments[0]["OLGain"]))
-        this.SatH = parseFloat((arguments[0]["SatH"]))
-        this.SatL = parseFloat((arguments[0]["SatL"]))
+        this.OLGain = arguments[0]["OLGain"]
+        this.SatH = arguments[0]["SatH"]
+        this.SatL = arguments[0]["SatL"]
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

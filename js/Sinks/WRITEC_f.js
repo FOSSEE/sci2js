@@ -35,11 +35,11 @@ function WRITEC_f() {
         return options;
     }
     WRITEC_f.prototype.set = function WRITEC_f() {
-        this.in1 = parseFloat((arguments[0]["in1"]))
-        this.fname1 = parseFloat((arguments[0]["fname1"]))
-        this.frmt1 = parseFloat((arguments[0]["frmt1"]))
-        this.N = parseFloat((arguments[0]["N"]))
-        this.swap = parseFloat((arguments[0]["swap"]))
+        this.in1 = parseFloat(arguments[0]["in1"])
+        this.fname1 = parseFloat(arguments[0]["fname1"])
+        this.frmt1 = arguments[0]["frmt1"]
+        this.N = parseFloat(arguments[0]["N"])
+        this.swap = parseFloat(arguments[0]["swap"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

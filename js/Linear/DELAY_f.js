@@ -76,8 +76,8 @@ function DELAY_f() {
         return options;
     }
     DELAY_f.prototype.set = function DELAY_f() {
-        this.dt = parseFloat((arguments[0]["dt"]))
-        this.z0 = parseFloat((arguments[0]["z0"]))
+        this.dt = arguments[0]["dt"]
+        this.z0 = arguments[0]["z0"]
         ppath = list(0,0);
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
             o = arg1.model.rpar.objs[i-1];

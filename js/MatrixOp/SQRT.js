@@ -25,7 +25,7 @@ function SQRT() {
         return options;
     }
     SQRT.prototype.set = function SQRT() {
-        this.typ = inverse((arguments[0]["typ"]))
+        this.typ = inverse(arguments[0]["typ"])
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;

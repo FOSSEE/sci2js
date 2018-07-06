@@ -56,15 +56,15 @@ function BOUNCE() {
         return options;
     }
     BOUNCE.prototype.set = function BOUNCE() {
-        this.rpar1 = parseFloat((arguments[0]["rpar1"]))
-        this.rpar2 = parseFloat((arguments[0]["rpar2"]))
-        this.walls = inverse((arguments[0]["walls"]))
-        this.xt = inverse((arguments[0]["xt"]))
-        this.xd = inverse((arguments[0]["xd"]))
-        this.y = inverse((arguments[0]["y"]))
-        this.yd = inverse((arguments[0]["yd"]))
-        this.g = parseFloat((arguments[0]["g"]))
-        this.C = parseFloat((arguments[0]["C"]))
+        this.rpar1 = parseFloat(arguments[0]["rpar1"])
+        this.rpar2 = parseFloat(arguments[0]["rpar2"])
+        this.walls = inverse(arguments[0]["walls"])
+        this.xt = inverse(arguments[0]["xt"])
+        this.xd = inverse(arguments[0]["xd"])
+        this.y = inverse(arguments[0]["y"])
+        this.yd = inverse(arguments[0]["yd"])
+        this.g = parseFloat(arguments[0]["g"])
+        this.C = parseFloat(arguments[0]["C"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

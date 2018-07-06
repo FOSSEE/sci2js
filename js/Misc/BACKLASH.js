@@ -26,9 +26,9 @@ function BACKLASH() {
         return options;
     }
     BACKLASH.prototype.set = function BACKLASH() {
-        this.ini = parseFloat((arguments[0]["ini"]))
-        this.gap = parseFloat((arguments[0]["gap"]))
-        this.zcr = parseFloat((arguments[0]["zcr"]))
+        this.ini = arguments[0]["ini"]
+        this.gap = arguments[0]["gap"]
+        this.zcr = arguments[0]["zcr"]
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

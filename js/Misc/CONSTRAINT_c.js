@@ -24,7 +24,7 @@ function CONSTRAINT_c() {
         return options;
     }
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
-        this.x0 = inverse((arguments[0]["x0"]))
+        this.x0 = inverse(arguments[0]["x0"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

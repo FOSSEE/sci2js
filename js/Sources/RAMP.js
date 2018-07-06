@@ -31,9 +31,9 @@ function RAMP() {
         return options;
     }
     RAMP.prototype.set = function RAMP() {
-        this.slope = parseFloat((arguments[0]["slope"]))
-        this.stt = parseFloat((arguments[0]["stt"]))
-        this.iout = parseFloat((arguments[0]["iout"]))
+        this.slope = parseFloat(arguments[0]["slope"])
+        this.stt = parseFloat(arguments[0]["stt"])
+        this.iout = parseFloat(arguments[0]["iout"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

@@ -24,7 +24,7 @@ function POWBLK_f() {
         return options;
     }
     POWBLK_f.prototype.set = function POWBLK_f() {
-        this.a = parseFloat((arguments[0]["a"]))
+        this.a = parseFloat(arguments[0]["a"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

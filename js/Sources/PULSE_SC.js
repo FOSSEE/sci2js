@@ -54,10 +54,10 @@ function PULSE_SC() {
         return options;
     }
     PULSE_SC.prototype.set = function PULSE_SC() {
-        scicos_context.E = parseFloat((arguments[0]["scicos_context.E"]))
-        scicos_context.W = parseFloat((arguments[0]["scicos_context.W"]))
-        scicos_context.F = parseFloat((arguments[0]["scicos_context.F"]))
-        scicos_context.A = parseFloat((arguments[0]["scicos_context.A"]))
+        scicos_context.E = arguments[0]["scicos_context.E"]
+        scicos_context.W = arguments[0]["scicos_context.W"]
+        scicos_context.F = arguments[0]["scicos_context.F"]
+        scicos_context.A = arguments[0]["scicos_context.A"]
         y = this.needcompile;
         arg1.model.ipar = 1;
         typ = list();

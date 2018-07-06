@@ -59,7 +59,7 @@ function IdealTransformer() {
         return options;
     }
     IdealTransformer.prototype.set = function IdealTransformer() {
-        this.N = parseFloat((arguments[0]["N"]))
+        this.N = arguments[0]["N"]
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

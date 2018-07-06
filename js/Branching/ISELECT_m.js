@@ -37,9 +37,9 @@ function ISELECT_m() {
         return options;
     }
     ISELECT_m.prototype.set = function ISELECT_m() {
-        this.typ = inverse((arguments[0]["typ"]))
-        this.nout = parseFloat((arguments[0]["nout"]))
-        this.z0 = parseFloat((arguments[0]["z0"]))
+        this.typ = inverse(arguments[0]["typ"])
+        this.nout = parseFloat(arguments[0]["nout"])
+        this.z0 = parseFloat(arguments[0]["z0"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

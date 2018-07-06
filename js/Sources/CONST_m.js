@@ -26,7 +26,7 @@ function CONST_m() {
         return options;
     }
     CONST_m.prototype.set = function CONST_m() {
-        this.C = inverse((arguments[0]["C"]))
+        this.C = inverse(arguments[0]["C"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

@@ -26,7 +26,7 @@ function GENSQR_f() {
         return options;
     }
     GENSQR_f.prototype.set = function GENSQR_f() {
-        this.Amplitude = parseFloat((arguments[0]["Amplitude"]))
+        this.Amplitude = parseFloat(arguments[0]["Amplitude"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

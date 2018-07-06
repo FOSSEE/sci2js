@@ -39,13 +39,13 @@ function AFFICH_m() {
         return options;
     }
     AFFICH_m.prototype.set = function AFFICH_m() {
-        this.in1 = inverse((arguments[0]["in1"]))
-        this.font = parseFloat((arguments[0]["font"]))
-        this.fontsize = parseFloat((arguments[0]["fontsize"]))
-        this.colr = parseFloat((arguments[0]["colr"]))
-        this.nt = parseFloat((arguments[0]["nt"]))
-        this.nd = parseFloat((arguments[0]["nd"]))
-        this.herit = parseFloat((arguments[0]["herit"]))
+        this.in1 = inverse(arguments[0]["in1"])
+        this.font = parseFloat(arguments[0]["font"])
+        this.fontsize = parseFloat(arguments[0]["fontsize"])
+        this.colr = parseFloat(arguments[0]["colr"])
+        this.nt = parseFloat(arguments[0]["nt"])
+        this.nd = parseFloat(arguments[0]["nd"])
+        this.herit = arguments[0]["herit"]
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

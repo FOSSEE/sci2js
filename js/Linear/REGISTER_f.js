@@ -24,7 +24,7 @@ function REGISTER_f() {
         return options;
     }
     REGISTER_f.prototype.set = function REGISTER_f() {
-        this.z0 = parseFloat((arguments[0]["z0"]))
+        this.z0 = parseFloat(arguments[0]["z0"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

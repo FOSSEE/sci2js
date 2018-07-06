@@ -23,7 +23,7 @@ function INTEGRAL_f() {
         return options;
     }
     INTEGRAL_f.prototype.set = function INTEGRAL_f() {
-        this.x0 = parseFloat((arguments[0]["x0"]))
+        this.x0 = parseFloat(arguments[0]["x0"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

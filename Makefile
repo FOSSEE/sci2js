@@ -40,4 +40,10 @@ $(JSDIRS):
 yacc: macros/Sinks/CSCOPE.sci
 	./sci2jslex.py $< 2>&1 && ./sci2jsyacc.py $< /dev/null 3 2>&1
 
+clean:
+	$(RM) -r js
+	$(RM) combined.js
+
+.PHONY: clean
+
 .SECONDARY:

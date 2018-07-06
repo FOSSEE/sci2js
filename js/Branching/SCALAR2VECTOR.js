@@ -23,7 +23,7 @@ function SCALAR2VECTOR() {
         return options;
     }
     SCALAR2VECTOR.prototype.set = function SCALAR2VECTOR() {
-        this.nout = parseFloat((arguments[0]["nout"]))
+        this.nout = parseFloat(arguments[0]["nout"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

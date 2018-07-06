@@ -34,8 +34,8 @@ function Capacitor() {
         return options;
     }
     Capacitor.prototype.set = function Capacitor() {
-        this.C = parseFloat((arguments[0]["C"]))
-        this.v = parseFloat((arguments[0]["v"]))
+        this.C = parseFloat(arguments[0]["C"])
+        this.v = parseFloat(arguments[0]["v"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

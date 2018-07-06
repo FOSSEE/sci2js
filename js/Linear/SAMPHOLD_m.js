@@ -27,7 +27,7 @@ function SAMPHOLD_m() {
         return options;
     }
     SAMPHOLD_m.prototype.set = function SAMPHOLD_m() {
-        this.it = parseFloat((arguments[0]["it"]))
+        this.it = arguments[0]["it"]
         this.x = arg1;
         this.x.model.firing = [];
         graphics = arg1.graphics;

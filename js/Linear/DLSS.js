@@ -34,11 +34,11 @@ function DLSS() {
         return options;
     }
     DLSS.prototype.set = function DLSS() {
-        this.A = parseFloat((arguments[0]["A"]))
-        this.B = parseFloat((arguments[0]["B"]))
-        this.C = parseFloat((arguments[0]["C"]))
-        this.D = parseFloat((arguments[0]["D"]))
-        this.x0 = parseFloat((arguments[0]["x0"]))
+        this.A = parseFloat(arguments[0]["A"])
+        this.B = parseFloat(arguments[0]["B"])
+        this.C = parseFloat(arguments[0]["C"])
+        this.D = parseFloat(arguments[0]["D"])
+        this.x0 = parseFloat(arguments[0]["x0"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

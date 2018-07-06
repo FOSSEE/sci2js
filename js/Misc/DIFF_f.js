@@ -25,8 +25,8 @@ function DIFF_f() {
         return options;
     }
     DIFF_f.prototype.set = function DIFF_f() {
-        this.x0 = inverse((arguments[0]["x0"]))
-        this.xd0 = parseFloat((arguments[0]["xd0"]))
+        this.x0 = inverse(arguments[0]["x0"])
+        this.xd0 = arguments[0]["xd0"]
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

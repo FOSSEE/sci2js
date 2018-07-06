@@ -28,8 +28,8 @@ function ISELECT_f() {
         return options;
     }
     ISELECT_f.prototype.set = function ISELECT_f() {
-        this.nout = parseFloat((arguments[0]["nout"]))
-        this.z0 = parseFloat((arguments[0]["z0"]))
+        this.nout = parseFloat(arguments[0]["nout"])
+        this.z0 = parseFloat(arguments[0]["z0"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

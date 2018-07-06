@@ -31,8 +31,8 @@ function DLR_f() {
         return options;
     }
     DLR_f.prototype.set = function DLR_f() {
-        this.num = parseFloat((arguments[0]["num"]))
-        this.den = parseFloat((arguments[0]["den"]))
+        this.num = arguments[0]["num"]
+        this.den = arguments[0]["den"]
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

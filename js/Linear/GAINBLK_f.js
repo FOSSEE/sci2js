@@ -26,7 +26,7 @@ function GAINBLK_f() {
         return options;
     }
     GAINBLK_f.prototype.set = function GAINBLK_f() {
-        this.gain = parseFloat((arguments[0]["gain"]))
+        this.gain = parseFloat(arguments[0]["gain"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

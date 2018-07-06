@@ -38,12 +38,12 @@ function DLRADAPT_f() {
         return options;
     }
     DLRADAPT_f.prototype.set = function DLRADAPT_f() {
-        this.p = inverse((arguments[0]["p"]))
-        this.rn = inverse((arguments[0]["rn"]))
-        this.rd = inverse((arguments[0]["rd"]))
-        this.g = inverse((arguments[0]["g"]))
-        this.last_u = inverse((arguments[0]["last_u"]))
-        this.last_y = inverse((arguments[0]["last_y"]))
+        this.p = inverse(arguments[0]["p"])
+        this.rn = inverse(arguments[0]["rn"])
+        this.rd = inverse(arguments[0]["rd"])
+        this.g = inverse(arguments[0]["g"])
+        this.last_u = inverse(arguments[0]["last_u"])
+        this.last_y = inverse(arguments[0]["last_y"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

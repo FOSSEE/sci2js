@@ -37,9 +37,9 @@ function READAU_f() {
         return options;
     }
     READAU_f.prototype.set = function READAU_f() {
-        this.fname1 = parseFloat((arguments[0]["fname1"]))
-        this.N = parseFloat((arguments[0]["N"]))
-        this.swap = parseFloat((arguments[0]["swap"]))
+        this.fname1 = parseFloat(arguments[0]["fname1"])
+        this.N = parseFloat(arguments[0]["N"])
+        this.swap = parseFloat(arguments[0]["swap"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

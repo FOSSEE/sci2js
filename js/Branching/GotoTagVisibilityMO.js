@@ -29,7 +29,7 @@ function GotoTagVisibilityMO() {
         return options;
     }
     GotoTagVisibilityMO.prototype.set = function GotoTagVisibilityMO() {
-        this.tag = parseFloat((arguments[0]["tag"]))
+        this.tag = arguments[0]["tag"]
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

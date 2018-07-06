@@ -28,8 +28,8 @@ function SWITCH_f() {
         return options;
     }
     SWITCH_f.prototype.set = function SWITCH_f() {
-        this.nin = parseFloat((arguments[0]["nin"]))
-        this.z0 = parseFloat((arguments[0]["z0"]))
+        this.nin = parseFloat(arguments[0]["nin"])
+        this.z0 = arguments[0]["z0"]
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

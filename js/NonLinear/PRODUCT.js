@@ -23,7 +23,7 @@ function PRODUCT() {
         return options;
     }
     PRODUCT.prototype.set = function PRODUCT() {
-        this.sgn = inverse((arguments[0]["sgn"]))
+        this.sgn = inverse(arguments[0]["sgn"])
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

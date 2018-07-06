@@ -35,9 +35,9 @@ function TOWS_c() {
         return options;
     }
     TOWS_c.prototype.set = function TOWS_c() {
-        this.nz = parseFloat((arguments[0]["nz"]))
-        this.varnam = parseFloat((arguments[0]["varnam"]))
-        this.herit = parseFloat((arguments[0]["herit"]))
+        this.nz = parseFloat(arguments[0]["nz"])
+        this.varnam = arguments[0]["varnam"]
+        this.herit = parseFloat(arguments[0]["herit"])
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

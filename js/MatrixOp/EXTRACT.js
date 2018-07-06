@@ -37,9 +37,9 @@ function EXTRACT() {
         return options;
     }
     EXTRACT.prototype.set = function EXTRACT() {
-        this.typ = inverse((arguments[0]["typ"]))
-        this.a = inverse((arguments[0]["a"]))
-        this.b = inverse((arguments[0]["b"]))
+        this.typ = inverse(arguments[0]["typ"])
+        this.a = inverse(arguments[0]["a"])
+        this.b = inverse(arguments[0]["b"])
         this.x = arg1;
         graphics = arg1.graphics;
         label = graphics.exprs;

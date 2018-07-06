@@ -26,9 +26,9 @@ function MATMUL() {
         return options;
     }
     MATMUL.prototype.set = function MATMUL() {
-        this.dtype = parseFloat((arguments[0]["dtype"]))
-        this.rule = parseFloat((arguments[0]["rule"]))
-        this.np = parseFloat((arguments[0]["np"]))
+        this.dtype = arguments[0]["dtype"]
+        this.rule = parseFloat(arguments[0]["rule"])
+        this.np = parseFloat(arguments[0]["np"])
         this.x = arg1;
         graphics = this.x.graphics;
         label = graphics.exprs;

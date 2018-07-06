@@ -52,15 +52,15 @@ function Bache() {
         return options;
     }
     Bache.prototype.set = function Bache() {
-        this.Patm = parseFloat((arguments[0]["Patm"]))
-        this.A = parseFloat((arguments[0]["A"]))
-        this.ze1 = parseFloat((arguments[0]["ze1"]))
-        this.ze2 = parseFloat((arguments[0]["ze2"]))
-        this.zs1 = parseFloat((arguments[0]["zs1"]))
-        this.zs2 = parseFloat((arguments[0]["zs2"]))
-        this.z0 = parseFloat((arguments[0]["z0"]))
-        this.T0 = parseFloat((arguments[0]["T0"]))
-        this.p_rho = parseFloat((arguments[0]["p_rho"]))
+        this.Patm = parseFloat(arguments[0]["Patm"])
+        this.A = parseFloat(arguments[0]["A"])
+        this.ze1 = parseFloat(arguments[0]["ze1"])
+        this.ze2 = parseFloat(arguments[0]["ze2"])
+        this.zs1 = parseFloat(arguments[0]["zs1"])
+        this.zs2 = parseFloat(arguments[0]["zs2"])
+        this.z0 = parseFloat(arguments[0]["z0"])
+        this.T0 = parseFloat(arguments[0]["T0"])
+        this.p_rho = parseFloat(arguments[0]["p_rho"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

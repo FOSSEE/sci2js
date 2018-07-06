@@ -22,7 +22,7 @@ function CLKIN_f() {
         return options;
     }
     CLKIN_f.prototype.set = function CLKIN_f() {
-        this.prt = parseFloat((arguments[0]["prt"]))
+        this.prt = parseFloat(arguments[0]["prt"])
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

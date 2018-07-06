@@ -32,9 +32,9 @@ function SWITCH2() {
         return options;
     }
     SWITCH2.prototype.set = function SWITCH2() {
-        this.rule = parseFloat((arguments[0]["rule"]))
-        this.thra = parseFloat((arguments[0]["thra"]))
-        this.nzz = parseFloat((arguments[0]["nzz"]))
+        this.rule = parseFloat(arguments[0]["rule"])
+        this.thra = arguments[0]["thra"]
+        this.nzz = parseFloat(arguments[0]["nzz"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

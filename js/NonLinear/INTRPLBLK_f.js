@@ -26,8 +26,8 @@ function INTRPLBLK_f() {
         return options;
     }
     INTRPLBLK_f.prototype.set = function INTRPLBLK_f() {
-        this.a = inverse((arguments[0]["a"]))
-        this.b = inverse((arguments[0]["b"]))
+        this.a = inverse(arguments[0]["a"])
+        this.b = inverse(arguments[0]["b"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

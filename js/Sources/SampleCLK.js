@@ -23,8 +23,8 @@ function SampleCLK() {
         return options;
     }
     SampleCLK.prototype.set = function SampleCLK() {
-        this.frequ = parseFloat((arguments[0]["frequ"]))
-        this.offset = parseFloat((arguments[0]["offset"]))
+        this.frequ = arguments[0]["frequ"]
+        this.offset = arguments[0]["offset"]
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

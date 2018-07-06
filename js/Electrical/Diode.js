@@ -38,10 +38,10 @@ function Diode() {
         return options;
     }
     Diode.prototype.set = function Diode() {
-        this.Ids = parseFloat((arguments[0]["Ids"]))
-        this.Vt = parseFloat((arguments[0]["Vt"]))
-        this.Maxexp = parseFloat((arguments[0]["Maxexp"]))
-        this.R = parseFloat((arguments[0]["R"]))
+        this.Ids = parseFloat(arguments[0]["Ids"])
+        this.Vt = parseFloat(arguments[0]["Vt"])
+        this.Maxexp = parseFloat(arguments[0]["Maxexp"])
+        this.R = parseFloat(arguments[0]["R"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

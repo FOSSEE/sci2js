@@ -22,7 +22,7 @@ function CLKFROM() {
         return options;
     }
     CLKFROM.prototype.set = function CLKFROM() {
-        this.tag = parseFloat((arguments[0]["tag"]))
+        this.tag = arguments[0]["tag"]
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

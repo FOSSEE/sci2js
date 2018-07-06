@@ -30,9 +30,9 @@ function DEADBAND() {
         return options;
     }
     DEADBAND.prototype.set = function DEADBAND() {
-        this.maxp = parseFloat((arguments[0]["maxp"]))
-        this.minp = parseFloat((arguments[0]["minp"]))
-        this.zeroc = parseFloat((arguments[0]["zeroc"]))
+        this.maxp = parseFloat(arguments[0]["maxp"])
+        this.minp = parseFloat(arguments[0]["minp"])
+        this.zeroc = arguments[0]["zeroc"]
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

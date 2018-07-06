@@ -34,6 +34,8 @@ PARSE_MAP = {
     DOUBLE_TYPE: 'parseFloat',
     MATRIX_TYPE: 'inverse',
     NULL_TYPE: 'parseFloat',
+    OBJECT_TYPE: '',
+    STRING_TYPE: '',
     VECTOR_TYPE: 'inverse',
 }
 
@@ -496,10 +498,10 @@ def p_getvalueassignment_getvalue_arguments(p):
             else:
                 basevar = var
             add_global_var(var, force=True)
-            vartype = VAR_TYPES.get(basevar, DOUBLE_TYPE)
-            parsefunction = PARSE_MAP.get(vartype, 'parseFloat')
+            vartype = VAR_TYPES.get(basevar, STRING_TYPE)
+            parsefunction = PARSE_MAP.get(vartype, '')
             if parsefunction != '':
-                parsecall = '%s((arguments[%d][\"%s\"]))' % (parsefunction, 0, basevar)
+                parsecall = '%s(arguments[%d][\"%s\"])' % (parsefunction, 0, basevar)
             else:
                 parsecall = 'arguments[%d][\"%s\"]' % (0, basevar)
             SET_BLOCK += "%*s%s = %s\n" % (2 * INDENT_SIZE, ' ', var, parsecall)

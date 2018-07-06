@@ -46,14 +46,14 @@ function READC_f() {
         return options;
     }
     READC_f.prototype.set = function READC_f() {
-        this.tmask1 = parseFloat((arguments[0]["tmask1"]))
-        this.outmask = parseFloat((arguments[0]["outmask"]))
-        this.fname1 = parseFloat((arguments[0]["fname1"]))
-        this.frmt1 = parseFloat((arguments[0]["frmt1"]))
-        this.M = parseFloat((arguments[0]["M"]))
-        this.N = parseFloat((arguments[0]["N"]))
-        this.offset = parseFloat((arguments[0]["offset"]))
-        this.swap = parseFloat((arguments[0]["swap"]))
+        this.tmask1 = parseFloat(arguments[0]["tmask1"])
+        this.outmask = parseFloat(arguments[0]["outmask"])
+        this.fname1 = parseFloat(arguments[0]["fname1"])
+        this.frmt1 = arguments[0]["frmt1"]
+        this.M = parseFloat(arguments[0]["M"])
+        this.N = parseFloat(arguments[0]["N"])
+        this.offset = parseFloat(arguments[0]["offset"])
+        this.swap = parseFloat(arguments[0]["swap"])
         this.x = arg1;
         model = this.x.model;
         graphics = arg1.graphics;

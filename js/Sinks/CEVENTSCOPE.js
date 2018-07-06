@@ -34,12 +34,12 @@ function CEVENTSCOPE() {
         return options;
     }
     CEVENTSCOPE.prototype.set = function CEVENTSCOPE() {
-        this.nclock = parseFloat((arguments[0]["nclock"]))
-        this.clrs = inverse((arguments[0]["clrs"]))
-        this.win = parseFloat((arguments[0]["win"]))
-        this.wpos = inverse((arguments[0]["wpos"]))
-        this.wdim = inverse((arguments[0]["wdim"]))
-        this.per = parseFloat((arguments[0]["per"]))
+        this.nclock = parseFloat(arguments[0]["nclock"])
+        this.clrs = inverse(arguments[0]["clrs"])
+        this.win = parseFloat(arguments[0]["win"])
+        this.wpos = inverse(arguments[0]["wpos"])
+        this.wdim = inverse(arguments[0]["wdim"])
+        this.per = parseFloat(arguments[0]["per"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

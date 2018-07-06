@@ -48,14 +48,14 @@ function MBLOCK() {
         return options;
     }
     MBLOCK.prototype.set = function MBLOCK() {
-        this.Tin = parseFloat((arguments[0]["Tin"]))
-        this.Tintype = parseFloat((arguments[0]["Tintype"]))
-        this.Tout = parseFloat((arguments[0]["Tout"]))
-        this.Touttype = parseFloat((arguments[0]["Touttype"]))
-        this.Tparam = parseFloat((arguments[0]["Tparam"]))
-        this.pprop = inverse((arguments[0]["pprop"]))
-        this.Tfunam = parseFloat((arguments[0]["Tfunam"]))
-        this.lab_1 = inverse((arguments[0]["lab_1"]))
+        this.Tin = arguments[0]["Tin"]
+        this.Tintype = arguments[0]["Tintype"]
+        this.Tout = arguments[0]["Tout"]
+        this.Touttype = arguments[0]["Touttype"]
+        this.Tparam = arguments[0]["Tparam"]
+        this.pprop = inverse(arguments[0]["pprop"])
+        this.Tfunam = arguments[0]["Tfunam"]
+        this.lab_1 = inverse(arguments[0]["lab_1"])
         this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;

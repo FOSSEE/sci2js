@@ -34,9 +34,9 @@ function CMATVIEW() {
         return options;
     }
     CMATVIEW.prototype.set = function CMATVIEW() {
-        this.colormap = parseFloat((arguments[0]["colormap"]))
-        this.cmin = parseFloat((arguments[0]["cmin"]))
-        this.cmax = parseFloat((arguments[0]["cmax"]))
+        this.colormap = parseFloat(arguments[0]["colormap"])
+        this.cmin = parseFloat(arguments[0]["cmin"])
+        this.cmax = parseFloat(arguments[0]["cmax"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

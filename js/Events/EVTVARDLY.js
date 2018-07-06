@@ -24,7 +24,7 @@ function EVTVARDLY() {
         return options;
     }
     EVTVARDLY.prototype.set = function EVTVARDLY() {
-        this.fir = parseFloat((arguments[0]["fir"]))
+        this.fir = arguments[0]["fir"]
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

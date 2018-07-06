@@ -33,8 +33,8 @@ function GOTOMO() {
         return options;
     }
     GOTOMO.prototype.set = function GOTOMO() {
-        this.tag = parseFloat((arguments[0]["tag"]))
-        this.tagvis = parseFloat((arguments[0]["tagvis"]))
+        this.tag = arguments[0]["tag"]
+        this.tagvis = parseFloat(arguments[0]["tagvis"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

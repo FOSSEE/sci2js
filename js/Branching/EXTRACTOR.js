@@ -24,7 +24,7 @@ function EXTRACTOR() {
         return options;
     }
     EXTRACTOR.prototype.set = function EXTRACTOR() {
-        this.ind = parseFloat((arguments[0]["ind"]))
+        this.ind = parseFloat(arguments[0]["ind"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

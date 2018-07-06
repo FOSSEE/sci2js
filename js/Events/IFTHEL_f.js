@@ -29,8 +29,8 @@ function IFTHEL_f() {
         return options;
     }
     IFTHEL_f.prototype.set = function IFTHEL_f() {
-        this.inh = inverse((arguments[0]["inh"]))
-        this.nmod = parseFloat((arguments[0]["nmod"]))
+        this.inh = inverse(arguments[0]["inh"])
+        this.nmod = parseFloat(arguments[0]["nmod"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

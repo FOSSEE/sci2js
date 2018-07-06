@@ -30,9 +30,9 @@ function TIME_DELAY() {
         return options;
     }
     TIME_DELAY.prototype.set = function TIME_DELAY() {
-        this.T = parseFloat((arguments[0]["T"]))
-        this.init = parseFloat((arguments[0]["init"]))
-        this.N = parseFloat((arguments[0]["N"]))
+        this.T = parseFloat(arguments[0]["T"])
+        this.init = parseFloat(arguments[0]["init"])
+        this.N = parseFloat(arguments[0]["N"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

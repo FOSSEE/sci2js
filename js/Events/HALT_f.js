@@ -24,7 +24,7 @@ function HALT_f() {
         return options;
     }
     HALT_f.prototype.set = function HALT_f() {
-        this.n = parseFloat((arguments[0]["n"]))
+        this.n = parseFloat(arguments[0]["n"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

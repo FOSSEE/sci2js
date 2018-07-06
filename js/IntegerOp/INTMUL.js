@@ -30,8 +30,8 @@ function INTMUL() {
         return options;
     }
     INTMUL.prototype.set = function INTMUL() {
-        this.Datatype = parseFloat((arguments[0]["Datatype"]))
-        this.np = parseFloat((arguments[0]["np"]))
+        this.Datatype = arguments[0]["Datatype"]
+        this.np = arguments[0]["np"]
         this.x = arg1;
         graphics = arg1.graphics;
         model = arg1.model;

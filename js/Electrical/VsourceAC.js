@@ -34,8 +34,8 @@ function VsourceAC() {
         return options;
     }
     VsourceAC.prototype.set = function VsourceAC() {
-        this.VA = parseFloat((arguments[0]["VA"]))
-        this.FR = parseFloat((arguments[0]["FR"]))
+        this.VA = parseFloat(arguments[0]["VA"])
+        this.FR = parseFloat(arguments[0]["FR"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

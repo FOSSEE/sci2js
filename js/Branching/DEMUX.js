@@ -25,7 +25,7 @@ function DEMUX() {
         return options;
     }
     DEMUX.prototype.set = function DEMUX() {
-        this.out = parseFloat((arguments[0]["out"]))
+        this.out = parseFloat(arguments[0]["out"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

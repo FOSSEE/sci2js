@@ -24,7 +24,7 @@ function NRMSOM_f() {
         return options;
     }
     NRMSOM_f.prototype.set = function NRMSOM_f() {
-        this.nin = parseFloat((arguments[0]["nin"]))
+        this.nin = parseFloat(arguments[0]["nin"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

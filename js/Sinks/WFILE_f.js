@@ -33,10 +33,10 @@ function WFILE_f() {
         return options;
     }
     WFILE_f.prototype.set = function WFILE_f() {
-        this.in1 = parseFloat((arguments[0]["in1"]))
-        this.fname1 = parseFloat((arguments[0]["fname1"]))
-        this.frmt1 = parseFloat((arguments[0]["frmt1"]))
-        this.N = parseFloat((arguments[0]["N"]))
+        this.in1 = parseFloat(arguments[0]["in1"])
+        this.fname1 = parseFloat(arguments[0]["fname1"])
+        this.frmt1 = parseFloat(arguments[0]["frmt1"])
+        this.N = parseFloat(arguments[0]["N"])
         warnobsolete("WRITEC_f","6.0.0");
         warnMessage = msprintf(_("Feature %s is obsolete."),"WFILE_f");
         warnAdvise = msprintf(_("Please use %s instead."),"WRITEC_f");

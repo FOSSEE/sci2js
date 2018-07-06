@@ -36,10 +36,10 @@ function SWITCH2_m() {
         return options;
     }
     SWITCH2_m.prototype.set = function SWITCH2_m() {
-        this.ot = parseFloat((arguments[0]["ot"]))
-        this.rule = parseFloat((arguments[0]["rule"]))
-        this.thra = parseFloat((arguments[0]["thra"]))
-        this.nzz = parseFloat((arguments[0]["nzz"]))
+        this.ot = arguments[0]["ot"]
+        this.rule = parseFloat(arguments[0]["rule"])
+        this.thra = arguments[0]["thra"]
+        this.nzz = parseFloat(arguments[0]["nzz"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

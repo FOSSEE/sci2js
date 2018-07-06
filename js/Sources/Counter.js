@@ -30,9 +30,9 @@ function Counter() {
         return options;
     }
     Counter.prototype.set = function Counter() {
-        this.minim = parseFloat((arguments[0]["minim"]))
-        this.maxim = parseFloat((arguments[0]["maxim"]))
-        this.rule = parseFloat((arguments[0]["rule"]))
+        this.minim = parseFloat(arguments[0]["minim"])
+        this.maxim = parseFloat(arguments[0]["maxim"])
+        this.rule = parseFloat(arguments[0]["rule"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

@@ -25,7 +25,7 @@ function SIGNUM() {
         return options;
     }
     SIGNUM.prototype.set = function SIGNUM() {
-        this.zcr = parseFloat((arguments[0]["zcr"]))
+        this.zcr = arguments[0]["zcr"]
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

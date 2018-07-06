@@ -36,9 +36,9 @@ function EXTTRI() {
         return options;
     }
     EXTTRI.prototype.set = function EXTTRI() {
-        this.typ = inverse((arguments[0]["typ"]))
-        this.decomptyp = parseFloat((arguments[0]["decomptyp"]))
-        this.lab = parseFloat((arguments[0]["lab"]))
+        this.typ = inverse(arguments[0]["typ"])
+        this.decomptyp = arguments[0]["decomptyp"]
+        this.lab = arguments[0]["lab"]
         this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;

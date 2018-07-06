@@ -26,7 +26,7 @@ function GAIN_f() {
         return options;
     }
     GAIN_f.prototype.set = function GAIN_f() {
-        this.gain = parseFloat((arguments[0]["gain"]))
+        this.gain = parseFloat(arguments[0]["gain"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

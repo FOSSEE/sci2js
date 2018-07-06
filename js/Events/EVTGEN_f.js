@@ -23,7 +23,7 @@ function EVTGEN_f() {
         return options;
     }
     EVTGEN_f.prototype.set = function EVTGEN_f() {
-        this.tt = parseFloat((arguments[0]["tt"]))
+        this.tt = parseFloat(arguments[0]["tt"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

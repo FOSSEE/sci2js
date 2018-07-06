@@ -60,8 +60,8 @@ function Gyrator() {
         return options;
     }
     Gyrator.prototype.set = function Gyrator() {
-        this.G1 = parseFloat((arguments[0]["G1"]))
-        this.G2 = parseFloat((arguments[0]["G2"]))
+        this.G1 = arguments[0]["G1"]
+        this.G2 = arguments[0]["G2"]
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

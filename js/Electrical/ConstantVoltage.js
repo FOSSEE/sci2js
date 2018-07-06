@@ -31,7 +31,7 @@ function ConstantVoltage() {
         return options;
     }
     ConstantVoltage.prototype.set = function ConstantVoltage() {
-        this.V = parseFloat((arguments[0]["V"]))
+        this.V = parseFloat(arguments[0]["V"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

@@ -52,16 +52,16 @@ function scifunc_block_m() {
         return options;
     }
     scifunc_block_m.prototype.set = function scifunc_block_m() {
-        this.i = parseFloat((arguments[0]["i"]))
-        this.o = parseFloat((arguments[0]["o"]))
-        this.ci = parseFloat((arguments[0]["ci"]))
-        this.co = parseFloat((arguments[0]["co"]))
-        this.xx = inverse((arguments[0]["xx"]))
-        this.z = inverse((arguments[0]["z"]))
-        this.rpar = inverse((arguments[0]["rpar"]))
-        this.auto0 = parseFloat((arguments[0]["auto0"]))
-        this.deptime = parseFloat((arguments[0]["deptime"]))
-        this.lab = parseFloat((arguments[0]["lab"]))
+        this.i = arguments[0]["i"]
+        this.o = arguments[0]["o"]
+        this.ci = parseFloat(arguments[0]["ci"])
+        this.co = parseFloat(arguments[0]["co"])
+        this.xx = inverse(arguments[0]["xx"])
+        this.z = inverse(arguments[0]["z"])
+        this.rpar = inverse(arguments[0]["rpar"])
+        this.auto0 = arguments[0]["auto0"]
+        this.deptime = arguments[0]["deptime"]
+        this.lab = arguments[0]["lab"]
         needcompile = 0;
         this.x = arg1;
         model = arg1.model;

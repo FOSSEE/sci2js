@@ -35,10 +35,10 @@ function PuitsP() {
         return options;
     }
     PuitsP.prototype.set = function PuitsP() {
-        this.P0 = parseFloat((arguments[0]["P0"]))
-        this.T0 = parseFloat((arguments[0]["T0"]))
-        this.H0 = parseFloat((arguments[0]["H0"]))
-        this.option_temperature = parseFloat((arguments[0]["option_temperature"]))
+        this.P0 = parseFloat(arguments[0]["P0"])
+        this.T0 = parseFloat(arguments[0]["T0"])
+        this.H0 = parseFloat(arguments[0]["H0"])
+        this.option_temperature = parseFloat(arguments[0]["option_temperature"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

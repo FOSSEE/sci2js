@@ -33,9 +33,9 @@ function DELAYV_f() {
         return options;
     }
     DELAYV_f.prototype.set = function DELAYV_f() {
-        this.nin = parseFloat((arguments[0]["nin"]))
-        this.zz0 = inverse((arguments[0]["zz0"]))
-        this.T = parseFloat((arguments[0]["T"]))
+        this.nin = parseFloat(arguments[0]["nin"])
+        this.zz0 = inverse(arguments[0]["zz0"])
+        this.T = parseFloat(arguments[0]["T"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

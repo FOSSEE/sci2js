@@ -35,8 +35,8 @@ function MATMAGPHI() {
         return options;
     }
     MATMAGPHI.prototype.set = function MATMAGPHI() {
-        this.decomptyp = parseFloat((arguments[0]["decomptyp"]))
-        this.lab = parseFloat((arguments[0]["lab"]))
+        this.decomptyp = arguments[0]["decomptyp"]
+        this.lab = arguments[0]["lab"]
         this.x = arg1;
         model = arg1.model;
         graphics = arg1.graphics;

@@ -27,8 +27,8 @@ function QUANT_f() {
         return options;
     }
     QUANT_f.prototype.set = function QUANT_f() {
-        this.pas = parseFloat((arguments[0]["pas"]))
-        this.meth = parseFloat((arguments[0]["meth"]))
+        this.pas = parseFloat(arguments[0]["pas"])
+        this.meth = parseFloat(arguments[0]["meth"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;

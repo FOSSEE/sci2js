@@ -23,7 +23,7 @@ function CONST_f() {
         return options;
     }
     CONST_f.prototype.set = function CONST_f() {
-        this.C = parseFloat((arguments[0]["C"]))
+        this.C = parseFloat(arguments[0]["C"])
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
