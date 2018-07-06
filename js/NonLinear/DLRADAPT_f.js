@@ -28,12 +28,12 @@ function DLRADAPT_f() {
     }
     DLRADAPT_f.prototype.get = function DLRADAPT_f() {
         var options = {
-            p:["Vector of p mesh points",this.p],
+            p:["Vector of p mesh points",this.p.toString().replace(/,/g," ")],
             rn:["Numerator roots (one line for each mesh)",this.rn],
-            rd:["Denominator roots (one line for each mesh)",this.rd],
-            g:["Vector of gain at mesh points",this.g],
+            rd:["Denominator roots (one line for each mesh)",this.rd.toString().replace(/,/g," ")],
+            g:["Vector of gain at mesh points",this.g.toString().replace(/,/g," ")],
             last_u:["past inputs (Num degree values)",this.last_u],
-            last_y:["past outputs (Den degree values)",this.last_y],
+            last_y:["past outputs (Den degree values)",this.last_y.toString().replace(/,/g," ")],
         }
         return options;
     }

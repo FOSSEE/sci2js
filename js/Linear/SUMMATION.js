@@ -22,7 +22,7 @@ function SUMMATION() {
     SUMMATION.prototype.get = function SUMMATION() {
         var options = {
             Datatype:["Datatype (1=real double  2=complex 3=int32 ...)",this.Datatype],
-            sgn:["Number of inputs or sign vector (of +1, -1)",this.sgn],
+            sgn:["Number of inputs or sign vector (of +1, -1)",this.sgn.toString().replace(/,/g," ")],
             satur:["Do on Overflow(0=Nothing 1=Saturate 2=Error)",this.satur],
         }
         return options;

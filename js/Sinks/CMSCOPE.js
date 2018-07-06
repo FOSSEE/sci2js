@@ -32,14 +32,14 @@ function CMSCOPE() {
     }
     CMSCOPE.prototype.get = function CMSCOPE() {
         var options = {
-            in1:["Input ports sizes",this.in1],
-            clrs:["Drawing colors (>0) or mark (<0)",this.clrs],
+            in1:["Input ports sizes",this.in1.toString().replace(/,/g," ")],
+            clrs:["Drawing colors (>0) or mark (<0)",this.clrs.toString().replace(/,/g," ")],
             win:["Output window number (-1 for automatic)",this.win],
-            wpos:["Output window position",this.wpos],
-            wdim:["Output window sizes",this.wdim],
-            ymin:["Ymin vector",this.ymin],
-            ymax:["Ymax vector",this.ymax],
-            per:["Refresh period",this.per],
+            wpos:["Output window position",this.wpos.toString().replace(/,/g," ")],
+            wdim:["Output window sizes",this.wdim.toString().replace(/,/g," ")],
+            ymin:["Ymin vector",this.ymin.toString().replace(/,/g," ")],
+            ymax:["Ymax vector",this.ymax.toString().replace(/,/g," ")],
+            per:["Refresh period",this.per.toString().replace(/,/g," ")],
             N:["Buffer size",this.N],
             heritance:["Accept herited events 0/1",this.heritance],
             nom:["Name of Scope (label&Id)",this.nom],

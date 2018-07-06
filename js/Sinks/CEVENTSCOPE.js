@@ -25,10 +25,10 @@ function CEVENTSCOPE() {
     CEVENTSCOPE.prototype.get = function CEVENTSCOPE() {
         var options = {
             nclock:["Number of event inputs",this.nclock],
-            clrs:["colors c (>0) or mark (<0)",this.clrs],
+            clrs:["colors c (>0) or mark (<0)",this.clrs.toString().replace(/,/g," ")],
             win:["Output window number (-1 for automatic)",this.win],
-            wpos:["Output window position",this.wpos],
-            wdim:["Output window sizes",this.wdim],
+            wpos:["Output window position",this.wpos.toString().replace(/,/g," ")],
+            wdim:["Output window sizes",this.wdim.toString().replace(/,/g," ")],
             per:["Refresh period",this.per],
         }
         return options;

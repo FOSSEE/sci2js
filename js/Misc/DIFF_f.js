@@ -19,7 +19,7 @@ function DIFF_f() {
     }
     DIFF_f.prototype.get = function DIFF_f() {
         var options = {
-            x0:["Initial state",this.x0],
+            x0:["Initial state",this.x0.toString().replace(/,/g," ")],
             xd0:["Initial Derivative",this.xd0],
         }
         return options;

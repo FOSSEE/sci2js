@@ -34,15 +34,15 @@ function CANIMXY3D() {
     CANIMXY3D.prototype.get = function CANIMXY3D() {
         var options = {
             nbr_curves:["Number of curves",this.nbr_curves],
-            clrs:["color (>0) or mark (<0)",this.clrs],
-            siz:["line or mark size",this.siz],
+            clrs:["color (>0) or mark (<0)",this.clrs.toString().replace(/,/g," ")],
+            siz:["line or mark size",this.siz.toString().replace(/,/g," ")],
             win:["Output window number (-1 for automatic)",this.win],
-            wpos:["Output window position",this.wpos],
-            wdim:["Output window sizes",this.wdim],
-            vec_x:["Xmin and Xmax",this.vec_x],
-            vec_y:["Ymin and Ymax",this.vec_y],
-            vec_z:["Zmin and Zmax",this.vec_z],
-            param3ds:["Alpha and Theta",this.param3ds],
+            wpos:["Output window position",this.wpos.toString().replace(/,/g," ")],
+            wdim:["Output window sizes",this.wdim.toString().replace(/,/g," ")],
+            vec_x:["Xmin and Xmax",this.vec_x.toString().replace(/,/g," ")],
+            vec_y:["Ymin and Ymax",this.vec_y.toString().replace(/,/g," ")],
+            vec_z:["Zmin and Zmax",this.vec_z.toString().replace(/,/g," ")],
+            param3ds:["Alpha and Theta",this.param3ds.toString().replace(/,/g," ")],
             N:["Buffer size",this.N],
         }
         return options;

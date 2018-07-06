@@ -45,11 +45,11 @@ function BOUNCE() {
         var options = {
             rpar1:["Mass",this.rpar1],
             rpar2:["Radius",this.rpar2],
-            walls:["[xmin,xmax,ymin,ymax]",this.walls],
+            walls:["[xmin,xmax,ymin,ymax]",this.walls.toString().replace(/,/g," ")],
             xt:["xpos",this.xt],
-            xd:["xdpos",this.xd],
+            xd:["xdpos",this.xd.toString().replace(/,/g," ")],
             y:["ypos",this.y],
-            yd:["ydpos",this.yd],
+            yd:["ydpos",this.yd.toString().replace(/,/g," ")],
             g:["g (gravity)",this.g],
             C:["C (aerodynamic coeff",this.C],
         }

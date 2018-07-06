@@ -26,10 +26,10 @@ function CFSCOPE() {
     }
     CFSCOPE.prototype.get = function CFSCOPE() {
         var options = {
-            clrs:["Color (>0) or mark (<0) vector (8 entries)",this.clrs],
+            clrs:["Color (>0) or mark (<0) vector (8 entries)",this.clrs.toString().replace(/,/g," ")],
             win:["Output window number (-1 for automatic)",this.win],
-            wpos:["Output window position",this.wpos],
-            wdim:["Output window sizes",this.wdim],
+            wpos:["Output window position",this.wpos.toString().replace(/,/g," ")],
+            wdim:["Output window sizes",this.wdim.toString().replace(/,/g," ")],
             ymin:["Ymin",this.ymin],
             ymax:["Ymax",this.ymax],
             per:["Refresh period",this.per],

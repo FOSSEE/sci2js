@@ -28,7 +28,7 @@ function LOOKUP2D() {
         var options = {
             xx:["Row index input values",this.xx],
             yy:["Column index input values",this.yy],
-            zz:["Table data",this.zz],
+            zz:["Table data",this.zz.toString().replace(/,/g," ")],
             Method:["Lookup method(1..5)",this.Method],
             graf:["Launch graphic window(y/n)?",this.graf],
         }

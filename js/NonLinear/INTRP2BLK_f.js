@@ -22,9 +22,9 @@ function INTRP2BLK_f() {
     }
     INTRP2BLK_f.prototype.get = function INTRP2BLK_f() {
         var options = {
-            a:["X coord.",this.a],
-            b:["Y coord.",this.b],
-            c:["Z values",this.c],
+            a:["X coord.",this.a.toString().replace(/,/g," ")],
+            b:["Y coord.",this.b.toString().replace(/,/g," ")],
+            c:["Z values",this.c.toString().replace(/,/g," ")],
         }
         return options;
     }

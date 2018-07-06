@@ -25,7 +25,7 @@ function LOGIC() {
     }
     LOGIC.prototype.get = function LOGIC() {
         var options = {
-            mat:["Truth Table (matrix of outputs)",this.mat],
+            mat:["Truth Table (matrix of outputs)",this.mat.toString().replace(/,/g," ")],
             herit:["Accepts Inherited Events (0:No, 1:Yes)",this.herit],
         }
         return options;

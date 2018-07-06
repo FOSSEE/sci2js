@@ -5753,7 +5753,7 @@ function LOGIC() {
     }
     LOGIC.prototype.get = function LOGIC() {
         var options = {
-            mat:["Truth Table (matrix of outputs)",this.mat],
+            mat:["Truth Table (matrix of outputs)",this.mat.toString().replace(/,/g," ")],
             herit:["Accepts Inherited Events (0:No, 1:Yes)",this.herit],
         }
         return options;
@@ -6718,7 +6718,7 @@ function DIFF_c() {
     }
     DIFF_c.prototype.get = function DIFF_c() {
         var options = {
-            x0:["Initial state",this.x0],
+            x0:["Initial state",this.x0.toString().replace(/,/g," ")],
             xd0:["Initial Derivative",this.xd0],
         }
         return options;
@@ -8390,7 +8390,7 @@ function SUMMATION() {
     SUMMATION.prototype.get = function SUMMATION() {
         var options = {
             Datatype:["Datatype (1=real double  2=complex 3=int32 ...)",this.Datatype],
-            sgn:["Number of inputs or sign vector (of +1, -1)",this.sgn],
+            sgn:["Number of inputs or sign vector (of +1, -1)",this.sgn.toString().replace(/,/g," ")],
             satur:["Do on Overflow(0=Nothing 1=Saturate 2=Error)",this.satur],
         }
         return options;
@@ -11402,11 +11402,11 @@ function BOUNCE() {
         var options = {
             rpar1:["Mass",this.rpar1],
             rpar2:["Radius",this.rpar2],
-            walls:["[xmin,xmax,ymin,ymax]",this.walls],
+            walls:["[xmin,xmax,ymin,ymax]",this.walls.toString().replace(/,/g," ")],
             xt:["xpos",this.xt],
-            xd:["xdpos",this.xd],
+            xd:["xdpos",this.xd.toString().replace(/,/g," ")],
             y:["ypos",this.y],
-            yd:["ydpos",this.yd],
+            yd:["ydpos",this.yd.toString().replace(/,/g," ")],
             g:["g (gravity)",this.g],
             C:["C (aerodynamic coeff",this.C],
         }
@@ -11528,8 +11528,8 @@ function BOUNCEXY() {
     }
     BOUNCEXY.prototype.get = function BOUNCEXY() {
         var options = {
-            clrs:["colors",this.clrs],
-            siz:["radii",this.siz],
+            clrs:["colors",this.clrs.toString().replace(/,/g," ")],
+            siz:["radii",this.siz.toString().replace(/,/g," ")],
             win:["window number (-1 for automatic)",this.win],
             imode:["animation mode (0,1)",this.imode],
             xmin:["Xmin",this.xmin],
@@ -12303,7 +12303,7 @@ function DIFF_f() {
     }
     DIFF_f.prototype.get = function DIFF_f() {
         var options = {
-            x0:["Initial state",this.x0],
+            x0:["Initial state",this.x0.toString().replace(/,/g," ")],
             xd0:["Initial Derivative",this.xd0],
         }
         return options;
@@ -15052,12 +15052,12 @@ function DLRADAPT_f() {
     }
     DLRADAPT_f.prototype.get = function DLRADAPT_f() {
         var options = {
-            p:["Vector of p mesh points",this.p],
+            p:["Vector of p mesh points",this.p.toString().replace(/,/g," ")],
             rn:["Numerator roots (one line for each mesh)",this.rn],
-            rd:["Denominator roots (one line for each mesh)",this.rd],
-            g:["Vector of gain at mesh points",this.g],
+            rd:["Denominator roots (one line for each mesh)",this.rd.toString().replace(/,/g," ")],
+            g:["Vector of gain at mesh points",this.g.toString().replace(/,/g," ")],
             last_u:["past inputs (Num degree values)",this.last_u],
-            last_y:["past outputs (Den degree values)",this.last_y],
+            last_y:["past outputs (Den degree values)",this.last_y.toString().replace(/,/g," ")],
         }
         return options;
     }
@@ -15258,9 +15258,9 @@ function INTRP2BLK_f() {
     }
     INTRP2BLK_f.prototype.get = function INTRP2BLK_f() {
         var options = {
-            a:["X coord.",this.a],
-            b:["Y coord.",this.b],
-            c:["Z values",this.c],
+            a:["X coord.",this.a.toString().replace(/,/g," ")],
+            b:["Y coord.",this.b.toString().replace(/,/g," ")],
+            c:["Z values",this.c.toString().replace(/,/g," ")],
         }
         return options;
     }
@@ -15317,8 +15317,8 @@ function INTRPLBLK_f() {
     }
     INTRPLBLK_f.prototype.get = function INTRPLBLK_f() {
         var options = {
-            a:["X coord.",this.a],
-            b:["Y coord.",this.b],
+            a:["X coord.",this.a.toString().replace(/,/g," ")],
+            b:["Y coord.",this.b.toString().replace(/,/g," ")],
         }
         return options;
     }
@@ -15491,7 +15491,7 @@ function LOOKUP2D() {
         var options = {
             xx:["Row index input values",this.xx],
             yy:["Column index input values",this.yy],
-            zz:["Table data",this.zz],
+            zz:["Table data",this.zz.toString().replace(/,/g," ")],
             Method:["Lookup method(1..5)",this.Method],
             graf:["Launch graphic window(y/n)?",this.graf],
         }
@@ -16628,8 +16628,8 @@ function CANIMXY() {
             clrs:["color (>0) or mark (<0)",this.clrs],
             siz:["line or mark size",this.siz],
             win:["Output window number (-1 for automatic)",this.win],
-            wpos:["Output window position",this.wpos],
-            wdim:["Output window sizes",this.wdim],
+            wpos:["Output window position",this.wpos.toString().replace(/,/g," ")],
+            wdim:["Output window sizes",this.wdim.toString().replace(/,/g," ")],
             xmin:["Xmin",this.xmin],
             xmax:["Xmax",this.xmax],
             ymin:["Ymin",this.ymin],
@@ -16753,15 +16753,15 @@ function CANIMXY3D() {
     CANIMXY3D.prototype.get = function CANIMXY3D() {
         var options = {
             nbr_curves:["Number of curves",this.nbr_curves],
-            clrs:["color (>0) or mark (<0)",this.clrs],
-            siz:["line or mark size",this.siz],
+            clrs:["color (>0) or mark (<0)",this.clrs.toString().replace(/,/g," ")],
+            siz:["line or mark size",this.siz.toString().replace(/,/g," ")],
             win:["Output window number (-1 for automatic)",this.win],
-            wpos:["Output window position",this.wpos],
-            wdim:["Output window sizes",this.wdim],
-            vec_x:["Xmin and Xmax",this.vec_x],
-            vec_y:["Ymin and Ymax",this.vec_y],
-            vec_z:["Zmin and Zmax",this.vec_z],
-            param3ds:["Alpha and Theta",this.param3ds],
+            wpos:["Output window position",this.wpos.toString().replace(/,/g," ")],
+            wdim:["Output window sizes",this.wdim.toString().replace(/,/g," ")],
+            vec_x:["Xmin and Xmax",this.vec_x.toString().replace(/,/g," ")],
+            vec_y:["Ymin and Ymax",this.vec_y.toString().replace(/,/g," ")],
+            vec_z:["Zmin and Zmax",this.vec_z.toString().replace(/,/g," ")],
+            param3ds:["Alpha and Theta",this.param3ds.toString().replace(/,/g," ")],
             N:["Buffer size",this.N],
         }
         return options;
@@ -16889,10 +16889,10 @@ function CEVENTSCOPE() {
     CEVENTSCOPE.prototype.get = function CEVENTSCOPE() {
         var options = {
             nclock:["Number of event inputs",this.nclock],
-            clrs:["colors c (>0) or mark (<0)",this.clrs],
+            clrs:["colors c (>0) or mark (<0)",this.clrs.toString().replace(/,/g," ")],
             win:["Output window number (-1 for automatic)",this.win],
-            wpos:["Output window position",this.wpos],
-            wdim:["Output window sizes",this.wdim],
+            wpos:["Output window position",this.wpos.toString().replace(/,/g," ")],
+            wdim:["Output window sizes",this.wdim.toString().replace(/,/g," ")],
             per:["Refresh period",this.per],
         }
         return options;
@@ -16994,10 +16994,10 @@ function CFSCOPE() {
     }
     CFSCOPE.prototype.get = function CFSCOPE() {
         var options = {
-            clrs:["Color (>0) or mark (<0) vector (8 entries)",this.clrs],
+            clrs:["Color (>0) or mark (<0) vector (8 entries)",this.clrs.toString().replace(/,/g," ")],
             win:["Output window number (-1 for automatic)",this.win],
-            wpos:["Output window position",this.wpos],
-            wdim:["Output window sizes",this.wdim],
+            wpos:["Output window position",this.wpos.toString().replace(/,/g," ")],
+            wdim:["Output window sizes",this.wdim.toString().replace(/,/g," ")],
             ymin:["Ymin",this.ymin],
             ymax:["Ymax",this.ymax],
             per:["Refresh period",this.per],
@@ -17435,14 +17435,14 @@ function CMSCOPE() {
     }
     CMSCOPE.prototype.get = function CMSCOPE() {
         var options = {
-            in1:["Input ports sizes",this.in1],
-            clrs:["Drawing colors (>0) or mark (<0)",this.clrs],
+            in1:["Input ports sizes",this.in1.toString().replace(/,/g," ")],
+            clrs:["Drawing colors (>0) or mark (<0)",this.clrs.toString().replace(/,/g," ")],
             win:["Output window number (-1 for automatic)",this.win],
-            wpos:["Output window position",this.wpos],
-            wdim:["Output window sizes",this.wdim],
-            ymin:["Ymin vector",this.ymin],
-            ymax:["Ymax vector",this.ymax],
-            per:["Refresh period",this.per],
+            wpos:["Output window position",this.wpos.toString().replace(/,/g," ")],
+            wdim:["Output window sizes",this.wdim.toString().replace(/,/g," ")],
+            ymin:["Ymin vector",this.ymin.toString().replace(/,/g," ")],
+            ymax:["Ymax vector",this.ymax.toString().replace(/,/g," ")],
+            per:["Refresh period",this.per.toString().replace(/,/g," ")],
             N:["Buffer size",this.N],
             heritance:["Accept herited events 0/1",this.heritance],
             nom:["Name of Scope (label&Id)",this.nom],
@@ -17585,10 +17585,10 @@ function CSCOPE() {
     }
     CSCOPE.prototype.get = function CSCOPE() {
         var options = {
-            clrs:["Color (>0) or mark (<0) vector (8 entries)",this.clrs],
+            clrs:["Color (>0) or mark (<0) vector (8 entries)",this.clrs.toString().replace(/,/g," ")],
             win:["Output window number (-1 for automatic)",this.win],
-            wpos:["Output window position",this.wpos],
-            wdim:["Output window sizes",this.wdim],
+            wpos:["Output window position",this.wpos.toString().replace(/,/g," ")],
+            wdim:["Output window sizes",this.wdim.toString().replace(/,/g," ")],
             ymin:["Ymin",this.ymin],
             ymax:["Ymax",this.ymax],
             per:["Refresh period",this.per],
@@ -17714,8 +17714,8 @@ function CSCOPXY() {
             clrs:["color (>0) or mark (<0)",this.clrs],
             siz:["line or mark size",this.siz],
             win:["Output window number (-1 for automatic)",this.win],
-            wpos:["Output window position",this.wpos],
-            wdim:["Output window sizes",this.wdim],
+            wpos:["Output window position",this.wpos.toString().replace(/,/g," ")],
+            wdim:["Output window sizes",this.wdim.toString().replace(/,/g," ")],
             xmin:["Xmin",this.xmin],
             xmax:["Xmax",this.xmax],
             ymin:["Ymin",this.ymin],
@@ -17838,15 +17838,15 @@ function CSCOPXY3D() {
     CSCOPXY3D.prototype.get = function CSCOPXY3D() {
         var options = {
             nbr_curves:["Number of curves",this.nbr_curves],
-            clrs:["color (>0) or mark (<0)",this.clrs],
-            siz:["Line or Mark Size",this.siz],
+            clrs:["color (>0) or mark (<0)",this.clrs.toString().replace(/,/g," ")],
+            siz:["Line or Mark Size",this.siz.toString().replace(/,/g," ")],
             win:["Output window number (-1 for automatic)",this.win],
-            wpos:["Output window position",this.wpos],
-            wdim:["Output window sizes",this.wdim],
-            vec_x:["Xmin and Xmax",this.vec_x],
-            vec_y:["Ymin and Ymax",this.vec_y],
-            vec_z:["Zmin and Zmax",this.vec_z],
-            param3ds:["Alpha and Theta",this.param3ds],
+            wpos:["Output window position",this.wpos.toString().replace(/,/g," ")],
+            wdim:["Output window sizes",this.wdim.toString().replace(/,/g," ")],
+            vec_x:["Xmin and Xmax",this.vec_x.toString().replace(/,/g," ")],
+            vec_y:["Ymin and Ymax",this.vec_y.toString().replace(/,/g," ")],
+            vec_z:["Zmin and Zmax",this.vec_z.toString().replace(/,/g," ")],
+            param3ds:["Alpha and Theta",this.param3ds.toString().replace(/,/g," ")],
             N:["Buffer size",this.N],
         }
         return options;

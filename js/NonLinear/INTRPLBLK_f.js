@@ -20,8 +20,8 @@ function INTRPLBLK_f() {
     }
     INTRPLBLK_f.prototype.get = function INTRPLBLK_f() {
         var options = {
-            a:["X coord.",this.a],
-            b:["Y coord.",this.b],
+            a:["X coord.",this.a.toString().replace(/,/g," ")],
+            b:["Y coord.",this.b.toString().replace(/,/g," ")],
         }
         return options;
     }

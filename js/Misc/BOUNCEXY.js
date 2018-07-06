@@ -40,8 +40,8 @@ function BOUNCEXY() {
     }
     BOUNCEXY.prototype.get = function BOUNCEXY() {
         var options = {
-            clrs:["colors",this.clrs],
-            siz:["radii",this.siz],
+            clrs:["colors",this.clrs.toString().replace(/,/g," ")],
+            siz:["radii",this.siz.toString().replace(/,/g," ")],
             win:["window number (-1 for automatic)",this.win],
             imode:["animation mode (0,1)",this.imode],
             xmin:["Xmin",this.xmin],

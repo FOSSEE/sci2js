@@ -506,7 +506,11 @@ def p_getvalueassignment_getvalue_arguments(p):
                 parsecall = 'arguments[%d][\"%s\"]' % (0, basevar)
             SET_BLOCK += "%*s%s = %s\n" % (2 * INDENT_SIZE, ' ', var, parsecall)
             if idx < len(LABELS):
-                OPTIONS_BLOCK += '%*s%s:[%s,%s],\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', basevar, LABELS[idx], var)
+                if vartype == MATRIX_TYPE:
+                    showvar = var + '.toString().replace(/,/g," ")'
+                else:
+                    showvar = var
+                OPTIONS_BLOCK += '%*s%s:[%s,%s],\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', basevar, LABELS[idx], showvar)
                 idx += 1
 
 def p_getvaluearguments_arg1_arg2_arg3_arg4(p):
