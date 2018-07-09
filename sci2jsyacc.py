@@ -489,7 +489,8 @@ def p_elsestatement_else(p):
 # define assignment
 
 def p_lterm_assignment_expression(p):
-    'assignment : lterm ASSIGNMENT expression'
+    '''assignment : lterm ASSIGNMENT expression
+                  | lterm ASSIGNMENT listcall'''
     p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3][0])
     add_var_vartype(p[1], p[3][1])
 
@@ -522,12 +523,17 @@ def p_assignment_model_modelvar_assignment_modelexpression(p):
         p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, p[5][0])
     add_var_vartype(var, p[5][1])
 
-def p_modelexpression_list(p):
+def p_modelexpression_list_modelexpressionlist(p):
     'modelexpression : LIST OPENBRACKET modelexpressionlist CLOSEBRACKET'
     p[0] = ('%s(%s)' % (p[1], p[3]), LIST_TYPE)
 
+def p_modelexpression_list(p):
+    'modelexpression : LIST OPENBRACKET CLOSEBRACKET'
+    p[0] = ('%s()' % (p[1]), LIST_TYPE)
+
 def p_modelexpressionlist_expression(p):
-    'modelexpressionlist : expression'
+    '''modelexpressionlist : expression
+                           | listcall'''
     vartype = MODEL_MAP.get(p[1][1], 'ScilabDouble')
     if vartype != '':
         p[0] = 'new %s([%s])' % (vartype, p[1][0])
@@ -535,7 +541,8 @@ def p_modelexpressionlist_expression(p):
         p[0] = '%s' % (p[1][0])
 
 def p_modelexpressionlist_modelexpression_list_expression(p):
-    'modelexpressionlist : modelexpressionlist COMMA expression'
+    '''modelexpressionlist : modelexpressionlist COMMA expression
+                           | modelexpressionlist COMMA listcall'''
     vartype = MODEL_MAP.get(p[3][1], 'ScilabDouble')
     if vartype != '':
         p[0] = '%s, new %s([%s])' % (p[1], vartype, p[3][0])
@@ -699,28 +706,35 @@ def p_termarraylist_expression_colon_expression(p):
 # define list
 
 def p_list_list_expression(p):
-    'list : list COMMA expression'
+    '''list : list COMMA expression
+            | list COMMA listcall'''
     p[0] = '%s,%s' % (p[1], p[3][0])
 
 def p_list_list_var_expression(p):
     '''list : list COMMA VAR ASSIGNMENT expression
-            | list COMMA MODEL ASSIGNMENT expression'''
+            | list COMMA MODEL ASSIGNMENT expression
+            | list COMMA VAR ASSIGNMENT listcall
+            | list COMMA MODEL ASSIGNMENT listcall'''
     p[0] = '%s,%s=%s' % (p[1], p[3], p[5][0])
 
 def p_list_list_in_expression(p):
-    'list : list COMMA IN ASSIGNMENT expression'
+    '''list : list COMMA IN ASSIGNMENT expression
+            | list COMMA IN ASSIGNMENT listcall'''
     p[0] = '%s,%s1=%s' % (p[1], p[3], p[5][0])
 
 def p_list_expression(p):
-    'list : expression'
+    '''list : expression
+            | listcall'''
     p[0] = '%s' % (p[1][0])
 
 def p_list_var_expression(p):
-    'list : VAR ASSIGNMENT expression'
+    '''list : VAR ASSIGNMENT expression
+            | VAR ASSIGNMENT listcall'''
     p[0] = '%s=%s' % (p[1], p[3][0])
 
 def p_list_in_expression(p):
-    'list : IN ASSIGNMENT expression'
+    '''list : IN ASSIGNMENT expression
+            | IN ASSIGNMENT listcall'''
     p[0] = '%s1=%s' % (p[1], p[3][0])
 
 def p_getvaluelist_getvaluelist_expression(p):
@@ -791,7 +805,8 @@ def p_expression_expression_addition_expression(p):
     p[0] = ('%s%s%s' % (p[1][0], p[2], p[3][0]), vartype)
 
 def p_expression_expression_comparison_expression(p):
-    'expression : expression COMPARISON expression'
+    '''expression : expression COMPARISON expression
+                  | expression COMPARISON listcall'''
     operator = p[2]
     if operator == '<>' or operator == '~=':
         operator = '!='
@@ -1025,8 +1040,8 @@ def p_term_function_parameters(p):
     p[0] = ('%s(%s)' % (p[1][0], p[3]), p[1][1])
 
 # list(2,3)
-def p_term_list_parameters(p):
-    'term : LIST OPENBRACKET list CLOSEBRACKET'
+def p_listcall_list_parameters(p):
+    'listcall : LIST OPENBRACKET list CLOSEBRACKET'
     p[0] = ('%s(%s)' % (p[1], p[3]), LIST_TYPE)
 
 # gettext("abc")
@@ -1040,8 +1055,8 @@ def p_term_function(p):
     p[0] = ('%s()' % (p[1][0]), p[1][1])
 
 # list()
-def p_term_list(p):
-    'term : LIST OPENBRACKET CLOSEBRACKET'
+def p_listcall_list(p):
+    'listcall : LIST OPENBRACKET CLOSEBRACKET'
     p[0] = ('%s()' % (p[1]), LIST_TYPE)
 
 # $
