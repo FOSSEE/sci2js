@@ -15,7 +15,7 @@ import sys
 import pickle
 import ply.yacc as yacc
 
-from sci2jslex import tokens, JOBTYPES, BOOLEAN_TYPE, DOUBLE_TYPE, MATRIX_TYPE, NULL_TYPE, OBJECT_TYPE, STRING_TYPE, VECTOR_TYPE
+from sci2jslex import tokens, JOBTYPES, BOOLEAN_TYPE, DOUBLE_TYPE, LIST_TYPE, MATRIX_TYPE, NULL_TYPE, OBJECT_TYPE, STRING_TYPE, VECTOR_TYPE
 
 precedence = (
     ('left', 'COLON'),
@@ -32,6 +32,7 @@ precedence = (
 PARSE_MAP = {
     BOOLEAN_TYPE: 'parseBoolean',
     DOUBLE_TYPE: 'parseFloat',
+    LIST_TYPE: '',
     MATRIX_TYPE: 'inverse',
     NULL_TYPE: 'parseFloat',
     OBJECT_TYPE: '',
@@ -42,6 +43,7 @@ PARSE_MAP = {
 MODEL_MAP = {
     BOOLEAN_TYPE: 'ScilabBoolean',
     DOUBLE_TYPE: 'ScilabDouble',
+    LIST_TYPE: '',
     MATRIX_TYPE: '',
     NULL_TYPE: '',
     OBJECT_TYPE: '',
@@ -510,8 +512,8 @@ def p_modelvar_modelvar_expression(p):
     'modelvar : modelvar OPENBRACKET expression CLOSEBRACKET'
     p[0] = '%s[%s]' % (p[1], p[3])
 
-def p_model_var_assignment_expression(p):
-    'assignment : MODEL DOT modelvar ASSIGNMENT expression'
+def p_assignment_model_modelvar_assignment_modelexpression(p):
+    'assignment : MODEL DOT modelvar ASSIGNMENT modelexpression'
     var = 'this.%s.%s' % (p[1], p[3])
     vartype = MODEL_MAP.get(p[5][1], 'ScilabDouble')
     if vartype != '':
@@ -519,6 +521,10 @@ def p_model_var_assignment_expression(p):
     else:
         p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, p[5][0])
     add_var_vartype(var, p[5][1])
+
+def p_modelexpression_expression(p):
+    'modelexpression : expression'
+    p[0] = p[1]
 
 def p_model_in_assignment_expression(p):
     'assignment : MODEL DOT IN ASSIGNMENT expression'
@@ -1001,7 +1007,7 @@ def p_term_function_parameters(p):
 # list(2,3)
 def p_term_list_parameters(p):
     'term : LIST OPENBRACKET list CLOSEBRACKET'
-    p[0] = ('%s(%s)' % (p[1], p[3][0]), VECTOR_TYPE)
+    p[0] = ('%s(%s)' % (p[1], p[3][0]), LIST_TYPE)
 
 # gettext("abc")
 def p_term_gettext_parameter(p):
@@ -1016,7 +1022,7 @@ def p_term_function(p):
 # list()
 def p_term_list(p):
     'term : LIST OPENBRACKET CLOSEBRACKET'
-    p[0] = ('%s()' % (p[1]), VECTOR_TYPE)
+    p[0] = ('%s()' % (p[1]), LIST_TYPE)
 
 # $
 def p_term_lastindex(p):

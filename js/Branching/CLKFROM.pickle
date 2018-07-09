@@ -61,11 +61,12 @@ p19
 g12
 sS'model.opar'
 p20
-g12
-sS'model.firing'
+S'list'
 p21
+sS'model.firing'
+p22
 g2
 sS'x.graphics.id'
-p22
+p23
 g4
 s.

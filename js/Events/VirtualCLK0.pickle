@@ -45,8 +45,9 @@ p14
 g5
 sS'model.opar'
 p15
-g5
-sS'model.firing'
+S'list'
 p16
+sS'model.firing'
+p17
 g8
 s.

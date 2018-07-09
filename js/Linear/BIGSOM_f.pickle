@@ -67,11 +67,12 @@ p22
 g9
 sS'model.sim'
 p23
-g17
-sS'typ'
+S'list'
 p24
+sS'typ'
+p25
 g17
 sS'model.out'
-p25
+p26
 g4
 s.

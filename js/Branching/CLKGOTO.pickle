@@ -74,11 +74,12 @@ p24
 g14
 sS'model.opar'
 p25
-g14
-sS'model.firing'
+S'list'
 p26
+sS'model.firing'
+p27
 g2
 sS'model.blocktype'
-p27
+p28
 g4
 s.

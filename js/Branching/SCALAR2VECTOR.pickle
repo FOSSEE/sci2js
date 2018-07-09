@@ -64,11 +64,12 @@ p21
 g9
 sS'model.sim'
 p22
-g14
-sS'typ'
+S'list'
 p23
+sS'typ'
+p24
 g14
 sS'nout'
-p24
+p25
 g2
 s.

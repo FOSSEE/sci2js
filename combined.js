@@ -13066,7 +13066,7 @@ function MBLOCK() {
         this.Tparam = arguments[0]["Tparam"]
         this.pprop = inverse(arguments[0]["pprop"])
         this.Tfunam = arguments[0]["Tfunam"]
-        this.lab_1 = inverse(arguments[0]["lab_1"])
+        this.lab_1 = arguments[0]["lab_1"]
         this.x = arg1;
         this.model = arg1.model;
         graphics = arg1.graphics;
