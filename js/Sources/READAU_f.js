@@ -12,17 +12,17 @@ function READAU_f() {
         outmask = 1;
         ievt = 0;
         nout = size(outmask,"*");
-        model = scicos_model();
-        model.sim = list("readau",2);
-        model.out = nout;
-        model.evtin = 1;
-        model.dstate = [[1],[1],[lunit],[zeros(this.N*M,1)]];
-        model.ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[M],[this.swap],[offset],[this._str2code[fname-1]],[tmask],[outmask]];
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("readau",2);
+        this.model.out = new ScilabDouble(nout);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.dstate = [[1],[1],[lunit],[zeros(this.N*M,1)]];
+        this.model.ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[M],[this.swap],[offset],[this._str2code[fname-1]],[tmask],[outmask]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         exprs = [[fname],[string(this.N)],[string(this.swap)]];
         gr_i = [];
-        this.x = standard_define([5,2],model,exprs,gr_i);
+        this.x = standard_define([5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     READAU_f.prototype.details = function READAU_f() {
@@ -43,10 +43,10 @@ function READAU_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
-        out = model.out;
-        dstate = model.dstate;
-        ipar = model.ipar;
+        this.model = arg1.model;
+        out = this.model.out;
+        dstate = this.model.dstate;
+        ipar = this.model.ipar;
         imask = 9+ipar[1-1];
         tmask = ipar[imask-1];
         lunit = dstate[3-1];
@@ -74,18 +74,18 @@ function READAU_f() {
             } else if (this.swap!=0&&this.swap!=1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Swap Mode",this.swap),msprintf("Must be in the interval %s.","[0, 1]"));
             } else {
-                [model,graphics,ok] = check_io(model,graphics,[],1,1,[]);
+                [model,graphics,ok] = check_io(this.model,graphics,[],1,1,[]);
                 frmt1 = part(frmt1,1,3);
                 if (ok) {
                     ipar = [[length(this.fname1)],[this._str2code[frmt1-1]],[0],[this.N],[M],[this.swap],[offset,this._str2code[this.fname1-1]],[tmask1,outmask.slice()]];
                     if (prod(size(dstate))!=(this.N*M)+3) {
                         dstate = [[-1],[-1],[lunit],[zeros(this.N*M,1)]];
                     }
-                    model.dstate = dstate;
-                    model.ipar = ipar;
+                    this.model.dstate = dstate;
+                    this.model.ipar = ipar;
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

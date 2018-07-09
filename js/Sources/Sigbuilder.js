@@ -10,9 +10,9 @@ function Sigbuilder() {
         scs_m_1.objs[6-1] = scicos_link(xx=[[378.20616],[398.20616]],yy=[[626.18517],[626.18517]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[5,1,1]);
         scs_m_1.objs[7-1] = scicos_block(gui="CLKOUTV_f",graphics=scicos_graphics(orig=[339.49528,505.10704],sz=[20,30],flip=true,theta=0,exprs="1",pin=[],pout=[],pein=8,peout=[],gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="output",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=1,evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
         scs_m_1.objs[8-1] = scicos_link(xx=[[349.49528],[349.49528]],yy=[[565.10704],[535.10704]],id="drawlink",thick=[0,0],ct=[5,-1],from=[3,1,0],to=[7,1,1]);
-        model = scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=1,evtin=[],evtout=1,state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list());
+        this.model = scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=1,evtin=[],evtout=1,state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list());
         gr_i = [];
-        this.x = standard_define([3,2],model,[],gr_i);
+        this.x = standard_define([3,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
     Sigbuilder.prototype.details = function Sigbuilder() {
@@ -46,40 +46,40 @@ function Sigbuilder() {
             xx = arg1[spath-1];
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (diffobjs(this.xxn,xx)) {
-                model = xx.model;
+                this.model = xx.model;
                 model_n = this.xxn.model;
                 if (!is_modelica_block(xx)) {
-                    modified = or(model.sim!=model_n.sim)||!isequal(model.state,model_n.state)||!isequal(model.dstate,model_n.dstate)||!isequal(model.odstate,model_n.odstate)||!isequal(model.rpar,model_n.rpar)||!isequal(model.ipar,model_n.ipar)||!isequal(model.opar,model_n.opar)||!isequal(model.label,model_n.label);
-                    if (or(model.in1!=model_n.in1)||or(model.out!=model_n.out)||or(model.in2!=model_n.in2)||or(model.out2!=model_n.out2)||or(model.outtyp!=model_n.outtyp)||or(model.intyp!=model_n.intyp)) {
+                    modified = or(this.model.sim!=model_n.sim)||!isequal(this.model.state,model_n.state)||!isequal(this.model.dstate,model_n.dstate)||!isequal(this.model.odstate,model_n.odstate)||!isequal(this.model.rpar,model_n.rpar)||!isequal(this.model.ipar,model_n.ipar)||!isequal(this.model.opar,model_n.opar)||!isequal(this.model.label,model_n.label);
+                    if (or(this.model.in1!=model_n.in1)||or(this.model.out!=model_n.out)||or(this.model.in2!=model_n.in2)||or(this.model.out2!=model_n.out2)||or(this.model.outtyp!=model_n.outtyp)||or(this.model.intyp!=model_n.intyp)) {
                         needcompile = 1;
                     }
-                    if (or(model.firing!=model_n.firing)) {
+                    if (or(this.model.firing!=model_n.firing)) {
                         needcompile = 2;
                     }
-                    if ((size(model.in1,"*")!=size(model_n.in1,"*"))||(size(model.out,"*")!=size(model_n.out,"*"))) {
+                    if ((size(this.model.in1,"*")!=size(model_n.in1,"*"))||(size(this.model.out,"*")!=size(model_n.out,"*"))) {
                         needcompile = 4;
                     }
-                    if (model.sim=="input"||model.sim=="output") {
-                        if (model.ipar!=model_n.ipar) {
+                    if (this.model.sim=="input"||this.model.sim=="output") {
+                        if (this.model.ipar!=model_n.ipar) {
                             needcompile = 4;
                         }
                     }
-                    if (or(model.blocktype!=model_n.blocktype)||or(model.dep_ut!=model_n.dep_ut)) {
+                    if (or(this.model.blocktype!=model_n.blocktype)||or(this.model.dep_ut!=model_n.dep_ut)) {
                         needcompile = 4;
                     }
-                    if ((model.nzcross!=model_n.nzcross)||(model.nmode!=model_n.nmode)) {
+                    if ((this.model.nzcross!=model_n.nzcross)||(this.model.nmode!=model_n.nmode)) {
                         needcompile = 4;
                     }
                     if (prod(size(model_n.sim))>1) {
                         if (model_n.sim[2-1]>1000) {
-                            if (model.sim[1-1]!=model_n.sim[1-1]) {
+                            if (this.model.sim[1-1]!=model_n.sim[1-1]) {
                                 needcompile = 4;
                             }
                         }
                     }
                 } else {
-                    modified = or(model_n!=model);
-                    eq = model.equations;
+                    modified = or(model_n!=this.model);
+                    eq = this.model.equations;
                     eqn = model_n.equations;
                     if (or(eq.model!=eqn.model)||or(eq.inputs!=eqn.inputs)||or(eq.outputs!=eqn.outputs)) {
                         needcompile = 4;

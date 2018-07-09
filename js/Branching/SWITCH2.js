@@ -5,19 +5,19 @@ function SWITCH2() {
         ipar = [0];
         this.nzz = 1;
         rpar = 0;
-        model = scicos_model();
-        model.sim = list("switch2",4);
-        model.in1 = in1;
-        model.out = -1;
-        model.ipar = ipar;
-        model.rpar = rpar;
-        model.nzcross = this.nzz;
-        model.nmode = 1;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("switch2",4);
+        this.model.in1 = in1;
+        this.model.out = new ScilabDouble(-1);
+        this.model.ipar = ipar;
+        this.model.rpar = new ScilabDouble(rpar);
+        this.model.nzcross = new ScilabDouble(this.nzz);
+        this.model.nmode = new ScilabDouble(1);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[string(ipar)],[string(rpar)],[string(this.nzz)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     SWITCH2.prototype.details = function SWITCH2() {
@@ -38,7 +38,7 @@ function SWITCH2() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.rule,this.thra,this.nzz,exprs] = scicos_getvalue("Set parameters",["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -52,17 +52,17 @@ function SWITCH2() {
                 this.rule = 2;
             }
             graphics.exprs = exprs;
-            model.ipar = this.rule;
-            model.rpar = this.thra;
+            this.model.ipar = new ScilabDouble(this.rule);
+            this.model.rpar = new ScilabDouble(this.thra);
             if (this.nzz!=0) {
-                model.nmode = 1;
-                model.nzcross = 1;
+                this.model.nmode = new ScilabDouble(1);
+                this.model.nzcross = new ScilabDouble(1);
             } else {
-                model.nmode = 0;
-                model.nzcross = 0;
+                this.model.nmode = new ScilabDouble(0);
+                this.model.nzcross = new ScilabDouble(0);
             }
             this.x.graphics = graphics;
-            this.x.model = model;
+            this.x.model = this.model;
             break;
         }
         return new BasicBlock(this.x);

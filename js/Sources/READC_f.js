@@ -14,19 +14,19 @@ function READC_f() {
         ievt = 0;
         nout = size(this.outmask,"*");
         ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[fname-1]],[tmask],[this.outmask]];
-        model = scicos_model();
-        model.sim = list("readc",2);
-        model.out = nout;
-        model.evtin = 1;
-        model.evtout = [];
-        model.dstate = [[1],[1],[lunit],[zeros(this.N*this.M,1)]];
-        model.ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[fname-1]],[tmask],[this.outmask]];
-        model.blocktype = "d";
-        model.firing = -1;
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("readc",2);
+        this.model.out = new ScilabDouble(nout);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.evtout = [];
+        this.model.dstate = [[1],[1],[lunit],[zeros(this.N*this.M,1)]];
+        this.model.ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[fname-1]],[tmask],[this.outmask]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.firing = new ScilabDouble(-1);
+        this.model.dep_ut = [false,false];
         exprs = [["[]"],[sci2exp(this.outmask)],[fname],[frmt],[string(this.M)],[string(this.N)],[string(this.offset)],[string(this.swap)]];
         gr_i = [];
-        this.x = standard_define([4,2],model,exprs,gr_i);
+        this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     READC_f.prototype.details = function READC_f() {
@@ -55,12 +55,12 @@ function READC_f() {
         this.offset = parseFloat(arguments[0]["offset"])
         this.swap = parseFloat(arguments[0]["swap"])
         this.x = arg1;
-        model = this.x.model;
+        this.model = this.x.model;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        out = model.out;
-        dstate = model.dstate;
-        ipar = model.ipar;
+        out = this.model.out;
+        dstate = this.model.dstate;
+        ipar = this.model.ipar;
         imask = 9+ipar[1-1];
         tmask = ipar[imask-1];
         lunit = dstate[3-1];
@@ -113,23 +113,23 @@ function READC_f() {
                     outpt = 1;
                 }
                 out = size(this.outmask,"*");
-                [model,graphics,ok] = check_io(model,graphics,[],out,1,outpt);
+                [model,graphics,ok] = check_io(this.model,graphics,[],out,1,outpt);
                 this.frmt1 = part(this.frmt1,1,3);
                 if (ok) {
                     if (ievt==0) {
-                        model.firing = -1;
+                        this.model.firing = new ScilabDouble(-1);
                     } else {
-                        model.firing = 0;
+                        this.model.firing = new ScilabDouble(0);
                     }
                     ipar = [[length(this.fname1)],[this._str2code[this.frmt1-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[this.fname1-1]],[this.tmask1],[this.outmask.slice()]];
                     if (prod(size(dstate))!=(this.N*this.M)+3) {
                         dstate = [[-1],[-1],[lunit],[zeros(this.N*this.M,1)]];
                     }
-                    model.dstate = dstate;
-                    model.ipar = ipar;
+                    this.model.dstate = dstate;
+                    this.model.ipar = ipar;
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

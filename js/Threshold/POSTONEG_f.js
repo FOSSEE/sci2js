@@ -2,17 +2,17 @@
 function POSTONEG_f() {
     POSTONEG_f.prototype.define = function POSTONEG_f() {
         rpar = [[-1],[-1],[-1],[0]];
-        model = scicos_model();
-        model.sim = list("zcross",1);
-        model.nzcross = 1;
-        model.in1 = 1;
-        model.evtout = 1;
-        model.rpar = [[-1],[-1],[-1],[0]];
-        model.blocktype = "z";
-        model.dep_ut = [true,false];
-        model.firing = [-1];
+        this.model = scicos_model();
+        this.model.sim = list("zcross",1);
+        this.model.nzcross = new ScilabDouble(1);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.evtout = new ScilabDouble(1);
+        this.model.rpar = [[-1],[-1],[-1],[0]];
+        this.model.blocktype = new ScilabString("z");
+        this.model.dep_ut = [true,false];
+        this.model.firing = [-1];
         gr_i = [];
-        this.x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
     POSTONEG_f.prototype.details = function POSTONEG_f() {

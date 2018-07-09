@@ -10,7 +10,7 @@ aS'ci'
 p4
 aS'rpar'
 p5
-aS'xx'
+aS'auto0'
 p6
 aS'out'
 p7
@@ -28,7 +28,7 @@ aS'z'
 p13
 aS'CC4'
 p14
-aS'auto0'
+aS'xx'
 p15
 aS'nzcr'
 p16
@@ -44,10 +44,12 @@ aS'ipar'
 p21
 aS'x'
 p22
-aS'ot'
+aS'model'
 p23
-atp24
-Rp25
+aS'ot'
+p24
+atp25
+Rp26
 .(dp0
 S'model.odstate'
 p1

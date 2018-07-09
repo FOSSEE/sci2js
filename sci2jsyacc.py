@@ -39,6 +39,16 @@ PARSE_MAP = {
     VECTOR_TYPE: 'inverse',
 }
 
+MODEL_MAP = {
+    BOOLEAN_TYPE: 'ScilabBoolean',
+    DOUBLE_TYPE: 'ScilabDouble',
+    MATRIX_TYPE: '',
+    NULL_TYPE: '',
+    OBJECT_TYPE: '',
+    STRING_TYPE: 'ScilabString',
+    VECTOR_TYPE: '',
+}
+
 start = 'functionblocks'
 
 JOB_BLOCKS = {}
@@ -476,10 +486,49 @@ def p_elsestatement_else(p):
 
 # define assignment
 
-def p_assignment_expression(p):
+def p_lterm_assignment_expression(p):
     'assignment : lterm ASSIGNMENT expression'
     p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3][0])
     add_var_vartype(p[1], p[3][1])
+
+def p_model_assignment_expression(p):
+    'assignment : MODEL ASSIGNMENT expression'
+    p[0] = '%*sthis.%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3][0])
+    var = p[1]
+    add_global_var(var)
+    add_var_vartype(var, p[3][1])
+
+def p_modelvar_modelvar_var(p):
+    'modelvar : modelvar DOT VAR'
+    p[0] = '%s.%s' % (p[1], p[3])
+
+def p_modelvar_var(p):
+    'modelvar : VAR'
+    p[0] = '%s' % (p[1])
+
+def p_modelvar_modelvar_expression(p):
+    'modelvar : modelvar OPENBRACKET expression CLOSEBRACKET'
+    p[0] = '%s[%s]' % (p[1], p[3])
+
+def p_model_var_assignment_expression(p):
+    'assignment : MODEL DOT modelvar ASSIGNMENT expression'
+    var = 'this.%s.%s' % (p[1], p[3])
+    vartype = MODEL_MAP.get(p[5][1], 'ScilabDouble')
+    if vartype != '':
+        p[0] = '%*s%s = new %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, p[5][0])
+    else:
+        p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, p[5][0])
+    add_var_vartype(var, p[5][1])
+
+def p_model_in_assignment_expression(p):
+    'assignment : MODEL DOT IN ASSIGNMENT expression'
+    var = 'this.%s.%s1' % (p[1], p[3])
+    vartype = MODEL_MAP.get(p[5][1], 'ScilabDouble')
+    if vartype != '':
+        p[0] = '%*s%s = new %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, p[5][0])
+    else:
+        p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, p[5][0])
+    add_var_vartype(var, p[5][1])
 
 def p_getvalueassignment_getvalue_arguments(p):
     'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET getvaluearguments CLOSEBRACKET'
@@ -585,11 +634,13 @@ def p_getvaluearg4_expression(p):
 # define ltermarraylist
 
 def p_ltermarraylist_ltermarraylist_comma_ltermvar(p):
-    'ltermarraylist : ltermarraylist COMMA ltermvar'''
+    '''ltermarraylist : ltermarraylist COMMA ltermvar
+                      | ltermarraylist COMMA MODEL'''
     p[0] = '%s,%s' % (p[1], p[3])
 
 def p_ltermarraylist_ltermvar(p):
-    'ltermarraylist : ltermvar'
+    '''ltermarraylist : ltermvar
+                      | MODEL'''
     p[0] = '%s' % (p[1])
 
 # end define ltermarraylist
@@ -626,7 +677,8 @@ def p_list_list_expression(p):
     p[0] = ('%s,%s' % (p[1][0], p[3][0]), VECTOR_TYPE)
 
 def p_list_list_var_expression(p):
-    'list : list COMMA VAR ASSIGNMENT expression'
+    '''list : list COMMA VAR ASSIGNMENT expression
+            | list COMMA MODEL ASSIGNMENT expression'''
     p[0] = ('%s,%s=%s' % (p[1][0], p[3], p[5][0]), VECTOR_TYPE)
 
 def p_list_list_in_expression(p):
@@ -807,7 +859,8 @@ def p_lterm_ltermvar(p):
     p[0] = '%s' % (p[1])
 
 def p_ltermvar_ltermvar_dot_var(p):
-    'ltermvar : ltermvar DOT VAR'
+    '''ltermvar : ltermvar DOT VAR
+                | ltermvar DOT MODEL'''
     p[0] = '%s.%s' % (p[1], p[3])
 
 def p_ltermvar_ltermvar_dot_in(p):
@@ -1020,7 +1073,8 @@ def p_term_termvar(p):
 
 # A.B
 def p_termvar_termvar_dot_var(p):
-    'termvar : termvar DOT VAR'
+    '''termvar : termvar DOT VAR
+               | termvar DOT MODEL'''
     var = p[1][0]
     if var[:5] == 'this.':
         basevar = var[5:]
@@ -1053,7 +1107,8 @@ def p_termvar_termvar_dot_in(p):
 
 # A
 def p_termvar_var(p):
-    'termvar : VAR'
+    '''termvar : VAR
+               | MODEL'''
     var = p[1]
     add_global_var(var)
     vartype = VAR_TYPES[var] if var in VAR_TYPES else None

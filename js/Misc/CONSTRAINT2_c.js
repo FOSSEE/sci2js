@@ -4,17 +4,17 @@ function CONSTRAINT2_c() {
         this.x0 = [0];
         this.xd0 = [0];
         this.id = [0];
-        model = scicos_model();
-        model.sim = list("constraint_c",10004);
-        model.in1 = 1;
-        model.out = [[1],[1]];
-        model.state = [[this.x0],[this.xd0]];
-        model.ipar = this.id;
-        model.blocktype = "c";
-        model.dep_ut = [false,true];
+        this.model = scicos_model();
+        this.model.sim = list("constraint_c",10004);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = [[1],[1]];
+        this.model.state = [[this.x0],[this.xd0]];
+        this.model.ipar = this.id;
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,true];
         exprs = list(strcat(sci2exp(this.x0)),strcat(sci2exp(this.xd0)),strcat(sci2exp(this.id)));
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CONSTRAINT2_c.prototype.details = function CONSTRAINT2_c() {
@@ -35,7 +35,7 @@ function CONSTRAINT2_c() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             ask_again = false;
             [ok,this.x0,this.xd0,this.id,exprs] = scicos_getvalue("Set Constraint block parameters",["Initial guess values of states x","Initial guess values of derivative x\'","Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0"],list("vec",-1,"vec",-1,"vec",-1),exprs);
@@ -70,12 +70,12 @@ function CONSTRAINT2_c() {
             }
             if (!ask_again) {
                 graphics.exprs = exprs;
-                model.state = [[this.x0],[this.xd0]];
-                model.out = [[N],[N]];
-                model.in1 = N;
-                model.ipar = this.id;
+                this.model.state = [[this.x0],[this.xd0]];
+                this.model.out = [[N],[N]];
+                this.model.in1 = new ScilabDouble(N);
+                this.model.ipar = this.id;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

@@ -9,18 +9,18 @@ function CSCOPE() {
         this.ymin = -15;
         this.ymax = 15;
         this.per = 30;
-        model = scicos_model();
-        model.sim = list("cscope",4);
-        model.in1 = -1;
-        model.in2 = 1;
-        model.evtin = 1;
-        model.rpar = [[0],[this.ymin],[this.ymax],[this.per]];
-        model.ipar = [[this.win],[1],[this.N],[this.clrs],[this.wpos],[this.wdim]];
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("cscope",4);
+        this.model.in1 = new ScilabDouble(-1);
+        this.model.in2 = new ScilabDouble(1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.rpar = [[0],[this.ymin],[this.ymax],[this.per]];
+        this.model.ipar = [[this.win],[1],[this.N],[this.clrs],[this.wpos],[this.wdim]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.ymin)],[string(this.ymax)],[string(this.per)],[string(this.N)],[transpose(string(0))],[emptystr()]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CSCOPE.prototype.details = function CSCOPE() {
@@ -55,7 +55,7 @@ function CSCOPE() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"str",1),exprs);
             if (!ok) {
@@ -94,7 +94,7 @@ function CSCOPE() {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
             if (ok) {
-                [model,graphics,ok] = set_io(model,graphics,list([-1,1],1),list(),ones(1-this.heritance,1),[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list([-1,1],1),list(),ones(1-this.heritance,1),[]);
             }
             if (ok) {
                 if (this.wpos==[]) {
@@ -105,14 +105,14 @@ function CSCOPE() {
                 }
                 rpar = [[0],[this.ymin],[this.ymax],[this.per]];
                 ipar = [[this.win],[1],[this.N],[this.clrs.slice()],[this.wpos.slice()],[this.wdim.slice()]];
-                model.rpar = rpar;
-                model.ipar = ipar;
-                model.evtin = ones(1-this.heritance,1);
-                model.label = this.nom;
+                this.model.rpar = rpar;
+                this.model.ipar = ipar;
+                this.model.evtin = new ScilabDouble(ones(1-this.heritance,1));
+                this.model.label = new ScilabDouble(this.nom);
                 graphics.id = this.nom;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

@@ -7,26 +7,26 @@ function RAND_m() {
         this.flag = 0;
         function_name = "rndblk_m";
         funtyp = 4;
-        model = scicos_model();
-        model.sim = list(function_name,funtyp);
-        model.in1 = [];
-        model.in2 = [];
-        model.intyp = [];
-        model.out = 1;
-        model.out2 = 1;
-        model.outtyp = 1;
-        model.evtin = 1;
-        model.evtout = [];
-        model.state = [];
-        model.dstate = [[int(rand()*(10^7-1))],[0*this.a.slice()]];
-        model.rpar = [this.a.slice(),this.b.slice()];
-        model.ipar = this.flag;
-        model.blocktype = "d";
-        model.firing = [];
-        model.dep_ut = [false,false];
-        exprs = [[sci2exp(1)],[string(this.flag)],[sci2exp([this.a])],[sci2exp([this.b])],[sci2exp([model.dstate[1-1],int(rand()*(10^7-1))])]];
+        this.model = scicos_model();
+        this.model.sim = list(function_name,funtyp);
+        this.model.in1 = [];
+        this.model.in2 = [];
+        this.model.intyp = [];
+        this.model.out = new ScilabDouble(1);
+        this.model.out2 = new ScilabDouble(1);
+        this.model.outtyp = new ScilabDouble(1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.evtout = [];
+        this.model.state = [];
+        this.model.dstate = [[int(rand()*(10^7-1))],[0*this.a.slice()]];
+        this.model.rpar = [this.a.slice(),this.b.slice()];
+        this.model.ipar = new ScilabDouble(this.flag);
+        this.model.blocktype = new ScilabString("d");
+        this.model.firing = [];
+        this.model.dep_ut = [false,false];
+        exprs = [[sci2exp(1)],[string(this.flag)],[sci2exp([this.a])],[sci2exp([this.b])],[sci2exp([this.model.dstate[1-1],int(rand()*(10^7-1))])]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     RAND_m.prototype.details = function RAND_m() {
@@ -51,7 +51,7 @@ function RAND_m() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         if (size(exprs,"*")==14) {
             exprs[9-1] = [];
         }
@@ -66,26 +66,26 @@ function RAND_m() {
                 out = size(this.a);
                 if (this.typ==1) {
                     function_name = "rndblk_m";
-                    model.rpar = [[real(this.a.slice())],[real(this.b.slice())]];
-                    model.dstate = [[this.seed_c[1-1]],[0*real(this.a.slice())]];
+                    this.model.rpar = [[real(this.a.slice())],[real(this.b.slice())]];
+                    this.model.dstate = [[this.seed_c[1-1]],[0*real(this.a.slice())]];
                     ot = 1;
                 } else if (this.typ==2) {
                     function_name = "rndblkz_m";
                     ot = 2;
-                    model.rpar = [[real(this.a.slice())],[imag(this.a.slice())],[real(this.b.slice())],[imag(this.b.slice())]];
-                    model.dstate = [[this.seed_c.slice()],[0*[[real(this.a.slice())],[imag(this.a.slice())]]]];
+                    this.model.rpar = [[real(this.a.slice())],[imag(this.a.slice())],[real(this.b.slice())],[imag(this.b.slice())]];
+                    this.model.dstate = [[this.seed_c.slice()],[0*[[real(this.a.slice())],[imag(this.a.slice())]]]];
                 } else {
                     message("Datatype is not supported");
                     ok = false;
                 }
                 if (ok) {
-                    [model,graphics,ok] = set_io(model,graphics,list([],[]),list(out,ot),1,[]);
+                    [model,graphics,ok] = set_io(this.model,graphics,list([],[]),list(out,ot),1,[]);
                     if (ok) {
-                        model.sim = list(function_name,4);
+                        this.model.sim = list(function_name,4);
                         graphics.exprs = exprs;
-                        model.ipar = this.flag;
+                        this.model.ipar = new ScilabDouble(this.flag);
                         this.x.graphics = graphics;
-                        this.x.model = model;
+                        this.x.model = this.model;
                         break;
                     }
                 }

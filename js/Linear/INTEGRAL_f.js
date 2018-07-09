@@ -2,16 +2,16 @@
 function INTEGRAL_f() {
     INTEGRAL_f.prototype.define = function INTEGRAL_f() {
         this.x0 = 0;
-        model = scicos_model();
-        model.sim = "integr";
-        model.in1 = 1;
-        model.out = 1;
-        model.state = this.x0;
-        model.blocktype = "c";
-        model.dep_ut = [false,true];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("integr");
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.state = new ScilabDouble(this.x0);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,true];
         exprs = strcat(sci2exp(this.x0));
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     INTEGRAL_f.prototype.details = function INTEGRAL_f() {
@@ -27,16 +27,16 @@ function INTEGRAL_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.x0,exprs] = scicos_getvalue("Set continuous linear system parameters","Initial state",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
             graphics.exprs = exprs;
-            model.state = this.x0;
+            this.model.state = new ScilabDouble(this.x0);
             this.x.graphics = graphics;
-            this.x.model = model;
+            this.x.model = this.model;
             break;
         }
         this.x.model.firing = [];

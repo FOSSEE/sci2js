@@ -5,22 +5,22 @@ function TOWS_c() {
         this.nz = 128;
         this.varnam = "A";
         this.herit = 0;
-        model = scicos_model();
-        model.sim = list("tows_c",4);
-        model.in1 = [nu];
-        model.in2 = -2;
-        model.intyp = -1;
-        model.out = [];
-        model.evtin = [1];
-        model.evtout = [];
-        model.rpar = [];
-        model.ipar = [[this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]];
-        model.blocktype = "d";
-        model.firing = [];
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("tows_c",4);
+        this.model.in1 = [nu];
+        this.model.in2 = new ScilabDouble(-2);
+        this.model.intyp = new ScilabDouble(-1);
+        this.model.out = [];
+        this.model.evtin = [1];
+        this.model.evtout = [];
+        this.model.rpar = [];
+        this.model.ipar = [[this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.firing = [];
+        this.model.dep_ut = [false,false];
         gr_i = [];
         exprs = [[string(this.nz)],[string(this.varnam)],[string(this.herit)]];
-        this.x = standard_define([4,2],model,exprs,gr_i);
+        this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     TOWS_c.prototype.details = function TOWS_c() {
@@ -40,7 +40,7 @@ function TOWS_c() {
         this.herit = parseFloat(arguments[0]["herit"])
         this.x = arg1;
         graphics = arg1.graphics;
-        model = arg1.model;
+        this.model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
             [ok,this.nz,this.varnam,this.herit,exprs] = scicos_getvalue("Set Xcos buffer block",["Size of buffer","Scilab variable name","Inherit (no:0, yes:1)"],list("vec",1,"str",1,"vec",1),exprs);
@@ -59,16 +59,16 @@ function TOWS_c() {
             }
             execstr("if type("+this.varnam+") <> 17 | or(fieldnames("+this.varnam+") <> [\"values\"; \"time\"]) then"+" message([\"Protected variable name.\"; \"Please choose another variable name.\"]);"+" ok = %f;"+" end","errcatch");
             if (ok) {
-                [model,graphics,ok] = set_io(model,graphics,list([-1,-2],-1),list(),ones(1-this.herit,1),[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],-1),list(),ones(1-this.herit,1),[]);
                 if (this.herit==1) {
-                    model.blocktype = "x";
+                    this.model.blocktype = new ScilabString("x");
                 } else {
-                    model.blocktype = "d";
+                    this.model.blocktype = new ScilabString("d");
                 }
-                model.ipar = [[this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]];
+                this.model.ipar = [[this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]];
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

@@ -5,16 +5,16 @@ function DOLLAR_f() {
         this.inh = 0;
         in1 = 1;
         exprs = string([[z],[this.inh]]);
-        model = scicos_model();
-        model.sim = "dollar";
-        model.in1 = in1;
-        model.out = in1;
-        model.evtin = 1-this.inh;
-        model.dstate = z;
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("dollar");
+        this.model.in1 = new ScilabDouble(in1);
+        this.model.out = new ScilabDouble(in1);
+        this.model.evtin = new ScilabDouble(1-this.inh);
+        this.model.dstate = new ScilabDouble(z);
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     DOLLAR_f.prototype.details = function DOLLAR_f() {
@@ -33,7 +33,7 @@ function DOLLAR_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         if (size(exprs,"*")<2) {
             exprs[2-1] = "0";
         }
@@ -48,15 +48,15 @@ function DOLLAR_f() {
             }
             in1 = out;
             if (ok) {
-                [model,graphics,ok] = check_io(model,graphics,-1,-1,ones(1-this.inh,1),[]);
+                [model,graphics,ok] = check_io(this.model,graphics,-1,-1,ones(1-this.inh,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
-                model.dstate = this.a;
-                model.in1 = in1;
-                model.out = out;
+                this.model.dstate = new ScilabDouble(this.a);
+                this.model.in1 = in1;
+                this.model.out = out;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

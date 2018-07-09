@@ -2,17 +2,17 @@
 function CONSTRAINT_c() {
     CONSTRAINT_c.prototype.define = function CONSTRAINT_c() {
         this.x0 = [[0],[0]];
-        model = scicos_model();
-        model.sim = list("constraint_c",10004);
-        model.in1 = 1;
-        model.out = 1;
-        model.ipar = 0;
-        model.state = this.x0;
-        model.blocktype = "c";
-        model.dep_ut = [false,true];
+        this.model = scicos_model();
+        this.model.sim = list("constraint_c",10004);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.ipar = new ScilabDouble(0);
+        this.model.state = this.x0;
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,true];
         exprs = "0";
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CONSTRAINT_c.prototype.details = function CONSTRAINT_c() {
@@ -28,7 +28,7 @@ function CONSTRAINT_c() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.x0,exprs] = scicos_getvalue("Set solver block parameters","Initial guess values",list("vec",-1),exprs);
             if (!ok) {
@@ -39,15 +39,15 @@ function CONSTRAINT_c() {
             if (N<=0) {
                 message("number of states (constraints) must be > 0 ");
             } else {
-                [model,graphics,ok] = check_io(model,graphics,N,N,[],[]);
+                [model,graphics,ok] = check_io(this.model,graphics,N,N,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
-                    model.state = [[this.x0],[zeros(N,1)]];
-                    model.out = N;
-                    model.in1 = N;
-                    model.ipar = -1*ones(N,1);
+                    this.model.state = [[this.x0],[zeros(N,1)]];
+                    this.model.out = new ScilabDouble(N);
+                    this.model.in1 = new ScilabDouble(N);
+                    this.model.ipar = new ScilabDouble(-1*ones(N,1));
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

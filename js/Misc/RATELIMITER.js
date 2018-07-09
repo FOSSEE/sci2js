@@ -4,16 +4,16 @@ function RATELIMITER() {
         this.minp = -1;
         this.maxp = 1;
         rpar = [[this.maxp],[this.minp]];
-        model = scicos_model();
-        model.sim = list("ratelimiter",4);
-        model.in1 = 1;
-        model.out = 1;
-        model.rpar = rpar;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("ratelimiter",4);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.rpar = rpar;
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[string(this.maxp)],[string(this.minp)]];
         gr_i = [];
-        this.x = standard_define([3.5,2],model,exprs,gr_i);
+        this.x = standard_define([3.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     RATELIMITER.prototype.details = function RATELIMITER() {
@@ -32,7 +32,7 @@ function RATELIMITER() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.maxp,this.minp,exprs] = scicos_getvalue("Set rate limiter parameters",["max slope","min slope"],list("vec",1,"vec",1),exprs);
             if (!ok) {
@@ -42,10 +42,10 @@ function RATELIMITER() {
                 message("We must have max_slope> 0 > min_slope.");
             } else {
                 rpar = [[this.maxp],[this.minp]];
-                model.rpar = rpar;
+                this.model.rpar = rpar;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

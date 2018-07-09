@@ -4,17 +4,17 @@ function INTRP2BLK_f() {
         this.a = [[0],[1]];
         this.b = [[0],[1]];
         this.c = [[0,1],[1,2]];
-        model = scicos_model();
-        model.sim = list("intrp2",1);
-        model.in1 = [[1],[1]];
-        model.out = 1;
-        model.rpar = [[this.a],[this.b],[this.c.slice()]];
-        model.ipar = [[2],[2]];
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("intrp2",1);
+        this.model.in1 = [[1],[1]];
+        this.model.out = new ScilabDouble(1);
+        this.model.rpar = [[this.a],[this.b],[this.c.slice()]];
+        this.model.ipar = [[2],[2]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))],[strcat(sci2exp(this.c,0))]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     INTRP2BLK_f.prototype.details = function INTRP2BLK_f() {
@@ -35,7 +35,7 @@ function INTRP2BLK_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.a,this.b,this.c,exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord.","Z values"],list("vec",-1,"vec",-1,"mat",[-1,-1]),exprs);
             if (!ok) {
@@ -48,10 +48,10 @@ function INTRP2BLK_f() {
             } else {
                 if (ok) {
                     graphics.exprs = exprs;
-                    model.rpar = [[this.a.slice()],[this.b.slice()],[this.c.slice()]];
-                    model.ipar = [[size(this.a,"*")],[size(this.b,"*")]];
+                    this.model.rpar = [[this.a.slice()],[this.b.slice()],[this.c.slice()]];
+                    this.model.ipar = [[size(this.a,"*")],[size(this.b,"*")]];
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

@@ -5,20 +5,20 @@ function FROMWS_c() {
         this.Method = 1;
         this.ZC = 1;
         this.OutEnd = 0;
-        model = scicos_model();
-        model.sim = list("fromws_c",4);
-        model.out = -1;
-        model.out2 = -2;
-        model.outtyp = -1;
-        model.ipar = [[length(this.varnam)],[this._str2code[this.varnam-1]],[this.Method],[this.ZC],[this.OutEnd]];
-        model.evtin = [1];
-        model.evtout = [1];
-        model.firing = [0];
-        model.blocktype = "d";
-        model.dep_ut = [false,true];
+        this.model = scicos_model();
+        this.model.sim = list("fromws_c",4);
+        this.model.out = new ScilabDouble(-1);
+        this.model.out2 = new ScilabDouble(-2);
+        this.model.outtyp = new ScilabDouble(-1);
+        this.model.ipar = [[length(this.varnam)],[this._str2code[this.varnam-1]],[this.Method],[this.ZC],[this.OutEnd]];
+        this.model.evtin = [1];
+        this.model.evtout = [1];
+        this.model.firing = [0];
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,true];
         gr_i = [];
         exprs = [[string(this.varnam)],[string(this.Method)],[string(this.ZC)],[string(this.OutEnd)]];
-        this.x = standard_define([3.5,2],model,exprs,gr_i);
+        this.x = standard_define([3.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     FROMWS_c.prototype.details = function FROMWS_c() {
@@ -41,7 +41,7 @@ function FROMWS_c() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.varnam,this.Method,this.ZC,this.OutEnd,exprs] = scicos_getvalue("Set From_Workspace block parameters",["Variable name","Interpolation Method","Enable zero crossing(0:No, 1:Yes)?","Output at end(0:Zero, 1:Hold, 2:Repeat)"],list("str",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -66,12 +66,12 @@ function FROMWS_c() {
                 ok = false;
             }
             if (ok) {
-                model.ipar = [[length(this.varnam)],[this._str2code[this.varnam-1]],[this.Method],[this.ZC],[this.OutEnd]];
-                [model,graphics,ok] = set_io(model,graphics,list(),list([-1,-2],-1),1,1);
+                this.model.ipar = [[length(this.varnam)],[this._str2code[this.varnam-1]],[this.Method],[this.ZC],[this.OutEnd]];
+                [model,graphics,ok] = set_io(this.model,graphics,list(),list([-1,-2],-1),1,1);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

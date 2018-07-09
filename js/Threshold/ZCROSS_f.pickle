@@ -4,10 +4,12 @@ p0
 ((lp1
 S'x'
 p2
-aS'in1'
+aS'model'
 p3
-atp4
-Rp5
+aS'in1'
+p4
+atp5
+Rp6
 .(dp0
 S'arg1'
 p1

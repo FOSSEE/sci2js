@@ -7,16 +7,16 @@ function CURV_f() {
         axisdata = [[2],[10],[2],[10]];
         ipar = [[size(xx,1)],[axisdata.slice()]];
         rpar = [[xx],[yy],[rect.slice()]];
-        model = scicos_model();
-        model.sim = "intplt";
-        model.in1 = [];
-        model.out = 1;
-        model.rpar = [[xx],[yy],[rect.slice()]];
-        model.ipar = [[size(xx,1)],[axisdata.slice()]];
-        model.blocktype = "c";
-        model.dep_ut = [false,true];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("intplt");
+        this.model.in1 = [];
+        this.model.out = new ScilabDouble(1);
+        this.model.rpar = [[xx],[yy],[rect.slice()]];
+        this.model.ipar = [[size(xx,1)],[axisdata.slice()]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,true];
         gr_i = [];
-        this.x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
     CURV_f.prototype.details = function CURV_f() {
@@ -29,10 +29,10 @@ function CURV_f() {
     }
     CURV_f.prototype.set = function CURV_f() {
         this.x = arg1;
-        model = arg1.model;
+        this.model = arg1.model;
         graphics = arg1.graphics;
-        rpar = model.rpar;
-        ipar = model.ipar;
+        rpar = this.model.rpar;
+        ipar = this.model.ipar;
         n = ipar[1-1];
         xx = rpar.slice(1-1,n);
         yy = rpar.slice(n+1-1,2*n);
@@ -53,14 +53,14 @@ function CURV_f() {
                 ok = false;
             }
             if (ok) {
-                model.sim = "intplt";
-                model.firing = [];
+                this.model.sim = new ScilabString("intplt");
+                this.model.firing = [];
                 rect = gc[1-1];
-                model.rpar = [[xx.slice()],[yy.slice()],[rect.slice()]];
+                this.model.rpar = [[xx.slice()],[yy.slice()],[rect.slice()]];
                 axisdata = gc[2-1];
-                model.ipar = [[size(xx,"*")],[axisdata.slice()]];
+                this.model.ipar = [[size(xx,"*")],[axisdata.slice()]];
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

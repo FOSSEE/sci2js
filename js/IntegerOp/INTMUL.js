@@ -2,21 +2,21 @@
 function INTMUL() {
     INTMUL.prototype.define = function INTMUL() {
         sgn = 0;
-        model = scicos_model();
-        model.sim = list("matmul_i32",4);
-        model.in1 = [[-1],[-2]];
-        model.out = -1;
-        model.in2 = [[-2],[-3]];
-        model.out2 = -3;
-        model.intyp = [3,3];
-        model.outtyp = 3;
-        model.rpar = [];
-        model.ipar = sgn;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("matmul_i32",4);
+        this.model.in1 = [[-1],[-2]];
+        this.model.out = new ScilabDouble(-1);
+        this.model.in2 = [[-2],[-3]];
+        this.model.out2 = new ScilabDouble(-3);
+        this.model.intyp = [3,3];
+        this.model.outtyp = new ScilabDouble(3);
+        this.model.rpar = [];
+        this.model.ipar = new ScilabDouble(sgn);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[sci2exp(3)],[sci2exp(0)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     INTMUL.prototype.details = function INTMUL() {
@@ -34,7 +34,7 @@ function INTMUL() {
         this.np = arguments[0]["np"]
         this.x = arg1;
         graphics = arg1.graphics;
-        model = arg1.model;
+        this.model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
             [ok,this.Datatype,this.np,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","INTMUL")],[" "],["Integer matrix multiplication"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"],list("vec",1,"vec",1),exprs);
@@ -48,66 +48,66 @@ function INTMUL() {
                 ok = false;
             } else if (this.Datatype==3) {
                 if (this.np==0) {
-                    model.sim = list("matmul_i32n",4);
+                    this.model.sim = list("matmul_i32n",4);
                 } else if (this.np==1) {
-                    model.sim = list("matmul_i32s",4);
+                    this.model.sim = list("matmul_i32s",4);
                 } else {
-                    model.sim = list("matmul_i32e",4);
+                    this.model.sim = list("matmul_i32e",4);
                 }
             } else if (this.Datatype==4) {
                 if (this.np==0) {
-                    model.sim = list("matmul_i16n",4);
+                    this.model.sim = list("matmul_i16n",4);
                 } else if (this.np==1) {
-                    model.sim = list("matmul_i16s",4);
+                    this.model.sim = list("matmul_i16s",4);
                 } else {
-                    model.sim = list("matmul_i16e",4);
+                    this.model.sim = list("matmul_i16e",4);
                 }
             } else if (this.Datatype==5) {
                 if (this.np==0) {
-                    model.sim = list("matmul_i8n",4);
+                    this.model.sim = list("matmul_i8n",4);
                 } else if (this.np==1) {
-                    model.sim = list("matmul_i8s",4);
+                    this.model.sim = list("matmul_i8s",4);
                 } else {
-                    model.sim = list("matmul_i8e",4);
+                    this.model.sim = list("matmul_i8e",4);
                 }
             } else if (this.Datatype==6) {
                 if (this.np==0) {
-                    model.sim = list("matmul_ui32n",4);
+                    this.model.sim = list("matmul_ui32n",4);
                 } else if (this.np==1) {
-                    model.sim = list("matmul_ui32s",4);
+                    this.model.sim = list("matmul_ui32s",4);
                 } else {
-                    model.sim = list("matmul_ui32e",4);
+                    this.model.sim = list("matmul_ui32e",4);
                 }
             } else if (this.Datatype==7) {
                 if (this.np==0) {
-                    model.sim = list("matmul_ui16n",4);
+                    this.model.sim = list("matmul_ui16n",4);
                 } else if (this.np==1) {
-                    model.sim = list("matmul_ui16s",4);
+                    this.model.sim = list("matmul_ui16s",4);
                 } else {
-                    model.sim = list("matmul_ui16e",4);
+                    this.model.sim = list("matmul_ui16e",4);
                 }
             } else if (this.Datatype==8) {
                 if (this.np==0) {
-                    model.sim = list("matmul_ui8n",4);
+                    this.model.sim = list("matmul_ui8n",4);
                 } else if (this.np==1) {
-                    model.sim = list("matmul_ui8s",4);
+                    this.model.sim = list("matmul_ui8s",4);
                 } else {
-                    model.sim = list("matmul_ui8e",4);
+                    this.model.sim = list("matmul_ui8e",4);
                 }
             } else {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Data Type",ot),msprintf("Must be in the interval %s.","[3, 8]"));
                 ok = false;
             }
-            in1 = [model.in1,model.in2];
-            out = [model.out,model.out2];
+            in1 = [this.model.in1,this.model.in2];
+            out = [this.model.out,this.model.out2];
             if (ok) {
-                [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
-                model.ipar = this.np;
+                this.model.ipar = new ScilabDouble(this.np);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

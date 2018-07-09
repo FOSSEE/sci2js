@@ -3,16 +3,16 @@ function TEXT_f() {
     TEXT_f.prototype.define = function TEXT_f() {
         this.font = 2;
         this.siz = 1;
-        model = scicos_model();
-        model.sim = "text";
-        model.rpar = "Text";
-        model.ipar = [[this.font],[this.siz]];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("text");
+        this.model.rpar = new ScilabString("Text");
+        this.model.ipar = [[this.font],[this.siz]];
         exprs = [["Text"],[string(this.font)],[string(this.siz)]];
         graphics = scicos_graphics();
         graphics.orig = [0,0];
         graphics.sz = [2,1];
         graphics.exprs = exprs;
-        this.x = mlist(["Text","graphics","model","void","gui"],graphics,model," ","TEXT_f");
+        this.x = mlist(["Text","graphics","model","void","gui"],graphics,this.model," ","TEXT_f");
         return new TextBlock(this.x);
     }
     TEXT_f.prototype.details = function TEXT_f() {
@@ -34,7 +34,7 @@ function TEXT_f() {
         graphics = arg1.graphics;
         orig = graphics.orig;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         if (size(exprs,"*")==1) {
             exprs = [[exprs],["3"],["1"]];
         }
@@ -67,9 +67,9 @@ function TEXT_f() {
                 graphics.sz = sz;
                 this.x.graphics = graphics;
                 ipar = [[this.font],[this.siz]];
-                model.rpar = this.txt;
-                model.ipar = ipar;
-                this.x.model = model;
+                this.model.rpar = new ScilabDouble(this.txt);
+                this.model.ipar = ipar;
+                this.x.model = this.model;
                 break;
             }
         }

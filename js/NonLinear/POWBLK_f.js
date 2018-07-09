@@ -3,16 +3,16 @@ function POWBLK_f() {
     POWBLK_f.prototype.define = function POWBLK_f() {
         in1 = 1;
         this.a = 1.5;
-        model = scicos_model();
-        model.sim = "powblk";
-        model.in1 = -1;
-        model.out = -1;
-        model.rpar = this.a;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("powblk");
+        this.model.in1 = new ScilabDouble(-1);
+        this.model.out = new ScilabDouble(-1);
+        this.model.rpar = new ScilabDouble(this.a);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = string(this.a);
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     POWBLK_f.prototype.details = function POWBLK_f() {
@@ -28,7 +28,7 @@ function POWBLK_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         if (size(exprs,"*")==2) {
             exprs = exprs[2-1];
         }
@@ -39,15 +39,15 @@ function POWBLK_f() {
             }
             graphics.exprs = exprs;
             if (this.a==int(this.a)) {
-                model.ipar = this.a;
-                model.rpar = [];
+                this.model.ipar = new ScilabDouble(this.a);
+                this.model.rpar = [];
             } else {
-                model.rpar = this.a;
-                model.ipar = [];
+                this.model.rpar = new ScilabDouble(this.a);
+                this.model.ipar = [];
             }
-            model.firing = [];
+            this.model.firing = [];
             this.x.graphics = graphics;
-            this.x.model = model;
+            this.x.model = this.model;
             break;
         }
         return new BasicBlock(this.x);

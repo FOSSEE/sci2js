@@ -264,7 +264,7 @@ FUNCTION_NAMES.update(dict.fromkeys(VECTOR_FUNCTION_NAMES, VECTOR_TYPE))
 OBJECTS = {
 #    'PREVAR_scicos_context': 'PREVAR_SCICOS_CONTEXT',
 #    'arg1': 'ARG1',
-#    'model': 'MODEL',
+    'model': 'MODEL',
 #    'scicos_context': 'SCICOS_CONTEXT',
 }
 

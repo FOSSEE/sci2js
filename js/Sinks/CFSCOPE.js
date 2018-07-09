@@ -9,16 +9,16 @@ function CFSCOPE() {
         this.ymin = -15;
         this.ymax = 15;
         this.per = 30;
-        model = scicos_model();
-        model.sim = list("cfscope",4);
-        model.evtin = 1;
-        model.rpar = [[0],[this.ymin],[this.ymax],[this.per]];
-        model.ipar = [[this.win],[1],[this.N],[this.clrs],[this.wpos],[this.wdim],[1],[1]];
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("cfscope",4);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.rpar = [[0],[this.ymin],[this.ymax],[this.per]];
+        this.model.ipar = [[this.win],[1],[this.N],[this.clrs],[this.wpos],[this.wdim],[1],[1]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.ymin)],[string(this.ymax)],[string(this.per)],[string(this.N)],[string([1])]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CFSCOPE.prototype.details = function CFSCOPE() {
@@ -51,7 +51,7 @@ function CFSCOPE() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.wu,exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Links to view"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",-1),exprs);
             if (!ok) {
@@ -104,13 +104,13 @@ function CFSCOPE() {
                     this.clrs[8-1] = 0;
                 }
                 ipar = [[this.win],[1],[this.N],[this.clrs.slice()],[this.wpos.slice()],[this.wdim.slice()],[size(this.wu,"*")],[this.wu.slice()]];
-                model.rpar = rpar;
-                model.ipar = ipar;
-                model.firing = [];
-                model.dep_ut = [true,false];
+                this.model.rpar = rpar;
+                this.model.ipar = ipar;
+                this.model.firing = [];
+                this.model.dep_ut = [true,false];
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

@@ -2,15 +2,15 @@
 function SAMPHOLD() {
     SAMPHOLD.prototype.define = function SAMPHOLD() {
         in1 = -1;
-        model = scicos_model();
-        model.sim = list("samphold4",4);
-        model.in1 = -1;
-        model.out = -1;
-        model.evtin = 1;
-        model.blocktype = "d";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("samphold4",4);
+        this.model.in1 = new ScilabDouble(-1);
+        this.model.out = new ScilabDouble(-1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [true,false];
         gr_i = [];
-        this.x = standard_define([2,2],model," ",gr_i);
+        this.x = standard_define([2,2],this.model," ",gr_i);
         return new BasicBlock(this.x);
     }
     SAMPHOLD.prototype.details = function SAMPHOLD() {

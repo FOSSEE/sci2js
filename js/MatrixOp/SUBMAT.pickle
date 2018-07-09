@@ -14,10 +14,12 @@ aS'inp'
 p6
 aS'x'
 p7
-aS'typ'
+aS'model'
 p8
-atp9
-Rp10
+aS'typ'
+p9
+atp10
+Rp11
 .(dp0
 S'model.dstate'
 p1

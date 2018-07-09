@@ -11,20 +11,20 @@ function AUTOMAT() {
         exprs = [[string(NMode)],[string(this.Minitial)],[string(NX)],[sci2exp(this.X0)],[sci2exp(this.XP)],[sci2exp(C1)],[sci2exp(C2)]];
         ipar = [[NMode],[this.Minitial],[NX],[this.XP],[C1],[C2]];
         rpar = [this.X0];
-        model = scicos_model();
-        model.sim = list("automat",10004);
-        model.in1 = [[2*NX+1],[2*NX+1]];
-        model.out = [[2],[2*NX]];
-        model.state = ones(2*NX,1);
-        model.nzcross = 1;
-        model.blocktype = "c";
-        model.evtout = 1;
-        model.firing = -1;
-        model.dep_ut = [false,true];
-        model.ipar = ipar;
-        model.rpar = rpar;
+        this.model = scicos_model();
+        this.model.sim = list("automat",10004);
+        this.model.in1 = [[2*NX+1],[2*NX+1]];
+        this.model.out = [[2],[2*NX]];
+        this.model.state = new ScilabDouble(ones(2*NX,1));
+        this.model.nzcross = new ScilabDouble(1);
+        this.model.blocktype = new ScilabString("c");
+        this.model.evtout = new ScilabDouble(1);
+        this.model.firing = new ScilabDouble(-1);
+        this.model.dep_ut = [false,true];
+        this.model.ipar = ipar;
+        this.model.rpar = rpar;
         gr_i = [];
-        this.x = standard_define([4,2],model,exprs,gr_i);
+        this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     AUTOMAT.prototype.details = function AUTOMAT() {
@@ -39,8 +39,8 @@ function AUTOMAT() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
-        ipar = model.ipar;
+        this.model = arg1.model;
+        ipar = this.model.ipar;
         NMode = ipar[1-1];
         NX = ipar[3-1];
         while (true) {
@@ -120,18 +120,18 @@ function AUTOMAT() {
                 }
             }
             if (!ModifEncore) {
-                [model,graphics,this.ok] = check_io(model,graphics,INP,OUT,[],[1]);
+                [model,graphics,this.ok] = check_io(this.model,graphics,INP,OUT,[],[1]);
                 if (!this.ok) {
                     break;
                 }
-                model.nzcross = nzcross;
-                model.state = ones(2*NX,1);
+                this.model.nzcross = new ScilabDouble(nzcross);
+                this.model.state = new ScilabDouble(ones(2*NX,1));
                 graphics.gr_i[1-1][1-1] = "txt=[\'Automaton\';\'nM="+string(NMode)+",nX="+string(NX)+"\'];";
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                model.ipar = ipar;
-                model.rpar = rpar;
-                this.x.model = model;
+                this.model.ipar = ipar;
+                this.model.rpar = new ScilabDouble(rpar);
+                this.x.model = this.model;
                 break;
             }
         }

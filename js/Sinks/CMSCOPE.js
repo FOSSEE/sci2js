@@ -12,19 +12,19 @@ function CMSCOPE() {
         this.per = [[30],[30]];
         yy = [[transpose(this.ymin.slice())],[transpose(this.ymax.slice())]];
         period = transpose(this.per.slice());
-        model = scicos_model();
-        model.sim = list("cmscope",4);
-        model.in1 = this.in1;
-        model.in2 = [[1],[1]];
-        model.intyp = [[1],[1]];
-        model.evtin = 1;
-        model.rpar = [[0],[period.slice()],[yy.slice()]];
-        model.ipar = [[this.win],[size(this.in1,"*")],[this.N],[this.wpos.slice()],[this.wdim.slice()],[this.in1.slice()],[this.clrs.slice(1-1,sum(this.in1))]];
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("cmscope",4);
+        this.model.in1 = this.in1;
+        this.model.in2 = [[1],[1]];
+        this.model.intyp = [[1],[1]];
+        this.model.evtin = new ScilabDouble(1);
+        this.model.rpar = [[0],[period.slice()],[yy.slice()]];
+        this.model.ipar = [[this.win],[size(this.in1,"*")],[this.N],[this.wpos.slice()],[this.wdim.slice()],[this.in1.slice()],[this.clrs.slice(1-1,sum(this.in1))]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[strcat(string(this.in1)," ")],[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp([])],[strcat(string(this.ymin)," ")],[strcat(string(this.ymax)," ")],[strcat(string(this.per)," ")],[string(this.N)],[string(0)],[emptystr()]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CMSCOPE.prototype.details = function CMSCOPE() {
@@ -61,7 +61,7 @@ function CMSCOPE() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.in1,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,exprs] = scicos_getvalue("Set Scope parameters",["Input ports sizes","Drawing colors (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin vector","Ymax vector","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec",1,"vec",1,"str",1),exprs);
             if (!ok) {
@@ -121,7 +121,7 @@ function CMSCOPE() {
                 this.in1 = this.in1.slice();
                 a = size(this.in1,1);
                 in2 = ones(a,1);
-                [model,graphics,ok] = set_io(model,graphics,list([this.in1,in2],ones(a,1)),list(),ones(1-this.heritance,1),[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list([this.in1,in2],ones(a,1)),list(),ones(1-this.heritance,1),[]);
             }
             if (ok) {
                 if (this.wpos==[]) {
@@ -136,15 +136,15 @@ function CMSCOPE() {
                     rpar = [[0],[period.slice()],[yy.slice()]];
                     this.clrs = this.clrs.slice(1-1,sum(this.in1));
                     ipar = [[this.win],[size(this.in1,"*")],[this.N],[this.wpos.slice()],[this.wdim.slice()],[this.in1.slice()],[this.clrs.slice()],[this.heritance]];
-                    model.evtin = ones(1-this.heritance,1);
-                    model.dstate = [];
-                    model.rpar = rpar;
-                    model.ipar = ipar;
-                    model.label = this.nom;
+                    this.model.evtin = new ScilabDouble(ones(1-this.heritance,1));
+                    this.model.dstate = [];
+                    this.model.rpar = rpar;
+                    this.model.ipar = ipar;
+                    this.model.label = new ScilabDouble(this.nom);
                     graphics.id = this.nom;
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

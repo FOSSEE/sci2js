@@ -12,19 +12,19 @@ function CSCOPXY3D() {
         this.vec_y = [[-15],[15]];
         this.vec_z = [[-15],[15]];
         this.nbr_curves = 1;
-        model = scicos_model();
-        model.sim = list("cscopxy3d",4);
-        model.in1 = [[1],[1],[1]];
-        model.in2 = [[1],[1],[1]];
-        model.intyp = [[1],[1],[1]];
-        model.evtin = 1;
-        model.rpar = [[this.vec_x.slice()],[this.vec_y.slice()],[this.vec_z.slice()],[this.param3ds.slice()]];
-        model.ipar = [[this.win],[8],[this.N],[this.clrs.slice()],[this.siz.slice()],[8],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("cscopxy3d",4);
+        this.model.in1 = [[1],[1],[1]];
+        this.model.in2 = [[1],[1],[1]];
+        this.model.intyp = [[1],[1],[1]];
+        this.model.evtin = new ScilabDouble(1);
+        this.model.rpar = [[this.vec_x.slice()],[this.vec_y.slice()],[this.vec_z.slice()],[this.param3ds.slice()]];
+        this.model.ipar = [[this.win],[8],[this.N],[this.clrs.slice()],[this.siz.slice()],[8],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         exprs = [[string(this.nbr_curves)],[strcat(string(this.clrs)," ")],[strcat(string(this.siz)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[strcat(string(this.vec_x)," ")],[strcat(string(this.vec_y)," ")],[strcat(string(this.vec_z)," ")],[strcat(string(this.param3ds)," ")],[string(this.N)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CSCOPXY3D.prototype.details = function CSCOPXY3D() {
@@ -61,7 +61,7 @@ function CSCOPXY3D() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,exprs] = scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","Line or Mark Size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",2,"vec",2,"vec",2,"vec",2,"vec",1),exprs);
             if (!ok) {
@@ -115,7 +115,7 @@ function CSCOPXY3D() {
             if (ok) {
                 in1 = this.nbr_curves*ones(3,1);
                 in2 = ones(3,1);
-                [model,graphics,ok] = set_io(model,graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[]);
                 if (this.wpos==[]) {
                     this.wpos = [[-1],[-1]];
                 }
@@ -125,11 +125,11 @@ function CSCOPXY3D() {
                 rpar = [[this.vec_x.slice()],[this.vec_y.slice()],[this.vec_z.slice()],[this.param3ds.slice()]];
                 size_siz = size(this.siz,"*");
                 ipar = [[this.win],[size_siz],[this.N],[this.clrs.slice()],[this.siz.slice()],[1],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
-                model.rpar = rpar;
-                model.ipar = ipar;
+                this.model.rpar = rpar;
+                this.model.ipar = ipar;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             } else {
                 message(mess);

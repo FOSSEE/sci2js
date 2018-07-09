@@ -44,10 +44,12 @@ aS'ipar'
 p21
 aS'x'
 p22
-aS'ot'
+aS'model'
 p23
-atp24
-Rp25
+aS'ot'
+p24
+atp25
+Rp26
 .(dp0
 S'model.odstate'
 p1

@@ -5,17 +5,17 @@ function SAT_f() {
         this.maxp = 1;
         slope = 1;
         rpar = [[this.minp],[this.maxp],[slope]];
-        model = scicos_model();
-        model.sim = list("lusat",1);
-        model.in1 = 1;
-        model.nzcross = 2;
-        model.out = 1;
-        model.rpar = [[this.minp],[this.maxp],[slope]];
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("lusat",1);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.nzcross = new ScilabDouble(2);
+        this.model.out = new ScilabDouble(1);
+        this.model.rpar = [[this.minp],[this.maxp],[slope]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[string(this.minp)],[string(this.maxp)],[string(slope)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     SAT_f.prototype.details = function SAT_f() {
@@ -36,7 +36,7 @@ function SAT_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.minp,this.maxp,this.pente,exprs] = scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -48,11 +48,11 @@ function SAT_f() {
                 message("Slope must be strictly positive");
             } else {
                 rpar = [[this.minp/this.pente],[this.maxp/this.pente],[this.pente]];
-                model.rpar = rpar;
-                model.firing = [];
+                this.model.rpar = rpar;
+                this.model.firing = [];
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

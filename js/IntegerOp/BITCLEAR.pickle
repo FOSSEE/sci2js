@@ -6,10 +6,12 @@ S'Datatype'
 p2
 aS'x'
 p3
-aS'bit'
+aS'model'
 p4
-atp5
-Rp6
+aS'bit'
+p5
+atp6
+Rp7
 .(dp0
 S'arg1'
 p1

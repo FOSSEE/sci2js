@@ -4,19 +4,19 @@ function INTEGRAL_m() {
         this.maxp = 1;
         minp = -1;
         rpar = [];
-        model = scicos_model();
-        model.state = 0;
-        model.sim = list("integral_func",4);
-        model.in1 = 1;
-        model.out = 1;
-        model.in2 = 1;
-        model.out2 = 1;
-        model.rpar = rpar;
-        model.blocktype = "c";
-        model.dep_ut = [false,true];
+        this.model = scicos_model();
+        this.model.state = new ScilabDouble(0);
+        this.model.sim = list("integral_func",4);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.in2 = new ScilabDouble(1);
+        this.model.out2 = new ScilabDouble(1);
+        this.model.rpar = rpar;
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,true];
         exprs = string([[0],[0],[0],[this.maxp],[minp]]);
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     INTEGRAL_m.prototype.details = function INTEGRAL_m() {
@@ -41,7 +41,7 @@ function INTEGRAL_m() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("mat",[-1,-1],"vec",1,"vec",1,"mat",[-1,-1],"mat",[-1,-1]),exprs);
             if (!ok) {
@@ -75,8 +75,8 @@ function INTEGRAL_m() {
                         ok = false;
                     } else {
                         rpar = [[real(this.maxp.slice())],[real(this.lowp.slice())]];
-                        model.nzcross = size(this.x0,"*");
-                        model.nmode = size(this.x0,"*");
+                        this.model.nzcross = new ScilabDouble(size(this.x0,"*"));
+                        this.model.nmode = new ScilabDouble(size(this.x0,"*"));
                     }
                 } else if ((Datatype==2)) {
                     if (size(this.maxp,"*")==1) {
@@ -96,25 +96,25 @@ function INTEGRAL_m() {
                         ok = false;
                     } else {
                         rpar = [[real(this.maxp.slice())],[real(this.lowp.slice())],[imag(this.maxp.slice())],[imag(this.lowp.slice())]];
-                        model.nzcross = 2*size(this.x0,"*");
-                        model.nmode = 2*size(this.x0,"*");
+                        this.model.nzcross = new ScilabDouble(2*size(this.x0,"*"));
+                        this.model.nmode = new ScilabDouble(2*size(this.x0,"*"));
                     }
                 }
             } else {
                 rpar = [];
-                model.nzcross = 0;
-                model.nmode = 0;
+                this.model.nzcross = new ScilabDouble(0);
+                this.model.nmode = new ScilabDouble(0);
             }
             if (ok) {
-                model.rpar = rpar;
+                this.model.rpar = rpar;
                 if ((Datatype==1)) {
-                    model.state = real(this.x0.slice());
-                    model.sim = list("integral_func",4);
+                    this.model.state = new ScilabDouble(real(this.x0.slice()));
+                    this.model.sim = list("integral_func",4);
                     it = [[1],[ones(this.reinit,1)]];
                     ot = 1;
                 } else if ((Datatype==2)) {
-                    model.state = [[real(this.x0.slice())],[imag(this.x0.slice())]];
-                    model.sim = list("integralz_func",4);
+                    this.model.state = [[real(this.x0.slice())],[imag(this.x0.slice())]];
+                    this.model.sim = list("integralz_func",4);
                     it = [[2],[2*ones(this.reinit,1)]];
                     ot = 2;
                 } else {
@@ -124,13 +124,13 @@ function INTEGRAL_m() {
                 if (ok) {
                     in1 = [size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,2)*[[1],[ones(this.reinit,1)]]];
                     out = size(this.x0);
-                    [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),ones(this.reinit,1),[]);
+                    [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.reinit,1),[]);
                 }
             }
             if (ok) {
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

@@ -2,16 +2,16 @@
 function PRODUCT() {
     PRODUCT.prototype.define = function PRODUCT() {
         this.sgn = [[1],[-1]];
-        model = scicos_model();
-        model.sim = list("product",4);
-        model.in1 = [[-1],[-1]];
-        model.out = -1;
-        model.ipar = this.sgn;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("product",4);
+        this.model.in1 = [[-1],[-1]];
+        this.model.out = new ScilabDouble(-1);
+        this.model.ipar = this.sgn;
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = sci2exp(this.sgn);
         gr_i = [];
-        this.x = standard_define([2,3],model,exprs,gr_i);
+        this.x = standard_define([2,3],this.model,exprs,gr_i);
         return new Product(this.x);
     }
     PRODUCT.prototype.details = function PRODUCT() {
@@ -26,7 +26,7 @@ function PRODUCT() {
         this.sgn = inverse(arguments[0]["sgn"])
         this.x = arg1;
         graphics = arg1.graphics;
-        model = arg1.model;
+        this.model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
             [ok,this.sgn,exprs] = scicos_getvalue([["         Set multiplication block parameters"],["(multiplication is set with + 1, division with -1)"],[""]],"Number of inputs or sign vector",list("vec",-1),exprs);
@@ -57,13 +57,13 @@ function PRODUCT() {
                 }
             }
             if (ok) {
-                [model,graphics,ok] = check_io(model,graphics,in1,nout,[],[]);
+                [model,graphics,ok] = check_io(this.model,graphics,in1,nout,[],[]);
             }
             if (ok) {
-                model.ipar = this.sgn;
+                this.model.ipar = new ScilabDouble(this.sgn);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

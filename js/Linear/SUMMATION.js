@@ -2,18 +2,18 @@
 function SUMMATION() {
     SUMMATION.prototype.define = function SUMMATION() {
         this.sgn = [[1],[-1]];
-        model = scicos_model();
-        model.sim = list("summation",4);
-        model.in1 = [[-1],[-1]];
-        model.out = -1;
-        model.in2 = [[-2],[-2]];
-        model.out2 = -2;
-        model.ipar = this.sgn;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("summation",4);
+        this.model.in1 = [[-1],[-1]];
+        this.model.out = new ScilabDouble(-1);
+        this.model.in2 = [[-2],[-2]];
+        this.model.out2 = new ScilabDouble(-2);
+        this.model.ipar = this.sgn;
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = sci2exp(this.sgn);
         gr_i = [];
-        this.x = standard_define([2,3],model,exprs,gr_i);
+        this.x = standard_define([2,3],this.model,exprs,gr_i);
         return new Summation(this.x);
     }
     SUMMATION.prototype.details = function SUMMATION() {
@@ -33,7 +33,7 @@ function SUMMATION() {
         this.satur = arguments[0]["satur"]
         this.x = arg1;
         graphics = arg1.graphics;
-        model = arg1.model;
+        this.model = arg1.model;
         exprs = graphics.exprs;
         if (size(exprs,1)==1) {
             exprs = [[sci2exp(1)],[exprs],[sci2exp(0)]];
@@ -81,66 +81,66 @@ function SUMMATION() {
             it = this.Datatype*ones(1,size(in1,1));
             ot = this.Datatype;
             if (this.Datatype==1) {
-                model.sim = list("summation",4);
+                this.model.sim = list("summation",4);
             } else if (this.Datatype==2) {
-                model.sim = list("summation_z",4);
+                this.model.sim = list("summation_z",4);
             } else if (((this.Datatype<1)||(this.Datatype>8))) {
                 message("Datatype is not supported");
                 ok = false;
             } else {
                 if (this.satur==0) {
                     if (this.Datatype==3) {
-                        model.sim = list("summation_i32n",4);
+                        this.model.sim = list("summation_i32n",4);
                     } else if (this.Datatype==4) {
-                        model.sim = list("summation_i16n",4);
+                        this.model.sim = list("summation_i16n",4);
                     } else if (this.Datatype==5) {
-                        model.sim = list("summation_i8n",4);
+                        this.model.sim = list("summation_i8n",4);
                     } else if (this.Datatype==6) {
-                        model.sim = list("summation_ui32n",4);
+                        this.model.sim = list("summation_ui32n",4);
                     } else if (this.Datatype==7) {
-                        model.sim = list("summation_ui16n",4);
+                        this.model.sim = list("summation_ui16n",4);
                     } else if (this.Datatype==8) {
-                        model.sim = list("summation_ui8n",4);
+                        this.model.sim = list("summation_ui8n",4);
                     }
                 } else if (this.satur==1) {
                     if (this.Datatype==3) {
-                        model.sim = list("summation_i32s",4);
+                        this.model.sim = list("summation_i32s",4);
                     } else if (this.Datatype==4) {
-                        model.sim = list("summation_i16s",4);
+                        this.model.sim = list("summation_i16s",4);
                     } else if (this.Datatype==5) {
-                        model.sim = list("summation_i8s",4);
+                        this.model.sim = list("summation_i8s",4);
                     } else if (this.Datatype==6) {
-                        model.sim = list("summation_ui32s",4);
+                        this.model.sim = list("summation_ui32s",4);
                     } else if (this.Datatype==7) {
-                        model.sim = list("summation_ui16s",4);
+                        this.model.sim = list("summation_ui16s",4);
                     } else if (this.Datatype==8) {
-                        model.sim = list("summation_ui8s",4);
+                        this.model.sim = list("summation_ui8s",4);
                     }
                 } else if (this.satur==2) {
                     if (this.Datatype==3) {
-                        model.sim = list("summation_i32e",4);
+                        this.model.sim = list("summation_i32e",4);
                     } else if (this.Datatype==4) {
-                        model.sim = list("summation_i16e",4);
+                        this.model.sim = list("summation_i16e",4);
                     } else if (this.Datatype==5) {
-                        model.sim = list("summation_i8e",4);
+                        this.model.sim = list("summation_i8e",4);
                     } else if (this.Datatype==6) {
-                        model.sim = list("summation_ui32e",4);
+                        this.model.sim = list("summation_ui32e",4);
                     } else if (this.Datatype==7) {
-                        model.sim = list("summation_ui16e",4);
+                        this.model.sim = list("summation_ui16e",4);
                     } else if (this.Datatype==8) {
-                        model.sim = list("summation_ui8e",4);
+                        this.model.sim = list("summation_ui8e",4);
                     }
                 }
             }
             if (ok) {
-                [model,graphics,ok] = set_io(model,graphics,list([in1,in2],it),list([nout,nout2],ot),[],[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],it),list([nout,nout2],ot),[],[]);
             }
             if (ok) {
-                model.rpar = this.satur;
-                model.ipar = this.sgn;
+                this.model.rpar = new ScilabDouble(this.satur);
+                this.model.ipar = new ScilabDouble(this.sgn);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

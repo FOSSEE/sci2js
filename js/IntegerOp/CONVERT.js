@@ -2,21 +2,21 @@
 function CONVERT() {
     CONVERT.prototype.define = function CONVERT() {
         sgn = 2;
-        model = scicos_model();
-        model.sim = list("convert",4);
-        model.in1 = -1;
-        model.out = -1;
-        model.in2 = -2;
-        model.out2 = -2;
-        model.intyp = 1;
-        model.outtyp = 3;
-        model.rpar = [];
-        model.ipar = sgn;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("convert",4);
+        this.model.in1 = new ScilabDouble(-1);
+        this.model.out = new ScilabDouble(-1);
+        this.model.in2 = new ScilabDouble(-2);
+        this.model.out2 = new ScilabDouble(-2);
+        this.model.intyp = new ScilabDouble(1);
+        this.model.outtyp = new ScilabDouble(3);
+        this.model.rpar = [];
+        this.model.ipar = new ScilabDouble(sgn);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[sci2exp(1)],[sci2exp(3)],[sci2exp(0)]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CONVERT.prototype.details = function CONVERT() {
@@ -36,7 +36,7 @@ function CONVERT() {
         this.np = arguments[0]["np"]
         this.x = arg1;
         graphics = arg1.graphics;
-        model = arg1.model;
+        this.model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
             [ok,this.it,this.ot,this.np,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONVERT")],[" "],["Type conversion"],[" "]],["Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"],list("vec",1,"vec",1,"vec",1),exprs);
@@ -59,321 +59,321 @@ function CONVERT() {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Output Type",this.ot),msprintf("Must be in the interval %s.","[1, 8]"));
                 ok = false;
             }
-            model.sim = list("convert",4);
+            this.model.sim = list("convert",4);
             if ((this.it==this.ot)) {
-                model.ipar = 1;
+                this.model.ipar = new ScilabDouble(1);
             } else {
                 if ((this.np==0)) {
                     if ((this.it==1)) {
                         if ((this.ot==3)) {
-                            model.ipar = 2;
+                            this.model.ipar = new ScilabDouble(2);
                         } else if ((this.ot==4)) {
-                            model.ipar = 3;
+                            this.model.ipar = new ScilabDouble(3);
                         } else if ((this.ot==5)) {
-                            model.ipar = 4;
+                            this.model.ipar = new ScilabDouble(4);
                         } else if ((this.ot==6)) {
-                            model.ipar = 5;
+                            this.model.ipar = new ScilabDouble(5);
                         } else if ((this.ot==7)) {
-                            model.ipar = 6;
+                            this.model.ipar = new ScilabDouble(6);
                         } else if ((this.ot==8)) {
-                            model.ipar = 7;
+                            this.model.ipar = new ScilabDouble(7);
                         }
                     } else if ((this.it==3)) {
                         if ((this.ot==1)) {
-                            model.ipar = 8;
+                            this.model.ipar = new ScilabDouble(8);
                         } else if ((this.ot==4)) {
-                            model.ipar = 9;
+                            this.model.ipar = new ScilabDouble(9);
                         } else if ((this.ot==5)) {
-                            model.ipar = 10;
+                            this.model.ipar = new ScilabDouble(10);
                         } else if ((this.ot==6)) {
-                            model.ipar = 1;
+                            this.model.ipar = new ScilabDouble(1);
                         } else if ((this.ot==7)) {
-                            model.ipar = 11;
+                            this.model.ipar = new ScilabDouble(11);
                         } else if ((this.ot==8)) {
-                            model.ipar = 12;
+                            this.model.ipar = new ScilabDouble(12);
                         }
                     } else if ((this.it==4)) {
                         if ((this.ot==1)) {
-                            model.ipar = 13;
+                            this.model.ipar = new ScilabDouble(13);
                         } else if ((this.ot==3)) {
-                            model.ipar = 14;
+                            this.model.ipar = new ScilabDouble(14);
                         } else if ((this.ot==5)) {
-                            model.ipar = 15;
+                            this.model.ipar = new ScilabDouble(15);
                         } else if ((this.ot==6)) {
-                            model.ipar = 16;
+                            this.model.ipar = new ScilabDouble(16);
                         } else if ((this.ot==7)) {
-                            model.ipar = 1;
+                            this.model.ipar = new ScilabDouble(1);
                         } else if ((this.ot==8)) {
-                            model.ipar = 17;
+                            this.model.ipar = new ScilabDouble(17);
                         }
                     } else if ((this.it==5)) {
                         if ((this.ot==1)) {
-                            model.ipar = 18;
+                            this.model.ipar = new ScilabDouble(18);
                         } else if ((this.ot==3)) {
-                            model.ipar = 19;
+                            this.model.ipar = new ScilabDouble(19);
                         } else if ((this.ot==4)) {
-                            model.ipar = 20;
+                            this.model.ipar = new ScilabDouble(20);
                         } else if ((this.ot==6)) {
-                            model.ipar = 21;
+                            this.model.ipar = new ScilabDouble(21);
                         } else if ((this.ot==7)) {
-                            model.ipar = 22;
+                            this.model.ipar = new ScilabDouble(22);
                         } else if ((this.ot==8)) {
-                            model.ipar = 1;
+                            this.model.ipar = new ScilabDouble(1);
                         }
                     } else if ((this.it==6)) {
                         if ((this.ot==1)) {
-                            model.ipar = 23;
+                            this.model.ipar = new ScilabDouble(23);
                         } else if ((this.ot==3)) {
-                            model.ipar = 1;
+                            this.model.ipar = new ScilabDouble(1);
                         } else if ((this.ot==4)) {
-                            model.ipar = 24;
+                            this.model.ipar = new ScilabDouble(24);
                         } else if ((this.ot==5)) {
-                            model.ipar = 25;
+                            this.model.ipar = new ScilabDouble(25);
                         } else if ((this.ot==7)) {
-                            model.ipar = 26;
+                            this.model.ipar = new ScilabDouble(26);
                         } else if ((this.ot==8)) {
-                            model.ipar = 27;
+                            this.model.ipar = new ScilabDouble(27);
                         }
                     } else if ((this.it==7)) {
                         if ((this.ot==1)) {
-                            model.ipar = 28;
+                            this.model.ipar = new ScilabDouble(28);
                         } else if ((this.ot==3)) {
-                            model.ipar = 29;
+                            this.model.ipar = new ScilabDouble(29);
                         } else if ((this.ot==4)) {
-                            model.ipar = 1;
+                            this.model.ipar = new ScilabDouble(1);
                         } else if ((this.ot==5)) {
-                            model.ipar = 30;
+                            this.model.ipar = new ScilabDouble(30);
                         } else if ((this.ot==6)) {
-                            model.ipar = 31;
+                            this.model.ipar = new ScilabDouble(31);
                         } else if ((this.ot==8)) {
-                            model.ipar = 32;
+                            this.model.ipar = new ScilabDouble(32);
                         }
                     } else if ((this.it==8)) {
                         if ((this.ot==1)) {
-                            model.ipar = 33;
+                            this.model.ipar = new ScilabDouble(33);
                         } else if ((this.ot==3)) {
-                            model.ipar = 34;
+                            this.model.ipar = new ScilabDouble(34);
                         } else if ((this.ot==4)) {
-                            model.ipar = 35;
+                            this.model.ipar = new ScilabDouble(35);
                         } else if ((this.ot==5)) {
-                            model.ipar = 1;
+                            this.model.ipar = new ScilabDouble(1);
                         } else if ((this.ot==6)) {
-                            model.ipar = 36;
+                            this.model.ipar = new ScilabDouble(36);
                         } else if ((this.ot==7)) {
-                            model.ipar = 37;
+                            this.model.ipar = new ScilabDouble(37);
                         }
                     }
                 } else if ((this.np==1)) {
                     if ((this.it==1)) {
                         if ((this.ot==3)) {
-                            model.ipar = 38;
+                            this.model.ipar = new ScilabDouble(38);
                         } else if ((this.ot==4)) {
-                            model.ipar = 39;
+                            this.model.ipar = new ScilabDouble(39);
                         } else if ((this.ot==5)) {
-                            model.ipar = 40;
+                            this.model.ipar = new ScilabDouble(40);
                         } else if ((this.ot==6)) {
-                            model.ipar = 41;
+                            this.model.ipar = new ScilabDouble(41);
                         } else if ((this.ot==7)) {
-                            model.ipar = 42;
+                            this.model.ipar = new ScilabDouble(42);
                         } else if ((this.ot==8)) {
-                            model.ipar = 43;
+                            this.model.ipar = new ScilabDouble(43);
                         }
                     } else if ((this.it==3)) {
                         if ((this.ot==1)) {
-                            model.ipar = 8;
+                            this.model.ipar = new ScilabDouble(8);
                         } else if ((this.ot==4)) {
-                            model.ipar = 44;
+                            this.model.ipar = new ScilabDouble(44);
                         } else if ((this.ot==5)) {
-                            model.ipar = 45;
+                            this.model.ipar = new ScilabDouble(45);
                         } else if ((this.ot==6)) {
-                            model.ipar = 46;
+                            this.model.ipar = new ScilabDouble(46);
                         } else if ((this.ot==7)) {
-                            model.ipar = 47;
+                            this.model.ipar = new ScilabDouble(47);
                         } else if ((this.ot==8)) {
-                            model.ipar = 48;
+                            this.model.ipar = new ScilabDouble(48);
                         }
                     } else if ((this.it==4)) {
                         if ((this.ot==1)) {
-                            model.ipar = 13;
+                            this.model.ipar = new ScilabDouble(13);
                         } else if ((this.ot==3)) {
-                            model.ipar = 14;
+                            this.model.ipar = new ScilabDouble(14);
                         } else if ((this.ot==5)) {
-                            model.ipar = 49;
+                            this.model.ipar = new ScilabDouble(49);
                         } else if ((this.ot==6)) {
-                            model.ipar = 50;
+                            this.model.ipar = new ScilabDouble(50);
                         } else if ((this.ot==7)) {
-                            model.ipar = 51;
+                            this.model.ipar = new ScilabDouble(51);
                         } else if ((this.ot==8)) {
-                            model.ipar = 52;
+                            this.model.ipar = new ScilabDouble(52);
                         }
                     } else if ((this.it==5)) {
                         if ((this.ot==1)) {
-                            model.ipar = 18;
+                            this.model.ipar = new ScilabDouble(18);
                         } else if ((this.ot==3)) {
-                            model.ipar = 19;
+                            this.model.ipar = new ScilabDouble(19);
                         } else if ((this.ot==4)) {
-                            model.ipar = 20;
+                            this.model.ipar = new ScilabDouble(20);
                         } else if ((this.ot==6)) {
-                            model.ipar = 53;
+                            this.model.ipar = new ScilabDouble(53);
                         } else if ((this.ot==7)) {
-                            model.ipar = 54;
+                            this.model.ipar = new ScilabDouble(54);
                         } else if ((this.ot==8)) {
-                            model.ipar = 55;
+                            this.model.ipar = new ScilabDouble(55);
                         }
                     } else if ((this.it==6)) {
                         if ((this.ot==1)) {
-                            model.ipar = 23;
+                            this.model.ipar = new ScilabDouble(23);
                         } else if ((this.ot==3)) {
-                            model.ipar = 56;
+                            this.model.ipar = new ScilabDouble(56);
                         } else if ((this.ot==4)) {
-                            model.ipar = 57;
+                            this.model.ipar = new ScilabDouble(57);
                         } else if ((this.ot==5)) {
-                            model.ipar = 58;
+                            this.model.ipar = new ScilabDouble(58);
                         } else if ((this.ot==7)) {
-                            model.ipar = 59;
+                            this.model.ipar = new ScilabDouble(59);
                         } else if ((this.ot==8)) {
-                            model.ipar = 60;
+                            this.model.ipar = new ScilabDouble(60);
                         }
                     } else if ((this.it==7)) {
                         if ((this.ot==1)) {
-                            model.ipar = 28;
+                            this.model.ipar = new ScilabDouble(28);
                         } else if ((this.ot==3)) {
-                            model.ipar = 29;
+                            this.model.ipar = new ScilabDouble(29);
                         } else if ((this.ot==4)) {
-                            model.ipar = 61;
+                            this.model.ipar = new ScilabDouble(61);
                         } else if ((this.ot==5)) {
-                            model.ipar = 62;
+                            this.model.ipar = new ScilabDouble(62);
                         } else if ((this.ot==6)) {
-                            model.ipar = 31;
+                            this.model.ipar = new ScilabDouble(31);
                         } else if ((this.ot==8)) {
-                            model.ipar = 63;
+                            this.model.ipar = new ScilabDouble(63);
                         }
                     } else if ((this.it==8)) {
                         if ((this.ot==1)) {
-                            model.ipar = 33;
+                            this.model.ipar = new ScilabDouble(33);
                         } else if ((this.ot==3)) {
-                            model.ipar = 34;
+                            this.model.ipar = new ScilabDouble(34);
                         } else if ((this.ot==4)) {
-                            model.ipar = 35;
+                            this.model.ipar = new ScilabDouble(35);
                         } else if ((this.ot==5)) {
-                            model.ipar = 64;
+                            this.model.ipar = new ScilabDouble(64);
                         } else if ((this.ot==6)) {
-                            model.ipar = 36;
+                            this.model.ipar = new ScilabDouble(36);
                         } else if ((this.ot==7)) {
-                            model.ipar = 37;
+                            this.model.ipar = new ScilabDouble(37);
                         }
                     }
                 } else if ((this.np==2)) {
                     if ((this.it==1)) {
                         if ((this.ot==3)) {
-                            model.ipar = 65;
+                            this.model.ipar = new ScilabDouble(65);
                         } else if ((this.ot==4)) {
-                            model.ipar = 66;
+                            this.model.ipar = new ScilabDouble(66);
                         } else if ((this.ot==5)) {
-                            model.ipar = 67;
+                            this.model.ipar = new ScilabDouble(67);
                         } else if ((this.ot==6)) {
-                            model.ipar = 68;
+                            this.model.ipar = new ScilabDouble(68);
                         } else if ((this.ot==7)) {
-                            model.ipar = 69;
+                            this.model.ipar = new ScilabDouble(69);
                         } else if ((this.ot==8)) {
-                            model.ipar = 70;
+                            this.model.ipar = new ScilabDouble(70);
                         }
                     } else if ((this.it==3)) {
                         if ((this.ot==1)) {
-                            model.ipar = 8;
+                            this.model.ipar = new ScilabDouble(8);
                         } else if ((this.ot==4)) {
-                            model.ipar = 71;
+                            this.model.ipar = new ScilabDouble(71);
                         } else if ((this.ot==5)) {
-                            model.ipar = 72;
+                            this.model.ipar = new ScilabDouble(72);
                         } else if ((this.ot==6)) {
-                            model.ipar = 73;
+                            this.model.ipar = new ScilabDouble(73);
                         } else if ((this.ot==7)) {
-                            model.ipar = 74;
+                            this.model.ipar = new ScilabDouble(74);
                         } else if ((this.ot==8)) {
-                            model.ipar = 75;
+                            this.model.ipar = new ScilabDouble(75);
                         }
                     } else if ((this.it==4)) {
                         if ((this.ot==1)) {
-                            model.ipar = 13;
+                            this.model.ipar = new ScilabDouble(13);
                         } else if ((this.ot==3)) {
-                            model.ipar = 14;
+                            this.model.ipar = new ScilabDouble(14);
                         } else if ((this.ot==5)) {
-                            model.ipar = 76;
+                            this.model.ipar = new ScilabDouble(76);
                         } else if ((this.ot==6)) {
-                            model.ipar = 77;
+                            this.model.ipar = new ScilabDouble(77);
                         } else if ((this.ot==7)) {
-                            model.ipar = 78;
+                            this.model.ipar = new ScilabDouble(78);
                         } else if ((this.ot==8)) {
-                            model.ipar = 79;
+                            this.model.ipar = new ScilabDouble(79);
                         }
                     } else if ((this.it==5)) {
                         if ((this.ot==1)) {
-                            model.ipar = 18;
+                            this.model.ipar = new ScilabDouble(18);
                         } else if ((this.ot==3)) {
-                            model.ipar = 19;
+                            this.model.ipar = new ScilabDouble(19);
                         } else if ((this.ot==4)) {
-                            model.ipar = 20;
+                            this.model.ipar = new ScilabDouble(20);
                         } else if ((this.ot==6)) {
-                            model.ipar = 80;
+                            this.model.ipar = new ScilabDouble(80);
                         } else if ((this.ot==7)) {
-                            model.ipar = 81;
+                            this.model.ipar = new ScilabDouble(81);
                         } else if ((this.ot==8)) {
-                            model.ipar = 82;
+                            this.model.ipar = new ScilabDouble(82);
                         }
                     } else if ((this.it==6)) {
                         if ((this.ot==1)) {
-                            model.ipar = 23;
+                            this.model.ipar = new ScilabDouble(23);
                         } else if ((this.ot==3)) {
-                            model.ipar = 83;
+                            this.model.ipar = new ScilabDouble(83);
                         } else if ((this.ot==4)) {
-                            model.ipar = 84;
+                            this.model.ipar = new ScilabDouble(84);
                         } else if ((this.ot==5)) {
-                            model.ipar = 85;
+                            this.model.ipar = new ScilabDouble(85);
                         } else if ((this.ot==7)) {
-                            model.ipar = 86;
+                            this.model.ipar = new ScilabDouble(86);
                         } else if ((this.ot==8)) {
-                            model.ipar = 87;
+                            this.model.ipar = new ScilabDouble(87);
                         }
                     } else if ((this.it==7)) {
                         if ((this.ot==1)) {
-                            model.ipar = 28;
+                            this.model.ipar = new ScilabDouble(28);
                         } else if ((this.ot==3)) {
-                            model.ipar = 29;
+                            this.model.ipar = new ScilabDouble(29);
                         } else if ((this.ot==4)) {
-                            model.ipar = 88;
+                            this.model.ipar = new ScilabDouble(88);
                         } else if ((this.ot==5)) {
-                            model.ipar = 89;
+                            this.model.ipar = new ScilabDouble(89);
                         } else if ((this.ot==6)) {
-                            model.ipar = 31;
+                            this.model.ipar = new ScilabDouble(31);
                         } else if ((this.ot==8)) {
-                            model.ipar = 90;
+                            this.model.ipar = new ScilabDouble(90);
                         }
                     } else if ((this.it==8)) {
                         if ((this.ot==1)) {
-                            model.ipar = 33;
+                            this.model.ipar = new ScilabDouble(33);
                         } else if ((this.ot==3)) {
-                            model.ipar = 34;
+                            this.model.ipar = new ScilabDouble(34);
                         } else if ((this.ot==4)) {
-                            model.ipar = 35;
+                            this.model.ipar = new ScilabDouble(35);
                         } else if ((this.ot==5)) {
-                            model.ipar = 91;
+                            this.model.ipar = new ScilabDouble(91);
                         } else if ((this.ot==6)) {
-                            model.ipar = 36;
+                            this.model.ipar = new ScilabDouble(36);
                         } else if ((this.ot==7)) {
-                            model.ipar = 37;
+                            this.model.ipar = new ScilabDouble(37);
                         }
                     }
                 }
             }
-            in1 = [model.in1,model.in2];
-            out = [model.out,model.out2];
+            in1 = [this.model.in1,this.model.in2];
+            out = [this.model.out,this.model.out2];
             if (ok) {
-                [model,graphics,ok] = set_io(model,graphics,list(in1,this.it),list(out,this.ot),[],[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(out,this.ot),[],[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

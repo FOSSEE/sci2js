@@ -6,12 +6,14 @@ S'Datatype'
 p2
 aS'x'
 p3
-aS'nb'
+aS'model'
 p4
 aS'np'
 p5
-atp6
-Rp7
+aS'nb'
+p6
+atp7
+Rp8
 .(dp0
 S'OPER'
 p1

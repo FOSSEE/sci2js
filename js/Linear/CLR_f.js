@@ -7,16 +7,16 @@ function CLR_f() {
         C = 1;
         D = 0;
         exprs = [["1"],["1+s"]];
-        model = scicos_model();
-        model.sim = list("csslti",1);
-        model.in1 = 1;
-        model.out = 1;
-        model.state = x0;
-        model.rpar = [[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
-        model.blocktype = "c";
-        model.dep_ut = [false,true];
+        this.model = scicos_model();
+        this.model.sim = list("csslti",1);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.state = new ScilabDouble(x0);
+        this.model.rpar = [[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,true];
         gr_i = [];
-        this.x = standard_define([2.5,2.5],model,exprs,gr_i);
+        this.x = standard_define([2.5,2.5],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CLR_f.prototype.details = function CLR_f() {
@@ -35,9 +35,9 @@ function CLR_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
-        x0 = model.state;
-        rpar = model.rpar;
+        this.model = arg1.model;
+        x0 = this.model.state;
+        rpar = this.model.rpar;
         ns = prod(size(x0));
         nin = 1;
         nout = 1;
@@ -63,18 +63,18 @@ function CLR_f() {
                 } else {
                     mmm = [false,true];
                 }
-                if (or(model.dep_ut!=mmm)) {
-                    model.dep_ut = mmm;
+                if (or(this.model.dep_ut!=mmm)) {
+                    this.model.dep_ut = mmm;
                 }
                 if (ns1<=ns) {
                     x0 = x0.slice(1-1,ns1);
                 } else {
                     x0[ns1-1][1-1] = 0;
                 }
-                model.state = x0;
-                model.rpar = rpar;
+                this.model.state = x0;
+                this.model.rpar = rpar;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

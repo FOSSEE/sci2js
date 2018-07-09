@@ -2,21 +2,21 @@
 function ESELECT_f() {
     ESELECT_f.prototype.define = function ESELECT_f() {
         this.out = 2;
-        model = scicos_model();
-        model.sim = list("eselect",-2);
-        model.in1 = 1;
-        model.in2 = 1;
-        model.intyp = -1;
-        model.evtin = 1;
-        model.evtout = ones(this.out,1);
-        model.blocktype = "l";
-        model.firing = -ones(this.out,1);
-        model.dep_ut = [true,false];
-        model.nmode = 0;
-        model.nzcross = 0;
+        this.model = scicos_model();
+        this.model.sim = list("eselect",-2);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.in2 = new ScilabDouble(1);
+        this.model.intyp = new ScilabDouble(-1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.evtout = new ScilabDouble(ones(this.out,1));
+        this.model.blocktype = new ScilabString("l");
+        this.model.firing = new ScilabDouble(-ones(this.out,1));
+        this.model.dep_ut = [true,false];
+        this.model.nmode = new ScilabDouble(0);
+        this.model.nzcross = new ScilabDouble(0);
         gr_i = [];
-        exprs = [[string(this.out)],[string(1)],[string(model.nmode)]];
-        this.x = standard_define([4,2],model,exprs,gr_i);
+        exprs = [[string(this.out)],[string(1)],[string(this.model.nmode)]];
+        this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     ESELECT_f.prototype.details = function ESELECT_f() {
@@ -43,7 +43,7 @@ function ESELECT_f() {
         if (size(exprs,"*")==2) {
             exprs[3-1] = string(0);
         }
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.out,this.inh,this.nmod,exprs] = scicos_getvalue("Set ESELECT block parameters",["number of output event ports","Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -61,15 +61,15 @@ function ESELECT_f() {
             if (this.out<2) {
                 message("Block must have at least two output ports");
             } else {
-                [model,graphics,ok] = check_io(model,graphics,1,[],this.inh,[ones(this.out,1)]);
+                [model,graphics,ok] = check_io(this.model,graphics,1,[],this.inh,[ones(this.out,1)]);
                 if (ok) {
                     graphics.exprs = exprs;
-                    model.evtout = ones(this.out,1);
-                    model.firing = -ones(this.out,1);
+                    this.model.evtout = new ScilabDouble(ones(this.out,1));
+                    this.model.firing = new ScilabDouble(-ones(this.out,1));
                     this.x.graphics = graphics;
-                    model.nmode = this.nmod;
-                    model.nzcross = this.nmod;
-                    this.x.model = model;
+                    this.model.nmode = new ScilabDouble(this.nmod);
+                    this.model.nzcross = new ScilabDouble(this.nmod);
+                    this.x.model = this.model;
                     break;
                 }
             }

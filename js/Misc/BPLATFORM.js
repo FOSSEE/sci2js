@@ -8,17 +8,17 @@ function BPLATFORM() {
         this.xmax = 5;
         this.ymin = 0;
         this.ymax = 15;
-        model = scicos_model();
-        model.sim = list("bplatform2",5);
-        model.in1 = [[1],[1]];
-        model.evtin = 1;
-        model.dstate = 0;
-        model.rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
-        exprs = string(model.rpar);
+        this.model = scicos_model();
+        this.model.sim = list("bplatform2",5);
+        this.model.in1 = [[1],[1]];
+        this.model.evtin = new ScilabDouble(1);
+        this.model.dstate = new ScilabDouble(0);
+        this.model.rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
+        exprs = string(this.model.rpar);
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     BPLATFORM.prototype.details = function BPLATFORM() {
@@ -47,8 +47,8 @@ function BPLATFORM() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
-        dstate = model.dstate;
+        this.model = arg1.model;
+        dstate = this.model.dstate;
         while (true) {
             [ok,this.plen,this.csiz,this.phi,this.xmin,this.xmax,this.ymin,this.ymax,exprs] = scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -71,10 +71,10 @@ function BPLATFORM() {
                 message(mess);
             } else {
                 rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
-                model.rpar = rpar;
+                this.model.rpar = rpar;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

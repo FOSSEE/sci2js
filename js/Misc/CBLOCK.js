@@ -13,23 +13,23 @@ function CBLOCK() {
         this.ipar = [];
         funam = "toto";
         this.ng = 0;
-        model = scicos_model();
-        model.sim = list(" ",2004);
-        model.in1 = in1;
-        model.out = out;
-        model.evtin = clkin;
-        model.evtout = clkout;
-        model.state = x0;
-        model.dstate = z0;
-        model.rpar = this.rpar;
-        model.ipar = this.ipar;
-        model.blocktype = typ;
-        model.firing = auto;
-        model.dep_ut = [true,false];
-        model.nzcross = this.ng;
+        this.model = scicos_model();
+        this.model.sim = list(" ",2004);
+        this.model.in1 = new ScilabDouble(in1);
+        this.model.out = new ScilabDouble(out);
+        this.model.evtin = clkin;
+        this.model.evtout = clkout;
+        this.model.state = x0;
+        this.model.dstate = z0;
+        this.model.rpar = this.rpar;
+        this.model.ipar = this.ipar;
+        this.model.blocktype = new ScilabString(typ);
+        this.model.firing = auto;
+        this.model.dep_ut = [true,false];
+        this.model.nzcross = new ScilabDouble(this.ng);
         label = list(transpose([funam,"n",sci2exp(in1),sci2exp(out),sci2exp(clkin),sci2exp(clkout),sci2exp(x0),sci2exp(0),sci2exp(z0),sci2exp(this.rpar),sci2exp(this.ipar),sci2exp(auto),"y","n"]),[]);
         gr_i = [];
-        this.x = standard_define([4,2],model,label,gr_i);
+        this.x = standard_define([4,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
     CBLOCK.prototype.details = function CBLOCK() {
@@ -71,7 +71,7 @@ function CBLOCK() {
         this.dept = parseBoolean(arguments[0]["dept"])
         this.lab = arguments[0]["lab"]
         this.x = arg1;
-        model = arg1.model;
+        this.model = arg1.model;
         graphics = arg1.graphics;
         label = graphics.exprs;
         while (true) {
@@ -121,7 +121,7 @@ function CBLOCK() {
             if (funam==" ") {
                 break;
             }
-            if (model.sim[1-1]!=funam||sign(size(model.state,"*"))!=sign(nx)||sign(size(model.dstate,"*"))!=sign(nz)||model.nzcross!=this.ng||sign(size(model.evtout,"*"))!=sign(nevout)) {
+            if (this.model.sim[1-1]!=funam||sign(size(this.model.state,"*"))!=sign(nx)||sign(size(this.model.dstate,"*"))!=sign(nz)||this.model.nzcross!=this.ng||sign(size(this.model.evtout,"*"))!=sign(nevout)) {
                 tt = [];
             }
             tt = label[2-1];
@@ -132,22 +132,22 @@ function CBLOCK() {
                         break;
                     }
                 } else {
-                    [model,graphics,ok] = check_io(model,graphics,this.i,this.o,this.ci,this.co);
+                    [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
                     if (ok) {
-                        model.sim = list(funam,funtyp);
-                        model.in1 = this.i;
-                        model.out = this.o;
-                        model.evtin = this.ci;
-                        model.evtout = this.co;
-                        model.state = this.xx;
-                        model.dstate = this.z;
-                        model.rpar = this.rpar;
-                        model.ipar = this.ipar;
-                        model.firing = this.auto0;
-                        model.dep_ut = dep_ut;
-                        model.nzcross = this.ng;
+                        this.model.sim = list(funam,funtyp);
+                        this.model.in1 = new ScilabDouble(this.i);
+                        this.model.out = new ScilabDouble(this.o);
+                        this.model.evtin = new ScilabDouble(this.ci);
+                        this.model.evtout = new ScilabDouble(this.co);
+                        this.model.state = this.xx;
+                        this.model.dstate = this.z;
+                        this.model.rpar = this.rpar;
+                        this.model.ipar = new ScilabDouble(this.ipar);
+                        this.model.firing = new ScilabDouble(this.auto0);
+                        this.model.dep_ut = dep_ut;
+                        this.model.nzcross = new ScilabDouble(this.ng);
                         label[2-1] = tt;
-                        this.x.model = model;
+                        this.x.model = this.model;
                         graphics.exprs = label;
                         this.x.graphics = graphics;
                         break;

@@ -7,17 +7,17 @@ function DLR_f() {
         C = 1;
         D = 0;
         exprs = [["1"],["1+z"]];
-        model = scicos_model();
-        model.sim = "dsslti";
-        model.in1 = 1;
-        model.out = 1;
-        model.evtin = 1;
-        model.dstate = x0.slice();
-        model.rpar = [[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("dsslti");
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.dstate = x0.slice();
+        this.model.rpar = [[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         gr_i = [];
-        this.x = standard_define([2.5,2.5],model,exprs,gr_i);
+        this.x = standard_define([2.5,2.5],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     DLR_f.prototype.details = function DLR_f() {
@@ -36,8 +36,8 @@ function DLR_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
-        x0 = model.dstate;
+        this.model = arg1.model;
+        x0 = this.model.dstate;
         ns = prod(size(x0));
         PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.z = %z;
@@ -61,18 +61,18 @@ function DLR_f() {
                     x0[ns1-1][1-1] = 0;
                 }
                 rpar = [[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
-                model.dstate = x0;
-                model.rpar = rpar;
+                this.model.dstate = x0;
+                this.model.rpar = rpar;
                 if (norm(D,1)!=0) {
                     mmm = [true,false];
                 } else {
                     mmm = [false,false];
                 }
-                if (or(model.dep_ut!=mmm)) {
-                    model.dep_ut = mmm;
+                if (or(this.model.dep_ut!=mmm)) {
+                    this.model.dep_ut = mmm;
                 }
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

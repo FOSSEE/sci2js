@@ -3,21 +3,21 @@ function SHIFT() {
     SHIFT.prototype.define = function SHIFT() {
         sgn = [[0],[0]];
         OPER = 0;
-        model = scicos_model();
-        model.sim = list("shift_32_LA",4);
-        model.in1 = -1;
-        model.out = -1;
-        model.in2 = -2;
-        model.out2 = -2;
-        model.intyp = 3;
-        model.outtyp = 3;
-        model.rpar = [];
-        model.ipar = sgn;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("shift_32_LA",4);
+        this.model.in1 = new ScilabDouble(-1);
+        this.model.out = new ScilabDouble(-1);
+        this.model.in2 = new ScilabDouble(-2);
+        this.model.out2 = new ScilabDouble(-2);
+        this.model.intyp = new ScilabDouble(3);
+        this.model.outtyp = new ScilabDouble(3);
+        this.model.rpar = [];
+        this.model.ipar = sgn;
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[sci2exp(3)],[sci2exp(0)],[sci2exp(0)]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     SHIFT.prototype.details = function SHIFT() {
@@ -37,7 +37,7 @@ function SHIFT() {
         this.np = arguments[0]["np"]
         this.x = arg1;
         graphics = arg1.graphics;
-        model = arg1.model;
+        this.model = arg1.model;
         exprs = graphics.exprs;
         while (true) {
             [ok,this.Datatype,this.nb,this.np,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","SHIFT")],[" "],["Shift/Rotates bits"]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Number of Bits to Shift Left (Negative number to shift right)","Shift Type (0:Arithmetic, 1:Circular)"],list("vec",1,"vec",1,"vec",1),exprs);
@@ -54,63 +54,63 @@ function SHIFT() {
                 if (this.nb>0) {
                     switch (this.np) {
                     case 0:
-                        model.sim = list("shift_32_LA",4);
+                        this.model.sim = list("shift_32_LA",4);
                     case 1:
-                        model.sim = list("shift_32_LC",4);
+                        this.model.sim = list("shift_32_LC",4);
                     }
                 } else if (this.nb<0) {
                     switch (this.np) {
                     case 0:
                         switch (this.Datatype) {
                         case 3:
-                            model.sim = list("shift_32_RA",4);
+                            this.model.sim = list("shift_32_RA",4);
                         case 6:
-                            model.sim = list("shift_u32_RA",4);
+                            this.model.sim = list("shift_u32_RA",4);
                         }
                     case 1:
-                        model.sim = list("shift_32_RC",4);
+                        this.model.sim = list("shift_32_RC",4);
                     }
                 }
             } else if ((this.Datatype==4||this.Datatype==7)) {
                 if (this.nb>0) {
                     switch (this.np) {
                     case 0:
-                        model.sim = list("shift_16_LA",4);
+                        this.model.sim = list("shift_16_LA",4);
                     case 1:
-                        model.sim = list("shift_16_LC",4);
+                        this.model.sim = list("shift_16_LC",4);
                     }
                 } else if (this.nb<0) {
                     switch (this.np) {
                     case 0:
                         switch (this.Datatype) {
                         case 4:
-                            model.sim = list("shift_16_RA",4);
+                            this.model.sim = list("shift_16_RA",4);
                         case 7:
-                            model.sim = list("shift_u16_RA",4);
+                            this.model.sim = list("shift_u16_RA",4);
                         }
                     case 1:
-                        model.sim = list("shift_16_RC",4);
+                        this.model.sim = list("shift_16_RC",4);
                     }
                 }
             } else if ((this.Datatype==5||this.Datatype==8)) {
                 if (this.nb>0) {
                     switch (this.np) {
                     case 0:
-                        model.sim = list("shift_8_LA",4);
+                        this.model.sim = list("shift_8_LA",4);
                     case 1:
-                        model.sim = list("shift_8_LC",4);
+                        this.model.sim = list("shift_8_LC",4);
                     }
                 } else if (this.nb<0) {
                     switch (this.np) {
                     case 0:
                         switch (this.Datatype) {
                         case 5:
-                            model.sim = list("shift_8_RA",4);
+                            this.model.sim = list("shift_8_RA",4);
                         case 8:
-                            model.sim = list("shift_u8_RA",4);
+                            this.model.sim = list("shift_u8_RA",4);
                         }
                     case 1:
-                        model.sim = list("shift_8_RC",4);
+                        this.model.sim = list("shift_8_RC",4);
                     }
                 }
             } else {
@@ -118,13 +118,13 @@ function SHIFT() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = set_io(model,graphics,list([-1,-2],it),list([-1,-2],ot),[],[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],it),list([-1,-2],ot),[],[]);
             }
             if (ok) {
-                model.ipar = this.nb;
+                this.model.ipar = new ScilabDouble(this.nb);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

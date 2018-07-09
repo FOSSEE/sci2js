@@ -2,7 +2,7 @@ c__builtin__
 set
 p0
 ((lp1
-S'colormap'
+S'cmin'
 p2
 aS'vec_x'
 p3
@@ -12,12 +12,14 @@ aS'jetcolormap'
 p5
 aS'x'
 p6
-aS'cmax'
+aS'model'
 p7
-aS'cmin'
+aS'cmax'
 p8
-atp9
-Rp10
+aS'colormap'
+p9
+atp10
+Rp11
 .(dp0
 S'cmin'
 p1

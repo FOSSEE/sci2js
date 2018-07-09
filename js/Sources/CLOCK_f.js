@@ -66,10 +66,10 @@ function CLOCK_f() {
         newpar = list();
         xx = arg1.model.rpar.objs[path-1];
         exprs = xx.graphics.exprs;
-        model = xx.model;
-        t0_old = model.firing;
-        dt_old = model.rpar;
-        model_n = model;
+        this.model = xx.model;
+        t0_old = this.model.firing;
+        dt_old = this.model.rpar;
+        model_n = this.model;
         while (true) {
             [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue("Set Clock  block parameters",["Period","Init time"],list("vec",1,"vec",1),exprs);
             if (!ok) {
@@ -81,9 +81,9 @@ function CLOCK_f() {
             }
             if (ok) {
                 xx.graphics.exprs = this.exprs0;
-                model.rpar = this.dt;
-                model.firing = this.t0;
-                xx.model = model;
+                this.model.rpar = new ScilabDouble(this.dt);
+                this.model.firing = new ScilabDouble(this.t0);
+                xx.model = this.model;
                 arg1.model.rpar.objs[path-1] = xx;
                 break;
             }

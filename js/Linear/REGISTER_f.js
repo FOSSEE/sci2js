@@ -2,17 +2,17 @@
 function REGISTER_f() {
     REGISTER_f.prototype.define = function REGISTER_f() {
         this.z0 = zeros(10,1);
-        model = scicos_model();
-        model.sim = "delay";
-        model.in1 = 1;
-        model.out = 1;
-        model.evtin = 1;
-        model.dstate = this.z0;
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("delay");
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.dstate = new ScilabDouble(this.z0);
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         exprs = strcat(string(this.z0),";");
         gr_i = [];
-        this.x = standard_define([2.5,2.5],model,exprs,gr_i);
+        this.x = standard_define([2.5,2.5],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     REGISTER_f.prototype.details = function REGISTER_f() {
@@ -28,7 +28,7 @@ function REGISTER_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.z0,exprs] = scicos_getvalue("Set delay parameters","Register initial condition",list("vec",-1),exprs);
             if (!ok) {
@@ -40,9 +40,9 @@ function REGISTER_f() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                model.dstate = this.z0;
+                this.model.dstate = new ScilabDouble(this.z0);
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

@@ -7,19 +7,19 @@ function CMATVIEW() {
         this.colormap = this.jetcolormap[size_c-1];
         alpha_c = 0.24;
         beta_c = 1;
-        model = scicos_model();
-        model.sim = list("cmatview",4);
-        model.in1 = -1;
-        model.in2 = -2;
-        model.intyp = 1;
-        model.evtin = 1;
-        model.ipar = [[this.cmin],[this.cmax],[size_c]];
-        model.rpar = [[alpha_c],[beta_c],[this.colormap.slice()]];
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("cmatview",4);
+        this.model.in1 = new ScilabDouble(-1);
+        this.model.in2 = new ScilabDouble(-2);
+        this.model.intyp = new ScilabDouble(1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.ipar = [[this.cmin],[this.cmax],[size_c]];
+        this.model.rpar = [[alpha_c],[beta_c],[this.colormap.slice()]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CMATVIEW.prototype.details = function CMATVIEW() {
@@ -40,7 +40,7 @@ function CMATVIEW() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.colormap,this.cmin,this.cmax,exprs] = scicos_getvalue("Set Scope parameters",["ColorMap","Minimum level range","Maximum level range"],list("vec",-1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -61,11 +61,11 @@ function CMATVIEW() {
                 beta_c = sol[2-1];
                 ipar = [[this.cmin],[this.cmax],[size_c]];
                 rpar = [[alpha_c],[beta_c],[this.colormap.slice()]];
-                model.ipar = ipar;
-                model.rpar = rpar;
+                this.model.ipar = ipar;
+                this.model.rpar = rpar;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

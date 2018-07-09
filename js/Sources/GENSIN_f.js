@@ -2,18 +2,18 @@
 function GENSIN_f() {
     GENSIN_f.prototype.define = function GENSIN_f() {
         rpar = [[1],[1],[0]];
-        model = scicos_model();
-        model.sim = "gensin";
-        model.in1 = [];
-        model.out = 1;
-        model.out2 = 1;
-        model.outtyp = 1;
-        model.rpar = [[1],[1],[0]];
-        model.blocktype = "c";
-        model.dep_ut = [false,true];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("gensin");
+        this.model.in1 = [];
+        this.model.out = new ScilabDouble(1);
+        this.model.out2 = new ScilabDouble(1);
+        this.model.outtyp = new ScilabDouble(1);
+        this.model.rpar = [[1],[1],[0]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,true];
         exprs = [[string(rpar[1-1])],[string(rpar[2-1])],[string(rpar[3-1])]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     GENSIN_f.prototype.details = function GENSIN_f() {
@@ -34,7 +34,7 @@ function GENSIN_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.M,this.F,this.P,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","GENSIN_f")],[" "],["Sine wave generator"],[" "]],["Magnitude","Frequency (rad/s)","Phase (rad)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -45,13 +45,13 @@ function GENSIN_f() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = check_io(model,graphics,[],1,[],[]);
-                model.rpar = [[this.M],[this.F],[this.P]];
-                model.out2 = 1;
-                model.outtyp = 1;
+                [model,graphics,ok] = check_io(this.model,graphics,[],1,[],[]);
+                this.model.rpar = [[this.M],[this.F],[this.P]];
+                this.model.out2 = new ScilabDouble(1);
+                this.model.outtyp = new ScilabDouble(1);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

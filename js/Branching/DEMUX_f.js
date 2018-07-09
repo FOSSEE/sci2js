@@ -2,17 +2,17 @@
 function DEMUX_f() {
     DEMUX_f.prototype.define = function DEMUX_f() {
         this.out = 2;
-        model = scicos_model();
-        model.sim = list("demux",1);
-        model.in1 = 0;
-        model.out = -transpose([1:this.out]);
-        model.ipar = this.out;
-        model.blocktype = "c";
-        model.firing = [];
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("demux",1);
+        this.model.in1 = new ScilabDouble(0);
+        this.model.out = -transpose([1:this.out]);
+        this.model.ipar = new ScilabDouble(this.out);
+        this.model.blocktype = new ScilabString("c");
+        this.model.firing = [];
+        this.model.dep_ut = [true,false];
         exprs = string(this.out);
         gr_i = [];
-        this.x = standard_define([.5,2],model,exprs,gr_i);
+        this.x = standard_define([.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     DEMUX_f.prototype.details = function DEMUX_f() {
@@ -29,7 +29,7 @@ function DEMUX_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.out,exprs] = scicos_getvalue("Set DEMUX block parameters",["number of output ports or vector of sizes"],list("vec",-1),exprs);
             if (!ok) {
@@ -40,7 +40,7 @@ function DEMUX_f() {
                     message("Block must have at least 2 and at most 8 output ports");
                     ok = false;
                 } else {
-                    [model,graphics,ok] = check_io(model,graphics,0,-transpose([1:this.out]),[],[]);
+                    [model,graphics,ok] = check_io(this.model,graphics,0,-transpose([1:this.out]),[],[]);
                 }
             } else {
                 if (size(this.out,"*")<2||size(this.out,"*")>8||or(this.out==0)) {
@@ -52,7 +52,7 @@ function DEMUX_f() {
                     } else {
                         nin = sum(this.out);
                     }
-                    [model,graphics,ok] = check_io(model,graphics,nin,this.out.slice(),[],[]);
+                    [model,graphics,ok] = check_io(this.model,graphics,nin,this.out.slice(),[],[]);
                     if (ok) {
                         this.out = size(this.out,"*");
                     }
@@ -60,9 +60,9 @@ function DEMUX_f() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                model.ipar = this.out;
+                this.model.ipar = new ScilabDouble(this.out);
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

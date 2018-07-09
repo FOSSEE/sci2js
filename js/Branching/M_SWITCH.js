@@ -4,16 +4,16 @@ function M_SWITCH() {
         in1 = [[1],[-1],[-1]];
         ipar = [[1],[3]];
         this.nin = 2;
-        model = scicos_model();
-        model.sim = list("mswitch",4);
-        model.in1 = in1;
-        model.out = -1;
-        model.ipar = ipar;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("mswitch",4);
+        this.model.in1 = in1;
+        this.model.out = new ScilabDouble(-1);
+        this.model.ipar = ipar;
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[string(this.nin)],[string(ipar)]];
         gr_i = [];
-        this.x = standard_define([2.5,2],model,exprs,gr_i);
+        this.x = standard_define([2.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     M_SWITCH.prototype.details = function M_SWITCH() {
@@ -34,7 +34,7 @@ function M_SWITCH() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.nin,this.base,this.rule,exprs] = scicos_getvalue("Set parameters",["number of inputs","zero base indexing (0), otherwise 1","rounding rule: int (0), round (1), ceil (2), floor (3)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -60,12 +60,12 @@ function M_SWITCH() {
                 }
                 it = [[-1],[-2*ones(this.nin,1)]];
                 ot = -2;
-                [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
-                    model.ipar = [[this.base],[this.rule]];
+                    this.model.ipar = [[this.base],[this.rule]];
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

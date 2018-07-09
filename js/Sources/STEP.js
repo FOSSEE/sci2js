@@ -2,20 +2,20 @@
 function STEP() {
     STEP.prototype.define = function STEP() {
         rpar = [[0],[1]];
-        model = scicos_model();
-        model.sim = list("step_func",4);
-        model.evtin = 1;
-        model.evtout = 1;
-        model.out = 1;
-        model.out2 = 1;
-        model.outtyp = 1;
-        model.firing = 1;
-        model.rpar = rpar;
-        model.blocktype = "c";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("step_func",4);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.evtout = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.out2 = new ScilabDouble(1);
+        this.model.outtyp = new ScilabDouble(1);
+        this.model.firing = new ScilabDouble(1);
+        this.model.rpar = rpar;
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,false];
         exprs = [[string(1)],[string(rpar)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     STEP.prototype.details = function STEP() {
@@ -36,7 +36,7 @@ function STEP() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.temps,this.in1,this.fi,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","STEP_FUNCTION")],[" "],["Step Function"],[" "]],["Step Time","Initial Value","Final Value"],list("vec",1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
@@ -55,21 +55,21 @@ function STEP() {
                 }
             }
             if (ok) {
-                model.out2 = 1;
-                model.outtyp = 1;
-                [model,graphics,ok] = check_io(model,graphics,[],size(this.fi,"*"),1,1);
+                this.model.out2 = new ScilabDouble(1);
+                this.model.outtyp = new ScilabDouble(1);
+                [model,graphics,ok] = check_io(this.model,graphics,[],size(this.fi,"*"),1,1);
             }
             if (ok) {
-                model.firing = this.temps;
+                this.model.firing = new ScilabDouble(this.temps);
                 if (this.temps==0) {
                     rpar = [[this.fi],[this.fi]];
                 } else {
                     rpar = [[this.in1],[this.fi]];
                 }
-                model.rpar = rpar;
+                this.model.rpar = rpar;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

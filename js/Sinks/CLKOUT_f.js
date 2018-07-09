@@ -2,15 +2,15 @@
 function CLKOUT_f() {
     CLKOUT_f.prototype.define = function CLKOUT_f() {
         this.prt = 1;
-        model = scicos_model();
-        model.sim = "output";
-        model.evtin = 1;
-        model.ipar = this.prt;
-        model.blocktype = "d";
-        model.firing = [];
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("output");
+        this.model.evtin = new ScilabDouble(1);
+        this.model.ipar = new ScilabDouble(this.prt);
+        this.model.blocktype = new ScilabString("d");
+        this.model.firing = [];
+        this.model.dep_ut = [false,false];
         exprs = string(this.prt);
-        this.x = standard_define([1,1],model,exprs," ");
+        this.x = standard_define([1,1],this.model,exprs," ");
         return new BasicBlock(this.x);
     }
     CLKOUT_f.prototype.details = function CLKOUT_f() {
@@ -25,7 +25,7 @@ function CLKOUT_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.x = arg1;
         graphics = arg1.graphics;
-        model = arg1.model;
+        this.model = arg1.model;
         exprs = graphics.exprs;
         exprs = exprs[1-1];
         while (true) {
@@ -37,12 +37,12 @@ function CLKOUT_f() {
             if (this.prt<=0) {
                 message("Port number must be a positive integer");
             } else {
-                model.ipar = this.prt;
-                model.evtin = 1;
-                model.firing = [];
+                this.model.ipar = new ScilabDouble(this.prt);
+                this.model.evtin = new ScilabDouble(1);
+                this.model.firing = [];
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

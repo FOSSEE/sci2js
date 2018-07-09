@@ -6,18 +6,18 @@ function GAINBLK() {
         out = -1;
         in2 = -2;
         out2 = -2;
-        model = scicos_model();
-        model.sim = list("gainblk",4);
-        model.in1 = in1;
-        model.out = out;
-        model.in2 = in2;
-        model.out2 = out2;
-        model.rpar = this.gain;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("gainblk",4);
+        this.model.in1 = new ScilabDouble(in1);
+        this.model.out = new ScilabDouble(out);
+        this.model.in2 = new ScilabDouble(in2);
+        this.model.out2 = new ScilabDouble(out2);
+        this.model.rpar = new ScilabDouble(this.gain);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [strcat(sci2exp(this.gain))];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     GAINBLK.prototype.details = function GAINBLK() {
@@ -36,7 +36,7 @@ function GAINBLK() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         if (size(exprs,"*")==1) {
             exprs = [[exprs],[sci2exp(0)]];
         }
@@ -52,9 +52,9 @@ function GAINBLK() {
                     if (isreal(this.gain)) {
                         it = 1;
                         ot = 1;
-                        model.sim = list("gainblk",4);
-                        model.rpar = this.gain.slice();
-                        model.opar = list();
+                        this.model.sim = list("gainblk",4);
+                        this.model.rpar = this.gain.slice();
+                        this.model.opar = list();
                     } else {
                         message("type is not supported");
                         ok = false;
@@ -63,22 +63,22 @@ function GAINBLK() {
                     if ((this.over==0)) {
                         if ((typeof(this.gain)=="int32")) {
                             ot = 3;
-                            model.sim = list("gainblk_i32n",4);
+                            this.model.sim = list("gainblk_i32n",4);
                         } else if ((typeof(this.gain)=="int16")) {
                             ot = 4;
-                            model.sim = list("gainblk_i16n",4);
+                            this.model.sim = list("gainblk_i16n",4);
                         } else if ((typeof(this.gain)=="int8")) {
                             ot = 5;
-                            model.sim = list("gainblk_i8n",4);
+                            this.model.sim = list("gainblk_i8n",4);
                         } else if ((typeof(this.gain)=="uint32")) {
                             ot = 6;
-                            model.sim = list("gainblk_ui32n",4);
+                            this.model.sim = list("gainblk_ui32n",4);
                         } else if ((typeof(this.gain)=="uint16")) {
                             ot = 7;
-                            model.sim = list("gainblk_ui16n",4);
+                            this.model.sim = list("gainblk_ui16n",4);
                         } else if ((typeof(this.gain)=="uint8")) {
                             ot = 8;
-                            model.sim = list("gainblk_ui8n",4);
+                            this.model.sim = list("gainblk_ui8n",4);
                         } else {
                             message("type is not supported.");
                             ok = false;
@@ -86,22 +86,22 @@ function GAINBLK() {
                     } else if ((this.over==1)) {
                         if ((typeof(this.gain)=="int32")) {
                             ot = 3;
-                            model.sim = list("gainblk_i32s",4);
+                            this.model.sim = list("gainblk_i32s",4);
                         } else if ((typeof(this.gain)=="int16")) {
                             ot = 4;
-                            model.sim = list("gainblk_i16s",4);
+                            this.model.sim = list("gainblk_i16s",4);
                         } else if ((typeof(this.gain)=="int8")) {
                             ot = 5;
-                            model.sim = list("gainblk_i8s",4);
+                            this.model.sim = list("gainblk_i8s",4);
                         } else if ((typeof(this.gain)=="uint32")) {
                             ot = 6;
-                            model.sim = list("gainblk_ui32s",4);
+                            this.model.sim = list("gainblk_ui32s",4);
                         } else if ((typeof(this.gain)=="uint16")) {
                             ot = 7;
-                            model.sim = list("gainblk_ui16s",4);
+                            this.model.sim = list("gainblk_ui16s",4);
                         } else if ((typeof(this.gain)=="uint8")) {
                             ot = 8;
-                            model.sim = list("gainblk_ui8s",4);
+                            this.model.sim = list("gainblk_ui8s",4);
                         } else {
                             message("type is not supported.");
                             ok = false;
@@ -109,22 +109,22 @@ function GAINBLK() {
                     } else if ((this.over==2)) {
                         if ((typeof(this.gain)=="int32")) {
                             ot = 3;
-                            model.sim = list("gainblk_i32e",4);
+                            this.model.sim = list("gainblk_i32e",4);
                         } else if ((typeof(this.gain)=="int16")) {
                             ot = 4;
-                            model.sim = list("gainblk_i16e",4);
+                            this.model.sim = list("gainblk_i16e",4);
                         } else if ((typeof(this.gain)=="int8")) {
                             ot = 5;
-                            model.sim = list("gainblk_i8e",4);
+                            this.model.sim = list("gainblk_i8e",4);
                         } else if ((typeof(this.gain)=="uint32")) {
                             ot = 6;
-                            model.sim = list("gainblk_ui32e",4);
+                            this.model.sim = list("gainblk_ui32e",4);
                         } else if ((typeof(this.gain)=="uint16")) {
                             ot = 7;
-                            model.sim = list("gainblk_ui16e",4);
+                            this.model.sim = list("gainblk_ui16e",4);
                         } else if ((typeof(this.gain)=="uint8")) {
                             ot = 8;
-                            model.sim = list("gainblk_ui8e",4);
+                            this.model.sim = list("gainblk_ui8e",4);
                         } else {
                             message("type is not an integer.");
                             ok = false;
@@ -133,21 +133,21 @@ function GAINBLK() {
                         message("Do on Overflow must be 0,1,2");
                         ok = false;
                     }
-                    model.rpar = [];
-                    model.opar = list(this.gain.slice());
+                    this.model.rpar = [];
+                    this.model.opar = list(this.gain.slice());
                 }
                 if (ok) {
                     [out,in1] = size(this.gain);
                     if (out*in1!=1) {
-                        [model,graphics,ok] = set_io(model,graphics,list([in1,-1],ot),list([out,-1],ot),[],[]);
+                        [model,graphics,ok] = set_io(this.model,graphics,list([in1,-1],ot),list([out,-1],ot),[],[]);
                     } else {
-                        [model,graphics,ok] = set_io(model,graphics,list([-1,-2],ot),list([-1,-2],ot),[],[]);
+                        [model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],ot),list([-1,-2],ot),[],[]);
                     }
                 }
                 if (ok) {
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

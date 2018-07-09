@@ -6,18 +6,18 @@ function DLSS() {
         this.B = 1;
         this.C = 1;
         this.D = 0;
-        model = scicos_model();
-        model.sim = list("dsslti4",4);
-        model.in1 = 1;
-        model.out = 1;
-        model.evtin = 1;
-        model.dstate = this.x0.slice();
-        model.rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("dsslti4",4);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.dstate = this.x0.slice();
+        this.model.rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
         gr_i = [];
-        this.x = standard_define([4,2],model,exprs,gr_i);
+        this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     DLSS.prototype.details = function DLSS() {
@@ -45,7 +45,7 @@ function DLSS() {
         if (size(exprs,"*")==7) {
             exprs = exprs[[1:4,7]-1];
         }
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set discrete linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
             if (!ok) {
@@ -73,7 +73,7 @@ function DLSS() {
             if (ms!=ns||!okD) {
                 message(_("Matrix A is not square or D has wrong dimension"));
             } else {
-                [model,graphics,ok] = check_io(model,graphics,in1,out,1,[]);
+                [model,graphics,ok] = check_io(this.model,graphics,in1,out,1,[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
@@ -83,16 +83,16 @@ function DLSS() {
                         } else {
                             mmm = [false,false];
                         }
-                        if (or(model.dep_ut!=mmm)) {
-                            model.dep_ut = mmm;
+                        if (or(this.model.dep_ut!=mmm)) {
+                            this.model.dep_ut = mmm;
                         }
                     } else {
-                        model.dep_ut = [false,false];
+                        this.model.dep_ut = [false,false];
                     }
-                    model.dstate = this.x0.slice();
-                    model.rpar = rpar;
+                    this.model.dstate = this.x0.slice();
+                    this.model.rpar = rpar;
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

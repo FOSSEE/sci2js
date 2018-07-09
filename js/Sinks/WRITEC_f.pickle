@@ -18,10 +18,12 @@ aS'swap'
 p8
 aS'x'
 p9
-aS'alreadyran'
+aS'model'
 p10
-atp11
-Rp12
+aS'alreadyran'
+p11
+atp12
+Rp13
 .(dp0
 S'model.dstate'
 p1

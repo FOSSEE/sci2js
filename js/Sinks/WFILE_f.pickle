@@ -16,8 +16,10 @@ aS'frmt1'
 p7
 aS'x'
 p8
-atp9
-Rp10
+aS'model'
+p9
+atp10
+Rp11
 .(dp0
 S'model.dstate'
 p1

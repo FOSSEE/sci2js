@@ -4,17 +4,17 @@ function INTEGRAL() {
         this.maxp = 1;
         minp = -1;
         rpar = [];
-        model = scicos_model();
-        model.state = 0;
-        model.sim = list("integral_func",4);
-        model.in1 = 1;
-        model.out = 1;
-        model.rpar = rpar;
-        model.blocktype = "c";
-        model.dep_ut = [false,true];
+        this.model = scicos_model();
+        this.model.state = new ScilabDouble(0);
+        this.model.sim = list("integral_func",4);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.rpar = rpar;
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,true];
         exprs = string([[0],[0],[0],[this.maxp],[minp]]);
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.id = "1/s";
         return new BasicBlock(this.x);
     }
@@ -40,7 +40,7 @@ function INTEGRAL() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
@@ -71,23 +71,23 @@ function INTEGRAL() {
                     ok = false;
                 } else {
                     rpar = [[this.maxp],[this.lowp]];
-                    model.nzcross = size(this.x0,1);
-                    model.nmode = size(this.x0,1);
+                    this.model.nzcross = new ScilabDouble(size(this.x0,1));
+                    this.model.nmode = new ScilabDouble(size(this.x0,1));
                 }
             } else {
                 rpar = [];
-                model.nzcross = 0;
-                model.nmode = 0;
+                this.model.nzcross = new ScilabDouble(0);
+                this.model.nmode = new ScilabDouble(0);
             }
             if (ok) {
-                model.rpar = rpar;
-                model.state = this.x0;
-                [model,graphics,ok] = check_io(model,graphics,size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,1),ones(this.reinit,1),[]);
+                this.model.rpar = rpar;
+                this.model.state = this.x0;
+                [model,graphics,ok] = check_io(this.model,graphics,size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,1),ones(this.reinit,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

@@ -2,18 +2,18 @@
 function EDGETRIGGER() {
     EDGETRIGGER.prototype.define = function EDGETRIGGER() {
         this.edge = 1;
-        model = scicos_model();
-        model.sim = list("edgetrig",4);
-        model.in1 = 1;
-        model.out = 1;
-        model.dstate = 0;
-        model.nzcross = 1;
-        model.ipar = sign(this.edge);
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("edgetrig",4);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.dstate = new ScilabDouble(0);
+        this.model.nzcross = new ScilabDouble(1);
+        this.model.ipar = new ScilabDouble(sign(this.edge));
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [string(this.edge)];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     EDGETRIGGER.prototype.details = function EDGETRIGGER() {
@@ -30,16 +30,16 @@ function EDGETRIGGER() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.edge,exprs] = scicos_getvalue("Set edge trigger block parameters",["rising (1), falling (-1), both (0)"],list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            model.ipar = sign(this.edge);
+            this.model.ipar = new ScilabDouble(sign(this.edge));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
-            this.x.model = model;
+            this.x.model = this.model;
             break;
         }
         return new BasicBlock(this.x);

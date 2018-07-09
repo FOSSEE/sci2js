@@ -4,18 +4,18 @@ function SATURATION() {
         this.minp = -1;
         this.maxp = 1;
         rpar = [[this.maxp],[this.minp]];
-        model = scicos_model();
-        model.sim = list("satur",4);
-        model.in1 = 1;
-        model.nzcross = 2;
-        model.nmode = 1;
-        model.out = 1;
-        model.rpar = rpar;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
-        exprs = [[string(this.maxp)],[string(this.minp)],[string(model.nmode)]];
+        this.model = scicos_model();
+        this.model.sim = list("satur",4);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.nzcross = new ScilabDouble(2);
+        this.model.nmode = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.rpar = rpar;
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
+        exprs = [[string(this.maxp)],[string(this.minp)],[string(this.model.nmode)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     SATURATION.prototype.details = function SATURATION() {
@@ -36,7 +36,7 @@ function SATURATION() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.maxp,this.minp,this.zeroc,exprs] = scicos_getvalue("Set Saturation parameters",["Upper limit","Lower limit","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -46,17 +46,17 @@ function SATURATION() {
                 message("Upper limit must be > Lower limit");
             } else {
                 rpar = [[this.maxp],[this.minp]];
-                model.rpar = rpar;
+                this.model.rpar = rpar;
                 if (this.zeroc!=0) {
-                    model.nzcross = 2;
-                    model.nmode = 1;
+                    this.model.nzcross = new ScilabDouble(2);
+                    this.model.nmode = new ScilabDouble(1);
                 } else {
-                    model.nzcross = 0;
-                    model.nmode = 0;
+                    this.model.nzcross = new ScilabDouble(0);
+                    this.model.nmode = new ScilabDouble(0);
                 }
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

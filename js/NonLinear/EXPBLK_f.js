@@ -3,16 +3,16 @@ function EXPBLK_f() {
     EXPBLK_f.prototype.define = function EXPBLK_f() {
         in1 = 1;
         this.a = math.E;
-        model = scicos_model();
-        model.sim = "expblk";
-        model.in1 = -1;
-        model.out = -1;
-        model.rpar = this.a;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("expblk");
+        this.model.in1 = new ScilabDouble(-1);
+        this.model.out = new ScilabDouble(-1);
+        this.model.rpar = new ScilabDouble(this.a);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = ["%e"];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     EXPBLK_f.prototype.details = function EXPBLK_f() {
@@ -28,7 +28,7 @@ function EXPBLK_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         if (size(exprs,"*")==2) {
             exprs = exprs[2-1];
         }
@@ -41,9 +41,9 @@ function EXPBLK_f() {
                 message("a^u : a must be positive");
             } else {
                 graphics.exprs = exprs;
-                model.rpar = this.a;
+                this.model.rpar = new ScilabDouble(this.a);
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

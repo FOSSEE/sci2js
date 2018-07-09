@@ -38,8 +38,10 @@ aS'EMinMax'
 p18
 aS'x'
 p19
-atp20
-Rp21
+aS'model'
+p20
+atp21
+Rp22
 .(dp0
 S'x.model.equations.parameters[2-1]'
 p1

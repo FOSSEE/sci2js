@@ -2,15 +2,15 @@
 function INVBLK() {
     INVBLK.prototype.define = function INVBLK() {
         in1 = -1;
-        model = scicos_model();
-        model.sim = list("invblk4",4);
-        model.in1 = in1;
-        model.out = in1;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("invblk4",4);
+        this.model.in1 = new ScilabDouble(in1);
+        this.model.out = new ScilabDouble(in1);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = " ";
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     INVBLK.prototype.details = function INVBLK() {

@@ -2,17 +2,17 @@
 function REGISTER() {
     REGISTER.prototype.define = function REGISTER() {
         this.z0 = zeros(10,1);
-        model = scicos_model();
-        model.sim = list("delay4",4);
-        model.in1 = 1;
-        model.out = 1;
-        model.evtin = 1;
-        model.dstate = this.z0;
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("delay4",4);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.dstate = new ScilabDouble(this.z0);
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         exprs = strcat(string(this.z0),";");
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     REGISTER.prototype.details = function REGISTER() {
@@ -31,7 +31,7 @@ function REGISTER() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         if (size(exprs,1)==1) {
             exprs = [[exprs],[sci2exp(1)]];
         }
@@ -45,44 +45,44 @@ function REGISTER() {
                 ok = false;
             }
             if (this.it==1) {
-                model.sim = list("delay4",4);
+                this.model.sim = list("delay4",4);
                 this.z0 = double(this.z0);
-                model.dstate = this.z0;
-                model.odstate = list();
+                this.model.dstate = new ScilabDouble(this.z0);
+                this.model.odstate = list();
             } else {
                 if (this.it==3) {
-                    model.sim = list("delay4_i32",4);
+                    this.model.sim = list("delay4_i32",4);
                     this.z0 = int32(this.z0);
                 } else if (this.it==4) {
-                    model.sim = list("delay4_i16",4);
+                    this.model.sim = list("delay4_i16",4);
                     this.z0 = int16(this.z0);
                 } else if (this.it==5) {
-                    model.sim = list("delay4_i8",4);
+                    this.model.sim = list("delay4_i8",4);
                     this.z0 = int8(this.z0);
                 } else if (this.it==6) {
-                    model.sim = list("delay4_ui32",4);
+                    this.model.sim = list("delay4_ui32",4);
                     this.z0 = uint32(this.z0);
                 } else if (this.it==7) {
-                    model.sim = list("delay4_ui16",4);
+                    this.model.sim = list("delay4_ui16",4);
                     this.z0 = uint16(this.z0);
                 } else if (this.it==8) {
-                    model.sim = list("delay4_ui8",4);
+                    this.model.sim = list("delay4_ui8",4);
                     this.z0 = uint8(this.z0);
                 } else {
                     message("Datatype is not supported");
                     ok = false;
                 }
-                model.odstate = list(this.z0);
-                model.dstate = [];
+                this.model.odstate = list(this.z0);
+                this.model.dstate = [];
             }
             if (ok) {
                 in1 = [1,1];
-                [model,graphics,ok] = set_io(model,graphics,list(in1,this.it),list(in1,this.it),1,[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

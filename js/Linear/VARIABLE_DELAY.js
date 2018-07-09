@@ -5,17 +5,17 @@ function VARIABLE_DELAY() {
         this.T = 1;
         this.init = 0;
         this.N = 1024;
-        model = scicos_model();
-        model.sim = list("variable_delay",4);
-        model.in1 = [[nin],[1]];
-        model.out = nin;
-        model.rpar = [this.T,this.init];
-        model.ipar = this.N;
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("variable_delay",4);
+        this.model.in1 = [[nin],[1]];
+        this.model.out = new ScilabDouble(nin);
+        this.model.rpar = [this.T,this.init];
+        this.model.ipar = new ScilabDouble(this.N);
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     VARIABLE_DELAY.prototype.details = function VARIABLE_DELAY() {
@@ -36,8 +36,8 @@ function VARIABLE_DELAY() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
-        nin = model.in1[1-1];
+        this.model = arg1.model;
+        nin = this.model.in1[1-1];
         while (true) {
             [ok,this.T,this.init,this.N,exprs] = scicos_getvalue("Set delay parameters",["Max delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -52,14 +52,14 @@ function VARIABLE_DELAY() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = check_io(model,graphics,[[-1],[1]],-1,[],[]);
+                [model,graphics,ok] = check_io(this.model,graphics,[[-1],[1]],-1,[],[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
-                model.rpar = [[this.T],[this.init]];
-                model.ipar = this.N;
+                this.model.rpar = [[this.T],[this.init]];
+                this.model.ipar = new ScilabDouble(this.N);
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

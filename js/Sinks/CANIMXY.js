@@ -12,20 +12,20 @@ function CANIMXY() {
         this.ymin = -15;
         this.ymax = 15;
         this.nbr_curves = 1;
-        model = scicos_model();
-        model.sim = list("canimxy",4);
-        model.in1 = [[1],[1]];
-        model.in2 = [[1],[1]];
-        model.intyp = [[1],[1]];
-        model.evtin = 1;
-        model.rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
-        model.ipar = [[this.win],[1],[this.N],[this.clrs],[this.siz],[0],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
-        model.blocktype = "d";
-        model.firing = [];
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("canimxy",4);
+        this.model.in1 = [[1],[1]];
+        this.model.in2 = [[1],[1]];
+        this.model.intyp = [[1],[1]];
+        this.model.evtin = new ScilabDouble(1);
+        this.model.rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
+        this.model.ipar = [[this.win],[1],[this.N],[this.clrs],[this.siz],[0],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.firing = [];
+        this.model.dep_ut = [false,false];
         exprs = [[string(this.nbr_curves)],[string(this.clrs)],[string(this.siz)],[string(this.win)],["[]"],["[]"],[string(this.xmin)],[string(this.xmax)],[string(this.ymin)],[string(this.ymax)],[string(this.N)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CANIMXY.prototype.details = function CANIMXY() {
@@ -62,7 +62,7 @@ function CANIMXY() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.xmin,this.xmax,this.ymin,this.ymax,this.N,exprs] = scicos_getvalue("Set Scope parameters",["Number of Curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin","Xmax","Ymin","Ymax","Buffer size"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -106,7 +106,7 @@ function CANIMXY() {
             } else {
                 in1 = this.nbr_curves*ones(2,1);
                 in2 = ones(2,1);
-                [model,graphics,ok] = set_io(model,graphics,list([in1,in2],ones(2,1)),list(),ones(1,1),[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(2,1)),list(),ones(1,1),[]);
                 if (this.wpos==[]) {
                     this.wpos = [[-1],[-1]];
                 }
@@ -115,11 +115,11 @@ function CANIMXY() {
                 }
                 rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
                 ipar = [[this.win],[1],[this.N],[this.clrs],[this.siz],[0],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
-                model.rpar = rpar;
-                model.ipar = ipar;
+                this.model.rpar = rpar;
+                this.model.ipar = ipar;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

@@ -4,17 +4,17 @@ function MEMORY_f() {
         z = 0;
         in1 = 1;
         exprs = [[string(z)],[string(1)]];
-        model = scicos_model();
-        model.sim = "memo";
-        model.in1 = in1;
-        model.out = in1;
-        model.evtin = 1;
-        model.dstate = 0;
-        model.rpar = z;
-        model.blocktype = "m";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("memo");
+        this.model.in1 = new ScilabDouble(in1);
+        this.model.out = new ScilabDouble(in1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.dstate = new ScilabDouble(0);
+        this.model.rpar = new ScilabDouble(z);
+        this.model.blocktype = new ScilabString("m");
+        this.model.dep_ut = [false,false];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     MEMORY_f.prototype.details = function MEMORY_f() {
@@ -33,7 +33,7 @@ function MEMORY_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.a,this.inh,exprs] = scicos_getvalue("Set memory block parameters",["initial condition","Inherit (1: no, 0: yes)"],list("vec",-1,"vec",1),exprs);
             if (!ok) {
@@ -44,7 +44,7 @@ function MEMORY_f() {
             } else {
                 this.inh = 1;
             }
-            [model,graphics,ok] = check_io(model,graphics,-1,-1,this.inh,[]);
+            [model,graphics,ok] = check_io(this.model,graphics,-1,-1,this.inh,[]);
             out = size(this.a,"*");
             if (out==0) {
                 ok = false;
@@ -53,11 +53,11 @@ function MEMORY_f() {
             in1 = out;
             if (ok) {
                 graphics.exprs = exprs;
-                model.rpar = this.a;
-                model.in1 = in1;
-                model.out = out;
+                this.model.rpar = new ScilabDouble(this.a);
+                this.model.in1 = new ScilabDouble(in1);
+                this.model.out = new ScilabDouble(out);
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

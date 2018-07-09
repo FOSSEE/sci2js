@@ -4,7 +4,7 @@ function CVS() {
         ModelName = "CVS";
         PrametersValue = [];
         ParametersName = [];
-        model = scicos_model();
+        this.model = scicos_model();
         Typein = [];
         Typeout = [];
         MI = [];
@@ -29,22 +29,22 @@ function CVS() {
                 MO = [[MO],[PortName[i-1]]];
             }
         }
-        model = scicos_model();
+        this.model = scicos_model();
         mo = modelica();
-        model.sim = ModelName;
+        this.model.sim = new ScilabString(ModelName);
         mo.inputs = MI;
         mo.outputs = MO;
-        model.rpar = PrametersValue;
+        this.model.rpar = PrametersValue;
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         exprs = [];
         gr_i = [];
-        model.blocktype = "c";
-        model.dep_ut = [false,true];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,true];
         mo.model = ModelName;
-        model.equations = mo;
-        model.in1 = ones(size(MI,"*"),1);
-        model.out = ones(size(MO,"*"),1);
-        this.x = standard_define([2.1,3],model,exprs,list(gr_i,0));
+        this.model.equations = new ScilabDouble(mo);
+        this.model.in1 = new ScilabDouble(ones(size(MI,"*"),1));
+        this.model.out = new ScilabDouble(ones(size(MO,"*"),1));
+        this.x = standard_define([2.1,3],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = Typein;
         this.x.graphics.out_implicit = Typeout;
         return new BasicBlock(this.x);
@@ -61,7 +61,7 @@ function CVS() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         this.x = arg1;
         return new BasicBlock(this.x);
     }

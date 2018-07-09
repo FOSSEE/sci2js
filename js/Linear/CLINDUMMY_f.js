@@ -2,14 +2,14 @@
 function CLINDUMMY_f() {
     CLINDUMMY_f.prototype.define = function CLINDUMMY_f() {
         x0 = 0;
-        model = scicos_model();
-        model.sim = list("cdummy",4);
-        model.state = x0;
-        model.blocktype = "c";
-        model.firing = [];
-        model.dep_ut = [false,true];
+        this.model = scicos_model();
+        this.model.sim = list("cdummy",4);
+        this.model.state = new ScilabDouble(x0);
+        this.model.blocktype = new ScilabString("c");
+        this.model.firing = [];
+        this.model.dep_ut = [false,true];
         gr_i = [];
-        this.x = standard_define([3,2],model,[],gr_i);
+        this.x = standard_define([3,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
     CLINDUMMY_f.prototype.details = function CLINDUMMY_f() {

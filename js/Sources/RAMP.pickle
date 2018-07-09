@@ -6,12 +6,14 @@ S'slope'
 p2
 aS'x'
 p3
-aS'stt'
+aS'model'
 p4
 aS'iout'
 p5
-atp6
-Rp7
+aS'stt'
+p6
+atp7
+Rp8
 .(dp0
 S'slope'
 p1

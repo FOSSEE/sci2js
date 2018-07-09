@@ -3,15 +3,15 @@ function PAL_f() {
     PAL_f.prototype.define = function PAL_f() {
         scs = scicos_diagram();
         scs.props.title = "Palette";
-        model = scicos_model();
-        model.sim = "palette";
-        model.in1 = [];
-        model.out = [];
-        model.rpar = scs;
-        model.blocktype = "h";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("palette");
+        this.model.in1 = [];
+        this.model.out = [];
+        this.model.rpar = new ScilabDouble(scs);
+        this.model.blocktype = new ScilabString("h");
+        this.model.dep_ut = [false,false];
         gr_i = [];
-        this.x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],this.model,[],gr_i);
         this.x.graphics.id = scs.props.title[1-1];
         return new BasicBlock(this.x);
     }

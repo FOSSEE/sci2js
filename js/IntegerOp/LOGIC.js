@@ -2,22 +2,22 @@
 function LOGIC() {
     LOGIC.prototype.define = function LOGIC() {
         this.mat = [[0],[0],[0],[1]];
-        model = scicos_model();
-        model.sim = list("logic",4);
-        model.in1 = [[1],[1]];
-        model.in2 = [[1],[1]];
-        model.out = 1;
-        model.out2 = 1;
-        model.evtin = 1;
-        model.intyp = [5,5];
-        model.outtyp = 5;
-        model.opar = list(int8(this.mat));
-        model.blocktype = "c";
-        model.firing = false;
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("logic",4);
+        this.model.in1 = [[1],[1]];
+        this.model.in2 = [[1],[1]];
+        this.model.out = new ScilabDouble(1);
+        this.model.out2 = new ScilabDouble(1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.intyp = [5,5];
+        this.model.outtyp = new ScilabDouble(5);
+        this.model.opar = list(int8(this.mat));
+        this.model.blocktype = new ScilabString("c");
+        this.model.firing = new ScilabBoolean(false);
+        this.model.dep_ut = [true,false];
         exprs = [[sci2exp(this.mat)],[sci2exp(0)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     LOGIC.prototype.details = function LOGIC() {
@@ -36,7 +36,7 @@ function LOGIC() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.mat,this.herit,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","LOGIC")],[" "],["Combinatorial logic"],[" "],["&nbsp; Rows of the matrix are the output values"],["&nbsp; Number of rows must be a power of two."],["&nbsp; Number of columns gives the number of outputs."],[" "]],["Truth Table (matrix of outputs)","Accepts Inherited Events (0:No, 1:Yes)"],list("mat",[-1,-2],"vec",1),exprs);
             if (!ok) {
@@ -60,14 +60,14 @@ function LOGIC() {
                 out = [ones(nout,1),ones(nout,1)];
                 it = 5*ones(1,nin);
                 ot = 5*ones(1,nout);
-                [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),ones(1-this.herit,1),[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.herit,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
                 this.mat = int8(this.mat);
-                model.opar = list(this.mat);
+                this.model.opar = list(this.mat);
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

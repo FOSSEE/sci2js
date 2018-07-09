@@ -5,20 +5,20 @@ function DELAYV_f() {
         z0 = zeros(11,1);
         this.zz0 = z0.slice(1-1,$-1);
         this.T = 1;
-        model = scicos_model();
-        model.sim = list("delayv",1);
-        model.in1 = [[this.nin],[1]];
-        model.out = this.nin;
-        model.evtin = 1;
-        model.evtout = [[1],[1]];
-        model.dstate = z0;
-        model.rpar = this.T/(size(this.zz0,"*"));
-        model.blocktype = "d";
-        model.firing = [0,-1];
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("delayv",1);
+        this.model.in1 = [[this.nin],[1]];
+        this.model.out = new ScilabDouble(this.nin);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.evtout = [[1],[1]];
+        this.model.dstate = new ScilabDouble(z0);
+        this.model.rpar = new ScilabDouble(this.T/(size(this.zz0,"*")));
+        this.model.blocktype = new ScilabString("d");
+        this.model.firing = [0,-1];
+        this.model.dep_ut = [true,false];
         exprs = [[string(this.nin)],[strcat(string(z0.slice(1-1,$-1)),";")],[string(this.T)]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     DELAYV_f.prototype.details = function DELAYV_f() {
@@ -39,9 +39,9 @@ function DELAYV_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
-        this.nin = model.in1[1-1];
-        z0 = model.dstate;
+        this.model = arg1.model;
+        this.nin = this.model.in1[1-1];
+        z0 = this.model.dstate;
         this.zz0 = z0.slice(1-1,$-1);
         told = z0[$-1];
         while (true) {
@@ -58,14 +58,14 @@ function DELAYV_f() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = check_io(model,graphics,[[this.nin],[1]],this.nin,1,[[1],[1]]);
+                [model,graphics,ok] = check_io(this.model,graphics,[[this.nin],[1]],this.nin,1,[[1],[1]]);
             }
             if (ok) {
                 graphics.exprs = exprs;
-                model.dstate = [[this.zz0.slice()],[told]];
-                model.rpar = this.T/(size(this.zz0,"*"));
+                this.model.dstate = [[this.zz0.slice()],[told]];
+                this.model.rpar = new ScilabDouble(this.T/(size(this.zz0,"*")));
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

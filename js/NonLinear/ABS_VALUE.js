@@ -2,17 +2,17 @@
 function ABS_VALUE() {
     ABS_VALUE.prototype.define = function ABS_VALUE() {
         nu = -1;
-        model = scicos_model();
-        model.sim = list("absolute_value",4);
-        model.in1 = nu;
-        model.out = nu;
-        model.nzcross = nu;
-        model.nmode = nu;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("absolute_value",4);
+        this.model.in1 = new ScilabDouble(nu);
+        this.model.out = new ScilabDouble(nu);
+        this.model.nzcross = new ScilabDouble(nu);
+        this.model.nmode = new ScilabDouble(nu);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [string([1])];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     ABS_VALUE.prototype.details = function ABS_VALUE() {
@@ -29,7 +29,7 @@ function ABS_VALUE() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.zcr,exprs] = scicos_getvalue("Set block parameters",["use zero_crossing (1: yes) (0:no)"],list("vec",1),exprs);
             if (!ok) {
@@ -38,14 +38,14 @@ function ABS_VALUE() {
             graphics.exprs = exprs;
             if (ok) {
                 if (this.zcr!=0) {
-                    model.nmode = -1;
-                    model.nzcross = -1;
+                    this.model.nmode = new ScilabDouble(-1);
+                    this.model.nzcross = new ScilabDouble(-1);
                 } else {
-                    model.nmode = 0;
-                    model.nzcross = 0;
+                    this.model.nmode = new ScilabDouble(0);
+                    this.model.nzcross = new ScilabDouble(0);
                 }
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

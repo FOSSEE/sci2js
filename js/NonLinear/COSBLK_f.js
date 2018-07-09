@@ -2,14 +2,14 @@
 function COSBLK_f() {
     COSBLK_f.prototype.define = function COSBLK_f() {
         in1 = 1;
-        model = scicos_model();
-        model.sim = "cosblk";
-        model.in1 = -1;
-        model.out = -1;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("cosblk");
+        this.model.in1 = new ScilabDouble(-1);
+        this.model.out = new ScilabDouble(-1);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         gr_i = [];
-        this.x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
     COSBLK_f.prototype.details = function COSBLK_f() {

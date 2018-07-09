@@ -5,16 +5,16 @@ function DOLLAR() {
         this.inh = 0;
         in1 = 1;
         exprs = string([[z],[this.inh]]);
-        model = scicos_model();
-        model.sim = list("dollar4",4);
-        model.in1 = in1;
-        model.out = in1;
-        model.evtin = 1-this.inh;
-        model.dstate = z;
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("dollar4",4);
+        this.model.in1 = new ScilabDouble(in1);
+        this.model.out = new ScilabDouble(in1);
+        this.model.evtin = new ScilabDouble(1-this.inh);
+        this.model.dstate = new ScilabDouble(z);
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     DOLLAR.prototype.details = function DOLLAR() {
@@ -33,7 +33,7 @@ function DOLLAR() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         if (size(exprs,"*")<2) {
             exprs[2-1] = "0";
         }
@@ -47,17 +47,17 @@ function DOLLAR() {
                 out = [];
             }
             in1 = out;
-            model.sim = list("dollar4_m",4);
-            model.odstate = list(this.a);
-            model.dstate = [];
+            this.model.sim = list("dollar4_m",4);
+            this.model.odstate = list(this.a);
+            this.model.dstate = [];
             if (this.type[(this.a)==1-1]) {
                 if (isreal(this.a)) {
                     it = 1;
                     ot = 1;
                     if ((size(this.a,1)==1||size(this.a,2)==1)) {
-                        model.sim = list("dollar4",4);
-                        model.dstate = this.a.slice();
-                        model.odstate = list();
+                        this.model.sim = list("dollar4",4);
+                        this.model.dstate = this.a.slice();
+                        this.model.odstate = list();
                     }
                 } else {
                     it = 2;
@@ -86,12 +86,12 @@ function DOLLAR() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),ones(1-this.inh,1),[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.inh,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

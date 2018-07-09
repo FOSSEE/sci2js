@@ -4,10 +4,12 @@ p0
 ((lp1
 S'x'
 p2
-aS'FR'
+aS'model'
 p3
-atp4
-Rp5
+aS'FR'
+p4
+atp5
+Rp6
 .(dp0
 S'FR'
 p1
@@ -37,9 +39,9 @@ sS'model.in1'
 p12
 S'matrix'
 p13
-sS'x.graphics'
+sS'exprs'
 p14
-g6
+g11
 sS'mo.inputs'
 p15
 g11
@@ -75,13 +77,13 @@ g4
 sS'mo'
 p26
 g2
-sS'model.dep_ut'
+sS'x.graphics'
 p27
-g11
-sS'model.equations.parameters[2-1]'
+g6
+sS'model.dep_ut'
 p28
 g11
-sS'exprs'
+sS"model.equations.parameters[('2', 'double')]"
 p29
 g11
 sS'gr_i'

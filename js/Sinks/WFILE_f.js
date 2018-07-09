@@ -7,17 +7,17 @@ function WFILE_f() {
         fname = "foo";
         lunit = 0;
         this.N = 2;
-        model = scicos_model();
-        model.sim = "writef";
-        model.in1 = this.in1;
-        model.evtin = 1;
-        model.dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
-        model.ipar = [[length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]]];
-        model.blocktype = "d";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("writef");
+        this.model.in1 = new ScilabDouble(this.in1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
+        this.model.ipar = [[length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [true,false];
         exprs = [[sci2exp(this.in1)],[fname],[frmt],[string(this.N)]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     WFILE_f.prototype.details = function WFILE_f() {
@@ -45,8 +45,8 @@ function WFILE_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
-        dstate = model.dstate;
+        this.model = arg1.model;
+        dstate = this.model.dstate;
         lunit = dstate[2-1];
         fname = exprs[2-1];
         frmt = exprs[3-1];
@@ -89,13 +89,13 @@ function WFILE_f() {
                 if (prod(size(dstate))!=(nin+1)*this.N+2) {
                     dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
                 }
-                model.in1 = nin;
-                model.dstate = dstate;
-                model.ipar = ipar;
-                model.dep_ut = [true,false];
+                this.model.in1 = new ScilabDouble(nin);
+                this.model.dstate = dstate;
+                this.model.ipar = ipar;
+                this.model.dep_ut = [true,false];
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

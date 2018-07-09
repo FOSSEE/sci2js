@@ -11,15 +11,15 @@ function SUPER_f() {
         out.graphics.sz = [20,20];
         scs.objs[1-1] = in1;
         scs.objs[2-1] = out;
-        model = scicos_model();
-        model.sim = "super";
-        model.in1 = 1;
-        model.out = 1;
-        model.rpar = scs;
-        model.blocktype = "h";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("super");
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.rpar = new ScilabDouble(scs);
+        this.model.blocktype = new ScilabString("h");
+        this.model.dep_ut = [false,false];
         gr_i = [];
-        this.x = standard_define([2,2],model,[],gr_i);
+        this.x = standard_define([2,2],this.model,[],gr_i);
         return new SuperBlock(this.x);
     }
     SUPER_f.prototype.details = function SUPER_f() {

@@ -5,18 +5,18 @@ function HYSTHERESIS() {
         ipar = [0];
         this.nzz = 2;
         rpar = [[1],[0],[1],[0]];
-        model = scicos_model();
-        model.sim = list("hystheresis",4);
-        model.in1 = in1;
-        model.out = 1;
-        model.rpar = rpar;
-        model.nzcross = this.nzz;
-        model.nmode = 1;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("hystheresis",4);
+        this.model.in1 = new ScilabDouble(in1);
+        this.model.out = new ScilabDouble(1);
+        this.model.rpar = rpar;
+        this.model.nzcross = new ScilabDouble(this.nzz);
+        this.model.nmode = new ScilabDouble(1);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[string(rpar)],[string(sign(this.nzz))]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     HYSTHERESIS.prototype.details = function HYSTHERESIS() {
@@ -41,7 +41,7 @@ function HYSTHERESIS() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.high_lim,this.low_lim,this.out_high,this.out_low,this.nzz,exprs] = scicos_getvalue("Set parameters",["switch on at","switch off at","output when on","output when off","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -51,13 +51,13 @@ function HYSTHERESIS() {
                 message("switch on value must be larger than switch off value");
             } else {
                 graphics.exprs = exprs;
-                model.rpar = transpose([this.high_lim,this.low_lim,this.out_high,this.out_low]);
+                this.model.rpar = transpose([this.high_lim,this.low_lim,this.out_high,this.out_low]);
                 if (this.nzz>0) {
                     this.nzz = 2;
                 }
-                model.nzcross = this.nzz;
+                this.model.nzcross = new ScilabDouble(this.nzz);
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

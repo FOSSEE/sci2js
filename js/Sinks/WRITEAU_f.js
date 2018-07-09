@@ -8,17 +8,17 @@ function WRITEAU_f() {
         this.swap = 0;
         lunit = 0;
         this.N = 2;
-        model = scicos_model();
-        model.sim = list("writeau",2);
-        model.in1 = in1;
-        model.evtin = 1;
-        model.dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
-        model.ipar = [[length(fname)],[this._str2code[frmt-1]],[this.N],[this.swap],[this._str2code[fname-1]]];
-        model.blocktype = "d";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("writeau",2);
+        this.model.in1 = new ScilabDouble(in1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
+        this.model.ipar = [[length(fname)],[this._str2code[frmt-1]],[this.N],[this.swap],[this._str2code[fname-1]]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [true,false];
         exprs = [string(this.N),string(this.swap)];
         gr_i = [];
-        this.x = standard_define([4,2],model,exprs,gr_i);
+        this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     WRITEAU_f.prototype.details = function WRITEAU_f() {
@@ -37,9 +37,9 @@ function WRITEAU_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
-        ipar = model.ipar;
-        dstate = model.dstate;
+        this.model = arg1.model;
+        ipar = this.model.ipar;
+        dstate = this.model.dstate;
         lunit = dstate[2-1];
         while (true) {
             [ok,this.N,this.swap,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WRITEAU_f")],[" "],["Write \'.au\' sound file on audio device"]],["Buffer Size","Swap Mode (0:No, 1:Yes)"],list("vec",1,"vec",1),exprs);
@@ -65,12 +65,12 @@ function WRITEAU_f() {
                 if (prod(size(dstate))!=(nin+1)*this.N+2) {
                     dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
                 }
-                model.in1 = 1;
-                model.dstate = dstate;
-                model.ipar = ipar;
+                this.model.in1 = new ScilabDouble(1);
+                this.model.dstate = dstate;
+                this.model.ipar = ipar;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

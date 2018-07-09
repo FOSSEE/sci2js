@@ -6,12 +6,14 @@ S'minp'
 p2
 aS'x'
 p3
-aS'maxp'
+aS'model'
 p4
 aS'zeroc'
 p5
-atp6
-Rp7
+aS'maxp'
+p6
+atp7
+Rp8
 .(dp0
 S'arg1'
 p1

@@ -9,18 +9,18 @@ function TCLSS() {
         in1 = 1;
         nx = size(this.x0,"*");
         out = 1;
-        model = scicos_model();
-        model.sim = list("tcslti4",4);
-        model.in1 = [[in1],[nx]];
-        model.out = out;
-        model.evtin = 1;
-        model.state = this.x0;
-        model.rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
-        model.blocktype = "c";
-        model.dep_ut = [false,true];
+        this.model = scicos_model();
+        this.model.sim = list("tcslti4",4);
+        this.model.in1 = [[in1],[nx]];
+        this.model.out = new ScilabDouble(out);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.state = new ScilabDouble(this.x0);
+        this.model.rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,true];
         exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     TCLSS.prototype.details = function TCLSS() {
@@ -45,7 +45,7 @@ function TCLSS() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         if (size(exprs,"*")==7) {
             exprs = exprs[[1:4,7]-1];
         }
@@ -66,7 +66,7 @@ function TCLSS() {
             if (ms!=ns) {
                 message("A matrix must be square");
             } else {
-                [model,graphics,ok] = check_io(model,graphics,[[in1],[ms]],out,1,[]);
+                [model,graphics,ok] = check_io(this.model,graphics,[[in1],[ms]],out,1,[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
@@ -76,21 +76,21 @@ function TCLSS() {
                         } else {
                             mmm = [false,true];
                         }
-                        if (or(model.dep_ut!=mmm)) {
-                            model.dep_ut = mmm;
+                        if (or(this.model.dep_ut!=mmm)) {
+                            this.model.dep_ut = mmm;
                         }
                     } else {
-                        model.dep_ut = [false,true];
+                        this.model.dep_ut = [false,true];
                     }
-                    model.state = this.x0.slice();
-                    model.rpar = rpar;
+                    this.model.state = this.x0.slice();
+                    this.model.rpar = rpar;
                     if (this.D!=[]) {
-                        model.sim = list("tcslti4",4);
+                        this.model.sim = list("tcslti4",4);
                     } else {
-                        model.sim = list("tcsltj4",4);
+                        this.model.sim = list("tcsltj4",4);
                     }
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

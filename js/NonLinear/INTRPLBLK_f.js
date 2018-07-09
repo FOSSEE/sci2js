@@ -3,16 +3,16 @@ function INTRPLBLK_f() {
     INTRPLBLK_f.prototype.define = function INTRPLBLK_f() {
         this.a = [[0],[1]];
         this.b = [[0],[1]];
-        model = scicos_model();
-        model.sim = "intrpl";
-        model.in1 = 1;
-        model.out = 1;
-        model.rpar = [[this.a],[this.b]];
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("intrpl");
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.rpar = [[this.a],[this.b]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     INTRPLBLK_f.prototype.details = function INTRPLBLK_f() {
@@ -31,7 +31,7 @@ function INTRPLBLK_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.a,this.b,exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord."],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
@@ -44,9 +44,9 @@ function INTRPLBLK_f() {
             } else {
                 if (ok) {
                     graphics.exprs = exprs;
-                    model.rpar = [[this.a.slice()],[this.b.slice()]];
+                    this.model.rpar = [[this.a.slice()],[this.b.slice()]];
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

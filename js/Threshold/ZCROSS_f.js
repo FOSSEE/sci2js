@@ -3,18 +3,18 @@ function ZCROSS_f() {
     ZCROSS_f.prototype.define = function ZCROSS_f() {
         rpar = [[-1],[-1],[0],[0]];
         this.in1 = 1;
-        model = scicos_model();
-        model.sim = list("zcross",1);
-        model.in1 = this.in1;
-        model.nzcross = this.in1;
-        model.evtout = 1;
-        model.rpar = [[-1],[-1],[0],[0]];
-        model.blocktype = "z";
-        model.firing = -1;
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("zcross",1);
+        this.model.in1 = new ScilabDouble(this.in1);
+        this.model.nzcross = new ScilabDouble(this.in1);
+        this.model.evtout = new ScilabDouble(1);
+        this.model.rpar = [[-1],[-1],[0],[0]];
+        this.model.blocktype = new ScilabString("z");
+        this.model.firing = new ScilabDouble(-1);
+        this.model.dep_ut = [true,false];
         exprs = strcat(sci2exp(this.in1));
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     ZCROSS_f.prototype.details = function ZCROSS_f() {
@@ -30,7 +30,7 @@ function ZCROSS_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.in1,exprs] = scicos_getvalue([["Set Zero-Crossing parameters"],["All surfaces must cross together"]],"Input size",list("vec",1),exprs);
             if (!ok) {
@@ -44,13 +44,13 @@ function ZCROSS_f() {
                 for (jj=1;jj<=this.in1;jj+=1) {
                     kk = kk+2^(this.in1+jj-1);
                 }
-                model.rpar = [[-ones(kk,1)],[zeros(2^(2*this.in1)-kk,1)]];
+                this.model.rpar = [[-ones(kk,1)],[zeros(2^(2*this.in1)-kk,1)]];
                 graphics.exprs = exprs;
-                model.in1 = this.in1;
-                model.nzcross = this.in1;
-                model.firing = -1;
+                this.model.in1 = new ScilabDouble(this.in1);
+                this.model.nzcross = new ScilabDouble(this.in1);
+                this.model.firing = new ScilabDouble(-1);
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

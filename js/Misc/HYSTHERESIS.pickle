@@ -14,8 +14,10 @@ aS'high_lim'
 p6
 aS'x'
 p7
-atp8
-Rp9
+aS'model'
+p8
+atp9
+Rp10
 .(dp0
 S'arg1'
 p1

@@ -7,16 +7,16 @@ function CEVENTSCOPE() {
         this.wdim = [[600],[400]];
         this.wpos = [[-1],[-1]];
         this.per = 30;
-        model = scicos_model();
-        model.sim = list("cevscpe",4);
-        model.evtin = 1;
-        model.rpar = this.per;
-        model.ipar = [[this.win],[1],[this.clrs[this.nclock-1]],[this.wpos.slice()],[this.wdim.slice()]];
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("cevscpe",4);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.rpar = new ScilabDouble(this.per);
+        this.model.ipar = [[this.win],[1],[this.clrs[this.nclock-1]],[this.wpos.slice()],[this.wdim.slice()]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         exprs = [[sci2exp(this.nclock)],[strcat(sci2exp(this.clrs[this.nclock-1])," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.per)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CEVENTSCOPE.prototype.details = function CEVENTSCOPE() {
@@ -43,7 +43,7 @@ function CEVENTSCOPE() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.nclock,this.clrs,this.win,this.wpos,this.wdim,this.per,exprs] = scicos_getvalue("Set Scope parameters",["Number of event inputs","colors c (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Refresh period"],list("vec",1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",1),exprs);
             this.nclock = int(this.nclock);
@@ -78,7 +78,7 @@ function CEVENTSCOPE() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = set_io(model,graphics,list(),list(),ones(this.nclock,1),[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list(),list(),ones(this.nclock,1),[]);
             } else {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
@@ -91,11 +91,11 @@ function CEVENTSCOPE() {
                 }
                 rpar = this.per;
                 ipar = [[this.win],[1],[this.clrs.slice()],[this.wpos.slice()],[this.wdim.slice()]];
-                model.rpar = rpar;
-                model.ipar = ipar;
+                this.model.rpar = new ScilabDouble(rpar);
+                this.model.ipar = ipar;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

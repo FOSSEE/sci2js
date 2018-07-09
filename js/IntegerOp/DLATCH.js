@@ -21,20 +21,20 @@ function DLATCH() {
         scs_m.objs[17-1] = scicos_link(xx=[[386.03841],[406.03841]],yy=[[329.46812],[329.46812]],id="drawlink",thick=[0,0],ct=[1,1],from=[8,1,0],to=[16,1,1]);
         scs_m.objs[18-1] = scicos_block(gui="OUT_f",graphics=scicos_graphics(orig=[325.09603,270.83282],sz=[20,20],flip=true,theta=0,exprs="1",pin=19,pout=[],pein=[],peout=[],gr_i=list(" ",8),id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="output",in1=-1,in2=[],intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
         scs_m.objs[19-1] = scicos_link(xx=[[305.09603],[325.09603]],yy=[[280.83282],[280.83282]],id="drawlink",thick=[0,0],ct=[1,1],from=[10,2,0],to=[18,1,1]);
-        model = scicos_model();
-        model.sim = "csuper";
-        model.in1 = [[1],[1]];
-        model.in2 = [[1],[1]];
-        model.out = [[1],[1]];
-        model.out2 = [[1],[1]];
-        model.intyp = [5,-1];
-        model.outtyp = [5,5];
-        model.blocktype = "h";
-        model.firing = false;
-        model.dep_ut = [true,false];
-        model.rpar = scs_m;
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("csuper");
+        this.model.in1 = [[1],[1]];
+        this.model.in2 = [[1],[1]];
+        this.model.out = [[1],[1]];
+        this.model.out2 = [[1],[1]];
+        this.model.intyp = [5,-1];
+        this.model.outtyp = [5,5];
+        this.model.blocktype = new ScilabString("h");
+        this.model.firing = new ScilabBoolean(false);
+        this.model.dep_ut = [true,false];
+        this.model.rpar = new ScilabDouble(scs_m);
         gr_i = [];
-        this.x = standard_define([2,3],model,[],gr_i);
+        this.x = standard_define([2,3],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
     DLATCH.prototype.details = function DLATCH() {

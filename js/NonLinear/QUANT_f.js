@@ -3,17 +3,17 @@ function QUANT_f() {
     QUANT_f.prototype.define = function QUANT_f() {
         this.pas = 0.1;
         this.meth = 1;
-        model = scicos_model();
-        model.sim = "qzrnd";
-        model.in1 = -1;
-        model.out = -1;
-        model.rpar = this.pas;
-        model.ipar = this.meth;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("qzrnd");
+        this.model.in1 = new ScilabDouble(-1);
+        this.model.out = new ScilabDouble(-1);
+        this.model.rpar = new ScilabDouble(this.pas);
+        this.model.ipar = new ScilabDouble(this.meth);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[string(this.pas)],[string(this.meth)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     QUANT_f.prototype.details = function QUANT_f() {
@@ -32,7 +32,7 @@ function QUANT_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.pas,this.meth,exprs] = scicos_getvalue("Set parameters",["Step","Quantization Type (1-4)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
@@ -42,21 +42,21 @@ function QUANT_f() {
                 message("Quantization Type must be from 1 to 4");
             } else {
                 rpar = this.pas;
-                model.rpar = rpar;
-                model.ipar = this.meth;
+                this.model.rpar = new ScilabDouble(rpar);
+                this.model.ipar = new ScilabDouble(this.meth);
                 switch (this.meth) {
                 case 1:
-                    model.sim = "qzrnd";
+                    this.model.sim = new ScilabString("qzrnd");
                 case 2:
-                    model.sim = "qztrn";
+                    this.model.sim = new ScilabString("qztrn");
                 case 3:
-                    model.sim = "qzflr";
+                    this.model.sim = new ScilabString("qzflr");
                 case 4:
-                    model.sim = "qzcel";
+                    this.model.sim = new ScilabString("qzcel");
                 }
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

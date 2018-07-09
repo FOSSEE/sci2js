@@ -10,24 +10,24 @@ function MBLOCK() {
         this.pprop = [[0],[0]];
         nameF = "generic";
         exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],sci2exp(this.in1.slice()),sci2exp(this.intype.slice()),sci2exp(this.out.slice()),sci2exp(this.outtype.slice()),sci2exp(param.slice()),list(string(0.1),string(.0001)),sci2exp(this.pprop.slice()),nameF,[]);
-        model = scicos_model();
-        model.blocktype = "c";
-        model.dep_ut = [false,true];
-        model.rpar = [];
+        this.model = scicos_model();
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,true];
+        this.model.rpar = [];
         for (i=1;i<=lstsize(paramv);i+=1) {
-            model.rpar = [[model.rpar],[paramv[i-1].slice()]];
+            this.model.rpar = [[this.model.rpar],[paramv[i-1].slice()]];
         }
         mo = modelica();
         mo.model = nameF;
         mo.parameters = list(param,paramv);
-        model.sim = list(mo.model,30004);
+        this.model.sim = list(mo.model,30004);
         mo.inputs = this.in1;
         mo.outputs = this.out;
-        model.in1 = ones(size(mo.inputs,"r"),1);
-        model.out = ones(size(mo.outputs,"r"),1);
-        model.equations = mo;
+        this.model.in1 = new ScilabDouble(ones(size(mo.inputs,"r"),1));
+        this.model.out = new ScilabDouble(ones(size(mo.outputs,"r"),1));
+        this.model.equations = mo;
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = this.intype;
         this.x.graphics.out_implicit = this.outtype;
         return new BasicBlock(this.x);
@@ -57,14 +57,14 @@ function MBLOCK() {
         this.Tfunam = arguments[0]["Tfunam"]
         this.lab_1 = inverse(arguments[0]["lab_1"])
         this.x = arg1;
-        model = arg1.model;
+        this.model = arg1.model;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         if (this.type[exprs-1]==15) {
             paramv = list();
             this.pprop = [];
-            for (i=1;i<=size(model.rpar,"*");i+=1) {
-                paramv[$+1-1] = string(model.rpar[i-1]);
+            for (i=1;i<=size(this.model.rpar,"*");i+=1) {
+                paramv[$+1-1] = string(this.model.rpar[i-1]);
                 this.pprop[$+1-1] = 0;
             }
             exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],exprs[1-1][1-1],exprs[1-1][2-1],exprs[1-1][3-1],exprs[1-1][4-1],exprs[1-1][5-1],paramv,sci2exp(this.pprop.slice()),exprs[1-1][7-1],exprs[2-1]);
@@ -180,7 +180,7 @@ function MBLOCK() {
             if (ok) {
                 intypex = find(this.intype=="I");
                 outtypex = find(this.outtype=="I");
-                [model,graphics,ok] = set_io(model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
+                [model,graphics,ok] = set_io(this.model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
             }
             if (ok) {
                 Tparam_lab = evstr(this.Tparam);
@@ -234,7 +234,7 @@ function MBLOCK() {
                     tt = mgetl(this.funam);
                 } else {
                     tt = exprs.funtxt;
-                    mo = model.equations;
+                    mo = this.model.equations;
                     if (mo.model!=nameF) {
                         tt = [];
                     }
@@ -254,12 +254,12 @@ function MBLOCK() {
                 } else {
                     mo.parameters = list(transpose(param),paramv);
                 }
-                model.equations = mo;
-                model.rpar = [];
+                this.model.equations = new ScilabDouble(mo);
+                this.model.rpar = [];
                 for (i=1;i<=lstsize(paramv);i+=1) {
-                    model.rpar = [[model.rpar],[paramv[i-1].slice()]];
+                    this.model.rpar = [[this.model.rpar],[paramv[i-1].slice()]];
                 }
-                model.sim[1-1] = this.funam;
+                this.model.sim[('1', 'double')] = new ScilabDouble(this.funam);
                 exprs.in1 = this.lab_1[1-1];
                 exprs.intype = this.lab_1[2-1];
                 exprs.out = this.lab_1[3-1];
@@ -280,7 +280,7 @@ function MBLOCK() {
                 exprs.pprop = this.lab_1[6-1];
                 exprs.nameF = this.lab_1[7-1];
                 exprs.funtxt = tt;
-                this.x.model = model;
+                this.x.model = this.model;
                 graphics.gr_i[1-1][1-1] = "txt=[\'Modelica\';\' "+nameF+" \'];";
                 graphics.in_implicit = this.intype;
                 graphics.out_implicit = this.outtype;

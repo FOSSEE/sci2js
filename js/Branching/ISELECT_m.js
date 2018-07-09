@@ -3,26 +3,26 @@ function ISELECT_m() {
     ISELECT_m.prototype.define = function ISELECT_m() {
         this.z0 = 1;
         this.nout = 2;
-        model = scicos_model();
-        model.sim = list("selector_m",4);
-        model.out = [[-1],[-1]];
-        model.out2 = [[-2],[-2]];
-        model.outtyp = 1;
-        model.in1 = -1;
-        model.in2 = -2;
-        model.intyp = 1;
-        model.evtout = [];
-        model.state = [];
-        model.rpar = [];
-        model.ipar = [];
-        model.firing = [];
-        model.evtin = ones(this.nout,1);
-        model.dstate = this.z0;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("selector_m",4);
+        this.model.out = [[-1],[-1]];
+        this.model.out2 = [[-2],[-2]];
+        this.model.outtyp = new ScilabDouble(1);
+        this.model.in1 = new ScilabDouble(-1);
+        this.model.in2 = new ScilabDouble(-2);
+        this.model.intyp = new ScilabDouble(1);
+        this.model.evtout = [];
+        this.model.state = [];
+        this.model.rpar = [];
+        this.model.ipar = [];
+        this.model.firing = [];
+        this.model.evtin = new ScilabDouble(ones(this.nout,1));
+        this.model.dstate = new ScilabDouble(this.z0);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[sci2exp(1)],[sci2exp(this.nout)],[sci2exp(this.z0)]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     ISELECT_m.prototype.details = function ISELECT_m() {
@@ -43,7 +43,7 @@ function ISELECT_m() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.typ,this.nout,this.z0,exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ...)","number of outputs","initial connected output"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -60,12 +60,12 @@ function ISELECT_m() {
                 if (ok) {
                     out = [-ones(this.nout,1),-2*ones(this.nout,1)];
                     in1 = [-1,-2];
-                    [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),ones(this.nout,1),[]);
+                    [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.nout,1),[]);
                     if (ok) {
                         graphics.exprs = exprs;
-                        model.dstate = this.z0;
+                        this.model.dstate = new ScilabDouble(this.z0);
                         this.x.graphics = graphics;
-                        this.x.model = model;
+                        this.x.model = this.model;
                         break;
                     }
                 }

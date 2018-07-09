@@ -7,20 +7,20 @@ function DLRADAPT_f() {
         this.g = [[1],[1]];
         this.last_u = [];
         this.last_y = [[0],[0]];
-        model = scicos_model();
-        model.sim = "dlradp";
-        model.in1 = [[1],[1]];
-        model.out = 1;
-        model.evtin = 1;
-        model.dstate = [[this.last_u],[this.last_y]];
-        model.rpar = [[this.p.slice()],[real(this.rn.slice())],[imag(this.rn.slice())],[real(this.rd.slice())],[imag(this.rd.slice())],[this.g.slice()]];
-        model.ipar = [[0],[2],[2]];
-        model.blocktype = "d";
-        model.firing = [];
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("dlradp");
+        this.model.in1 = [[1],[1]];
+        this.model.out = new ScilabDouble(1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.dstate = [[this.last_u],[this.last_y]];
+        this.model.rpar = [[this.p.slice()],[real(this.rn.slice())],[imag(this.rn.slice())],[real(this.rd.slice())],[imag(this.rd.slice())],[this.g.slice()]];
+        this.model.ipar = [[0],[2],[2]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.firing = [];
+        this.model.dep_ut = [true,false];
         exprs = [[sci2exp(this.p)],[sci2exp(this.rn)],[sci2exp(this.rd,0)],[sci2exp(this.g)],[sci2exp(this.last_u)],[sci2exp(this.last_y)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     DLRADAPT_f.prototype.details = function DLRADAPT_f() {
@@ -47,7 +47,7 @@ function DLRADAPT_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.p,this.rn,this.rd,this.g,this.last_u,this.last_y,exprs] = scicos_getvalue("Set block parameters",["Vector of p mesh points","Numerator roots (one line for each mesh)","Denominator roots (one line for each mesh)","Vector of gain at mesh points","past inputs (Num degree values)","past outputs (Den degree values)"],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),exprs);
             if (!ok) {
@@ -62,12 +62,12 @@ function DLRADAPT_f() {
             } else {
                 rpar = [[this.p.slice()],[real(this.rn.slice())],[imag(this.rn.slice())],[real(this.rd.slice())],[imag(this.rd.slice())],[this.g.slice()]];
                 ipar = [[m],[n],[npt]];
-                model.dstate = [[this.last_u.slice()],[this.last_y.slice()]];
-                model.rpar = rpar;
-                model.ipar = ipar;
+                this.model.dstate = [[this.last_u.slice()],[this.last_y.slice()]];
+                this.model.rpar = rpar;
+                this.model.ipar = ipar;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

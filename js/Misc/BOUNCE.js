@@ -23,19 +23,19 @@ function BOUNCE() {
         this.rpar2 = this.rpar1;
         state = [this.x,this.xd,this.y,this.yd];
         state = transpose(state);
-        model = scicos_model();
-        model.sim = list("bounce_ball",4);
-        model.in1 = [];
-        model.out = [[n],[n]];
-        model.state = state.slice();
-        model.rpar = [[this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]];
-        model.ipar = ipar;
-        model.nzcross = n*(n-1)/2+4*n;
-        model.blocktype = "c";
-        model.dep_ut = [false,true];
+        this.model = scicos_model();
+        this.model.sim = list("bounce_ball",4);
+        this.model.in1 = [];
+        this.model.out = [[n],[n]];
+        this.model.state = state.slice();
+        this.model.rpar = [[this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]];
+        this.model.ipar = ipar;
+        this.model.nzcross = new ScilabDouble(n*(n-1)/2+4*n);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,true];
         exprs = [[strcat(sci2exp(this.rpar1))],[strcat(sci2exp(this.rpar2))],[strcat(sci2exp(this.walls))],[strcat(sci2exp(this.x))],[strcat(sci2exp(this.xd))],[strcat(sci2exp(this.y))],[strcat(sci2exp(this.yd))]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     BOUNCE.prototype.details = function BOUNCE() {
@@ -68,7 +68,7 @@ function BOUNCE() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         if (size(exprs,"*")<9) {
             exprs[8-1] = "9.81";
             exprs[9-1] = "0";
@@ -102,7 +102,7 @@ function BOUNCE() {
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = check_io(model,graphics,[],[n,n],[],[]);
+            [model,graphics,ok] = check_io(this.model,graphics,[],[n,n],[],[]);
             if (ok) {
                 k = 1;
                 ipar = [];
@@ -114,15 +114,15 @@ function BOUNCE() {
                         k = k+1;
                     }
                 }
-                model.rpar = [[this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]];
-                model.ipar = ipar;
+                this.model.rpar = [[this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]];
+                this.model.ipar = ipar;
                 state = [this.xt,this.xd,this.y,this.yd];
                 state = transpose(state);
-                model.state = state.slice();
-                model.nzcross = n*(n-1)/2+4*n;
+                this.model.state = state.slice();
+                this.model.nzcross = new ScilabDouble(n*(n-1)/2+4*n);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

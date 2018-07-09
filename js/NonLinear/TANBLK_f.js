@@ -2,15 +2,15 @@
 function TANBLK_f() {
     TANBLK_f.prototype.define = function TANBLK_f() {
         in1 = -1;
-        model = scicos_model();
-        model.sim = "tanblk";
-        model.in1 = in1;
-        model.out = in1;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("tanblk");
+        this.model.in1 = new ScilabDouble(in1);
+        this.model.out = new ScilabDouble(in1);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = sci2exp(in1);
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     TANBLK_f.prototype.details = function TANBLK_f() {

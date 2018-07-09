@@ -7,20 +7,20 @@ function AFFICH_m() {
         this.nt = 5;
         this.nd = 1;
         this.in1 = [1,1];
-        model = scicos_model();
-        model.sim = list("affich2",4);
-        model.in1 = this.in1[1-1][1-1];
-        model.in2 = this.in1[1-1][2-1];
-        model.evtin = 1;
-        model.dstate = [[-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]];
-        model.ipar = [[this.font],[this.fontsize],[this.colr],[1000],[this.nt],[this.nd],[this.in1[1-1][1-1]]];
-        model.blocktype = "c";
-        model.firing = [];
-        model.dep_ut = [true,false];
-        model.label = "";
-        exprs = [[sci2exp([model.in1,model.in2])],[string(this.font)],[string(this.fontsize)],[string(this.colr)],[string(this.nt)],[string(this.nd)],[string(0)]];
+        this.model = scicos_model();
+        this.model.sim = list("affich2",4);
+        this.model.in1 = new ScilabDouble(this.in1[1-1][1-1]);
+        this.model.in2 = new ScilabDouble(this.in1[1-1][2-1]);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.dstate = [[-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]];
+        this.model.ipar = [[this.font],[this.fontsize],[this.colr],[1000],[this.nt],[this.nd],[this.in1[1-1][1-1]]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.firing = [];
+        this.model.dep_ut = [true,false];
+        this.model.label = new ScilabString("");
+        exprs = [[sci2exp([this.model.in1,this.model.in2])],[string(this.font)],[string(this.fontsize)],[string(this.colr)],[string(this.nt)],[string(this.nd)],[string(0)]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new AfficheBlock(this.x);
     }
     AFFICH_m.prototype.details = function AFFICH_m() {
@@ -49,7 +49,7 @@ function AFFICH_m() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.in1,this.font,this.fontsize,this.colr,this.nt,this.nd,this.herit,exprs] = scicos_getvalue("Set  parameters",["Input Size","Font number","Font size","Color","Total number of digits","Number of rational part digits","Block inherits (1) or not (0)"],list("mat",[1,2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -83,15 +83,15 @@ function AFFICH_m() {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
             if (ok) {
-                [model,graphics,ok] = set_io(model,graphics,list(this.in1,1),list(),ones(1-this.herit,1),[]);
+                [model,graphics,ok] = set_io(this.model,graphics,list(this.in1,1),list(),ones(1-this.herit,1),[]);
             }
             if (ok) {
-                model.ipar = [[this.font],[this.fontsize],[this.colr],[this.nt],[this.nd],[this.in1[1-1][1-1]]];
-                model.dstate = [[-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]];
-                model.evtin = ones(1-this.herit,1);
+                this.model.ipar = [[this.font],[this.fontsize],[this.colr],[this.nt],[this.nd],[this.in1[1-1][1-1]]];
+                this.model.dstate = [[-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]];
+                this.model.evtin = new ScilabDouble(ones(1-this.herit,1));
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

@@ -2,16 +2,16 @@
 function SOM_f() {
     SOM_f.prototype.define = function SOM_f() {
         sgn = [[1],[1],[1]];
-        model = scicos_model();
-        model.sim = list("sum",2);
-        model.in1 = [[-1],[-1],[-1]];
-        model.out = -1;
-        model.rpar = sgn;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("sum",2);
+        this.model.in1 = [[-1],[-1],[-1]];
+        this.model.out = new ScilabDouble(-1);
+        this.model.rpar = sgn;
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[sci2exp(1)],[sci2exp(sgn)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     SOM_f.prototype.details = function SOM_f() {
@@ -25,13 +25,13 @@ function SOM_f() {
     SOM_f.prototype.set = function SOM_f() {
         this.x = arg1;
         graphics = arg1.graphics;
-        model = arg1.model;
+        this.model = arg1.model;
         exprs = graphics.exprs;
         if (size(exprs,"*")==2) {
             exprs = exprs[2-1];
         }
         if (size(exprs,"*")!=3) {
-            exprs = string(model.rpar);
+            exprs = string(this.model.rpar);
         }
         if (graphics.flip) {
             labs = ["down","left","up"];

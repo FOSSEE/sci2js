@@ -9,12 +9,12 @@ function BOUNCEXY() {
         this.xmax = 5;
         this.ymin = 0;
         this.ymax = 15;
-        model = scicos_model();
-        model.sim = list("bouncexy",4);
-        model.in1 = [[-1],[-1]];
-        model.in2 = [[1],[1]];
-        model.intyp = [[1],[1]];
-        model.evtin = 1;
+        this.model = scicos_model();
+        this.model.sim = list("bouncexy",4);
+        this.model.in1 = [[-1],[-1]];
+        this.model.in2 = [[1],[1]];
+        this.model.intyp = [[1],[1]];
+        this.model.evtin = new ScilabDouble(1);
         z = [];
         for (i=1;i<=size(this.clrs,"*");i+=1) {
             z[6*(i-1)+1-1] = 0;
@@ -24,15 +24,15 @@ function BOUNCEXY() {
             z[6*(i-1)+5-1] = 0.000;
             z[6*(i-1)+6-1] = 64.0*360.000;
         }
-        model.dstate = z;
-        model.rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
-        model.ipar = [[this.win],[this.imode],[this.clrs.slice()]];
-        model.blocktype = "d";
-        model.firing = [];
-        model.dep_ut = [false,false];
+        this.model.dstate = z;
+        this.model.rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
+        this.model.ipar = [[this.win],[this.imode],[this.clrs.slice()]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.firing = [];
+        this.model.dep_ut = [false,false];
         exprs = [[strcat(sci2exp(this.clrs))],[strcat(sci2exp(this.siz))],[strcat(sci2exp(this.win))],[strcat(sci2exp(1))],[strcat(sci2exp(this.xmin))],[strcat(sci2exp(this.xmax))],[strcat(sci2exp(this.ymin))],[strcat(sci2exp(this.ymax))]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     BOUNCEXY.prototype.details = function BOUNCEXY() {
@@ -63,8 +63,8 @@ function BOUNCEXY() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
-        dstate = model.dstate;
+        this.model = arg1.model;
+        dstate = this.model.dstate;
         while (true) {
             [ok,this.clrs,this.siz,this.win,this.imode,this.xmin,this.xmax,this.ymin,this.ymax,exprs] = scicos_getvalue("Set Scope parameters",["colors","radii","window number (-1 for automatic)","animation mode (0,1)","Xmin","Xmax","Ymin","Ymax"],list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -101,12 +101,12 @@ function BOUNCEXY() {
                     z[6*(i-1)+5-1] = 0.000;
                     z[6*(i-1)+6-1] = 64.0*360.000;
                 }
-                model.dstate = z;
-                model.rpar = rpar;
-                model.ipar = ipar;
+                this.model.dstate = z;
+                this.model.rpar = rpar;
+                this.model.ipar = ipar;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

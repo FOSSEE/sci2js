@@ -12,10 +12,12 @@ aS'alreadyran'
 p5
 aS'x'
 p6
-aS'swap'
+aS'model'
 p7
-atp8
-Rp9
+aS'swap'
+p8
+atp9
+Rp10
 .(dp0
 S'tmask'
 p1

@@ -2,28 +2,28 @@
 function MATCATV() {
     MATCATV.prototype.define = function MATCATV() {
         l1 = [[2],[2]];
-        model = scicos_model();
+        this.model = scicos_model();
         function_name = "mat_catv";
         funtyp = 4;
-        model.sim = list(function_name,funtyp);
-        model.in2 = [[-1],[-1]];
-        model.in1 = [[-2],[-3]];
-        model.intyp = [-1,-1];
-        model.out = 0;
-        model.out2 = -1;
-        model.outtyp = -1;
-        model.evtin = [];
-        model.evtout = [];
-        model.state = [];
-        model.dstate = [];
-        model.rpar = [];
-        model.ipar = [];
-        model.blocktype = "c";
-        model.firing = [];
-        model.dep_ut = [true,false];
+        this.model.sim = list(function_name,funtyp);
+        this.model.in2 = [[-1],[-1]];
+        this.model.in1 = [[-2],[-3]];
+        this.model.intyp = [-1,-1];
+        this.model.out = new ScilabDouble(0);
+        this.model.out2 = new ScilabDouble(-1);
+        this.model.outtyp = new ScilabDouble(-1);
+        this.model.evtin = [];
+        this.model.evtout = [];
+        this.model.state = [];
+        this.model.dstate = [];
+        this.model.rpar = [];
+        this.model.ipar = [];
+        this.model.blocktype = new ScilabString("c");
+        this.model.firing = [];
+        this.model.dep_ut = [true,false];
         label = [sci2exp(2)];
         gr_i = [];
-        this.x = standard_define([2,3],model,label,gr_i);
+        this.x = standard_define([2,3],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
     MATCATV.prototype.details = function MATCATV() {
@@ -39,7 +39,7 @@ function MATCATV() {
         this.nin = arguments[0]["nin"]
         this.lab = arguments[0]["lab"]
         this.x = arg1;
-        model = arg1.model;
+        this.model = arg1.model;
         graphics = arg1.graphics;
         label = graphics.exprs;
         if (size(label,"*")>1) {
@@ -55,13 +55,13 @@ function MATCATV() {
             it = -ones(this.nin,1);
             ot = -1;
             out = [0,-1];
-            [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
+            [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {
                 funtyp = 4;
-                model.sim = list("mat_catv",funtyp);
+                this.model.sim = list("mat_catv",funtyp);
                 graphics.exprs = label;
                 arg1.graphics = graphics;
-                arg1.model = model;
+                arg1.model = this.model;
                 this.x = arg1;
                 break;
             }

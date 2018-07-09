@@ -3,17 +3,17 @@ function EVTDLY_c() {
     EVTDLY_c.prototype.define = function EVTDLY_c() {
         this.dt = 0.1;
         this.ff = 0.0;
-        model = scicos_model();
-        model.sim = list("evtdly4",4);
-        model.evtin = 1;
-        model.evtout = 1;
-        model.rpar = [[this.dt],[this.ff]];
-        model.blocktype = "d";
-        model.firing = this.ff;
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("evtdly4",4);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.evtout = new ScilabDouble(1);
+        this.model.rpar = [[this.dt],[this.ff]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.firing = new ScilabDouble(this.ff);
+        this.model.dep_ut = [false,false];
         exprs = [[string(this.dt)],[sci2exp(this.ff)]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     EVTDLY_c.prototype.details = function EVTDLY_c() {
@@ -32,7 +32,7 @@ function EVTDLY_c() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.dt,this.ff,exprs] = scicos_getvalue([["Set Event Delay block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       to disable any output event."]],["Delay","Date of initial output event"],list("vec",1,"vec",1),exprs);
             if (!ok) {
@@ -44,10 +44,10 @@ function EVTDLY_c() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                model.rpar = [[this.dt],[this.ff]];
-                model.firing = this.ff;
+                this.model.rpar = [[this.dt],[this.ff]];
+                this.model.firing = new ScilabDouble(this.ff);
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

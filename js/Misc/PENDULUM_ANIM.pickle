@@ -16,10 +16,12 @@ aS'xmin'
 p7
 aS'x'
 p8
-aS'ymin'
+aS'model'
 p9
-atp10
-Rp11
+aS'ymin'
+p10
+atp11
+Rp12
 .(dp0
 S'model.dstate'
 p1

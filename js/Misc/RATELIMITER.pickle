@@ -6,10 +6,12 @@ S'minp'
 p2
 aS'x'
 p3
-aS'maxp'
+aS'model'
 p4
-atp5
-Rp6
+aS'maxp'
+p5
+atp6
+Rp7
 .(dp0
 S'model.sim'
 p1

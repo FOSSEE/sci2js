@@ -2,16 +2,16 @@
 function MAX_f() {
     MAX_f.prototype.define = function MAX_f() {
         in1 = -1;
-        model = scicos_model();
-        model.sim = "maxblk";
-        model.in1 = in1;
-        model.out = 1;
-        model.dstate = [[0],[0]];
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("maxblk");
+        this.model.in1 = new ScilabDouble(in1);
+        this.model.out = new ScilabDouble(1);
+        this.model.dstate = [[0],[0]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = " ";
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     MAX_f.prototype.details = function MAX_f() {

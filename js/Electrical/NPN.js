@@ -4,7 +4,7 @@ function NPN() {
         ModelName = "NPN";
         PrametersValue = [[50],[0.1],[0],[0.02],[1.200e-10],[5.000e-09],[1.000e-12],[4.000e-13],[5.000e-13],[0.8],[0.4],[0.8],[0.333],[1.000e-15],[1.000e-15],[0.02585],[40]];
         ParametersName = [["Bf"],["Br"],["Is"],["Vak"],["Tauf"],["Taur"],["Ccs"],["Cje"],["Cjc"],["Phie"],["Me"],["Phic"],["Mc"],["Gbc"],["Gbe"],["Vt"],["EMinMax"]];
-        model = scicos_model();
+        this.model = scicos_model();
         Typein = [];
         Typeout = [];
         MI = [];
@@ -29,22 +29,22 @@ function NPN() {
                 MO = [[MO],[PortName[i-1]]];
             }
         }
-        model = scicos_model();
+        this.model = scicos_model();
         mo = modelica();
-        model.sim = ModelName;
+        this.model.sim = new ScilabString(ModelName);
         mo.inputs = MI;
         mo.outputs = MO;
-        model.rpar = PrametersValue;
+        this.model.rpar = PrametersValue;
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         exprs = [["50"],["0.1"],["1.e-16"],["0.02"],["0.12e-9"],["5e-9"],["1e-12"],["0.4e-12"],["0.5e-12"],["0.8"],["0.4"],["0.8"],["0.333"],["1e-15"],["1e-15"],["0.02585"],["40"]];
         gr_i = [];
-        model.blocktype = "c";
-        model.dep_ut = [false,true];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,true];
         mo.model = ModelName;
-        model.equations = mo;
-        model.in1 = ones(size(MI,"*"),1);
-        model.out = ones(size(MO,"*"),1);
-        this.x = standard_define([2,2],model,exprs,list(gr_i,0));
+        this.model.equations = new ScilabDouble(mo);
+        this.model.in1 = new ScilabDouble(ones(size(MI,"*"),1));
+        this.model.out = new ScilabDouble(ones(size(MO,"*"),1));
+        this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = Typein;
         this.x.graphics.out_implicit = Typeout;
         return new BasicBlock(this.x);
@@ -95,7 +95,7 @@ function NPN() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         this.x = arg1;
         exprs = this.x.graphics.exprs;
         while (true) {

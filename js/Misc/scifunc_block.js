@@ -10,23 +10,23 @@ function scifunc_block() {
         typ = "c";
         auto = [];
         this.rpar = [];
-        model = scicos_model();
-        model.sim = list("scifunc",3);
-        model.in1 = in1;
-        model.out = out;
-        model.evtin = clkin;
-        model.evtout = clkout;
-        model.state = x0;
-        model.dstate = z0;
-        model.rpar = this.rpar;
-        model.ipar = 0;
-        model.opar = list();
-        model.blocktype = typ;
-        model.firing = auto;
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("scifunc",3);
+        this.model.in1 = new ScilabDouble(in1);
+        this.model.out = new ScilabDouble(out);
+        this.model.evtin = clkin;
+        this.model.evtout = clkout;
+        this.model.state = x0;
+        this.model.dstate = z0;
+        this.model.rpar = this.rpar;
+        this.model.ipar = new ScilabDouble(0);
+        this.model.opar = list();
+        this.model.blocktype = new ScilabString(typ);
+        this.model.firing = auto;
+        this.model.dep_ut = [true,false];
         exprs = list([[sci2exp(in1)],[sci2exp(out)],[sci2exp(clkin)],[sci2exp(clkout)],[strcat(sci2exp(x0))],[strcat(sci2exp(z0))],[strcat(sci2exp(this.rpar))],[sci2exp(auto)]],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     scifunc_block.prototype.details = function scifunc_block() {
@@ -59,7 +59,7 @@ function scifunc_block() {
         this.lab = arguments[0]["lab"]
         needcompile = 0;
         this.x = arg1;
-        model = arg1.model;
+        this.model = arg1.model;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
         if (size(exprs[1-1],"*")==8) {
@@ -88,23 +88,23 @@ function scifunc_block() {
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = check_io(model,graphics,this.i,this.o,this.ci,this.co);
+            [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
             if (ok) {
                 auto = this.auto0;
-                model.state = this.xx;
-                model.dstate = this.z;
-                model.rpar = this.rpar;
-                if (model.ipar!=0) {
-                    model.opar = model.ipar;
-                    model.ipar = 0;
+                this.model.state = this.xx;
+                this.model.dstate = this.z;
+                this.model.rpar = this.rpar;
+                if (this.model.ipar!=0) {
+                    this.model.opar = new ScilabDouble(this.model.ipar);
+                    this.model.ipar = new ScilabDouble(0);
                 }
-                if (or(model.opar!=tt)) {
+                if (or(this.model.opar!=tt)) {
                     needcompile = 4;
                 }
-                model.opar = tt;
-                model.firing = auto;
-                model.dep_ut = dep_ut;
-                this.x.model = model;
+                this.model.opar = new ScilabDouble(tt);
+                this.model.firing = new ScilabDouble(auto);
+                this.model.dep_ut = new ScilabDouble(dep_ut);
+                this.x.model = this.model;
                 exprs[2-1] = tt;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;

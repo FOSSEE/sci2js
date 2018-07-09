@@ -12,17 +12,17 @@ function RFILE_f() {
         this.outmask = 1;
         ipar = [[length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]],[tmask],[this.outmask]];
         dstate = [[1],[1],[lunit],[zeros((nout)*this.N,1)]];
-        model = scicos_model();
-        model.sim = "readf";
-        model.out = nout;
-        model.evtin = 1;
-        model.dstate = dstate;
-        model.ipar = [[length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]],[tmask],[this.outmask]];
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("readf");
+        this.model.out = new ScilabDouble(nout);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.dstate = dstate;
+        this.model.ipar = [[length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]],[tmask],[this.outmask]];
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         exprs = [[sci2exp([])],[sci2exp(this.outmask)],[fname],[frmt],[string(this.N)],[sci2exp(out)]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     RFILE_f.prototype.details = function RFILE_f() {
@@ -47,9 +47,9 @@ function RFILE_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
-        dstate = model.dstate;
-        ipar = model.ipar;
+        this.model = arg1.model;
+        dstate = this.model.dstate;
+        ipar = this.model.ipar;
         ievt = ipar[3-1];
         this.N = ipar[4-1];
         imask = 5+ipar[1-1]+ipar[2-1];
@@ -97,22 +97,22 @@ function RFILE_f() {
                     ievt = 1;
                     cout = 1;
                 }
-                [model,graphics,ok] = check_io(model,graphics,[],nout,1,cout);
+                [model,graphics,ok] = check_io(this.model,graphics,[],nout,1,cout);
                 if (ok) {
                     if (ievt==0) {
-                        model.firing = [];
+                        this.model.firing = [];
                     } else {
-                        model.firing = 0;
+                        this.model.firing = new ScilabDouble(0);
                     }
                     ipar = [[length(this.fname1)],[length(this.frmt1)],[ievt],[this.N],[this._str2code[this.fname1-1]],[this._str2code[this.frmt1-1]],[this.tmask1],[this.outmask.slice()]];
                     if (prod(size(dstate))!=(nout+ievt)*this.N+3) {
                         dstate = [[-1],[-1],[lunit],[zeros((nout+ievt)*this.N,1)]];
                     }
-                    model.dstate = dstate;
-                    model.ipar = ipar;
+                    this.model.dstate = dstate;
+                    this.model.ipar = ipar;
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

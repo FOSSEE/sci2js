@@ -2,18 +2,18 @@
 function GENSQR_f() {
     GENSQR_f.prototype.define = function GENSQR_f() {
         this.Amplitude = 1;
-        model = scicos_model();
-        model.sim = "gensqr";
-        model.out = 1;
-        model.out2 = 1;
-        model.outtyp = 1;
-        model.evtin = 1;
-        model.dstate = this.Amplitude;
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("gensqr");
+        this.model.out = new ScilabDouble(1);
+        this.model.out2 = new ScilabDouble(1);
+        this.model.outtyp = new ScilabDouble(1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.dstate = new ScilabDouble(this.Amplitude);
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         exprs = string(this.Amplitude);
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     GENSQR_f.prototype.details = function GENSQR_f() {
@@ -30,7 +30,7 @@ function GENSQR_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         if (size(exprs,"*")==2) {
             exprs = exprs[2-1];
         }
@@ -40,11 +40,11 @@ function GENSQR_f() {
                 break;
             }
             graphics.exprs = exprs;
-            model.dstate = this.Amplitude;
-            model.out2 = 1;
-            model.outtyp = 1;
+            this.model.dstate = new ScilabDouble(this.Amplitude);
+            this.model.out2 = new ScilabDouble(1);
+            this.model.outtyp = new ScilabDouble(1);
             this.x.graphics = graphics;
-            this.x.model = model;
+            this.x.model = this.model;
             break;
         }
         return new BasicBlock(this.x);

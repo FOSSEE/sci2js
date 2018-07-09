@@ -18,10 +18,12 @@ aS'xmin'
 p8
 aS'x'
 p9
-aS'ymin'
+aS'model'
 p10
-atp11
-Rp12
+aS'ymin'
+p11
+atp12
+Rp13
 .(dp0
 S'clrs'
 p1

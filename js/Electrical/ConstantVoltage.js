@@ -2,22 +2,22 @@
 function ConstantVoltage() {
     ConstantVoltage.prototype.define = function ConstantVoltage() {
         this.V = 0.01;
-        model = scicos_model();
-        model.rpar = this.V;
-        model.in1 = 1;
-        model.out = 1;
-        model.sim = "ConstantVoltage";
-        model.blocktype = "c";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.rpar = new ScilabDouble(this.V);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.sim = new ScilabString("ConstantVoltage");
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,false];
         mo = modelica();
         mo.model = "ConstantVoltage";
         mo.inputs = "p";
         mo.outputs = "n";
         mo.parameters = list("V",list(this.V));
-        model.equations = mo;
+        this.model.equations = new ScilabDouble(mo);
         exprs = string(this.V);
         gr_i = [];
-        this.x = standard_define([1.5,1.1],model,exprs,list(gr_i,0));
+        this.x = standard_define([1.5,1.1],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -35,17 +35,17 @@ function ConstantVoltage() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.V,exprs] = scicos_getvalue("Set ConstantVoltage block parameter","V (volt)",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            model.rpar = this.V;
-            model.equations.parameters[2-1] = list(this.V);
+            this.model.rpar = new ScilabDouble(this.V);
+            this.model.equations.parameters[('2', 'double')] = list(this.V);
             graphics.exprs = exprs;
             this.x.graphics = graphics;
-            this.x.model = model;
+            this.x.model = this.model;
             break;
         }
         return new BasicBlock(this.x);

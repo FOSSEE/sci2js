@@ -3,19 +3,19 @@ function MFCLCK_f() {
     MFCLCK_f.prototype.define = function MFCLCK_f() {
         this.nn = 2;
         this.dt = 0.1;
-        model = scicos_model();
-        model.sim = "mfclck";
-        model.evtin = 1;
-        model.evtout = [[1],[1]];
-        model.dstate = 0;
-        model.rpar = this.dt;
-        model.ipar = this.nn;
-        model.blocktype = "d";
-        model.firing = [-1,0];
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("mfclck");
+        this.model.evtin = new ScilabDouble(1);
+        this.model.evtout = [[1],[1]];
+        this.model.dstate = new ScilabDouble(0);
+        this.model.rpar = new ScilabDouble(this.dt);
+        this.model.ipar = new ScilabDouble(this.nn);
+        this.model.blocktype = new ScilabString("d");
+        this.model.firing = [-1,0];
+        this.model.dep_ut = [false,false];
         exprs = [[string(this.dt)],[string(this.nn)]];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     MFCLCK_f.prototype.details = function MFCLCK_f() {
@@ -34,17 +34,17 @@ function MFCLCK_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         [ok,this.dt,this.nn,exprs] = scicos_getvalue("Set Multifrequency clock parameters",["basic period (1/f)","multiply by (n)"],list("vec",1,"vec",1),exprs);
         if (ok) {
-            model.ipar = this.nn;
-            model.rpar = this.dt;
-            hh = model.firing;
+            this.model.ipar = new ScilabDouble(this.nn);
+            this.model.rpar = new ScilabDouble(this.dt);
+            hh = this.model.firing;
             hh[2-1] = 0;
-            model.firing = hh;
+            this.model.firing = hh;
             graphics.exprs = exprs;
             this.x.graphics = graphics;
-            this.x.model = model;
+            this.x.model = this.model;
         }
         return new BasicBlock(this.x);
     }

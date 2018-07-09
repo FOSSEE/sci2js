@@ -2,19 +2,19 @@
 function CONST_m() {
     CONST_m.prototype.define = function CONST_m() {
         this.C = [1];
-        model = scicos_model();
-        model.sim = list("cstblk4",4);
-        model.in1 = [];
-        model.out = size(this.C,1);
-        model.in2 = [];
-        model.out2 = size(this.C,2);
-        model.rpar = this.C;
-        model.opar = list();
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("cstblk4",4);
+        this.model.in1 = [];
+        this.model.out = new ScilabDouble(size(this.C,1));
+        this.model.in2 = [];
+        this.model.out2 = new ScilabDouble(size(this.C,2));
+        this.model.rpar = this.C;
+        this.model.opar = list();
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         exprs = sci2exp(this.C);
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CONST_m.prototype.details = function CONST_m() {
@@ -30,7 +30,7 @@ function CONST_m() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.C,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONST_m")],[" "],["Constant value generator"],[" "]],"Constant Value",list("vec",-1),exprs);
             if (!ok) {
@@ -40,8 +40,8 @@ function CONST_m() {
             if (find(nout==0)!=[]) {
                 block_parameter_error(msprintf("Wrong size for \'%s\' parameter","Constant Value"),"Constant value must have at least one element.");
             } else {
-                model.sim = list("cstblk4_m",4);
-                model.opar = list(this.C);
+                this.model.sim = list("cstblk4_m",4);
+                this.model.opar = list(this.C);
                 if ((this.type[this.C-1]==1)) {
                     if (isreal(this.C)) {
                         ot = 1;
@@ -65,11 +65,11 @@ function CONST_m() {
                     ok = false;
                 }
                 if (ok) {
-                    model.rpar = [];
-                    [model,graphics,ok] = set_io(model,graphics,list(),list(nout,ot),[],[]);
+                    this.model.rpar = [];
+                    [model,graphics,ok] = set_io(this.model,graphics,list(),list(nout,ot),[],[]);
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

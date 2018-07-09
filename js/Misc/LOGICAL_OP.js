@@ -4,16 +4,16 @@ function LOGICAL_OP() {
         in1 = [[-1],[-1]];
         ipar = [0];
         this.nin = 2;
-        model = scicos_model();
-        model.sim = list("logicalop",4);
-        model.in1 = in1;
-        model.out = -1;
-        model.ipar = ipar;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("logicalop",4);
+        this.model.in1 = in1;
+        this.model.out = new ScilabDouble(-1);
+        this.model.ipar = ipar;
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[string(this.nin)],[string(ipar)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     LOGICAL_OP.prototype.details = function LOGICAL_OP() {
@@ -36,7 +36,7 @@ function LOGICAL_OP() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         if (size(exprs,1)==2) {
             exprs = [[exprs],[sci2exp(1)],[sci2exp(0)]];
         }
@@ -66,26 +66,26 @@ function LOGICAL_OP() {
                     this.tp = 1;
                 }
                 if (this.Datatype==1) {
-                    model.sim = list("logicalop",4);
-                    model.ipar = [this.rule];
+                    this.model.sim = list("logicalop",4);
+                    this.model.ipar = [this.rule];
                 } else {
                     if (this.Datatype==3) {
-                        model.sim = list("logicalop_i32",4);
+                        this.model.sim = list("logicalop_i32",4);
                     } else if (this.Datatype==4) {
-                        model.sim = list("logicalop_i16",4);
+                        this.model.sim = list("logicalop_i16",4);
                     } else if (this.Datatype==5) {
-                        model.sim = list("logicalop_i8",4);
+                        this.model.sim = list("logicalop_i8",4);
                     } else if (this.Datatype==6) {
-                        model.sim = list("logicalop_ui32",4);
+                        this.model.sim = list("logicalop_ui32",4);
                     } else if (this.Datatype==7) {
-                        model.sim = list("logicalop_ui16",4);
+                        this.model.sim = list("logicalop_ui16",4);
                     } else if (this.Datatype==8) {
-                        model.sim = list("logicalop_ui8",4);
+                        this.model.sim = list("logicalop_ui8",4);
                     } else {
                         message("Datatype is not supported");
                         ok = false;
                     }
-                    model.ipar = [[this.rule],[this.tp]];
+                    this.model.ipar = [[this.rule],[this.tp]];
                 }
                 if (ok) {
                     it = this.Datatype*ones(this.nin,1);
@@ -93,10 +93,10 @@ function LOGICAL_OP() {
                     in1 = [-ones(this.nin,1),-2*ones(this.nin,1)];
                     if ((this.rule!=5)&&(this.nin==1)) {
                         out = [1,1];
-                        [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
+                        [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                     } else {
                         out = [-1,-2];
-                        [model,graphics,ok] = set_io(model,graphics,list(in1,it),list(out,ot),[],[]);
+                        [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                     }
                 }
                 if (ok) {
@@ -116,7 +116,7 @@ function LOGICAL_OP() {
                     graphics.exprs = exprs;
                     graphics.style = ["blockWithLabel;displayedLabel="+label];
                     this.x.graphics = graphics;
-                    this.x.model = model;
+                    this.x.model = this.model;
                     break;
                 }
             }

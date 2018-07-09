@@ -22,10 +22,12 @@ aS'lab'
 p10
 aS'x'
 p11
-aS'z'
+aS'model'
 p12
-atp13
-Rp14
+aS'z'
+p13
+atp14
+Rp15
 .(dp0
 S'exprs[1-1]'
 p1

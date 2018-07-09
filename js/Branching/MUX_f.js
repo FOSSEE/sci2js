@@ -2,16 +2,16 @@
 function MUX_f() {
     MUX_f.prototype.define = function MUX_f() {
         this.in1 = 2;
-        model = scicos_model();
-        model.sim = list("mux",1);
-        model.in1 = -transpose([1:this.in1]);
-        model.out = 0;
-        model.ipar = this.in1;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("mux",1);
+        this.model.in1 = -transpose([1:this.in1]);
+        this.model.out = new ScilabDouble(0);
+        this.model.ipar = new ScilabDouble(this.in1);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = string(this.in1);
         gr_i = [];
-        this.x = standard_define([0.5,2],model,exprs,gr_i);
+        this.x = standard_define([0.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     MUX_f.prototype.details = function MUX_f() {
@@ -27,7 +27,7 @@ function MUX_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.in1,exprs] = scicos_getvalue("Set MUX block parameters","number of input ports or vector of sizes",list("vec",-1),exprs);
             if (!ok) {
@@ -38,7 +38,7 @@ function MUX_f() {
                     message("Block must have at least two input ports and at most eight");
                     ok = false;
                 } else {
-                    [model,graphics,ok] = check_io(model,graphics,-transpose([1:this.in1]),0,[],[]);
+                    [model,graphics,ok] = check_io(this.model,graphics,-transpose([1:this.in1]),0,[],[]);
                 }
             } else {
                 if (size(this.in1,"*")<2||size(this.in1,"*")>8||or(this.in1==0)) {
@@ -50,7 +50,7 @@ function MUX_f() {
                     } else {
                         nout = sum(this.in1);
                     }
-                    [model,graphics,ok] = check_io(model,graphics,this.in1.slice(),nout,[],[]);
+                    [model,graphics,ok] = check_io(this.model,graphics,this.in1.slice(),nout,[],[]);
                     if (ok) {
                         this.in1 = size(this.in1,"*");
                     }
@@ -58,9 +58,9 @@ function MUX_f() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                model.ipar = this.in1;
+                this.model.ipar = new ScilabDouble(this.in1);
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

@@ -2,20 +2,20 @@
 function Ground_g() {
     Ground_g.prototype.define = function Ground_g() {
         C = [0];
-        model = scicos_model();
-        model.sim = list("cstblk4_m",4);
-        model.in1 = [];
-        model.out = 1;
-        model.in2 = [];
-        model.out2 = 1;
-        model.outtyp = -1;
-        model.rpar = [];
-        model.opar = list(C);
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("cstblk4_m",4);
+        this.model.in1 = [];
+        this.model.out = new ScilabDouble(1);
+        this.model.in2 = [];
+        this.model.out2 = new ScilabDouble(1);
+        this.model.outtyp = new ScilabDouble(-1);
+        this.model.rpar = [];
+        this.model.opar = list(C);
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         exprs = [];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     Ground_g.prototype.details = function Ground_g() {

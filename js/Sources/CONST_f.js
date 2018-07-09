@@ -2,16 +2,16 @@
 function CONST_f() {
     CONST_f.prototype.define = function CONST_f() {
         this.C = 1;
-        model = scicos_model();
-        model.sim = list("cstblk",1);
-        model.in1 = [];
-        model.out = 1;
-        model.rpar = this.C;
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = list("cstblk",1);
+        this.model.in1 = [];
+        this.model.out = new ScilabDouble(1);
+        this.model.rpar = new ScilabDouble(this.C);
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         exprs = strcat(sci2exp(this.C));
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CONST_f.prototype.details = function CONST_f() {
@@ -27,7 +27,7 @@ function CONST_f() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.C,exprs] = scicos_getvalue(["Set Contant Block"],"Constant",list("vec",-1),exprs);
             if (!ok) {
@@ -37,11 +37,11 @@ function CONST_f() {
             if (nout==0) {
                 message("C must have at least one element");
             } else {
-                model.rpar = this.C.slice();
-                model.out = nout;
+                this.model.rpar = this.C.slice();
+                this.model.out = new ScilabDouble(nout);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

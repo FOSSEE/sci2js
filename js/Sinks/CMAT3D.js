@@ -9,19 +9,19 @@ function CMAT3D() {
         y = -1;
         size_x = 1;
         size_y = 1;
-        model = scicos_model();
-        model.sim = list("cmat3d",4);
-        model.in1 = -1;
-        model.in2 = -2;
-        model.intyp = 1;
-        model.evtin = 1;
-        model.ipar = [[this.cmin],[this.cmax],[size_c],[size_x],[size_y]];
-        model.rpar = [[this.colormap.slice()],[this.x],[y]];
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("cmat3d",4);
+        this.model.in1 = new ScilabDouble(-1);
+        this.model.in2 = new ScilabDouble(-2);
+        this.model.intyp = new ScilabDouble(1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.ipar = [[this.cmin],[this.cmax],[size_c],[size_x],[size_y]];
+        this.model.rpar = [[this.colormap.slice()],[this.x],[y]];
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         exprs = [[strcat(string(this.x)," ")],[strcat(string(y)," ")],[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     CMAT3D.prototype.details = function CMAT3D() {
@@ -46,7 +46,7 @@ function CMAT3D() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (true) {
             [ok,this.vec_x,this.vec_y,this.colormap,this.cmin,this.cmax,exprs] = scicos_getvalue("Set Scope parameters",["Bounds Vector X (-1 for standard)","Bounds Vector Y (-1 for standard)","ColorMap","Zmin","Zmax"],list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -69,11 +69,11 @@ function CMAT3D() {
                 size_c = size(this.colormap.slice(),1);
                 ipar = [[this.cmin],[this.cmax],[size_c],[size_x]];
                 rpar = [[this.colormap.slice()],[this.vec_x.slice()],[this.vec_y.slice()]];
-                model.ipar = ipar;
-                model.rpar = rpar;
+                this.model.ipar = ipar;
+                this.model.rpar = rpar;
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

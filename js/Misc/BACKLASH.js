@@ -2,16 +2,16 @@
 function BACKLASH() {
     BACKLASH.prototype.define = function BACKLASH() {
         exprs = [["0"],["1"],["1"]];
-        model = scicos_model();
-        model.sim = list("backlash",4);
-        model.in1 = 1;
-        model.out = 1;
-        model.rpar = [[0],[1]];
-        model.nzcross = 2;
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = list("backlash",4);
+        this.model.in1 = new ScilabDouble(1);
+        this.model.out = new ScilabDouble(1);
+        this.model.rpar = [[0],[1]];
+        this.model.nzcross = new ScilabDouble(2);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         gr_i = [];
-        this.x = standard_define([3,2],model,exprs,gr_i);
+        this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     BACKLASH.prototype.details = function BACKLASH() {
@@ -32,8 +32,8 @@ function BACKLASH() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
-        rpar = model.rpar;
+        this.model = arg1.model;
+        rpar = this.model.rpar;
         while (true) {
             [ok,this.ini,this.gap,this.zcr,exprs] = scicos_getvalue("Set backlash parameters",["initial output","gap","use zero-crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -44,13 +44,13 @@ function BACKLASH() {
                 rpar[1-1] = this.ini;
                 rpar[2-1] = this.gap;
                 if (this.zcr!=0) {
-                    model.nzcross = 2;
+                    this.model.nzcross = new ScilabDouble(2);
                 } else {
-                    model.nzcross = 0;
+                    this.model.nzcross = new ScilabDouble(0);
                 }
-                model.rpar = rpar;
+                this.model.rpar = rpar;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

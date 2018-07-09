@@ -2,15 +2,15 @@
 function TRASH_f() {
     TRASH_f.prototype.define = function TRASH_f() {
         in1 = -1;
-        model = scicos_model();
-        model.sim = "trash";
-        model.in1 = in1;
-        model.evtin = 1;
-        model.blocktype = "d";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("trash");
+        this.model.in1 = new ScilabDouble(in1);
+        this.model.evtin = new ScilabDouble(1);
+        this.model.blocktype = new ScilabString("d");
+        this.model.dep_ut = [false,false];
         exprs = " ";
         gr_i = [];
-        this.x = standard_define([2,2],model,exprs,gr_i);
+        this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     TRASH_f.prototype.details = function TRASH_f() {

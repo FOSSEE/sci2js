@@ -4,10 +4,12 @@ p0
 ((lp1
 S'x'
 p2
-aS'zcr'
+aS'model'
 p3
-atp4
-Rp5
+aS'zcr'
+p4
+atp5
+Rp6
 .(dp0
 S'model.sim'
 p1

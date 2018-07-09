@@ -2,17 +2,17 @@
 function IN_f() {
     IN_f.prototype.define = function IN_f() {
         prt = 1;
-        model = scicos_model();
-        model.sim = "input";
-        model.out = -1;
-        model.out2 = -2;
-        model.outtyp = -1;
-        model.ipar = prt;
-        model.blocktype = "c";
-        model.dep_ut = [false,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("input");
+        this.model.out = new ScilabDouble(-1);
+        this.model.out2 = new ScilabDouble(-2);
+        this.model.outtyp = new ScilabDouble(-1);
+        this.model.ipar = new ScilabDouble(prt);
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [false,false];
         exprs = sci2exp(prt);
         gr_i = [];
-        this.x = standard_define([1,1],model,exprs,gr_i);
+        this.x = standard_define([1,1],this.model,exprs,gr_i);
         return new ExplicitInBlock(this.x);
     }
     IN_f.prototype.details = function IN_f() {
@@ -26,7 +26,7 @@ function IN_f() {
     IN_f.prototype.set = function IN_f() {
         this.x = arg1;
         graphics = arg1.graphics;
-        model = arg1.model;
+        this.model = arg1.model;
         exprs = graphics.exprs;
         if (size(exprs,"*")==2) {
             exprs = exprs[1-1];
@@ -47,18 +47,18 @@ function IN_f() {
             } else if (((ot<1||ot>9)&&(ot!=-1))) {
                 message(_("Outport type must be a number between 1 and 9, or -1 for inheritance."));
             } else {
-                if (model.ipar!=prt) {
+                if (this.model.ipar!=prt) {
                     needcompile = 4;
                     y = needcompile;
                 }
-                model.ipar = prt;
-                model.firing = [];
-                model.out = otsz[1-1];
-                model.out2 = otsz[2-1];
-                model.outtyp = ot;
+                this.model.ipar = new ScilabDouble(prt);
+                this.model.firing = [];
+                this.model.out = new ScilabDouble(otsz[1-1]);
+                this.model.out2 = new ScilabDouble(otsz[2-1]);
+                this.model.outtyp = new ScilabDouble(ot);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.x.model = model;
+                this.x.model = this.model;
                 break;
             }
         }

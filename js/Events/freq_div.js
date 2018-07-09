@@ -14,61 +14,61 @@ function freq_div() {
         scs_m_1.objs[10-1] = scicos_link();
         blk = scs_m_1.objs[1-1];
         graphics = blk.graphics;
-        model = blk.model;
+        this.model = blk.model;
         graphics.orig = [0,-100];
         graphics.sz = [60,40];
         graphics.exprs = [["0"],["3"]];
-        model.dstate = 3;
-        model.ipar = 3;
+        this.model.dstate = new ScilabDouble(3);
+        this.model.ipar = new ScilabDouble(3);
         graphics.pout = 7;
         graphics.pein = 10;
         blk.graphics = graphics;
-        blk.model = model;
+        blk.model = this.model;
         scs_m_1.objs[1-1] = blk;
         blk = scs_m_1.objs[2-1];
         graphics = blk.graphics;
-        model = blk.model;
+        this.model = blk.model;
         graphics.orig = [120,0];
         graphics.sz = [20,20];
         graphics.exprs = ["1"];
-        model.ipar = 1;
+        this.model.ipar = new ScilabDouble(1);
         graphics.peout = 6;
         blk.graphics = graphics;
-        blk.model = model;
+        blk.model = this.model;
         scs_m_1.objs[2-1] = blk;
         blk = scs_m_1.objs[3-1];
         graphics = blk.graphics;
-        model = blk.model;
+        this.model = blk.model;
         graphics.orig = [130,-160];
         graphics.sz = [20,20];
         graphics.exprs = ["1"];
-        model.ipar = 1;
+        this.model.ipar = new ScilabDouble(1);
         graphics.pein = 8;
         blk.graphics = graphics;
-        blk.model = model;
+        blk.model = this.model;
         scs_m_1.objs[3-1] = blk;
         blk = scs_m_1.objs[4-1];
         graphics = blk.graphics;
-        model = blk.model;
+        this.model = blk.model;
         graphics.orig = [100,-100];
         graphics.sz = [60,40];
         graphics.exprs = [["1"],["0"]];
-        model.ipar = 1;
+        this.model.ipar = new ScilabDouble(1);
         graphics.pin = 7;
         graphics.pein = 9;
         graphics.peout = [[0],[8]];
         blk.graphics = graphics;
-        blk.model = model;
+        blk.model = this.model;
         scs_m_1.objs[4-1] = blk;
         blk = scs_m_1.objs[5-1];
         graphics = blk.graphics;
-        model = blk.model;
+        this.model = blk.model;
         graphics.orig = [127,-33];
         graphics.sz = [7,7];
         graphics.pein = 6;
         graphics.peout = [[9],[10]];
         blk.graphics = graphics;
-        blk.model = model;
+        blk.model = this.model;
         scs_m_1.objs[5-1] = blk;
         lnk = scs_m_1.objs[6-1];
         lnk.ct = [5,-1];
@@ -98,13 +98,13 @@ function freq_div() {
         scs_m_1.objs[10-1] = lnk;
         blk={};
         lnk={};
-        model = scicos_model();
-        model.sim = "csuper";
-        model.evtin = 1;
-        model.evtout = 1;
-        model.rpar = scs_m_1;
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("csuper");
+        this.model.evtin = new ScilabDouble(1);
+        this.model.evtout = new ScilabDouble(1);
+        this.model.rpar = scs_m_1;
         gr_i = [];
-        this.x = standard_define([3,2],model,[],gr_i);
+        this.x = standard_define([3,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
     freq_div.prototype.details = function freq_div() {
@@ -138,7 +138,7 @@ function freq_div() {
         xxn = xx;
         graphics = xx.graphics;
         exprs = graphics.exprs;
-        model = xx.model;
+        this.model = xx.model;
         while (true) {
             [ok,%ph,%df,exprs] = scicos_getvalue("Set frequency division block parameters",["Phase (0 to division factor -1)","Division factor"],list("vec",1,"vec",1),exprs);
             if (!ok) {
@@ -153,45 +153,45 @@ function freq_div() {
                     %ph = %df-1;
                 }
                 graphics.exprs = exprs;
-                model.ipar = %df;
-                model.dstate = %ph;
+                this.model.ipar = new ScilabDouble(%df);
+                this.model.dstate = new ScilabDouble(%ph);
                 xxn.graphics = graphics;
-                xxn.model = model;
+                xxn.model = this.model;
                 break;
             }
         }
         if (diffobjs(xxn,xx)) {
-            model = xx.model;
+            this.model = xx.model;
             model_n = xxn.model;
             if (!is_modelica_block(xx)) {
-                modified = or(model.sim!=model_n.sim)||!isequal(model.state,model_n.state)||!isequal(model.dstate,model_n.dstate)||!isequal(model.rpar,model_n.rpar)||!isequal(model.ipar,model_n.ipar)||!isequal(model.label,model_n.label);
-                if (or(model.in1!=model_n.in1)||or(model.out!=model_n.out)) {
+                modified = or(this.model.sim!=model_n.sim)||!isequal(this.model.state,model_n.state)||!isequal(this.model.dstate,model_n.dstate)||!isequal(this.model.rpar,model_n.rpar)||!isequal(this.model.ipar,model_n.ipar)||!isequal(this.model.label,model_n.label);
+                if (or(this.model.in1!=model_n.in1)||or(this.model.out!=model_n.out)) {
                     needcompile = 1;
                 }
-                if (or(model.firing!=model_n.firing)) {
+                if (or(this.model.firing!=model_n.firing)) {
                     needcompile = 2;
                 }
-                if (model.sim=="input"||model.sim=="output") {
-                    if (model.ipar!=model_n.ipar) {
+                if (this.model.sim=="input"||this.model.sim=="output") {
+                    if (this.model.ipar!=model_n.ipar) {
                         needcompile = 4;
                     }
                 }
-                if (or(model.blocktype!=model_n.blocktype)||or(model.dep_ut!=model_n.dep_ut)) {
+                if (or(this.model.blocktype!=model_n.blocktype)||or(this.model.dep_ut!=model_n.dep_ut)) {
                     needcompile = 4;
                 }
-                if ((model.nzcross!=model_n.nzcross)||(model.nmode!=model_n.nmode)) {
+                if ((this.model.nzcross!=model_n.nzcross)||(this.model.nmode!=model_n.nmode)) {
                     needcompile = 4;
                 }
                 if (prod(size(model_n.sim))>1) {
                     if (model_n.sim[2-1]>1000) {
-                        if (model.sim[1-1]!=model_n.sim[1-1]) {
+                        if (this.model.sim[1-1]!=model_n.sim[1-1]) {
                             needcompile = 4;
                         }
                     }
                 }
             } else {
-                modified = or(model_n!=model);
-                eq = model.equations;
+                modified = or(model_n!=this.model);
+                eq = this.model.equations;
                 eqn = model_n.equations;
                 if (or(eq.model!=eqn.model)||or(eq.inputs!=eqn.inputs)||or(eq.outputs!=eqn.outputs)) {
                     needcompile = 4;

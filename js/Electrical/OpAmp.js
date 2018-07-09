@@ -3,22 +3,22 @@ function OpAmp() {
     OpAmp.prototype.define = function OpAmp() {
         S = [];
         Z = [];
-        model = scicos_model();
-        model.sim = "OpAmp";
-        model.blocktype = "c";
-        model.dep_ut = [true,false];
+        this.model = scicos_model();
+        this.model.sim = new ScilabString("OpAmp");
+        this.model.blocktype = new ScilabString("c");
+        this.model.dep_ut = [true,false];
         mo = modelica();
-        mo.model = model.sim;
+        mo.model = this.model.sim;
         mo.inputs = [["in_p"],["in_n"]];
         mo.outputs = ["out"];
         mo.parameters = list(S,Z);
-        model.equations = mo;
-        model.in1 = ones(size(mo.inputs,"*"),1);
-        model.out = ones(size(mo.outputs,"*"),1);
-        model.rpar = Z;
+        this.model.equations = new ScilabDouble(mo);
+        this.model.in1 = new ScilabDouble(ones(size(mo.inputs,"*"),1));
+        this.model.out = new ScilabDouble(ones(size(mo.outputs,"*"),1));
+        this.model.rpar = Z;
         exprs = string(Z);
         gr_i = [];
-        this.x = standard_define([3,5],model,exprs,gr_i);
+        this.x = standard_define([3,5],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = [["I"],["I"]];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -41,16 +41,16 @@ function OpAmp() {
         this.x = arg1;
         graphics = arg1.graphics;
         exprs = graphics.exprs;
-        model = arg1.model;
+        this.model = arg1.model;
         while (false) {
             [ok,this.OLGain,this.SatH,this.SatL,exprs] = scicos_getvalue("Set the Operational Amplifier parameters",["Open Loop Gain","Positive saturation voltage","Negative saturation voltage"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            model.equations.parameters[2-1] = list(this.OLGain,this.SatH,this.SatL);
+            this.model.equations.parameters[('2', 'double')] = list(this.OLGain,this.SatH,this.SatL);
             graphics.exprs = exprs;
             this.x.graphics = graphics;
-            this.x.model = model;
+            this.x.model = this.model;
             break;
         }
         return new BasicBlock(this.x);
