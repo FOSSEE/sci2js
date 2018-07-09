@@ -9,7 +9,7 @@ function BPLATFORM() {
         this.ymin = 0;
         this.ymax = 15;
         this.model = scicos_model();
-        this.model.sim = list("bplatform2",5);
+        this.model.sim = list(new ScilabString("bplatform2"),new ScilabDouble(5));
         this.model.in1 = [[1],[1]];
         this.model.evtin = new ScilabDouble(1);
         this.model.dstate = new ScilabDouble(0);

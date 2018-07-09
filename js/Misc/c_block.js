@@ -12,7 +12,7 @@ function c_block() {
         this.rpar = [];
         this.funam = "toto";
         this.model = scicos_model();
-        this.model.sim = list(" ",2001);
+        this.model.sim = list(new ScilabString(" "),new ScilabDouble(2001));
         this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble(out);
         this.model.evtin = clkin;
@@ -75,7 +75,7 @@ function c_block() {
             }
             [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,[],[]);
             if (ok) {
-                this.model.sim[('1', 'double')] = new ScilabString(this.funam);
+                this.model.sim[1] = new ScilabString(this.funam);
                 this.model.rpar = this.rpar;
                 label[2-1] = tt;
                 this.x.model = this.model;

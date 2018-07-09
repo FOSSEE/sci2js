@@ -60,7 +60,7 @@ function PerteDP() {
                 break;
             }
             this.model.rpar = [[this.L],[this.D],[this.lambda],[this.z1],[this.z2],[this.p_rho]];
-            this.model.equations.parameters[('2', 'double')] = list(this.L,this.D,this.lambda,this.z1,this.z2,this.p_rho);
+            this.model.equations.parameters[2] = list(new ScilabDouble(this.L),new ScilabDouble(this.D),new ScilabDouble(this.lambda),new ScilabDouble(this.z1),new ScilabDouble(this.z2),new ScilabDouble(this.p_rho));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

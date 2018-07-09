@@ -5,7 +5,7 @@ function SATURATION() {
         this.maxp = 1;
         rpar = [[this.maxp],[this.minp]];
         this.model = scicos_model();
-        this.model.sim = list("satur",4);
+        this.model.sim = list(new ScilabString("satur"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(1);
         this.model.nzcross = new ScilabDouble(2);
         this.model.nmode = new ScilabDouble(1);

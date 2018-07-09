@@ -10,7 +10,7 @@ function CSCOPE() {
         this.ymax = 15;
         this.per = 30;
         this.model = scicos_model();
-        this.model.sim = list("cscope",4);
+        this.model.sim = list(new ScilabString("cscope"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(-1);
         this.model.in2 = new ScilabDouble(1);
         this.model.evtin = new ScilabDouble(1);

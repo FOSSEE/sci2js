@@ -3,7 +3,7 @@ function CONVERT() {
     CONVERT.prototype.define = function CONVERT() {
         sgn = 2;
         this.model = scicos_model();
-        this.model.sim = list("convert",4);
+        this.model.sim = list(new ScilabString("convert"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(-1);
         this.model.out = new ScilabDouble(-1);
         this.model.in2 = new ScilabDouble(-2);
@@ -59,7 +59,7 @@ function CONVERT() {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Output Type",this.ot),msprintf("Must be in the interval %s.","[1, 8]"));
                 ok = false;
             }
-            this.model.sim = list("convert",4);
+            this.model.sim = list(new ScilabString("convert"),new ScilabDouble(4));
             if ((this.it==this.ot)) {
                 this.model.ipar = new ScilabDouble(1);
             } else {

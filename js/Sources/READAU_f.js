@@ -13,7 +13,7 @@ function READAU_f() {
         ievt = 0;
         nout = size(outmask,"*");
         this.model = scicos_model();
-        this.model.sim = list("readau",2);
+        this.model.sim = list(new ScilabString("readau"),new ScilabDouble(2));
         this.model.out = new ScilabDouble(nout);
         this.model.evtin = new ScilabDouble(1);
         this.model.dstate = [[1],[1],[lunit],[zeros(this.N*M,1)]];

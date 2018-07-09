@@ -8,7 +8,7 @@ function RAND_m() {
         function_name = "rndblk_m";
         funtyp = 4;
         this.model = scicos_model();
-        this.model.sim = list(function_name,funtyp);
+        this.model.sim = list(new ScilabString(function_name),new ScilabDouble(funtyp));
         this.model.in1 = [];
         this.model.in2 = [];
         this.model.intyp = [];
@@ -81,7 +81,7 @@ function RAND_m() {
                 if (ok) {
                     [model,graphics,ok] = set_io(this.model,graphics,list([],[]),list(out,ot),1,[]);
                     if (ok) {
-                        this.model.sim = list(function_name,4);
+                        this.model.sim = list(new ScilabString(function_name),new ScilabDouble(4));
                         graphics.exprs = exprs;
                         this.model.ipar = new ScilabDouble(this.flag);
                         this.x.graphics = graphics;

@@ -3,7 +3,7 @@ function STEP() {
     STEP.prototype.define = function STEP() {
         rpar = [[0],[1]];
         this.model = scicos_model();
-        this.model.sim = list("step_func",4);
+        this.model.sim = list(new ScilabString("step_func"),new ScilabDouble(4));
         this.model.evtin = new ScilabDouble(1);
         this.model.evtout = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);

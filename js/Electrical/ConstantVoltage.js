@@ -42,7 +42,7 @@ function ConstantVoltage() {
                 break;
             }
             this.model.rpar = new ScilabDouble(this.V);
-            this.model.equations.parameters[('2', 'double')] = list(this.V);
+            this.model.equations.parameters[2] = list(new ScilabDouble(this.V));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

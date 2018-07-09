@@ -3,7 +3,7 @@ function END_c() {
     END_c.prototype.define = function END_c() {
         this.tf = 100000000;
         this.model = scicos_model();
-        this.model.sim = list("scicosexit",4);
+        this.model.sim = list(new ScilabString("scicosexit"),new ScilabDouble(4));
         this.model.evtin = new ScilabDouble(1);
         this.model.evtout = new ScilabDouble(1);
         this.model.firing = new ScilabDouble(this.tf);

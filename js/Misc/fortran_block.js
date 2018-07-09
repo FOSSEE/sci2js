@@ -2,7 +2,7 @@
 function fortran_block() {
     fortran_block.prototype.define = function fortran_block() {
         this.model = scicos_model();
-        this.model.sim = list(" ",1001);
+        this.model.sim = list(new ScilabString(" "),new ScilabDouble(1001));
         this.model.in1 = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);
         this.model.evtin = [];
@@ -66,7 +66,7 @@ function fortran_block() {
             }
             [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,[],[]);
             if (ok) {
-                this.model.sim[('1', 'double')] = new ScilabString(this.funam);
+                this.model.sim[1] = new ScilabString(this.funam);
                 this.model.rpar = this.rpar;
                 label[2-1] = tt;
                 this.x.model = this.model;

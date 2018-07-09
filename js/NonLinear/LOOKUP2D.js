@@ -9,7 +9,7 @@ function LOOKUP2D() {
         Graf = "n";
         Nx = length(this.xx);
         Ny = length(this.yy);
-        this.model.sim = list("lookup2d",4);
+        this.model.sim = list(new ScilabString("lookup2d"),new ScilabDouble(4));
         this.model.in1 = [[1],[1]];
         this.model.out = new ScilabDouble(1);
         this.model.rpar = [[this.xx.slice()],[this.yy.slice()],[this.zz.slice()]];

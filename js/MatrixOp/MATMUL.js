@@ -2,7 +2,7 @@
 function MATMUL() {
     MATMUL.prototype.define = function MATMUL() {
         this.model = scicos_model();
-        this.model.sim = list("matmul_m",4);
+        this.model.sim = list(new ScilabString("matmul_m"),new ScilabDouble(4));
         this.model.in1 = [[-1],[-2]];
         this.model.in2 = [[-2],[-3]];
         this.model.out = new ScilabDouble(-1);
@@ -63,72 +63,72 @@ function MATMUL() {
             TABMAX = [[0],[0],[(2^31)-1],[(2^15)-1],[(2^7)-1],[(2^32)-1],[(2^16)-1],[(2^8)-1]];
             if (this.rule==2) {
                 if (this.np==0) {
-                    this.model.sim = list("matmul2_m",4);
+                    this.model.sim = list(new ScilabString("matmul2_m"),new ScilabDouble(4));
                 } else if (this.np==1) {
-                    this.model.sim = list("matmul2_s",4);
+                    this.model.sim = list(new ScilabString("matmul2_s"),new ScilabDouble(4));
                 } else {
-                    this.model.sim = list("matmul2_e",4);
+                    this.model.sim = list(new ScilabString("matmul2_e"),new ScilabDouble(4));
                 }
             } else if (this.rule==3) {
                 if (this.np==0) {
-                    this.model.sim = list("matbyscal",4);
+                    this.model.sim = list(new ScilabString("matbyscal"),new ScilabDouble(4));
                 } else if (this.np==1) {
-                    this.model.sim = list("matbyscal_s",4);
+                    this.model.sim = list(new ScilabString("matbyscal_s"),new ScilabDouble(4));
                 } else {
-                    this.model.sim = list("matbyscal_e",4);
+                    this.model.sim = list(new ScilabString("matbyscal_e"),new ScilabDouble(4));
                 }
             } else {
                 if ((this.dtype==1)) {
-                    this.model.sim = list("matmul_m",4);
+                    this.model.sim = list(new ScilabString("matmul_m"),new ScilabDouble(4));
                 } else if ((this.dtype==2)) {
-                    this.model.sim = list("matzmul_m",4);
+                    this.model.sim = list(new ScilabString("matzmul_m"),new ScilabDouble(4));
                 } else if (this.dtype==3) {
                     if (this.np==0) {
-                        this.model.sim = list("matmul_i32n",4);
+                        this.model.sim = list(new ScilabString("matmul_i32n"),new ScilabDouble(4));
                     } else if (this.np==1) {
-                        this.model.sim = list("matmul_i32s",4);
+                        this.model.sim = list(new ScilabString("matmul_i32s"),new ScilabDouble(4));
                     } else {
-                        this.model.sim = list("matmul_i32e",4);
+                        this.model.sim = list(new ScilabString("matmul_i32e"),new ScilabDouble(4));
                     }
                 } else if (this.dtype==4) {
                     if (this.np==0) {
-                        this.model.sim = list("matmul_i16n",4);
+                        this.model.sim = list(new ScilabString("matmul_i16n"),new ScilabDouble(4));
                     } else if (this.np==1) {
-                        this.model.sim = list("matmul_i16s",4);
+                        this.model.sim = list(new ScilabString("matmul_i16s"),new ScilabDouble(4));
                     } else {
-                        this.model.sim = list("matmul_i16e",4);
+                        this.model.sim = list(new ScilabString("matmul_i16e"),new ScilabDouble(4));
                     }
                 } else if (this.dtype==5) {
                     if (this.np==0) {
-                        this.model.sim = list("matmul_i8n",4);
+                        this.model.sim = list(new ScilabString("matmul_i8n"),new ScilabDouble(4));
                     } else if (this.np==1) {
-                        this.model.sim = list("matmul_i8s",4);
+                        this.model.sim = list(new ScilabString("matmul_i8s"),new ScilabDouble(4));
                     } else {
-                        this.model.sim = list("matmul_i8e",4);
+                        this.model.sim = list(new ScilabString("matmul_i8e"),new ScilabDouble(4));
                     }
                 } else if (this.dtype==6) {
                     if (this.np==0) {
-                        this.model.sim = list("matmul_ui32n",4);
+                        this.model.sim = list(new ScilabString("matmul_ui32n"),new ScilabDouble(4));
                     } else if (this.np==1) {
-                        this.model.sim = list("matmul_ui32s",4);
+                        this.model.sim = list(new ScilabString("matmul_ui32s"),new ScilabDouble(4));
                     } else {
-                        this.model.sim = list("matmul_ui32e",4);
+                        this.model.sim = list(new ScilabString("matmul_ui32e"),new ScilabDouble(4));
                     }
                 } else if (this.dtype==7) {
                     if (this.np==0) {
-                        this.model.sim = list("matmul_ui16n",4);
+                        this.model.sim = list(new ScilabString("matmul_ui16n"),new ScilabDouble(4));
                     } else if (this.np==1) {
-                        this.model.sim = list("matmul_ui16s",4);
+                        this.model.sim = list(new ScilabString("matmul_ui16s"),new ScilabDouble(4));
                     } else {
-                        this.model.sim = list("matmul_ui16e",4);
+                        this.model.sim = list(new ScilabString("matmul_ui16e"),new ScilabDouble(4));
                     }
                 } else if (this.dtype==8) {
                     if (this.np==0) {
-                        this.model.sim = list("matmul_ui8n",4);
+                        this.model.sim = list(new ScilabString("matmul_ui8n"),new ScilabDouble(4));
                     } else if (this.np==1) {
-                        this.model.sim = list("matmul_ui8s",4);
+                        this.model.sim = list(new ScilabString("matmul_ui8s"),new ScilabDouble(4));
                     } else {
-                        this.model.sim = list("matmul_ui8e",4);
+                        this.model.sim = list(new ScilabString("matmul_ui8e"),new ScilabDouble(4));
                     }
                 }
             }

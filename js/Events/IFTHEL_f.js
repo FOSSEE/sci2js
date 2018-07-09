@@ -2,7 +2,7 @@
 function IFTHEL_f() {
     IFTHEL_f.prototype.define = function IFTHEL_f() {
         this.model = scicos_model();
-        this.model.sim = list("ifthel",-1);
+        this.model.sim = list(new ScilabString("ifthel"),new ScilabDouble(-1));
         this.model.in1 = new ScilabDouble(1);
         this.model.in2 = new ScilabDouble(1);
         this.model.intyp = new ScilabDouble(-1);
@@ -57,7 +57,7 @@ function IFTHEL_f() {
             if (ok) {
                 graphics.exprs = exprs;
                 this.model.evtin = this.inh;
-                this.model.sim[('2', 'double')] = new ScilabDouble(-1);
+                this.model.sim[2] = new ScilabDouble(-1);
                 this.model.nmode = new ScilabDouble(this.nmod);
                 this.model.nzcross = new ScilabDouble(this.nmod);
                 this.x.graphics = graphics;

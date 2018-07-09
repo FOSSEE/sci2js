@@ -3,7 +3,7 @@ function EXTRACTOR() {
     EXTRACTOR.prototype.define = function EXTRACTOR() {
         this.ind = 1;
         this.model = scicos_model();
-        this.model.sim = list("extractor",4);
+        this.model.sim = list(new ScilabString("extractor"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(-1);
         this.model.out = new ScilabDouble(1);
         this.model.blocktype = new ScilabString("c");

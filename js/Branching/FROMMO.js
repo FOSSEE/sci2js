@@ -10,7 +10,7 @@ function FROMMO() {
         this.model.out2 = new ScilabDouble(-2);
         this.model.outtyp = new ScilabDouble(-1);
         this.model.ipar = [];
-        this.model.opar = list("A");
+        this.model.opar = list(new ScilabString("A"));
         this.model.blocktype = new ScilabString("c");
         this.model.dep_ut = [false,false];
         mo = modelica();
@@ -48,7 +48,7 @@ function FROMMO() {
                     y = needcompile;
                 }
                 graphics.exprs = exprs;
-                this.model.opar = list(this.tag);
+                this.model.opar = list(new ScilabDouble(this.tag));
                 this.x.model = this.model;
                 this.x.graphics = graphics;
                 break;

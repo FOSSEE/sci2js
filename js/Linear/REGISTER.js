@@ -3,7 +3,7 @@ function REGISTER() {
     REGISTER.prototype.define = function REGISTER() {
         this.z0 = zeros(10,1);
         this.model = scicos_model();
-        this.model.sim = list("delay4",4);
+        this.model.sim = list(new ScilabString("delay4"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);
         this.model.evtin = new ScilabDouble(1);
@@ -45,34 +45,34 @@ function REGISTER() {
                 ok = false;
             }
             if (this.it==1) {
-                this.model.sim = list("delay4",4);
+                this.model.sim = list(new ScilabString("delay4"),new ScilabDouble(4));
                 this.z0 = double(this.z0);
                 this.model.dstate = new ScilabDouble(this.z0);
                 this.model.odstate = list();
             } else {
                 if (this.it==3) {
-                    this.model.sim = list("delay4_i32",4);
+                    this.model.sim = list(new ScilabString("delay4_i32"),new ScilabDouble(4));
                     this.z0 = int32(this.z0);
                 } else if (this.it==4) {
-                    this.model.sim = list("delay4_i16",4);
+                    this.model.sim = list(new ScilabString("delay4_i16"),new ScilabDouble(4));
                     this.z0 = int16(this.z0);
                 } else if (this.it==5) {
-                    this.model.sim = list("delay4_i8",4);
+                    this.model.sim = list(new ScilabString("delay4_i8"),new ScilabDouble(4));
                     this.z0 = int8(this.z0);
                 } else if (this.it==6) {
-                    this.model.sim = list("delay4_ui32",4);
+                    this.model.sim = list(new ScilabString("delay4_ui32"),new ScilabDouble(4));
                     this.z0 = uint32(this.z0);
                 } else if (this.it==7) {
-                    this.model.sim = list("delay4_ui16",4);
+                    this.model.sim = list(new ScilabString("delay4_ui16"),new ScilabDouble(4));
                     this.z0 = uint16(this.z0);
                 } else if (this.it==8) {
-                    this.model.sim = list("delay4_ui8",4);
+                    this.model.sim = list(new ScilabString("delay4_ui8"),new ScilabDouble(4));
                     this.z0 = uint8(this.z0);
                 } else {
                     message("Datatype is not supported");
                     ok = false;
                 }
-                this.model.odstate = list(this.z0);
+                this.model.odstate = list(new ScilabDouble(this.z0));
                 this.model.dstate = [];
             }
             if (ok) {

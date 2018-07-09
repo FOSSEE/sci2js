@@ -5,7 +5,7 @@ function MATCATV() {
         this.model = scicos_model();
         function_name = "mat_catv";
         funtyp = 4;
-        this.model.sim = list(function_name,funtyp);
+        this.model.sim = list(new ScilabString(function_name),new ScilabDouble(funtyp));
         this.model.in2 = [[-1],[-1]];
         this.model.in1 = [[-2],[-3]];
         this.model.intyp = [-1,-1];
@@ -58,7 +58,7 @@ function MATCATV() {
             [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {
                 funtyp = 4;
-                this.model.sim = list("mat_catv",funtyp);
+                this.model.sim = list(new ScilabString("mat_catv"),new ScilabDouble(funtyp));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
                 arg1.model = this.model;

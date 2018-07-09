@@ -6,7 +6,7 @@ function FROMWS_c() {
         this.ZC = 1;
         this.OutEnd = 0;
         this.model = scicos_model();
-        this.model.sim = list("fromws_c",4);
+        this.model.sim = list(new ScilabString("fromws_c"),new ScilabDouble(4));
         this.model.out = new ScilabDouble(-1);
         this.model.out2 = new ScilabDouble(-2);
         this.model.outtyp = new ScilabDouble(-1);

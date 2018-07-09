@@ -42,7 +42,7 @@ function Resistor() {
                 break;
             }
             this.model.rpar = new ScilabDouble(this.R);
-            this.model.equations.parameters[('2', 'double')] = list(this.R);
+            this.model.equations.parameters[2] = list(new ScilabDouble(this.R));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

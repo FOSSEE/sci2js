@@ -46,7 +46,7 @@ function Capacitor() {
                 break;
             }
             this.model.rpar = new ScilabDouble(this.C);
-            this.model.equations.parameters[('2', 'double')] = list(this.C,this.v);
+            this.model.equations.parameters[2] = list(new ScilabDouble(this.C),new ScilabDouble(this.v));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

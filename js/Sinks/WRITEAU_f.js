@@ -9,7 +9,7 @@ function WRITEAU_f() {
         lunit = 0;
         this.N = 2;
         this.model = scicos_model();
-        this.model.sim = list("writeau",2);
+        this.model.sim = list(new ScilabString("writeau"),new ScilabDouble(2));
         this.model.in1 = new ScilabDouble(in1);
         this.model.evtin = new ScilabDouble(1);
         this.model.dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];

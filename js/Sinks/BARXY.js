@@ -6,7 +6,7 @@ function BARXY() {
         this.xmax = 15;
         this.ymin = -15;
         this.ymax = 15;
-        this.model.sim = list("BARXY_sim",5);
+        this.model.sim = list(new ScilabString("BARXY_sim"),new ScilabDouble(5));
         this.model.blocktype = new ScilabString("d");
         this.model.dep_ut = [true,false];
         this.model.in1 = [[-1],[-1]];

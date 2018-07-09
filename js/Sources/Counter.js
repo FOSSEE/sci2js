@@ -5,7 +5,7 @@ function Counter() {
         this.maxim = 2;
         this.rule = 1;
         this.model = scicos_model();
-        this.model.sim = list("counter",4);
+        this.model.sim = list(new ScilabString("counter"),new ScilabDouble(4));
         this.model.evtin = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);
         this.model.out2 = new ScilabDouble(1);

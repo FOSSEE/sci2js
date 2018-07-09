@@ -13,7 +13,7 @@ function CANIMXY() {
         this.ymax = 15;
         this.nbr_curves = 1;
         this.model = scicos_model();
-        this.model.sim = list("canimxy",4);
+        this.model.sim = list(new ScilabString("canimxy"),new ScilabDouble(4));
         this.model.in1 = [[1],[1]];
         this.model.in2 = [[1],[1]];
         this.model.intyp = [[1],[1]];

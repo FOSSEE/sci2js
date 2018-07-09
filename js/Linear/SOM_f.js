@@ -3,7 +3,7 @@ function SOM_f() {
     SOM_f.prototype.define = function SOM_f() {
         sgn = [[1],[1],[1]];
         this.model = scicos_model();
-        this.model.sim = list("sum",2);
+        this.model.sim = list(new ScilabString("sum"),new ScilabDouble(2));
         this.model.in1 = [[-1],[-1],[-1]];
         this.model.out = new ScilabDouble(-1);
         this.model.rpar = sgn;

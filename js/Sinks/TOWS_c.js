@@ -6,7 +6,7 @@ function TOWS_c() {
         this.varnam = "A";
         this.herit = 0;
         this.model = scicos_model();
-        this.model.sim = list("tows_c",4);
+        this.model.sim = list(new ScilabString("tows_c"),new ScilabDouble(4));
         this.model.in1 = [nu];
         this.model.in2 = new ScilabDouble(-2);
         this.model.intyp = new ScilabDouble(-1);

@@ -2,7 +2,7 @@
 function MAXMIN() {
     MAXMIN.prototype.define = function MAXMIN() {
         this.model = scicos_model();
-        this.model.sim = list("minmax",4);
+        this.model.sim = list(new ScilabString("minmax"),new ScilabDouble(4));
         this.model.out = new ScilabDouble(1);
         this.model.in1 = new ScilabDouble(-1);
         this.model.blocktype = new ScilabString("c");

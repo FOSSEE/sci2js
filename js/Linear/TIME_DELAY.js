@@ -6,7 +6,7 @@ function TIME_DELAY() {
         this.init = 0;
         this.N = 1024;
         this.model = scicos_model();
-        this.model.sim = list("time_delay",4);
+        this.model.sim = list(new ScilabString("time_delay"),new ScilabDouble(4));
         this.model.in1 = [nin];
         this.model.out = new ScilabDouble(nin);
         this.model.rpar = [this.T,this.init];

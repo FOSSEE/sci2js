@@ -48,7 +48,7 @@ function VanneReglante() {
                 break;
             }
             this.model.rpar = [[this.Cvmax],[this.p_rho]];
-            this.model.equations.parameters[('2', 'double')] = list(this.Cvmax,this.p_rho);
+            this.model.equations.parameters[2] = list(new ScilabDouble(this.Cvmax),new ScilabDouble(this.p_rho));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

@@ -6,7 +6,7 @@ function INTEGRAL() {
         rpar = [];
         this.model = scicos_model();
         this.model.state = new ScilabDouble(0);
-        this.model.sim = list("integral_func",4);
+        this.model.sim = list(new ScilabString("integral_func"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);
         this.model.rpar = rpar;

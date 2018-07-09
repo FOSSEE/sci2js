@@ -4,7 +4,7 @@ function CLKFROM() {
         this.model = scicos_model();
         this.model.sim = new ScilabString("clkfrom");
         this.model.evtout = new ScilabDouble(1);
-        this.model.opar = list("A");
+        this.model.opar = list(new ScilabString("A"));
         this.model.blocktype = new ScilabString("d");
         this.model.firing = new ScilabDouble(-1);
         this.model.dep_ut = [false,false];
@@ -36,7 +36,7 @@ function CLKFROM() {
                 needcompile = 4;
                 y = needcompile;
             }
-            this.model.opar = list(this.tag);
+            this.model.opar = list(new ScilabDouble(this.tag));
             this.model.evtout = new ScilabDouble(1);
             this.model.firing = new ScilabDouble(-1);
             graphics.exprs = exprs;

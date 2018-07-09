@@ -5,7 +5,7 @@ function DEADBAND() {
         this.maxp = .5;
         rpar = [[this.maxp],[this.minp]];
         this.model = scicos_model();
-        this.model.sim = list("deadband",4);
+        this.model.sim = list(new ScilabString("deadband"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(1);
         this.model.nzcross = new ScilabDouble(2);
         this.model.nmode = new ScilabDouble(1);

@@ -4,7 +4,7 @@ function SHIFT() {
         sgn = [[0],[0]];
         OPER = 0;
         this.model = scicos_model();
-        this.model.sim = list("shift_32_LA",4);
+        this.model.sim = list(new ScilabString("shift_32_LA"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(-1);
         this.model.out = new ScilabDouble(-1);
         this.model.in2 = new ScilabDouble(-2);
@@ -54,63 +54,63 @@ function SHIFT() {
                 if (this.nb>0) {
                     switch (this.np) {
                     case 0:
-                        this.model.sim = list("shift_32_LA",4);
+                        this.model.sim = list(new ScilabString("shift_32_LA"),new ScilabDouble(4));
                     case 1:
-                        this.model.sim = list("shift_32_LC",4);
+                        this.model.sim = list(new ScilabString("shift_32_LC"),new ScilabDouble(4));
                     }
                 } else if (this.nb<0) {
                     switch (this.np) {
                     case 0:
                         switch (this.Datatype) {
                         case 3:
-                            this.model.sim = list("shift_32_RA",4);
+                            this.model.sim = list(new ScilabString("shift_32_RA"),new ScilabDouble(4));
                         case 6:
-                            this.model.sim = list("shift_u32_RA",4);
+                            this.model.sim = list(new ScilabString("shift_u32_RA"),new ScilabDouble(4));
                         }
                     case 1:
-                        this.model.sim = list("shift_32_RC",4);
+                        this.model.sim = list(new ScilabString("shift_32_RC"),new ScilabDouble(4));
                     }
                 }
             } else if ((this.Datatype==4||this.Datatype==7)) {
                 if (this.nb>0) {
                     switch (this.np) {
                     case 0:
-                        this.model.sim = list("shift_16_LA",4);
+                        this.model.sim = list(new ScilabString("shift_16_LA"),new ScilabDouble(4));
                     case 1:
-                        this.model.sim = list("shift_16_LC",4);
+                        this.model.sim = list(new ScilabString("shift_16_LC"),new ScilabDouble(4));
                     }
                 } else if (this.nb<0) {
                     switch (this.np) {
                     case 0:
                         switch (this.Datatype) {
                         case 4:
-                            this.model.sim = list("shift_16_RA",4);
+                            this.model.sim = list(new ScilabString("shift_16_RA"),new ScilabDouble(4));
                         case 7:
-                            this.model.sim = list("shift_u16_RA",4);
+                            this.model.sim = list(new ScilabString("shift_u16_RA"),new ScilabDouble(4));
                         }
                     case 1:
-                        this.model.sim = list("shift_16_RC",4);
+                        this.model.sim = list(new ScilabString("shift_16_RC"),new ScilabDouble(4));
                     }
                 }
             } else if ((this.Datatype==5||this.Datatype==8)) {
                 if (this.nb>0) {
                     switch (this.np) {
                     case 0:
-                        this.model.sim = list("shift_8_LA",4);
+                        this.model.sim = list(new ScilabString("shift_8_LA"),new ScilabDouble(4));
                     case 1:
-                        this.model.sim = list("shift_8_LC",4);
+                        this.model.sim = list(new ScilabString("shift_8_LC"),new ScilabDouble(4));
                     }
                 } else if (this.nb<0) {
                     switch (this.np) {
                     case 0:
                         switch (this.Datatype) {
                         case 5:
-                            this.model.sim = list("shift_8_RA",4);
+                            this.model.sim = list(new ScilabString("shift_8_RA"),new ScilabDouble(4));
                         case 8:
-                            this.model.sim = list("shift_u8_RA",4);
+                            this.model.sim = list(new ScilabString("shift_u8_RA"),new ScilabDouble(4));
                         }
                     case 1:
-                        this.model.sim = list("shift_8_RC",4);
+                        this.model.sim = list(new ScilabString("shift_8_RC"),new ScilabDouble(4));
                     }
                 }
             } else {

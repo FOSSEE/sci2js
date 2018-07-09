@@ -10,7 +10,7 @@ function CMAT3D() {
         size_x = 1;
         size_y = 1;
         this.model = scicos_model();
-        this.model.sim = list("cmat3d",4);
+        this.model.sim = list(new ScilabString("cmat3d"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(-1);
         this.model.in2 = new ScilabDouble(-2);
         this.model.intyp = new ScilabDouble(1);

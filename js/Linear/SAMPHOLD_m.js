@@ -2,7 +2,7 @@
 function SAMPHOLD_m() {
     SAMPHOLD_m.prototype.define = function SAMPHOLD_m() {
         this.model = scicos_model();
-        this.model.sim = list("samphold4_m",4);
+        this.model.sim = list(new ScilabString("samphold4_m"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(-1);
         this.model.in2 = new ScilabDouble(-2);
         this.model.intyp = new ScilabDouble(1);

@@ -3,7 +3,7 @@ function PDE() {
     PDE.prototype.define = function PDE() {
         this.model = scicos_model();
         this.model.state = new ScilabDouble(zeros(10,1));
-        this.model.sim = list("PDE",0);
+        this.model.sim = list(new ScilabString("PDE"),new ScilabDouble(0));
         this.model.in1 = [[1],[1],[1],[1],[1]];
         this.model.out = [[10],[0]];
         this.model.blocktype = new ScilabString("c");
@@ -96,14 +96,14 @@ function PDE() {
                 out = [[Nbr_maillage],[size(mesures,"*")]];
             }
             if ((flag_type==1)) {
-                this.model.sim = list(this.rdnom,2004);
+                this.model.sim = list(new ScilabDouble(this.rdnom),new ScilabDouble(2004));
                 if ((find(oper==1)!=[])) {
                     this.model.state = new ScilabDouble(zeros(2*Nbr_maillage,1));
                 } else {
                     this.model.state = new ScilabDouble(zeros(Nbr_maillage,1));
                 }
             } else if ((flag_type==2)) {
-                this.model.sim = list(this.rdnom,12004);
+                this.model.sim = list(new ScilabDouble(this.rdnom),new ScilabDouble(12004));
                 if ((find(oper==1)!=[])) {
                     if ((type_meth==3&&(find(oper==2)!=[]||find(oper==4)!=[]))) {
                         this.model.state = new ScilabDouble(zeros(6*Nbr_maillage,1));

@@ -2,7 +2,7 @@
 function ABSBLK_f() {
     ABSBLK_f.prototype.define = function ABSBLK_f() {
         this.model = scicos_model();
-        this.model.sim = list("absblk",1);
+        this.model.sim = list(new ScilabString("absblk"),new ScilabDouble(1));
         this.model.in1 = new ScilabDouble(-1);
         this.model.out = new ScilabDouble(-1);
         this.model.blocktype = new ScilabString("c");

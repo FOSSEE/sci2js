@@ -10,7 +10,7 @@ function TCLSS() {
         nx = size(this.x0,"*");
         out = 1;
         this.model = scicos_model();
-        this.model.sim = list("tcslti4",4);
+        this.model.sim = list(new ScilabString("tcslti4"),new ScilabDouble(4));
         this.model.in1 = [[in1],[nx]];
         this.model.out = new ScilabDouble(out);
         this.model.evtin = new ScilabDouble(1);
@@ -85,9 +85,9 @@ function TCLSS() {
                     this.model.state = this.x0.slice();
                     this.model.rpar = rpar;
                     if (this.D!=[]) {
-                        this.model.sim = list("tcslti4",4);
+                        this.model.sim = list(new ScilabString("tcslti4"),new ScilabDouble(4));
                     } else {
-                        this.model.sim = list("tcsltj4",4);
+                        this.model.sim = list(new ScilabString("tcsltj4"),new ScilabDouble(4));
                     }
                     this.x.graphics = graphics;
                     this.x.model = this.model;

@@ -65,7 +65,7 @@ function NMOS() {
             if (!ok) {
                 break;
             }
-            this.model.equations.parameters[('2', 'double')] = list(this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS);
+            this.model.equations.parameters[2] = list(new ScilabDouble(this.W),new ScilabDouble(this.L),new ScilabDouble(this.Beta),new ScilabDouble(this.Vt),new ScilabDouble(this.K2),new ScilabDouble(this.K5),new ScilabDouble(this.dW),new ScilabDouble(this.dL),new ScilabDouble(this.RDS));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

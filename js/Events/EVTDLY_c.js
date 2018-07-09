@@ -4,7 +4,7 @@ function EVTDLY_c() {
         this.dt = 0.1;
         this.ff = 0.0;
         this.model = scicos_model();
-        this.model.sim = list("evtdly4",4);
+        this.model.sim = list(new ScilabString("evtdly4"),new ScilabDouble(4));
         this.model.evtin = new ScilabDouble(1);
         this.model.evtout = new ScilabDouble(1);
         this.model.rpar = [[this.dt],[this.ff]];

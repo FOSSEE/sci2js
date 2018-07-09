@@ -3,7 +3,7 @@ function DIFF_c() {
     DIFF_c.prototype.define = function DIFF_c() {
         this.x0 = [[0],[0]];
         this.model = scicos_model();
-        this.model.sim = list("diffblk_c",10004);
+        this.model.sim = list(new ScilabString("diffblk_c"),new ScilabDouble(10004));
         this.model.in1 = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);
         this.model.state = this.x0;

@@ -63,16 +63,16 @@ sS'model.evtout'
 p20
 S'matrix'
 p21
-sS"model.sim[('2', 'double')]"
+sS'model.nmode'
 p22
 g6
-sS'model.nmode'
-p23
-g6
 sS'graphics.exprs'
-p24
+p23
 g16
 sS'model.nzcross'
+p24
+g6
+sS'model.sim[2]'
 p25
 g6
 sS'[model,graphics,ok]'

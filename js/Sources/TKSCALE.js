@@ -5,7 +5,7 @@ function TKSCALE() {
         this.b = 10;
         this.f = 1;
         this.model = scicos_model();
-        this.model.sim = list("tkscaleblk",5);
+        this.model.sim = list(new ScilabString("tkscaleblk"),new ScilabDouble(5));
         this.model.out = new ScilabDouble(1);
         this.model.evtin = new ScilabDouble(1);
         this.model.rpar = [[this.a],[this.b],[this.f]];

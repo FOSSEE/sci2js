@@ -3,7 +3,7 @@ function MUX() {
     MUX.prototype.define = function MUX() {
         this.in1 = 2;
         this.model = scicos_model();
-        this.model.sim = list("multiplex",4);
+        this.model.sim = list(new ScilabString("multiplex"),new ScilabDouble(4));
         this.model.in1 = -transpose([1:this.in1]);
         this.model.out = new ScilabDouble(0);
         this.model.ipar = new ScilabDouble(this.in1);

@@ -3,7 +3,7 @@ function ESELECT_f() {
     ESELECT_f.prototype.define = function ESELECT_f() {
         this.out = 2;
         this.model = scicos_model();
-        this.model.sim = list("eselect",-2);
+        this.model.sim = list(new ScilabString("eselect"),new ScilabDouble(-2));
         this.model.in1 = new ScilabDouble(1);
         this.model.in2 = new ScilabDouble(1);
         this.model.intyp = new ScilabDouble(-1);

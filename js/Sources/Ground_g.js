@@ -3,7 +3,7 @@ function Ground_g() {
     Ground_g.prototype.define = function Ground_g() {
         C = [0];
         this.model = scicos_model();
-        this.model.sim = list("cstblk4_m",4);
+        this.model.sim = list(new ScilabString("cstblk4_m"),new ScilabDouble(4));
         this.model.in1 = [];
         this.model.out = new ScilabDouble(1);
         this.model.in2 = [];

@@ -4,7 +4,7 @@ function ZCROSS_f() {
         rpar = [[-1],[-1],[0],[0]];
         this.in1 = 1;
         this.model = scicos_model();
-        this.model.sim = list("zcross",1);
+        this.model.sim = list(new ScilabString("zcross"),new ScilabDouble(1));
         this.model.in1 = new ScilabDouble(this.in1);
         this.model.nzcross = new ScilabDouble(this.in1);
         this.model.evtout = new ScilabDouble(1);

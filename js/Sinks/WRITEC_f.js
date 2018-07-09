@@ -9,7 +9,7 @@ function WRITEC_f() {
         lunit = 0;
         this.N = 2;
         this.model = scicos_model();
-        this.model.sim = list("writec",2);
+        this.model.sim = list(new ScilabString("writec"),new ScilabDouble(2));
         this.model.in1 = new ScilabDouble(this.in1);
         this.model.evtin = new ScilabDouble(1);
         this.model.dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];

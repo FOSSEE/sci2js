@@ -6,7 +6,7 @@ function DOLLAR() {
         in1 = 1;
         exprs = string([[z],[this.inh]]);
         this.model = scicos_model();
-        this.model.sim = list("dollar4",4);
+        this.model.sim = list(new ScilabString("dollar4"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble(in1);
         this.model.evtin = new ScilabDouble(1-this.inh);
@@ -47,15 +47,15 @@ function DOLLAR() {
                 out = [];
             }
             in1 = out;
-            this.model.sim = list("dollar4_m",4);
-            this.model.odstate = list(this.a);
+            this.model.sim = list(new ScilabString("dollar4_m"),new ScilabDouble(4));
+            this.model.odstate = list(new ScilabDouble(this.a));
             this.model.dstate = [];
             if (this.type[(this.a)==1-1]) {
                 if (isreal(this.a)) {
                     it = 1;
                     ot = 1;
                     if ((size(this.a,1)==1||size(this.a,2)==1)) {
-                        this.model.sim = list("dollar4",4);
+                        this.model.sim = list(new ScilabString("dollar4"),new ScilabDouble(4));
                         this.model.dstate = this.a.slice();
                         this.model.odstate = list();
                     }

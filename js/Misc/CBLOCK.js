@@ -14,7 +14,7 @@ function CBLOCK() {
         funam = "toto";
         this.ng = 0;
         this.model = scicos_model();
-        this.model.sim = list(" ",2004);
+        this.model.sim = list(new ScilabString(" "),new ScilabDouble(2004));
         this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble(out);
         this.model.evtin = clkin;
@@ -134,7 +134,7 @@ function CBLOCK() {
                 } else {
                     [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
                     if (ok) {
-                        this.model.sim = list(funam,funtyp);
+                        this.model.sim = list(new ScilabDouble(funam),new ScilabDouble(funtyp));
                         this.model.in1 = new ScilabDouble(this.i);
                         this.model.out = new ScilabDouble(this.o);
                         this.model.evtin = new ScilabDouble(this.ci);

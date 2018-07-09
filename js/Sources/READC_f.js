@@ -15,7 +15,7 @@ function READC_f() {
         nout = size(this.outmask,"*");
         ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[fname-1]],[tmask],[this.outmask]];
         this.model = scicos_model();
-        this.model.sim = list("readc",2);
+        this.model.sim = list(new ScilabString("readc"),new ScilabDouble(2));
         this.model.out = new ScilabDouble(nout);
         this.model.evtin = new ScilabDouble(1);
         this.model.evtout = [];

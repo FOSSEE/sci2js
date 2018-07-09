@@ -6,7 +6,7 @@ function HYSTHERESIS() {
         this.nzz = 2;
         rpar = [[1],[0],[1],[0]];
         this.model = scicos_model();
-        this.model.sim = list("hystheresis",4);
+        this.model.sim = list(new ScilabString("hystheresis"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble(1);
         this.model.rpar = rpar;

@@ -8,7 +8,7 @@ function AFFICH_m() {
         this.nd = 1;
         this.in1 = [1,1];
         this.model = scicos_model();
-        this.model.sim = list("affich2",4);
+        this.model.sim = list(new ScilabString("affich2"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(this.in1[1-1][1-1]);
         this.model.in2 = new ScilabDouble(this.in1[1-1][2-1]);
         this.model.evtin = new ScilabDouble(1);

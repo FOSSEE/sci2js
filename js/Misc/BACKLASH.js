@@ -3,7 +3,7 @@ function BACKLASH() {
     BACKLASH.prototype.define = function BACKLASH() {
         exprs = [["0"],["1"],["1"]];
         this.model = scicos_model();
-        this.model.sim = list("backlash",4);
+        this.model.sim = list(new ScilabString("backlash"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);
         this.model.rpar = [[0],[1]];

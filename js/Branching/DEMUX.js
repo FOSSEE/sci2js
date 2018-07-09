@@ -3,7 +3,7 @@ function DEMUX() {
     DEMUX.prototype.define = function DEMUX() {
         this.out = 2;
         this.model = scicos_model();
-        this.model.sim = list("multiplex",4);
+        this.model.sim = list(new ScilabString("multiplex"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(0);
         this.model.out = -transpose([1:this.out]);
         this.model.ipar = new ScilabDouble(this.out);

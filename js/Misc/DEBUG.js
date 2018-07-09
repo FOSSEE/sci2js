@@ -2,7 +2,7 @@
 function DEBUG() {
     DEBUG.prototype.define = function DEBUG() {
         this.model = scicos_model();
-        this.model.sim = list("%debug_scicos",99);
+        this.model.sim = list(new ScilabString("%debug_scicos"),new ScilabDouble(99));
         this.model.blocktype = new ScilabString("d");
         exprs = list("","xcos_debug_gui(flag,block);");
         gr_i = [];

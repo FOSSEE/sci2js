@@ -6,7 +6,7 @@ function RAMP() {
         this.stt = 0;
         rpar = [[this.slope],[this.stt],[this.iout]];
         this.model = scicos_model();
-        this.model.sim = list("ramp",4);
+        this.model.sim = list(new ScilabString("ramp"),new ScilabDouble(4));
         this.model.in1 = [];
         this.model.out = new ScilabDouble(1);
         this.model.rpar = rpar;

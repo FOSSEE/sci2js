@@ -4,7 +4,7 @@ function EXPBLK_m() {
         in1 = 1;
         this.a = math.E;
         this.model = scicos_model();
-        this.model.sim = list("expblk_m",4);
+        this.model.sim = list(new ScilabString("expblk_m"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(-1);
         this.model.in2 = new ScilabDouble(-2);
         this.model.out = new ScilabDouble(-1);

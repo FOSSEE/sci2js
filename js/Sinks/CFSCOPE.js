@@ -10,7 +10,7 @@ function CFSCOPE() {
         this.ymax = 15;
         this.per = 30;
         this.model = scicos_model();
-        this.model.sim = list("cfscope",4);
+        this.model.sim = list(new ScilabString("cfscope"),new ScilabDouble(4));
         this.model.evtin = new ScilabDouble(1);
         this.model.rpar = [[0],[this.ymin],[this.ymax],[this.per]];
         this.model.ipar = [[this.win],[1],[this.N],[this.clrs],[this.wpos],[this.wdim],[1],[1]];

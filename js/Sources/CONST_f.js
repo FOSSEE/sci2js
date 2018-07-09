@@ -3,7 +3,7 @@ function CONST_f() {
     CONST_f.prototype.define = function CONST_f() {
         this.C = 1;
         this.model = scicos_model();
-        this.model.sim = list("cstblk",1);
+        this.model.sim = list(new ScilabString("cstblk"),new ScilabDouble(1));
         this.model.in1 = [];
         this.model.out = new ScilabDouble(1);
         this.model.rpar = new ScilabDouble(this.C);

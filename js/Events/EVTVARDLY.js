@@ -2,7 +2,7 @@
 function EVTVARDLY() {
     EVTVARDLY.prototype.define = function EVTVARDLY() {
         this.model = scicos_model();
-        this.model.sim = list("evtvardly",4);
+        this.model.sim = list(new ScilabString("evtvardly"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(1);
         this.model.evtin = new ScilabDouble(1);
         this.model.evtout = new ScilabDouble(1);

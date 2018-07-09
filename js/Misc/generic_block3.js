@@ -4,7 +4,7 @@ function generic_block3() {
         this.model = scicos_model();
         this.function_name = "sinblk";
         this.funtyp = 4;
-        this.model.sim = list(this.function_name,this.funtyp);
+        this.model.sim = list(new ScilabString(this.function_name),new ScilabDouble(this.funtyp));
         this.model.in1 = new ScilabDouble(1);
         this.model.in2 = new ScilabDouble(1);
         this.model.intyp = new ScilabDouble(1);
@@ -124,7 +124,7 @@ function generic_block3() {
                 if (this.funtyp==3) {
                     needcompile = 4;
                 }
-                this.model.sim = list(this.function_name,this.funtyp);
+                this.model.sim = list(new ScilabDouble(this.function_name),new ScilabDouble(this.funtyp));
                 this.model.state = this.xx;
                 this.model.dstate = this.z;
                 this.model.odstate = new ScilabDouble(this.oz);

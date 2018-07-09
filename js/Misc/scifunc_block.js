@@ -11,7 +11,7 @@ function scifunc_block() {
         auto = [];
         this.rpar = [];
         this.model = scicos_model();
-        this.model.sim = list("scifunc",3);
+        this.model.sim = list(new ScilabString("scifunc"),new ScilabDouble(3));
         this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble(out);
         this.model.evtin = clkin;

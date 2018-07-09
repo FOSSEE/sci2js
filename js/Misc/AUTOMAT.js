@@ -12,7 +12,7 @@ function AUTOMAT() {
         ipar = [[NMode],[this.Minitial],[NX],[this.XP],[C1],[C2]];
         rpar = [this.X0];
         this.model = scicos_model();
-        this.model.sim = list("automat",10004);
+        this.model.sim = list(new ScilabString("automat"),new ScilabDouble(10004));
         this.model.in1 = [[2*NX+1],[2*NX+1]];
         this.model.out = [[2],[2*NX]];
         this.model.state = new ScilabDouble(ones(2*NX,1));

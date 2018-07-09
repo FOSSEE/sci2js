@@ -73,9 +73,10 @@ g11
 sS'lab_2_tmp'
 p15
 g5
-sS"model.sim[('1', 'double')]"
+sS'x.model'
 p16
-NsS'exprs.outtype'
+g7
+sS'exprs.outtype'
 p17
 g11
 sS'exprs.intype'
@@ -133,13 +134,12 @@ g21
 sS'x.graphics.in_implicit'
 p37
 g21
-sS'x.model'
-p38
-g7
 sS'[ok,tt]'
-p39
+p38
 g11
-sS'mo.parameters'
+sS'model.sim[1]'
+p39
+NsS'mo.parameters'
 p40
 g5
 sS'Tparam_sz'

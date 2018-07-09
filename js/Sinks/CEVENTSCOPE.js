@@ -8,7 +8,7 @@ function CEVENTSCOPE() {
         this.wpos = [[-1],[-1]];
         this.per = 30;
         this.model = scicos_model();
-        this.model.sim = list("cevscpe",4);
+        this.model.sim = list(new ScilabString("cevscpe"),new ScilabDouble(4));
         this.model.evtin = new ScilabDouble(1);
         this.model.rpar = new ScilabDouble(this.per);
         this.model.ipar = [[this.win],[1],[this.clrs[this.nclock-1]],[this.wpos.slice()],[this.wdim.slice()]];

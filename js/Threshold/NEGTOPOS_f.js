@@ -2,7 +2,7 @@
 function NEGTOPOS_f() {
     NEGTOPOS_f.prototype.define = function NEGTOPOS_f() {
         this.model = scicos_model();
-        this.model.sim = list("zcross",1);
+        this.model.sim = list(new ScilabString("zcross"),new ScilabDouble(1));
         this.model.nzcross = new ScilabDouble(1);
         this.model.in1 = new ScilabDouble(1);
         this.model.evtout = new ScilabDouble(1);

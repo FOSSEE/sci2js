@@ -3,7 +3,7 @@ function SUMMATION() {
     SUMMATION.prototype.define = function SUMMATION() {
         this.sgn = [[1],[-1]];
         this.model = scicos_model();
-        this.model.sim = list("summation",4);
+        this.model.sim = list(new ScilabString("summation"),new ScilabDouble(4));
         this.model.in1 = [[-1],[-1]];
         this.model.out = new ScilabDouble(-1);
         this.model.in2 = [[-2],[-2]];
@@ -81,54 +81,54 @@ function SUMMATION() {
             it = this.Datatype*ones(1,size(in1,1));
             ot = this.Datatype;
             if (this.Datatype==1) {
-                this.model.sim = list("summation",4);
+                this.model.sim = list(new ScilabString("summation"),new ScilabDouble(4));
             } else if (this.Datatype==2) {
-                this.model.sim = list("summation_z",4);
+                this.model.sim = list(new ScilabString("summation_z"),new ScilabDouble(4));
             } else if (((this.Datatype<1)||(this.Datatype>8))) {
                 message("Datatype is not supported");
                 ok = false;
             } else {
                 if (this.satur==0) {
                     if (this.Datatype==3) {
-                        this.model.sim = list("summation_i32n",4);
+                        this.model.sim = list(new ScilabString("summation_i32n"),new ScilabDouble(4));
                     } else if (this.Datatype==4) {
-                        this.model.sim = list("summation_i16n",4);
+                        this.model.sim = list(new ScilabString("summation_i16n"),new ScilabDouble(4));
                     } else if (this.Datatype==5) {
-                        this.model.sim = list("summation_i8n",4);
+                        this.model.sim = list(new ScilabString("summation_i8n"),new ScilabDouble(4));
                     } else if (this.Datatype==6) {
-                        this.model.sim = list("summation_ui32n",4);
+                        this.model.sim = list(new ScilabString("summation_ui32n"),new ScilabDouble(4));
                     } else if (this.Datatype==7) {
-                        this.model.sim = list("summation_ui16n",4);
+                        this.model.sim = list(new ScilabString("summation_ui16n"),new ScilabDouble(4));
                     } else if (this.Datatype==8) {
-                        this.model.sim = list("summation_ui8n",4);
+                        this.model.sim = list(new ScilabString("summation_ui8n"),new ScilabDouble(4));
                     }
                 } else if (this.satur==1) {
                     if (this.Datatype==3) {
-                        this.model.sim = list("summation_i32s",4);
+                        this.model.sim = list(new ScilabString("summation_i32s"),new ScilabDouble(4));
                     } else if (this.Datatype==4) {
-                        this.model.sim = list("summation_i16s",4);
+                        this.model.sim = list(new ScilabString("summation_i16s"),new ScilabDouble(4));
                     } else if (this.Datatype==5) {
-                        this.model.sim = list("summation_i8s",4);
+                        this.model.sim = list(new ScilabString("summation_i8s"),new ScilabDouble(4));
                     } else if (this.Datatype==6) {
-                        this.model.sim = list("summation_ui32s",4);
+                        this.model.sim = list(new ScilabString("summation_ui32s"),new ScilabDouble(4));
                     } else if (this.Datatype==7) {
-                        this.model.sim = list("summation_ui16s",4);
+                        this.model.sim = list(new ScilabString("summation_ui16s"),new ScilabDouble(4));
                     } else if (this.Datatype==8) {
-                        this.model.sim = list("summation_ui8s",4);
+                        this.model.sim = list(new ScilabString("summation_ui8s"),new ScilabDouble(4));
                     }
                 } else if (this.satur==2) {
                     if (this.Datatype==3) {
-                        this.model.sim = list("summation_i32e",4);
+                        this.model.sim = list(new ScilabString("summation_i32e"),new ScilabDouble(4));
                     } else if (this.Datatype==4) {
-                        this.model.sim = list("summation_i16e",4);
+                        this.model.sim = list(new ScilabString("summation_i16e"),new ScilabDouble(4));
                     } else if (this.Datatype==5) {
-                        this.model.sim = list("summation_i8e",4);
+                        this.model.sim = list(new ScilabString("summation_i8e"),new ScilabDouble(4));
                     } else if (this.Datatype==6) {
-                        this.model.sim = list("summation_ui32e",4);
+                        this.model.sim = list(new ScilabString("summation_ui32e"),new ScilabDouble(4));
                     } else if (this.Datatype==7) {
-                        this.model.sim = list("summation_ui16e",4);
+                        this.model.sim = list(new ScilabString("summation_ui16e"),new ScilabDouble(4));
                     } else if (this.Datatype==8) {
-                        this.model.sim = list("summation_ui8e",4);
+                        this.model.sim = list(new ScilabString("summation_ui8e"),new ScilabDouble(4));
                     }
                 }
             }

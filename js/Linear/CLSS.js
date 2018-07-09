@@ -9,7 +9,7 @@ function CLSS() {
         in1 = 1;
         out = 1;
         this.model = scicos_model();
-        this.model.sim = list("csslti4",4);
+        this.model.sim = list(new ScilabString("csslti4"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble(out);
         this.model.state = new ScilabDouble(this.x0);

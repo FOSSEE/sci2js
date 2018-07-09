@@ -13,7 +13,7 @@ function CANIMXY3D() {
         this.vec_z = [[-15],[15]];
         this.nbr_curves = 1;
         this.model = scicos_model();
-        this.model.sim = list("canimxy3d",4);
+        this.model.sim = list(new ScilabString("canimxy3d"),new ScilabDouble(4));
         this.model.in1 = [[1],[1],[1]];
         this.model.evtin = new ScilabDouble(1);
         this.model.in2 = [[1],[1],[1]];

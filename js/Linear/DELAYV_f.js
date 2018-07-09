@@ -6,7 +6,7 @@ function DELAYV_f() {
         this.zz0 = z0.slice(1-1,$-1);
         this.T = 1;
         this.model = scicos_model();
-        this.model.sim = list("delayv",1);
+        this.model.sim = list(new ScilabString("delayv"),new ScilabDouble(1));
         this.model.in1 = [[this.nin],[1]];
         this.model.out = new ScilabDouble(this.nin);
         this.model.evtin = new ScilabDouble(1);

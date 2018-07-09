@@ -3,7 +3,7 @@ function EDGETRIGGER() {
     EDGETRIGGER.prototype.define = function EDGETRIGGER() {
         this.edge = 1;
         this.model = scicos_model();
-        this.model.sim = list("edgetrig",4);
+        this.model.sim = list(new ScilabString("edgetrig"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);
         this.model.dstate = new ScilabDouble(0);

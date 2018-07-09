@@ -3,7 +3,7 @@ function CONSTRAINT_c() {
     CONSTRAINT_c.prototype.define = function CONSTRAINT_c() {
         this.x0 = [[0],[0]];
         this.model = scicos_model();
-        this.model.sim = list("constraint_c",10004);
+        this.model.sim = list(new ScilabString("constraint_c"),new ScilabDouble(10004));
         this.model.in1 = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);
         this.model.ipar = new ScilabDouble(0);

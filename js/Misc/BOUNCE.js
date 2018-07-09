@@ -24,7 +24,7 @@ function BOUNCE() {
         state = [this.x,this.xd,this.y,this.yd];
         state = transpose(state);
         this.model = scicos_model();
-        this.model.sim = list("bounce_ball",4);
+        this.model.sim = list(new ScilabString("bounce_ball"),new ScilabDouble(4));
         this.model.in1 = [];
         this.model.out = [[n],[n]];
         this.model.state = state.slice();

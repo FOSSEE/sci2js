@@ -3,7 +3,7 @@ function CONST_m() {
     CONST_m.prototype.define = function CONST_m() {
         this.C = [1];
         this.model = scicos_model();
-        this.model.sim = list("cstblk4",4);
+        this.model.sim = list(new ScilabString("cstblk4"),new ScilabDouble(4));
         this.model.in1 = [];
         this.model.out = new ScilabDouble(size(this.C,1));
         this.model.in2 = [];
@@ -40,7 +40,7 @@ function CONST_m() {
             if (find(nout==0)!=[]) {
                 block_parameter_error(msprintf("Wrong size for \'%s\' parameter","Constant Value"),"Constant value must have at least one element.");
             } else {
-                this.model.sim = list("cstblk4_m",4);
+                this.model.sim = list(new ScilabString("cstblk4_m"),new ScilabDouble(4));
                 this.model.opar = list(this.C);
                 if ((this.type[this.C-1]==1)) {
                     if (isreal(this.C)) {

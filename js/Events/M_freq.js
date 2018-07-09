@@ -2,11 +2,11 @@
 function M_freq() {
     M_freq.prototype.define = function M_freq() {
         this.model = scicos_model();
-        this.model.sim = list("m_frequ",4);
+        this.model.sim = list(new ScilabString("m_frequ"),new ScilabDouble(4));
         this.model.evtout = [[1],[1],[1]];
         this.model.evtin = new ScilabDouble(1);
         this.model.rpar = [];
-        this.model.opar = list([[1,1,0],[1,1,1],[1,3,2]],1,0,0);
+        this.model.opar = list([[1,1,0],[1,1,1],[1,3,2]],new ScilabDouble(1),new ScilabDouble(0),new ScilabDouble(0));
         this.model.blocktype = new ScilabString("d");
         this.model.firing = [0,-1,-1];
         this.model.dep_ut = [false,false];
@@ -53,7 +53,7 @@ function M_freq() {
                 [m,den,off,count,m1,fir,this.frequ,this.offset,ok] = mfrequ_clk(this.frequ,this.offset);
             }
             if (ok) {
-                this.model.opar = list(m,double(den),off,count);
+                this.model.opar = list(m,new ScilabDouble(double(den)),new ScilabDouble(off),new ScilabDouble(count));
                 mn = (2^size(m1,"*"))-1;
                 [model,graphics,ok] = set_io(this.model,graphics,list(),list(),1,ones(mn,1));
                 if (mn>3) {

@@ -4,7 +4,7 @@ function MATZCONJ() {
         this.model = scicos_model();
         function_name = "matz_conj";
         funtyp = 4;
-        this.model.sim = list(function_name,funtyp);
+        this.model.sim = list(new ScilabString(function_name),new ScilabDouble(funtyp));
         this.model.in1 = new ScilabDouble(-1);
         this.model.in2 = new ScilabDouble(-2);
         this.model.intyp = new ScilabDouble(2);

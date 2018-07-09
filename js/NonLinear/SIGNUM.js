@@ -3,7 +3,7 @@ function SIGNUM() {
     SIGNUM.prototype.define = function SIGNUM() {
         nu = -1;
         this.model = scicos_model();
-        this.model.sim = list("signum",4);
+        this.model.sim = list(new ScilabString("signum"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(nu);
         this.model.out = new ScilabDouble(nu);
         this.model.nzcross = new ScilabDouble(nu);

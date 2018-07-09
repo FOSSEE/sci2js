@@ -8,7 +8,7 @@ function CLR_f() {
         D = 0;
         exprs = [["1"],["1+s"]];
         this.model = scicos_model();
-        this.model.sim = list("csslti",1);
+        this.model.sim = list(new ScilabString("csslti"),new ScilabDouble(1));
         this.model.in1 = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);
         this.model.state = new ScilabDouble(x0);

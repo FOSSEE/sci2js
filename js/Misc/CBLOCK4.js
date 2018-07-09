@@ -3,7 +3,7 @@ function CBLOCK4() {
     CBLOCK4.prototype.define = function CBLOCK4() {
         funam = "toto";
         this.model = scicos_model();
-        this.model.sim = list(" ",2004);
+        this.model.sim = list(new ScilabString(" "),new ScilabDouble(2004));
         this.model.in1 = new ScilabDouble(1);
         this.model.in2 = new ScilabDouble(1);
         this.model.intyp = new ScilabDouble(1);
@@ -127,7 +127,7 @@ function CBLOCK4() {
                             break;
                         }
                     } else {
-                        this.model.sim = list(funam,funtyp);
+                        this.model.sim = list(new ScilabDouble(funam),new ScilabDouble(funtyp));
                         this.model.state = this.xx;
                         this.model.dstate = this.z;
                         this.model.odstate = new ScilabDouble(this.oz);

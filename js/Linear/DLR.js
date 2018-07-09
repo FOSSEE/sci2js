@@ -8,7 +8,7 @@ function DLR() {
         D = 0;
         exprs = [["1"],["1+z"]];
         this.model = scicos_model();
-        this.model.sim = list("dsslti4",4);
+        this.model.sim = list(new ScilabString("dsslti4"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);
         this.model.evtin = new ScilabDouble(1);

@@ -47,7 +47,7 @@ function Switch() {
             if (!ok) {
                 break;
             }
-            this.model.equations.parameters[('2', 'double')] = list(this.Ron,this.Roff);
+            this.model.equations.parameters[2] = list(new ScilabDouble(this.Ron),new ScilabDouble(this.Roff));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

@@ -6,7 +6,7 @@ function INTEGRAL_m() {
         rpar = [];
         this.model = scicos_model();
         this.model.state = new ScilabDouble(0);
-        this.model.sim = list("integral_func",4);
+        this.model.sim = list(new ScilabString("integral_func"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);
         this.model.in2 = new ScilabDouble(1);
@@ -109,12 +109,12 @@ function INTEGRAL_m() {
                 this.model.rpar = rpar;
                 if ((Datatype==1)) {
                     this.model.state = new ScilabDouble(real(this.x0.slice()));
-                    this.model.sim = list("integral_func",4);
+                    this.model.sim = list(new ScilabString("integral_func"),new ScilabDouble(4));
                     it = [[1],[ones(this.reinit,1)]];
                     ot = 1;
                 } else if ((Datatype==2)) {
                     this.model.state = [[real(this.x0.slice())],[imag(this.x0.slice())]];
-                    this.model.sim = list("integralz_func",4);
+                    this.model.sim = list(new ScilabString("integralz_func"),new ScilabDouble(4));
                     it = [[2],[2*ones(this.reinit,1)]];
                     ot = 2;
                 } else {

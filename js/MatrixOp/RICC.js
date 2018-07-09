@@ -4,7 +4,7 @@ function RICC() {
         this.model = scicos_model();
         function_name = "ricc_m";
         funtyp = 4;
-        this.model.sim = list(function_name,funtyp);
+        this.model.sim = list(new ScilabString(function_name),new ScilabDouble(funtyp));
         this.model.in1 = [[-1],[-1],[-1]];
         this.model.in2 = [[-1],[-1],[-1]];
         this.model.intyp = [1,1,1];

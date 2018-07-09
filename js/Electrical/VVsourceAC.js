@@ -44,7 +44,7 @@ function VVsourceAC() {
                 break;
             }
             this.model.rpar = [this.FR];
-            this.model.equations.parameters[('2', 'double')] = list(this.FR);
+            this.model.equations.parameters[2] = list(new ScilabDouble(this.FR));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

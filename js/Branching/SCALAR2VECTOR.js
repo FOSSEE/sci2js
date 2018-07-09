@@ -3,7 +3,7 @@ function SCALAR2VECTOR() {
     SCALAR2VECTOR.prototype.define = function SCALAR2VECTOR() {
         this.nout = -1;
         this.model = scicos_model();
-        this.model.sim = list("scalar2vector",4);
+        this.model.sim = list(new ScilabString("scalar2vector"),new ScilabDouble(4));
         this.model.out = new ScilabDouble(this.nout);
         this.model.in1 = new ScilabDouble(1);
         this.model.blocktype = new ScilabString("c");

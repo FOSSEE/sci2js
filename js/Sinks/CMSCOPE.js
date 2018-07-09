@@ -13,7 +13,7 @@ function CMSCOPE() {
         yy = [[transpose(this.ymin.slice())],[transpose(this.ymax.slice())]];
         period = transpose(this.per.slice());
         this.model = scicos_model();
-        this.model.sim = list("cmscope",4);
+        this.model.sim = list(new ScilabString("cmscope"),new ScilabDouble(4));
         this.model.in1 = this.in1;
         this.model.in2 = [[1],[1]];
         this.model.intyp = [[1],[1]];

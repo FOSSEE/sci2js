@@ -3,7 +3,7 @@ function FSV_f() {
     FSV_f.prototype.define = function FSV_f() {
         in1 = 1;
         this.model = scicos_model();
-        this.model.sim = list("fsv",1);
+        this.model.sim = list(new ScilabString("fsv"),new ScilabDouble(1));
         this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble(in1);
         this.model.blocktype = new ScilabString("c");

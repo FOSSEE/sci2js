@@ -510,7 +510,7 @@ def p_modelvar_var(p):
 
 def p_modelvar_modelvar_expression(p):
     'modelvar : modelvar OPENBRACKET expression CLOSEBRACKET'
-    p[0] = '%s[%s]' % (p[1], p[3])
+    p[0] = '%s[%s]' % (p[1], p[3][0])
 
 def p_assignment_model_modelvar_assignment_modelexpression(p):
     'assignment : MODEL DOT modelvar ASSIGNMENT modelexpression'
@@ -521,6 +521,26 @@ def p_assignment_model_modelvar_assignment_modelexpression(p):
     else:
         p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, p[5][0])
     add_var_vartype(var, p[5][1])
+
+def p_modelexpression_list(p):
+    'modelexpression : LIST OPENBRACKET modelexpressionlist CLOSEBRACKET'
+    p[0] = ('%s(%s)' % (p[1], p[3]), LIST_TYPE)
+
+def p_modelexpressionlist_expression(p):
+    'modelexpressionlist : expression'
+    vartype = MODEL_MAP.get(p[1][1], 'ScilabDouble')
+    if vartype != '':
+        p[0] = 'new %s(%s)' % (vartype, p[1][0])
+    else:
+        p[0] = '%s' % (p[1][0])
+
+def p_modelexpressionlist_modelexpression_list_expression(p):
+    'modelexpressionlist : modelexpressionlist COMMA expression'
+    vartype = MODEL_MAP.get(p[3][1], 'ScilabDouble')
+    if vartype != '':
+        p[0] = '%s,new %s(%s)' % (p[1], vartype, p[3][0])
+    else:
+        p[0] = '%s,%s' % (p[1], p[3][0])
 
 def p_modelexpression_expression(p):
     'modelexpression : expression'

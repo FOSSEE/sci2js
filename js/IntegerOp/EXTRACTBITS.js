@@ -3,7 +3,7 @@ function EXTRACTBITS() {
     EXTRACTBITS.prototype.define = function EXTRACTBITS() {
         numb = [];
         this.model = scicos_model();
-        this.model.sim = list("extract_bit_32_UH0",4);
+        this.model.sim = list(new ScilabString("extract_bit_32_UH0"),new ScilabDouble(4));
         this.model.in1 = new ScilabDouble(1);
         this.model.in2 = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);
@@ -87,41 +87,41 @@ function EXTRACTBITS() {
                     case 1:
                         switch (this.scal) {
                         case 0:
-                            this.model.sim = list("extract_bit_32_UH0",4);
+                            this.model.sim = list(new ScilabString("extract_bit_32_UH0"),new ScilabDouble(4));
                         case 1:
                             switch (this.Datatype) {
                             case 3:
-                                this.model.sim = list("extract_bit_32_UH1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_32_UH1"),new ScilabDouble(4));
                             case 6:
-                                this.model.sim = list("extract_bit_u32_UH1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_u32_UH1"),new ScilabDouble(4));
                             }
                         }
                     case 2:
-                        this.model.sim = list("extract_bit_32_LH",4);
+                        this.model.sim = list(new ScilabString("extract_bit_32_LH"),new ScilabDouble(4));
                     case 3:
                         switch (this.scal) {
                         case 0:
-                            this.model.sim = list("extract_bit_32_MSB0",4);
+                            this.model.sim = list(new ScilabString("extract_bit_32_MSB0"),new ScilabDouble(4));
                         case 1:
                             switch (this.Datatype) {
                             case 3:
-                                this.model.sim = list("extract_bit_32_MSB1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_32_MSB1"),new ScilabDouble(4));
                             case 6:
-                                this.model.sim = list("extract_bit_u32_MSB1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_u32_MSB1"),new ScilabDouble(4));
                             }
                         }
                     case 4:
-                        this.model.sim = list("extract_bit_32_LSB",4);
+                        this.model.sim = list(new ScilabString("extract_bit_32_LSB"),new ScilabDouble(4));
                     case 5:
                         switch (this.scal) {
                         case 0:
-                            this.model.sim = list("extract_bit_32_RB0",4);
+                            this.model.sim = list(new ScilabString("extract_bit_32_RB0"),new ScilabDouble(4));
                         case 1:
                             switch (this.Datatype) {
                             case 3:
-                                this.model.sim = list("extract_bit_32_RB1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_32_RB1"),new ScilabDouble(4));
                             case 6:
-                                this.model.sim = list("extract_bit_u32_RB1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_u32_RB1"),new ScilabDouble(4));
                             }
                         }
                     }
@@ -134,41 +134,41 @@ function EXTRACTBITS() {
                     case 1:
                         switch (this.scal) {
                         case 0:
-                            this.model.sim = list("extract_bit_16_UH0",4);
+                            this.model.sim = list(new ScilabString("extract_bit_16_UH0"),new ScilabDouble(4));
                         case 1:
                             switch (this.Datatype) {
                             case 4:
-                                this.model.sim = list("extract_bit_16_UH1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_16_UH1"),new ScilabDouble(4));
                             case 7:
-                                this.model.sim = list("extract_bit_u16_UH1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_u16_UH1"),new ScilabDouble(4));
                             }
                         }
                     case 2:
-                        this.model.sim = list("extract_bit_16_LH",4);
+                        this.model.sim = list(new ScilabString("extract_bit_16_LH"),new ScilabDouble(4));
                     case 3:
                         switch (this.scal) {
                         case 0:
-                            this.model.sim = list("extract_bit_16_MSB0",4);
+                            this.model.sim = list(new ScilabString("extract_bit_16_MSB0"),new ScilabDouble(4));
                         case 1:
                             switch (this.Datatype) {
                             case 4:
-                                this.model.sim = list("extract_bit_16_MSB1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_16_MSB1"),new ScilabDouble(4));
                             case 7:
-                                this.model.sim = list("extract_bit_u16_MSB1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_u16_MSB1"),new ScilabDouble(4));
                             }
                         }
                     case 4:
-                        this.model.sim = list("extract_bit_16_LSB",4);
+                        this.model.sim = list(new ScilabString("extract_bit_16_LSB"),new ScilabDouble(4));
                     case 5:
                         switch (this.scal) {
                         case 0:
-                            this.model.sim = list("extract_bit_16_RB0",4);
+                            this.model.sim = list(new ScilabString("extract_bit_16_RB0"),new ScilabDouble(4));
                         case 1:
                             switch (this.Datatype) {
                             case 4:
-                                this.model.sim = list("extract_bit_16_RB1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_16_RB1"),new ScilabDouble(4));
                             case 7:
-                                this.model.sim = list("extract_bit_u16_RB1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_u16_RB1"),new ScilabDouble(4));
                             }
                         }
                     }
@@ -181,41 +181,41 @@ function EXTRACTBITS() {
                     case 1:
                         switch (this.scal) {
                         case 0:
-                            this.model.sim = list("extract_bit_8_UH0",4);
+                            this.model.sim = list(new ScilabString("extract_bit_8_UH0"),new ScilabDouble(4));
                         case 1:
                             switch (this.Datatype) {
                             case 5:
-                                this.model.sim = list("extract_bit_8_UH1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_8_UH1"),new ScilabDouble(4));
                             case 8:
-                                this.model.sim = list("extract_bit_u8_UH1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_u8_UH1"),new ScilabDouble(4));
                             }
                         }
                     case 2:
-                        this.model.sim = list("extract_bit_8_LH",4);
+                        this.model.sim = list(new ScilabString("extract_bit_8_LH"),new ScilabDouble(4));
                     case 3:
                         switch (this.scal) {
                         case 0:
-                            this.model.sim = list("extract_bit_8_MSB0",4);
+                            this.model.sim = list(new ScilabString("extract_bit_8_MSB0"),new ScilabDouble(4));
                         case 1:
                             switch (this.Datatype) {
                             case 5:
-                                this.model.sim = list("extract_bit_8_MSB1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_8_MSB1"),new ScilabDouble(4));
                             case 8:
-                                this.model.sim = list("extract_bit_u8_MSB1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_u8_MSB1"),new ScilabDouble(4));
                             }
                         }
                     case 4:
-                        this.model.sim = list("extract_bit_8_LSB",4);
+                        this.model.sim = list(new ScilabString("extract_bit_8_LSB"),new ScilabDouble(4));
                     case 5:
                         switch (this.scal) {
                         case 0:
-                            this.model.sim = list("extract_bit_8_RB0",4);
+                            this.model.sim = list(new ScilabString("extract_bit_8_RB0"),new ScilabDouble(4));
                         case 1:
                             switch (this.Datatype) {
                             case 5:
-                                this.model.sim = list("extract_bit_8_RB1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_8_RB1"),new ScilabDouble(4));
                             case 8:
-                                this.model.sim = list("extract_bit_u8_RB1",4);
+                                this.model.sim = list(new ScilabString("extract_bit_u8_RB1"),new ScilabDouble(4));
                             }
                         }
                     }

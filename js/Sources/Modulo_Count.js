@@ -4,7 +4,7 @@ function Modulo_Count() {
         this.ini_c = 0;
         this.base = 3;
         this.model = scicos_model();
-        this.model.sim = list("modulo_count",4);
+        this.model.sim = list(new ScilabString("modulo_count"),new ScilabDouble(4));
         this.model.evtin = new ScilabDouble(1);
         this.model.out = new ScilabDouble(1);
         this.model.dstate = new ScilabDouble(this.ini_c);

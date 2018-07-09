@@ -20,7 +20,7 @@ function MBLOCK() {
         mo = modelica();
         mo.model = nameF;
         mo.parameters = list(param,paramv);
-        this.model.sim = list(mo.model,30004);
+        this.model.sim = list(new ScilabString(mo.model),new ScilabDouble(30004));
         mo.inputs = this.in1;
         mo.outputs = this.out;
         this.model.in1 = new ScilabDouble(ones(size(mo.inputs,"r"),1));
@@ -259,7 +259,7 @@ function MBLOCK() {
                 for (i=1;i<=lstsize(paramv);i+=1) {
                     this.model.rpar = [[this.model.rpar],[paramv[i-1].slice()]];
                 }
-                this.model.sim[('1', 'double')] = new ScilabDouble(this.funam);
+                this.model.sim[1] = new ScilabDouble(this.funam);
                 exprs.in1 = this.lab_1[1-1];
                 exprs.intype = this.lab_1[2-1];
                 exprs.out = this.lab_1[3-1];

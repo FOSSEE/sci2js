@@ -5,7 +5,7 @@ function SWITCH_f() {
         in1 = [[-1],[-1]];
         this.nin = 2;
         this.model = scicos_model();
-        this.model.sim = list("switchn",2);
+        this.model.sim = list(new ScilabString("switchn"),new ScilabDouble(2));
         this.model.in1 = in1;
         this.model.out = new ScilabDouble(-1);
         this.model.ipar = new ScilabDouble(i0);

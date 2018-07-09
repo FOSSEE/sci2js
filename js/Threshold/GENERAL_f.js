@@ -5,7 +5,7 @@ function GENERAL_f() {
         this.in1 = 1;
         this.out = 1;
         this.model = scicos_model();
-        this.model.sim = list("zcross",1);
+        this.model.sim = list(new ScilabString("zcross"),new ScilabDouble(1));
         this.model.nzcross = new ScilabDouble(this.in1);
         this.model.in1 = new ScilabDouble(this.in1);
         this.model.evtout = new ScilabDouble(ones(this.out,1));

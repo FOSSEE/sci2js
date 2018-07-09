@@ -4,7 +4,7 @@ function MATEXPM() {
         this.model = scicos_model();
         function_name = "mat_expm";
         funtyp = 4;
-        this.model.sim = list(function_name,funtyp);
+        this.model.sim = list(new ScilabString(function_name),new ScilabDouble(funtyp));
         this.model.in1 = new ScilabDouble(-1);
         this.model.in2 = new ScilabDouble(-1);
         this.model.intyp = new ScilabDouble(1);
@@ -66,7 +66,7 @@ function MATEXPM() {
             if (ok) {
                 label = exprs;
                 [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
-                this.model.sim = list(function_name,funtyp);
+                this.model.sim = list(new ScilabString(function_name),new ScilabDouble(funtyp));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
                 arg1.model = this.model;

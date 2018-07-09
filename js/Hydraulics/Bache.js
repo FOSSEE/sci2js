@@ -71,7 +71,7 @@ function Bache() {
                 break;
             }
             this.model.rpar = [[this.Patm],[this.A],[this.ze1],[this.ze2],[this.zs1],[this.zs2],[this.z0],[this.T0],[this.p_rho]];
-            this.model.equations.parameters[('2', 'double')] = list(this.Patm,this.A,this.ze1,this.ze2,this.zs1,this.zs2,this.z0,this.T0,this.p_rho);
+            this.model.equations.parameters[2] = list(new ScilabDouble(this.Patm),new ScilabDouble(this.A),new ScilabDouble(this.ze1),new ScilabDouble(this.ze2),new ScilabDouble(this.zs1),new ScilabDouble(this.zs2),new ScilabDouble(this.z0),new ScilabDouble(this.T0),new ScilabDouble(this.p_rho));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

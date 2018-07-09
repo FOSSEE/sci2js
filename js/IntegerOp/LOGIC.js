@@ -3,7 +3,7 @@ function LOGIC() {
     LOGIC.prototype.define = function LOGIC() {
         this.mat = [[0],[0],[0],[1]];
         this.model = scicos_model();
-        this.model.sim = list("logic",4);
+        this.model.sim = list(new ScilabString("logic"),new ScilabDouble(4));
         this.model.in1 = [[1],[1]];
         this.model.in2 = [[1],[1]];
         this.model.out = new ScilabDouble(1);
@@ -11,7 +11,7 @@ function LOGIC() {
         this.model.evtin = new ScilabDouble(1);
         this.model.intyp = [5,5];
         this.model.outtyp = new ScilabDouble(5);
-        this.model.opar = list(int8(this.mat));
+        this.model.opar = list(new ScilabDouble(int8(this.mat)));
         this.model.blocktype = new ScilabString("c");
         this.model.firing = new ScilabBoolean(false);
         this.model.dep_ut = [true,false];
@@ -65,7 +65,7 @@ function LOGIC() {
             if (ok) {
                 graphics.exprs = exprs;
                 this.mat = int8(this.mat);
-                this.model.opar = list(this.mat);
+                this.model.opar = list(new ScilabDouble(this.mat));
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;
