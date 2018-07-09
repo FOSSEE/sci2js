@@ -3,11 +3,11 @@ function SAMPHOLD() {
     SAMPHOLD.prototype.define = function SAMPHOLD() {
         in1 = -1;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("samphold4"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.out = new ScilabDouble(-1);
-        this.model.evtin = new ScilabDouble(1);
-        this.model.blocktype = new ScilabString("d");
+        this.model.sim = list(new ScilabString(["samphold4"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.out = new ScilabDouble([-1]);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [true,false];
         gr_i = [];
         this.x = standard_define([2,2],this.model," ",gr_i);

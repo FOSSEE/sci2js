@@ -11,7 +11,7 @@ function MBLOCK() {
         nameF = "generic";
         exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],sci2exp(this.in1.slice()),sci2exp(this.intype.slice()),sci2exp(this.out.slice()),sci2exp(this.outtype.slice()),sci2exp(param.slice()),list(string(0.1),string(.0001)),sci2exp(this.pprop.slice()),nameF,[]);
         this.model = scicos_model();
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         this.model.rpar = [];
         for (i=1;i<=lstsize(paramv);i+=1) {
@@ -20,11 +20,11 @@ function MBLOCK() {
         mo = modelica();
         mo.model = nameF;
         mo.parameters = list(param,paramv);
-        this.model.sim = list(new ScilabString(mo.model),new ScilabDouble(30004));
+        this.model.sim = list(new ScilabString([mo.model]), new ScilabDouble([30004]));
         mo.inputs = this.in1;
         mo.outputs = this.out;
-        this.model.in1 = new ScilabDouble(ones(size(mo.inputs,"r"),1));
-        this.model.out = new ScilabDouble(ones(size(mo.outputs,"r"),1));
+        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"r"),1)]);
+        this.model.out = new ScilabDouble([ones(size(mo.outputs,"r"),1)]);
         this.model.equations = mo;
         gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
@@ -254,12 +254,12 @@ function MBLOCK() {
                 } else {
                     mo.parameters = list(transpose(param),paramv);
                 }
-                this.model.equations = new ScilabDouble(mo);
+                this.model.equations = new ScilabDouble([mo]);
                 this.model.rpar = [];
                 for (i=1;i<=lstsize(paramv);i+=1) {
                     this.model.rpar = [[this.model.rpar],[paramv[i-1].slice()]];
                 }
-                this.model.sim[1] = new ScilabDouble(this.funam);
+                this.model.sim[1] = new ScilabDouble([this.funam]);
                 exprs.in1 = this.lab_1[1-1];
                 exprs.intype = this.lab_1[2-1];
                 exprs.out = this.lab_1[3-1];

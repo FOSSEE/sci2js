@@ -4,8 +4,8 @@ function MOTOR() {
         this.model = scicos_model();
         this.model.out = [[1],[1]];
         this.model.in1 = [1];
-        this.model.sim = new ScilabString("motor");
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["motor"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         gr_i = [];
         exprs = "";

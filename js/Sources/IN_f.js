@@ -3,12 +3,12 @@ function IN_f() {
     IN_f.prototype.define = function IN_f() {
         prt = 1;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("input");
-        this.model.out = new ScilabDouble(-1);
-        this.model.out2 = new ScilabDouble(-2);
-        this.model.outtyp = new ScilabDouble(-1);
-        this.model.ipar = new ScilabDouble(prt);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["input"]);
+        this.model.out = new ScilabDouble([-1]);
+        this.model.out2 = new ScilabDouble([-2]);
+        this.model.outtyp = new ScilabDouble([-1]);
+        this.model.ipar = new ScilabDouble([prt]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
         exprs = sci2exp(prt);
         gr_i = [];
@@ -51,11 +51,11 @@ function IN_f() {
                     needcompile = 4;
                     y = needcompile;
                 }
-                this.model.ipar = new ScilabDouble(prt);
+                this.model.ipar = new ScilabDouble([prt]);
                 this.model.firing = [];
-                this.model.out = new ScilabDouble(otsz[1-1]);
-                this.model.out2 = new ScilabDouble(otsz[2-1]);
-                this.model.outtyp = new ScilabDouble(ot);
+                this.model.out = new ScilabDouble([otsz[1-1]]);
+                this.model.out2 = new ScilabDouble([otsz[2-1]]);
+                this.model.outtyp = new ScilabDouble([ot]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

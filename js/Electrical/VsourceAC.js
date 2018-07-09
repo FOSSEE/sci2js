@@ -7,15 +7,15 @@ function VsourceAC() {
         this.VA = 220;
         this.FR = 50;
         this.model.rpar = [[this.VA],[this.FR]];
-        this.model.sim = new ScilabString("VsourceAC");
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["VsourceAC"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         mo = modelica();
         mo.model = "VsourceAC";
         mo.inputs = "p";
         mo.outputs = "n";
         mo.parameters = list([["VA"],["f"]],list(this.VA,this.FR));
-        this.model.equations = new ScilabDouble(mo);
+        this.model.equations = new ScilabDouble([mo]);
         exprs = [[string(this.VA)],[string(this.FR)]];
         gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
@@ -46,7 +46,7 @@ function VsourceAC() {
                 break;
             }
             this.model.rpar = [[this.VA],[this.FR]];
-            this.model.equations.parameters[2] = list(new ScilabDouble(this.VA),new ScilabDouble(this.FR));
+            this.model.equations.parameters[2] = list(new ScilabDouble([this.VA]), new ScilabDouble([this.FR]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

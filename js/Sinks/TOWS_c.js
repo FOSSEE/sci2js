@@ -6,16 +6,16 @@ function TOWS_c() {
         this.varnam = "A";
         this.herit = 0;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("tows_c"),new ScilabDouble(4));
+        this.model.sim = list(new ScilabString(["tows_c"]), new ScilabDouble([4]));
         this.model.in1 = [nu];
-        this.model.in2 = new ScilabDouble(-2);
-        this.model.intyp = new ScilabDouble(-1);
+        this.model.in2 = new ScilabDouble([-2]);
+        this.model.intyp = new ScilabDouble([-1]);
         this.model.out = [];
         this.model.evtin = [1];
         this.model.evtout = [];
         this.model.rpar = [];
         this.model.ipar = [[this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]];
-        this.model.blocktype = new ScilabString("d");
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [false,false];
         gr_i = [];
@@ -61,9 +61,9 @@ function TOWS_c() {
             if (ok) {
                 [model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],-1),list(),ones(1-this.herit,1),[]);
                 if (this.herit==1) {
-                    this.model.blocktype = new ScilabString("x");
+                    this.model.blocktype = new ScilabString(["x"]);
                 } else {
-                    this.model.blocktype = new ScilabString("d");
+                    this.model.blocktype = new ScilabString(["d"]);
                 }
                 this.model.ipar = [[this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]];
                 graphics.exprs = exprs;

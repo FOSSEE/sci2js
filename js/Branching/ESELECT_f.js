@@ -3,17 +3,17 @@ function ESELECT_f() {
     ESELECT_f.prototype.define = function ESELECT_f() {
         this.out = 2;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("eselect"),new ScilabDouble(-2));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.in2 = new ScilabDouble(1);
-        this.model.intyp = new ScilabDouble(-1);
-        this.model.evtin = new ScilabDouble(1);
-        this.model.evtout = new ScilabDouble(ones(this.out,1));
-        this.model.blocktype = new ScilabString("l");
-        this.model.firing = new ScilabDouble(-ones(this.out,1));
+        this.model.sim = list(new ScilabString(["eselect"]), new ScilabDouble([-2]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.in2 = new ScilabDouble([1]);
+        this.model.intyp = new ScilabDouble([-1]);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.evtout = new ScilabDouble([ones(this.out,1)]);
+        this.model.blocktype = new ScilabString(["l"]);
+        this.model.firing = new ScilabDouble([-ones(this.out,1)]);
         this.model.dep_ut = [true,false];
-        this.model.nmode = new ScilabDouble(0);
-        this.model.nzcross = new ScilabDouble(0);
+        this.model.nmode = new ScilabDouble([0]);
+        this.model.nzcross = new ScilabDouble([0]);
         gr_i = [];
         exprs = [[string(this.out)],[string(1)],[string(this.model.nmode)]];
         this.x = standard_define([4,2],this.model,exprs,gr_i);
@@ -64,11 +64,11 @@ function ESELECT_f() {
                 [model,graphics,ok] = check_io(this.model,graphics,1,[],this.inh,[ones(this.out,1)]);
                 if (ok) {
                     graphics.exprs = exprs;
-                    this.model.evtout = new ScilabDouble(ones(this.out,1));
-                    this.model.firing = new ScilabDouble(-ones(this.out,1));
+                    this.model.evtout = new ScilabDouble([ones(this.out,1)]);
+                    this.model.firing = new ScilabDouble([-ones(this.out,1)]);
                     this.x.graphics = graphics;
-                    this.model.nmode = new ScilabDouble(this.nmod);
-                    this.model.nzcross = new ScilabDouble(this.nmod);
+                    this.model.nmode = new ScilabDouble([this.nmod]);
+                    this.model.nzcross = new ScilabDouble([this.nmod]);
                     this.x.model = this.model;
                     break;
                 }

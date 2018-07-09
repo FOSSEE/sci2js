@@ -2,16 +2,16 @@
 function FROM() {
     FROM.prototype.define = function FROM() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("from");
+        this.model.sim = new ScilabString(["from"]);
         this.model.in1 = [];
         this.model.in2 = [];
-        this.model.intyp = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(-1);
-        this.model.out2 = new ScilabDouble(-2);
-        this.model.outtyp = new ScilabDouble(-1);
+        this.model.intyp = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([-1]);
+        this.model.out2 = new ScilabDouble([-2]);
+        this.model.outtyp = new ScilabDouble([-1]);
         this.model.ipar = [];
-        this.model.opar = list(new ScilabString("A"));
-        this.model.blocktype = new ScilabString("c");
+        this.model.opar = list(new ScilabString(["A"]));
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
         exprs = ["A"];
         gr_i = [];
@@ -45,7 +45,7 @@ function FROM() {
                     y = needcompile;
                 }
                 graphics.exprs = exprs;
-                this.model.opar = list(new ScilabDouble(this.tag));
+                this.model.opar = list(new ScilabDouble([this.tag]));
                 this.x.model = this.model;
                 this.x.graphics = graphics;
                 break;

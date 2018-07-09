@@ -2,10 +2,10 @@
 function ABSBLK_f() {
     ABSBLK_f.prototype.define = function ABSBLK_f() {
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("absblk"),new ScilabDouble(1));
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.out = new ScilabDouble(-1);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = list(new ScilabString(["absblk"]), new ScilabDouble([1]));
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.out = new ScilabDouble([-1]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         gr_i = [];
         this.x = standard_define([2,2],this.model,[],gr_i);

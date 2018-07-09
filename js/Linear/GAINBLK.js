@@ -7,13 +7,13 @@ function GAINBLK() {
         in2 = -2;
         out2 = -2;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("gainblk"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(in1);
-        this.model.out = new ScilabDouble(out);
-        this.model.in2 = new ScilabDouble(in2);
-        this.model.out2 = new ScilabDouble(out2);
-        this.model.rpar = new ScilabDouble(this.gain);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = list(new ScilabString(["gainblk"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([in1]);
+        this.model.out = new ScilabDouble([out]);
+        this.model.in2 = new ScilabDouble([in2]);
+        this.model.out2 = new ScilabDouble([out2]);
+        this.model.rpar = new ScilabDouble([this.gain]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [strcat(sci2exp(this.gain))];
         gr_i = [];
@@ -52,7 +52,7 @@ function GAINBLK() {
                     if (isreal(this.gain)) {
                         it = 1;
                         ot = 1;
-                        this.model.sim = list(new ScilabString("gainblk"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["gainblk"]), new ScilabDouble([4]));
                         this.model.rpar = this.gain.slice();
                         this.model.opar = list();
                     } else {
@@ -63,22 +63,22 @@ function GAINBLK() {
                     if ((this.over==0)) {
                         if ((typeof(this.gain)=="int32")) {
                             ot = 3;
-                            this.model.sim = list(new ScilabString("gainblk_i32n"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_i32n"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="int16")) {
                             ot = 4;
-                            this.model.sim = list(new ScilabString("gainblk_i16n"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_i16n"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="int8")) {
                             ot = 5;
-                            this.model.sim = list(new ScilabString("gainblk_i8n"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_i8n"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint32")) {
                             ot = 6;
-                            this.model.sim = list(new ScilabString("gainblk_ui32n"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_ui32n"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint16")) {
                             ot = 7;
-                            this.model.sim = list(new ScilabString("gainblk_ui16n"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_ui16n"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint8")) {
                             ot = 8;
-                            this.model.sim = list(new ScilabString("gainblk_ui8n"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_ui8n"]), new ScilabDouble([4]));
                         } else {
                             message("type is not supported.");
                             ok = false;
@@ -86,22 +86,22 @@ function GAINBLK() {
                     } else if ((this.over==1)) {
                         if ((typeof(this.gain)=="int32")) {
                             ot = 3;
-                            this.model.sim = list(new ScilabString("gainblk_i32s"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_i32s"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="int16")) {
                             ot = 4;
-                            this.model.sim = list(new ScilabString("gainblk_i16s"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_i16s"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="int8")) {
                             ot = 5;
-                            this.model.sim = list(new ScilabString("gainblk_i8s"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_i8s"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint32")) {
                             ot = 6;
-                            this.model.sim = list(new ScilabString("gainblk_ui32s"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_ui32s"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint16")) {
                             ot = 7;
-                            this.model.sim = list(new ScilabString("gainblk_ui16s"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_ui16s"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint8")) {
                             ot = 8;
-                            this.model.sim = list(new ScilabString("gainblk_ui8s"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_ui8s"]), new ScilabDouble([4]));
                         } else {
                             message("type is not supported.");
                             ok = false;
@@ -109,22 +109,22 @@ function GAINBLK() {
                     } else if ((this.over==2)) {
                         if ((typeof(this.gain)=="int32")) {
                             ot = 3;
-                            this.model.sim = list(new ScilabString("gainblk_i32e"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_i32e"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="int16")) {
                             ot = 4;
-                            this.model.sim = list(new ScilabString("gainblk_i16e"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_i16e"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="int8")) {
                             ot = 5;
-                            this.model.sim = list(new ScilabString("gainblk_i8e"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_i8e"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint32")) {
                             ot = 6;
-                            this.model.sim = list(new ScilabString("gainblk_ui32e"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_ui32e"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint16")) {
                             ot = 7;
-                            this.model.sim = list(new ScilabString("gainblk_ui16e"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_ui16e"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint8")) {
                             ot = 8;
-                            this.model.sim = list(new ScilabString("gainblk_ui8e"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["gainblk_ui8e"]), new ScilabDouble([4]));
                         } else {
                             message("type is not an integer.");
                             ok = false;

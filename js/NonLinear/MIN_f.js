@@ -3,11 +3,11 @@ function MIN_f() {
     MIN_f.prototype.define = function MIN_f() {
         in1 = -1;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("minblk");
-        this.model.in1 = new ScilabDouble(in1);
-        this.model.out = new ScilabDouble(1);
+        this.model.sim = new ScilabString(["minblk"]);
+        this.model.in1 = new ScilabDouble([in1]);
+        this.model.out = new ScilabDouble([1]);
         this.model.dstate = [[0],[0]];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = sci2exp(in1);
         gr_i = [];

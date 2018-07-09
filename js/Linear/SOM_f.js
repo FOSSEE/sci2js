@@ -3,11 +3,11 @@ function SOM_f() {
     SOM_f.prototype.define = function SOM_f() {
         sgn = [[1],[1],[1]];
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("sum"),new ScilabDouble(2));
+        this.model.sim = list(new ScilabString(["sum"]), new ScilabDouble([2]));
         this.model.in1 = [[-1],[-1],[-1]];
-        this.model.out = new ScilabDouble(-1);
+        this.model.out = new ScilabDouble([-1]);
         this.model.rpar = sgn;
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[sci2exp(1)],[sci2exp(sgn)]];
         gr_i = [];

@@ -2,10 +2,10 @@
 function func_block() {
     func_block.prototype.define = function func_block() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString(" ");
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString([" "]);
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = "v=sin(u);y=u*v";
         gr_i = [];
@@ -28,7 +28,7 @@ function func_block() {
         this.model = this.x.model;
         [ok,mac,exprs] = this.genfunc[exprs-1];
         if (ok) {
-            this.model.sim = new ScilabDouble(mac);
+            this.model.sim = new ScilabDouble([mac]);
             graphics.exprs = exprs;
             this.x.model = this.model;
             this.x.graphics = graphics;

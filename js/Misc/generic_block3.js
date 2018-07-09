@@ -4,13 +4,13 @@ function generic_block3() {
         this.model = scicos_model();
         this.function_name = "sinblk";
         this.funtyp = 4;
-        this.model.sim = list(new ScilabString(this.function_name),new ScilabDouble(this.funtyp));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.in2 = new ScilabDouble(1);
-        this.model.intyp = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.out2 = new ScilabDouble(1);
-        this.model.outtyp = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString([this.function_name]), new ScilabDouble([this.funtyp]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.in2 = new ScilabDouble([1]);
+        this.model.intyp = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.out2 = new ScilabDouble([1]);
+        this.model.outtyp = new ScilabDouble([1]);
         this.model.dep_ut = [true,false];
         label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp([this.model.in1,this.model.in2])],[sci2exp(this.model.intyp)],[sci2exp([this.model.out,this.model.out2]),sci2exp(this.model.outtyp)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.odstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.opar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]];
         gr_i = [];
@@ -124,16 +124,16 @@ function generic_block3() {
                 if (this.funtyp==3) {
                     needcompile = 4;
                 }
-                this.model.sim = list(new ScilabDouble(this.function_name),new ScilabDouble(this.funtyp));
+                this.model.sim = list(new ScilabDouble([this.function_name]), new ScilabDouble([this.funtyp]));
                 this.model.state = this.xx;
                 this.model.dstate = this.z;
-                this.model.odstate = new ScilabDouble(this.oz);
+                this.model.odstate = new ScilabDouble([this.oz]);
                 this.model.rpar = this.rpar;
-                this.model.ipar = new ScilabDouble(this.ipar);
-                this.model.opar = new ScilabDouble(this.opar);
-                this.model.firing = new ScilabDouble(this.auto0);
-                this.model.nzcross = new ScilabDouble(this.nzcr);
-                this.model.nmode = new ScilabDouble(this.nmode);
+                this.model.ipar = new ScilabDouble([this.ipar]);
+                this.model.opar = new ScilabDouble([this.opar]);
+                this.model.firing = new ScilabDouble([this.auto0]);
+                this.model.nzcross = new ScilabDouble([this.nzcr]);
+                this.model.nmode = new ScilabDouble([this.nmode]);
                 this.model.dep_ut = dep_ut;
                 arg1.model = this.model;
                 graphics.exprs = label;

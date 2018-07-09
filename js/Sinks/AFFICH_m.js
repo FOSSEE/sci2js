@@ -8,16 +8,16 @@ function AFFICH_m() {
         this.nd = 1;
         this.in1 = [1,1];
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("affich2"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(this.in1[1-1][1-1]);
-        this.model.in2 = new ScilabDouble(this.in1[1-1][2-1]);
-        this.model.evtin = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["affich2"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([this.in1[1-1][1-1]]);
+        this.model.in2 = new ScilabDouble([this.in1[1-1][2-1]]);
+        this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = [[-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]];
         this.model.ipar = [[this.font],[this.fontsize],[this.colr],[1000],[this.nt],[this.nd],[this.in1[1-1][1-1]]];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
-        this.model.label = new ScilabString("");
+        this.model.label = new ScilabString([""]);
         exprs = [[sci2exp([this.model.in1,this.model.in2])],[string(this.font)],[string(this.fontsize)],[string(this.colr)],[string(this.nt)],[string(this.nd)],[string(0)]];
         gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
@@ -88,7 +88,7 @@ function AFFICH_m() {
             if (ok) {
                 this.model.ipar = [[this.font],[this.fontsize],[this.colr],[this.nt],[this.nd],[this.in1[1-1][1-1]]];
                 this.model.dstate = [[-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]];
-                this.model.evtin = new ScilabDouble(ones(1-this.herit,1));
+                this.model.evtin = new ScilabDouble([ones(1-this.herit,1)]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

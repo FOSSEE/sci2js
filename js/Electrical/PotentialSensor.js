@@ -5,14 +5,14 @@ function PotentialSensor() {
         this.model.in1 = [1];
         this.model.out = [1];
         this.model.rpar = [];
-        this.model.sim = new ScilabString("PotentialSensor");
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["PotentialSensor"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         mo = modelica();
         mo.model = "PotentialSensor";
         mo.inputs = "p";
         mo.outputs = ["v"];
-        this.model.equations = new ScilabDouble(mo);
+        this.model.equations = new ScilabDouble([mo]);
         gr_i = [];
         this.x = standard_define([2,2],this.model,"",list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];

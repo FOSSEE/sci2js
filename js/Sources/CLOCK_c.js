@@ -82,7 +82,7 @@ function CLOCK_c() {
             if (ok) {
                 xx.graphics.exprs = this.exprs0;
                 this.model.rpar = [[this.dt],[this.t0]];
-                this.model.firing = new ScilabDouble(this.t0);
+                this.model.firing = new ScilabDouble([this.t0]);
                 xx.model = this.model;
                 arg1.model.rpar.objs[path-1] = xx;
                 break;

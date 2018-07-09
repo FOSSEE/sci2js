@@ -4,12 +4,12 @@ function EVTDLY_f() {
         this.dt = 0.1;
         this.ff = this.dt;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("evtdly");
-        this.model.evtin = new ScilabDouble(1);
-        this.model.evtout = new ScilabDouble(1);
-        this.model.rpar = new ScilabDouble(this.dt);
-        this.model.blocktype = new ScilabString("d");
-        this.model.firing = new ScilabDouble(this.ff);
+        this.model.sim = new ScilabString(["evtdly"]);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.evtout = new ScilabDouble([1]);
+        this.model.rpar = new ScilabDouble([this.dt]);
+        this.model.blocktype = new ScilabString(["d"]);
+        this.model.firing = new ScilabDouble([this.ff]);
         this.model.dep_ut = [false,false];
         exprs = [[string(this.dt)],[sci2exp(this.ff)]];
         gr_i = [];
@@ -44,8 +44,8 @@ function EVTDLY_f() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.rpar = new ScilabDouble(this.dt);
-                this.model.firing = new ScilabDouble(this.ff);
+                this.model.rpar = new ScilabDouble([this.dt]);
+                this.model.firing = new ScilabDouble([this.ff]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

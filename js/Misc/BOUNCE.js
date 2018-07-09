@@ -24,14 +24,14 @@ function BOUNCE() {
         state = [this.x,this.xd,this.y,this.yd];
         state = transpose(state);
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("bounce_ball"),new ScilabDouble(4));
+        this.model.sim = list(new ScilabString(["bounce_ball"]), new ScilabDouble([4]));
         this.model.in1 = [];
         this.model.out = [[n],[n]];
         this.model.state = state.slice();
         this.model.rpar = [[this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]];
         this.model.ipar = ipar;
-        this.model.nzcross = new ScilabDouble(n*(n-1)/2+4*n);
-        this.model.blocktype = new ScilabString("c");
+        this.model.nzcross = new ScilabDouble([n*(n-1)/2+4*n]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         exprs = [[strcat(sci2exp(this.rpar1))],[strcat(sci2exp(this.rpar2))],[strcat(sci2exp(this.walls))],[strcat(sci2exp(this.x))],[strcat(sci2exp(this.xd))],[strcat(sci2exp(this.y))],[strcat(sci2exp(this.yd))]];
         gr_i = [];
@@ -119,7 +119,7 @@ function BOUNCE() {
                 state = [this.xt,this.xd,this.y,this.yd];
                 state = transpose(state);
                 this.model.state = state.slice();
-                this.model.nzcross = new ScilabDouble(n*(n-1)/2+4*n);
+                this.model.nzcross = new ScilabDouble([n*(n-1)/2+4*n]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

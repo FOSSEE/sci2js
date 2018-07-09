@@ -3,16 +3,16 @@ function INTMUL() {
     INTMUL.prototype.define = function INTMUL() {
         sgn = 0;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("matmul_i32"),new ScilabDouble(4));
+        this.model.sim = list(new ScilabString(["matmul_i32"]), new ScilabDouble([4]));
         this.model.in1 = [[-1],[-2]];
-        this.model.out = new ScilabDouble(-1);
+        this.model.out = new ScilabDouble([-1]);
         this.model.in2 = [[-2],[-3]];
-        this.model.out2 = new ScilabDouble(-3);
+        this.model.out2 = new ScilabDouble([-3]);
         this.model.intyp = [3,3];
-        this.model.outtyp = new ScilabDouble(3);
+        this.model.outtyp = new ScilabDouble([3]);
         this.model.rpar = [];
-        this.model.ipar = new ScilabDouble(sgn);
-        this.model.blocktype = new ScilabString("c");
+        this.model.ipar = new ScilabDouble([sgn]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[sci2exp(3)],[sci2exp(0)]];
         gr_i = [];
@@ -48,51 +48,51 @@ function INTMUL() {
                 ok = false;
             } else if (this.Datatype==3) {
                 if (this.np==0) {
-                    this.model.sim = list(new ScilabString("matmul_i32n"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_i32n"]), new ScilabDouble([4]));
                 } else if (this.np==1) {
-                    this.model.sim = list(new ScilabString("matmul_i32s"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_i32s"]), new ScilabDouble([4]));
                 } else {
-                    this.model.sim = list(new ScilabString("matmul_i32e"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_i32e"]), new ScilabDouble([4]));
                 }
             } else if (this.Datatype==4) {
                 if (this.np==0) {
-                    this.model.sim = list(new ScilabString("matmul_i16n"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_i16n"]), new ScilabDouble([4]));
                 } else if (this.np==1) {
-                    this.model.sim = list(new ScilabString("matmul_i16s"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_i16s"]), new ScilabDouble([4]));
                 } else {
-                    this.model.sim = list(new ScilabString("matmul_i16e"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_i16e"]), new ScilabDouble([4]));
                 }
             } else if (this.Datatype==5) {
                 if (this.np==0) {
-                    this.model.sim = list(new ScilabString("matmul_i8n"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_i8n"]), new ScilabDouble([4]));
                 } else if (this.np==1) {
-                    this.model.sim = list(new ScilabString("matmul_i8s"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_i8s"]), new ScilabDouble([4]));
                 } else {
-                    this.model.sim = list(new ScilabString("matmul_i8e"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_i8e"]), new ScilabDouble([4]));
                 }
             } else if (this.Datatype==6) {
                 if (this.np==0) {
-                    this.model.sim = list(new ScilabString("matmul_ui32n"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_ui32n"]), new ScilabDouble([4]));
                 } else if (this.np==1) {
-                    this.model.sim = list(new ScilabString("matmul_ui32s"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_ui32s"]), new ScilabDouble([4]));
                 } else {
-                    this.model.sim = list(new ScilabString("matmul_ui32e"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_ui32e"]), new ScilabDouble([4]));
                 }
             } else if (this.Datatype==7) {
                 if (this.np==0) {
-                    this.model.sim = list(new ScilabString("matmul_ui16n"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_ui16n"]), new ScilabDouble([4]));
                 } else if (this.np==1) {
-                    this.model.sim = list(new ScilabString("matmul_ui16s"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_ui16s"]), new ScilabDouble([4]));
                 } else {
-                    this.model.sim = list(new ScilabString("matmul_ui16e"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_ui16e"]), new ScilabDouble([4]));
                 }
             } else if (this.Datatype==8) {
                 if (this.np==0) {
-                    this.model.sim = list(new ScilabString("matmul_ui8n"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_ui8n"]), new ScilabDouble([4]));
                 } else if (this.np==1) {
-                    this.model.sim = list(new ScilabString("matmul_ui8s"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_ui8s"]), new ScilabDouble([4]));
                 } else {
-                    this.model.sim = list(new ScilabString("matmul_ui8e"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["matmul_ui8e"]), new ScilabDouble([4]));
                 }
             } else {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Data Type",ot),msprintf("Must be in the interval %s.","[3, 8]"));
@@ -104,7 +104,7 @@ function INTMUL() {
                 [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
-                this.model.ipar = new ScilabDouble(this.np);
+                this.model.ipar = new ScilabDouble([this.np]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

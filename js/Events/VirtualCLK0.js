@@ -2,12 +2,12 @@
 function VirtualCLK0() {
     VirtualCLK0.prototype.define = function VirtualCLK0() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("vrtclk0");
-        this.model.evtin = new ScilabDouble(1);
+        this.model.sim = new ScilabString(["vrtclk0"]);
+        this.model.evtin = new ScilabDouble([1]);
         this.model.opar = list();
         this.model.ipar = [];
-        this.model.blocktype = new ScilabString("d");
-        this.model.firing = new ScilabDouble(-1);
+        this.model.blocktype = new ScilabString(["d"]);
+        this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [false,false];
         exprs = [];
         this.x = standard_define([2,2],this.model,exprs," ");

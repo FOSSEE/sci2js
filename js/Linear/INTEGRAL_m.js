@@ -5,14 +5,14 @@ function INTEGRAL_m() {
         minp = -1;
         rpar = [];
         this.model = scicos_model();
-        this.model.state = new ScilabDouble(0);
-        this.model.sim = list(new ScilabString("integral_func"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.in2 = new ScilabDouble(1);
-        this.model.out2 = new ScilabDouble(1);
+        this.model.state = new ScilabDouble([0]);
+        this.model.sim = list(new ScilabString(["integral_func"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.in2 = new ScilabDouble([1]);
+        this.model.out2 = new ScilabDouble([1]);
         this.model.rpar = rpar;
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         exprs = string([[0],[0],[0],[this.maxp],[minp]]);
         gr_i = [];
@@ -75,8 +75,8 @@ function INTEGRAL_m() {
                         ok = false;
                     } else {
                         rpar = [[real(this.maxp.slice())],[real(this.lowp.slice())]];
-                        this.model.nzcross = new ScilabDouble(size(this.x0,"*"));
-                        this.model.nmode = new ScilabDouble(size(this.x0,"*"));
+                        this.model.nzcross = new ScilabDouble([size(this.x0,"*")]);
+                        this.model.nmode = new ScilabDouble([size(this.x0,"*")]);
                     }
                 } else if ((Datatype==2)) {
                     if (size(this.maxp,"*")==1) {
@@ -96,25 +96,25 @@ function INTEGRAL_m() {
                         ok = false;
                     } else {
                         rpar = [[real(this.maxp.slice())],[real(this.lowp.slice())],[imag(this.maxp.slice())],[imag(this.lowp.slice())]];
-                        this.model.nzcross = new ScilabDouble(2*size(this.x0,"*"));
-                        this.model.nmode = new ScilabDouble(2*size(this.x0,"*"));
+                        this.model.nzcross = new ScilabDouble([2*size(this.x0,"*")]);
+                        this.model.nmode = new ScilabDouble([2*size(this.x0,"*")]);
                     }
                 }
             } else {
                 rpar = [];
-                this.model.nzcross = new ScilabDouble(0);
-                this.model.nmode = new ScilabDouble(0);
+                this.model.nzcross = new ScilabDouble([0]);
+                this.model.nmode = new ScilabDouble([0]);
             }
             if (ok) {
                 this.model.rpar = rpar;
                 if ((Datatype==1)) {
-                    this.model.state = new ScilabDouble(real(this.x0.slice()));
-                    this.model.sim = list(new ScilabString("integral_func"),new ScilabDouble(4));
+                    this.model.state = new ScilabDouble([real(this.x0.slice())]);
+                    this.model.sim = list(new ScilabString(["integral_func"]), new ScilabDouble([4]));
                     it = [[1],[ones(this.reinit,1)]];
                     ot = 1;
                 } else if ((Datatype==2)) {
                     this.model.state = [[real(this.x0.slice())],[imag(this.x0.slice())]];
-                    this.model.sim = list(new ScilabString("integralz_func"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["integralz_func"]), new ScilabDouble([4]));
                     it = [[2],[2*ones(this.reinit,1)]];
                     ot = 2;
                 } else {

@@ -2,13 +2,13 @@
 function EVTVARDLY() {
     EVTVARDLY.prototype.define = function EVTVARDLY() {
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("evtvardly"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.evtin = new ScilabDouble(1);
-        this.model.evtout = new ScilabDouble(1);
-        this.model.blocktype = new ScilabString("d");
-        this.model.firing = new ScilabDouble(-1);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = list(new ScilabString(["evtvardly"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.evtout = new ScilabDouble([1]);
+        this.model.blocktype = new ScilabString(["d"]);
+        this.model.firing = new ScilabDouble([-1]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = string(this.model.firing);
         gr_i = [];
@@ -35,7 +35,7 @@ function EVTVARDLY() {
                 break;
             }
             graphics.exprs = exprs;
-            this.model.firing = new ScilabDouble(this.fir);
+            this.model.firing = new ScilabDouble([this.fir]);
             this.x.graphics = graphics;
             this.x.model = this.model;
             break;

@@ -3,11 +3,11 @@ function DIFF_f() {
     DIFF_f.prototype.define = function DIFF_f() {
         this.x0 = [[0],[0]];
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("diffblk"),new ScilabDouble(10001));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["diffblk"]), new ScilabDouble([10001]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
         this.model.state = this.x0;
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         exprs = [[strcat(sci2exp(this.x0[1-1]))],[strcat(sci2exp(this.x0[2-1]))]];
         gr_i = [];

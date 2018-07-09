@@ -6,14 +6,14 @@ function SWITCH2() {
         this.nzz = 1;
         rpar = 0;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("switch2"),new ScilabDouble(4));
+        this.model.sim = list(new ScilabString(["switch2"]), new ScilabDouble([4]));
         this.model.in1 = in1;
-        this.model.out = new ScilabDouble(-1);
+        this.model.out = new ScilabDouble([-1]);
         this.model.ipar = ipar;
-        this.model.rpar = new ScilabDouble(rpar);
-        this.model.nzcross = new ScilabDouble(this.nzz);
-        this.model.nmode = new ScilabDouble(1);
-        this.model.blocktype = new ScilabString("c");
+        this.model.rpar = new ScilabDouble([rpar]);
+        this.model.nzcross = new ScilabDouble([this.nzz]);
+        this.model.nmode = new ScilabDouble([1]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string(ipar)],[string(rpar)],[string(this.nzz)]];
         gr_i = [];
@@ -52,14 +52,14 @@ function SWITCH2() {
                 this.rule = 2;
             }
             graphics.exprs = exprs;
-            this.model.ipar = new ScilabDouble(this.rule);
-            this.model.rpar = new ScilabDouble(this.thra);
+            this.model.ipar = new ScilabDouble([this.rule]);
+            this.model.rpar = new ScilabDouble([this.thra]);
             if (this.nzz!=0) {
-                this.model.nmode = new ScilabDouble(1);
-                this.model.nzcross = new ScilabDouble(1);
+                this.model.nmode = new ScilabDouble([1]);
+                this.model.nzcross = new ScilabDouble([1]);
             } else {
-                this.model.nmode = new ScilabDouble(0);
-                this.model.nzcross = new ScilabDouble(0);
+                this.model.nmode = new ScilabDouble([0]);
+                this.model.nzcross = new ScilabDouble([0]);
             }
             this.x.graphics = graphics;
             this.x.model = this.model;

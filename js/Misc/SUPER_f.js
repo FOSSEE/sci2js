@@ -12,11 +12,11 @@ function SUPER_f() {
         scs.objs[1-1] = in1;
         scs.objs[2-1] = out;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("super");
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.rpar = new ScilabDouble(scs);
-        this.model.blocktype = new ScilabString("h");
+        this.model.sim = new ScilabString(["super"]);
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.rpar = new ScilabDouble([scs]);
+        this.model.blocktype = new ScilabString(["h"]);
         this.model.dep_ut = [false,false];
         gr_i = [];
         this.x = standard_define([2,2],this.model,[],gr_i);

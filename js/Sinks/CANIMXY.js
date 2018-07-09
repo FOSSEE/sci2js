@@ -13,14 +13,14 @@ function CANIMXY() {
         this.ymax = 15;
         this.nbr_curves = 1;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("canimxy"),new ScilabDouble(4));
+        this.model.sim = list(new ScilabString(["canimxy"]), new ScilabDouble([4]));
         this.model.in1 = [[1],[1]];
         this.model.in2 = [[1],[1]];
         this.model.intyp = [[1],[1]];
-        this.model.evtin = new ScilabDouble(1);
+        this.model.evtin = new ScilabDouble([1]);
         this.model.rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
         this.model.ipar = [[this.win],[1],[this.N],[this.clrs],[this.siz],[0],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
-        this.model.blocktype = new ScilabString("d");
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [false,false];
         exprs = [[string(this.nbr_curves)],[string(this.clrs)],[string(this.siz)],[string(this.win)],["[]"],["[]"],[string(this.xmin)],[string(this.xmax)],[string(this.ymin)],[string(this.ymax)],[string(this.N)]];

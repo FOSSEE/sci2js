@@ -3,11 +3,11 @@ function CLKINV_f() {
     CLKINV_f.prototype.define = function CLKINV_f() {
         this.prt = 1;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("input");
-        this.model.evtout = new ScilabDouble(1);
-        this.model.ipar = new ScilabDouble(this.prt);
-        this.model.blocktype = new ScilabString("d");
-        this.model.firing = new ScilabDouble(-1);
+        this.model.sim = new ScilabString(["input"]);
+        this.model.evtout = new ScilabDouble([1]);
+        this.model.ipar = new ScilabDouble([this.prt]);
+        this.model.blocktype = new ScilabString(["d"]);
+        this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [false,false];
         exprs = string(this.prt);
         gr_i = [];
@@ -38,9 +38,9 @@ function CLKINV_f() {
             if (this.prt<=0) {
                 block_parameter_error(msprintf("Wrong values for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
-                this.model.ipar = new ScilabDouble(this.prt);
-                this.model.evtout = new ScilabDouble(1);
-                this.model.firing = new ScilabDouble(-1);
+                this.model.ipar = new ScilabDouble([this.prt]);
+                this.model.evtout = new ScilabDouble([1]);
+                this.model.firing = new ScilabDouble([-1]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

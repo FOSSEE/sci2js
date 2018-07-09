@@ -517,7 +517,7 @@ def p_assignment_model_modelvar_assignment_modelexpression(p):
     var = 'this.%s.%s' % (p[1], p[3])
     vartype = MODEL_MAP.get(p[5][1], 'ScilabDouble')
     if vartype != '':
-        p[0] = '%*s%s = new %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, p[5][0])
+        p[0] = '%*s%s = new %s([%s])' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, p[5][0])
     else:
         p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, p[5][0])
     add_var_vartype(var, p[5][1])
@@ -530,7 +530,7 @@ def p_modelexpressionlist_expression(p):
     'modelexpressionlist : expression'
     vartype = MODEL_MAP.get(p[1][1], 'ScilabDouble')
     if vartype != '':
-        p[0] = 'new %s(%s)' % (vartype, p[1][0])
+        p[0] = 'new %s([%s])' % (vartype, p[1][0])
     else:
         p[0] = '%s' % (p[1][0])
 
@@ -538,7 +538,7 @@ def p_modelexpressionlist_modelexpression_list_expression(p):
     'modelexpressionlist : modelexpressionlist COMMA expression'
     vartype = MODEL_MAP.get(p[3][1], 'ScilabDouble')
     if vartype != '':
-        p[0] = '%s,new %s(%s)' % (p[1], vartype, p[3][0])
+        p[0] = '%s, new %s([%s])' % (p[1], vartype, p[3][0])
     else:
         p[0] = '%s,%s' % (p[1], p[3][0])
 
@@ -551,7 +551,7 @@ def p_model_in_assignment_expression(p):
     var = 'this.%s.%s1' % (p[1], p[3])
     vartype = MODEL_MAP.get(p[5][1], 'ScilabDouble')
     if vartype != '':
-        p[0] = '%*s%s = new %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, p[5][0])
+        p[0] = '%*s%s = new %s([%s])' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, p[5][0])
     else:
         p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, p[5][0])
     add_var_vartype(var, p[5][1])
@@ -640,12 +640,12 @@ def p_getvaluearg2arraylistitem_string_string(p):
 
 def p_getvaluearg2arraylistitem_functionname_parameters(p):
     'getvaluearg2arraylistitem : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
-    p[0] = '%s(%s)' % (p[1][0], p[3][0])
+    p[0] = '%s(%s)' % (p[1][0], p[3])
     LABELS.append(p[0])
 
 def p_getvaluearg3_list(p):
     'getvaluearg3 : LIST OPENBRACKET getvaluelist CLOSEBRACKET'
-    p[0] = '%s(%s)' % (p[1], p[3][0])
+    p[0] = '%s(%s)' % (p[1], p[3])
 
 def p_getvaluearg3_var(p):
     'getvaluearg3 : VAR'
@@ -700,36 +700,36 @@ def p_termarraylist_expression_colon_expression(p):
 
 def p_list_list_expression(p):
     'list : list COMMA expression'
-    p[0] = ('%s,%s' % (p[1][0], p[3][0]), VECTOR_TYPE)
+    p[0] = '%s,%s' % (p[1], p[3][0])
 
 def p_list_list_var_expression(p):
     '''list : list COMMA VAR ASSIGNMENT expression
             | list COMMA MODEL ASSIGNMENT expression'''
-    p[0] = ('%s,%s=%s' % (p[1][0], p[3], p[5][0]), VECTOR_TYPE)
+    p[0] = '%s,%s=%s' % (p[1], p[3], p[5][0])
 
 def p_list_list_in_expression(p):
     'list : list COMMA IN ASSIGNMENT expression'
-    p[0] = ('%s,%s1=%s' % (p[1][0], p[3], p[5][0]), VECTOR_TYPE)
+    p[0] = '%s,%s1=%s' % (p[1], p[3], p[5][0])
 
 def p_list_expression(p):
     'list : expression'
-    p[0] = ('%s' % (p[1][0]), VECTOR_TYPE)
+    p[0] = '%s' % (p[1][0])
 
 def p_list_var_expression(p):
     'list : VAR ASSIGNMENT expression'
-    p[0] = ('%s=%s' % (p[1], p[3][0]), VECTOR_TYPE)
+    p[0] = '%s=%s' % (p[1], p[3][0])
 
 def p_list_in_expression(p):
     'list : IN ASSIGNMENT expression'
-    p[0] = ('%s1=%s' % (p[1], p[3][0]), VECTOR_TYPE)
+    p[0] = '%s1=%s' % (p[1], p[3][0])
 
 def p_getvaluelist_getvaluelist_expression(p):
     'getvaluelist : getvaluelist COMMA expression'
-    p[0] = ('%s,%s' % (p[1][0], p[3][0]), VECTOR_TYPE)
+    p[0] = '%s,%s' % (p[1], p[3][0])
 
 def p_getvaluelist_expression(p):
     'getvaluelist : expression'
-    p[0] = ('%s' % (p[1][0]), VECTOR_TYPE)
+    p[0] = '%s' % (p[1][0])
 
 # end define list
 
@@ -829,7 +829,7 @@ def p_expression_term(p):
 # A(2,3)
 def p_function_function_parameters(p):
     'function : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
-    p[0] = '%*s%s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1][0], p[3][0])
+    p[0] = '%*s%s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1][0], p[3])
 
 # A()
 def p_function_function(p):
@@ -1022,12 +1022,12 @@ def p_term_string_parameter(p):
 # A(2,3)
 def p_term_function_parameters(p):
     'term : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
-    p[0] = ('%s(%s)' % (p[1][0], p[3][0]), p[1][1])
+    p[0] = ('%s(%s)' % (p[1][0], p[3]), p[1][1])
 
 # list(2,3)
 def p_term_list_parameters(p):
     'term : LIST OPENBRACKET list CLOSEBRACKET'
-    p[0] = ('%s(%s)' % (p[1], p[3][0]), LIST_TYPE)
+    p[0] = ('%s(%s)' % (p[1], p[3]), LIST_TYPE)
 
 # gettext("abc")
 def p_term_gettext_parameter(p):

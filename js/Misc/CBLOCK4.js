@@ -3,13 +3,13 @@ function CBLOCK4() {
     CBLOCK4.prototype.define = function CBLOCK4() {
         funam = "toto";
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString(" "),new ScilabDouble(2004));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.in2 = new ScilabDouble(1);
-        this.model.intyp = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.out2 = new ScilabDouble(1);
-        this.model.outtyp = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString([" "]), new ScilabDouble([2004]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.in2 = new ScilabDouble([1]);
+        this.model.intyp = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.out2 = new ScilabDouble([1]);
+        this.model.outtyp = new ScilabDouble([1]);
         this.model.dep_ut = [true,false];
         label = list([[funam],["n"],[sci2exp([this.model.in1,this.model.in2])],[sci2exp(this.model.intyp)],[sci2exp([this.model.out,this.model.out2])],[sci2exp(this.model.outtyp)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.odstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.opar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]],[]);
         gr_i = [];
@@ -127,16 +127,16 @@ function CBLOCK4() {
                             break;
                         }
                     } else {
-                        this.model.sim = list(new ScilabDouble(funam),new ScilabDouble(funtyp));
+                        this.model.sim = list(new ScilabDouble([funam]), new ScilabDouble([funtyp]));
                         this.model.state = this.xx;
                         this.model.dstate = this.z;
-                        this.model.odstate = new ScilabDouble(this.oz);
+                        this.model.odstate = new ScilabDouble([this.oz]);
                         this.model.rpar = this.rpar;
-                        this.model.ipar = new ScilabDouble(this.ipar);
-                        this.model.opar = new ScilabDouble(this.opar);
-                        this.model.firing = new ScilabDouble(this.auto0);
-                        this.model.nzcross = new ScilabDouble(this.nzcr);
-                        this.model.nmode = new ScilabDouble(this.nmode);
+                        this.model.ipar = new ScilabDouble([this.ipar]);
+                        this.model.opar = new ScilabDouble([this.opar]);
+                        this.model.firing = new ScilabDouble([this.auto0]);
+                        this.model.nzcross = new ScilabDouble([this.nzcr]);
+                        this.model.nmode = new ScilabDouble([this.nmode]);
                         this.model.dep_ut = dep_ut;
                         label[2-1] = tt;
                         this.x.model = this.model;

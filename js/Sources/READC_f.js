@@ -15,14 +15,14 @@ function READC_f() {
         nout = size(this.outmask,"*");
         ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[fname-1]],[tmask],[this.outmask]];
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("readc"),new ScilabDouble(2));
-        this.model.out = new ScilabDouble(nout);
-        this.model.evtin = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["readc"]), new ScilabDouble([2]));
+        this.model.out = new ScilabDouble([nout]);
+        this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = [];
         this.model.dstate = [[1],[1],[lunit],[zeros(this.N*this.M,1)]];
         this.model.ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[fname-1]],[tmask],[this.outmask]];
-        this.model.blocktype = new ScilabString("d");
-        this.model.firing = new ScilabDouble(-1);
+        this.model.blocktype = new ScilabString(["d"]);
+        this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [false,false];
         exprs = [["[]"],[sci2exp(this.outmask)],[fname],[frmt],[string(this.M)],[string(this.N)],[string(this.offset)],[string(this.swap)]];
         gr_i = [];
@@ -117,9 +117,9 @@ function READC_f() {
                 this.frmt1 = part(this.frmt1,1,3);
                 if (ok) {
                     if (ievt==0) {
-                        this.model.firing = new ScilabDouble(-1);
+                        this.model.firing = new ScilabDouble([-1]);
                     } else {
-                        this.model.firing = new ScilabDouble(0);
+                        this.model.firing = new ScilabDouble([0]);
                     }
                     ipar = [[length(this.fname1)],[this._str2code[this.frmt1-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[this.fname1-1]],[this.tmask1],[this.outmask.slice()]];
                     if (prod(size(dstate))!=(this.N*this.M)+3) {

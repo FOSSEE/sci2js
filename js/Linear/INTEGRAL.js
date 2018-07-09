@@ -5,12 +5,12 @@ function INTEGRAL() {
         minp = -1;
         rpar = [];
         this.model = scicos_model();
-        this.model.state = new ScilabDouble(0);
-        this.model.sim = list(new ScilabString("integral_func"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
+        this.model.state = new ScilabDouble([0]);
+        this.model.sim = list(new ScilabString(["integral_func"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
         this.model.rpar = rpar;
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         exprs = string([[0],[0],[0],[this.maxp],[minp]]);
         gr_i = [];
@@ -71,13 +71,13 @@ function INTEGRAL() {
                     ok = false;
                 } else {
                     rpar = [[this.maxp],[this.lowp]];
-                    this.model.nzcross = new ScilabDouble(size(this.x0,1));
-                    this.model.nmode = new ScilabDouble(size(this.x0,1));
+                    this.model.nzcross = new ScilabDouble([size(this.x0,1)]);
+                    this.model.nmode = new ScilabDouble([size(this.x0,1)]);
                 }
             } else {
                 rpar = [];
-                this.model.nzcross = new ScilabDouble(0);
-                this.model.nmode = new ScilabDouble(0);
+                this.model.nzcross = new ScilabDouble([0]);
+                this.model.nmode = new ScilabDouble([0]);
             }
             if (ok) {
                 this.model.rpar = rpar;

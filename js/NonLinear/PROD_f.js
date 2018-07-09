@@ -2,10 +2,10 @@
 function PROD_f() {
     PROD_f.prototype.define = function PROD_f() {
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("prod"),new ScilabDouble(2));
+        this.model.sim = list(new ScilabString(["prod"]), new ScilabDouble([2]));
         this.model.in1 = [[-1],[-1]];
-        this.model.out = new ScilabDouble(-1);
-        this.model.blocktype = new ScilabString("c");
+        this.model.out = new ScilabDouble([-1]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         this.x = standard_define([1,1],this.model,[],[]);
         return new BasicBlock(this.x);

@@ -2,16 +2,16 @@
 function VariableResistor() {
     VariableResistor.prototype.define = function VariableResistor() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("VariableResistor");
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["VariableResistor"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         mo = modelica();
         mo.model = "VariableResistor";
         mo.inputs = ["p","R"];
         mo.outputs = "n";
-        this.model.equations = new ScilabDouble(mo);
-        this.model.in1 = new ScilabDouble(ones(size(mo.inputs,"*"),1));
-        this.model.out = new ScilabDouble(ones(size(mo.outputs,"*"),1));
+        this.model.equations = new ScilabDouble([mo]);
+        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         exprs = [];
         gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));

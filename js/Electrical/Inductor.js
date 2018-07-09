@@ -5,16 +5,16 @@ function Inductor() {
         this.model.in1 = [1];
         this.model.out = [1];
         this.L = 1.e-5;
-        this.model.rpar = new ScilabDouble(this.L);
-        this.model.sim = new ScilabString("Inductor");
-        this.model.blocktype = new ScilabString("c");
+        this.model.rpar = new ScilabDouble([this.L]);
+        this.model.sim = new ScilabString(["Inductor"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         mo = modelica();
         mo.model = "Inductor";
         mo.inputs = "p";
         mo.outputs = "n";
         mo.parameters = list("L",list(this.L));
-        this.model.equations = new ScilabDouble(mo);
+        this.model.equations = new ScilabDouble([mo]);
         exprs = string(this.L);
         gr_i = [];
         this.x = standard_define([2,0.9],this.model,exprs,list(gr_i,0));
@@ -41,8 +41,8 @@ function Inductor() {
             if (!ok) {
                 break;
             }
-            this.model.rpar = new ScilabDouble(this.L);
-            this.model.equations.parameters[2] = list(new ScilabDouble(this.L));
+            this.model.rpar = new ScilabDouble([this.L]);
+            this.model.equations.parameters[2] = list(new ScilabDouble([this.L]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

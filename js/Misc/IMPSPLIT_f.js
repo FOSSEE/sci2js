@@ -2,14 +2,14 @@
 function IMPSPLIT_f() {
     IMPSPLIT_f.prototype.define = function IMPSPLIT_f() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("limpsplit");
+        this.model.sim = new ScilabString(["limpsplit"]);
         mo = modelica();
         mo.model = "limpsplit";
         mo.inputs = "n";
         mo.outputs = [["n"],["n"]];
-        this.model.equations = new ScilabDouble(mo);
-        this.model.in1 = new ScilabDouble(ones(size(mo.inputs,"*"),1));
-        this.model.out = new ScilabDouble(ones(size(mo.outputs,"*"),1));
+        this.model.equations = new ScilabDouble([mo]);
+        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.x = standard_define([1,1]/3,this.model,[],[]);
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I","I"];

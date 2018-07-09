@@ -2,15 +2,15 @@
 function BITSET() {
     BITSET.prototype.define = function BITSET() {
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("bit_set_32"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.in2 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.out2 = new ScilabDouble(1);
-        this.model.intyp = new ScilabDouble(3);
-        this.model.outtyp = new ScilabDouble(3);
-        this.model.opar = list(new ScilabDouble(uint32(0)));
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = list(new ScilabString(["bit_set_32"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.in2 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.out2 = new ScilabDouble([1]);
+        this.model.intyp = new ScilabDouble([3]);
+        this.model.outtyp = new ScilabDouble([3]);
+        this.model.opar = list(new ScilabDouble([uint32(0)]));
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[sci2exp(3)],[sci2exp(0)]];
         gr_i = [];
@@ -52,7 +52,7 @@ function BITSET() {
                 this.bit = uint32(this.bit);
                 n = 2^this.bit;
                 n = uint32(n);
-                this.model.sim = list(new ScilabString("bit_set_32"),new ScilabDouble(4));
+                this.model.sim = list(new ScilabString(["bit_set_32"]), new ScilabDouble([4]));
             } else if ((this.Datatype==4)||(this.Datatype==7)) {
                 if (this.bit>15||this.bit<0) {
                     block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Index of Bit",this.bit),msprintf("Must be in the interval %s.","[0, 15]"));
@@ -61,7 +61,7 @@ function BITSET() {
                 this.bit = uint16(this.bit);
                 n = 2^this.bit;
                 n = uint16(n);
-                this.model.sim = list(new ScilabString("bit_set_16"),new ScilabDouble(4));
+                this.model.sim = list(new ScilabString(["bit_set_16"]), new ScilabDouble([4]));
             } else if ((this.Datatype==5)||(this.Datatype==8)) {
                 if (this.bit>7||this.bit<0) {
                     block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Index of Bit",this.bit),msprintf("Must be in the interval %s.","[0, 7]"));
@@ -70,7 +70,7 @@ function BITSET() {
                 this.bit = uint8(this.bit);
                 n = 2^this.bit;
                 n = uint8(n);
-                this.model.sim = list(new ScilabString("bit_set_8"),new ScilabDouble(4));
+                this.model.sim = list(new ScilabString(["bit_set_8"]), new ScilabDouble([4]));
             } else {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Data Type",this.Datatype),msprintf("Must be in the interval %s.","[3, 8]"));
                 ok = false;
@@ -83,7 +83,7 @@ function BITSET() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.opar = list(new ScilabDouble(n));
+                this.model.opar = list(new ScilabDouble([n]));
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

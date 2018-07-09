@@ -2,17 +2,17 @@
 function IFTHEL_f() {
     IFTHEL_f.prototype.define = function IFTHEL_f() {
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("ifthel"),new ScilabDouble(-1));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.in2 = new ScilabDouble(1);
-        this.model.intyp = new ScilabDouble(-1);
-        this.model.evtin = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["ifthel"]), new ScilabDouble([-1]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.in2 = new ScilabDouble([1]);
+        this.model.intyp = new ScilabDouble([-1]);
+        this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = [[1],[1]];
-        this.model.blocktype = new ScilabString("l");
+        this.model.blocktype = new ScilabString(["l"]);
         this.model.firing = [-1,-1];
         this.model.dep_ut = [true,false];
-        this.model.nmode = new ScilabDouble(1);
-        this.model.nzcross = new ScilabDouble(1);
+        this.model.nmode = new ScilabDouble([1]);
+        this.model.nzcross = new ScilabDouble([1]);
         gr_i = [];
         exprs = [[string(this.model.in1)],[string(this.model.nmode)]];
         this.x = standard_define([3,3],this.model,exprs,gr_i);
@@ -57,9 +57,9 @@ function IFTHEL_f() {
             if (ok) {
                 graphics.exprs = exprs;
                 this.model.evtin = this.inh;
-                this.model.sim[2] = new ScilabDouble(-1);
-                this.model.nmode = new ScilabDouble(this.nmod);
-                this.model.nzcross = new ScilabDouble(this.nmod);
+                this.model.sim[2] = new ScilabDouble([-1]);
+                this.model.nmode = new ScilabDouble([this.nmod]);
+                this.model.nzcross = new ScilabDouble([this.nmod]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

@@ -3,12 +3,12 @@ function POSTONEG_f() {
     POSTONEG_f.prototype.define = function POSTONEG_f() {
         rpar = [[-1],[-1],[-1],[0]];
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("zcross"),new ScilabDouble(1));
-        this.model.nzcross = new ScilabDouble(1);
-        this.model.in1 = new ScilabDouble(1);
-        this.model.evtout = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["zcross"]), new ScilabDouble([1]));
+        this.model.nzcross = new ScilabDouble([1]);
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = [[-1],[-1],[-1],[0]];
-        this.model.blocktype = new ScilabString("z");
+        this.model.blocktype = new ScilabString(["z"]);
         this.model.dep_ut = [true,false];
         this.model.firing = [-1];
         gr_i = [];

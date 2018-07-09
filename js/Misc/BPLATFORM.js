@@ -9,12 +9,12 @@ function BPLATFORM() {
         this.ymin = 0;
         this.ymax = 15;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("bplatform2"),new ScilabDouble(5));
+        this.model.sim = list(new ScilabString(["bplatform2"]), new ScilabDouble([5]));
         this.model.in1 = [[1],[1]];
-        this.model.evtin = new ScilabDouble(1);
-        this.model.dstate = new ScilabDouble(0);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.dstate = new ScilabDouble([0]);
         this.model.rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
-        this.model.blocktype = new ScilabString("d");
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = string(this.model.rpar);
         gr_i = [];

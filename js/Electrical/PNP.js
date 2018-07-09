@@ -31,19 +31,19 @@ function PNP() {
         }
         this.model = scicos_model();
         mo = modelica();
-        this.model.sim = new ScilabString(ModelName);
+        this.model.sim = new ScilabString([ModelName]);
         mo.inputs = MI;
         mo.outputs = MO;
         this.model.rpar = PrametersValue;
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         exprs = [["50"],["0.1"],["1.e-16"],["0.02"],["0.12e-9"],["5e-9"],["1e-12"],["0.4e-12"],["0.5e-12"],["0.8"],["0.4"],["0.8"],["0.333"],["1e-15"],["1e-15"],["0.02585"],["40"]];
         gr_i = [];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         mo.model = ModelName;
-        this.model.equations = new ScilabDouble(mo);
-        this.model.in1 = new ScilabDouble(ones(size(MI,"*"),1));
-        this.model.out = new ScilabDouble(ones(size(MO,"*"),1));
+        this.model.equations = new ScilabDouble([mo]);
+        this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);
+        this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = Typein;
         this.x.graphics.out_implicit = Typeout;

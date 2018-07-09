@@ -4,15 +4,15 @@ function EXPBLK_m() {
         in1 = 1;
         this.a = math.E;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("expblk_m"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.in2 = new ScilabDouble(-2);
-        this.model.out = new ScilabDouble(-1);
-        this.model.out2 = new ScilabDouble(-2);
-        this.model.intyp = new ScilabDouble(1);
-        this.model.outtyp = new ScilabDouble(1);
-        this.model.rpar = new ScilabDouble(this.a);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = list(new ScilabString(["expblk_m"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in2 = new ScilabDouble([-2]);
+        this.model.out = new ScilabDouble([-1]);
+        this.model.out2 = new ScilabDouble([-2]);
+        this.model.intyp = new ScilabDouble([1]);
+        this.model.outtyp = new ScilabDouble([1]);
+        this.model.rpar = new ScilabDouble([this.a]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = ["%e"];
         gr_i = [];
@@ -45,7 +45,7 @@ function EXPBLK_m() {
                 message("a^u : a must be positive");
             } else {
                 graphics.exprs = exprs;
-                this.model.rpar = new ScilabDouble(this.a);
+                this.model.rpar = new ScilabDouble([this.a]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

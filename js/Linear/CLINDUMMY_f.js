@@ -3,9 +3,9 @@ function CLINDUMMY_f() {
     CLINDUMMY_f.prototype.define = function CLINDUMMY_f() {
         x0 = 0;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("cdummy"),new ScilabDouble(4));
-        this.model.state = new ScilabDouble(x0);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = list(new ScilabString(["cdummy"]), new ScilabDouble([4]));
+        this.model.state = new ScilabDouble([x0]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [false,true];
         gr_i = [];

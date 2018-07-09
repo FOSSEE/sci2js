@@ -11,17 +11,17 @@ function NMOS() {
         this.dW = -2.5e-6;
         this.dL = -1.5e-6;
         this.RDS = 1.e+7;
-        this.model.sim = new ScilabString("NMOS");
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["NMOS"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         mo = modelica();
         mo.model = "NMOS";
         mo.outputs = [["D"],["B"],["S"]];
         mo.inputs = "G";
         mo.parameters = list([["W"],["L"],["Beta"],["Vt"],["K2"],["K5"],["dW"],["dL"],["RDS"]],[[this.W],[this.L],[this.Beta],[this.Vt],[this.K2],[this.K5],[this.dW],[this.dL],[this.RDS]]);
-        this.model.equations = new ScilabDouble(mo);
-        this.model.in1 = new ScilabDouble(ones(size(mo.inputs,"*"),1));
-        this.model.out = new ScilabDouble(ones(size(mo.outputs,"*"),1));
+        this.model.equations = new ScilabDouble([mo]);
+        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         exprs = [[string(this.W)],[string(this.L)],[string(this.Beta)],[string(this.Vt)],[string(this.K2)],[string(this.K5)],[string(this.dW)],[string(this.dL)],[string(this.RDS)]];
         gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -65,7 +65,7 @@ function NMOS() {
             if (!ok) {
                 break;
             }
-            this.model.equations.parameters[2] = list(new ScilabDouble(this.W),new ScilabDouble(this.L),new ScilabDouble(this.Beta),new ScilabDouble(this.Vt),new ScilabDouble(this.K2),new ScilabDouble(this.K5),new ScilabDouble(this.dW),new ScilabDouble(this.dL),new ScilabDouble(this.RDS));
+            this.model.equations.parameters[2] = list(new ScilabDouble([this.W]), new ScilabDouble([this.L]), new ScilabDouble([this.Beta]), new ScilabDouble([this.Vt]), new ScilabDouble([this.K2]), new ScilabDouble([this.K5]), new ScilabDouble([this.dW]), new ScilabDouble([this.dL]), new ScilabDouble([this.RDS]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

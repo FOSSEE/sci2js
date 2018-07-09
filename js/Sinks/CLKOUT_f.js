@@ -3,10 +3,10 @@ function CLKOUT_f() {
     CLKOUT_f.prototype.define = function CLKOUT_f() {
         this.prt = 1;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("output");
-        this.model.evtin = new ScilabDouble(1);
-        this.model.ipar = new ScilabDouble(this.prt);
-        this.model.blocktype = new ScilabString("d");
+        this.model.sim = new ScilabString(["output"]);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.ipar = new ScilabDouble([this.prt]);
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [false,false];
         exprs = string(this.prt);
@@ -37,8 +37,8 @@ function CLKOUT_f() {
             if (this.prt<=0) {
                 message("Port number must be a positive integer");
             } else {
-                this.model.ipar = new ScilabDouble(this.prt);
-                this.model.evtin = new ScilabDouble(1);
+                this.model.ipar = new ScilabDouble([this.prt]);
+                this.model.evtin = new ScilabDouble([1]);
                 this.model.firing = [];
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;

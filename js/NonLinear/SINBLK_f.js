@@ -2,10 +2,10 @@
 function SINBLK_f() {
     SINBLK_f.prototype.define = function SINBLK_f() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("sinblk");
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.out = new ScilabDouble(-1);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["sinblk"]);
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.out = new ScilabDouble([-1]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = " ";
         gr_i = [];

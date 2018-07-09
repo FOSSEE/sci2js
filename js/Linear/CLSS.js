@@ -9,12 +9,12 @@ function CLSS() {
         in1 = 1;
         out = 1;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("csslti4"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(in1);
-        this.model.out = new ScilabDouble(out);
-        this.model.state = new ScilabDouble(this.x0);
+        this.model.sim = list(new ScilabString(["csslti4"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([in1]);
+        this.model.out = new ScilabDouble([out]);
+        this.model.state = new ScilabDouble([this.x0]);
         this.model.rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
         gr_i = [];

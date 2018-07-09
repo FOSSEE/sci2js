@@ -4,10 +4,10 @@ function MATLU() {
         this.model = scicos_model();
         function_name = "mat_lu";
         funtyp = 4;
-        this.model.sim = list(new ScilabString(function_name),new ScilabDouble(funtyp));
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.in2 = new ScilabDouble(-1);
-        this.model.intyp = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in2 = new ScilabDouble([-1]);
+        this.model.intyp = new ScilabDouble([1]);
         this.model.out = [[-1],[-1]];
         this.model.out2 = [[-1],[-1]];
         this.model.outtyp = [1,1];
@@ -17,7 +17,7 @@ function MATLU() {
         this.model.dstate = [];
         this.model.rpar = [];
         this.model.ipar = [];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
         label = sci2exp(1);
@@ -66,7 +66,7 @@ function MATLU() {
             }
             if (ok) {
                 funtyp = 4;
-                this.model.sim = list(new ScilabString(function_name),new ScilabDouble(funtyp));
+                this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = this.lab;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

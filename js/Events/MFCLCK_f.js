@@ -4,13 +4,13 @@ function MFCLCK_f() {
         this.nn = 2;
         this.dt = 0.1;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("mfclck");
-        this.model.evtin = new ScilabDouble(1);
+        this.model.sim = new ScilabString(["mfclck"]);
+        this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = [[1],[1]];
-        this.model.dstate = new ScilabDouble(0);
-        this.model.rpar = new ScilabDouble(this.dt);
-        this.model.ipar = new ScilabDouble(this.nn);
-        this.model.blocktype = new ScilabString("d");
+        this.model.dstate = new ScilabDouble([0]);
+        this.model.rpar = new ScilabDouble([this.dt]);
+        this.model.ipar = new ScilabDouble([this.nn]);
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [-1,0];
         this.model.dep_ut = [false,false];
         exprs = [[string(this.dt)],[string(this.nn)]];
@@ -37,8 +37,8 @@ function MFCLCK_f() {
         this.model = arg1.model;
         [ok,this.dt,this.nn,exprs] = scicos_getvalue("Set Multifrequency clock parameters",["basic period (1/f)","multiply by (n)"],list("vec",1,"vec",1),exprs);
         if (ok) {
-            this.model.ipar = new ScilabDouble(this.nn);
-            this.model.rpar = new ScilabDouble(this.dt);
+            this.model.ipar = new ScilabDouble([this.nn]);
+            this.model.rpar = new ScilabDouble([this.dt]);
             hh = this.model.firing;
             hh[2-1] = 0;
             this.model.firing = hh;

@@ -4,12 +4,12 @@ function Modulo_Count() {
         this.ini_c = 0;
         this.base = 3;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("modulo_count"),new ScilabDouble(4));
-        this.model.evtin = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.dstate = new ScilabDouble(this.ini_c);
-        this.model.ipar = new ScilabDouble(this.base);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = list(new ScilabString(["modulo_count"]), new ScilabDouble([4]));
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.dstate = new ScilabDouble([this.ini_c]);
+        this.model.ipar = new ScilabDouble([this.base]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
         exprs = [[string(this.ini_c)],[string(this.base)]];
         gr_i = [];
@@ -46,8 +46,8 @@ function Modulo_Count() {
                 block_parameter_error(msprintf("Wrong values for \'Upper Limit\' parameter: %d.",this.base),"Strictly positive integer expected.");
             } else {
                 graphics.exprs = exprs;
-                this.model.ipar = new ScilabDouble(this.base);
-                this.model.dstate = new ScilabDouble(this.ini_c);
+                this.model.ipar = new ScilabDouble([this.base]);
+                this.model.dstate = new ScilabDouble([this.ini_c]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

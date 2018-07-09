@@ -33,17 +33,17 @@ function JKFLIPFLOP() {
         scs_m.objs[21-1] = scicos_block(gui="OUT_f",graphics=scicos_graphics(orig=[466.2036,169.25363],sz=[20,20],flip=true,theta=0,exprs="2",pin=22,pout=[],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="output",in1=-1,in2=[],intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=2,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
         scs_m.objs[22-1] = scicos_link(xx=[[446.2036],[466.2036]],yy=[[179.25363],[179.25363]],id="drawlink",thick=[0,0],ct=[1,1],from=[9,1,0],to=[21,1,1]);
         this.model = scicos_model();
-        this.model.sim = new ScilabString("csuper");
+        this.model.sim = new ScilabString(["csuper"]);
         this.model.in1 = [[1],[1],[1]];
         this.model.in2 = [[1],[1],[1]];
         this.model.out = [[1],[1]];
         this.model.out2 = [[1],[1]];
         this.model.intyp = [5,1,5];
         this.model.outtyp = [5,5];
-        this.model.blocktype = new ScilabString("h");
-        this.model.firing = new ScilabBoolean(false);
+        this.model.blocktype = new ScilabString(["h"]);
+        this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = [true,false];
-        this.model.rpar = new ScilabDouble(scs_m);
+        this.model.rpar = new ScilabDouble([scs_m]);
         gr_i = [];
         this.x = standard_define([2,3],this.model,[],gr_i);
         return new BasicBlock(this.x);
@@ -83,7 +83,7 @@ function JKFLIPFLOP() {
             }
             if (ok) {
                 xx.graphics.exprs[1-1] = this.exprs0;
-                this.model.odstate[1] = new ScilabDouble(this.init);
+                this.model.odstate[1] = new ScilabDouble([this.init]);
                 xx.model = this.model;
                 arg1.model.rpar.objs[path-1] = xx;
                 break;

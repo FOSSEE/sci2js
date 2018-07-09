@@ -3,18 +3,18 @@ function ConstantVoltage() {
     ConstantVoltage.prototype.define = function ConstantVoltage() {
         this.V = 0.01;
         this.model = scicos_model();
-        this.model.rpar = new ScilabDouble(this.V);
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.sim = new ScilabString("ConstantVoltage");
-        this.model.blocktype = new ScilabString("c");
+        this.model.rpar = new ScilabDouble([this.V]);
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.sim = new ScilabString(["ConstantVoltage"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
         mo = modelica();
         mo.model = "ConstantVoltage";
         mo.inputs = "p";
         mo.outputs = "n";
         mo.parameters = list("V",list(this.V));
-        this.model.equations = new ScilabDouble(mo);
+        this.model.equations = new ScilabDouble([mo]);
         exprs = string(this.V);
         gr_i = [];
         this.x = standard_define([1.5,1.1],this.model,exprs,list(gr_i,0));
@@ -41,8 +41,8 @@ function ConstantVoltage() {
             if (!ok) {
                 break;
             }
-            this.model.rpar = new ScilabDouble(this.V);
-            this.model.equations.parameters[2] = list(new ScilabDouble(this.V));
+            this.model.rpar = new ScilabDouble([this.V]);
+            this.model.equations.parameters[2] = list(new ScilabDouble([this.V]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

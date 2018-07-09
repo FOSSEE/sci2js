@@ -3,11 +3,11 @@ function CONST() {
     CONST.prototype.define = function CONST() {
         this.C = 1;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("cstblk4"),new ScilabDouble(4));
+        this.model.sim = list(new ScilabString(["cstblk4"]), new ScilabDouble([4]));
         this.model.in1 = [];
-        this.model.out = new ScilabDouble(1);
-        this.model.rpar = new ScilabDouble(this.C);
-        this.model.blocktype = new ScilabString("d");
+        this.model.out = new ScilabDouble([1]);
+        this.model.rpar = new ScilabDouble([this.C]);
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = strcat(sci2exp(this.C));
         gr_i = [];
@@ -41,7 +41,7 @@ function CONST() {
                 message("C matrix is not supported, use CONST_m instead");
             } else {
                 this.model.rpar = this.C.slice();
-                this.model.out = new ScilabDouble(nout);
+                this.model.out = new ScilabDouble([nout]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

@@ -3,11 +3,11 @@ function HALT_f() {
     HALT_f.prototype.define = function HALT_f() {
         this.n = 0;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("hltblk");
-        this.model.evtin = new ScilabDouble(1);
-        this.model.dstate = new ScilabDouble(0);
-        this.model.ipar = new ScilabDouble(0);
-        this.model.blocktype = new ScilabString("d");
+        this.model.sim = new ScilabString(["hltblk"]);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.dstate = new ScilabDouble([0]);
+        this.model.ipar = new ScilabDouble([0]);
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = string(this.n);
         gr_i = [];
@@ -36,7 +36,7 @@ function HALT_f() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.ipar = new ScilabDouble(this.n);
+                this.model.ipar = new ScilabDouble([this.n]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

@@ -4,13 +4,13 @@ function Ground() {
         this.model = scicos_model();
         this.model.in1 = [1];
         this.model.out = [];
-        this.model.sim = new ScilabString("Ground");
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["Ground"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         mo = modelica();
         mo.model = "Ground";
         mo.inputs = "p";
-        this.model.equations = new ScilabDouble(mo);
+        this.model.equations = new ScilabDouble([mo]);
         exprs = "";
         gr_i = [];
         this.x = standard_define([1,1],this.model,exprs,list(gr_i,0));

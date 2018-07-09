@@ -6,12 +6,12 @@ function SAT_f() {
         slope = 1;
         rpar = [[this.minp],[this.maxp],[slope]];
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("lusat"),new ScilabDouble(1));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.nzcross = new ScilabDouble(2);
-        this.model.out = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["lusat"]), new ScilabDouble([1]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.nzcross = new ScilabDouble([2]);
+        this.model.out = new ScilabDouble([1]);
         this.model.rpar = [[this.minp],[this.maxp],[slope]];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string(this.minp)],[string(this.maxp)],[string(slope)]];
         gr_i = [];

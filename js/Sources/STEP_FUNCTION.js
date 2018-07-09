@@ -23,7 +23,7 @@ function STEP_FUNCTION() {
         graphics.orig = [80,10];
         graphics.sz = [20,20];
         graphics.exprs = ["1"];
-        this.model.ipar = new ScilabDouble(1);
+        this.model.ipar = new ScilabDouble([1]);
         graphics.pin = 3;
         blk.graphics = graphics;
         blk.model = this.model;
@@ -42,10 +42,10 @@ function STEP_FUNCTION() {
         blk={};
         lnk={};
         this.model = scicos_model();
-        this.model.sim = new ScilabString("csuper");
-        this.model.out = new ScilabDouble(1);
-        this.model.out2 = new ScilabDouble(1);
-        this.model.outtyp = new ScilabDouble(1);
+        this.model.sim = new ScilabString(["csuper"]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.out2 = new ScilabDouble([1]);
+        this.model.outtyp = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
         gr_i = [];
         this.x = standard_define([2,2],this.model,[],gr_i);

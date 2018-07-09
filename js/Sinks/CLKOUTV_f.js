@@ -3,10 +3,10 @@ function CLKOUTV_f() {
     CLKOUTV_f.prototype.define = function CLKOUTV_f() {
         this.prt = 1;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("output");
-        this.model.evtin = new ScilabDouble(1);
-        this.model.ipar = new ScilabDouble(this.prt);
-        this.model.blocktype = new ScilabString("d");
+        this.model.sim = new ScilabString(["output"]);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.ipar = new ScilabDouble([this.prt]);
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [false,false];
         exprs = string(this.prt);
@@ -36,8 +36,8 @@ function CLKOUTV_f() {
             if (this.prt<=0) {
                 block_parameter_error(msprintf("Wrong value for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
-                this.model.ipar = new ScilabDouble(this.prt);
-                this.model.evtin = new ScilabDouble(1);
+                this.model.ipar = new ScilabDouble([this.prt]);
+                this.model.evtin = new ScilabDouble([1]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

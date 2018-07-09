@@ -3,13 +3,13 @@ function EDGETRIGGER() {
     EDGETRIGGER.prototype.define = function EDGETRIGGER() {
         this.edge = 1;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("edgetrig"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.dstate = new ScilabDouble(0);
-        this.model.nzcross = new ScilabDouble(1);
-        this.model.ipar = new ScilabDouble(sign(this.edge));
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = list(new ScilabString(["edgetrig"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.dstate = new ScilabDouble([0]);
+        this.model.nzcross = new ScilabDouble([1]);
+        this.model.ipar = new ScilabDouble([sign(this.edge)]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [string(this.edge)];
         gr_i = [];
@@ -36,7 +36,7 @@ function EDGETRIGGER() {
             if (!ok) {
                 break;
             }
-            this.model.ipar = new ScilabDouble(sign(this.edge));
+            this.model.ipar = new ScilabDouble([sign(this.edge)]);
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

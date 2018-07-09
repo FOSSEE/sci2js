@@ -13,12 +13,12 @@ function READAU_f() {
         ievt = 0;
         nout = size(outmask,"*");
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("readau"),new ScilabDouble(2));
-        this.model.out = new ScilabDouble(nout);
-        this.model.evtin = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["readau"]), new ScilabDouble([2]));
+        this.model.out = new ScilabDouble([nout]);
+        this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = [[1],[1],[lunit],[zeros(this.N*M,1)]];
         this.model.ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[M],[this.swap],[offset],[this._str2code[fname-1]],[tmask],[outmask]];
-        this.model.blocktype = new ScilabString("d");
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = [[fname],[string(this.N)],[string(this.swap)]];
         gr_i = [];

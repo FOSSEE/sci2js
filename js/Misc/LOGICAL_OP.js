@@ -5,11 +5,11 @@ function LOGICAL_OP() {
         ipar = [0];
         this.nin = 2;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("logicalop"),new ScilabDouble(4));
+        this.model.sim = list(new ScilabString(["logicalop"]), new ScilabDouble([4]));
         this.model.in1 = in1;
-        this.model.out = new ScilabDouble(-1);
+        this.model.out = new ScilabDouble([-1]);
         this.model.ipar = ipar;
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string(this.nin)],[string(ipar)]];
         gr_i = [];
@@ -66,21 +66,21 @@ function LOGICAL_OP() {
                     this.tp = 1;
                 }
                 if (this.Datatype==1) {
-                    this.model.sim = list(new ScilabString("logicalop"),new ScilabDouble(4));
+                    this.model.sim = list(new ScilabString(["logicalop"]), new ScilabDouble([4]));
                     this.model.ipar = [this.rule];
                 } else {
                     if (this.Datatype==3) {
-                        this.model.sim = list(new ScilabString("logicalop_i32"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["logicalop_i32"]), new ScilabDouble([4]));
                     } else if (this.Datatype==4) {
-                        this.model.sim = list(new ScilabString("logicalop_i16"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["logicalop_i16"]), new ScilabDouble([4]));
                     } else if (this.Datatype==5) {
-                        this.model.sim = list(new ScilabString("logicalop_i8"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["logicalop_i8"]), new ScilabDouble([4]));
                     } else if (this.Datatype==6) {
-                        this.model.sim = list(new ScilabString("logicalop_ui32"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["logicalop_ui32"]), new ScilabDouble([4]));
                     } else if (this.Datatype==7) {
-                        this.model.sim = list(new ScilabString("logicalop_ui16"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["logicalop_ui16"]), new ScilabDouble([4]));
                     } else if (this.Datatype==8) {
-                        this.model.sim = list(new ScilabString("logicalop_ui8"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["logicalop_ui8"]), new ScilabDouble([4]));
                     } else {
                         message("Datatype is not supported");
                         ok = false;

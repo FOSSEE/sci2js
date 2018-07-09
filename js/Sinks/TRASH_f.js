@@ -3,10 +3,10 @@ function TRASH_f() {
     TRASH_f.prototype.define = function TRASH_f() {
         in1 = -1;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("trash");
-        this.model.in1 = new ScilabDouble(in1);
-        this.model.evtin = new ScilabDouble(1);
-        this.model.blocktype = new ScilabString("d");
+        this.model.sim = new ScilabString(["trash"]);
+        this.model.in1 = new ScilabDouble([in1]);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = " ";
         gr_i = [];

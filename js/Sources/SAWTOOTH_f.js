@@ -2,11 +2,11 @@
 function SAWTOOTH_f() {
     SAWTOOTH_f.prototype.define = function SAWTOOTH_f() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("sawtth");
-        this.model.out = new ScilabDouble(1);
-        this.model.evtin = new ScilabDouble(1);
-        this.model.dstate = new ScilabDouble(0);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["sawtth"]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.dstate = new ScilabDouble([0]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         exprs = " ";
         gr_i = [];

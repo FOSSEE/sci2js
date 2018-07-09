@@ -3,11 +3,11 @@ function INTEGRAL_f() {
     INTEGRAL_f.prototype.define = function INTEGRAL_f() {
         this.x0 = 0;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("integr");
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.state = new ScilabDouble(this.x0);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["integr"]);
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.state = new ScilabDouble([this.x0]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         exprs = strcat(sci2exp(this.x0));
         gr_i = [];
@@ -34,7 +34,7 @@ function INTEGRAL_f() {
                 break;
             }
             graphics.exprs = exprs;
-            this.model.state = new ScilabDouble(this.x0);
+            this.model.state = new ScilabDouble([this.x0]);
             this.x.graphics = graphics;
             this.x.model = this.model;
             break;

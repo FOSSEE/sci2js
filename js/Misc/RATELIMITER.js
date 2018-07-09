@@ -5,11 +5,11 @@ function RATELIMITER() {
         this.maxp = 1;
         rpar = [[this.maxp],[this.minp]];
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("ratelimiter"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["ratelimiter"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
         this.model.rpar = rpar;
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string(this.maxp)],[string(this.minp)]];
         gr_i = [];

@@ -12,21 +12,21 @@ function scifunc_block_m() {
         this.rpar = [];
         it = 1;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("scifunc"),new ScilabDouble(3));
-        this.model.in1 = new ScilabDouble(in1);
-        this.model.in2 = new ScilabDouble(in1);
-        this.model.intyp = new ScilabDouble(it);
-        this.model.out = new ScilabDouble(out);
-        this.model.out2 = new ScilabDouble(out);
-        this.model.outtyp = new ScilabDouble(it);
+        this.model.sim = list(new ScilabString(["scifunc"]), new ScilabDouble([3]));
+        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in2 = new ScilabDouble([in1]);
+        this.model.intyp = new ScilabDouble([it]);
+        this.model.out = new ScilabDouble([out]);
+        this.model.out2 = new ScilabDouble([out]);
+        this.model.outtyp = new ScilabDouble([it]);
         this.model.evtin = clkin;
         this.model.evtout = clkout;
         this.model.state = x0;
         this.model.dstate = z0;
         this.model.rpar = this.rpar;
-        this.model.ipar = new ScilabDouble(0);
+        this.model.ipar = new ScilabDouble([0]);
         this.model.opar = list();
-        this.model.blocktype = new ScilabString(typ);
+        this.model.blocktype = new ScilabString([typ]);
         this.model.firing = auto;
         this.model.dep_ut = [true,false];
         exprs = list([[sci2exp([in1,in1])],[sci2exp([out,out])],[sci2exp(clkin)],[sci2exp(clkout)],[strcat(sci2exp(x0))],[strcat(sci2exp(z0))],[strcat(sci2exp(this.rpar))],[sci2exp(auto)],[sci2exp(0)]],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
@@ -97,15 +97,15 @@ function scifunc_block_m() {
                 this.model.dstate = this.z;
                 this.model.rpar = this.rpar;
                 if (this.model.ipar!=0) {
-                    this.model.opar = new ScilabDouble(this.model.ipar);
-                    this.model.ipar = new ScilabDouble(0);
+                    this.model.opar = new ScilabDouble([this.model.ipar]);
+                    this.model.ipar = new ScilabDouble([0]);
                 }
                 if (or(this.model.opar!=tt)) {
                     needcompile = 4;
                 }
-                this.model.opar = new ScilabDouble(tt);
-                this.model.firing = new ScilabDouble(auto);
-                this.model.dep_ut = new ScilabDouble(dep_ut);
+                this.model.opar = new ScilabDouble([tt]);
+                this.model.firing = new ScilabDouble([auto]);
+                this.model.dep_ut = new ScilabDouble([dep_ut]);
                 this.x.model = this.model;
                 exprs[2-1] = tt;
                 graphics.exprs = exprs;

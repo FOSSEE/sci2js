@@ -4,11 +4,11 @@ function POWBLK_f() {
         in1 = 1;
         this.a = 1.5;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("powblk");
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.out = new ScilabDouble(-1);
-        this.model.rpar = new ScilabDouble(this.a);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["powblk"]);
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.out = new ScilabDouble([-1]);
+        this.model.rpar = new ScilabDouble([this.a]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = string(this.a);
         gr_i = [];
@@ -39,10 +39,10 @@ function POWBLK_f() {
             }
             graphics.exprs = exprs;
             if (this.a==int(this.a)) {
-                this.model.ipar = new ScilabDouble(this.a);
+                this.model.ipar = new ScilabDouble([this.a]);
                 this.model.rpar = [];
             } else {
-                this.model.rpar = new ScilabDouble(this.a);
+                this.model.rpar = new ScilabDouble([this.a]);
                 this.model.ipar = [];
             }
             this.model.firing = [];

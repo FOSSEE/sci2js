@@ -7,15 +7,15 @@ function PuitsP() {
         this.H0 = 100000;
         this.option_temperature = 1;
         this.model.rpar = [[this.P0],[this.T0],[this.H0],[this.option_temperature]];
-        this.model.sim = new ScilabString("Puits");
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["Puits"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         mo = modelica();
         mo.model = "Puits";
         mo.inputs = ["C"];
         mo.parameters = list([["P0"],["T0"],["H0"],["option_temperature"]],[[this.P0],[this.T0],[this.H0],[this.option_temperature]]);
-        this.model.equations = new ScilabDouble(mo);
-        this.model.in1 = new ScilabDouble(ones(size(mo.inputs,"*"),1));
+        this.model.equations = new ScilabDouble([mo]);
+        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         exprs = [[string(this.P0)],[string(this.T0)],[string(this.H0)],[string(this.option_temperature)]];
         gr_i = [];
         this.x = standard_define([2.5,2],this.model,exprs,list(gr_i,0));
@@ -49,7 +49,7 @@ function PuitsP() {
                 break;
             }
             this.model.rpar = [[this.P0],[this.T0],[this.H0],[this.option_temperature]];
-            this.model.equations.parameters[2] = list(new ScilabDouble(this.P0),new ScilabDouble(this.T0),new ScilabDouble(this.H0),new ScilabDouble(this.option_temperature));
+            this.model.equations.parameters[2] = list(new ScilabDouble([this.P0]), new ScilabDouble([this.T0]), new ScilabDouble([this.H0]), new ScilabDouble([this.option_temperature]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

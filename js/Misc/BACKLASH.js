@@ -3,12 +3,12 @@ function BACKLASH() {
     BACKLASH.prototype.define = function BACKLASH() {
         exprs = [["0"],["1"],["1"]];
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("backlash"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["backlash"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
         this.model.rpar = [[0],[1]];
-        this.model.nzcross = new ScilabDouble(2);
-        this.model.blocktype = new ScilabString("c");
+        this.model.nzcross = new ScilabDouble([2]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
@@ -44,9 +44,9 @@ function BACKLASH() {
                 rpar[1-1] = this.ini;
                 rpar[2-1] = this.gap;
                 if (this.zcr!=0) {
-                    this.model.nzcross = new ScilabDouble(2);
+                    this.model.nzcross = new ScilabDouble([2]);
                 } else {
-                    this.model.nzcross = new ScilabDouble(0);
+                    this.model.nzcross = new ScilabDouble([0]);
                 }
                 this.model.rpar = rpar;
                 this.x.graphics = graphics;

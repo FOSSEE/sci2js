@@ -2,16 +2,16 @@
 function INIMPL_f() {
     INIMPL_f.prototype.define = function INIMPL_f() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("inimpl");
+        this.model.sim = new ScilabString(["inimpl"]);
         this.model.out = [-1];
         this.model.out2 = [1];
         this.model.ipar = [1];
         this.model.dep_ut = [false,false];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         mo = modelica();
         mo.model = "PORT";
         mo.outputs = "n";
-        this.model.equations = new ScilabDouble(mo);
+        this.model.equations = new ScilabDouble([mo]);
         this.prt = 1;
         exprs = "1";
         gr_i = [];
@@ -49,7 +49,7 @@ function INIMPL_f() {
                     needcompile = 4;
                     y = needcompile;
                 }
-                this.model.ipar = new ScilabDouble(this.prt);
+                this.model.ipar = new ScilabDouble([this.prt]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

@@ -4,10 +4,10 @@ function NRMSOM_f() {
         in1 = [[-1],[-1]];
         this.nin = 2;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("junk");
+        this.model.sim = new ScilabString(["junk"]);
         this.model.in1 = in1;
-        this.model.out = new ScilabDouble(-1);
-        this.model.blocktype = new ScilabString("c");
+        this.model.out = new ScilabDouble([-1]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [string(this.nin)];
         gr_i = [];

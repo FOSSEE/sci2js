@@ -5,12 +5,12 @@ function ISELECT_f() {
         out = [[-1],[-1]];
         this.nout = 2;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("selector"),new ScilabDouble(2));
-        this.model.in1 = new ScilabDouble(-1);
+        this.model.sim = list(new ScilabString(["selector"]), new ScilabDouble([2]));
+        this.model.in1 = new ScilabDouble([-1]);
         this.model.out = out;
-        this.model.evtin = new ScilabDouble(ones(out));
-        this.model.dstate = new ScilabDouble(this.z0);
-        this.model.blocktype = new ScilabString("c");
+        this.model.evtin = new ScilabDouble([ones(out)]);
+        this.model.dstate = new ScilabDouble([this.z0]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string(this.nout)],[string(this.z0+1)]];
         gr_i = [];
@@ -45,7 +45,7 @@ function ISELECT_f() {
                 [model,graphics,ok] = check_io(this.model,graphics,-1,-ones(this.nout,1),ones(this.nout,1),[]);
                 if (ok) {
                     graphics.exprs = exprs;
-                    this.model.dstate = new ScilabDouble(this.z0-1);
+                    this.model.dstate = new ScilabDouble([this.z0-1]);
                     this.x.graphics = graphics;
                     this.x.model = this.model;
                     break;

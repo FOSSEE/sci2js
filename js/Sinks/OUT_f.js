@@ -4,12 +4,12 @@ function OUT_f() {
         n = -1;
         this.prt = 1;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("output");
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.in2 = new ScilabDouble(-2);
-        this.model.intyp = new ScilabDouble(-1);
-        this.model.ipar = new ScilabDouble(this.prt);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["output"]);
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in2 = new ScilabDouble([-2]);
+        this.model.intyp = new ScilabDouble([-1]);
+        this.model.ipar = new ScilabDouble([this.prt]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
         exprs = string(this.prt);
         gr_i = [];
@@ -42,7 +42,7 @@ function OUT_f() {
             if (this.prt<=0) {
                 block_parameter_error(msprintf("Wrong value for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
-                this.model.ipar = new ScilabDouble(this.prt);
+                this.model.ipar = new ScilabDouble([this.prt]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

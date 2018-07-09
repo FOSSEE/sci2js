@@ -2,16 +2,16 @@
 function GOTO() {
     GOTO.prototype.define = function GOTO() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("goto");
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.in2 = new ScilabDouble(-2);
-        this.model.intyp = new ScilabDouble(-1);
+        this.model.sim = new ScilabString(["goto"]);
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in2 = new ScilabDouble([-2]);
+        this.model.intyp = new ScilabDouble([-1]);
         this.model.out = [];
         this.model.out2 = [];
-        this.model.outtyp = new ScilabDouble(1);
-        this.model.ipar = new ScilabDouble(int(1));
-        this.model.opar = list(new ScilabString("A"));
-        this.model.blocktype = new ScilabString("c");
+        this.model.outtyp = new ScilabDouble([1]);
+        this.model.ipar = new ScilabDouble([int(1)]);
+        this.model.opar = list(new ScilabString(["A"]));
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
         exprs = [["A"],[sci2exp(1)]];
         gr_i = [];
@@ -52,8 +52,8 @@ function GOTO() {
                     y = needcompile;
                 }
                 graphics.exprs = exprs;
-                this.model.opar = list(new ScilabDouble(this.tag));
-                this.model.ipar = new ScilabDouble(this.tagvis);
+                this.model.opar = list(new ScilabDouble([this.tag]));
+                this.model.ipar = new ScilabDouble([this.tagvis]);
                 this.x.model = this.model;
                 this.x.graphics = graphics;
                 arg1 = this.x;

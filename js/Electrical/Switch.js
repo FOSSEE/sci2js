@@ -6,18 +6,18 @@ function Switch() {
         this.Roff = 1e5;
         S = [["Ron"],["Roff"]];
         Z = eval(S);
-        this.model.sim = new ScilabString("Switch");
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["Switch"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         mo = modelica();
         mo.model = this.model.sim;
         mo.inputs = [["p"],["inp"]];
         mo.outputs = "n";
         mo.parameters = list(S,Z);
-        this.model.equations = new ScilabDouble(mo);
-        this.model.in1 = new ScilabDouble(ones(size(mo.inputs,"*"),1));
-        this.model.out = new ScilabDouble(ones(size(mo.outputs,"*"),1));
-        this.model.rpar = new ScilabDouble(Z);
+        this.model.equations = new ScilabDouble([mo]);
+        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
+        this.model.rpar = new ScilabDouble([Z]);
         exprs = string(Z);
         gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
@@ -47,7 +47,7 @@ function Switch() {
             if (!ok) {
                 break;
             }
-            this.model.equations.parameters[2] = list(new ScilabDouble(this.Ron),new ScilabDouble(this.Roff));
+            this.model.equations.parameters[2] = list(new ScilabDouble([this.Ron]), new ScilabDouble([this.Roff]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

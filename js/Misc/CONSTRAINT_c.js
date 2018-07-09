@@ -3,12 +3,12 @@ function CONSTRAINT_c() {
     CONSTRAINT_c.prototype.define = function CONSTRAINT_c() {
         this.x0 = [[0],[0]];
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("constraint_c"),new ScilabDouble(10004));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.ipar = new ScilabDouble(0);
+        this.model.sim = list(new ScilabString(["constraint_c"]), new ScilabDouble([10004]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.ipar = new ScilabDouble([0]);
         this.model.state = this.x0;
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         exprs = "0";
         gr_i = [];
@@ -43,9 +43,9 @@ function CONSTRAINT_c() {
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.state = [[this.x0],[zeros(N,1)]];
-                    this.model.out = new ScilabDouble(N);
-                    this.model.in1 = new ScilabDouble(N);
-                    this.model.ipar = new ScilabDouble(-1*ones(N,1));
+                    this.model.out = new ScilabDouble([N]);
+                    this.model.in1 = new ScilabDouble([N]);
+                    this.model.ipar = new ScilabDouble([-1*ones(N,1)]);
                     this.x.graphics = graphics;
                     this.x.model = this.model;
                     break;

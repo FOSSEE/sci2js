@@ -4,11 +4,11 @@ function EXPBLK_f() {
         in1 = 1;
         this.a = math.E;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("expblk");
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.out = new ScilabDouble(-1);
-        this.model.rpar = new ScilabDouble(this.a);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["expblk"]);
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.out = new ScilabDouble([-1]);
+        this.model.rpar = new ScilabDouble([this.a]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = ["%e"];
         gr_i = [];
@@ -41,7 +41,7 @@ function EXPBLK_f() {
                 message("a^u : a must be positive");
             } else {
                 graphics.exprs = exprs;
-                this.model.rpar = new ScilabDouble(this.a);
+                this.model.rpar = new ScilabDouble([this.a]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

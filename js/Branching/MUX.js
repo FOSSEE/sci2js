@@ -3,11 +3,11 @@ function MUX() {
     MUX.prototype.define = function MUX() {
         this.in1 = 2;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("multiplex"),new ScilabDouble(4));
+        this.model.sim = list(new ScilabString(["multiplex"]), new ScilabDouble([4]));
         this.model.in1 = -transpose([1:this.in1]);
-        this.model.out = new ScilabDouble(0);
-        this.model.ipar = new ScilabDouble(this.in1);
-        this.model.blocktype = new ScilabString("c");
+        this.model.out = new ScilabDouble([0]);
+        this.model.ipar = new ScilabDouble([this.in1]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = string(this.in1);
         gr_i = [];
@@ -58,7 +58,7 @@ function MUX() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.ipar = new ScilabDouble(this.in1);
+                this.model.ipar = new ScilabDouble([this.in1]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

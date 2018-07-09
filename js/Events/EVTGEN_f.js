@@ -3,10 +3,10 @@ function EVTGEN_f() {
     EVTGEN_f.prototype.define = function EVTGEN_f() {
         this.tt = 0;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("trash");
-        this.model.evtout = new ScilabDouble(1);
-        this.model.blocktype = new ScilabString("d");
-        this.model.firing = new ScilabDouble(this.tt);
+        this.model.sim = new ScilabString(["trash"]);
+        this.model.evtout = new ScilabDouble([1]);
+        this.model.blocktype = new ScilabString(["d"]);
+        this.model.firing = new ScilabDouble([this.tt]);
         this.model.dep_ut = [false,false];
         exprs = string(this.tt);
         gr_i = [];
@@ -35,7 +35,7 @@ function EVTGEN_f() {
             }
             graphics.exprs = exprs;
             if (this.model.firing!=this.tt) {
-                this.model.firing = new ScilabDouble(this.tt);
+                this.model.firing = new ScilabDouble([this.tt]);
             }
             this.x.graphics = graphics;
             this.x.model = this.model;

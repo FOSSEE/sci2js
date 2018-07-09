@@ -5,13 +5,13 @@ function MEMORY_f() {
         in1 = 1;
         exprs = [[string(z)],[string(1)]];
         this.model = scicos_model();
-        this.model.sim = new ScilabString("memo");
-        this.model.in1 = new ScilabDouble(in1);
-        this.model.out = new ScilabDouble(in1);
-        this.model.evtin = new ScilabDouble(1);
-        this.model.dstate = new ScilabDouble(0);
-        this.model.rpar = new ScilabDouble(z);
-        this.model.blocktype = new ScilabString("m");
+        this.model.sim = new ScilabString(["memo"]);
+        this.model.in1 = new ScilabDouble([in1]);
+        this.model.out = new ScilabDouble([in1]);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.dstate = new ScilabDouble([0]);
+        this.model.rpar = new ScilabDouble([z]);
+        this.model.blocktype = new ScilabString(["m"]);
         this.model.dep_ut = [false,false];
         gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -53,9 +53,9 @@ function MEMORY_f() {
             in1 = out;
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.rpar = new ScilabDouble(this.a);
-                this.model.in1 = new ScilabDouble(in1);
-                this.model.out = new ScilabDouble(out);
+                this.model.rpar = new ScilabDouble([this.a]);
+                this.model.in1 = new ScilabDouble([in1]);
+                this.model.out = new ScilabDouble([out]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

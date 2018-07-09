@@ -2,11 +2,11 @@
 function SampleCLK() {
     SampleCLK.prototype.define = function SampleCLK() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("sampleclk");
-        this.model.evtout = new ScilabDouble(1);
+        this.model.sim = new ScilabString(["sampleclk"]);
+        this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = [1,0];
-        this.model.blocktype = new ScilabString("d");
-        this.model.firing = new ScilabDouble(-1);
+        this.model.blocktype = new ScilabString(["d"]);
+        this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [false,false];
         exprs = [[sci2exp(1)],[sci2exp(0)]];
         this.x = standard_define([2,2],this.model,exprs," ");
@@ -48,8 +48,8 @@ function SampleCLK() {
                     y = needcompile;
                 }
                 this.model.rpar = [[this.frequ],[this.offset]];
-                this.model.evtout = new ScilabDouble(1);
-                this.model.firing = new ScilabDouble(-1);
+                this.model.evtout = new ScilabDouble([1]);
+                this.model.firing = new ScilabDouble([-1]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

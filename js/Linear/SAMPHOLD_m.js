@@ -2,15 +2,15 @@
 function SAMPHOLD_m() {
     SAMPHOLD_m.prototype.define = function SAMPHOLD_m() {
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("samphold4_m"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.in2 = new ScilabDouble(-2);
-        this.model.intyp = new ScilabDouble(1);
-        this.model.outtyp = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(-1);
-        this.model.out2 = new ScilabDouble(-2);
-        this.model.evtin = new ScilabDouble(1);
-        this.model.blocktype = new ScilabString("d");
+        this.model.sim = list(new ScilabString(["samphold4_m"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in2 = new ScilabDouble([-2]);
+        this.model.intyp = new ScilabDouble([1]);
+        this.model.outtyp = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([-1]);
+        this.model.out2 = new ScilabDouble([-2]);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [true,false];
         label = [sci2exp(1)];
         gr_i = [];

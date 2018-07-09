@@ -2,16 +2,16 @@
 function FROMMO() {
     FROMMO.prototype.define = function FROMMO() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("frommo");
+        this.model.sim = new ScilabString(["frommo"]);
         this.model.in1 = [];
         this.model.in2 = [];
-        this.model.intyp = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(-1);
-        this.model.out2 = new ScilabDouble(-2);
-        this.model.outtyp = new ScilabDouble(-1);
+        this.model.intyp = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([-1]);
+        this.model.out2 = new ScilabDouble([-2]);
+        this.model.outtyp = new ScilabDouble([-1]);
         this.model.ipar = [];
-        this.model.opar = list(new ScilabString("A"));
-        this.model.blocktype = new ScilabString("c");
+        this.model.opar = list(new ScilabString(["A"]));
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
         mo = modelica();
         mo.model = "frommo";
@@ -48,7 +48,7 @@ function FROMMO() {
                     y = needcompile;
                 }
                 graphics.exprs = exprs;
-                this.model.opar = list(new ScilabDouble(this.tag));
+                this.model.opar = list(new ScilabDouble([this.tag]));
                 this.x.model = this.model;
                 this.x.graphics = graphics;
                 break;

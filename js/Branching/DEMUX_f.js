@@ -3,11 +3,11 @@ function DEMUX_f() {
     DEMUX_f.prototype.define = function DEMUX_f() {
         this.out = 2;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("demux"),new ScilabDouble(1));
-        this.model.in1 = new ScilabDouble(0);
+        this.model.sim = list(new ScilabString(["demux"]), new ScilabDouble([1]));
+        this.model.in1 = new ScilabDouble([0]);
         this.model.out = -transpose([1:this.out]);
-        this.model.ipar = new ScilabDouble(this.out);
-        this.model.blocktype = new ScilabString("c");
+        this.model.ipar = new ScilabDouble([this.out]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
         exprs = string(this.out);
@@ -60,7 +60,7 @@ function DEMUX_f() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.ipar = new ScilabDouble(this.out);
+                this.model.ipar = new ScilabDouble([this.out]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

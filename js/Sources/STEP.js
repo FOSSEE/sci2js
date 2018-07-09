@@ -3,15 +3,15 @@ function STEP() {
     STEP.prototype.define = function STEP() {
         rpar = [[0],[1]];
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("step_func"),new ScilabDouble(4));
-        this.model.evtin = new ScilabDouble(1);
-        this.model.evtout = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.out2 = new ScilabDouble(1);
-        this.model.outtyp = new ScilabDouble(1);
-        this.model.firing = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["step_func"]), new ScilabDouble([4]));
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.evtout = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.out2 = new ScilabDouble([1]);
+        this.model.outtyp = new ScilabDouble([1]);
+        this.model.firing = new ScilabDouble([1]);
         this.model.rpar = rpar;
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
         exprs = [[string(1)],[string(rpar)]];
         gr_i = [];
@@ -55,12 +55,12 @@ function STEP() {
                 }
             }
             if (ok) {
-                this.model.out2 = new ScilabDouble(1);
-                this.model.outtyp = new ScilabDouble(1);
+                this.model.out2 = new ScilabDouble([1]);
+                this.model.outtyp = new ScilabDouble([1]);
                 [model,graphics,ok] = check_io(this.model,graphics,[],size(this.fi,"*"),1,1);
             }
             if (ok) {
-                this.model.firing = new ScilabDouble(this.temps);
+                this.model.firing = new ScilabDouble([this.temps]);
                 if (this.temps==0) {
                     rpar = [[this.fi],[this.fi]];
                 } else {

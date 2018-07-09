@@ -13,12 +13,12 @@ function RFILE_f() {
         ipar = [[length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]],[tmask],[this.outmask]];
         dstate = [[1],[1],[lunit],[zeros((nout)*this.N,1)]];
         this.model = scicos_model();
-        this.model.sim = new ScilabString("readf");
-        this.model.out = new ScilabDouble(nout);
-        this.model.evtin = new ScilabDouble(1);
+        this.model.sim = new ScilabString(["readf"]);
+        this.model.out = new ScilabDouble([nout]);
+        this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = dstate;
         this.model.ipar = [[length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]],[tmask],[this.outmask]];
-        this.model.blocktype = new ScilabString("d");
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = [[sci2exp([])],[sci2exp(this.outmask)],[fname],[frmt],[string(this.N)],[sci2exp(out)]];
         gr_i = [];
@@ -102,7 +102,7 @@ function RFILE_f() {
                     if (ievt==0) {
                         this.model.firing = [];
                     } else {
-                        this.model.firing = new ScilabDouble(0);
+                        this.model.firing = new ScilabDouble([0]);
                     }
                     ipar = [[length(this.fname1)],[length(this.frmt1)],[ievt],[this.N],[this._str2code[this.fname1-1]],[this._str2code[this.frmt1-1]],[this.tmask1],[this.outmask.slice()]];
                     if (prod(size(dstate))!=(nout+ievt)*this.N+3) {

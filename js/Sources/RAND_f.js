@@ -7,13 +7,13 @@ function RAND_f() {
         out = 1;
         this.flag = 0;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("rndblk");
-        this.model.out = new ScilabDouble(out);
-        this.model.evtin = new ScilabDouble(1);
+        this.model.sim = new ScilabString(["rndblk"]);
+        this.model.out = new ScilabDouble([out]);
+        this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = [[int(rand()*(10^7-1))],[0*this.a.slice()]];
         this.model.rpar = [[this.a.slice()],[this.b.slice()]];
-        this.model.ipar = new ScilabDouble(this.flag);
-        this.model.blocktype = new ScilabString("d");
+        this.model.ipar = new ScilabDouble([this.flag]);
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = [[string(this.flag)],[sci2exp(this.a.slice())],[sci2exp(this.b.slice())],[string(this.model.dstate[1-1])]];
         gr_i = [];
@@ -57,8 +57,8 @@ function RAND_f() {
             } else {
                 nout = size(this.a,"*");
                 graphics.exprs = exprs;
-                this.model.out = new ScilabDouble(nout);
-                this.model.ipar = new ScilabDouble(this.flag);
+                this.model.out = new ScilabDouble([nout]);
+                this.model.ipar = new ScilabDouble([this.flag]);
                 this.model.rpar = [[this.a.slice()],[this.b.slice()]];
                 this.model.dstate = [[this.seed_c],[0*this.a.slice()]];
                 this.x.graphics = graphics;

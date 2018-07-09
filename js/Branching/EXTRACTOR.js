@@ -3,12 +3,12 @@ function EXTRACTOR() {
     EXTRACTOR.prototype.define = function EXTRACTOR() {
         this.ind = 1;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("extractor"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.out = new ScilabDouble(1);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = list(new ScilabString(["extractor"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        this.model.ipar = new ScilabDouble(this.ind);
+        this.model.ipar = new ScilabDouble([this.ind]);
         exprs = [sci2exp(this.ind)];
         gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

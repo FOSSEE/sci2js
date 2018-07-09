@@ -2,13 +2,13 @@
 function NEGTOPOS_f() {
     NEGTOPOS_f.prototype.define = function NEGTOPOS_f() {
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("zcross"),new ScilabDouble(1));
-        this.model.nzcross = new ScilabDouble(1);
-        this.model.in1 = new ScilabDouble(1);
-        this.model.evtout = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["zcross"]), new ScilabDouble([1]));
+        this.model.nzcross = new ScilabDouble([1]);
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = [[-1],[-1],[0],[-1]];
-        this.model.blocktype = new ScilabString("z");
-        this.model.firing = new ScilabDouble(-1);
+        this.model.blocktype = new ScilabString(["z"]);
+        this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [true,false];
         gr_i = [];
         this.x = standard_define([2,2],this.model,[],gr_i);

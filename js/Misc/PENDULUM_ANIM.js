@@ -9,12 +9,12 @@ function PENDULUM_ANIM() {
         this.ymin = -5;
         this.ymax = 5;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("anim_pen"),new ScilabDouble(5));
+        this.model.sim = list(new ScilabString(["anim_pen"]), new ScilabDouble([5]));
         this.model.in1 = [[1],[1]];
-        this.model.evtin = new ScilabDouble(1);
-        this.model.dstate = new ScilabDouble(0);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.dstate = new ScilabDouble([0]);
         this.model.rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
-        this.model.blocktype = new ScilabString("d");
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = string(this.model.rpar);
         gr_i = [];

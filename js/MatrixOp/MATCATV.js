@@ -5,20 +5,20 @@ function MATCATV() {
         this.model = scicos_model();
         function_name = "mat_catv";
         funtyp = 4;
-        this.model.sim = list(new ScilabString(function_name),new ScilabDouble(funtyp));
+        this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in2 = [[-1],[-1]];
         this.model.in1 = [[-2],[-3]];
         this.model.intyp = [-1,-1];
-        this.model.out = new ScilabDouble(0);
-        this.model.out2 = new ScilabDouble(-1);
-        this.model.outtyp = new ScilabDouble(-1);
+        this.model.out = new ScilabDouble([0]);
+        this.model.out2 = new ScilabDouble([-1]);
+        this.model.outtyp = new ScilabDouble([-1]);
         this.model.evtin = [];
         this.model.evtout = [];
         this.model.state = [];
         this.model.dstate = [];
         this.model.rpar = [];
         this.model.ipar = [];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
         label = [sci2exp(2)];
@@ -58,7 +58,7 @@ function MATCATV() {
             [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {
                 funtyp = 4;
-                this.model.sim = list(new ScilabString("mat_catv"),new ScilabDouble(funtyp));
+                this.model.sim = list(new ScilabString(["mat_catv"]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
                 arg1.model = this.model;

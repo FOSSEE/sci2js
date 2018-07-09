@@ -2,17 +2,17 @@
 function GotoTagVisibility() {
     GotoTagVisibility.prototype.define = function GotoTagVisibility() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("gototagvisibility");
+        this.model.sim = new ScilabString(["gototagvisibility"]);
         this.model.in1 = [];
         this.model.in2 = [];
         this.model.out = [];
         this.model.out2 = [];
         this.model.evtin = [];
-        this.model.intyp = new ScilabDouble(1);
-        this.model.outtyp = new ScilabDouble(1);
-        this.model.opar = list(new ScilabString("A"));
-        this.model.blocktype = new ScilabString("c");
-        this.model.firing = new ScilabBoolean(false);
+        this.model.intyp = new ScilabDouble([1]);
+        this.model.outtyp = new ScilabDouble([1]);
+        this.model.opar = list(new ScilabString(["A"]));
+        this.model.blocktype = new ScilabString(["c"]);
+        this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = [false,false];
         exprs = "A";
         gr_i = [];
@@ -45,7 +45,7 @@ function GotoTagVisibility() {
                     y = needcompile;
                 }
                 graphics.exprs = exprs;
-                this.model.opar = list(new ScilabDouble(this.tag));
+                this.model.opar = list(new ScilabDouble([this.tag]));
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

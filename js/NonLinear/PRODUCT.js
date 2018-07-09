@@ -3,11 +3,11 @@ function PRODUCT() {
     PRODUCT.prototype.define = function PRODUCT() {
         this.sgn = [[1],[-1]];
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("product"),new ScilabDouble(4));
+        this.model.sim = list(new ScilabString(["product"]), new ScilabDouble([4]));
         this.model.in1 = [[-1],[-1]];
-        this.model.out = new ScilabDouble(-1);
+        this.model.out = new ScilabDouble([-1]);
         this.model.ipar = this.sgn;
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = sci2exp(this.sgn);
         gr_i = [];
@@ -60,7 +60,7 @@ function PRODUCT() {
                 [model,graphics,ok] = check_io(this.model,graphics,in1,nout,[],[]);
             }
             if (ok) {
-                this.model.ipar = new ScilabDouble(this.sgn);
+                this.model.ipar = new ScilabDouble([this.sgn]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

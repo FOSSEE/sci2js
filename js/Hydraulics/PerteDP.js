@@ -11,17 +11,17 @@ function PerteDP() {
         this.z2 = 0;
         this.p_rho = 0;
         this.model.rpar = [[this.L],[this.D],[this.lambda],[this.z1],[this.z2],[this.p_rho]];
-        this.model.sim = new ScilabString("PerteDP");
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["PerteDP"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         mo = modelica();
         mo.model = "PerteDP";
         mo.inputs = "C1";
         mo.outputs = "C2";
         mo.parameters = list([["L"],["D"],["lambda"],["z1"],["z2"],["p_rho"]],[[this.L],[this.D],[this.lambda],[this.z1],[this.z2],[this.p_rho]]);
-        this.model.equations = new ScilabDouble(mo);
-        this.model.in1 = new ScilabDouble(ones(size(mo.inputs,"*"),1));
-        this.model.out = new ScilabDouble(ones(size(mo.outputs,"*"),1));
+        this.model.equations = new ScilabDouble([mo]);
+        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         exprs = [[string(this.L)],[string(this.D)],[string(this.lambda)],[string(this.z1)],[string(this.z2)],[string(this.p_rho)]];
         gr_i = [];
         this.x = standard_define([2,1],this.model,exprs,list(gr_i,0));
@@ -60,7 +60,7 @@ function PerteDP() {
                 break;
             }
             this.model.rpar = [[this.L],[this.D],[this.lambda],[this.z1],[this.z2],[this.p_rho]];
-            this.model.equations.parameters[2] = list(new ScilabDouble(this.L),new ScilabDouble(this.D),new ScilabDouble(this.lambda),new ScilabDouble(this.z1),new ScilabDouble(this.z2),new ScilabDouble(this.p_rho));
+            this.model.equations.parameters[2] = list(new ScilabDouble([this.L]), new ScilabDouble([this.D]), new ScilabDouble([this.lambda]), new ScilabDouble([this.z1]), new ScilabDouble([this.z2]), new ScilabDouble([this.p_rho]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

@@ -10,15 +10,15 @@ function SineVoltage() {
         this.offset = 0;
         this.start = 0;
         this.model.rpar = [[this.V],[this.ph],[this.frq],[this.offset],[this.start]];
-        this.model.sim = new ScilabString("SineVoltage");
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["SineVoltage"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         mo = modelica();
         mo.model = "SineVoltage";
         mo.inputs = "p";
         mo.outputs = "n";
         mo.parameters = list([["V"],["phase"],["freqHz"],["offset"],["startTime"]],list(this.V,this.ph,this.frq,this.offset,this.start));
-        this.model.equations = new ScilabDouble(mo);
+        this.model.equations = new ScilabDouble([mo]);
         exprs = [[string(this.V)],[string(this.ph)],[string(this.frq)],[string(this.offset)],[string(this.start)]];
         gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -55,7 +55,7 @@ function SineVoltage() {
                 break;
             }
             this.model.rpar = [[this.V],[this.ph],[this.frq],[this.offset],[this.start]];
-            this.model.equations.parameters[2] = list(new ScilabDouble(this.V),new ScilabDouble(this.ph),new ScilabDouble(this.frq),new ScilabDouble(this.offset),new ScilabDouble(this.start));
+            this.model.equations.parameters[2] = list(new ScilabDouble([this.V]), new ScilabDouble([this.ph]), new ScilabDouble([this.frq]), new ScilabDouble([this.offset]), new ScilabDouble([this.start]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

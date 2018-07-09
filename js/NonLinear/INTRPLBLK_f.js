@@ -4,11 +4,11 @@ function INTRPLBLK_f() {
         this.a = [[0],[1]];
         this.b = [[0],[1]];
         this.model = scicos_model();
-        this.model.sim = new ScilabString("intrpl");
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
+        this.model.sim = new ScilabString(["intrpl"]);
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
         this.model.rpar = [[this.a],[this.b]];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))]];
         gr_i = [];

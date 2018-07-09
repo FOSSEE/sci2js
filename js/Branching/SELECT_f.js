@@ -5,12 +5,12 @@ function SELECT_f() {
         in1 = [[-1],[-1]];
         this.nin = 2;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("selector"),new ScilabDouble(2));
+        this.model.sim = list(new ScilabString(["selector"]), new ScilabDouble([2]));
         this.model.in1 = in1;
-        this.model.out = new ScilabDouble(-1);
-        this.model.evtin = new ScilabDouble(ones(in1));
-        this.model.dstate = new ScilabDouble(this.z0);
-        this.model.blocktype = new ScilabString("c");
+        this.model.out = new ScilabDouble([-1]);
+        this.model.evtin = new ScilabDouble([ones(in1)]);
+        this.model.dstate = new ScilabDouble([this.z0]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string(this.nin)],[string(this.z0+1)]];
         gr_i = [];
@@ -45,7 +45,7 @@ function SELECT_f() {
                 [model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,ones(this.nin,1),[]);
                 if (ok) {
                     graphics.exprs = exprs;
-                    this.model.dstate = new ScilabDouble(this.z0-1);
+                    this.model.dstate = new ScilabDouble([this.z0-1]);
                     this.x.graphics = graphics;
                     this.x.model = this.model;
                     break;

@@ -18,8 +18,8 @@ function freq_div() {
         graphics.orig = [0,-100];
         graphics.sz = [60,40];
         graphics.exprs = [["0"],["3"]];
-        this.model.dstate = new ScilabDouble(3);
-        this.model.ipar = new ScilabDouble(3);
+        this.model.dstate = new ScilabDouble([3]);
+        this.model.ipar = new ScilabDouble([3]);
         graphics.pout = 7;
         graphics.pein = 10;
         blk.graphics = graphics;
@@ -31,7 +31,7 @@ function freq_div() {
         graphics.orig = [120,0];
         graphics.sz = [20,20];
         graphics.exprs = ["1"];
-        this.model.ipar = new ScilabDouble(1);
+        this.model.ipar = new ScilabDouble([1]);
         graphics.peout = 6;
         blk.graphics = graphics;
         blk.model = this.model;
@@ -42,7 +42,7 @@ function freq_div() {
         graphics.orig = [130,-160];
         graphics.sz = [20,20];
         graphics.exprs = ["1"];
-        this.model.ipar = new ScilabDouble(1);
+        this.model.ipar = new ScilabDouble([1]);
         graphics.pein = 8;
         blk.graphics = graphics;
         blk.model = this.model;
@@ -53,7 +53,7 @@ function freq_div() {
         graphics.orig = [100,-100];
         graphics.sz = [60,40];
         graphics.exprs = [["1"],["0"]];
-        this.model.ipar = new ScilabDouble(1);
+        this.model.ipar = new ScilabDouble([1]);
         graphics.pin = 7;
         graphics.pein = 9;
         graphics.peout = [[0],[8]];
@@ -99,9 +99,9 @@ function freq_div() {
         blk={};
         lnk={};
         this.model = scicos_model();
-        this.model.sim = new ScilabString("csuper");
-        this.model.evtin = new ScilabDouble(1);
-        this.model.evtout = new ScilabDouble(1);
+        this.model.sim = new ScilabString(["csuper"]);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
         gr_i = [];
         this.x = standard_define([3,2],this.model,[],gr_i);
@@ -153,8 +153,8 @@ function freq_div() {
                     %ph = %df-1;
                 }
                 graphics.exprs = exprs;
-                this.model.ipar = new ScilabDouble(%df);
-                this.model.dstate = new ScilabDouble(%ph);
+                this.model.ipar = new ScilabDouble([%df]);
+                this.model.dstate = new ScilabDouble([%ph]);
                 xxn.graphics = graphics;
                 xxn.model = this.model;
                 break;

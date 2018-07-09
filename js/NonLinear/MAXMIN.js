@@ -2,12 +2,12 @@
 function MAXMIN() {
     MAXMIN.prototype.define = function MAXMIN() {
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("minmax"),new ScilabDouble(4));
-        this.model.out = new ScilabDouble(1);
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = list(new ScilabString(["minmax"]), new ScilabDouble([4]));
+        this.model.out = new ScilabDouble([1]);
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        this.model.ipar = new ScilabDouble(0);
+        this.model.ipar = new ScilabDouble([0]);
         exprs = [string(transpose([2,1,1]))];
         gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -56,13 +56,13 @@ function MAXMIN() {
                 }
             }
             if (ok) {
-                this.model.nzcross = new ScilabDouble(this.zcr);
+                this.model.nzcross = new ScilabDouble([this.zcr]);
                 if (this.nin==1) {
-                    this.model.nmode = new ScilabDouble(abs(this.zcr));
+                    this.model.nmode = new ScilabDouble([abs(this.zcr)]);
                 } else {
-                    this.model.nmode = new ScilabDouble(this.zcr);
+                    this.model.nmode = new ScilabDouble([this.zcr]);
                 }
-                this.model.ipar = new ScilabDouble(this.mm);
+                this.model.ipar = new ScilabDouble([this.mm]);
                 if (this.mm==1) {
                     label = "MIN";
                 } else {

@@ -5,17 +5,17 @@ function Capacitor() {
         this.C = 0.01;
         this.v = 0;
         this.model.rpar = [[this.C],[this.v]];
-        this.model.sim = new ScilabString("Capacitor");
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["Capacitor"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         mo = modelica();
         mo.model = "Capacitor";
         mo.inputs = "p";
         mo.outputs = "n";
         mo.parameters = list(["C","v"],list(this.C,this.v),[0,1]);
-        this.model.equations = new ScilabDouble(mo);
-        this.model.in1 = new ScilabDouble(ones(size(mo.inputs,"*"),1));
-        this.model.out = new ScilabDouble(ones(size(mo.outputs,"*"),1));
+        this.model.equations = new ScilabDouble([mo]);
+        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         exprs = string([[this.C],[this.v]]);
         gr_i = [];
         this.x = standard_define([2,1.1],this.model,exprs,list(gr_i,0));
@@ -45,8 +45,8 @@ function Capacitor() {
             if (!ok) {
                 break;
             }
-            this.model.rpar = new ScilabDouble(this.C);
-            this.model.equations.parameters[2] = list(new ScilabDouble(this.C),new ScilabDouble(this.v));
+            this.model.rpar = new ScilabDouble([this.C]);
+            this.model.equations.parameters[2] = list(new ScilabDouble([this.C]), new ScilabDouble([this.v]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

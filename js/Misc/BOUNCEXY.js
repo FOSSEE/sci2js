@@ -10,11 +10,11 @@ function BOUNCEXY() {
         this.ymin = 0;
         this.ymax = 15;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("bouncexy"),new ScilabDouble(4));
+        this.model.sim = list(new ScilabString(["bouncexy"]), new ScilabDouble([4]));
         this.model.in1 = [[-1],[-1]];
         this.model.in2 = [[1],[1]];
         this.model.intyp = [[1],[1]];
-        this.model.evtin = new ScilabDouble(1);
+        this.model.evtin = new ScilabDouble([1]);
         z = [];
         for (i=1;i<=size(this.clrs,"*");i+=1) {
             z[6*(i-1)+1-1] = 0;
@@ -27,7 +27,7 @@ function BOUNCEXY() {
         this.model.dstate = z;
         this.model.rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
         this.model.ipar = [[this.win],[this.imode],[this.clrs.slice()]];
-        this.model.blocktype = new ScilabString("d");
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [false,false];
         exprs = [[strcat(sci2exp(this.clrs))],[strcat(sci2exp(this.siz))],[strcat(sci2exp(this.win))],[strcat(sci2exp(1))],[strcat(sci2exp(this.xmin))],[strcat(sci2exp(this.xmax))],[strcat(sci2exp(this.ymin))],[strcat(sci2exp(this.ymax))]];

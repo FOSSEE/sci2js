@@ -6,12 +6,12 @@ function VARIABLE_DELAY() {
         this.init = 0;
         this.N = 1024;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("variable_delay"),new ScilabDouble(4));
+        this.model.sim = list(new ScilabString(["variable_delay"]), new ScilabDouble([4]));
         this.model.in1 = [[nin],[1]];
-        this.model.out = new ScilabDouble(nin);
+        this.model.out = new ScilabDouble([nin]);
         this.model.rpar = [this.T,this.init];
-        this.model.ipar = new ScilabDouble(this.N);
-        this.model.blocktype = new ScilabString("d");
+        this.model.ipar = new ScilabDouble([this.N]);
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
         gr_i = [];
@@ -57,7 +57,7 @@ function VARIABLE_DELAY() {
             if (ok) {
                 graphics.exprs = exprs;
                 this.model.rpar = [[this.T],[this.init]];
-                this.model.ipar = new ScilabDouble(this.N);
+                this.model.ipar = new ScilabDouble([this.N]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

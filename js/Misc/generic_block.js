@@ -4,16 +4,16 @@ function generic_block() {
         this.model = scicos_model();
         this.function_name = "sinblk";
         this.funtyp = 1;
-        this.model.sim = list(new ScilabString(this.function_name),new ScilabDouble(this.funtyp));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString([this.function_name]), new ScilabDouble([this.funtyp]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
         this.model.evtin = [];
         this.model.evtout = [];
         this.model.state = [];
         this.model.dstate = [];
         this.model.rpar = [];
         this.model.ipar = [];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
         label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp(this.model.in1)],[sci2exp(this.model.out)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.firing)],["y"],["n"]];
@@ -110,12 +110,12 @@ function generic_block() {
                 if (this.funtyp==3) {
                     needcompile = 4;
                 }
-                this.model.sim = list(new ScilabDouble(this.function_name),new ScilabDouble(this.funtyp));
+                this.model.sim = list(new ScilabDouble([this.function_name]), new ScilabDouble([this.funtyp]));
                 this.model.state = this.xx;
                 this.model.dstate = this.z;
                 this.model.rpar = this.rpar;
-                this.model.ipar = new ScilabDouble(this.ipar);
-                this.model.firing = new ScilabDouble(this.auto0);
+                this.model.ipar = new ScilabDouble([this.ipar]);
+                this.model.firing = new ScilabDouble([this.auto0]);
                 this.model.dep_ut = dep_ut;
                 arg1.model = this.model;
                 graphics.exprs = label;

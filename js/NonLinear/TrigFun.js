@@ -2,10 +2,10 @@
 function TrigFun() {
     TrigFun.prototype.define = function TrigFun() {
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("sin_blk"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.out = new ScilabDouble(-1);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = list(new ScilabString(["sin_blk"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.out = new ScilabDouble([-1]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = "sin";
         gr_i = [];

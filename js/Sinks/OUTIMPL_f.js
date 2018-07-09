@@ -5,14 +5,14 @@ function OUTIMPL_f() {
         this.model.in1 = [-1];
         this.model.in2 = [1];
         this.prt = 1;
-        this.model.sim = new ScilabString("outimpl");
+        this.model.sim = new ScilabString(["outimpl"]);
         this.model.ipar = [1];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
         mo = modelica();
         mo.model = "PORT";
         mo.inputs = "n";
-        this.model.equations = new ScilabDouble(mo);
+        this.model.equations = new ScilabDouble([mo]);
         exprs = "1";
         gr_i = [];
         this.x = standard_define([1,1],this.model,exprs,gr_i);
@@ -49,7 +49,7 @@ function OUTIMPL_f() {
                     needcompile = 4;
                     y = needcompile;
                 }
-                this.model.ipar = new ScilabDouble(this.prt);
+                this.model.ipar = new ScilabDouble([this.prt]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

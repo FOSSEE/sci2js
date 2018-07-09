@@ -9,12 +9,12 @@ function LOOKUP2D() {
         Graf = "n";
         Nx = length(this.xx);
         Ny = length(this.yy);
-        this.model.sim = list(new ScilabString("lookup2d"),new ScilabDouble(4));
+        this.model.sim = list(new ScilabString(["lookup2d"]), new ScilabDouble([4]));
         this.model.in1 = [[1],[1]];
-        this.model.out = new ScilabDouble(1);
+        this.model.out = new ScilabDouble([1]);
         this.model.rpar = [[this.xx.slice()],[this.yy.slice()],[this.zz.slice()]];
         this.model.ipar = [[Nx],[Ny],[this.Method]];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = list(strcat(sci2exp(this.xx)),strcat(sci2exp(this.yy)),strcat(sci2exp(this.zz)),sci2exp(this.Method),Graf);
         gr_i = [];

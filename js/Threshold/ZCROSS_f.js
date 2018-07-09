@@ -4,13 +4,13 @@ function ZCROSS_f() {
         rpar = [[-1],[-1],[0],[0]];
         this.in1 = 1;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("zcross"),new ScilabDouble(1));
-        this.model.in1 = new ScilabDouble(this.in1);
-        this.model.nzcross = new ScilabDouble(this.in1);
-        this.model.evtout = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["zcross"]), new ScilabDouble([1]));
+        this.model.in1 = new ScilabDouble([this.in1]);
+        this.model.nzcross = new ScilabDouble([this.in1]);
+        this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = [[-1],[-1],[0],[0]];
-        this.model.blocktype = new ScilabString("z");
-        this.model.firing = new ScilabDouble(-1);
+        this.model.blocktype = new ScilabString(["z"]);
+        this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [true,false];
         exprs = strcat(sci2exp(this.in1));
         gr_i = [];
@@ -46,9 +46,9 @@ function ZCROSS_f() {
                 }
                 this.model.rpar = [[-ones(kk,1)],[zeros(2^(2*this.in1)-kk,1)]];
                 graphics.exprs = exprs;
-                this.model.in1 = new ScilabDouble(this.in1);
-                this.model.nzcross = new ScilabDouble(this.in1);
-                this.model.firing = new ScilabDouble(-1);
+                this.model.in1 = new ScilabDouble([this.in1]);
+                this.model.nzcross = new ScilabDouble([this.in1]);
+                this.model.firing = new ScilabDouble([-1]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

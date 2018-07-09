@@ -5,11 +5,11 @@ function GAINBLK_f() {
         in1 = 1;
         out = 1;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("gain");
-        this.model.in1 = new ScilabDouble(in1);
-        this.model.out = new ScilabDouble(out);
-        this.model.rpar = new ScilabDouble(this.gain);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["gain"]);
+        this.model.in1 = new ScilabDouble([in1]);
+        this.model.out = new ScilabDouble([out]);
+        this.model.rpar = new ScilabDouble([this.gain]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [strcat(sci2exp(this.gain))];
         gr_i = [];

@@ -31,19 +31,19 @@ function CVS() {
         }
         this.model = scicos_model();
         mo = modelica();
-        this.model.sim = new ScilabString(ModelName);
+        this.model.sim = new ScilabString([ModelName]);
         mo.inputs = MI;
         mo.outputs = MO;
         this.model.rpar = PrametersValue;
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         exprs = [];
         gr_i = [];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         mo.model = ModelName;
-        this.model.equations = new ScilabDouble(mo);
-        this.model.in1 = new ScilabDouble(ones(size(MI,"*"),1));
-        this.model.out = new ScilabDouble(ones(size(MO,"*"),1));
+        this.model.equations = new ScilabDouble([mo]);
+        this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);
+        this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
         this.x = standard_define([2.1,3],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = Typein;
         this.x.graphics.out_implicit = Typeout;

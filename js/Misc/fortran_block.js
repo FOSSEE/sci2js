@@ -2,16 +2,16 @@
 function fortran_block() {
     fortran_block.prototype.define = function fortran_block() {
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString(" "),new ScilabDouble(1001));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString([" "]), new ScilabDouble([1001]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
         this.model.evtin = [];
         this.model.evtout = [];
         this.model.state = [];
         this.model.dstate = [];
         this.model.rpar = [];
-        this.model.ipar = new ScilabDouble(0);
-        this.model.blocktype = new ScilabString("c");
+        this.model.ipar = new ScilabDouble([0]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
         this.funam = "forty";
@@ -66,7 +66,7 @@ function fortran_block() {
             }
             [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,[],[]);
             if (ok) {
-                this.model.sim[1] = new ScilabString(this.funam);
+                this.model.sim[1] = new ScilabString([this.funam]);
                 this.model.rpar = this.rpar;
                 label[2-1] = tt;
                 this.x.model = this.model;

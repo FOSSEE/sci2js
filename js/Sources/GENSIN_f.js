@@ -3,13 +3,13 @@ function GENSIN_f() {
     GENSIN_f.prototype.define = function GENSIN_f() {
         rpar = [[1],[1],[0]];
         this.model = scicos_model();
-        this.model.sim = new ScilabString("gensin");
+        this.model.sim = new ScilabString(["gensin"]);
         this.model.in1 = [];
-        this.model.out = new ScilabDouble(1);
-        this.model.out2 = new ScilabDouble(1);
-        this.model.outtyp = new ScilabDouble(1);
+        this.model.out = new ScilabDouble([1]);
+        this.model.out2 = new ScilabDouble([1]);
+        this.model.outtyp = new ScilabDouble([1]);
         this.model.rpar = [[1],[1],[0]];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         exprs = [[string(rpar[1-1])],[string(rpar[2-1])],[string(rpar[3-1])]];
         gr_i = [];
@@ -47,8 +47,8 @@ function GENSIN_f() {
             if (ok) {
                 [model,graphics,ok] = check_io(this.model,graphics,[],1,[],[]);
                 this.model.rpar = [[this.M],[this.F],[this.P]];
-                this.model.out2 = new ScilabDouble(1);
-                this.model.outtyp = new ScilabDouble(1);
+                this.model.out2 = new ScilabDouble([1]);
+                this.model.outtyp = new ScilabDouble([1]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

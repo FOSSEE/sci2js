@@ -3,12 +3,12 @@ function SIGNUM() {
     SIGNUM.prototype.define = function SIGNUM() {
         nu = -1;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("signum"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(nu);
-        this.model.out = new ScilabDouble(nu);
-        this.model.nzcross = new ScilabDouble(nu);
-        this.model.nmode = new ScilabDouble(nu);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = list(new ScilabString(["signum"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([nu]);
+        this.model.out = new ScilabDouble([nu]);
+        this.model.nzcross = new ScilabDouble([nu]);
+        this.model.nmode = new ScilabDouble([nu]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [string([1])];
         gr_i = [];
@@ -38,11 +38,11 @@ function SIGNUM() {
             graphics.exprs = exprs;
             if (ok) {
                 if (this.zcr!=0) {
-                    this.model.nmode = new ScilabDouble(-1);
-                    this.model.nzcross = new ScilabDouble(-1);
+                    this.model.nmode = new ScilabDouble([-1]);
+                    this.model.nzcross = new ScilabDouble([-1]);
                 } else {
-                    this.model.nmode = new ScilabDouble(0);
-                    this.model.nzcross = new ScilabDouble(0);
+                    this.model.nmode = new ScilabDouble([0]);
+                    this.model.nzcross = new ScilabDouble([0]);
                 }
                 this.x.graphics = graphics;
                 this.x.model = this.model;

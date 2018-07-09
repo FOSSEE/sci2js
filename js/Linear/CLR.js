@@ -8,12 +8,12 @@ function CLR() {
         D = 0;
         exprs = [["1"],["1+s"]];
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("csslti4"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.state = new ScilabDouble(x0);
+        this.model.sim = list(new ScilabString(["csslti4"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.state = new ScilabDouble([x0]);
         this.model.rpar = [[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

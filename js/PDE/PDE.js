@@ -2,11 +2,11 @@
 function PDE() {
     PDE.prototype.define = function PDE() {
         this.model = scicos_model();
-        this.model.state = new ScilabDouble(zeros(10,1));
-        this.model.sim = list(new ScilabString("PDE"),new ScilabDouble(0));
+        this.model.state = new ScilabDouble([zeros(10,1)]);
+        this.model.sim = list(new ScilabString(["PDE"]), new ScilabDouble([0]));
         this.model.in1 = [[1],[1],[1],[1],[1]];
         this.model.out = [[10],[0]];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         params_pde = tlist([["paramspde"],["a"],["b"],["txt_exp"],["check_op1"],["a1"],["b1"],["check_op2"],["a2"],["b2"],["check_op3"],["a3"],["b3"],["check_op4"],["a4"],["b4"],["check_op5"],["a5"],["b5"],["check_op6"],["a6"],["b6"],["check_op7"],["a7"],["b7"],["discr_cst"],["discr_non_cst"],["signe"],["rad_automatique"],["rad_manuel"],["methode"],["ord1"],["ord2"],["ord3"],["degre"],["nnode"],["txt_pas"],["CI"],["dCI"],["CLa"],["CLa_exp"],["CLb"],["CLb_exp"],["points"]],"","","","0","","IN_EDP1(t)","0","","IN_EDP2(t)","0","","IN_EDP3(t)","0","","IN_EDP4(t)","0","","IN_EDP5(t)","0","","IN_EDP6(t)","0","","IN_EDP7(t)","0","0","0","0","0","0","","","","","","","","","0","IN_CL1(t)","0","IN_CL2(t)","");
         label = list(params_pde,[],"");
@@ -96,29 +96,29 @@ function PDE() {
                 out = [[Nbr_maillage],[size(mesures,"*")]];
             }
             if ((flag_type==1)) {
-                this.model.sim = list(new ScilabDouble(this.rdnom),new ScilabDouble(2004));
+                this.model.sim = list(new ScilabDouble([this.rdnom]), new ScilabDouble([2004]));
                 if ((find(oper==1)!=[])) {
-                    this.model.state = new ScilabDouble(zeros(2*Nbr_maillage,1));
+                    this.model.state = new ScilabDouble([zeros(2*Nbr_maillage,1)]);
                 } else {
-                    this.model.state = new ScilabDouble(zeros(Nbr_maillage,1));
+                    this.model.state = new ScilabDouble([zeros(Nbr_maillage,1)]);
                 }
             } else if ((flag_type==2)) {
-                this.model.sim = list(new ScilabDouble(this.rdnom),new ScilabDouble(12004));
+                this.model.sim = list(new ScilabDouble([this.rdnom]), new ScilabDouble([12004]));
                 if ((find(oper==1)!=[])) {
                     if ((type_meth==3&&(find(oper==2)!=[]||find(oper==4)!=[]))) {
-                        this.model.state = new ScilabDouble(zeros(6*Nbr_maillage,1));
+                        this.model.state = new ScilabDouble([zeros(6*Nbr_maillage,1)]);
                     } else if ((type_meth==1)) {
-                        this.model.state = new ScilabDouble(zeros(4*Nbr,1));
+                        this.model.state = new ScilabDouble([zeros(4*Nbr,1)]);
                     } else {
-                        this.model.state = new ScilabDouble(zeros(4*Nbr_maillage,1));
+                        this.model.state = new ScilabDouble([zeros(4*Nbr_maillage,1)]);
                     }
                 } else {
                     if ((type_meth==3&&(find(oper==2)!=[]||find(oper==4)!=[]))) {
-                        this.model.state = new ScilabDouble(zeros(4*Nbr_maillage,1));
+                        this.model.state = new ScilabDouble([zeros(4*Nbr_maillage,1)]);
                     } else if ((type_meth==1)) {
-                        this.model.state = new ScilabDouble(zeros(2*Nbr,1));
+                        this.model.state = new ScilabDouble([zeros(2*Nbr,1)]);
                     } else {
-                        this.model.state = new ScilabDouble(zeros(2*Nbr_maillage,1));
+                        this.model.state = new ScilabDouble([zeros(2*Nbr_maillage,1)]);
                     }
                 }
             }

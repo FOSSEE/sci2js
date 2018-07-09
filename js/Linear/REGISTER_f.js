@@ -3,12 +3,12 @@ function REGISTER_f() {
     REGISTER_f.prototype.define = function REGISTER_f() {
         this.z0 = zeros(10,1);
         this.model = scicos_model();
-        this.model.sim = new ScilabString("delay");
-        this.model.in1 = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.evtin = new ScilabDouble(1);
-        this.model.dstate = new ScilabDouble(this.z0);
-        this.model.blocktype = new ScilabString("d");
+        this.model.sim = new ScilabString(["delay"]);
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.dstate = new ScilabDouble([this.z0]);
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = strcat(string(this.z0),";");
         gr_i = [];
@@ -40,7 +40,7 @@ function REGISTER_f() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.dstate = new ScilabDouble(this.z0);
+                this.model.dstate = new ScilabDouble([this.z0]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

@@ -4,16 +4,16 @@ function SHIFT() {
         sgn = [[0],[0]];
         OPER = 0;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("shift_32_LA"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.out = new ScilabDouble(-1);
-        this.model.in2 = new ScilabDouble(-2);
-        this.model.out2 = new ScilabDouble(-2);
-        this.model.intyp = new ScilabDouble(3);
-        this.model.outtyp = new ScilabDouble(3);
+        this.model.sim = list(new ScilabString(["shift_32_LA"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.out = new ScilabDouble([-1]);
+        this.model.in2 = new ScilabDouble([-2]);
+        this.model.out2 = new ScilabDouble([-2]);
+        this.model.intyp = new ScilabDouble([3]);
+        this.model.outtyp = new ScilabDouble([3]);
         this.model.rpar = [];
         this.model.ipar = sgn;
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[sci2exp(3)],[sci2exp(0)],[sci2exp(0)]];
         gr_i = [];
@@ -54,63 +54,63 @@ function SHIFT() {
                 if (this.nb>0) {
                     switch (this.np) {
                     case 0:
-                        this.model.sim = list(new ScilabString("shift_32_LA"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["shift_32_LA"]), new ScilabDouble([4]));
                     case 1:
-                        this.model.sim = list(new ScilabString("shift_32_LC"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["shift_32_LC"]), new ScilabDouble([4]));
                     }
                 } else if (this.nb<0) {
                     switch (this.np) {
                     case 0:
                         switch (this.Datatype) {
                         case 3:
-                            this.model.sim = list(new ScilabString("shift_32_RA"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["shift_32_RA"]), new ScilabDouble([4]));
                         case 6:
-                            this.model.sim = list(new ScilabString("shift_u32_RA"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["shift_u32_RA"]), new ScilabDouble([4]));
                         }
                     case 1:
-                        this.model.sim = list(new ScilabString("shift_32_RC"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["shift_32_RC"]), new ScilabDouble([4]));
                     }
                 }
             } else if ((this.Datatype==4||this.Datatype==7)) {
                 if (this.nb>0) {
                     switch (this.np) {
                     case 0:
-                        this.model.sim = list(new ScilabString("shift_16_LA"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["shift_16_LA"]), new ScilabDouble([4]));
                     case 1:
-                        this.model.sim = list(new ScilabString("shift_16_LC"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["shift_16_LC"]), new ScilabDouble([4]));
                     }
                 } else if (this.nb<0) {
                     switch (this.np) {
                     case 0:
                         switch (this.Datatype) {
                         case 4:
-                            this.model.sim = list(new ScilabString("shift_16_RA"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["shift_16_RA"]), new ScilabDouble([4]));
                         case 7:
-                            this.model.sim = list(new ScilabString("shift_u16_RA"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["shift_u16_RA"]), new ScilabDouble([4]));
                         }
                     case 1:
-                        this.model.sim = list(new ScilabString("shift_16_RC"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["shift_16_RC"]), new ScilabDouble([4]));
                     }
                 }
             } else if ((this.Datatype==5||this.Datatype==8)) {
                 if (this.nb>0) {
                     switch (this.np) {
                     case 0:
-                        this.model.sim = list(new ScilabString("shift_8_LA"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["shift_8_LA"]), new ScilabDouble([4]));
                     case 1:
-                        this.model.sim = list(new ScilabString("shift_8_LC"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["shift_8_LC"]), new ScilabDouble([4]));
                     }
                 } else if (this.nb<0) {
                     switch (this.np) {
                     case 0:
                         switch (this.Datatype) {
                         case 5:
-                            this.model.sim = list(new ScilabString("shift_8_RA"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["shift_8_RA"]), new ScilabDouble([4]));
                         case 8:
-                            this.model.sim = list(new ScilabString("shift_u8_RA"),new ScilabDouble(4));
+                            this.model.sim = list(new ScilabString(["shift_u8_RA"]), new ScilabDouble([4]));
                         }
                     case 1:
-                        this.model.sim = list(new ScilabString("shift_8_RC"),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString(["shift_8_RC"]), new ScilabDouble([4]));
                     }
                 }
             } else {
@@ -121,7 +121,7 @@ function SHIFT() {
                 [model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],it),list([-1,-2],ot),[],[]);
             }
             if (ok) {
-                this.model.ipar = new ScilabDouble(this.nb);
+                this.model.ipar = new ScilabDouble([this.nb]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

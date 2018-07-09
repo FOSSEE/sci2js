@@ -2,11 +2,11 @@
 function CLKFROM() {
     CLKFROM.prototype.define = function CLKFROM() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("clkfrom");
-        this.model.evtout = new ScilabDouble(1);
-        this.model.opar = list(new ScilabString("A"));
-        this.model.blocktype = new ScilabString("d");
-        this.model.firing = new ScilabDouble(-1);
+        this.model.sim = new ScilabString(["clkfrom"]);
+        this.model.evtout = new ScilabDouble([1]);
+        this.model.opar = list(new ScilabString(["A"]));
+        this.model.blocktype = new ScilabString(["d"]);
+        this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [false,false];
         exprs = "A";
         this.x = standard_define([2,1],this.model,exprs," ");
@@ -36,9 +36,9 @@ function CLKFROM() {
                 needcompile = 4;
                 y = needcompile;
             }
-            this.model.opar = list(new ScilabDouble(this.tag));
-            this.model.evtout = new ScilabDouble(1);
-            this.model.firing = new ScilabDouble(-1);
+            this.model.opar = list(new ScilabDouble([this.tag]));
+            this.model.evtout = new ScilabDouble([1]);
+            this.model.firing = new ScilabDouble([-1]);
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

@@ -4,17 +4,17 @@ function OpAmp() {
         S = [];
         Z = [];
         this.model = scicos_model();
-        this.model.sim = new ScilabString("OpAmp");
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["OpAmp"]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         mo = modelica();
         mo.model = this.model.sim;
         mo.inputs = [["in_p"],["in_n"]];
         mo.outputs = ["out"];
         mo.parameters = list(S,Z);
-        this.model.equations = new ScilabDouble(mo);
-        this.model.in1 = new ScilabDouble(ones(size(mo.inputs,"*"),1));
-        this.model.out = new ScilabDouble(ones(size(mo.outputs,"*"),1));
+        this.model.equations = new ScilabDouble([mo]);
+        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.model.rpar = Z;
         exprs = string(Z);
         gr_i = [];
@@ -47,7 +47,7 @@ function OpAmp() {
             if (!ok) {
                 break;
             }
-            this.model.equations.parameters[2] = list(new ScilabDouble(this.OLGain),new ScilabDouble(this.SatH),new ScilabDouble(this.SatL));
+            this.model.equations.parameters[2] = list(new ScilabDouble([this.OLGain]), new ScilabDouble([this.SatH]), new ScilabDouble([this.SatL]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;

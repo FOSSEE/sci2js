@@ -9,12 +9,12 @@ function WRITEAU_f() {
         lunit = 0;
         this.N = 2;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("writeau"),new ScilabDouble(2));
-        this.model.in1 = new ScilabDouble(in1);
-        this.model.evtin = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["writeau"]), new ScilabDouble([2]));
+        this.model.in1 = new ScilabDouble([in1]);
+        this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
         this.model.ipar = [[length(fname)],[this._str2code[frmt-1]],[this.N],[this.swap],[this._str2code[fname-1]]];
-        this.model.blocktype = new ScilabString("d");
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [true,false];
         exprs = [string(this.N),string(this.swap)];
         gr_i = [];
@@ -65,7 +65,7 @@ function WRITEAU_f() {
                 if (prod(size(dstate))!=(nin+1)*this.N+2) {
                     dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
                 }
-                this.model.in1 = new ScilabDouble(1);
+                this.model.in1 = new ScilabDouble([1]);
                 this.model.dstate = dstate;
                 this.model.ipar = ipar;
                 graphics.exprs = exprs;

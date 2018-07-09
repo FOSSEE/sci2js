@@ -4,12 +4,12 @@ function QUANT_f() {
         this.pas = 0.1;
         this.meth = 1;
         this.model = scicos_model();
-        this.model.sim = new ScilabString("qzrnd");
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.out = new ScilabDouble(-1);
-        this.model.rpar = new ScilabDouble(this.pas);
-        this.model.ipar = new ScilabDouble(this.meth);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = new ScilabString(["qzrnd"]);
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.out = new ScilabDouble([-1]);
+        this.model.rpar = new ScilabDouble([this.pas]);
+        this.model.ipar = new ScilabDouble([this.meth]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string(this.pas)],[string(this.meth)]];
         gr_i = [];
@@ -42,17 +42,17 @@ function QUANT_f() {
                 message("Quantization Type must be from 1 to 4");
             } else {
                 rpar = this.pas;
-                this.model.rpar = new ScilabDouble(rpar);
-                this.model.ipar = new ScilabDouble(this.meth);
+                this.model.rpar = new ScilabDouble([rpar]);
+                this.model.ipar = new ScilabDouble([this.meth]);
                 switch (this.meth) {
                 case 1:
-                    this.model.sim = new ScilabString("qzrnd");
+                    this.model.sim = new ScilabString(["qzrnd"]);
                 case 2:
-                    this.model.sim = new ScilabString("qztrn");
+                    this.model.sim = new ScilabString(["qztrn"]);
                 case 3:
-                    this.model.sim = new ScilabString("qzflr");
+                    this.model.sim = new ScilabString(["qzflr"]);
                 case 4:
-                    this.model.sim = new ScilabString("qzcel");
+                    this.model.sim = new ScilabString(["qzcel"]);
                 }
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;

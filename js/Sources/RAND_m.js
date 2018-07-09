@@ -8,20 +8,20 @@ function RAND_m() {
         function_name = "rndblk_m";
         funtyp = 4;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString(function_name),new ScilabDouble(funtyp));
+        this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in1 = [];
         this.model.in2 = [];
         this.model.intyp = [];
-        this.model.out = new ScilabDouble(1);
-        this.model.out2 = new ScilabDouble(1);
-        this.model.outtyp = new ScilabDouble(1);
-        this.model.evtin = new ScilabDouble(1);
+        this.model.out = new ScilabDouble([1]);
+        this.model.out2 = new ScilabDouble([1]);
+        this.model.outtyp = new ScilabDouble([1]);
+        this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = [];
         this.model.state = [];
         this.model.dstate = [[int(rand()*(10^7-1))],[0*this.a.slice()]];
         this.model.rpar = [this.a.slice(),this.b.slice()];
-        this.model.ipar = new ScilabDouble(this.flag);
-        this.model.blocktype = new ScilabString("d");
+        this.model.ipar = new ScilabDouble([this.flag]);
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [false,false];
         exprs = [[sci2exp(1)],[string(this.flag)],[sci2exp([this.a])],[sci2exp([this.b])],[sci2exp([this.model.dstate[1-1],int(rand()*(10^7-1))])]];
@@ -81,9 +81,9 @@ function RAND_m() {
                 if (ok) {
                     [model,graphics,ok] = set_io(this.model,graphics,list([],[]),list(out,ot),1,[]);
                     if (ok) {
-                        this.model.sim = list(new ScilabString(function_name),new ScilabDouble(4));
+                        this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([4]));
                         graphics.exprs = exprs;
-                        this.model.ipar = new ScilabDouble(this.flag);
+                        this.model.ipar = new ScilabDouble([this.flag]);
                         this.x.graphics = graphics;
                         this.x.model = this.model;
                         break;

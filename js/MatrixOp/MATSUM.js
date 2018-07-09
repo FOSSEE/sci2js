@@ -4,20 +4,20 @@ function MATSUM() {
         this.model = scicos_model();
         function_name = "mat_sum";
         funtyp = 4;
-        this.model.sim = list(new ScilabString(function_name),new ScilabDouble(funtyp));
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.in2 = new ScilabDouble(-2);
-        this.model.intyp = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.out2 = new ScilabDouble(1);
-        this.model.outtyp = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in2 = new ScilabDouble([-2]);
+        this.model.intyp = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.out2 = new ScilabDouble([1]);
+        this.model.outtyp = new ScilabDouble([1]);
         this.model.evtin = [];
         this.model.evtout = [];
         this.model.state = [];
         this.model.dstate = [];
         this.model.rpar = [];
         this.model.ipar = [];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
         label = [[sci2exp(1)],[sci2exp(0)]];
@@ -94,7 +94,7 @@ function MATSUM() {
                 [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
-                this.model.sim = list(new ScilabString(function_name),new ScilabDouble(funtyp));
+                this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 arg1.model = this.model;
                 graphics.exprs = label;
                 arg1.graphics = graphics;

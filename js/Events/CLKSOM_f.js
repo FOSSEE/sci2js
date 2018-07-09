@@ -2,11 +2,11 @@
 function CLKSOM_f() {
     CLKSOM_f.prototype.define = function CLKSOM_f() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("sum");
+        this.model.sim = new ScilabString(["sum"]);
         this.model.evtin = [[1],[1],[1]];
-        this.model.evtout = new ScilabDouble(1);
-        this.model.blocktype = new ScilabString("d");
-        this.model.firing = new ScilabDouble(-1);
+        this.model.evtout = new ScilabDouble([1]);
+        this.model.blocktype = new ScilabString(["d"]);
+        this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [false,false];
         gr_i = [];
         this.x = standard_define([1,1]/1.2,this.model,[],gr_i);

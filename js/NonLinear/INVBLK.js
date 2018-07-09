@@ -3,10 +3,10 @@ function INVBLK() {
     INVBLK.prototype.define = function INVBLK() {
         in1 = -1;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("invblk4"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(in1);
-        this.model.out = new ScilabDouble(in1);
-        this.model.blocktype = new ScilabString("c");
+        this.model.sim = list(new ScilabString(["invblk4"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([in1]);
+        this.model.out = new ScilabDouble([in1]);
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = " ";
         gr_i = [];

@@ -15,7 +15,7 @@ function EDGE_TRIGGER() {
         graphics.orig = [60,0];
         graphics.sz = [60,40];
         graphics.exprs = "0";
-        this.model.ipar = new ScilabDouble(0);
+        this.model.ipar = new ScilabDouble([0]);
         graphics.pin = 5;
         graphics.pout = 6;
         blk.graphics = graphics;
@@ -28,8 +28,8 @@ function EDGE_TRIGGER() {
         graphics.sz = [60,40];
         graphics.exprs = [["0"],["0"]];
         this.model.evtin = [];
-        this.model.nzcross = new ScilabDouble(0);
-        this.model.nmode = new ScilabDouble(0);
+        this.model.nzcross = new ScilabDouble([0]);
+        this.model.nmode = new ScilabDouble([0]);
         graphics.pin = 6;
         graphics.peout = [[7],[0]];
         blk.graphics = graphics;
@@ -41,7 +41,7 @@ function EDGE_TRIGGER() {
         graphics.orig = [0,10];
         graphics.sz = [20,20];
         graphics.exprs = ["1"];
-        this.model.ipar = new ScilabDouble(1);
+        this.model.ipar = new ScilabDouble([1]);
         graphics.pout = 5;
         blk.graphics = graphics;
         blk.model = this.model;
@@ -52,7 +52,7 @@ function EDGE_TRIGGER() {
         graphics.orig = [170,-60];
         graphics.sz = [20,20];
         graphics.exprs = ["1"];
-        this.model.ipar = new ScilabDouble(1);
+        this.model.ipar = new ScilabDouble([1]);
         graphics.pein = 7;
         blk.graphics = graphics;
         blk.model = this.model;
@@ -73,9 +73,9 @@ function EDGE_TRIGGER() {
         blk={};
         lnk={};
         this.model = scicos_model();
-        this.model.sim = new ScilabString("csuper");
-        this.model.in1 = new ScilabDouble(1);
-        this.model.evtout = new ScilabDouble(1);
+        this.model.sim = new ScilabString(["csuper"]);
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
         gr_i = [];
         this.x = standard_define([3,2],this.model,[],gr_i);

@@ -2,16 +2,16 @@
 function GOTOMO() {
     GOTOMO.prototype.define = function GOTOMO() {
         this.model = scicos_model();
-        this.model.sim = new ScilabString("gotomo");
-        this.model.in1 = new ScilabDouble(-1);
-        this.model.in2 = new ScilabDouble(-2);
+        this.model.sim = new ScilabString(["gotomo"]);
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = [];
         this.model.out = [];
         this.model.out2 = [];
-        this.model.outtyp = new ScilabDouble(1);
-        this.model.ipar = new ScilabDouble(int(1));
-        this.model.opar = list(new ScilabString("A"));
-        this.model.blocktype = new ScilabString("c");
+        this.model.outtyp = new ScilabDouble([1]);
+        this.model.ipar = new ScilabDouble([int(1)]);
+        this.model.opar = list(new ScilabString(["A"]));
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
         mo = modelica();
         mo.model = "gotomo";
@@ -55,8 +55,8 @@ function GOTOMO() {
                     y = needcompile;
                 }
                 graphics.exprs = exprs;
-                this.model.opar = list(new ScilabDouble(this.tag));
-                this.model.ipar = new ScilabDouble(this.tagvis);
+                this.model.opar = list(new ScilabDouble([this.tag]));
+                this.model.ipar = new ScilabDouble([this.tagvis]);
                 this.x.model = this.model;
                 this.x.graphics = graphics;
                 arg1 = this.x;

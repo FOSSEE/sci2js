@@ -12,16 +12,16 @@ function c_block() {
         this.rpar = [];
         this.funam = "toto";
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString(" "),new ScilabDouble(2001));
-        this.model.in1 = new ScilabDouble(in1);
-        this.model.out = new ScilabDouble(out);
+        this.model.sim = list(new ScilabString([" "]), new ScilabDouble([2001]));
+        this.model.in1 = new ScilabDouble([in1]);
+        this.model.out = new ScilabDouble([out]);
         this.model.evtin = clkin;
         this.model.evtout = clkout;
         this.model.state = x0;
         this.model.dstate = z0;
         this.model.rpar = this.rpar;
-        this.model.ipar = new ScilabDouble(0);
-        this.model.blocktype = new ScilabString(typ);
+        this.model.ipar = new ScilabDouble([0]);
+        this.model.blocktype = new ScilabString([typ]);
         this.model.firing = auto;
         this.model.dep_ut = [true,false];
         label = list([[sci2exp(in1)],[sci2exp(out)],[strcat(sci2exp(this.rpar))],[this.funam]],list([]));
@@ -75,7 +75,7 @@ function c_block() {
             }
             [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,[],[]);
             if (ok) {
-                this.model.sim[1] = new ScilabString(this.funam);
+                this.model.sim[1] = new ScilabString([this.funam]);
                 this.model.rpar = this.rpar;
                 label[2-1] = tt;
                 this.x.model = this.model;

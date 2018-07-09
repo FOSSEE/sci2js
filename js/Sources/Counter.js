@@ -5,13 +5,13 @@ function Counter() {
         this.maxim = 2;
         this.rule = 1;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("counter"),new ScilabDouble(4));
-        this.model.evtin = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
-        this.model.out2 = new ScilabDouble(1);
-        this.model.dstate = new ScilabDouble(0);
+        this.model.sim = list(new ScilabString(["counter"]), new ScilabDouble([4]));
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
+        this.model.out2 = new ScilabDouble([1]);
+        this.model.dstate = new ScilabDouble([0]);
         this.model.ipar = [[this.rule],[this.maxim],[this.minim]];
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
         exprs = [[string(this.minim)],[string(this.maxim)],[string(this.rule)]];
         gr_i = [];
@@ -50,7 +50,7 @@ function Counter() {
                 block_parameter_error(msprintf("Wrong value for \'Rule\' parameter: %d",this.rule),msprintf("Must be in the interval %s.","[1,2]"));
             } else {
                 graphics.exprs = exprs;
-                this.model.dstate = new ScilabDouble(0);
+                this.model.dstate = new ScilabDouble([0]);
                 this.model.ipar = [[this.rule],[this.maxim],[this.minim]];
                 this.x.graphics = graphics;
                 this.x.model = this.model;

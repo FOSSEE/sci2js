@@ -4,11 +4,11 @@ function RELATIONALOP() {
         ipar = [2];
         label = "&lt";
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("relationalop"),new ScilabDouble(4));
+        this.model.sim = list(new ScilabString(["relationalop"]), new ScilabDouble([4]));
         this.model.in1 = [[1],[1]];
-        this.model.out = new ScilabDouble(1);
+        this.model.out = new ScilabDouble([1]);
         this.model.ipar = ipar;
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string(ipar)],[string(0)]];
         gr_i = [];
@@ -52,19 +52,19 @@ function RELATIONALOP() {
                 ok = false;
             }
             if ((this.Datatype==1)) {
-                this.model.sim = list(new ScilabString("relational_op"),new ScilabDouble(4));
+                this.model.sim = list(new ScilabString(["relational_op"]), new ScilabDouble([4]));
             } else if ((this.Datatype==3||this.Datatype==9)) {
-                this.model.sim = list(new ScilabString("relational_op_i32"),new ScilabDouble(4));
+                this.model.sim = list(new ScilabString(["relational_op_i32"]), new ScilabDouble([4]));
             } else if ((this.Datatype==4)) {
-                this.model.sim = list(new ScilabString("relational_op_i16"),new ScilabDouble(4));
+                this.model.sim = list(new ScilabString(["relational_op_i16"]), new ScilabDouble([4]));
             } else if ((this.Datatype==5)) {
-                this.model.sim = list(new ScilabString("relational_op_i8"),new ScilabDouble(4));
+                this.model.sim = list(new ScilabString(["relational_op_i8"]), new ScilabDouble([4]));
             } else if ((this.Datatype==6)) {
-                this.model.sim = list(new ScilabString("relational_op_ui32"),new ScilabDouble(4));
+                this.model.sim = list(new ScilabString(["relational_op_ui32"]), new ScilabDouble([4]));
             } else if ((this.Datatype==7)) {
-                this.model.sim = list(new ScilabString("relational_op_ui16"),new ScilabDouble(4));
+                this.model.sim = list(new ScilabString(["relational_op_ui16"]), new ScilabDouble([4]));
             } else if ((this.Datatype==8)) {
-                this.model.sim = list(new ScilabString("relational_op_ui8"),new ScilabDouble(4));
+                this.model.sim = list(new ScilabString(["relational_op_ui8"]), new ScilabDouble([4]));
             } else {
                 message("Datatype is not supported");
                 ok = false;
@@ -93,8 +93,8 @@ function RELATIONALOP() {
                 graphics.exprs = exprs;
                 graphics.style = ["fontSize=13;fontStyle=1;displayedLabel="+label];
                 this.model.ipar = [this.rule];
-                this.model.nzcross = new ScilabDouble(this.zcr);
-                this.model.nmode = new ScilabDouble(this.zcr);
+                this.model.nzcross = new ScilabDouble([this.zcr]);
+                this.model.nmode = new ScilabDouble([this.zcr]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

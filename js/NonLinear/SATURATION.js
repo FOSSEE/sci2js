@@ -5,13 +5,13 @@ function SATURATION() {
         this.maxp = 1;
         rpar = [[this.maxp],[this.minp]];
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("satur"),new ScilabDouble(4));
-        this.model.in1 = new ScilabDouble(1);
-        this.model.nzcross = new ScilabDouble(2);
-        this.model.nmode = new ScilabDouble(1);
-        this.model.out = new ScilabDouble(1);
+        this.model.sim = list(new ScilabString(["satur"]), new ScilabDouble([4]));
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.nzcross = new ScilabDouble([2]);
+        this.model.nmode = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
         this.model.rpar = rpar;
-        this.model.blocktype = new ScilabString("c");
+        this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string(this.maxp)],[string(this.minp)],[string(this.model.nmode)]];
         gr_i = [];
@@ -48,11 +48,11 @@ function SATURATION() {
                 rpar = [[this.maxp],[this.minp]];
                 this.model.rpar = rpar;
                 if (this.zeroc!=0) {
-                    this.model.nzcross = new ScilabDouble(2);
-                    this.model.nmode = new ScilabDouble(1);
+                    this.model.nzcross = new ScilabDouble([2]);
+                    this.model.nmode = new ScilabDouble([1]);
                 } else {
-                    this.model.nzcross = new ScilabDouble(0);
-                    this.model.nmode = new ScilabDouble(0);
+                    this.model.nzcross = new ScilabDouble([0]);
+                    this.model.nmode = new ScilabDouble([0]);
                 }
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;

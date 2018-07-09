@@ -6,15 +6,15 @@ function BARXY() {
         this.xmax = 15;
         this.ymin = -15;
         this.ymax = 15;
-        this.model.sim = list(new ScilabString("BARXY_sim"),new ScilabDouble(5));
-        this.model.blocktype = new ScilabString("d");
+        this.model.sim = list(new ScilabString(["BARXY_sim"]), new ScilabDouble([5]));
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [true,false];
         this.model.in1 = [[-1],[-1]];
         this.model.intyp = [1];
         this.model.out = [];
         this.model.evtin = [1];
         this.model.rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
-        this.model.ipar = new ScilabDouble(1);
+        this.model.ipar = new ScilabDouble([1]);
         this.x = standard_define([2,2],this.model,[],[]);
         this.x.graphics.in_implicit = ["E","E"];
         this.x.graphics.out_implicit = [];
@@ -66,7 +66,7 @@ function BARXY() {
                 message(mess);
             } else {
                 this.model.rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
-                this.model.ipar = new ScilabDouble(this.thickness);
+                this.model.ipar = new ScilabDouble([this.thickness]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

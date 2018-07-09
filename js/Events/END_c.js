@@ -3,11 +3,11 @@ function END_c() {
     END_c.prototype.define = function END_c() {
         this.tf = 100000000;
         this.model = scicos_model();
-        this.model.sim = list(new ScilabString("scicosexit"),new ScilabDouble(4));
-        this.model.evtin = new ScilabDouble(1);
-        this.model.evtout = new ScilabDouble(1);
-        this.model.firing = new ScilabDouble(this.tf);
-        this.model.blocktype = new ScilabString("d");
+        this.model.sim = list(new ScilabString(["scicosexit"]), new ScilabDouble([4]));
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.evtout = new ScilabDouble([1]);
+        this.model.firing = new ScilabDouble([this.tf]);
+        this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = string(this.tf);
         gr_i = [];
@@ -36,7 +36,7 @@ function END_c() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.firing = new ScilabDouble(this.tf);
+                this.model.firing = new ScilabDouble([this.tf]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;
