@@ -61,6 +61,10 @@ PREDEFINED_VARIABLES = {
 
 BOOLEAN_TYPE = 'boolean'
 BOOLEAN_FUNCTION_NAMES = {
+    'is_modelica_block',
+    'isequal',
+    'isequalbitwise',
+    'isreal',
 }
 
 DOUBLE_TYPE = 'double'
@@ -125,9 +129,6 @@ DOUBLE_FUNCTION_NAMES = {
     'int8',
     'interp',
     'inv',
-    'is_modelica_block',
-    'isequal',
-    'isreal',
     'lasterror',
     'length',
     'lines',
@@ -224,6 +225,9 @@ NULL_FUNCTION_NAMES = {
 
 OBJECT_TYPE = 'object'
 OBJECT_FUNCTION_NAMES = {
+    'scicos_model',
+}
+SCICOS_BLOCKS = {
     'ANDLOG_f',
     'CLKIN_f',
     'CLKINV_f',
@@ -245,7 +249,6 @@ OBJECT_FUNCTION_NAMES = {
     'REGISTER_f',
     'STEP',
     'SWITCH_f',
-    'scicos_model',
 }
 
 STRING_TYPE = 'string'
@@ -263,6 +266,7 @@ FUNCTION_NAMES.update(dict.fromkeys(LIST_FUNCTION_NAMES, LIST_TYPE))
 FUNCTION_NAMES.update(dict.fromkeys(MATRIX_FUNCTION_NAMES, MATRIX_TYPE))
 FUNCTION_NAMES.update(dict.fromkeys(NULL_FUNCTION_NAMES, NULL_TYPE))
 FUNCTION_NAMES.update(dict.fromkeys(OBJECT_FUNCTION_NAMES, OBJECT_TYPE))
+FUNCTION_NAMES.update(dict.fromkeys(SCICOS_BLOCKS, OBJECT_TYPE))
 FUNCTION_NAMES.update(dict.fromkeys(STRING_FUNCTION_NAMES, STRING_TYPE))
 FUNCTION_NAMES.update(dict.fromkeys(VECTOR_FUNCTION_NAMES, VECTOR_TYPE))
 

@@ -1217,6 +1217,11 @@ def getblocktype(module):
     return BLOCK_TYPE.get(module, 'BasicBlock')
 
 def add_local_var(var, force=False):
+    '''If a variable is not global, add it to local list
+
+    If force is true, remove it from global list first
+
+    variable name cannot begin with this.'''
     if var[:5] == 'this.':
         print('Syntax error: cannot add local variable:', var)
         return
@@ -1228,6 +1233,11 @@ def add_local_var(var, force=False):
         LOCAL_VARS.add(var)
 
 def add_global_var(var, force=False):
+    '''If a variable is not local, add it to global list
+
+    If force is true, remove it from local list first
+
+    If variable name begins with this., remove it'''
     if var[:5] == 'this.':
         var = var[5:]
     exists = var in LOCAL_VARS
@@ -1238,6 +1248,7 @@ def add_global_var(var, force=False):
         GLOBAL_VARS.add(var)
 
 def print_var(var):
+    'If a variable is global, prepend this. to the variable name'
     if var in GLOBAL_VARS:
         ret = 'this.%s' % (var)
     else:

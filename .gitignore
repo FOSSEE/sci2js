@@ -1,6 +1,5 @@
 __pycache__/
 parsetab.py
-parser.out
 *.old
 *.lex
 *.pyc

@@ -12683,7 +12683,7 @@ function ENDBLK() {
             }
             xx = arg1[spath-1];
             execstr("xxn="+xx.gui+"(\'set\',xx)");
-            if (!this.isequalbitwise[this.xxn-1][xx-1]) {
+            if (!isequalbitwise(this.xxn,xx)) {
                 this.model = xx.model;
                 model_n = this.xxn.model;
                 if (!is_modelica_block(xx)) {
@@ -19165,7 +19165,7 @@ function FROMWSB() {
             }
             xx = arg1[spath-1];
             execstr("xxn="+xx.gui+"(\'set\',xx)");
-            if (!this.isequalbitwise[this.xxn-1][xx-1]) {
+            if (!isequalbitwise(this.xxn,xx)) {
                 this.model = xx.model;
                 model_n = this.xxn.model;
                 if (!is_modelica_block(xx)) {
