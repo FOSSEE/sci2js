@@ -32,7 +32,7 @@ p9
 g8
 sS'[this.model,graphics,ok]'
 p10
-g4
+g2
 sS'graphics.exprs'
 p11
 NsS'model.in1'

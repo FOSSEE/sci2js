@@ -104,7 +104,7 @@ p25
 g5
 sS'[this.model,graphics,ok]'
 p26
-g2
+g23
 sS'model.nmode'
 p27
 NsS'model.rpar'

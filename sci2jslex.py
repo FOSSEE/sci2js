@@ -86,7 +86,6 @@ DOUBLE_FUNCTION_NAMES = {
     'and',
     'atan',
     'block_parameter_error',
-    'check_io',
     'cleandata',
     'compile_expr',
     'compiler_expression',
@@ -160,7 +159,6 @@ DOUBLE_FUNCTION_NAMES = {
     'real',
     'save',
     'scf',
-    'sci2exp',
     'scicos',
     'scicos_block',
     'scicos_debug',
@@ -213,6 +211,7 @@ DOUBLE_FUNCTION_NAMES = {
 
 LIST_TYPE = 'list'
 LIST_FUNCTION_NAMES = {
+    'check_io',
 }
 
 MATRIX_TYPE = 'matrix'
@@ -253,6 +252,7 @@ SCICOS_BLOCKS = {
 
 STRING_TYPE = 'string'
 STRING_FUNCTION_NAMES = {
+    'sci2exp',
 }
 
 VECTOR_TYPE = 'vector'

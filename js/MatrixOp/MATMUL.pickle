@@ -38,7 +38,7 @@ S'double'
 p10
 sS'label[3-1]'
 p11
-g10
+g5
 sS'out'
 p12
 g8
@@ -70,7 +70,7 @@ S'list'
 p22
 sS'label[2-1]'
 p23
-g10
+g5
 sS'model.out2'
 p24
 g10

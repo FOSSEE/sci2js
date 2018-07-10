@@ -148,7 +148,7 @@ p44
 g14
 sS'exprs[1-1]'
 p45
-g14
+g10
 sS'[nx,mx]'
 p46
 g14
@@ -327,7 +327,7 @@ p104
 g10
 sS'exprs[4-1]'
 p105
-g14
+g10
 sS'model.evtout'
 p106
 g2
