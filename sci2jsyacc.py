@@ -679,28 +679,19 @@ def p_ltermarraylistterm_ltermvar(p):
                           | MODEL'''
     var = '%s' % (p[1])
     add_local_var(var)
-    if var in GLOBAL_VARS:
-        p[0] = 'this.%s' % (var)
-    else:
-        p[0] = '%s' % (var)
+    p[0] = '%s' % (print_var(var))
 
 def p_ltermarraylistterm_ltermvar_dot_var(p):
     'ltermarraylistterm : VAR DOT VAR'
     var = '%s' % (p[1])
     add_local_var(var)
-    if var in GLOBAL_VARS:
-        p[0] = 'this.%s.%s' % (var, p[3])
-    else:
-        p[0] = '%s.%s' % (var, p[3])
+    p[0] = '%s.%s' % (print_var(var), p[3])
 
 def p_ltermarraylistterm_in(p):
     'ltermarraylistterm : IN'
     var = '%s1' % (p[1])
     add_local_var(var)
-    if var in GLOBAL_VARS:
-        p[0] = 'this.%s' % (var)
-    else:
-        p[0] = '%s' % (var)
+    p[0] = '%s' % (print_var(var))
 
 def p_ltermarraylistterm_prevar(p):
     'ltermarraylistterm : PREVAR'
@@ -938,20 +929,14 @@ def p_ltermvar_var(p):
     'lterm : VAR'
     var = p[1]
     add_local_var(var)
-    if var in GLOBAL_VARS:
-        p[0] = 'this.%s' % (var)
-    else:
-        p[0] = '%s' % (var)
+    p[0] = '%s' % (print_var(var))
 
 # in
 def p_ltermvar_in(p):
     'lterm : IN'
     var = p[1] + '1'
     add_local_var(var)
-    if var in GLOBAL_VARS:
-        p[0] = 'this.%s' % (var)
-    else:
-        p[0] = '%s' % (var)
+    p[0] = '%s' % (print_var(var))
 
 def p_ltermvar_prevar(p):
     'lterm : PREVAR'
@@ -1179,10 +1164,7 @@ def p_termvar_var(p):
     var = p[1]
     add_global_var(var)
     vartype = VAR_TYPES[var] if var in VAR_TYPES else None
-    if var in GLOBAL_VARS:
-        p[0] = ('this.%s' % (var), vartype)
-    else:
-        p[0] = ('%s' % (var), vartype)
+    p[0] = ('%s' % (print_var(var)), vartype)
 
 # in
 def p_termvar_in(p):
@@ -1190,10 +1172,7 @@ def p_termvar_in(p):
     var = p[1] + '1'
     add_global_var(var)
     vartype = VAR_TYPES[var] if var in VAR_TYPES else None
-    if var in GLOBAL_VARS:
-        p[0] = ('this.%s' % (var), vartype)
-    else:
-        p[0] = ('%s' % (var), vartype)
+    p[0] = ('%s' % (print_var(var)), vartype)
 
 # 5
 # 3.4
@@ -1257,6 +1236,13 @@ def add_global_var(var, force=False):
         exists = False
     if not exists:
         GLOBAL_VARS.add(var)
+
+def print_var(var):
+    if var in GLOBAL_VARS:
+        ret = 'this.%s' % (var)
+    else:
+        ret = '%s' % (var)
+    return ret
 
 def add_var_vartype(var, vartype):
     if var[:5] == 'this.':
