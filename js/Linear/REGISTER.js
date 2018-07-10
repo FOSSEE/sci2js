@@ -77,7 +77,7 @@ function REGISTER() {
             }
             if (ok) {
                 in1 = [1,1];
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[]);
             }
             if (ok) {
                 graphics.exprs = exprs;

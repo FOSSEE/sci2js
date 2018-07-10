@@ -97,7 +97,7 @@ function RFILE_f() {
                     ievt = 1;
                     cout = 1;
                 }
-                [model,graphics,ok] = check_io(this.model,graphics,[],nout,1,cout);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[],nout,1,cout);
                 if (ok) {
                     if (ievt==0) {
                         this.model.firing = [];

@@ -65,7 +65,7 @@ function MATDIV() {
             funtyp = 4;
             if (ok) {
                 label = exprs;
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;

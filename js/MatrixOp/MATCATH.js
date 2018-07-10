@@ -54,7 +54,7 @@ function MATCATH() {
             out = [-1,0];
             it = -1*(ones(this.nin,1));
             ot = -1;
-            [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+            [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {
                 funtyp = 4;
                 this.model.sim = list(new ScilabString(["mat_cath"]), new ScilabDouble([funtyp]));

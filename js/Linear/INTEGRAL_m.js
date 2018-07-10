@@ -124,7 +124,7 @@ function INTEGRAL_m() {
                 if (ok) {
                     in1 = [size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,2)*[[1],[ones(this.reinit,1)]]];
                     out = size(this.x0);
-                    [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.reinit,1),[]);
+                    [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.reinit,1),[]);
                 }
             }
             if (ok) {

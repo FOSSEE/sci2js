@@ -127,7 +127,7 @@ function PDE() {
                 break;
             }
             if (!ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,ones(k,1),out.slice(),[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,ones(k,1),out.slice(),[],[]);
             }
             label[1-1] = params_pde;
             label[2-1] = tt;

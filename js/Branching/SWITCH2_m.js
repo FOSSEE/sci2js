@@ -76,7 +76,7 @@ function SWITCH2_m() {
                 it[3-1] = this.ot;
                 in1 = [this.model.in1,this.model.in2];
                 out = [this.model.out,this.model.out2];
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,this.ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,this.ot),[],[]);
             }
             if (ok) {
                 this.x.graphics = graphics;

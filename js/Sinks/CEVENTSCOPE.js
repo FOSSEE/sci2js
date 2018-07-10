@@ -78,7 +78,7 @@ function CEVENTSCOPE() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(),list(),ones(this.nclock,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(),list(),ones(this.nclock,1),[]);
             } else {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }

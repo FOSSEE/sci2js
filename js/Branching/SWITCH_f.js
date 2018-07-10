@@ -43,7 +43,7 @@ function SWITCH_f() {
             if (this.z0>this.nin||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.ipar = new ScilabString([this.z0-1]);

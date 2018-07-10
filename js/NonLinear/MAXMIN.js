@@ -50,9 +50,9 @@ function MAXMIN() {
             }
             if (ok) {
                 if (this.nin==1) {
-                    [model,graphics,ok] = check_io(this.model,graphics,-1,1,[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,-1,1,[],[]);
                 } else {
-                    [model,graphics,ok] = check_io(this.model,graphics,[-1,-1],-1,[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,[-1,-1],-1,[],[]);
                 }
             }
             if (ok) {

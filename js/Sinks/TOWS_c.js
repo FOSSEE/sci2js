@@ -59,7 +59,7 @@ function TOWS_c() {
             }
             execstr("if type("+this.varnam+") <> 17 | or(fieldnames("+this.varnam+") <> [\"values\"; \"time\"]) then"+" message([\"Protected variable name.\"; \"Please choose another variable name.\"]);"+" ok = %f;"+" end","errcatch");
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],-1),list(),ones(1-this.herit,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],-1),list(),ones(1-this.herit,1),[]);
                 if (this.herit==1) {
                     this.model.blocktype = new ScilabString(["x"]);
                 } else {

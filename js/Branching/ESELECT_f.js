@@ -61,7 +61,7 @@ function ESELECT_f() {
             if (this.out<2) {
                 message("Block must have at least two output ports");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,1,[],this.inh,[ones(this.out,1)]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,1,[],this.inh,[ones(this.out,1)]);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.evtout = new ScilabDouble([ones(this.out,1)]);

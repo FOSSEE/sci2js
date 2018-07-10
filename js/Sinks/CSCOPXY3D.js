@@ -115,7 +115,7 @@ function CSCOPXY3D() {
             if (ok) {
                 in1 = this.nbr_curves*ones(3,1);
                 in2 = ones(3,1);
-                [model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[]);
                 if (this.wpos==[]) {
                     this.wpos = [[-1],[-1]];
                 }

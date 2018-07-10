@@ -102,7 +102,7 @@ function BOUNCE() {
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = check_io(this.model,graphics,[],[n,n],[],[]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,[],[n,n],[],[]);
             if (ok) {
                 k = 1;
                 ipar = [];

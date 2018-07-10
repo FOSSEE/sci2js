@@ -63,7 +63,7 @@ function DLSS_f() {
             if (ms!=ns) {
                 message("A matrix must be square");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,in1,out,1,[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,in1,out,1,[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];

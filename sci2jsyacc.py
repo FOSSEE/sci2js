@@ -666,14 +666,44 @@ def p_getvaluearg4_expression(p):
 
 # define ltermarraylist
 
-def p_ltermarraylist_ltermarraylist_comma_ltermvar(p):
-    '''ltermarraylist : ltermarraylist COMMA ltermvar
-                      | ltermarraylist COMMA MODEL'''
+def p_ltermarraylist_ltermarraylist_comma_ltermarraylisterm(p):
+    'ltermarraylist : ltermarraylist COMMA ltermarraylistterm'
     p[0] = '%s,%s' % (p[1], p[3])
 
-def p_ltermarraylist_ltermvar(p):
-    '''ltermarraylist : ltermvar
-                      | MODEL'''
+def p_ltermarraylist_ltermarraylistterm(p):
+    'ltermarraylist : ltermarraylistterm'
+    p[0] = '%s' % (p[1])
+
+def p_ltermarraylistterm_ltermvar(p):
+    '''ltermarraylistterm : VAR
+                          | MODEL'''
+    var = '%s' % (p[1])
+    add_local_var(var)
+    if var in GLOBAL_VARS:
+        p[0] = 'this.%s' % (var)
+    else:
+        p[0] = '%s' % (var)
+
+def p_ltermarraylistterm_ltermvar_dot_var(p):
+    'ltermarraylistterm : VAR DOT VAR'
+    var = '%s' % (p[1])
+    add_local_var(var)
+    if var in GLOBAL_VARS:
+        p[0] = 'this.%s.%s' % (var, p[3])
+    else:
+        p[0] = '%s.%s' % (var, p[3])
+
+def p_ltermarraylistterm_in(p):
+    'ltermarraylistterm : IN'
+    var = '%s1' % (p[1])
+    add_local_var(var)
+    if var in GLOBAL_VARS:
+        p[0] = 'this.%s' % (var)
+    else:
+        p[0] = '%s' % (var)
+
+def p_ltermarraylistterm_prevar(p):
+    'ltermarraylistterm : PREVAR'
     p[0] = '%s' % (p[1])
 
 # end define ltermarraylist
@@ -869,24 +899,24 @@ def p_clearvar_clearvar_var(p):
 
 # B(2:$-1)
 def p_lterm_ltermvar_slice(p):
-    'lterm : ltermvar OPENBRACKET expression COLON expression CLOSEBRACKET'
+    'lterm : lterm OPENBRACKET expression COLON expression CLOSEBRACKET'
     p[0] = '%s.slice(%s-1,%s)' % (p[1], p[3][0], p[5][0])
 
 # B(2)
 def p_lterm_ltermvar_index(p):
-    'lterm : ltermvar OPENBRACKET expression CLOSEBRACKET'
+    'lterm : lterm OPENBRACKET expression CLOSEBRACKET'
     p[0] = '%s[%s-1]' % (p[1], p[3][0])
 
 # B(2:$-1,1:n)
 def p_lterm_ltermvar_slice_slice(p):
-    'lterm : ltermvar OPENBRACKET expression COLON expression COMMA expression COLON expression CLOSEBRACKET'
+    'lterm : lterm OPENBRACKET expression COLON expression COMMA expression COLON expression CLOSEBRACKET'
     p[0] = '%s.slice(%s-1,%s).slice(%s-1,%s)' % (p[1], p[3][0], p[5][0], p[7][0], p[9][0])
 
 # B(2,3)
 # B($-2)(3)
 def p_lterm_ltermvar_index_index(p):
-    '''lterm : ltermvar OPENBRACKET expression COMMA expression CLOSEBRACKET
-             | ltermvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'''
+    '''lterm : lterm OPENBRACKET expression COMMA expression CLOSEBRACKET
+             | lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'''
     base = '%s[%s-1]' % (p[1], p[3][0])
     p[0] = '%s[%s-1]' % (base, p[5][0])
 
@@ -895,21 +925,17 @@ def p_lterm_ltermarraylist(p):
     'lterm : OPENSQBRACKET ltermarraylist CLOSESQBRACKET'
     p[0] = '[%s]' % (p[2])
 
-def p_lterm_ltermvar(p):
-    'lterm : ltermvar'
-    p[0] = '%s' % (p[1])
-
 def p_ltermvar_ltermvar_dot_var(p):
-    '''ltermvar : ltermvar DOT VAR
-                | ltermvar DOT MODEL'''
+    '''lterm : lterm DOT VAR
+             | lterm DOT MODEL'''
     p[0] = '%s.%s' % (p[1], p[3])
 
 def p_ltermvar_ltermvar_dot_in(p):
-    'ltermvar : ltermvar DOT IN'
+    'lterm : lterm DOT IN'
     p[0] = '%s.%s1' % (p[1], p[3])
 
 def p_ltermvar_var(p):
-    'ltermvar : VAR'
+    'lterm : VAR'
     var = p[1]
     add_local_var(var)
     if var in GLOBAL_VARS:
@@ -919,7 +945,7 @@ def p_ltermvar_var(p):
 
 # in
 def p_ltermvar_in(p):
-    'ltermvar : IN'
+    'lterm : IN'
     var = p[1] + '1'
     add_local_var(var)
     if var in GLOBAL_VARS:
@@ -928,7 +954,7 @@ def p_ltermvar_in(p):
         p[0] = '%s' % (var)
 
 def p_ltermvar_prevar(p):
-    'ltermvar : PREVAR'
+    'lterm : PREVAR'
     p[0] = '%s' % (p[1])
 
 # end define lterm

@@ -118,7 +118,7 @@ function generic_block3() {
             }
             dep_ut = [this.depu,this.dept];
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(this.in1,this.it),list(this.out,this.ot),this.ci,this.co);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(this.in1,this.it),list(this.out,this.ot),this.ci,this.co);
             }
             if (ok) {
                 if (this.funtyp==3) {

@@ -44,7 +44,7 @@ function SAMPHOLD_m() {
             }
             if (ok) {
                 in1 = [this.model.in1,this.model.in2];
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     arg1.graphics = graphics;

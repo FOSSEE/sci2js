@@ -139,9 +139,9 @@ function GAINBLK() {
                 if (ok) {
                     [out,in1] = size(this.gain);
                     if (out*in1!=1) {
-                        [model,graphics,ok] = set_io(this.model,graphics,list([in1,-1],ot),list([out,-1],ot),[],[]);
+                        [this.model,graphics,ok] = set_io(this.model,graphics,list([in1,-1],ot),list([out,-1],ot),[],[]);
                     } else {
-                        [model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],ot),list([-1,-2],ot),[],[]);
+                        [this.model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],ot),list([-1,-2],ot),[],[]);
                     }
                 }
                 if (ok) {

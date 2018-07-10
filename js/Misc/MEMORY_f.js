@@ -44,7 +44,7 @@ function MEMORY_f() {
             } else {
                 this.inh = 1;
             }
-            [model,graphics,ok] = check_io(this.model,graphics,-1,-1,this.inh,[]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,-1,-1,this.inh,[]);
             out = size(this.a,"*");
             if (out==0) {
                 ok = false;

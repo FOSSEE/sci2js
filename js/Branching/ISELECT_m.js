@@ -60,7 +60,7 @@ function ISELECT_m() {
                 if (ok) {
                     out = [-ones(this.nout,1),-2*ones(this.nout,1)];
                     in1 = [-1,-2];
-                    [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.nout,1),[]);
+                    [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.nout,1),[]);
                     if (ok) {
                         graphics.exprs = exprs;
                         this.model.dstate = new ScilabDouble([this.z0]);

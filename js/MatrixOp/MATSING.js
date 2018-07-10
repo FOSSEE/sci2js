@@ -90,7 +90,7 @@ function MATSING() {
             }
             funtyp = 4;
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));

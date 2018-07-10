@@ -66,7 +66,7 @@ function CONST_m() {
                 }
                 if (ok) {
                     this.model.rpar = [];
-                    [model,graphics,ok] = set_io(this.model,graphics,list(),list(nout,ot),[],[]);
+                    [this.model,graphics,ok] = set_io(this.model,graphics,list(),list(nout,ot),[],[]);
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
                     this.x.model = this.model;

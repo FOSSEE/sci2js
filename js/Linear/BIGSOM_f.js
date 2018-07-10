@@ -34,7 +34,7 @@ function BIGSOM_f() {
                 break;
             }
             in1 = -ones(size(this.sgn,"*"),1);
-            [model,graphics,ok] = check_io(this.model,graphics,in1,-1,[],[]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,in1,-1,[],[]);
             if (ok) {
                 this.model.rpar = this.sgn.slice();
                 graphics.exprs = exprs;

@@ -117,7 +117,7 @@ function CBLOCK4() {
                     tt = [];
                 }
                 tt = label[2-1];
-                [model,graphics,ok] = set_io(this.model,graphics,list(this.in1,this.it),list(this.out,this.ot),this.ci,this.co);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(this.in1,this.it),list(this.out,this.ot),this.ci,this.co);
             }
             if (ok) {
                 while (true) {

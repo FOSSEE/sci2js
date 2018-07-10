@@ -74,7 +74,7 @@ function RELATIONALOP() {
                 ot = this.Datatype;
                 in1 = [[-1,-2],[-1,-2]];
                 out = [-1,-2];
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 if (this.rule==0) {

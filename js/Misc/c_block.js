@@ -73,7 +73,7 @@ function c_block() {
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,[],[]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,[],[]);
             if (ok) {
                 this.model.sim[1] = new ScilabString([this.funam]);
                 this.model.rpar = this.rpar;

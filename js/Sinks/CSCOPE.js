@@ -94,7 +94,7 @@ function CSCOPE() {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list([-1,1],1),list(),ones(1-this.heritance,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([-1,1],1),list(),ones(1-this.heritance,1),[]);
             }
             if (ok) {
                 if (this.wpos==[]) {

@@ -118,7 +118,7 @@ function SHIFT() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],it),list([-1,-2],ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],it),list([-1,-2],ot),[],[]);
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.nb]);

@@ -91,7 +91,7 @@ function MATRESH() {
             }
             if (ok) {
                 label = this.lab;
-                [model,graphics,ok] = set_io(this.model,graphics,list(this.l1,it),list(this.out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(this.l1,it),list(this.out,ot),[],[]);
             }
             if (ok) {
                 funtyp = 4;

@@ -132,7 +132,7 @@ function CBLOCK() {
                         break;
                     }
                 } else {
-                    [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
                     if (ok) {
                         this.model.sim = list(new ScilabDouble([funam]), new ScilabDouble([funtyp]));
                         this.model.in1 = new ScilabDouble([this.i]);

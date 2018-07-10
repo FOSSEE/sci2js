@@ -133,7 +133,7 @@ function SUMMATION() {
                 }
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],it),list([nout,nout2],ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],it),list([nout,nout2],ot),[],[]);
             }
             if (ok) {
                 this.model.rpar = new ScilabDouble([this.satur]);

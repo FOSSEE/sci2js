@@ -40,7 +40,7 @@ function DEMUX() {
                     message("Block must have at least 2 and at most 31 output ports");
                     ok = false;
                 } else {
-                    [model,graphics,ok] = check_io(this.model,graphics,0,-transpose([1:this.out]),[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,0,-transpose([1:this.out]),[],[]);
                 }
             } else {
                 if (size(this.out,"*")<2||or(this.out==0)||size(this.out,"*")>31) {
@@ -52,7 +52,7 @@ function DEMUX() {
                     } else {
                         nin = sum(this.out);
                     }
-                    [model,graphics,ok] = check_io(this.model,graphics,nin,this.out.slice(),[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,nin,this.out.slice(),[],[]);
                     if (ok) {
                         this.out = size(this.out,"*");
                     }

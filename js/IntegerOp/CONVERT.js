@@ -368,7 +368,7 @@ function CONVERT() {
             in1 = [this.model.in1,this.model.in2];
             out = [this.model.out,this.model.out2];
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(out,this.ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(out,this.ot),[],[]);
             }
             if (ok) {
                 graphics.exprs = exprs;

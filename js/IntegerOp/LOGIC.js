@@ -60,7 +60,7 @@ function LOGIC() {
                 out = [ones(nout,1),ones(nout,1)];
                 it = 5*ones(1,nin);
                 ot = 5*ones(1,nout);
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.herit,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.herit,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;

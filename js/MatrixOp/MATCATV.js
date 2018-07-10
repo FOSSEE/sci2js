@@ -55,7 +55,7 @@ function MATCATV() {
             it = -ones(this.nin,1);
             ot = -1;
             out = [0,-1];
-            [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+            [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {
                 funtyp = 4;
                 this.model.sim = list(new ScilabString(["mat_catv"]), new ScilabDouble([funtyp]));

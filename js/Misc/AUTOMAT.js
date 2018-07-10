@@ -120,7 +120,7 @@ function AUTOMAT() {
                 }
             }
             if (!ModifEncore) {
-                [model,graphics,this.ok] = check_io(this.model,graphics,INP,OUT,[],[1]);
+                [this.model,graphics,this.ok] = check_io(this.model,graphics,INP,OUT,[],[1]);
                 if (!this.ok) {
                     break;
                 }

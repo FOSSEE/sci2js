@@ -146,7 +146,7 @@ function MATMUL() {
                 in1 = [[-1,-2],[1,1]];
                 out = [-1,-2];
             }
-            [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+            [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {
                 label = exprs;
                 this.model.ipar = new ScilabDouble([this.rule]);

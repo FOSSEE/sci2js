@@ -48,7 +48,7 @@ function DOLLAR_f() {
             }
             in1 = out;
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,-1,-1,ones(1-this.inh,1),[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,-1,-1,ones(1-this.inh,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;

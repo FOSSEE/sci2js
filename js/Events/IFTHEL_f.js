@@ -53,7 +53,7 @@ function IFTHEL_f() {
             if (this.inh!=1) {
                 this.inh = [];
             }
-            [model,graphics,ok] = check_io(this.model,graphics,1,[],this.inh,[[1],[1]]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,1,[],this.inh,[[1],[1]]);
             if (ok) {
                 graphics.exprs = exprs;
                 this.model.evtin = this.inh;

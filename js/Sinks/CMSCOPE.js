@@ -121,7 +121,7 @@ function CMSCOPE() {
                 this.in1 = this.in1.slice();
                 a = size(this.in1,1);
                 in2 = ones(a,1);
-                [model,graphics,ok] = set_io(this.model,graphics,list([this.in1,in2],ones(a,1)),list(),ones(1-this.heritance,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([this.in1,in2],ones(a,1)),list(),ones(1-this.heritance,1),[]);
             }
             if (ok) {
                 if (this.wpos==[]) {

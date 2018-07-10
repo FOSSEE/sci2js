@@ -36,7 +36,7 @@ function EXTRACTOR() {
             }
             this.ind = int(this.ind);
             this.ind = this.ind.slice();
-            [model,graphics,ok] = check_io(this.model,graphics,[-1],size(this.ind,1),[],[]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,[-1],size(this.ind,1),[],[]);
             if (ok) {
                 this.model.ipar = this.ind;
                 graphics.exprs = exprs;

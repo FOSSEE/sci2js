@@ -82,7 +82,7 @@ function INTEGRAL() {
             if (ok) {
                 this.model.rpar = rpar;
                 this.model.state = this.x0;
-                [model,graphics,ok] = check_io(this.model,graphics,size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,1),ones(this.reinit,1),[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,1),ones(this.reinit,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;

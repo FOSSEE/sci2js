@@ -74,7 +74,7 @@ function READAU_f() {
             } else if (this.swap!=0&&this.swap!=1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Swap Mode",this.swap),msprintf("Must be in the interval %s.","[0, 1]"));
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,[],1,1,[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[],1,1,[]);
                 frmt1 = part(frmt1,1,3);
                 if (ok) {
                     ipar = [[length(this.fname1)],[this._str2code[frmt1-1]],[0],[this.N],[M],[this.swap],[offset,this._str2code[this.fname1-1]],[tmask1,outmask.slice()]];

@@ -180,7 +180,7 @@ function MBLOCK() {
             if (ok) {
                 intypex = find(this.intype=="I");
                 outtypex = find(this.outtype=="I");
-                [model,graphics,ok] = set_io(this.model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
             }
             if (ok) {
                 Tparam_lab = evstr(this.Tparam);

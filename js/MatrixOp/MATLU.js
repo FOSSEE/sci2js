@@ -62,7 +62,7 @@ function MATLU() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list([this.model.in1,this.model.in2],it),list([this.model.out,this.model.out2],ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([this.model.in1,this.model.in2],it),list([this.model.out,this.model.out2],ot),[],[]);
             }
             if (ok) {
                 funtyp = 4;

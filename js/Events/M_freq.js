@@ -55,7 +55,7 @@ function M_freq() {
             if (ok) {
                 this.model.opar = list(m, new ScilabDouble([double(den)]), new ScilabDouble([off]), new ScilabDouble([count]));
                 mn = (2^size(m1,"*"))-1;
-                [model,graphics,ok] = set_io(this.model,graphics,list(),list(),1,ones(mn,1));
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(),list(),1,ones(mn,1));
                 if (mn>3) {
                     graphics.sz = [40+(mn-3)*10,40];
                 } else {

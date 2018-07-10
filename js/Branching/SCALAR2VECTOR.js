@@ -39,7 +39,7 @@ function SCALAR2VECTOR() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,[1],this.nout,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[1],this.nout,[],[]);
             }
             if (ok) {
                 graphics.exprs = exprs;

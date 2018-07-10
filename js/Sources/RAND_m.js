@@ -79,7 +79,7 @@ function RAND_m() {
                     ok = false;
                 }
                 if (ok) {
-                    [model,graphics,ok] = set_io(this.model,graphics,list([],[]),list(out,ot),1,[]);
+                    [this.model,graphics,ok] = set_io(this.model,graphics,list([],[]),list(out,ot),1,[]);
                     if (ok) {
                         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([4]));
                         graphics.exprs = exprs;

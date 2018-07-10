@@ -57,7 +57,7 @@ function STEP() {
             if (ok) {
                 this.model.out2 = new ScilabDouble([1]);
                 this.model.outtyp = new ScilabDouble([1]);
-                [model,graphics,ok] = check_io(this.model,graphics,[],size(this.fi,"*"),1,1);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[],size(this.fi,"*"),1,1);
             }
             if (ok) {
                 this.model.firing = new ScilabDouble([this.temps]);

@@ -83,7 +83,7 @@ function AFFICH_m() {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(this.in1,1),list(),ones(1-this.herit,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(this.in1,1),list(),ones(1-this.herit,1),[]);
             }
             if (ok) {
                 this.model.ipar = [[this.font],[this.fontsize],[this.colr],[this.nt],[this.nd],[this.in1[1-1][1-1]]];

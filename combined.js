@@ -209,7 +209,7 @@ function DEMUX() {
                     message("Block must have at least 2 and at most 31 output ports");
                     ok = false;
                 } else {
-                    [model,graphics,ok] = check_io(this.model,graphics,0,-transpose([1:this.out]),[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,0,-transpose([1:this.out]),[],[]);
                 }
             } else {
                 if (size(this.out,"*")<2||or(this.out==0)||size(this.out,"*")>31) {
@@ -221,7 +221,7 @@ function DEMUX() {
                     } else {
                         nin = sum(this.out);
                     }
-                    [model,graphics,ok] = check_io(this.model,graphics,nin,this.out.slice(),[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,nin,this.out.slice(),[],[]);
                     if (ok) {
                         this.out = size(this.out,"*");
                     }
@@ -280,7 +280,7 @@ function DEMUX_f() {
                     message("Block must have at least 2 and at most 8 output ports");
                     ok = false;
                 } else {
-                    [model,graphics,ok] = check_io(this.model,graphics,0,-transpose([1:this.out]),[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,0,-transpose([1:this.out]),[],[]);
                 }
             } else {
                 if (size(this.out,"*")<2||size(this.out,"*")>8||or(this.out==0)) {
@@ -292,7 +292,7 @@ function DEMUX_f() {
                     } else {
                         nin = sum(this.out);
                     }
-                    [model,graphics,ok] = check_io(this.model,graphics,nin,this.out.slice(),[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,nin,this.out.slice(),[],[]);
                     if (ok) {
                         this.out = size(this.out,"*");
                     }
@@ -372,7 +372,7 @@ function ESELECT_f() {
             if (this.out<2) {
                 message("Block must have at least two output ports");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,1,[],this.inh,[ones(this.out,1)]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,1,[],this.inh,[ones(this.out,1)]);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.evtout = new ScilabDouble([ones(this.out,1)]);
@@ -426,7 +426,7 @@ function EXTRACTOR() {
             }
             this.ind = int(this.ind);
             this.ind = this.ind.slice();
-            [model,graphics,ok] = check_io(this.model,graphics,[-1],size(this.ind,1),[],[]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,[-1],size(this.ind,1),[],[]);
             if (ok) {
                 this.model.ipar = this.ind;
                 graphics.exprs = exprs;
@@ -848,7 +848,7 @@ function ISELECT_f() {
             if (this.z0>this.nout||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,-1,-ones(this.nout,1),ones(this.nout,1),[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,-1,-ones(this.nout,1),ones(this.nout,1),[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.dstate = new ScilabDouble([this.z0-1]);
@@ -923,7 +923,7 @@ function ISELECT_m() {
                 if (ok) {
                     out = [-ones(this.nout,1),-2*ones(this.nout,1)];
                     in1 = [-1,-2];
-                    [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.nout,1),[]);
+                    [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.nout,1),[]);
                     if (ok) {
                         graphics.exprs = exprs;
                         this.model.dstate = new ScilabDouble([this.z0]);
@@ -977,7 +977,7 @@ function MUX() {
                     message("Block must have at least two input ports and at most 31");
                     ok = false;
                 } else {
-                    [model,graphics,ok] = check_io(this.model,graphics,-transpose([1:this.in1]),0,[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,-transpose([1:this.in1]),0,[],[]);
                 }
             } else {
                 if (size(this.in1,"*")<2||or(this.in1==0)||size(this.in1,"*")>31) {
@@ -989,7 +989,7 @@ function MUX() {
                     } else {
                         nout = sum(this.in1);
                     }
-                    [model,graphics,ok] = check_io(this.model,graphics,this.in1.slice(),nout,[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,this.in1.slice(),nout,[],[]);
                     if (ok) {
                         this.in1 = size(this.in1,"*");
                     }
@@ -1046,7 +1046,7 @@ function MUX_f() {
                     message("Block must have at least two input ports and at most eight");
                     ok = false;
                 } else {
-                    [model,graphics,ok] = check_io(this.model,graphics,-transpose([1:this.in1]),0,[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,-transpose([1:this.in1]),0,[],[]);
                 }
             } else {
                 if (size(this.in1,"*")<2||size(this.in1,"*")>8||or(this.in1==0)) {
@@ -1058,7 +1058,7 @@ function MUX_f() {
                     } else {
                         nout = sum(this.in1);
                     }
-                    [model,graphics,ok] = check_io(this.model,graphics,this.in1.slice(),nout,[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,this.in1.slice(),nout,[],[]);
                     if (ok) {
                         this.in1 = size(this.in1,"*");
                     }
@@ -1137,7 +1137,7 @@ function M_SWITCH() {
                 }
                 it = [[-1],[-2*ones(this.nin,1)]];
                 ot = -2;
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.ipar = [[this.base],[this.rule]];
@@ -1186,7 +1186,7 @@ function NRMSOM_f() {
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,[],[]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,[],[]);
             if (ok) {
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
@@ -1243,7 +1243,7 @@ function RELAY_f() {
             if (this.z0>this.nin||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,ones(this.nin,1),[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,ones(this.nin,1),[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.dstate = new ScilabString([this.z0-1]);
@@ -1297,7 +1297,7 @@ function SCALAR2VECTOR() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,[1],this.nout,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[1],this.nout,[],[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -1353,7 +1353,7 @@ function SELECT_f() {
             if (this.z0>this.nin||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,ones(this.nin,1),[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,ones(this.nin,1),[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.dstate = new ScilabDouble([this.z0-1]);
@@ -1428,7 +1428,7 @@ function SELECT_m() {
                 if (ok) {
                     in1 = [-ones(this.nin,1),-2*ones(this.nin,1)];
                     out = [-1,-2];
-                    [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.nin,1),[]);
+                    [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.nin,1),[]);
                     if (ok) {
                         graphics.exprs = exprs;
                         this.model.dstate = new ScilabDouble([this.z0]);
@@ -1438,6 +1438,53 @@ function SELECT_m() {
                     }
                 }
             }
+        }
+        return new BasicBlock(this.x);
+    }
+}
+/* autogenerated from "macros/Branching/SELF_SWITCH.sci" */
+function SELF_SWITCH() {
+    SELF_SWITCH.prototype.define = function SELF_SWITCH() {
+        this.stateOpen = true;
+        this.x = scicos_block();
+        this.x.gui = "SELF_SWITCH";
+        this.x.graphics.sz = [2,2];
+        this.x.graphics.gr_i = [];
+        this.x.graphics.pin = 0;
+        this.x.graphics.pout = 0;
+        this.x.model.sim = "csuper";
+        this.x.model.in1 = 1;
+        this.x.model.out = 1;
+        this.x.model.blocktype = "h";
+        this.x.model.dep_ut = [false,false];
+        this.x.model.rpar = this.genSwitchInnerDiagram[this.stateOpen-1];
+        this.x.model.opar = list(this.stateOpen);
+        this.x.graphics.in_implicit = ["E"];
+        this.x.graphics.in_style = "";
+        this.x.graphics.out_implicit = ["E"];
+        this.x.graphics.out_style = "";
+        this.x.graphics.style = "SELF_SWITCH_OFF";
+        return new BasicBlock(this.x);
+    }
+    SELF_SWITCH.prototype.details = function SELF_SWITCH() {
+        return this.x;
+    }
+    SELF_SWITCH.prototype.get = function SELF_SWITCH() {
+        var options = {
+        }
+        return options;
+    }
+    SELF_SWITCH.prototype.set = function SELF_SWITCH() {
+        this.x = arg1;
+        this.stateOpen = this.x.model.opar[1-1];
+        this.x.model.rpar = this.genSwitchInnerDiagram[!this.stateOpen-1];
+        this.x.model.opar = list(!this.stateOpen);
+        y = 0;
+        typ = list();
+        if (this.stateOpen==false) {
+            this.x.graphics.style = "SELF_SWITCH_OFF";
+        } else {
+            this.x.graphics.style = "SELF_SWITCH_ON";
         }
         return new BasicBlock(this.x);
     }
@@ -1590,7 +1637,7 @@ function SWITCH2_m() {
                 it[3-1] = this.ot;
                 in1 = [this.model.in1,this.model.in2];
                 out = [this.model.out,this.model.out2];
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,this.ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,this.ot),[],[]);
             }
             if (ok) {
                 this.x.graphics = graphics;
@@ -1646,7 +1693,7 @@ function SWITCH_f() {
             if (this.z0>this.nin||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.ipar = new ScilabString([this.z0-1]);
@@ -3645,7 +3692,7 @@ function IFTHEL_f() {
             if (this.inh!=1) {
                 this.inh = [];
             }
-            [model,graphics,ok] = check_io(this.model,graphics,1,[],this.inh,[[1],[1]]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,1,[],this.inh,[[1],[1]]);
             if (ok) {
                 graphics.exprs = exprs;
                 this.model.evtin = this.inh;
@@ -3869,7 +3916,7 @@ function M_freq() {
             if (ok) {
                 this.model.opar = list(m, new ScilabDouble([double(den)]), new ScilabDouble([off]), new ScilabDouble([count]));
                 mn = (2^size(m1,"*"))-1;
-                [model,graphics,ok] = set_io(this.model,graphics,list(),list(),1,ones(mn,1));
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(),list(),1,ones(mn,1));
                 if (mn>3) {
                     graphics.sz = [40+(mn-3)*10,40];
                 } else {
@@ -4617,7 +4664,7 @@ function BITCLEAR() {
                 it = this.Datatype;
                 ot = this.Datatype;
                 out = [1,1];
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -4711,7 +4758,7 @@ function BITSET() {
                 it = this.Datatype;
                 ot = this.Datatype;
                 out = [1,1];
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -5094,7 +5141,7 @@ function CONVERT() {
             in1 = [this.model.in1,this.model.in2];
             out = [this.model.out,this.model.out2];
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(out,this.ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(out,this.ot),[],[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -5495,7 +5542,7 @@ function EXTRACTBITS() {
                 it = this.Datatype;
                 ot = this.Datatype;
                 out = [1,1];
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -5611,7 +5658,7 @@ function INTMUL() {
             in1 = [this.model.in1,this.model.in2];
             out = [this.model.out,this.model.out2];
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.np]);
@@ -5788,7 +5835,7 @@ function LOGIC() {
                 out = [ones(nout,1),ones(nout,1)];
                 it = 5*ones(1,nin);
                 ot = 5*ones(1,nout);
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.herit,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.herit,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -5922,7 +5969,7 @@ function SHIFT() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],it),list([-1,-2],ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],it),list([-1,-2],ot),[],[]);
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.nb]);
@@ -6057,7 +6104,7 @@ function BIGSOM_f() {
                 break;
             }
             in1 = -ones(size(this.sgn,"*"),1);
-            [model,graphics,ok] = check_io(this.model,graphics,in1,-1,[],[]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,in1,-1,[],[]);
             if (ok) {
                 this.model.rpar = this.sgn.slice();
                 graphics.exprs = exprs;
@@ -6338,7 +6385,7 @@ function CLSS() {
             if (ms!=ns||!okD) {
                 message(_("Matrix A is not square or D has wrong dimension"));
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
@@ -6431,7 +6478,7 @@ function CLSS_f() {
             if (ms!=ns) {
                 message("A matrix must be square");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
@@ -6518,7 +6565,7 @@ function DELAYV_f() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,[[this.nin],[1]],this.nin,1,[[1],[1]]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[[this.nin],[1]],this.nin,1,[[1],[1]]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -7001,7 +7048,7 @@ function DLSS() {
             if (ms!=ns||!okD) {
                 message(_("Matrix A is not square or D has wrong dimension"));
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,in1,out,1,[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,in1,out,1,[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
@@ -7093,7 +7140,7 @@ function DLSS_f() {
             if (ms!=ns) {
                 message("A matrix must be square");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,in1,out,1,[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,in1,out,1,[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
@@ -7208,7 +7255,7 @@ function DOLLAR() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.inh,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.inh,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -7270,7 +7317,7 @@ function DOLLAR_f() {
             }
             in1 = out;
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,-1,-1,ones(1-this.inh,1),[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,-1,-1,ones(1-this.inh,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -7373,7 +7420,7 @@ function DOLLAR_m() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.inh,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.inh,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -7526,9 +7573,9 @@ function GAINBLK() {
                 if (ok) {
                     [out,in1] = size(this.gain);
                     if (out*in1!=1) {
-                        [model,graphics,ok] = set_io(this.model,graphics,list([in1,-1],ot),list([out,-1],ot),[],[]);
+                        [this.model,graphics,ok] = set_io(this.model,graphics,list([in1,-1],ot),list([out,-1],ot),[],[]);
                     } else {
-                        [model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],ot),list([-1,-2],ot),[],[]);
+                        [this.model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],ot),list([-1,-2],ot),[],[]);
                     }
                 }
                 if (ok) {
@@ -7584,7 +7631,7 @@ function GAINBLK_f() {
                 message("Gain must have at least one element");
             } else {
                 [out,in1] = size(this.gain);
-                [model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.rpar = this.gain.slice();
@@ -7639,7 +7686,7 @@ function GAIN_f() {
                 message("Gain must have at least one element");
             } else {
                 [out,in1] = size(this.gain);
-                [model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.rpar = this.gain.slice();
@@ -7736,7 +7783,7 @@ function INTEGRAL() {
             if (ok) {
                 this.model.rpar = rpar;
                 this.model.state = this.x0;
-                [model,graphics,ok] = check_io(this.model,graphics,size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,1),ones(this.reinit,1),[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,1),ones(this.reinit,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -7919,7 +7966,7 @@ function INTEGRAL_m() {
                 if (ok) {
                     in1 = [size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,2)*[[1],[ones(this.reinit,1)]]];
                     out = size(this.x0);
-                    [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.reinit,1),[]);
+                    [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.reinit,1),[]);
                 }
             }
             if (ok) {
@@ -8140,7 +8187,7 @@ function REGISTER() {
             }
             if (ok) {
                 in1 = [1,1];
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -8278,7 +8325,7 @@ function SAMPHOLD_m() {
             }
             if (ok) {
                 in1 = [this.model.in1,this.model.in2];
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     arg1.graphics = graphics;
@@ -8501,7 +8548,7 @@ function SUMMATION() {
                 }
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],it),list([nout,nout2],ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],it),list([nout,nout2],ot),[],[]);
             }
             if (ok) {
                 this.model.rpar = new ScilabDouble([this.satur]);
@@ -8610,7 +8657,7 @@ function TCLSS() {
             if (ms!=ns) {
                 message("A matrix must be square");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,[[in1],[ms]],out,1,[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[[in1],[ms]],out,1,[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
@@ -8710,7 +8757,7 @@ function TCLSS_f() {
             if (ms!=ns) {
                 message("A matrix must be square");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,[[in1],[ms]],out,1,[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[[in1],[ms]],out,1,[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
@@ -8796,7 +8843,7 @@ function TIME_DELAY() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,[-1],-1,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[-1],-1,[],[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -8865,7 +8912,7 @@ function VARIABLE_DELAY() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,[[-1],[1]],-1,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[[-1],[1]],-1,[],[]);
             }
             if (ok) {
                 graphics.exprs = exprs;
@@ -8970,7 +9017,7 @@ function CUMSUM() {
             out = [this.model.out,this.model.out2];
             funtyp = 4;
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
@@ -9076,7 +9123,7 @@ function EXTRACT() {
             funtyp = 4;
             if (ok) {
                 label = exprs;
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
@@ -9176,7 +9223,7 @@ function EXTTRI() {
             out = [this.model.out,this.model.out2];
             funtyp = 4;
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
@@ -9257,7 +9304,7 @@ function MATBKSL() {
             funtyp = 4;
             if (ok) {
                 label = exprs;
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
@@ -9325,7 +9372,7 @@ function MATCATH() {
             out = [-1,0];
             it = -1*(ones(this.nin,1));
             ot = -1;
-            [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+            [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {
                 funtyp = 4;
                 this.model.sim = list(new ScilabString(["mat_cath"]), new ScilabDouble([funtyp]));
@@ -9396,7 +9443,7 @@ function MATCATV() {
             it = -ones(this.nin,1);
             ot = -1;
             out = [0,-1];
-            [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+            [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {
                 funtyp = 4;
                 this.model.sim = list(new ScilabString(["mat_catv"]), new ScilabDouble([funtyp]));
@@ -9477,7 +9524,7 @@ function MATDET() {
             funtyp = 4;
             if (ok) {
                 label = exprs;
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
@@ -9556,7 +9603,7 @@ function MATDIAG() {
             funtyp = 4;
             if (ok) {
                 label = exprs;
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
@@ -9635,7 +9682,7 @@ function MATDIV() {
             funtyp = 4;
             if (ok) {
                 label = exprs;
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
@@ -9736,7 +9783,7 @@ function MATEIG() {
             in1 = [-1,-1];
             funtyp = 4;
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
@@ -9817,7 +9864,7 @@ function MATEXPM() {
             funtyp = 4;
             if (ok) {
                 label = exprs;
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
@@ -9896,7 +9943,7 @@ function MATINV() {
             funtyp = 4;
             if (ok) {
                 label = exprs;
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
@@ -9972,7 +10019,7 @@ function MATLU() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list([this.model.in1,this.model.in2],it),list([this.model.out,this.model.out2],ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([this.model.in1,this.model.in2],it),list([this.model.out,this.model.out2],ot),[],[]);
             }
             if (ok) {
                 funtyp = 4;
@@ -10056,7 +10103,7 @@ function MATMAGPHI() {
             }
             funtyp = 4;
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
@@ -10218,7 +10265,7 @@ function MATMUL() {
                 in1 = [[-1,-2],[1,1]];
                 out = [-1,-2];
             }
-            [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+            [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {
                 label = exprs;
                 this.model.ipar = new ScilabDouble([this.rule]);
@@ -10300,7 +10347,7 @@ function MATPINV() {
             funtyp = 4;
             if (ok) {
                 label = exprs;
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
@@ -10405,7 +10452,7 @@ function MATRESH() {
             }
             if (ok) {
                 label = this.lab;
-                [model,graphics,ok] = set_io(this.model,graphics,list(this.l1,it),list(this.out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(this.l1,it),list(this.out,ot),[],[]);
             }
             if (ok) {
                 funtyp = 4;
@@ -10513,7 +10560,7 @@ function MATSING() {
             }
             funtyp = 4;
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
@@ -10620,7 +10667,7 @@ function MATSUM() {
             in1 = [this.model.in1,this.model.in2];
             funtyp = 4;
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
@@ -10695,7 +10742,7 @@ function MATTRAN() {
             funtyp = 4;
             if (ok) {
                 label = exprs;
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
@@ -10817,7 +10864,7 @@ function MATZREIM() {
             }
             funtyp = 4;
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
@@ -10888,7 +10935,7 @@ function RICC() {
             it = [1,1,1];
             ot = 1;
             label = exprs;
-            [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+            [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {
                 this.model.ipar = [[this.tpe],[this.mod]];
                 graphics.exprs = label;
@@ -10970,7 +11017,7 @@ function ROOTCOEF() {
             funtyp = 4;
             if (ok) {
                 label = exprs;
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
@@ -11034,7 +11081,7 @@ function SQRT() {
             funtyp = 4;
             if (ok) {
                 label = exprs;
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
@@ -11144,7 +11191,7 @@ function SUBMAT() {
             funtyp = 4;
             label = exprs;
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;
@@ -11278,7 +11325,7 @@ function AUTOMAT() {
                 }
             }
             if (!ModifEncore) {
-                [model,graphics,this.ok] = check_io(this.model,graphics,INP,OUT,[],[1]);
+                [this.model,graphics,this.ok] = check_io(this.model,graphics,INP,OUT,[],[1]);
                 if (!this.ok) {
                     break;
                 }
@@ -11459,7 +11506,7 @@ function BOUNCE() {
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = check_io(this.model,graphics,[],[n,n],[],[]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,[],[n,n],[],[]);
             if (ok) {
                 k = 1;
                 ipar = [];
@@ -11818,7 +11865,7 @@ function CBLOCK() {
                         break;
                     }
                 } else {
-                    [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
                     if (ok) {
                         this.model.sim = list(new ScilabDouble([funam]), new ScilabDouble([funtyp]));
                         this.model.in1 = new ScilabDouble([this.i]);
@@ -11966,7 +12013,7 @@ function CBLOCK4() {
                     tt = [];
                 }
                 tt = label[2-1];
-                [model,graphics,ok] = set_io(this.model,graphics,list(this.in1,this.it),list(this.out,this.ot),this.ci,this.co);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(this.in1,this.it),list(this.out,this.ot),this.ci,this.co);
             }
             if (ok) {
                 while (true) {
@@ -12127,7 +12174,7 @@ function CONSTRAINT_c() {
             if (N<=0) {
                 message("number of states (constraints) must be > 0 ");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,N,N,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,N,N,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.state = [[this.x0],[zeros(N,1)]];
@@ -12978,10 +13025,10 @@ function LOGICAL_OP() {
                     in1 = [-ones(this.nin,1),-2*ones(this.nin,1)];
                     if ((this.rule!=5)&&(this.nin==1)) {
                         out = [1,1];
-                        [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                        [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                     } else {
                         out = [-1,-2];
-                        [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                        [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                     }
                 }
                 if (ok) {
@@ -13191,7 +13238,7 @@ function MBLOCK() {
             if (ok) {
                 intypex = find(this.intype=="I");
                 outtypex = find(this.outtype=="I");
-                [model,graphics,ok] = set_io(this.model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
             }
             if (ok) {
                 Tparam_lab = evstr(this.Tparam);
@@ -13349,7 +13396,7 @@ function MEMORY_f() {
             } else {
                 this.inh = 1;
             }
-            [model,graphics,ok] = check_io(this.model,graphics,-1,-1,this.inh,[]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,-1,-1,this.inh,[]);
             out = size(this.a,"*");
             if (out==0) {
                 ok = false;
@@ -13536,7 +13583,7 @@ function MPBLOCK() {
             if (ok) {
                 intypex = find(this.intype=="I");
                 outtypex = find(this.outtype=="I");
-                [model,graphics,ok] = set_io(this.model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
             }
             if (ok) {
                 Tparam_lab = evstr(Tparam);
@@ -13889,7 +13936,7 @@ function RELATIONALOP() {
                 ot = this.Datatype;
                 in1 = [[-1,-2],[-1,-2]];
                 out = [-1,-2];
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 if (this.rule==0) {
@@ -14133,7 +14180,7 @@ function c_block() {
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,[],[]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,[],[]);
             if (ok) {
                 this.model.sim[1] = new ScilabString([this.funam]);
                 this.model.rpar = this.rpar;
@@ -14213,7 +14260,7 @@ function fortran_block() {
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,[],[]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,[],[]);
             if (ok) {
                 this.model.sim[1] = new ScilabString([this.funam]);
                 this.model.rpar = this.rpar;
@@ -14371,7 +14418,7 @@ function generic_block() {
             }
             dep_ut = [this.depu,this.dept];
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
+                [this.model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
             }
             if (ok) {
                 if (this.funtyp==3) {
@@ -14505,7 +14552,7 @@ function generic_block2() {
             }
             dep_ut = [this.depu,this.dept];
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
+                [this.model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
             }
             if (ok) {
                 if (this.funtyp==3) {
@@ -14651,7 +14698,7 @@ function generic_block3() {
             }
             dep_ut = [this.depu,this.dept];
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(this.in1,this.it),list(this.out,this.ot),this.ci,this.co);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(this.in1,this.it),list(this.out,this.ot),this.ci,this.co);
             }
             if (ok) {
                 if (this.funtyp==3) {
@@ -14769,7 +14816,7 @@ function scifunc_block() {
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
+            [this.model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
             if (ok) {
                 auto = this.auto0;
                 this.model.state = this.xx;
@@ -14888,7 +14935,7 @@ function scifunc_block_m() {
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = set_io(this.model,graphics,list(this.i,it),list(this.o,ot),this.ci,this.co);
+            [this.model,graphics,ok] = set_io(this.model,graphics,list(this.i,it),list(this.o,ot),this.ci,this.co);
             if (ok) {
                 auto = this.auto0;
                 this.model.state = this.xx;
@@ -15683,9 +15730,9 @@ function MAXMIN() {
             }
             if (ok) {
                 if (this.nin==1) {
-                    [model,graphics,ok] = check_io(this.model,graphics,-1,1,[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,-1,1,[],[]);
                 } else {
-                    [model,graphics,ok] = check_io(this.model,graphics,[-1,-1],-1,[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,[-1,-1],-1,[],[]);
                 }
             }
             if (ok) {
@@ -15883,7 +15930,7 @@ function PRODUCT() {
                 }
             }
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,in1,nout,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,in1,nout,[],[]);
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.sgn]);
@@ -16399,7 +16446,7 @@ function PDE() {
                 break;
             }
             if (!ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,ones(k,1),out.slice(),[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,ones(k,1),out.slice(),[],[]);
             }
             label[1-1] = params_pde;
             label[2-1] = tt;
@@ -16496,7 +16543,7 @@ function AFFICH_m() {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(this.in1,1),list(),ones(1-this.herit,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(this.in1,1),list(),ones(1-this.herit,1),[]);
             }
             if (ok) {
                 this.model.ipar = [[this.font],[this.fontsize],[this.colr],[this.nt],[this.nd],[this.in1[1-1][1-1]]];
@@ -16697,7 +16744,7 @@ function CANIMXY() {
             } else {
                 in1 = this.nbr_curves*ones(2,1);
                 in2 = ones(2,1);
-                [model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(2,1)),list(),ones(1,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(2,1)),list(),ones(1,1),[]);
                 if (this.wpos==[]) {
                     this.wpos = [[-1],[-1]];
                 }
@@ -16841,7 +16888,7 @@ function CANIMXY3D() {
             } else {
                 in1 = this.nbr_curves*ones(3,1);
                 in2 = ones(3,1);
-                [model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[]);
                 if (this.wpos==[]) {
                     this.wpos = [[-1],[-1]];
                 }
@@ -16942,7 +16989,7 @@ function CEVENTSCOPE() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(),list(),ones(this.nclock,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(),list(),ones(this.nclock,1),[]);
             } else {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
@@ -17524,7 +17571,7 @@ function CMSCOPE() {
                 this.in1 = this.in1.slice();
                 a = size(this.in1,1);
                 in2 = ones(a,1);
-                [model,graphics,ok] = set_io(this.model,graphics,list([this.in1,in2],ones(a,1)),list(),ones(1-this.heritance,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([this.in1,in2],ones(a,1)),list(),ones(1-this.heritance,1),[]);
             }
             if (ok) {
                 if (this.wpos==[]) {
@@ -17651,7 +17698,7 @@ function CSCOPE() {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list([-1,1],1),list(),ones(1-this.heritance,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([-1,1],1),list(),ones(1-this.heritance,1),[]);
             }
             if (ok) {
                 if (this.wpos==[]) {
@@ -17783,7 +17830,7 @@ function CSCOPXY() {
             } else {
                 in1 = this.nbr_curves*ones(2,1);
                 in2 = ones(2,1);
-                [model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(2,1)),list(),ones(1,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(2,1)),list(),ones(1,1),[]);
                 if (this.wpos==[]) {
                     this.wpos = [[-1],[-1]];
                 }
@@ -17920,7 +17967,7 @@ function CSCOPXY3D() {
             if (ok) {
                 in1 = this.nbr_curves*ones(3,1);
                 in2 = ones(3,1);
-                [model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[]);
                 if (this.wpos==[]) {
                     this.wpos = [[-1],[-1]];
                 }
@@ -18119,7 +18166,7 @@ function TOWS_c() {
             }
             execstr("if type("+this.varnam+") <> 17 | or(fieldnames("+this.varnam+") <> [\"values\"; \"time\"]) then"+" message([\"Protected variable name.\"; \"Please choose another variable name.\"]);"+" ok = %f;"+" end","errcatch");
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],-1),list(),ones(1-this.herit,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],-1),list(),ones(1-this.herit,1),[]);
                 if (this.herit==1) {
                     this.model.blocktype = new ScilabString(["x"]);
                 } else {
@@ -18934,7 +18981,7 @@ function CONST_m() {
                 }
                 if (ok) {
                     this.model.rpar = [];
-                    [model,graphics,ok] = set_io(this.model,graphics,list(),list(nout,ot),[],[]);
+                    [this.model,graphics,ok] = set_io(this.model,graphics,list(),list(nout,ot),[],[]);
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
                     this.x.model = this.model;
@@ -19237,7 +19284,7 @@ function FROMWS_c() {
             }
             if (ok) {
                 this.model.ipar = [[length(this.varnam)],[this._str2code[this.varnam-1]],[this.Method],[this.ZC],[this.OutEnd]];
-                [model,graphics,ok] = set_io(this.model,graphics,list(),list([-1,-2],-1),1,1);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(),list([-1,-2],-1),1,1);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
@@ -19296,7 +19343,7 @@ function GENSIN_f() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,[],1,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[],1,[],[]);
                 this.model.rpar = [[this.M],[this.F],[this.P]];
                 this.model.out2 = new ScilabDouble([1]);
                 this.model.outtyp = new ScilabDouble([1]);
@@ -19989,7 +20036,7 @@ function RAND_m() {
                     ok = false;
                 }
                 if (ok) {
-                    [model,graphics,ok] = set_io(this.model,graphics,list([],[]),list(out,ot),1,[]);
+                    [this.model,graphics,ok] = set_io(this.model,graphics,list([],[]),list(out,ot),1,[]);
                     if (ok) {
                         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([4]));
                         graphics.exprs = exprs;
@@ -20080,7 +20127,7 @@ function READAU_f() {
             } else if (this.swap!=0&&this.swap!=1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Swap Mode",this.swap),msprintf("Must be in the interval %s.","[0, 1]"));
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,[],1,1,[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[],1,1,[]);
                 frmt1 = part(frmt1,1,3);
                 if (ok) {
                     ipar = [[length(this.fname1)],[this._str2code[frmt1-1]],[0],[this.N],[M],[this.swap],[offset,this._str2code[this.fname1-1]],[tmask1,outmask.slice()]];
@@ -20214,7 +20261,7 @@ function READC_f() {
                     outpt = 1;
                 }
                 out = size(this.outmask,"*");
-                [model,graphics,ok] = check_io(this.model,graphics,[],out,1,outpt);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[],out,1,outpt);
                 this.frmt1 = part(this.frmt1,1,3);
                 if (ok) {
                     if (ievt==0) {
@@ -20337,7 +20384,7 @@ function RFILE_f() {
                     ievt = 1;
                     cout = 1;
                 }
-                [model,graphics,ok] = check_io(this.model,graphics,[],nout,1,cout);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[],nout,1,cout);
                 if (ok) {
                     if (ievt==0) {
                         this.model.firing = [];
@@ -20447,7 +20494,7 @@ function STEP() {
             if (ok) {
                 this.model.out2 = new ScilabDouble([1]);
                 this.model.outtyp = new ScilabDouble([1]);
-                [model,graphics,ok] = check_io(this.model,graphics,[],size(this.fi,"*"),1,1);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[],size(this.fi,"*"),1,1);
             }
             if (ok) {
                 this.model.firing = new ScilabDouble([this.temps]);
@@ -20869,7 +20916,7 @@ function GENERAL_f() {
         nout = sum(this.out);
         [ok,this.in1,this.out,exprs] = scicos_getvalue("Set General Zero-Crossing parameters",["Input size","Number of event output"],list("vec",1,"vec",1),exprs);
         if (ok) {
-            [model,graphics,ok] = check_io(this.model,graphics,this.in1,[],[],ones(this.out,1));
+            [this.model,graphics,ok] = check_io(this.model,graphics,this.in1,[],[],ones(this.out,1));
             if (ok) {
                 nout1 = this.out;
                 nin1 = this.in1;
@@ -21015,4 +21062,4 @@ function ZCROSS_f() {
     }
 }
 
-/* made from 270/274 files */
+/* made from 271/274 files */

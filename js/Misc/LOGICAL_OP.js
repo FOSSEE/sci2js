@@ -93,10 +93,10 @@ function LOGICAL_OP() {
                     in1 = [-ones(this.nin,1),-2*ones(this.nin,1)];
                     if ((this.rule!=5)&&(this.nin==1)) {
                         out = [1,1];
-                        [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                        [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                     } else {
                         out = [-1,-2];
-                        [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                        [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                     }
                 }
                 if (ok) {

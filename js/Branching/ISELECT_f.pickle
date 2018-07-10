@@ -50,12 +50,12 @@ sS'model.sim'
 p15
 S'list'
 p16
-sS'graphics.exprs'
+sS'[this.model,graphics,ok]'
 p17
-NsS'z0'
-p18
 g2
-sS'[model,graphics,ok]'
+sS'graphics.exprs'
+p18
+NsS'z0'
 p19
 g2
 sS'model.blocktype'

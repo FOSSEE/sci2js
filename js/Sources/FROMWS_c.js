@@ -67,7 +67,7 @@ function FROMWS_c() {
             }
             if (ok) {
                 this.model.ipar = [[length(this.varnam)],[this._str2code[this.varnam-1]],[this.Method],[this.ZC],[this.OutEnd]];
-                [model,graphics,ok] = set_io(this.model,graphics,list(),list([-1,-2],-1),1,1);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(),list([-1,-2],-1),1,1);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;

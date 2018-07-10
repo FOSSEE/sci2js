@@ -40,7 +40,7 @@ function GAINBLK_f() {
                 message("Gain must have at least one element");
             } else {
                 [out,in1] = size(this.gain);
-                [model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.rpar = this.gain.slice();

@@ -90,7 +90,7 @@ function scifunc_block_m() {
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = set_io(this.model,graphics,list(this.i,it),list(this.o,ot),this.ci,this.co);
+            [this.model,graphics,ok] = set_io(this.model,graphics,list(this.i,it),list(this.o,ot),this.ci,this.co);
             if (ok) {
                 auto = this.auto0;
                 this.model.state = this.xx;

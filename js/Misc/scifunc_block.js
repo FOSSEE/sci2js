@@ -88,7 +88,7 @@ function scifunc_block() {
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
+            [this.model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
             if (ok) {
                 auto = this.auto0;
                 this.model.state = this.xx;

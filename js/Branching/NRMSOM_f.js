@@ -34,7 +34,7 @@ function NRMSOM_f() {
             if (!ok) {
                 break;
             }
-            [model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,[],[]);
+            [this.model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,[],[]);
             if (ok) {
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;

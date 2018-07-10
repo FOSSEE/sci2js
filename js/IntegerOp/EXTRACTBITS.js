@@ -228,7 +228,7 @@ function EXTRACTBITS() {
                 it = this.Datatype;
                 ot = this.Datatype;
                 out = [1,1];
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 graphics.exprs = exprs;

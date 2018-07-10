@@ -113,7 +113,7 @@ function READC_f() {
                     outpt = 1;
                 }
                 out = size(this.outmask,"*");
-                [model,graphics,ok] = check_io(this.model,graphics,[],out,1,outpt);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[],out,1,outpt);
                 this.frmt1 = part(this.frmt1,1,3);
                 if (ok) {
                     if (ievt==0) {

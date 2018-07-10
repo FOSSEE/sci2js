@@ -74,7 +74,7 @@ function CLSS() {
             if (ms!=ns||!okD) {
                 message(_("Matrix A is not square or D has wrong dimension"));
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];

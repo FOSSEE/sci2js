@@ -73,7 +73,7 @@ function DLSS() {
             if (ms!=ns||!okD) {
                 message(_("Matrix A is not square or D has wrong dimension"));
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,in1,out,1,[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,in1,out,1,[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];

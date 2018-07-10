@@ -57,7 +57,7 @@ function PRODUCT() {
                 }
             }
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,in1,nout,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,in1,nout,[],[]);
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.sgn]);

@@ -55,7 +55,7 @@ function RICC() {
             it = [1,1,1];
             ot = 1;
             label = exprs;
-            [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+            [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {
                 this.model.ipar = [[this.tpe],[this.mod]];
                 graphics.exprs = label;

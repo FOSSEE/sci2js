@@ -86,7 +86,7 @@ function DOLLAR_m() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.inh,1),[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.inh,1),[]);
             }
             if (ok) {
                 graphics.exprs = exprs;

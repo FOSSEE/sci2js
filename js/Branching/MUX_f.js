@@ -38,7 +38,7 @@ function MUX_f() {
                     message("Block must have at least two input ports and at most eight");
                     ok = false;
                 } else {
-                    [model,graphics,ok] = check_io(this.model,graphics,-transpose([1:this.in1]),0,[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,-transpose([1:this.in1]),0,[],[]);
                 }
             } else {
                 if (size(this.in1,"*")<2||size(this.in1,"*")>8||or(this.in1==0)) {
@@ -50,7 +50,7 @@ function MUX_f() {
                     } else {
                         nout = sum(this.in1);
                     }
-                    [model,graphics,ok] = check_io(this.model,graphics,this.in1.slice(),nout,[],[]);
+                    [this.model,graphics,ok] = check_io(this.model,graphics,this.in1.slice(),nout,[],[]);
                     if (ok) {
                         this.in1 = size(this.in1,"*");
                     }

@@ -101,7 +101,7 @@ function INTMUL() {
             in1 = [this.model.in1,this.model.in2];
             out = [this.model.out,this.model.out2];
             if (ok) {
-                [model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.np]);

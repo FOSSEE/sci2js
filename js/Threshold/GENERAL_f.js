@@ -42,7 +42,7 @@ function GENERAL_f() {
         nout = sum(this.out);
         [ok,this.in1,this.out,exprs] = scicos_getvalue("Set General Zero-Crossing parameters",["Input size","Number of event output"],list("vec",1,"vec",1),exprs);
         if (ok) {
-            [model,graphics,ok] = check_io(this.model,graphics,this.in1,[],[],ones(this.out,1));
+            [this.model,graphics,ok] = check_io(this.model,graphics,this.in1,[],[],ones(this.out,1));
             if (ok) {
                 nout1 = this.out;
                 nin1 = this.in1;

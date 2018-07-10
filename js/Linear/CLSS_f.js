@@ -64,7 +64,7 @@ function CLSS_f() {
             if (ms!=ns) {
                 message("A matrix must be square");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];

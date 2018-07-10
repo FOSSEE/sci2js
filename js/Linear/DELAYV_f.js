@@ -58,7 +58,7 @@ function DELAYV_f() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,[[this.nin],[1]],this.nin,1,[[1],[1]]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[[this.nin],[1]],this.nin,1,[[1],[1]]);
             }
             if (ok) {
                 graphics.exprs = exprs;

@@ -39,7 +39,7 @@ function CONSTRAINT_c() {
             if (N<=0) {
                 message("number of states (constraints) must be > 0 ");
             } else {
-                [model,graphics,ok] = check_io(this.model,graphics,N,N,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,N,N,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.state = [[this.x0],[zeros(N,1)]];

@@ -23,7 +23,7 @@ js/%.lex: macros/%.sci sci2jslex.py
 	./sci2jslex.py $< > js/$*.lex
 
 js/%.pickle: macros/%.sci sci2jsyacc.py parsetab.py sci2jslex.py
-	./sci2jsyacc.py $< $@ 1 > js/$*.js.old 2> /dev/null
+	./sci2jsyacc.py $< $@ 1 > js/$*.js.old 2> /dev/null && $(RM) js/$*.js.old
 
 js/%.js: macros/%.sci js/%.pickle sci2jsyacc.py parsetab.py sci2jslex.py
 	./sci2jsyacc.py $< js/$*.pickle 2 > $@ 2> js/$*.yacc

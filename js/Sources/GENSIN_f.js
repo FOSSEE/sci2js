@@ -45,7 +45,7 @@ function GENSIN_f() {
                 ok = false;
             }
             if (ok) {
-                [model,graphics,ok] = check_io(this.model,graphics,[],1,[],[]);
+                [this.model,graphics,ok] = check_io(this.model,graphics,[],1,[],[]);
                 this.model.rpar = [[this.M],[this.F],[this.P]];
                 this.model.out2 = new ScilabDouble([1]);
                 this.model.outtyp = new ScilabDouble([1]);
