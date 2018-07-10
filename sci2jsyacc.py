@@ -136,8 +136,12 @@ def p_functionstatement_function_var(p):
     'functionstatement : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET list CLOSEBRACKET EOL'
     p[0] = ''
 
-def p_functionstatement_function_functionname(p):
+def p_functionstatement_function_functionname_list(p):
     'functionstatement : FUNCTION lterm ASSIGNMENT FUNCTIONNAME OPENBRACKET list CLOSEBRACKET EOL'
+    p[0] = ''
+
+def p_functionstatement_function_functionname(p):
+    'functionstatement : FUNCTION lterm ASSIGNMENT FUNCTIONNAME OPENBRACKET CLOSEBRACKET EOL'
     p[0] = ''
 
 # end define functionblock
@@ -187,7 +191,7 @@ def p_statement_clearvar(p):
 
 def p_statement_eol(p):
     'statement : EOL'
-    p[0] = '\n'
+    p[0] = ''
 
 def p_statement_forstatementblocks(p):
     'statement : forstatementblocks'
@@ -271,7 +275,7 @@ def p_casejobstatementblock_casejobstatementblock_casejobsetstatement_jobsetstat
 
 def p_casestatementblock_casestatementblock_casestatement(p):
     'casestatementblock : casestatementblock casestatement'
-    p[0] = '%s%s%s' % (p[1], p[2], '')
+    p[0] = '%s%s' % (p[1], p[2])
 
 def p_casejobstatementblock_casejobstatementblock_casejobstatement(p):
     'casejobstatementblock : casejobstatementblock casejobstatement'
@@ -333,9 +337,13 @@ def p_elseifstatementblock_elseifstatement(p):
     'elseifstatementblock : elseifstatement statementblock'
     p[0] = '%s%s' % (p[1], p[2])
 
-def p_elsestatementblock_elsestatement(p):
+def p_elsestatementblock_elsestatement_statementblock(p):
     'elsestatementblock : elsestatement statementblock'
     p[0] = '%s%s' % (p[1], p[2])
+
+def p_elsestatementblock_elsestatement(p):
+    'elsestatementblock : elsestatement'
+    p[0] = '%s' % (p[1])
 
 def p_trystatementblocks_trystatement_statementblock_catchstatement_statementblock(p):
     'trystatementblocks : trystatement statementblock catchstatement statementblock endstatementblock'
@@ -463,7 +471,7 @@ def p_whilestatement_while_do(p):
     INDENT_LEVEL += 1
 
 def p_ifstatement_if_then(p):
-    '''ifstatement : IF expression THEN EOL
+    '''ifstatement : IF expression THEN
                    | IF expression EOL'''
     global INDENT_LEVEL
     p[0] = '%*sif (%s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[2][0])
@@ -659,7 +667,8 @@ def p_getvaluearg3_var(p):
     p[0] = '%s' % (p[1])
 
 def p_getvaluearg4_expression(p):
-    'getvaluearg4 : expression'
+    '''getvaluearg4 : expression
+                    | listcall'''
     p[0] = '%s' % (p[1][0])
 
 # end define assignment
@@ -674,14 +683,14 @@ def p_ltermarraylist_ltermarraylistterm(p):
     'ltermarraylist : ltermarraylistterm'
     p[0] = '%s' % (p[1])
 
-def p_ltermarraylistterm_ltermvar(p):
+def p_ltermarraylistterm_var(p):
     '''ltermarraylistterm : VAR
                           | MODEL'''
     var = '%s' % (p[1])
     add_local_var(var)
     p[0] = '%s' % (print_var(var))
 
-def p_ltermarraylistterm_ltermvar_dot_var(p):
+def p_ltermarraylistterm_var_dot_var(p):
     'ltermarraylistterm : VAR DOT VAR'
     var = '%s' % (p[1])
     add_local_var(var)
@@ -889,23 +898,28 @@ def p_clearvar_clearvar_var(p):
 # define lterm
 
 # B(2:$-1)
-def p_lterm_ltermvar_slice(p):
+def p_lterm_lterm_slice(p):
     'lterm : lterm OPENBRACKET expression COLON expression CLOSEBRACKET'
     p[0] = '%s.slice(%s-1,%s)' % (p[1], p[3][0], p[5][0])
 
 # B(2)
-def p_lterm_ltermvar_index(p):
+def p_lterm_lterm_index(p):
     'lterm : lterm OPENBRACKET expression CLOSEBRACKET'
     p[0] = '%s[%s-1]' % (p[1], p[3][0])
 
 # B(2:$-1,1:n)
-def p_lterm_ltermvar_slice_slice(p):
+def p_lterm_lterm_slice_slice(p):
     'lterm : lterm OPENBRACKET expression COLON expression COMMA expression COLON expression CLOSEBRACKET'
     p[0] = '%s.slice(%s-1,%s).slice(%s-1,%s)' % (p[1], p[3][0], p[5][0], p[7][0], p[9][0])
 
+# B(2,:)
+def p_lterm_lterm_index_full_slice(p):
+    'lterm : lterm OPENBRACKET expression COMMA COLON CLOSEBRACKET'
+    p[0] = '%s[%s-1].slice()' % (p[1], p[3][0])
+
 # B(2,3)
 # B($-2)(3)
-def p_lterm_ltermvar_index_index(p):
+def p_lterm_lterm_index_index(p):
     '''lterm : lterm OPENBRACKET expression COMMA expression CLOSEBRACKET
              | lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'''
     base = '%s[%s-1]' % (p[1], p[3][0])
@@ -916,29 +930,29 @@ def p_lterm_ltermarraylist(p):
     'lterm : OPENSQBRACKET ltermarraylist CLOSESQBRACKET'
     p[0] = '[%s]' % (p[2])
 
-def p_ltermvar_ltermvar_dot_var(p):
+def p_lterm_lterm_dot_var(p):
     '''lterm : lterm DOT VAR
              | lterm DOT MODEL'''
     p[0] = '%s.%s' % (p[1], p[3])
 
-def p_ltermvar_ltermvar_dot_in(p):
+def p_lterm_lterm_dot_in(p):
     'lterm : lterm DOT IN'
     p[0] = '%s.%s1' % (p[1], p[3])
 
-def p_ltermvar_var(p):
+def p_lterm_var(p):
     'lterm : VAR'
     var = p[1]
     add_local_var(var)
     p[0] = '%s' % (print_var(var))
 
 # in
-def p_ltermvar_in(p):
+def p_lterm_in(p):
     'lterm : IN'
     var = p[1] + '1'
     add_local_var(var)
     p[0] = '%s' % (print_var(var))
 
-def p_ltermvar_prevar(p):
+def p_lterm_prevar(p):
     'lterm : PREVAR'
     p[0] = '%s' % (p[1])
 
@@ -947,53 +961,63 @@ def p_ltermvar_prevar(p):
 # define term
 
 # B(2:$-1)
-def p_term_slice(p):
-    'term : termvar OPENBRACKET expression COLON expression CLOSEBRACKET'
+def p_termvar_termvar_slice(p):
+    'termvar : termvar OPENBRACKET expression COLON expression CLOSEBRACKET'
     p[0] = ('%s.slice(%s-1,%s)' % (p[1][0], p[3][0], p[5][0]), VECTOR_TYPE)
 
 # B(2:$-1,1)
-def p_term_slice_expression(p):
-    'term : termvar OPENBRACKET expression COLON expression COMMA expression CLOSEBRACKET'
+def p_termvar_termvar_slice_expression(p):
+    'termvar : termvar OPENBRACKET expression COLON expression COMMA expression CLOSEBRACKET'
     p[0] = ('%s.slice(%s-1,%s)[%s-1]' % (p[1][0], p[3][0], p[5][0], p[7][0]), VECTOR_TYPE)
 
+# B(2:$-1,1:2)
+def p_termvar_termvar_slice_slice(p):
+    'termvar : termvar OPENBRACKET expression COLON expression COMMA expression COLON expression CLOSEBRACKET'
+    p[0] = ('%s.slice(%s-1,%s).slice(%s-1,%s)' % (p[1][0], p[3][0], p[5][0], p[7][0], p[9][0]), MATRIX_TYPE)
+
+# B(2:$-1,:)
+def p_termvar_termvar_slice_full_slice(p):
+    'termvar : termvar OPENBRACKET expression COLON expression COMMA COLON CLOSEBRACKET'
+    p[0] = ('%s.slice(%s-1,%s).slice()' % (p[1][0], p[3][0], p[5][0]), MATRIX_TYPE)
+
 # B(:$-1)
-def p_term_left_slice(p):
-    'term : termvar OPENBRACKET COLON expression CLOSEBRACKET'
+def p_termvar_termvar_left_slice(p):
+    'termvar : termvar OPENBRACKET COLON expression CLOSEBRACKET'
     p[0] = ('%s.slice(%s-1)' % (p[1][0], p[3][0]), VECTOR_TYPE)
 
 # B(2:)
-def p_term_right_slice(p):
-    'term : termvar OPENBRACKET expression COLON CLOSEBRACKET'
+def p_termvar_termvar_right_slice(p):
+    'termvar : termvar OPENBRACKET expression COLON CLOSEBRACKET'
     p[0] = ('%s.slice(%s-1,%s)' % (p[1][0], '1', p[4][0]), VECTOR_TYPE)
 
 # B(:)
-def p_term_full_slice(p):
-    'term : termvar OPENBRACKET COLON CLOSEBRACKET'
+def p_termvar_termvar_full_slice(p):
+    'termvar : termvar OPENBRACKET COLON CLOSEBRACKET'
     p[0] = ('%s.slice()' % (p[1][0]), VECTOR_TYPE)
 
 # B(:,1)
-def p_term_full_slice_expression(p):
-    'term : termvar OPENBRACKET COLON COMMA expression CLOSEBRACKET'
+def p_termvar_termvar_full_slice_expression(p):
+    'termvar : termvar OPENBRACKET COLON COMMA expression CLOSEBRACKET'
     p[0] = ('%s.slice()[%s-1]' % (p[1][0], p[5][0]), DOUBLE_TYPE)
 
 # B(1,:)
-def p_term_expression_full_slice(p):
-    '''term : termvar OPENBRACKET expression COMMA COLON CLOSEBRACKET
-            | termvar OPENBRACKET expression CLOSEOPENBRACKET COLON CLOSEBRACKET'''
+def p_termvar_termvar_expression_full_slice(p):
+    '''termvar : termvar OPENBRACKET expression COMMA COLON CLOSEBRACKET
+               | termvar OPENBRACKET expression CLOSEOPENBRACKET COLON CLOSEBRACKET'''
     base = '%s[%s-1]' % (p[1][0], p[3][0])
     p[0] = ('%s.slice()' % (base), VECTOR_TYPE)
 
 # B(1,1)
 # B($-2)(1)
-def p_term_expression_expression(p):
-    '''term : termvar OPENBRACKET expression COMMA expression CLOSEBRACKET
-            | termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'''
+def p_termvar_termvar_expression_expression(p):
+    '''termvar : termvar OPENBRACKET expression COMMA expression CLOSEBRACKET
+               | termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'''
     base = '%s[%s-1]' % (p[1][0], p[3][0])
     p[0] = ('%s[%s-1]' % (base, p[5][0]), DOUBLE_TYPE)
 
 # B(:,:)
-def p_term_full_slice_full_slice(p):
-    'term : termvar OPENBRACKET COLON COMMA COLON CLOSEBRACKET'
+def p_termvar_termvar_full_slice_full_slice(p):
+    'termvar : termvar OPENBRACKET COLON COMMA COLON CLOSEBRACKET'
     p[0] = ('%s.slice().slice()' % (p[1][0]), DOUBLE_TYPE)
 
 # (1:10)
@@ -1007,20 +1031,20 @@ def p_term_range_step(p):
     p[0] = ('[%s:%s:%s]' % (p[1][0], p[3][0], p[5][0]), VECTOR_TYPE)
 
 # B($-2)
-def p_term_termvar_parameter(p):
-    'term : termvar OPENBRACKET expression CLOSEBRACKET'
+def p_termvar_termvar_parameter(p):
+    'termvar : termvar OPENBRACKET expression CLOSEBRACKET'
     p[0] = ('%s[%s-1]' % (p[1][0], p[3][0]), DOUBLE_TYPE)
 
 # B($-2)(1)(3)
-def p_term_termvar_parameter_parameter_parameter(p):
-    'term : termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'
+def p_termvar_termvar_parameter_parameter_parameter(p):
+    'termvar : termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'
     base = '%s[%s-1]' % (p[1][0], p[3][0])
     base = '%s[%s-1]' % (base, p[5][0])
     p[0] = ('%s[%s-1]' % (base, p[7][0]), DOUBLE_TYPE)
 
-# B($-2)('function parameter')(3:4)
-def p_term_termvar_parameter_parameter_slice(p):
-    'term : termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET'
+# B($-2)(1)(3:4)
+def p_termvar_termvar_parameter_parameter_slice(p):
+    'termvar : termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET'
     base = '%s[%s-1]' % (p[1][0], p[3][0])
     base = '%s[%s-1]' % (base, p[5][0])
     p[0] = ('%s.slice(%s-1,%s)' % (base, p[7][0], p[9][0]), STRING_TYPE)
@@ -1286,6 +1310,27 @@ def dump_vars(picklefilename):
         pickle.dump(GLOBAL_VARS, cfile)
 
         pickle.dump(VAR_TYPES, cfile)
+
+def get_expression_type_1(expression, vartype, isslice=False, slicetype=''):
+    if vartype == STRING_TYPE:
+        pass
+    elif type(vartype) == tuple:
+        if isslice:
+            pass
+        elif vartype[0] == MATRIX_TYPE:
+            vartype = (VECTOR_TYPE, vartype[1])
+        elif vartype[0] == VECTOR_TYPE:
+            vartype = vartype[1]
+        else:
+            print('Syntax error: getting', slicetype, 'index of expression', expression, 'of vartype', vartype)
+    else:
+        print('Syntax error: getting', slicetype, 'index of expression', expression, 'of vartype', vartype)
+    return vartype
+
+def get_expression_type_2(expression, vartype, isslice1=False, isslice2=False):
+    vartype = get_expression_type_1(expression, vartype, isslice1, 'first')
+    vartype = get_expression_type_1(expression, vartype, isslice2, 'second')
+    return vartype
 
 def load_vars(picklefilename):
     global GLOBAL_VARS

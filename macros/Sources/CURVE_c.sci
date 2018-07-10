@@ -904,8 +904,7 @@ function [tok,xyo]=ReadExcel()
             if x2p==[] then,
                 xinfo("Bad address in X:"+x2);
             break, end
-            x21=par
-            t(x2,1:x2p-1);
+            x21=part(x2,1:x2p-1);
             x22=part(x2,x2p:length(x2));
 
             y1p=min(strindex(y1,TN));
