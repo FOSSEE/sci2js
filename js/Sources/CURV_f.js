@@ -9,12 +9,12 @@ function CURV_f() {
         var rpar = [[xx],[yy],[rect.slice()]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["intplt"]);
-        this.model.in1 = [];
+        this.model.in1 = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([xx],[yy],[rect.slice()]);
         this.model.ipar = new ScilabDouble([size(xx,1)],[axisdata.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,true];
+        this.model.dep_ut = new ScilabDouble([false,true]);
         var gr_i = [];
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
@@ -58,7 +58,7 @@ function CURV_f() {
             }
             if (ok) {
                 this.model.sim = new ScilabString(["intplt"]);
-                this.model.firing = [];
+                this.model.firing = new ScilabDouble([]);
                 var rect = gc[1-1];
                 this.model.rpar = new ScilabDouble([xx.slice()],[yy.slice()],[rect.slice()]);
                 var axisdata = gc[2-1];

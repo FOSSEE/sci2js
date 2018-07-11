@@ -14,7 +14,7 @@ function WFILE_f() {
         this.model.dstate = new ScilabDouble([-1],[lunit],[zeros((nin+1)*this.N,1)]);
         this.model.ipar = new ScilabDouble([length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(this.in1)],[fname],[frmt],[string(this.N)]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
@@ -95,7 +95,7 @@ function WFILE_f() {
                 this.model.in1 = new ScilabDouble([nin]);
                 this.model.dstate = new ScilabDouble(dstate);
                 this.model.ipar = new ScilabDouble(ipar);
-                this.model.dep_ut = [true,false];
+                this.model.dep_ut = new ScilabDouble([true,false]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

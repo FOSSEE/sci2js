@@ -82,11 +82,11 @@ function DFLIPFLOP() {
         this.model.in2 = new ScilabDouble([1],[1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);
-        this.model.intyp = [5,1,1];
-        this.model.outtyp = [5,5];
+        this.model.intyp = new ScilabDouble([5,1,1]);
+        this.model.outtyp = new ScilabDouble([5,5]);
         this.model.blocktype = new ScilabString(["h"]);
         this.model.firing = new ScilabBoolean([false]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.rpar = new ScilabDouble([scs_m]);
         var gr_i = [];
         this.x = standard_define([2,3],this.model,[],gr_i);

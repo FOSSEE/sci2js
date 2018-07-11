@@ -15,7 +15,7 @@ function CLSS() {
         this.model.state = new ScilabDouble([this.x0]);
         this.model.rpar = new ScilabDouble([this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,true];
+        this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
         var gr_i = [];
         this.x = standard_define([4,2],this.model,exprs,gr_i);
@@ -90,12 +90,12 @@ function CLSS() {
                             var mmm = [false,true];
                         }
                         if (or(this.model.dep_ut!=mmm)) {
-                            this.model.dep_ut = mmm;
+                            this.model.dep_ut = new ScilabDouble(mmm);
                         }
                     } else {
-                        this.model.dep_ut = [false,true];
+                        this.model.dep_ut = new ScilabDouble([false,true]);
                     }
-                    this.model.state = this.x0.slice();
+                    this.model.state = new ScilabDouble(this.x0.slice());
                     this.model.rpar = new ScilabDouble(rpar);
                     this.x.graphics = graphics;
                     this.x.model = this.model;

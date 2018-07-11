@@ -12,7 +12,7 @@ function DOLLAR_f() {
         this.model.evtin = new ScilabDouble([1-this.inh]);
         this.model.dstate = new ScilabDouble([z]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -56,8 +56,8 @@ function DOLLAR_f() {
             if (ok) {
                 graphics.exprs = exprs;
                 this.model.dstate = new ScilabDouble([this.a]);
-                this.model.in1 = in1;
-                this.model.out = out;
+                this.model.in1 = new ScilabDouble(in1);
+                this.model.out = new ScilabDouble(out);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

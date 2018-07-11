@@ -7,7 +7,7 @@ function TRASH_f() {
         this.model.in1 = new ScilabDouble([in1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = " ";
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);

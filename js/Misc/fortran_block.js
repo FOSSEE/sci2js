@@ -5,15 +5,15 @@ function fortran_block() {
         this.model.sim = list(new ScilabString([" "]), new ScilabDouble([1001]));
         this.model.in1 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
-        this.model.evtin = [];
-        this.model.evtout = [];
-        this.model.state = [];
-        this.model.dstate = [];
-        this.model.rpar = [];
+        this.model.evtin = new ScilabDouble([]);
+        this.model.evtout = new ScilabDouble([]);
+        this.model.state = new ScilabDouble([]);
+        this.model.dstate = new ScilabDouble([]);
+        this.model.rpar = new ScilabDouble([]);
         this.model.ipar = new ScilabDouble([0]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.firing = [];
-        this.model.dep_ut = [true,false];
+        this.model.firing = new ScilabDouble([]);
+        this.model.dep_ut = new ScilabDouble([true,false]);
         this.funam = "forty";
         var label = list([[sci2exp(this.model.in1)],[sci2exp(this.model.out)],[strcat(sci2exp(this.model.rpar))],[this.funam]],list([]));
         var gr_i = [];
@@ -72,7 +72,7 @@ function fortran_block() {
             var ok = tmpvar1[2];
             if (ok) {
                 this.model.sim[1] = new ScilabString([this.funam]);
-                this.model.rpar = this.rpar;
+                this.model.rpar = new ScilabDouble(this.rpar);
                 label[2-1] = tt;
                 this.x.model = this.model;
                 graphics.exprs = label;

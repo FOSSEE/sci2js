@@ -4,11 +4,11 @@ function CONST() {
         this.C = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cstblk4"]), new ScilabDouble([4]));
-        this.model.in1 = [];
+        this.model.in1 = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.C]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = strcat(sci2exp(this.C));
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -40,7 +40,7 @@ function CONST() {
             } else if (and(sz>1)) {
                 message("C matrix is not supported, use CONST_m instead");
             } else {
-                this.model.rpar = this.C.slice();
+                this.model.rpar = new ScilabDouble(this.C.slice());
                 this.model.out = new ScilabDouble([nout]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;

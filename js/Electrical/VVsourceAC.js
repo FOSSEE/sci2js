@@ -3,13 +3,13 @@ function VVsourceAC() {
     VVsourceAC.prototype.define = function VVsourceAC() {
         this.model = scicos_model();
         this.model.in1 = new ScilabDouble([1],[1]);
-        this.model.out = [1];
+        this.model.out = new ScilabDouble([1]);
         var VA = 220;
         this.FR = 50;
-        this.model.rpar = [this.FR];
+        this.model.rpar = new ScilabDouble([this.FR]);
         this.model.sim = new ScilabString(["VVsourceAC"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var mo = modelica();
         mo.model = "VVsourceAC";
         mo.inputs = ["p","VA"];
@@ -43,7 +43,7 @@ function VVsourceAC() {
             if (!ok) {
                 break;
             }
-            this.model.rpar = [this.FR];
+            this.model.rpar = new ScilabDouble([this.FR]);
             this.model.equations.parameters[2] = list(new ScilabDouble([this.FR]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;

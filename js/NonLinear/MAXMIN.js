@@ -6,7 +6,7 @@ function MAXMIN() {
         this.model.out = new ScilabDouble([1]);
         this.model.in1 = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.ipar = new ScilabDouble([0]);
         var exprs = [string(transpose([2,1,1]))];
         var gr_i = [];

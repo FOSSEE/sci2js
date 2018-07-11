@@ -6,8 +6,8 @@ function CLKSPLIT_f() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1],[1]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.firing = [false,false,false];
-        this.model.dep_ut = [false,false];
+        this.model.firing = new ScilabDouble([false,false,false]);
+        this.model.dep_ut = new ScilabDouble([false,false]);
         this.x = standard_define([1,1]/3,this.model,[],[]);
         return new BasicBlock(this.x);
     }

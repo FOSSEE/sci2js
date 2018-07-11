@@ -8,7 +8,7 @@ function END_c() {
         this.model.evtout = new ScilabDouble([1]);
         this.model.firing = new ScilabDouble([this.tf]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.tf);
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);

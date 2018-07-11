@@ -16,7 +16,7 @@ function Extract_Activation() {
         graphics.orig = [80,0];
         graphics.sz = [60,40];
         graphics.exprs = [["0"],["0"]];
-        this.model.evtin = [];
+        this.model.evtin = new ScilabDouble([]);
         this.model.nzcross = new ScilabDouble([0]);
         this.model.nmode = new ScilabDouble([0]);
         graphics.pin = 7;

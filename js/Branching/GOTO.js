@@ -6,13 +6,13 @@ function GOTO() {
         this.model.in1 = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([-1]);
-        this.model.out = [];
-        this.model.out2 = [];
+        this.model.out = new ScilabDouble([]);
+        this.model.out2 = new ScilabDouble([]);
         this.model.outtyp = new ScilabDouble([1]);
         this.model.ipar = new ScilabDouble([int(1)]);
         this.model.opar = list(new ScilabString(["A"]));
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [["A"],[sci2exp(1)]];
         var gr_i = [];
         this.x = standard_define([2,1],this.model,exprs,gr_i);

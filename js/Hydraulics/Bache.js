@@ -4,8 +4,8 @@ function Bache() {
         var in1 = 2;
         var out = 3;
         this.model = scicos_model();
-        this.model.in1 = [-transpose([1:in1])];
-        this.model.out = [-transpose([1:out])];
+        this.model.in1 = new ScilabDouble([-transpose([1:in1])]);
+        this.model.out = new ScilabDouble([-transpose([1:out])]);
         this.Patm = 1.013e5;
         this.A = 1;
         this.ze1 = 40;
@@ -18,7 +18,7 @@ function Bache() {
         this.model.rpar = new ScilabDouble([this.Patm],[this.A],[this.ze1],[this.ze2],[this.zs1],[this.zs2],[this.z0],[this.T0],[this.p_rho]);
         this.model.sim = new ScilabString(["Bache"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var mo = modelica();
         mo.model = "Bache";
         mo.inputs = ["Ce1","Ce2"];

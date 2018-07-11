@@ -9,7 +9,7 @@ function POWBLK_f() {
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble([this.a]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = string(this.a);
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -40,12 +40,12 @@ function POWBLK_f() {
             graphics.exprs = exprs;
             if (this.a==int(this.a)) {
                 this.model.ipar = new ScilabDouble([this.a]);
-                this.model.rpar = [];
+                this.model.rpar = new ScilabDouble([]);
             } else {
                 this.model.rpar = new ScilabDouble([this.a]);
-                this.model.ipar = [];
+                this.model.ipar = new ScilabDouble([]);
             }
-            this.model.firing = [];
+            this.model.firing = new ScilabDouble([]);
             this.x.graphics = graphics;
             this.x.model = this.model;
             break;

@@ -15,7 +15,7 @@ function CFSCOPE() {
         this.model.rpar = new ScilabDouble([0],[this.ymin],[this.ymax],[this.per]);
         this.model.ipar = new ScilabDouble([this.win],[1],[this.N],[this.clrs],[this.wpos],[this.wdim],[1],[1]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.ymin)],[string(this.ymax)],[string(this.per)],[string(this.N)],[string([1])]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -106,8 +106,8 @@ function CFSCOPE() {
                 var ipar = [[this.win],[1],[this.N],[this.clrs.slice()],[this.wpos.slice()],[this.wdim.slice()],[size(this.wu,"*")],[this.wu.slice()]];
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.ipar = new ScilabDouble(ipar);
-                this.model.firing = [];
-                this.model.dep_ut = [true,false];
+                this.model.firing = new ScilabDouble([]);
+                this.model.dep_ut = new ScilabDouble([true,false]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

@@ -10,9 +10,9 @@ function EXTRACTBITS() {
         this.model.out2 = new ScilabDouble([1]);
         this.model.intyp = new ScilabDouble([3]);
         this.model.outtyp = new ScilabDouble([3]);
-        this.model.ipar = [0,numb];
+        this.model.ipar = new ScilabDouble([0,numb]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(3)],[sci2exp(1)],[sci2exp(0)],[sci2exp(0)]];
         var gr_i = [];
         this.x = standard_define([4,2],this.model,exprs,gr_i);

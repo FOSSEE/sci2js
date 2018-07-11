@@ -25,14 +25,14 @@ function BOUNCE() {
         var state = transpose(state);
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["bounce_ball"]), new ScilabDouble([4]));
-        this.model.in1 = [];
+        this.model.in1 = new ScilabDouble([]);
         this.model.out = new ScilabDouble([n],[n]);
-        this.model.state = state.slice();
+        this.model.state = new ScilabDouble(state.slice());
         this.model.rpar = new ScilabDouble([this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]);
-        this.model.ipar = ipar;
+        this.model.ipar = new ScilabDouble(ipar);
         this.model.nzcross = new ScilabDouble([n*(n-1)/2+4*n]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,true];
+        this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[strcat(sci2exp(this.rpar1))],[strcat(sci2exp(this.rpar2))],[strcat(sci2exp(this.walls))],[strcat(sci2exp(this.x))],[strcat(sci2exp(this.xd))],[strcat(sci2exp(this.y))],[strcat(sci2exp(this.yd))]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
@@ -118,10 +118,10 @@ function BOUNCE() {
                     }
                 }
                 this.model.rpar = new ScilabDouble([this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]);
-                this.model.ipar = ipar;
+                this.model.ipar = new ScilabDouble(ipar);
                 var state = [this.xt,this.xd,this.y,this.yd];
                 var state = transpose(state);
-                this.model.state = state.slice();
+                this.model.state = new ScilabDouble(state.slice());
                 this.model.nzcross = new ScilabDouble([n*(n-1)/2+4*n]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;

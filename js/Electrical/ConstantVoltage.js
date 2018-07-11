@@ -8,7 +8,7 @@ function ConstantVoltage() {
         this.model.out = new ScilabDouble([1]);
         this.model.sim = new ScilabString(["ConstantVoltage"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var mo = modelica();
         mo.model = "ConstantVoltage";
         mo.inputs = "p";

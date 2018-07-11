@@ -5,11 +5,11 @@ function DEMUX() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["multiplex"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([0]);
-        this.model.out = -transpose([1:this.out]);
+        this.model.out = new ScilabDouble(-transpose([1:this.out]));
         this.model.ipar = new ScilabDouble([this.out]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.firing = [];
-        this.model.dep_ut = [true,false];
+        this.model.firing = new ScilabDouble([]);
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = string(this.out);
         var gr_i = [];
         this.x = standard_define([.5,2],this.model,exprs,gr_i);

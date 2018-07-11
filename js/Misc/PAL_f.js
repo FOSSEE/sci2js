@@ -5,11 +5,11 @@ function PAL_f() {
         scs.props.title = "Palette";
         this.model = scicos_model();
         this.model.sim = new ScilabString(["palette"]);
-        this.model.in1 = [];
-        this.model.out = [];
+        this.model.in1 = new ScilabDouble([]);
+        this.model.out = new ScilabDouble([]);
         this.model.rpar = new ScilabDouble([scs]);
         this.model.blocktype = new ScilabString(["h"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var gr_i = [];
         this.x = standard_define([2,2],this.model,[],gr_i);
         this.x.graphics.id = scs.props.title[1-1];

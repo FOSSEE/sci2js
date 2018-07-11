@@ -9,8 +9,8 @@ function POSTONEG_f() {
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([-1],[-1],[-1],[0]);
         this.model.blocktype = new ScilabString(["z"]);
-        this.model.dep_ut = [true,false];
-        this.model.firing = [-1];
+        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.firing = new ScilabDouble([-1]);
         var gr_i = [];
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);

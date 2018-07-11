@@ -10,7 +10,7 @@ function GAINBLK_f() {
         this.model.out = new ScilabDouble([out]);
         this.model.rpar = new ScilabDouble([this.gain]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [strcat(sci2exp(this.gain))];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -48,7 +48,7 @@ function GAINBLK_f() {
                 var ok = tmpvar1[2];
                 if (ok) {
                     graphics.exprs = exprs;
-                    this.model.rpar = this.gain.slice();
+                    this.model.rpar = new ScilabDouble(this.gain.slice());
                     this.x.graphics = graphics;
                     this.x.model = this.model;
                     break;

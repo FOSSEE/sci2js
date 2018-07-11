@@ -6,7 +6,7 @@ function OpAmp() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["OpAmp"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var mo = modelica();
         mo.model = this.model.sim;
         mo.inputs = [["in_p"],["in_n"]];
@@ -15,7 +15,7 @@ function OpAmp() {
         this.model.equations = new ScilabDouble([mo]);
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
-        this.model.rpar = Z;
+        this.model.rpar = new ScilabDouble(Z);
         var exprs = string(Z);
         var gr_i = [];
         this.x = standard_define([3,5],this.model,exprs,gr_i);

@@ -14,7 +14,7 @@ function GAINBLK() {
         this.model.out2 = new ScilabDouble([out2]);
         this.model.rpar = new ScilabDouble([this.gain]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [strcat(sci2exp(this.gain))];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -53,7 +53,7 @@ function GAINBLK() {
                         var it = 1;
                         var ot = 1;
                         this.model.sim = list(new ScilabString(["gainblk"]), new ScilabDouble([4]));
-                        this.model.rpar = this.gain.slice();
+                        this.model.rpar = new ScilabDouble(this.gain.slice());
                         this.model.opar = list();
                     } else {
                         message("type is not supported");
@@ -133,7 +133,7 @@ function GAINBLK() {
                         message("Do on Overflow must be 0,1,2");
                         var ok = false;
                     }
-                    this.model.rpar = [];
+                    this.model.rpar = new ScilabDouble([]);
                     this.model.opar = list(this.gain.slice());
                 }
                 if (ok) {

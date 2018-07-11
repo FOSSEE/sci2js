@@ -9,9 +9,9 @@ function CONSTRAINT2_c() {
         this.model.in1 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.state = new ScilabDouble([this.x0],[this.xd0]);
-        this.model.ipar = this.id;
+        this.model.ipar = new ScilabDouble(this.id);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,true];
+        this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = list(strcat(sci2exp(this.x0)),strcat(sci2exp(this.xd0)),strcat(sci2exp(this.id)));
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
@@ -73,7 +73,7 @@ function CONSTRAINT2_c() {
                 this.model.state = new ScilabDouble([this.x0],[this.xd0]);
                 this.model.out = new ScilabDouble([N],[N]);
                 this.model.in1 = new ScilabDouble([N]);
-                this.model.ipar = this.id;
+                this.model.ipar = new ScilabDouble(this.id);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

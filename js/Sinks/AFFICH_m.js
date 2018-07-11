@@ -15,8 +15,8 @@ function AFFICH_m() {
         this.model.dstate = new ScilabDouble([-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]);
         this.model.ipar = new ScilabDouble([this.font],[this.fontsize],[this.colr],[1000],[this.nt],[this.nd],[this.in1[1-1][1-1]]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.firing = [];
-        this.model.dep_ut = [true,false];
+        this.model.firing = new ScilabDouble([]);
+        this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.label = new ScilabString([""]);
         var exprs = [[sci2exp([this.model.in1,this.model.in2])],[string(this.font)],[string(this.fontsize)],[string(this.colr)],[string(this.nt)],[string(this.nd)],[string(0)]];
         var gr_i = [];

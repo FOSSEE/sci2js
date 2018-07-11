@@ -4,14 +4,14 @@ function CONST_m() {
         this.C = [1];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cstblk4"]), new ScilabDouble([4]));
-        this.model.in1 = [];
+        this.model.in1 = new ScilabDouble([]);
         this.model.out = new ScilabDouble([size(this.C,1)]);
-        this.model.in2 = [];
+        this.model.in2 = new ScilabDouble([]);
         this.model.out2 = new ScilabDouble([size(this.C,2)]);
-        this.model.rpar = this.C;
+        this.model.rpar = new ScilabDouble(this.C);
         this.model.opar = list();
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = sci2exp(this.C);
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -65,7 +65,7 @@ function CONST_m() {
                     var ok = false;
                 }
                 if (ok) {
-                    this.model.rpar = [];
+                    this.model.rpar = new ScilabDouble([]);
                     var tmpvar0 = set_io(this.model,graphics,list(),list(nout,ot),[],[])
                     this.model = tmpvar0[0]
                     var graphics = tmpvar0[1]

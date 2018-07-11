@@ -12,7 +12,7 @@ function Counter() {
         this.model.dstate = new ScilabDouble([0]);
         this.model.ipar = new ScilabDouble([this.rule],[this.maxim],[this.minim]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.minim)],[string(this.maxim)],[string(this.rule)]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

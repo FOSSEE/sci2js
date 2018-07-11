@@ -8,7 +8,7 @@ function SOM_f() {
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble(sgn);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(1)],[sci2exp(sgn)]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);

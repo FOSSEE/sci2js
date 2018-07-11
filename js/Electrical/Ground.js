@@ -2,11 +2,11 @@
 function Ground() {
     Ground.prototype.define = function Ground() {
         this.model = scicos_model();
-        this.model.in1 = [1];
-        this.model.out = [];
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([]);
         this.model.sim = new ScilabString(["Ground"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var mo = modelica();
         mo.model = "Ground";
         mo.inputs = "p";

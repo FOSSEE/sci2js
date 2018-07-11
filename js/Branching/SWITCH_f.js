@@ -10,8 +10,8 @@ function SWITCH_f() {
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble([i0]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.firing = [];
-        this.model.dep_ut = [true,true];
+        this.model.firing = new ScilabDouble([]);
+        this.model.dep_ut = new ScilabDouble([true,true]);
         var exprs = [[string(this.nin)],[string(i0+1)]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);

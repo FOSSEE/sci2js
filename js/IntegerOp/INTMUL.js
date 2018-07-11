@@ -8,12 +8,12 @@ function INTMUL() {
         this.model.out = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2],[-3]);
         this.model.out2 = new ScilabDouble([-3]);
-        this.model.intyp = [3,3];
+        this.model.intyp = new ScilabDouble([3,3]);
         this.model.outtyp = new ScilabDouble([3]);
-        this.model.rpar = [];
+        this.model.rpar = new ScilabDouble([]);
         this.model.ipar = new ScilabDouble([sgn]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(3)],[sci2exp(0)]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);

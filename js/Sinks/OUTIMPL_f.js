@@ -2,13 +2,13 @@
 function OUTIMPL_f() {
     OUTIMPL_f.prototype.define = function OUTIMPL_f() {
         this.model = scicos_model();
-        this.model.in1 = [-1];
-        this.model.in2 = [1];
+        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in2 = new ScilabDouble([1]);
         this.prt = 1;
         this.model.sim = new ScilabString(["outimpl"]);
-        this.model.ipar = [1];
+        this.model.ipar = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var mo = modelica();
         mo.model = "PORT";
         mo.inputs = "n";

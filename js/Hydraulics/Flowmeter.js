@@ -39,7 +39,7 @@ function Flowmeter() {
         var exprs = "1";
         var gr_i = [];
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,true];
+        this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
         this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);

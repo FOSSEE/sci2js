@@ -17,9 +17,9 @@ function LOOKUP_c() {
         this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()]);
         this.model.ipar = new ScilabDouble([N],[this.Method],[0],[0]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
-        this.model.evtin = [];
-        this.model.evtout = [];
+        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.evtin = new ScilabDouble([]);
+        this.model.evtout = new ScilabDouble([]);
         this.model.firing = new ScilabDouble([0]);
         var exprs = [[sci2exp(this.Method)],[sci2exp(this.xx)],[sci2exp(this.yy)],[sci2exp(0)],[Graf]];
         var gr_i = [];

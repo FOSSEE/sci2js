@@ -6,8 +6,8 @@ function CLINDUMMY_f() {
         this.model.sim = list(new ScilabString(["cdummy"]), new ScilabDouble([4]));
         this.model.state = new ScilabDouble([x0]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.firing = [];
-        this.model.dep_ut = [false,true];
+        this.model.firing = new ScilabDouble([]);
+        this.model.dep_ut = new ScilabDouble([false,true]);
         var gr_i = [];
         this.x = standard_define([3,2],this.model,[],gr_i);
         return new BasicBlock(this.x);

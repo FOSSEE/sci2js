@@ -7,7 +7,7 @@ function EXTRACTOR() {
         this.model.in1 = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.ipar = new ScilabDouble([this.ind]);
         var exprs = [sci2exp(this.ind)];
         var gr_i = [];
@@ -41,7 +41,7 @@ function EXTRACTOR() {
             var graphics = tmpvar0[1]
             var ok = tmpvar0[2];
             if (ok) {
-                this.model.ipar = this.ind;
+                this.model.ipar = new ScilabDouble(this.ind);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

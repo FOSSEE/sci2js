@@ -21,8 +21,8 @@ function CANIMXY() {
         this.model.rpar = new ScilabDouble([this.xmin],[this.xmax],[this.ymin],[this.ymax]);
         this.model.ipar = new ScilabDouble([this.win],[1],[this.N],[this.clrs],[this.siz],[0],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.firing = [];
-        this.model.dep_ut = [false,false];
+        this.model.firing = new ScilabDouble([]);
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.nbr_curves)],[string(this.clrs)],[string(this.siz)],[string(this.win)],["[]"],["[]"],[string(this.xmin)],[string(this.xmax)],[string(this.ymin)],[string(this.ymax)],[string(this.N)]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);

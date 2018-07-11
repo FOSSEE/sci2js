@@ -8,7 +8,7 @@ function CLKINV_f() {
         this.model.ipar = new ScilabDouble([this.prt]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.prt);
         var gr_i = [];
         this.x = standard_define([1,1],this.model,exprs,gr_i);

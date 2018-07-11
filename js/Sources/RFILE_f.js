@@ -19,7 +19,7 @@ function RFILE_f() {
         this.model.dstate = new ScilabDouble(dstate);
         this.model.ipar = new ScilabDouble([length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]],[tmask],[this.outmask]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[sci2exp([])],[sci2exp(this.outmask)],[fname],[frmt],[string(this.N)],[sci2exp(out)]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
@@ -103,7 +103,7 @@ function RFILE_f() {
                 var ok = tmpvar0[2];
                 if (ok) {
                     if (ievt==0) {
-                        this.model.firing = [];
+                        this.model.firing = new ScilabDouble([]);
                     } else {
                         this.model.firing = new ScilabDouble([0]);
                     }

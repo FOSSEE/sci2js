@@ -8,7 +8,7 @@ function CLKGOTO() {
         this.model.ipar = new ScilabDouble([int(1)]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [["A"],[sci2exp(1)]];
         this.x = standard_define([2,1],this.model,exprs," ");
         this.x.graphics.id = "Goto";

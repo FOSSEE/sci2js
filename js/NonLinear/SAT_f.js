@@ -12,7 +12,7 @@ function SAT_f() {
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.minp],[this.maxp],[slope]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.minp)],[string(this.maxp)],[string(slope)]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -49,7 +49,7 @@ function SAT_f() {
             } else {
                 var rpar = [[this.minp/this.pente],[this.maxp/this.pente],[this.pente]];
                 this.model.rpar = new ScilabDouble(rpar);
-                this.model.firing = [];
+                this.model.firing = new ScilabDouble([]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

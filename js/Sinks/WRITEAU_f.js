@@ -15,7 +15,7 @@ function WRITEAU_f() {
         this.model.dstate = new ScilabDouble([-1],[lunit],[zeros((nin+1)*this.N,1)]);
         this.model.ipar = new ScilabDouble([length(fname)],[this._str2code[frmt-1]],[this.N],[this.swap],[this._str2code[fname-1]]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [string(this.N),string(this.swap)];
         var gr_i = [];
         this.x = standard_define([4,2],this.model,exprs,gr_i);

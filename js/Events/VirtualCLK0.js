@@ -5,10 +5,10 @@ function VirtualCLK0() {
         this.model.sim = new ScilabString(["vrtclk0"]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.opar = list();
-        this.model.ipar = [];
+        this.model.ipar = new ScilabDouble([]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [];
         this.x = standard_define([2,2],this.model,exprs," ");
         return new BasicBlock(this.x);

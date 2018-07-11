@@ -10,7 +10,7 @@ function M_SWITCH() {
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.nin)],[string(ipar)]];
         var gr_i = [];
         this.x = standard_define([2.5,2],this.model,exprs,gr_i);

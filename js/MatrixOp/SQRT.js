@@ -9,7 +9,7 @@ function SQRT() {
         this.model.outtyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([-2]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(1)];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,label,gr_i);

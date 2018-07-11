@@ -14,16 +14,16 @@ function scifunc_block() {
         this.model.sim = list(new ScilabString(["scifunc"]), new ScilabDouble([3]));
         this.model.in1 = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
-        this.model.evtin = clkin;
-        this.model.evtout = clkout;
-        this.model.state = x0;
-        this.model.dstate = z0;
-        this.model.rpar = this.rpar;
+        this.model.evtin = new ScilabDouble(clkin);
+        this.model.evtout = new ScilabDouble(clkout);
+        this.model.state = new ScilabDouble(x0);
+        this.model.dstate = new ScilabDouble(z0);
+        this.model.rpar = new ScilabDouble(this.rpar);
         this.model.ipar = new ScilabDouble([0]);
         this.model.opar = list();
         this.model.blocktype = new ScilabString([typ]);
-        this.model.firing = auto;
-        this.model.dep_ut = [true,false];
+        this.model.firing = new ScilabDouble(auto);
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = list([[sci2exp(in1)],[sci2exp(out)],[sci2exp(clkin)],[sci2exp(clkout)],[strcat(sci2exp(x0))],[strcat(sci2exp(z0))],[strcat(sci2exp(this.rpar))],[sci2exp(auto)]],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -97,9 +97,9 @@ function scifunc_block() {
             var ok = tmpvar1[2];
             if (ok) {
                 var auto = this.auto0;
-                this.model.state = this.xx;
-                this.model.dstate = this.z;
-                this.model.rpar = this.rpar;
+                this.model.state = new ScilabDouble(this.xx);
+                this.model.dstate = new ScilabDouble(this.z);
+                this.model.rpar = new ScilabDouble(this.rpar);
                 if (this.model.ipar!=0) {
                     this.model.opar = new ScilabDouble([this.model.ipar]);
                     this.model.ipar = new ScilabDouble([0]);

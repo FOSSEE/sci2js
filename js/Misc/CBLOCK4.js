@@ -10,7 +10,7 @@ function CBLOCK4() {
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var label = list([[funam],["n"],[sci2exp([this.model.in1,this.model.in2])],[sci2exp(this.model.intyp)],[sci2exp([this.model.out,this.model.out2])],[sci2exp(this.model.outtyp)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.odstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.opar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]],[]);
         var gr_i = [];
         this.x = standard_define([4,2],this.model,label,gr_i);
@@ -134,16 +134,16 @@ function CBLOCK4() {
                         }
                     } else {
                         this.model.sim = list(new ScilabDouble([funam]), new ScilabDouble([funtyp]));
-                        this.model.state = this.xx;
-                        this.model.dstate = this.z;
+                        this.model.state = new ScilabDouble(this.xx);
+                        this.model.dstate = new ScilabDouble(this.z);
                         this.model.odstate = new ScilabDouble([this.oz]);
-                        this.model.rpar = this.rpar;
+                        this.model.rpar = new ScilabDouble(this.rpar);
                         this.model.ipar = new ScilabDouble([this.ipar]);
                         this.model.opar = new ScilabDouble([this.opar]);
                         this.model.firing = new ScilabDouble([this.auto0]);
                         this.model.nzcross = new ScilabDouble([this.nzcr]);
                         this.model.nmode = new ScilabDouble([this.nmode]);
-                        this.model.dep_ut = dep_ut;
+                        this.model.dep_ut = new ScilabDouble(dep_ut);
                         label[2-1] = tt;
                         this.x.model = this.model;
                         graphics.exprs = label;

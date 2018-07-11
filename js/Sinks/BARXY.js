@@ -8,11 +8,11 @@ function BARXY() {
         this.ymax = 15;
         this.model.sim = list(new ScilabString(["BARXY_sim"]), new ScilabDouble([5]));
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.in1 = new ScilabDouble([-1],[-1]);
-        this.model.intyp = [1];
-        this.model.out = [];
-        this.model.evtin = [1];
+        this.model.intyp = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([]);
+        this.model.evtin = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.xmin],[this.xmax],[this.ymin],[this.ymax]);
         this.model.ipar = new ScilabDouble([1]);
         this.x = standard_define([2,2],this.model,[],[]);

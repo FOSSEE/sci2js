@@ -8,9 +8,9 @@ function LOGICAL_OP() {
         this.model.sim = list(new ScilabString(["logicalop"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
-        this.model.ipar = ipar;
+        this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.nin)],[string(ipar)]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -67,7 +67,7 @@ function LOGICAL_OP() {
                 }
                 if (this.Datatype==1) {
                     this.model.sim = list(new ScilabString(["logicalop"]), new ScilabDouble([4]));
-                    this.model.ipar = [this.rule];
+                    this.model.ipar = new ScilabDouble([this.rule]);
                 } else {
                     if (this.Datatype==3) {
                         this.model.sim = list(new ScilabString(["logicalop_i32"]), new ScilabDouble([4]));

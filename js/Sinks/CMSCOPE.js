@@ -21,7 +21,7 @@ function CMSCOPE() {
         this.model.rpar = new ScilabDouble([0],[period.slice()],[yy.slice()]);
         this.model.ipar = new ScilabDouble([this.win],[size(this.in1,"*")],[this.N],[this.wpos.slice()],[this.wdim.slice()],[this.in1.slice()],[this.clrs.slice(1-1,sum(this.in1))]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[strcat(string(this.in1)," ")],[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp([])],[strcat(string(this.ymin)," ")],[strcat(string(this.ymax)," ")],[strcat(string(this.per)," ")],[string(this.N)],[string(0)],[emptystr()]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -140,7 +140,7 @@ function CMSCOPE() {
                     this.clrs = this.clrs.slice(1-1,sum(this.in1));
                     var ipar = [[this.win],[size(this.in1,"*")],[this.N],[this.wpos.slice()],[this.wdim.slice()],[this.in1.slice()],[this.clrs.slice()],[this.heritance]];
                     this.model.evtin = new ScilabDouble([ones(1-this.heritance,1)]);
-                    this.model.dstate = [];
+                    this.model.dstate = new ScilabDouble([]);
                     this.model.rpar = new ScilabDouble(rpar);
                     this.model.ipar = new ScilabDouble(ipar);
                     this.model.label = new ScilabDouble([this.nom]);

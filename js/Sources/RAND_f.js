@@ -14,7 +14,7 @@ function RAND_f() {
         this.model.rpar = new ScilabDouble([this.a.slice()],[this.b.slice()]);
         this.model.ipar = new ScilabDouble([this.flag]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.flag)],[sci2exp(this.a.slice())],[sci2exp(this.b.slice())],[string(this.model.dstate[1-1])]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

@@ -3,13 +3,13 @@ function VanneReglante() {
     VanneReglante.prototype.define = function VanneReglante() {
         this.model = scicos_model();
         this.model.in1 = new ScilabDouble([1],[1]);
-        this.model.out = [1];
+        this.model.out = new ScilabDouble([1]);
         this.Cvmax = 8005.42;
         this.p_rho = 0;
         this.model.rpar = new ScilabDouble([this.Cvmax],[this.p_rho]);
         this.model.sim = new ScilabString(["VanneReglante"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var mo = modelica();
         mo.model = "VanneReglante";
         mo.inputs = ["C1","Ouv"];

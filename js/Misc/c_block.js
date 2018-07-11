@@ -15,15 +15,15 @@ function c_block() {
         this.model.sim = list(new ScilabString([" "]), new ScilabDouble([2001]));
         this.model.in1 = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
-        this.model.evtin = clkin;
-        this.model.evtout = clkout;
-        this.model.state = x0;
-        this.model.dstate = z0;
-        this.model.rpar = this.rpar;
+        this.model.evtin = new ScilabDouble(clkin);
+        this.model.evtout = new ScilabDouble(clkout);
+        this.model.state = new ScilabDouble(x0);
+        this.model.dstate = new ScilabDouble(z0);
+        this.model.rpar = new ScilabDouble(this.rpar);
         this.model.ipar = new ScilabDouble([0]);
         this.model.blocktype = new ScilabString([typ]);
-        this.model.firing = auto;
-        this.model.dep_ut = [true,false];
+        this.model.firing = new ScilabDouble(auto);
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var label = list([[sci2exp(in1)],[sci2exp(out)],[strcat(sci2exp(this.rpar))],[this.funam]],list([]));
         var gr_i = [];
         this.x = standard_define([3,2],this.model,label,gr_i);
@@ -81,7 +81,7 @@ function c_block() {
             var ok = tmpvar1[2];
             if (ok) {
                 this.model.sim[1] = new ScilabString([this.funam]);
-                this.model.rpar = this.rpar;
+                this.model.rpar = new ScilabDouble(this.rpar);
                 label[2-1] = tt;
                 this.x.model = this.model;
                 graphics.exprs = label;

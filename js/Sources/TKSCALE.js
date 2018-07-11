@@ -10,7 +10,7 @@ function TKSCALE() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.a],[this.b],[this.f]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[sci2exp(this.a)],[sci2exp(this.b)],[sci2exp(this.f)]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

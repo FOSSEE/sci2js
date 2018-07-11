@@ -9,9 +9,9 @@ function INTEGRAL() {
         this.model.sim = list(new ScilabString(["integral_func"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
-        this.model.rpar = rpar;
+        this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,true];
+        this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = string([[0],[0],[0],[this.maxp],[minp]]);
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -80,8 +80,8 @@ function INTEGRAL() {
                 this.model.nmode = new ScilabDouble([0]);
             }
             if (ok) {
-                this.model.rpar = rpar;
-                this.model.state = this.x0;
+                this.model.rpar = new ScilabDouble(rpar);
+                this.model.state = new ScilabDouble(this.x0);
                 var tmpvar0 = check_io(this.model,graphics,size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,1),ones(this.reinit,1),[])
                 this.model = tmpvar0[0]
                 var graphics = tmpvar0[1]

@@ -9,12 +9,12 @@ function LOGIC() {
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.intyp = [5,5];
+        this.model.intyp = new ScilabDouble([5,5]);
         this.model.outtyp = new ScilabDouble([5]);
         this.model.opar = list(new ScilabDouble([int8(this.mat)]));
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = new ScilabBoolean([false]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(this.mat)],[sci2exp(0)]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);

@@ -4,13 +4,13 @@ function GENSIN_f() {
         var rpar = [[1],[1],[0]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["gensin"]);
-        this.model.in1 = [];
+        this.model.in1 = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([1],[1],[0]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,true];
+        this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[string(rpar[1-1])],[string(rpar[2-1])],[string(rpar[3-1])]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

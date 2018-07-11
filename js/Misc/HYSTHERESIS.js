@@ -13,7 +13,7 @@ function HYSTHERESIS() {
         this.model.nzcross = new ScilabDouble([this.nzz]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(rpar)],[string(sign(this.nzz))]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -51,7 +51,7 @@ function HYSTHERESIS() {
                 message("switch on value must be larger than switch off value");
             } else {
                 graphics.exprs = exprs;
-                this.model.rpar = transpose([this.high_lim,this.low_lim,this.out_high,this.out_low]);
+                this.model.rpar = new ScilabDouble(transpose([this.high_lim,this.low_lim,this.out_high,this.out_low]));
                 if (this.nzz>0) {
                     this.nzz = 2;
                 }

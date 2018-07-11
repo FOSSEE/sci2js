@@ -3,10 +3,10 @@ function INIMPL_f() {
     INIMPL_f.prototype.define = function INIMPL_f() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["inimpl"]);
-        this.model.out = [-1];
-        this.model.out2 = [1];
-        this.model.ipar = [1];
-        this.model.dep_ut = [false,false];
+        this.model.out = new ScilabDouble([-1]);
+        this.model.out2 = new ScilabDouble([1]);
+        this.model.ipar = new ScilabDouble([1]);
+        this.model.dep_ut = new ScilabDouble([false,false]);
         this.model.blocktype = new ScilabString(["c"]);
         var mo = modelica();
         mo.model = "PORT";

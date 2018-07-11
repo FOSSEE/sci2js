@@ -12,8 +12,8 @@ function MPBLOCK() {
         var exprs = tlist(["MPBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],sci2exp(this.in1.slice()),sci2exp(this.intype.slice()),sci2exp(this.out.slice()),sci2exp(this.outtype.slice()),sci2exp(param.slice()),list(string(0.1),string(.0001)),sci2exp(pprop.slice()),nameF,[]);
         this.model = scicos_model();
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,true];
-        this.model.rpar = [];
+        this.model.dep_ut = new ScilabDouble([true,true]);
+        this.model.rpar = new ScilabDouble([]);
         for (i=1;i<=lstsize(paramv);i+=1) {
             this.model.rpar = new ScilabDouble([this.model.rpar],[paramv[i-1].slice()]);
         }
@@ -247,7 +247,7 @@ function MPBLOCK() {
                     }
                 }
                 this.model.equations = new ScilabDouble([mo]);
-                this.model.rpar = [];
+                this.model.rpar = new ScilabDouble([]);
                 for (i=1;i<=lstsize(paramv);i+=1) {
                     this.model.rpar = new ScilabDouble([this.model.rpar],[double(paramv[i-1].slice())]);
                 }

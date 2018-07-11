@@ -7,7 +7,7 @@ function CLKFROM() {
         this.model.opar = list(new ScilabString(["A"]));
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = "A";
         this.x = standard_define([2,1],this.model,exprs," ");
         this.x.graphics.id = "From";

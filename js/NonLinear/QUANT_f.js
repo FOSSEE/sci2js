@@ -10,7 +10,7 @@ function QUANT_f() {
         this.model.rpar = new ScilabDouble([this.pas]);
         this.model.ipar = new ScilabDouble([this.meth]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.pas)],[string(this.meth)]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);

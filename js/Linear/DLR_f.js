@@ -12,10 +12,10 @@ function DLR_f() {
         this.model.in1 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.dstate = x0.slice();
+        this.model.dstate = new ScilabDouble(x0.slice());
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var gr_i = [];
         this.x = standard_define([2.5,2.5],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -67,7 +67,7 @@ function DLR_f() {
                     x0[ns1-1][1-1] = 0;
                 }
                 var rpar = [[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
-                this.model.dstate = x0;
+                this.model.dstate = new ScilabDouble(x0);
                 this.model.rpar = new ScilabDouble(rpar);
                 if (norm(D,1)!=0) {
                     var mmm = [true,false];
@@ -75,7 +75,7 @@ function DLR_f() {
                     var mmm = [false,false];
                 }
                 if (or(this.model.dep_ut!=mmm)) {
-                    this.model.dep_ut = mmm;
+                    this.model.dep_ut = new ScilabDouble(mmm);
                 }
                 this.x.graphics = graphics;
                 this.x.model = this.model;

@@ -14,7 +14,7 @@ function CLR_f() {
         this.model.state = new ScilabDouble([x0]);
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,true];
+        this.model.dep_ut = new ScilabDouble([false,true]);
         var gr_i = [];
         this.x = standard_define([2.5,2.5],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -70,14 +70,14 @@ function CLR_f() {
                     var mmm = [false,true];
                 }
                 if (or(this.model.dep_ut!=mmm)) {
-                    this.model.dep_ut = mmm;
+                    this.model.dep_ut = new ScilabDouble(mmm);
                 }
                 if (ns1<=ns) {
                     var x0 = x0.slice(1-1,ns1);
                 } else {
                     x0[ns1-1][1-1] = 0;
                 }
-                this.model.state = x0;
+                this.model.state = new ScilabDouble(x0);
                 this.model.rpar = new ScilabDouble(rpar);
                 this.x.graphics = graphics;
                 this.x.model = this.model;

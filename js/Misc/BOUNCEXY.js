@@ -24,12 +24,12 @@ function BOUNCEXY() {
             z[6*(i-1)+5-1] = 0.000;
             z[6*(i-1)+6-1] = 64.0*360.000;
         }
-        this.model.dstate = z;
+        this.model.dstate = new ScilabDouble(z);
         this.model.rpar = new ScilabDouble([this.xmin],[this.xmax],[this.ymin],[this.ymax]);
         this.model.ipar = new ScilabDouble([this.win],[this.imode],[this.clrs.slice()]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.firing = [];
-        this.model.dep_ut = [false,false];
+        this.model.firing = new ScilabDouble([]);
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[strcat(sci2exp(this.clrs))],[strcat(sci2exp(this.siz))],[strcat(sci2exp(this.win))],[strcat(sci2exp(1))],[strcat(sci2exp(this.xmin))],[strcat(sci2exp(this.xmax))],[strcat(sci2exp(this.ymin))],[strcat(sci2exp(this.ymax))]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -101,7 +101,7 @@ function BOUNCEXY() {
                     z[6*(i-1)+5-1] = 0.000;
                     z[6*(i-1)+6-1] = 64.0*360.000;
                 }
-                this.model.dstate = z;
+                this.model.dstate = new ScilabDouble(z);
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.ipar = new ScilabDouble(ipar);
                 graphics.exprs = exprs;

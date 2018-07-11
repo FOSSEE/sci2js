@@ -20,9 +20,9 @@ function AUTOMAT() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.firing = new ScilabDouble([-1]);
-        this.model.dep_ut = [false,true];
+        this.model.dep_ut = new ScilabDouble([false,true]);
         this.model.ipar = new ScilabDouble(ipar);
-        this.model.rpar = rpar;
+        this.model.rpar = new ScilabDouble(rpar);
         var gr_i = [];
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);

@@ -2,13 +2,13 @@
 function Inductor() {
     Inductor.prototype.define = function Inductor() {
         this.model = scicos_model();
-        this.model.in1 = [1];
-        this.model.out = [1];
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
         this.L = 1.e-5;
         this.model.rpar = new ScilabDouble([this.L]);
         this.model.sim = new ScilabString(["Inductor"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var mo = modelica();
         mo.model = "Inductor";
         mo.inputs = "p";

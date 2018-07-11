@@ -562,6 +562,13 @@ def p_assignment_model_modelvar_assignment_modelexpression(p):
             p[0] = '%*s%s = new %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
         else:
             p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
+    elif vartype == VECTOR_TYPE:
+        vartype = DOUBLE_TYPE
+        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
+        if vartype != '':
+            p[0] = '%*s%s = new %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
+        else:
+            p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
     else:
         vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
         if vartype != '':

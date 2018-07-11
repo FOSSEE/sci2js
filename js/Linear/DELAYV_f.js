@@ -14,8 +14,8 @@ function DELAYV_f() {
         this.model.dstate = new ScilabDouble([z0]);
         this.model.rpar = new ScilabDouble([this.T/(size(this.zz0,"*"))]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.firing = [0,-1];
-        this.model.dep_ut = [true,false];
+        this.model.firing = new ScilabDouble([0,-1]);
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.nin)],[strcat(string(z0.slice(1-1,$-1)),";")],[string(this.T)]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

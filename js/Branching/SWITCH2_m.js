@@ -12,12 +12,12 @@ function SWITCH2_m() {
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([-2]);
         this.model.outtyp = new ScilabDouble([1]);
-        this.model.ipar = ipar;
+        this.model.ipar = new ScilabDouble(ipar);
         this.model.rpar = new ScilabDouble([rpar]);
         this.model.nzcross = new ScilabDouble([this.nzz]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(1)],[string(ipar)],[string(rpar)],[string(this.nzz)]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);

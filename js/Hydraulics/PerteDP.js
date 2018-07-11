@@ -2,8 +2,8 @@
 function PerteDP() {
     PerteDP.prototype.define = function PerteDP() {
         this.model = scicos_model();
-        this.model.in1 = [1];
-        this.model.out = [1];
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
         this.L = 10;
         this.D = 0.2;
         this.lambda = 0.03;
@@ -13,7 +13,7 @@ function PerteDP() {
         this.model.rpar = new ScilabDouble([this.L],[this.D],[this.lambda],[this.z1],[this.z2],[this.p_rho]);
         this.model.sim = new ScilabString(["PerteDP"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var mo = modelica();
         mo.model = "PerteDP";
         mo.inputs = "C1";

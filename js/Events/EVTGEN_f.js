@@ -7,7 +7,7 @@ function EVTGEN_f() {
         this.model.evtout = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([this.tt]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.tt);
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

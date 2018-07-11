@@ -9,10 +9,10 @@ function VARIABLE_DELAY() {
         this.model.sim = list(new ScilabString(["variable_delay"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([nin],[1]);
         this.model.out = new ScilabDouble([nin]);
-        this.model.rpar = [this.T,this.init];
+        this.model.rpar = new ScilabDouble([this.T,this.init]);
         this.model.ipar = new ScilabDouble([this.N]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

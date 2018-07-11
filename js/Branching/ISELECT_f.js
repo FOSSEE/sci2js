@@ -11,7 +11,7 @@ function ISELECT_f() {
         this.model.evtin = new ScilabDouble([ones(out)]);
         this.model.dstate = new ScilabDouble([this.z0]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.nout)],[string(this.z0+1)]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);

@@ -7,12 +7,12 @@ function TIME_DELAY() {
         this.N = 1024;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["time_delay"]), new ScilabDouble([4]));
-        this.model.in1 = [nin];
+        this.model.in1 = new ScilabDouble([nin]);
         this.model.out = new ScilabDouble([nin]);
-        this.model.rpar = [this.T,this.init];
+        this.model.rpar = new ScilabDouble([this.T,this.init]);
         this.model.ipar = new ScilabDouble([this.N]);
         this.model.blocktype = new ScilabString(["x"]);
-        this.model.dep_ut = [false,true];
+        this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
         var gr_i = [];
         this.x = standard_define([3.5,2],this.model,exprs,gr_i);
@@ -61,7 +61,7 @@ function TIME_DELAY() {
                 graphics.exprs = exprs;
                 this.model.rpar = new ScilabDouble([this.T],[this.init]);
                 this.model.ipar = new ScilabDouble([this.N]);
-                this.model.dep_ut = [false,true];
+                this.model.dep_ut = new ScilabDouble([false,true]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

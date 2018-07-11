@@ -10,7 +10,7 @@ function EVTDLY_c() {
         this.model.rpar = new ScilabDouble([this.dt],[this.ff]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([this.ff]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.dt)],[sci2exp(this.ff)]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

@@ -9,8 +9,8 @@ function IFTHEL_f() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1],[1]);
         this.model.blocktype = new ScilabString(["l"]);
-        this.model.firing = [-1,-1];
-        this.model.dep_ut = [true,false];
+        this.model.firing = new ScilabDouble([-1,-1]);
+        this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([1]);
         var gr_i = [];
@@ -46,7 +46,7 @@ function IFTHEL_f() {
             if (!ok) {
                 break;
             }
-            this.model.dep_ut = [true,false];
+            this.model.dep_ut = new ScilabDouble([true,false]);
             if (this.nmod!=0) {
                 this.nmod = 1;
             }
@@ -59,7 +59,7 @@ function IFTHEL_f() {
             var ok = tmpvar0[2];
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.evtin = this.inh;
+                this.model.evtin = new ScilabDouble(this.inh);
                 this.model.sim[2] = new ScilabDouble([-1]);
                 this.model.nmode = new ScilabDouble([this.nmod]);
                 this.model.nzcross = new ScilabDouble([this.nmod]);

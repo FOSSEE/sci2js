@@ -2,14 +2,14 @@
 function VsourceAC() {
     VsourceAC.prototype.define = function VsourceAC() {
         this.model = scicos_model();
-        this.model.in1 = [1];
-        this.model.out = [1];
+        this.model.in1 = new ScilabDouble([1]);
+        this.model.out = new ScilabDouble([1]);
         this.VA = 220;
         this.FR = 50;
         this.model.rpar = new ScilabDouble([this.VA],[this.FR]);
         this.model.sim = new ScilabString(["VsourceAC"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var mo = modelica();
         mo.model = "VsourceAC";
         mo.inputs = "p";

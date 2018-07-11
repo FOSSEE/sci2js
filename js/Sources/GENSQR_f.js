@@ -10,7 +10,7 @@ function GENSQR_f() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([this.Amplitude]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.Amplitude);
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

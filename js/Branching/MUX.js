@@ -4,11 +4,11 @@ function MUX() {
         this.in1 = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["multiplex"]), new ScilabDouble([4]));
-        this.model.in1 = -transpose([1:this.in1]);
+        this.model.in1 = new ScilabDouble(-transpose([1:this.in1]));
         this.model.out = new ScilabDouble([0]);
         this.model.ipar = new ScilabDouble([this.in1]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = string(this.in1);
         var gr_i = [];
         this.x = standard_define([.5,2],this.model,exprs,gr_i);

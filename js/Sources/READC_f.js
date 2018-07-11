@@ -18,12 +18,12 @@ function READC_f() {
         this.model.sim = list(new ScilabString(["readc"]), new ScilabDouble([2]));
         this.model.out = new ScilabDouble([nout]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.evtout = [];
+        this.model.evtout = new ScilabDouble([]);
         this.model.dstate = new ScilabDouble([1],[1],[lunit],[zeros(this.N*this.M,1)]);
         this.model.ipar = new ScilabDouble([length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[fname-1]],[tmask],[this.outmask]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [["[]"],[sci2exp(this.outmask)],[fname],[frmt],[string(this.M)],[string(this.N)],[string(this.offset)],[string(this.swap)]];
         var gr_i = [];
         this.x = standard_define([4,2],this.model,exprs,gr_i);

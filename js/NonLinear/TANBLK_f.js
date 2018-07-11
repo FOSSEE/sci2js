@@ -7,7 +7,7 @@ function TANBLK_f() {
         this.model.in1 = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([in1]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = sci2exp(in1);
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);

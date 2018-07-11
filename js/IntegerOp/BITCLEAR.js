@@ -11,7 +11,7 @@ function BITCLEAR() {
         this.model.outtyp = new ScilabDouble([3]);
         this.model.opar = list(new ScilabDouble([int32(0)]));
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(3)],[sci2exp(0)]];
         var gr_i = [];
         this.x = standard_define([4,2],this.model,exprs,gr_i);

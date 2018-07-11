@@ -7,9 +7,9 @@ function RELATIONALOP() {
         this.model.sim = list(new ScilabString(["relationalop"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
-        this.model.ipar = ipar;
+        this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(ipar)],[string(0)]];
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -95,7 +95,7 @@ function RELATIONALOP() {
                 }
                 graphics.exprs = exprs;
                 graphics.style = ["fontSize=13;fontStyle=1;displayedLabel="+label];
-                this.model.ipar = [this.rule];
+                this.model.ipar = new ScilabDouble([this.rule]);
                 this.model.nzcross = new ScilabDouble([this.zcr]);
                 this.model.nmode = new ScilabDouble([this.zcr]);
                 this.x.graphics = graphics;

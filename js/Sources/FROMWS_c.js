@@ -11,11 +11,11 @@ function FROMWS_c() {
         this.model.out2 = new ScilabDouble([-2]);
         this.model.outtyp = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble([length(this.varnam)],[this._str2code[this.varnam-1]],[this.Method],[this.ZC],[this.OutEnd]);
-        this.model.evtin = [1];
-        this.model.evtout = [1];
-        this.model.firing = [0];
+        this.model.evtin = new ScilabDouble([1]);
+        this.model.evtout = new ScilabDouble([1]);
+        this.model.firing = new ScilabDouble([0]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [false,true];
+        this.model.dep_ut = new ScilabDouble([false,true]);
         var gr_i = [];
         var exprs = [[string(this.varnam)],[string(this.Method)],[string(this.ZC)],[string(this.OutEnd)]];
         this.x = standard_define([3.5,2],this.model,exprs,gr_i);

@@ -10,7 +10,7 @@ function RATELIMITER() {
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.maxp)],[string(this.minp)]];
         var gr_i = [];
         this.x = standard_define([3.5,2],this.model,exprs,gr_i);

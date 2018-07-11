@@ -33,7 +33,7 @@ function PID() {
         this.model.outtyp = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["h"]);
         this.model.firing = new ScilabBoolean([false]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         this.model.rpar = new ScilabDouble([scs_m]);
         var gr_i = [];
         this.x = standard_define([2,2],this.model,[],gr_i);

@@ -11,7 +11,7 @@ function ESELECT_f() {
         this.model.evtout = new ScilabDouble([ones(this.out,1)]);
         this.model.blocktype = new ScilabString(["l"]);
         this.model.firing = new ScilabDouble([-ones(this.out,1)]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.nmode = new ScilabDouble([0]);
         this.model.nzcross = new ScilabDouble([0]);
         var gr_i = [];

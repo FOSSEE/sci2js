@@ -10,7 +10,7 @@ function EDGETRIGGER() {
         this.model.nzcross = new ScilabDouble([1]);
         this.model.ipar = new ScilabDouble([sign(this.edge)]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [string(this.edge)];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

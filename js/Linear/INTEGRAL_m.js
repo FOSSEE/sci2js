@@ -11,9 +11,9 @@ function INTEGRAL_m() {
         this.model.out = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
-        this.model.rpar = rpar;
+        this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,true];
+        this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = string([[0],[0],[0],[this.maxp],[minp]]);
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
@@ -106,7 +106,7 @@ function INTEGRAL_m() {
                 this.model.nmode = new ScilabDouble([0]);
             }
             if (ok) {
-                this.model.rpar = rpar;
+                this.model.rpar = new ScilabDouble(rpar);
                 if ((Datatype==1)) {
                     this.model.state = new ScilabDouble([real(this.x0.slice())]);
                     this.model.sim = list(new ScilabString(["integral_func"]), new ScilabDouble([4]));

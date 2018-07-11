@@ -10,7 +10,7 @@ function Modulo_Count() {
         this.model.dstate = new ScilabDouble([this.ini_c]);
         this.model.ipar = new ScilabDouble([this.base]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.ini_c)],[string(this.base)]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

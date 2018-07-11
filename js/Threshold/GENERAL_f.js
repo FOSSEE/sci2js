@@ -12,7 +12,7 @@ function GENERAL_f() {
         this.model.rpar = new ScilabDouble([0],[0],[0],[0]);
         this.model.blocktype = new ScilabString(["z"]);
         this.model.firing = new ScilabDouble([-ones(this.out,1)]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[strcat(sci2exp(this.in1))],[strcat(sci2exp(this.out))]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
@@ -59,7 +59,7 @@ function GENERAL_f() {
                 if (result!=[]) {
                     rp.slice(1-1,nout1).slice(1-1,2*n) = evstr(result);
                     this.model.nzcross = new ScilabDouble([this.in1]);
-                    this.model.rpar = rp.slice();
+                    this.model.rpar = new ScilabDouble(rp.slice());
                     this.model.firing = new ScilabDouble([-ones(this.out,1)]);
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;

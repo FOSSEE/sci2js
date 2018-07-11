@@ -8,7 +8,7 @@ function HALT_f() {
         this.model.dstate = new ScilabDouble([0]);
         this.model.ipar = new ScilabDouble([0]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.n);
         var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);

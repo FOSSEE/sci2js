@@ -9,7 +9,7 @@ function IN_f() {
         this.model.outtyp = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble([prt]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [false,false];
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = sci2exp(prt);
         var gr_i = [];
         this.x = standard_define([1,1],this.model,exprs,gr_i);
@@ -57,7 +57,7 @@ function IN_f() {
                     var y = needcompile;
                 }
                 this.model.ipar = new ScilabDouble([prt]);
-                this.model.firing = [];
+                this.model.firing = new ScilabDouble([]);
                 this.model.out = new ScilabDouble([otsz[1-1]]);
                 this.model.out2 = new ScilabDouble([otsz[2-1]]);
                 this.model.outtyp = new ScilabDouble([ot]);

@@ -13,7 +13,7 @@ function PMOS() {
         this.RDS = 1.e+7;
         this.model.sim = new ScilabString(["PMOS"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = [true,false];
+        this.model.dep_ut = new ScilabDouble([true,false]);
         var mo = modelica();
         mo.model = "PMOS";
         mo.outputs = [["D"],["B"],["S"]];

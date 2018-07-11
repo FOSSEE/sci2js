@@ -5,11 +5,11 @@ function M_freq() {
         this.model.sim = list(new ScilabString(["m_frequ"]), new ScilabDouble([4]));
         this.model.evtout = new ScilabDouble([1],[1],[1]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.rpar = [];
+        this.model.rpar = new ScilabDouble([]);
         this.model.opar = list([[1,1,0],[1,1,1],[1,3,2]], new ScilabDouble([1]), new ScilabDouble([0]), new ScilabDouble([0]));
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.firing = [0,-1,-1];
-        this.model.dep_ut = [false,false];
+        this.model.firing = new ScilabDouble([0,-1,-1]);
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[sci2exp([[1],[2]])],[sci2exp([[0],[0]])]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);

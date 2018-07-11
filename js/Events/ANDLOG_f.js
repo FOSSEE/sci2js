@@ -6,8 +6,8 @@ function ANDLOG_f() {
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1],[1]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.firing = [];
-        this.model.dep_ut = [false,false];
+        this.model.firing = new ScilabDouble([]);
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var gr_i = [];
         this.x = standard_define([3,3],this.model,[],gr_i);
         return new BasicBlock(this.x);

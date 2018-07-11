@@ -11,8 +11,8 @@ function MFCLCK_f() {
         this.model.rpar = new ScilabDouble([this.dt]);
         this.model.ipar = new ScilabDouble([this.nn]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.firing = [-1,0];
-        this.model.dep_ut = [false,false];
+        this.model.firing = new ScilabDouble([-1,0]);
+        this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.dt)],[string(this.nn)]];
         var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
@@ -41,7 +41,7 @@ function MFCLCK_f() {
             this.model.rpar = new ScilabDouble([this.dt]);
             var hh = this.model.firing;
             hh[2-1] = 0;
-            this.model.firing = hh;
+            this.model.firing = new ScilabDouble(hh);
             graphics.exprs = exprs;
             this.x.graphics = graphics;
             this.x.model = this.model;
