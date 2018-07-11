@@ -7,7 +7,7 @@ function VARIABLE_DELAY() {
         this.N = 1024;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["variable_delay"]), new ScilabDouble([4]));
-        this.model.in1 = [[nin],[1]];
+        this.model.in1 = new ScilabDouble([nin],[1]);
         this.model.out = new ScilabDouble([nin]);
         this.model.rpar = [this.T,this.init];
         this.model.ipar = new ScilabDouble([this.N]);

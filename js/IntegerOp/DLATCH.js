@@ -23,7 +23,7 @@ function DLATCH() {
         scs_m.objs[19-1] = scicos_link(xx=[[305.09603],[325.09603]],yy=[[280.83282],[280.83282]],id="drawlink",thick=[0,0],ct=[1,1],from=[10,2,0],to=[18,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);

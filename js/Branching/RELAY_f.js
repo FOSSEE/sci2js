@@ -6,7 +6,7 @@ function RELAY_f() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["relay"]), new ScilabDouble([2]));
-        this.model.in1 = in1;
+        this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.evtin = new ScilabDouble([ones(in1)]);
         this.model.dstate = new ScilabDouble([i0]);

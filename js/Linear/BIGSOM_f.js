@@ -4,7 +4,7 @@ function BIGSOM_f() {
         this.sgn = [[1],[1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["sum"]), new ScilabDouble([2]));
-        this.model.in1 = [[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);

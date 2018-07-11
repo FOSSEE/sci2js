@@ -10,7 +10,7 @@ function PENDULUM_ANIM() {
         this.ymax = 5;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["anim_pen"]), new ScilabDouble([5]));
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([0]);
         this.model.rpar = new ScilabDouble([this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]);

@@ -6,7 +6,7 @@ function INTRP2BLK_f() {
         this.c = [[0,1],[1,2]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["intrp2"]), new ScilabDouble([1]));
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.a],[this.b],[this.c.slice()]);
         this.model.ipar = new ScilabDouble([2],[2]);

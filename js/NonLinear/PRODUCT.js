@@ -4,7 +4,7 @@ function PRODUCT() {
         this.sgn = [[1],[-1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["product"]), new ScilabDouble([4]));
-        this.model.in1 = [[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);

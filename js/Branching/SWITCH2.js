@@ -7,7 +7,7 @@ function SWITCH2() {
         rpar = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["switch2"]), new ScilabDouble([4]));
-        this.model.in1 = in1;
+        this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = ipar;
         this.model.rpar = new ScilabDouble([rpar]);

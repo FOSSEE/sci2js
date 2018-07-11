@@ -34,7 +34,7 @@ function JKFLIPFLOP() {
         scs_m.objs[22-1] = scicos_link(xx=[[446.2036],[466.2036]],yy=[[179.25363],[179.25363]],id="drawlink",thick=[0,0],ct=[1,1],from=[9,1,0],to=[21,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = [[1],[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1],[1]);
         this.model.in2 = new ScilabDouble([1],[1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);

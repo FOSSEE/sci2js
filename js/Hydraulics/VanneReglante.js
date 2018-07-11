@@ -2,7 +2,7 @@
 function VanneReglante() {
     VanneReglante.prototype.define = function VanneReglante() {
         this.model = scicos_model();
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.out = [1];
         this.Cvmax = 8005.42;
         this.p_rho = 0;

@@ -11,7 +11,7 @@ function TCLSS() {
         out = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["tcslti4"]), new ScilabDouble([4]));
-        this.model.in1 = [[in1],[nx]];
+        this.model.in1 = new ScilabDouble([in1],[nx]);
         this.model.out = new ScilabDouble([out]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.state = new ScilabDouble([this.x0]);

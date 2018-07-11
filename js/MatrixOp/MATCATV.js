@@ -7,7 +7,7 @@ function MATCATV() {
         funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in2 = new ScilabDouble([-1],[-1]);
-        this.model.in1 = [[-2],[-3]];
+        this.model.in1 = new ScilabDouble([-2],[-3]);
         this.model.intyp = [-1,-1];
         this.model.out = new ScilabDouble([0]);
         this.model.out2 = new ScilabDouble([-1]);

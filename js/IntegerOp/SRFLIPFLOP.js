@@ -18,7 +18,7 @@ function SRFLIPFLOP() {
         scs_m.objs[14-1] = scicos_link(xx=[[363.03733],[383.03733]],yy=[[248.584],[248.584]],id="drawlink",thick=[0,0],ct=[1,1],from=[5,2,0],to=[13,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);

@@ -9,7 +9,7 @@ function DLRADAPT_f() {
         this.last_y = [[0],[0]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["dlradp"]);
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([this.last_u],[this.last_y]);

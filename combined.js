@@ -1083,7 +1083,7 @@ function M_SWITCH() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["mswitch"]), new ScilabDouble([4]));
-        this.model.in1 = in1;
+        this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
@@ -1157,7 +1157,7 @@ function NRMSOM_f() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["junk"]);
-        this.model.in1 = in1;
+        this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
@@ -1205,7 +1205,7 @@ function RELAY_f() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["relay"]), new ScilabDouble([2]));
-        this.model.in1 = in1;
+        this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.evtin = new ScilabDouble([ones(in1)]);
         this.model.dstate = new ScilabDouble([i0]);
@@ -1317,7 +1317,7 @@ function SELECT_f() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["selector"]), new ScilabDouble([2]));
-        this.model.in1 = in1;
+        this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.evtin = new ScilabDouble([ones(in1)]);
         this.model.dstate = new ScilabDouble([this.z0]);
@@ -1373,7 +1373,7 @@ function SELECT_m() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["selector_m"]), new ScilabDouble([4]));
-        this.model.in1 = [[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1]);
         this.model.in2 = new ScilabDouble([-2],[-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -1498,7 +1498,7 @@ function SWITCH2() {
         rpar = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["switch2"]), new ScilabDouble([4]));
-        this.model.in1 = in1;
+        this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = ipar;
         this.model.rpar = new ScilabDouble([rpar]);
@@ -1567,7 +1567,7 @@ function SWITCH2_m() {
         rpar = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["switch2_m"]), new ScilabDouble([4]));
-        this.model.in1 = [[-1],[1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[1],[-1]);
         this.model.in2 = new ScilabDouble([-2],[1],[-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -1656,7 +1656,7 @@ function SWITCH_f() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["switchn"]), new ScilabDouble([2]));
-        this.model.in1 = in1;
+        this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble([i0]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -2975,7 +2975,7 @@ function Switch() {
 function VVsourceAC() {
     VVsourceAC.prototype.define = function VVsourceAC() {
         this.model = scicos_model();
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.out = [1];
         VA = 220;
         this.FR = 50;
@@ -4526,7 +4526,7 @@ function SourceP() {
 function VanneReglante() {
     VanneReglante.prototype.define = function VanneReglante() {
         this.model = scicos_model();
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.out = [1];
         this.Cvmax = 8005.42;
         this.p_rho = 0;
@@ -5233,7 +5233,7 @@ function DFLIPFLOP() {
         scs_m.objs[44-1] = scicos_link(xx=[[279.98293],[279.98293],[325.53038],[325.53038]],yy=[[372.50232],[315.89455],[315.89455],[299.28749]],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,2,0],to=[32,2,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = [[1],[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1],[1]);
         this.model.in2 = new ScilabDouble([1],[1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);
@@ -5285,7 +5285,7 @@ function DLATCH() {
         scs_m.objs[19-1] = scicos_link(xx=[[305.09603],[325.09603]],yy=[[280.83282],[280.83282]],id="drawlink",thick=[0,0],ct=[1,1],from=[10,2,0],to=[18,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);
@@ -5561,7 +5561,7 @@ function INTMUL() {
         sgn = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["matmul_i32"]), new ScilabDouble([4]));
-        this.model.in1 = [[-1],[-2]];
+        this.model.in1 = new ScilabDouble([-1],[-2]);
         this.model.out = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2],[-3]);
         this.model.out2 = new ScilabDouble([-3]);
@@ -5707,7 +5707,7 @@ function JKFLIPFLOP() {
         scs_m.objs[22-1] = scicos_link(xx=[[446.2036],[466.2036]],yy=[[179.25363],[179.25363]],id="drawlink",thick=[0,0],ct=[1,1],from=[9,1,0],to=[21,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = [[1],[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1],[1]);
         this.model.in2 = new ScilabDouble([1],[1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);
@@ -5779,7 +5779,7 @@ function LOGIC() {
         this.mat = [[0],[0],[0],[1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["logic"]), new ScilabDouble([4]));
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
@@ -6002,7 +6002,7 @@ function SRFLIPFLOP() {
         scs_m.objs[14-1] = scicos_link(xx=[[363.03733],[383.03733]],yy=[[248.584],[248.584]],id="drawlink",thick=[0,0],ct=[1,1],from=[5,2,0],to=[13,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);
@@ -6074,7 +6074,7 @@ function BIGSOM_f() {
         this.sgn = [[1],[1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["sum"]), new ScilabDouble([2]));
-        this.model.in1 = [[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
@@ -6514,7 +6514,7 @@ function DELAYV_f() {
         this.T = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["delayv"]), new ScilabDouble([1]));
-        this.model.in1 = [[this.nin],[1]];
+        this.model.in1 = new ScilabDouble([this.nin],[1]);
         this.model.out = new ScilabDouble([this.nin]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1],[1]);
@@ -8373,7 +8373,7 @@ function SOM_f() {
         sgn = [[1],[1],[1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["sum"]), new ScilabDouble([2]));
-        this.model.in1 = [[-1],[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble(sgn);
         this.model.blocktype = new ScilabString(["c"]);
@@ -8419,7 +8419,7 @@ function SUMMATION() {
         this.sgn = [[1],[-1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["summation"]), new ScilabDouble([4]));
-        this.model.in1 = [[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2],[-2]);
         this.model.out2 = new ScilabDouble([-2]);
@@ -8567,7 +8567,7 @@ function SUM_f() {
     SUM_f.prototype.define = function SUM_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["plusblk"]), new ScilabDouble([2]));
-        this.model.in1 = [[-1],[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
@@ -8602,7 +8602,7 @@ function TCLSS() {
         out = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["tcslti4"]), new ScilabDouble([4]));
-        this.model.in1 = [[in1],[nx]];
+        this.model.in1 = new ScilabDouble([in1],[nx]);
         this.model.out = new ScilabDouble([out]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.state = new ScilabDouble([this.x0]);
@@ -8702,7 +8702,7 @@ function TCLSS_f() {
         out = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["tcslti"]), new ScilabDouble([1]));
-        this.model.in1 = [[in1],[nx]];
+        this.model.in1 = new ScilabDouble([in1],[nx]);
         this.model.out = new ScilabDouble([out]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.state = new ScilabDouble([this.x0]);
@@ -8867,7 +8867,7 @@ function VARIABLE_DELAY() {
         this.N = 1024;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["variable_delay"]), new ScilabDouble([4]));
-        this.model.in1 = [[nin],[1]];
+        this.model.in1 = new ScilabDouble([nin],[1]);
         this.model.out = new ScilabDouble([nin]);
         this.model.rpar = [this.T,this.init];
         this.model.ipar = new ScilabDouble([this.N]);
@@ -9244,7 +9244,7 @@ function MATBKSL() {
         function_name = "mat_bksl";
         funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = [[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1]);
         this.model.in2 = new ScilabDouble([-2],[-3]);
         this.model.intyp = [1,1];
         this.model.out = new ScilabDouble([-2]);
@@ -9323,7 +9323,7 @@ function MATCATH() {
         function_name = "mat_cath";
         funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = [[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1]);
         this.model.in2 = new ScilabDouble([-2],[-3]);
         this.model.intyp = [1,1];
         this.model.out = new ScilabDouble([-1]);
@@ -9395,7 +9395,7 @@ function MATCATV() {
         funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in2 = new ScilabDouble([-1],[-1]);
-        this.model.in1 = [[-2],[-3]];
+        this.model.in1 = new ScilabDouble([-2],[-3]);
         this.model.intyp = [-1,-1];
         this.model.out = new ScilabDouble([0]);
         this.model.out2 = new ScilabDouble([-1]);
@@ -9622,7 +9622,7 @@ function MATDIV() {
         function_name = "mat_div";
         funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = [[-1],[-2]];
+        this.model.in1 = new ScilabDouble([-1],[-2]);
         this.model.in2 = new ScilabDouble([-3],[-3]);
         this.model.intyp = [1,1];
         this.model.out = new ScilabDouble([-1]);
@@ -10122,7 +10122,7 @@ function MATMUL() {
     MATMUL.prototype.define = function MATMUL() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["matmul_m"]), new ScilabDouble([4]));
-        this.model.in1 = [[-1],[-2]];
+        this.model.in1 = new ScilabDouble([-1],[-2]);
         this.model.in2 = new ScilabDouble([-2],[-3]);
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([-3]);
@@ -10885,7 +10885,7 @@ function RICC() {
         function_name = "ricc_m";
         funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = [[-1],[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1],[-1]);
         this.model.in2 = new ScilabDouble([-1],[-1],[-1]);
         this.model.intyp = [1,1,1];
         this.model.out = new ScilabDouble([-1]);
@@ -11218,7 +11218,7 @@ function AUTOMAT() {
         rpar = [this.X0];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["automat"]), new ScilabDouble([10004]));
-        this.model.in1 = [[2*NX+1],[2*NX+1]];
+        this.model.in1 = new ScilabDouble([2*NX+1],[2*NX+1]);
         this.model.out = new ScilabDouble([2],[2*NX]);
         this.model.state = new ScilabDouble([ones(2*NX,1)]);
         this.model.nzcross = new ScilabDouble([1]);
@@ -11546,7 +11546,7 @@ function BOUNCEXY() {
         this.ymax = 15;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["bouncexy"]), new ScilabDouble([4]));
-        this.model.in1 = [[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.intyp = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -11660,7 +11660,7 @@ function BPLATFORM() {
         this.ymax = 15;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["bplatform2"]), new ScilabDouble([5]));
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([0]);
         this.model.rpar = new ScilabDouble([this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]);
@@ -12938,7 +12938,7 @@ function LOGICAL_OP() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["logicalop"]), new ScilabDouble([4]));
-        this.model.in1 = in1;
+        this.model.in1 = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = ipar;
         this.model.blocktype = new ScilabString(["c"]);
@@ -13735,7 +13735,7 @@ function PENDULUM_ANIM() {
         this.ymax = 5;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["anim_pen"]), new ScilabDouble([5]));
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([0]);
         this.model.rpar = new ScilabDouble([this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]);
@@ -13867,7 +13867,7 @@ function RELATIONALOP() {
         label = "&lt";
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["relationalop"]), new ScilabDouble([4]));
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.ipar = ipar;
         this.model.blocktype = new ScilabString(["c"]);
@@ -15080,7 +15080,7 @@ function DLRADAPT_f() {
         this.last_y = [[0],[0]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["dlradp"]);
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([this.last_u],[this.last_y]);
@@ -15289,7 +15289,7 @@ function INTRP2BLK_f() {
         this.c = [[0,1],[1,2]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["intrp2"]), new ScilabDouble([1]));
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.a],[this.b],[this.c.slice()]);
         this.model.ipar = new ScilabDouble([2],[2]);
@@ -15520,7 +15520,7 @@ function LOOKUP2D() {
         Nx = length(this.xx);
         Ny = length(this.yy);
         this.model.sim = list(new ScilabString(["lookup2d"]), new ScilabDouble([4]));
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()],[this.zz.slice()]);
         this.model.ipar = new ScilabDouble([Nx],[Ny],[this.Method]);
@@ -16047,7 +16047,7 @@ function PRODUCT() {
         this.sgn = [[1],[-1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["product"]), new ScilabDouble([4]));
-        this.model.in1 = [[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
@@ -16118,7 +16118,7 @@ function PROD_f() {
     PROD_f.prototype.define = function PROD_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["prod"]), new ScilabDouble([2]));
-        this.model.in1 = [[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
@@ -16493,7 +16493,7 @@ function PDE() {
         this.model = scicos_model();
         this.model.state = new ScilabDouble([zeros(10,1)]);
         this.model.sim = list(new ScilabString(["PDE"]), new ScilabDouble([0]));
-        this.model.in1 = [[1],[1],[1],[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1],[1],[1],[1]);
         this.model.out = new ScilabDouble([10],[0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
@@ -16739,7 +16739,7 @@ function BARXY() {
         this.model.sim = list(new ScilabString(["BARXY_sim"]), new ScilabDouble([5]));
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [true,false];
-        this.model.in1 = [[-1],[-1]];
+        this.model.in1 = new ScilabDouble([-1],[-1]);
         this.model.intyp = [1];
         this.model.out = [];
         this.model.evtin = [1];
@@ -16822,7 +16822,7 @@ function CANIMXY() {
         this.nbr_curves = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["canimxy"]), new ScilabDouble([4]));
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.intyp = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -16950,7 +16950,7 @@ function CANIMXY3D() {
         this.nbr_curves = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["canimxy3d"]), new ScilabDouble([4]));
-        this.model.in1 = [[1],[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1],[1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1],[1],[1]);
         this.model.intyp = new ScilabDouble([1],[1],[1]);
@@ -17634,7 +17634,7 @@ function CMSCOPE() {
         period = transpose(this.per.slice());
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cmscope"]), new ScilabDouble([4]));
-        this.model.in1 = this.in1;
+        this.model.in1 = new ScilabDouble(this.in1);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.intyp = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -17909,7 +17909,7 @@ function CSCOPXY() {
         this.nbr_curves = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cscopxy"]), new ScilabDouble([4]));
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.intyp = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -18036,7 +18036,7 @@ function CSCOPXY3D() {
         this.nbr_curves = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cscopxy3d"]), new ScilabDouble([4]));
-        this.model.in1 = [[1],[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1],[1]);
         this.model.in2 = new ScilabDouble([1],[1],[1]);
         this.model.intyp = new ScilabDouble([1],[1],[1]);
         this.model.evtin = new ScilabDouble([1]);

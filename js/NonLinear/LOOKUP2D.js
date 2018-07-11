@@ -10,7 +10,7 @@ function LOOKUP2D() {
         Nx = length(this.xx);
         Ny = length(this.yy);
         this.model.sim = list(new ScilabString(["lookup2d"]), new ScilabDouble([4]));
-        this.model.in1 = [[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()],[this.zz.slice()]);
         this.model.ipar = new ScilabDouble([Nx],[Ny],[this.Method]);

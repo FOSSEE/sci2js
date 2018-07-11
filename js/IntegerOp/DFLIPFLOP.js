@@ -78,7 +78,7 @@ function DFLIPFLOP() {
         scs_m.objs[44-1] = scicos_link(xx=[[279.98293],[279.98293],[325.53038],[325.53038]],yy=[[372.50232],[315.89455],[315.89455],[299.28749]],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,2,0],to=[32,2,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = [[1],[1],[1]];
+        this.model.in1 = new ScilabDouble([1],[1],[1]);
         this.model.in2 = new ScilabDouble([1],[1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);
