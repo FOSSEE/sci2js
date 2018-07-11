@@ -19,8 +19,8 @@ function READC_f() {
         this.model.out = new ScilabDouble([nout]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = [];
-        this.model.dstate = [[1],[1],[lunit],[zeros(this.N*this.M,1)]];
-        this.model.ipar = [[length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[fname-1]],[tmask],[this.outmask]];
+        this.model.dstate = new ScilabDouble([1],[1],[lunit],[zeros(this.N*this.M,1)]);
+        this.model.ipar = new ScilabDouble([length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[this.M],[this.swap],[this.offset],[this._str2code[fname-1]],[tmask],[this.outmask]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [false,false];
@@ -125,8 +125,8 @@ function READC_f() {
                     if (prod(size(dstate))!=(this.N*this.M)+3) {
                         dstate = [[-1],[-1],[lunit],[zeros(this.N*this.M,1)]];
                     }
-                    this.model.dstate = dstate;
-                    this.model.ipar = ipar;
+                    this.model.dstate = new ScilabDouble(dstate);
+                    this.model.ipar = new ScilabDouble(ipar);
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
                     this.x.model = this.model;

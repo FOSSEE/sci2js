@@ -6,7 +6,7 @@ function RICC() {
         funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in1 = [[-1],[-1],[-1]];
-        this.model.in2 = [[-1],[-1],[-1]];
+        this.model.in2 = new ScilabDouble([-1],[-1],[-1]);
         this.model.intyp = [1,1,1];
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([-1]);
@@ -16,7 +16,7 @@ function RICC() {
         this.model.state = [];
         this.model.dstate = [];
         this.model.rpar = [];
-        this.model.ipar = [[1],[1]];
+        this.model.ipar = new ScilabDouble([1],[1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
@@ -57,7 +57,7 @@ function RICC() {
             label = exprs;
             [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
             if (ok) {
-                this.model.ipar = [[this.tpe],[this.mod]];
+                this.model.ipar = new ScilabDouble([this.tpe],[this.mod]);
                 graphics.exprs = label;
                 arg1.graphics = graphics;
                 arg1.model = this.model;

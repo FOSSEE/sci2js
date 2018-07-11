@@ -85,7 +85,7 @@ function LOGICAL_OP() {
                         message("Datatype is not supported");
                         ok = false;
                     }
-                    this.model.ipar = [[this.rule],[this.tp]];
+                    this.model.ipar = new ScilabDouble([this.rule],[this.tp]);
                 }
                 if (ok) {
                     it = this.Datatype*ones(this.nin,1);

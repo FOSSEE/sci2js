@@ -11,8 +11,8 @@ function CURV_f() {
         this.model.sim = new ScilabString(["intplt"]);
         this.model.in1 = [];
         this.model.out = new ScilabDouble([1]);
-        this.model.rpar = [[xx],[yy],[rect.slice()]];
-        this.model.ipar = [[size(xx,1)],[axisdata.slice()]];
+        this.model.rpar = new ScilabDouble([xx],[yy],[rect.slice()]);
+        this.model.ipar = new ScilabDouble([size(xx,1)],[axisdata.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         gr_i = [];
@@ -56,9 +56,9 @@ function CURV_f() {
                 this.model.sim = new ScilabString(["intplt"]);
                 this.model.firing = [];
                 rect = gc[1-1];
-                this.model.rpar = [[xx.slice()],[yy.slice()],[rect.slice()]];
+                this.model.rpar = new ScilabDouble([xx.slice()],[yy.slice()],[rect.slice()]);
                 axisdata = gc[2-1];
-                this.model.ipar = [[size(xx,"*")],[axisdata.slice()]];
+                this.model.ipar = new ScilabDouble([size(xx,"*")],[axisdata.slice()]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

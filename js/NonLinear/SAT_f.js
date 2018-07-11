@@ -10,7 +10,7 @@ function SAT_f() {
         this.model.in1 = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([2]);
         this.model.out = new ScilabDouble([1]);
-        this.model.rpar = [[this.minp],[this.maxp],[slope]];
+        this.model.rpar = new ScilabDouble([this.minp],[this.maxp],[slope]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string(this.minp)],[string(this.maxp)],[string(slope)]];
@@ -48,7 +48,7 @@ function SAT_f() {
                 message("Slope must be strictly positive");
             } else {
                 rpar = [[this.minp/this.pente],[this.maxp/this.pente],[this.pente]];
-                this.model.rpar = rpar;
+                this.model.rpar = new ScilabDouble(rpar);
                 this.model.firing = [];
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;

@@ -7,8 +7,8 @@ function CONSTRAINT2_c() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["constraint_c"]), new ScilabDouble([10004]));
         this.model.in1 = new ScilabDouble([1]);
-        this.model.out = [[1],[1]];
-        this.model.state = [[this.x0],[this.xd0]];
+        this.model.out = new ScilabDouble([1],[1]);
+        this.model.state = new ScilabDouble([this.x0],[this.xd0]);
         this.model.ipar = this.id;
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
@@ -70,8 +70,8 @@ function CONSTRAINT2_c() {
             }
             if (!ask_again) {
                 graphics.exprs = exprs;
-                this.model.state = [[this.x0],[this.xd0]];
-                this.model.out = [[N],[N]];
+                this.model.state = new ScilabDouble([this.x0],[this.xd0]);
+                this.model.out = new ScilabDouble([N],[N]);
                 this.model.in1 = new ScilabDouble([N]);
                 this.model.ipar = this.id;
                 this.x.graphics = graphics;

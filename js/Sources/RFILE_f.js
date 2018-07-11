@@ -16,8 +16,8 @@ function RFILE_f() {
         this.model.sim = new ScilabString(["readf"]);
         this.model.out = new ScilabDouble([nout]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.dstate = dstate;
-        this.model.ipar = [[length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]],[tmask],[this.outmask]];
+        this.model.dstate = new ScilabDouble(dstate);
+        this.model.ipar = new ScilabDouble([length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]],[tmask],[this.outmask]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = [[sci2exp([])],[sci2exp(this.outmask)],[fname],[frmt],[string(this.N)],[sci2exp(out)]];
@@ -108,8 +108,8 @@ function RFILE_f() {
                     if (prod(size(dstate))!=(nout+ievt)*this.N+3) {
                         dstate = [[-1],[-1],[lunit],[zeros((nout+ievt)*this.N,1)]];
                     }
-                    this.model.dstate = dstate;
-                    this.model.ipar = ipar;
+                    this.model.dstate = new ScilabDouble(dstate);
+                    this.model.ipar = new ScilabDouble(ipar);
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
                     this.x.model = this.model;

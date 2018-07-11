@@ -6,7 +6,7 @@ function INTMUL() {
         this.model.sim = list(new ScilabString(["matmul_i32"]), new ScilabDouble([4]));
         this.model.in1 = [[-1],[-2]];
         this.model.out = new ScilabDouble([-1]);
-        this.model.in2 = [[-2],[-3]];
+        this.model.in2 = new ScilabDouble([-2],[-3]);
         this.model.out2 = new ScilabDouble([-3]);
         this.model.intyp = [3,3];
         this.model.outtyp = new ScilabDouble([3]);

@@ -34,7 +34,7 @@ function Gyrator() {
         this.model.sim = new ScilabString([ModelName]);
         mo.inputs = MI;
         mo.outputs = MO;
-        this.model.rpar = PrametersValue;
+        this.model.rpar = new ScilabDouble(PrametersValue);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         exprs = [["1"],["1"]];
         gr_i = [];

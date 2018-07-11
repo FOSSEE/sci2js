@@ -10,7 +10,7 @@ function Counter() {
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([0]);
-        this.model.ipar = [[this.rule],[this.maxim],[this.minim]];
+        this.model.ipar = new ScilabDouble([this.rule],[this.maxim],[this.minim]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
         exprs = [[string(this.minim)],[string(this.maxim)],[string(this.rule)]];
@@ -51,7 +51,7 @@ function Counter() {
             } else {
                 graphics.exprs = exprs;
                 this.model.dstate = new ScilabDouble([0]);
-                this.model.ipar = [[this.rule],[this.maxim],[this.minim]];
+                this.model.ipar = new ScilabDouble([this.rule],[this.maxim],[this.minim]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

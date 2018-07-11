@@ -7,7 +7,7 @@ function EVTDLY_c() {
         this.model.sim = list(new ScilabString(["evtdly4"]), new ScilabDouble([4]));
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
-        this.model.rpar = [[this.dt],[this.ff]];
+        this.model.rpar = new ScilabDouble([this.dt],[this.ff]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([this.ff]);
         this.model.dep_ut = [false,false];
@@ -44,7 +44,7 @@ function EVTDLY_c() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.rpar = [[this.dt],[this.ff]];
+                this.model.rpar = new ScilabDouble([this.dt],[this.ff]);
                 this.model.firing = new ScilabDouble([this.ff]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;

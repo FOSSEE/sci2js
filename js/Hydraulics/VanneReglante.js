@@ -6,7 +6,7 @@ function VanneReglante() {
         this.model.out = [1];
         this.Cvmax = 8005.42;
         this.p_rho = 0;
-        this.model.rpar = [[this.Cvmax],[this.p_rho]];
+        this.model.rpar = new ScilabDouble([this.Cvmax],[this.p_rho]);
         this.model.sim = new ScilabString(["VanneReglante"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
@@ -47,7 +47,7 @@ function VanneReglante() {
             if (!ok) {
                 break;
             }
-            this.model.rpar = [[this.Cvmax],[this.p_rho]];
+            this.model.rpar = new ScilabDouble([this.Cvmax],[this.p_rho]);
             this.model.equations.parameters[2] = list(new ScilabDouble([this.Cvmax]), new ScilabDouble([this.p_rho]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;

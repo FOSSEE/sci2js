@@ -13,8 +13,8 @@ function CMATVIEW() {
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.ipar = [[this.cmin],[this.cmax],[size_c]];
-        this.model.rpar = [[alpha_c],[beta_c],[this.colormap.slice()]];
+        this.model.ipar = new ScilabDouble([this.cmin],[this.cmax],[size_c]);
+        this.model.rpar = new ScilabDouble([alpha_c],[beta_c],[this.colormap.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
@@ -61,8 +61,8 @@ function CMATVIEW() {
                 beta_c = sol[2-1];
                 ipar = [[this.cmin],[this.cmax],[size_c]];
                 rpar = [[alpha_c],[beta_c],[this.colormap.slice()]];
-                this.model.ipar = ipar;
-                this.model.rpar = rpar;
+                this.model.ipar = new ScilabDouble(ipar);
+                this.model.rpar = new ScilabDouble(rpar);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

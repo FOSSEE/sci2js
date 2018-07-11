@@ -9,7 +9,7 @@ function HYSTHERESIS() {
         this.model.sim = list(new ScilabString(["hystheresis"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([1]);
-        this.model.rpar = rpar;
+        this.model.rpar = new ScilabDouble(rpar);
         this.model.nzcross = new ScilabDouble([this.nzz]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);

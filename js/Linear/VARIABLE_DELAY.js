@@ -56,7 +56,7 @@ function VARIABLE_DELAY() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.rpar = [[this.T],[this.init]];
+                this.model.rpar = new ScilabDouble([this.T],[this.init]);
                 this.model.ipar = new ScilabDouble([this.N]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;

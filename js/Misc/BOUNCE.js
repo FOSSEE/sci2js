@@ -26,9 +26,9 @@ function BOUNCE() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["bounce_ball"]), new ScilabDouble([4]));
         this.model.in1 = [];
-        this.model.out = [[n],[n]];
+        this.model.out = new ScilabDouble([n],[n]);
         this.model.state = state.slice();
-        this.model.rpar = [[this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]];
+        this.model.rpar = new ScilabDouble([this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]);
         this.model.ipar = ipar;
         this.model.nzcross = new ScilabDouble([n*(n-1)/2+4*n]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -114,7 +114,7 @@ function BOUNCE() {
                         k = k+1;
                     }
                 }
-                this.model.rpar = [[this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]];
+                this.model.rpar = new ScilabDouble([this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]);
                 this.model.ipar = ipar;
                 state = [this.xt,this.xd,this.y,this.yd];
                 state = transpose(state);

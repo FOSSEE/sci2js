@@ -9,7 +9,7 @@ function SineVoltage() {
         this.frq = 1;
         this.offset = 0;
         this.start = 0;
-        this.model.rpar = [[this.V],[this.ph],[this.frq],[this.offset],[this.start]];
+        this.model.rpar = new ScilabDouble([this.V],[this.ph],[this.frq],[this.offset],[this.start]);
         this.model.sim = new ScilabString(["SineVoltage"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
@@ -54,7 +54,7 @@ function SineVoltage() {
             if (!ok) {
                 break;
             }
-            this.model.rpar = [[this.V],[this.ph],[this.frq],[this.offset],[this.start]];
+            this.model.rpar = new ScilabDouble([this.V],[this.ph],[this.frq],[this.offset],[this.start]);
             this.model.equations.parameters[2] = list(new ScilabDouble([this.V]), new ScilabDouble([this.ph]), new ScilabDouble([this.frq]), new ScilabDouble([this.offset]), new ScilabDouble([this.start]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;

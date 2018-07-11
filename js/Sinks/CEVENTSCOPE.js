@@ -11,7 +11,7 @@ function CEVENTSCOPE() {
         this.model.sim = list(new ScilabString(["cevscpe"]), new ScilabDouble([4]));
         this.model.evtin = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.per]);
-        this.model.ipar = [[this.win],[1],[this.clrs[this.nclock-1]],[this.wpos.slice()],[this.wdim.slice()]];
+        this.model.ipar = new ScilabDouble([this.win],[1],[this.clrs[this.nclock-1]],[this.wpos.slice()],[this.wdim.slice()]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = [[sci2exp(this.nclock)],[strcat(sci2exp(this.clrs[this.nclock-1])," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.per)]];
@@ -92,7 +92,7 @@ function CEVENTSCOPE() {
                 rpar = this.per;
                 ipar = [[this.win],[1],[this.clrs.slice()],[this.wpos.slice()],[this.wdim.slice()]];
                 this.model.rpar = new ScilabDouble([rpar]);
-                this.model.ipar = ipar;
+                this.model.ipar = new ScilabDouble(ipar);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

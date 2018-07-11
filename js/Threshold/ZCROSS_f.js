@@ -8,7 +8,7 @@ function ZCROSS_f() {
         this.model.in1 = new ScilabDouble([this.in1]);
         this.model.nzcross = new ScilabDouble([this.in1]);
         this.model.evtout = new ScilabDouble([1]);
-        this.model.rpar = [[-1],[-1],[0],[0]];
+        this.model.rpar = new ScilabDouble([-1],[-1],[0],[0]);
         this.model.blocktype = new ScilabString(["z"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [true,false];
@@ -44,7 +44,7 @@ function ZCROSS_f() {
                 for (jj=1;jj<=this.in1;jj+=1) {
                     kk = kk+2^(this.in1+jj-1);
                 }
-                this.model.rpar = [[-ones(kk,1)],[zeros(2^(2*this.in1)-kk,1)]];
+                this.model.rpar = new ScilabDouble([-ones(kk,1)],[zeros(2^(2*this.in1)-kk,1)]);
                 graphics.exprs = exprs;
                 this.model.in1 = new ScilabDouble([this.in1]);
                 this.model.nzcross = new ScilabDouble([this.in1]);

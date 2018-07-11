@@ -7,7 +7,7 @@ function CONSTRAINT_c() {
         this.model.in1 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.ipar = new ScilabDouble([0]);
-        this.model.state = this.x0;
+        this.model.state = new ScilabDouble(this.x0);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         exprs = "0";
@@ -42,7 +42,7 @@ function CONSTRAINT_c() {
                 [this.model,graphics,ok] = check_io(this.model,graphics,N,N,[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
-                    this.model.state = [[this.x0],[zeros(N,1)]];
+                    this.model.state = new ScilabDouble([this.x0],[zeros(N,1)]);
                     this.model.out = new ScilabDouble([N]);
                     this.model.in1 = new ScilabDouble([N]);
                     this.model.ipar = new ScilabDouble([-1*ones(N,1)]);

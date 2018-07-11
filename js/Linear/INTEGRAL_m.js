@@ -113,7 +113,7 @@ function INTEGRAL_m() {
                     it = [[1],[ones(this.reinit,1)]];
                     ot = 1;
                 } else if ((Datatype==2)) {
-                    this.model.state = [[real(this.x0.slice())],[imag(this.x0.slice())]];
+                    this.model.state = new ScilabDouble([real(this.x0.slice())],[imag(this.x0.slice())]);
                     this.model.sim = list(new ScilabString(["integralz_func"]), new ScilabDouble([4]));
                     it = [[2],[2*ones(this.reinit,1)]];
                     ot = 2;

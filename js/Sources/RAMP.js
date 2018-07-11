@@ -9,7 +9,7 @@ function RAMP() {
         this.model.sim = list(new ScilabString(["ramp"]), new ScilabDouble([4]));
         this.model.in1 = [];
         this.model.out = new ScilabDouble([1]);
-        this.model.rpar = rpar;
+        this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([1]);
@@ -46,7 +46,7 @@ function RAMP() {
             if (this.stt<0) {
                 block_parameter_error(msprintf("Wrong value for \'Start Time\' parameter: %e.",this.stt),"Null or positive integer expected.");
             } else {
-                this.model.rpar = [[this.slope],[this.stt],[this.iout]];
+                this.model.rpar = new ScilabDouble([this.slope],[this.stt],[this.iout]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

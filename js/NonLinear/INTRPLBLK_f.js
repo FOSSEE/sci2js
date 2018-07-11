@@ -7,7 +7,7 @@ function INTRPLBLK_f() {
         this.model.sim = new ScilabString(["intrpl"]);
         this.model.in1 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
-        this.model.rpar = [[this.a],[this.b]];
+        this.model.rpar = new ScilabDouble([this.a],[this.b]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))]];
@@ -44,7 +44,7 @@ function INTRPLBLK_f() {
             } else {
                 if (ok) {
                     graphics.exprs = exprs;
-                    this.model.rpar = [[this.a.slice()],[this.b.slice()]];
+                    this.model.rpar = new ScilabDouble([this.a.slice()],[this.b.slice()]);
                     this.x.graphics = graphics;
                     this.x.model = this.model;
                     break;

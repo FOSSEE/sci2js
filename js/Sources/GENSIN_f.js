@@ -8,7 +8,7 @@ function GENSIN_f() {
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
-        this.model.rpar = [[1],[1],[0]];
+        this.model.rpar = new ScilabDouble([1],[1],[0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         exprs = [[string(rpar[1-1])],[string(rpar[2-1])],[string(rpar[3-1])]];
@@ -46,7 +46,7 @@ function GENSIN_f() {
             }
             if (ok) {
                 [this.model,graphics,ok] = check_io(this.model,graphics,[],1,[],[]);
-                this.model.rpar = [[this.M],[this.F],[this.P]];
+                this.model.rpar = new ScilabDouble([this.M],[this.F],[this.P]);
                 this.model.out2 = new ScilabDouble([1]);
                 this.model.outtyp = new ScilabDouble([1]);
                 graphics.exprs = exprs;

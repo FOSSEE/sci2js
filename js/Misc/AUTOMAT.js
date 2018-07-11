@@ -14,14 +14,14 @@ function AUTOMAT() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["automat"]), new ScilabDouble([10004]));
         this.model.in1 = [[2*NX+1],[2*NX+1]];
-        this.model.out = [[2],[2*NX]];
+        this.model.out = new ScilabDouble([2],[2*NX]);
         this.model.state = new ScilabDouble([ones(2*NX,1)]);
         this.model.nzcross = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [false,true];
-        this.model.ipar = ipar;
+        this.model.ipar = new ScilabDouble(ipar);
         this.model.rpar = rpar;
         gr_i = [];
         this.x = standard_define([4,2],this.model,exprs,gr_i);
@@ -129,7 +129,7 @@ function AUTOMAT() {
                 graphics.gr_i[1-1][1-1] = "txt=[\'Automaton\';\'nM="+string(NMode)+",nX="+string(NX)+"\'];";
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
-                this.model.ipar = ipar;
+                this.model.ipar = new ScilabDouble(ipar);
                 this.model.rpar = new ScilabDouble([rpar]);
                 this.x.model = this.model;
                 break;

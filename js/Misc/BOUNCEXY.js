@@ -12,8 +12,8 @@ function BOUNCEXY() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["bouncexy"]), new ScilabDouble([4]));
         this.model.in1 = [[-1],[-1]];
-        this.model.in2 = [[1],[1]];
-        this.model.intyp = [[1],[1]];
+        this.model.in2 = new ScilabDouble([1],[1]);
+        this.model.intyp = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
         z = [];
         for (i=1;i<=size(this.clrs,"*");i+=1) {
@@ -25,8 +25,8 @@ function BOUNCEXY() {
             z[6*(i-1)+6-1] = 64.0*360.000;
         }
         this.model.dstate = z;
-        this.model.rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
-        this.model.ipar = [[this.win],[this.imode],[this.clrs.slice()]];
+        this.model.rpar = new ScilabDouble([this.xmin],[this.xmax],[this.ymin],[this.ymax]);
+        this.model.ipar = new ScilabDouble([this.win],[this.imode],[this.clrs.slice()]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [false,false];
@@ -102,8 +102,8 @@ function BOUNCEXY() {
                     z[6*(i-1)+6-1] = 64.0*360.000;
                 }
                 this.model.dstate = z;
-                this.model.rpar = rpar;
-                this.model.ipar = ipar;
+                this.model.rpar = new ScilabDouble(rpar);
+                this.model.ipar = new ScilabDouble(ipar);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

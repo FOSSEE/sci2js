@@ -8,7 +8,7 @@ function TKSCALE() {
         this.model.sim = list(new ScilabString(["tkscaleblk"]), new ScilabDouble([5]));
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.rpar = [[this.a],[this.b],[this.f]];
+        this.model.rpar = new ScilabDouble([this.a],[this.b],[this.f]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = [[sci2exp(this.a)],[sci2exp(this.b)],[sci2exp(this.f)]];
@@ -38,7 +38,7 @@ function TKSCALE() {
         [ok,this.a,this.b,this.f,exprs] = scicos_getvalue("Set scale block parameters",["Min value","Max value","Normalization"],list("vec",1,"vec",1,"vec",1),exprs);
         if (ok) {
             graphics.exprs = exprs;
-            this.model.rpar = [[this.a],[this.b],[this.f]];
+            this.model.rpar = new ScilabDouble([this.a],[this.b],[this.f]);
             this.x.graphics = graphics;
             this.x.model = this.model;
         }

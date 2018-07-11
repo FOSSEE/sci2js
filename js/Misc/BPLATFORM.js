@@ -13,7 +13,7 @@ function BPLATFORM() {
         this.model.in1 = [[1],[1]];
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([0]);
-        this.model.rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
+        this.model.rpar = new ScilabDouble([this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = string(this.model.rpar);
@@ -71,7 +71,7 @@ function BPLATFORM() {
                 message(mess);
             } else {
                 rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
-                this.model.rpar = rpar;
+                this.model.rpar = new ScilabDouble(rpar);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

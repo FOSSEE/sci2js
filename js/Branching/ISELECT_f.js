@@ -7,7 +7,7 @@ function ISELECT_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["selector"]), new ScilabDouble([2]));
         this.model.in1 = new ScilabDouble([-1]);
-        this.model.out = out;
+        this.model.out = new ScilabDouble(out);
         this.model.evtin = new ScilabDouble([ones(out)]);
         this.model.dstate = new ScilabDouble([this.z0]);
         this.model.blocktype = new ScilabString(["c"]);

@@ -8,8 +8,8 @@ function MATLU() {
         this.model.in1 = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-1]);
         this.model.intyp = new ScilabDouble([1]);
-        this.model.out = [[-1],[-1]];
-        this.model.out2 = [[-1],[-1]];
+        this.model.out = new ScilabDouble([-1],[-1]);
+        this.model.out2 = new ScilabDouble([-1],[-1]);
         this.model.outtyp = [1,1];
         this.model.evtin = [];
         this.model.evtout = [];

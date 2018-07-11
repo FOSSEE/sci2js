@@ -15,7 +15,7 @@ function MPBLOCK() {
         this.model.dep_ut = [true,true];
         this.model.rpar = [];
         for (i=1;i<=lstsize(paramv);i+=1) {
-            this.model.rpar = [[this.model.rpar],[paramv[i-1].slice()]];
+            this.model.rpar = new ScilabDouble([this.model.rpar],[paramv[i-1].slice()]);
         }
         mo = modelica();
         mo.model = nameF;
@@ -234,7 +234,7 @@ function MPBLOCK() {
                 this.model.equations = new ScilabDouble([mo]);
                 this.model.rpar = [];
                 for (i=1;i<=lstsize(paramv);i+=1) {
-                    this.model.rpar = [[this.model.rpar],[double(paramv[i-1].slice())]];
+                    this.model.rpar = new ScilabDouble([this.model.rpar],[double(paramv[i-1].slice())]);
                 }
                 this.model.sim[1] = new ScilabDouble([this.funam]);
                 exprs.in1 = lab_1[1-1];

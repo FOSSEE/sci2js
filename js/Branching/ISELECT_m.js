@@ -5,8 +5,8 @@ function ISELECT_m() {
         this.nout = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["selector_m"]), new ScilabDouble([4]));
-        this.model.out = [[-1],[-1]];
-        this.model.out2 = [[-2],[-2]];
+        this.model.out = new ScilabDouble([-1],[-1]);
+        this.model.out2 = new ScilabDouble([-2],[-2]);
         this.model.outtyp = new ScilabDouble([1]);
         this.model.in1 = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);

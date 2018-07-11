@@ -10,8 +10,8 @@ function RAND_f() {
         this.model.sim = new ScilabString(["rndblk"]);
         this.model.out = new ScilabDouble([out]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.dstate = [[int(rand()*(10^7-1))],[0*this.a.slice()]];
-        this.model.rpar = [[this.a.slice()],[this.b.slice()]];
+        this.model.dstate = new ScilabDouble([int(rand()*(10^7-1))],[0*this.a.slice()]);
+        this.model.rpar = new ScilabDouble([this.a.slice()],[this.b.slice()]);
         this.model.ipar = new ScilabDouble([this.flag]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
@@ -59,8 +59,8 @@ function RAND_f() {
                 graphics.exprs = exprs;
                 this.model.out = new ScilabDouble([nout]);
                 this.model.ipar = new ScilabDouble([this.flag]);
-                this.model.rpar = [[this.a.slice()],[this.b.slice()]];
-                this.model.dstate = [[this.seed_c],[0*this.a.slice()]];
+                this.model.rpar = new ScilabDouble([this.a.slice()],[this.b.slice()]);
+                this.model.dstate = new ScilabDouble([this.seed_c],[0*this.a.slice()]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

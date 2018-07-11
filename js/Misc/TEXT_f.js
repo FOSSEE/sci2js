@@ -6,7 +6,7 @@ function TEXT_f() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["text"]);
         this.model.rpar = new ScilabString(["Text"]);
-        this.model.ipar = [[this.font],[this.siz]];
+        this.model.ipar = new ScilabDouble([this.font],[this.siz]);
         exprs = [["Text"],[string(this.font)],[string(this.siz)]];
         graphics = scicos_graphics();
         graphics.orig = [0,0];
@@ -68,7 +68,7 @@ function TEXT_f() {
                 this.x.graphics = graphics;
                 ipar = [[this.font],[this.siz]];
                 this.model.rpar = new ScilabDouble([this.txt]);
-                this.model.ipar = ipar;
+                this.model.ipar = new ScilabDouble(ipar);
                 this.x.model = this.model;
                 break;
             }

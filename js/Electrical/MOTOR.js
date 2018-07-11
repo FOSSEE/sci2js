@@ -2,7 +2,7 @@
 function MOTOR() {
     MOTOR.prototype.define = function MOTOR() {
         this.model = scicos_model();
-        this.model.out = [[1],[1]];
+        this.model.out = new ScilabDouble([1],[1]);
         this.model.in1 = [1];
         this.model.sim = new ScilabString(["motor"]);
         this.model.blocktype = new ScilabString(["c"]);

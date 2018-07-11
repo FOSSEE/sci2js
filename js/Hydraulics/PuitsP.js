@@ -6,7 +6,7 @@ function PuitsP() {
         this.T0 = 290;
         this.H0 = 100000;
         this.option_temperature = 1;
-        this.model.rpar = [[this.P0],[this.T0],[this.H0],[this.option_temperature]];
+        this.model.rpar = new ScilabDouble([this.P0],[this.T0],[this.H0],[this.option_temperature]);
         this.model.sim = new ScilabString(["Puits"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
@@ -48,7 +48,7 @@ function PuitsP() {
             if (!ok) {
                 break;
             }
-            this.model.rpar = [[this.P0],[this.T0],[this.H0],[this.option_temperature]];
+            this.model.rpar = new ScilabDouble([this.P0],[this.T0],[this.H0],[this.option_temperature]);
             this.model.equations.parameters[2] = list(new ScilabDouble([this.P0]), new ScilabDouble([this.T0]), new ScilabDouble([this.H0]), new ScilabDouble([this.option_temperature]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;

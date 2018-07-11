@@ -14,8 +14,8 @@ function CSCOPE() {
         this.model.in1 = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.rpar = [[0],[this.ymin],[this.ymax],[this.per]];
-        this.model.ipar = [[this.win],[1],[this.N],[this.clrs],[this.wpos],[this.wdim]];
+        this.model.rpar = new ScilabDouble([0],[this.ymin],[this.ymax],[this.per]);
+        this.model.ipar = new ScilabDouble([this.win],[1],[this.N],[this.clrs],[this.wpos],[this.wdim]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.ymin)],[string(this.ymax)],[string(this.per)],[string(this.N)],[transpose(string(0))],[emptystr()]];
@@ -105,8 +105,8 @@ function CSCOPE() {
                 }
                 rpar = [[0],[this.ymin],[this.ymax],[this.per]];
                 ipar = [[this.win],[1],[this.N],[this.clrs.slice()],[this.wpos.slice()],[this.wdim.slice()]];
-                this.model.rpar = rpar;
-                this.model.ipar = ipar;
+                this.model.rpar = new ScilabDouble(rpar);
+                this.model.ipar = new ScilabDouble(ipar);
                 this.model.evtin = new ScilabDouble([ones(1-this.heritance,1)]);
                 this.model.label = new ScilabDouble([this.nom]);
                 graphics.id = this.nom;

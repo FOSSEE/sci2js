@@ -12,7 +12,7 @@ function CLR_f() {
         this.model.in1 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.state = new ScilabDouble([x0]);
-        this.model.rpar = [[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
+        this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         gr_i = [];
@@ -72,7 +72,7 @@ function CLR_f() {
                     x0[ns1-1][1-1] = 0;
                 }
                 this.model.state = x0;
-                this.model.rpar = rpar;
+                this.model.rpar = new ScilabDouble(rpar);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

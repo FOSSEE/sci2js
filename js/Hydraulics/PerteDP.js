@@ -10,7 +10,7 @@ function PerteDP() {
         this.z1 = 0;
         this.z2 = 0;
         this.p_rho = 0;
-        this.model.rpar = [[this.L],[this.D],[this.lambda],[this.z1],[this.z2],[this.p_rho]];
+        this.model.rpar = new ScilabDouble([this.L],[this.D],[this.lambda],[this.z1],[this.z2],[this.p_rho]);
         this.model.sim = new ScilabString(["PerteDP"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
@@ -59,7 +59,7 @@ function PerteDP() {
             if (!ok) {
                 break;
             }
-            this.model.rpar = [[this.L],[this.D],[this.lambda],[this.z1],[this.z2],[this.p_rho]];
+            this.model.rpar = new ScilabDouble([this.L],[this.D],[this.lambda],[this.z1],[this.z2],[this.p_rho]);
             this.model.equations.parameters[2] = list(new ScilabDouble([this.L]), new ScilabDouble([this.D]), new ScilabDouble([this.lambda]), new ScilabDouble([this.z1]), new ScilabDouble([this.z2]), new ScilabDouble([this.p_rho]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;

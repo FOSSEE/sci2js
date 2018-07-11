@@ -10,7 +10,7 @@ function DELAYV_f() {
         this.model.in1 = [[this.nin],[1]];
         this.model.out = new ScilabDouble([this.nin]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.evtout = [[1],[1]];
+        this.model.evtout = new ScilabDouble([1],[1]);
         this.model.dstate = new ScilabDouble([z0]);
         this.model.rpar = new ScilabDouble([this.T/(size(this.zz0,"*"))]);
         this.model.blocktype = new ScilabString(["d"]);
@@ -62,7 +62,7 @@ function DELAYV_f() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.dstate = [[this.zz0.slice()],[told]];
+                this.model.dstate = new ScilabDouble([this.zz0.slice()],[told]);
                 this.model.rpar = new ScilabDouble([this.T/(size(this.zz0,"*"))]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;

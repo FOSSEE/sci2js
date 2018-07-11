@@ -3,7 +3,7 @@ function M_freq() {
     M_freq.prototype.define = function M_freq() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["m_frequ"]), new ScilabDouble([4]));
-        this.model.evtout = [[1],[1],[1]];
+        this.model.evtout = new ScilabDouble([1],[1],[1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.rpar = [];
         this.model.opar = list([[1,1,0],[1,1,1],[1,3,2]], new ScilabDouble([1]), new ScilabDouble([0]), new ScilabDouble([0]));

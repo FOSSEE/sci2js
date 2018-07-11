@@ -4,7 +4,7 @@ function CLKSPLIT_f() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["split"]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.evtout = [[1],[1]];
+        this.model.evtout = new ScilabDouble([1],[1]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [false,false,false];
         this.model.dep_ut = [false,false];

@@ -6,7 +6,7 @@ function MFCLCK_f() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["mfclck"]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.evtout = [[1],[1]];
+        this.model.evtout = new ScilabDouble([1],[1]);
         this.model.dstate = new ScilabDouble([0]);
         this.model.rpar = new ScilabDouble([this.dt]);
         this.model.ipar = new ScilabDouble([this.nn]);

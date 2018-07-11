@@ -4,7 +4,7 @@ function Capacitor() {
         this.model = scicos_model();
         this.C = 0.01;
         this.v = 0;
-        this.model.rpar = [[this.C],[this.v]];
+        this.model.rpar = new ScilabDouble([this.C],[this.v]);
         this.model.sim = new ScilabString(["Capacitor"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];

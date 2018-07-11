@@ -15,11 +15,11 @@ function CMSCOPE() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cmscope"]), new ScilabDouble([4]));
         this.model.in1 = this.in1;
-        this.model.in2 = [[1],[1]];
-        this.model.intyp = [[1],[1]];
+        this.model.in2 = new ScilabDouble([1],[1]);
+        this.model.intyp = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.rpar = [[0],[period.slice()],[yy.slice()]];
-        this.model.ipar = [[this.win],[size(this.in1,"*")],[this.N],[this.wpos.slice()],[this.wdim.slice()],[this.in1.slice()],[this.clrs.slice(1-1,sum(this.in1))]];
+        this.model.rpar = new ScilabDouble([0],[period.slice()],[yy.slice()]);
+        this.model.ipar = new ScilabDouble([this.win],[size(this.in1,"*")],[this.N],[this.wpos.slice()],[this.wdim.slice()],[this.in1.slice()],[this.clrs.slice(1-1,sum(this.in1))]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[strcat(string(this.in1)," ")],[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp([])],[strcat(string(this.ymin)," ")],[strcat(string(this.ymax)," ")],[strcat(string(this.per)," ")],[string(this.N)],[string(0)],[emptystr()]];
@@ -138,8 +138,8 @@ function CMSCOPE() {
                     ipar = [[this.win],[size(this.in1,"*")],[this.N],[this.wpos.slice()],[this.wdim.slice()],[this.in1.slice()],[this.clrs.slice()],[this.heritance]];
                     this.model.evtin = new ScilabDouble([ones(1-this.heritance,1)]);
                     this.model.dstate = [];
-                    this.model.rpar = rpar;
-                    this.model.ipar = ipar;
+                    this.model.rpar = new ScilabDouble(rpar);
+                    this.model.ipar = new ScilabDouble(ipar);
                     this.model.label = new ScilabDouble([this.nom]);
                     graphics.id = this.nom;
                     graphics.exprs = exprs;

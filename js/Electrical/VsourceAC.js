@@ -6,7 +6,7 @@ function VsourceAC() {
         this.model.out = [1];
         this.VA = 220;
         this.FR = 50;
-        this.model.rpar = [[this.VA],[this.FR]];
+        this.model.rpar = new ScilabDouble([this.VA],[this.FR]);
         this.model.sim = new ScilabString(["VsourceAC"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
@@ -45,7 +45,7 @@ function VsourceAC() {
             if (!ok) {
                 break;
             }
-            this.model.rpar = [[this.VA],[this.FR]];
+            this.model.rpar = new ScilabDouble([this.VA],[this.FR]);
             this.model.equations.parameters[2] = list(new ScilabDouble([this.VA]), new ScilabDouble([this.FR]));
             graphics.exprs = exprs;
             this.x.graphics = graphics;

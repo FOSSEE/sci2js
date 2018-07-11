@@ -56,7 +56,7 @@ function TIME_DELAY() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.rpar = [[this.T],[this.init]];
+                this.model.rpar = new ScilabDouble([this.T],[this.init]);
                 this.model.ipar = new ScilabDouble([this.N]);
                 this.model.dep_ut = [false,true];
                 this.x.graphics = graphics;

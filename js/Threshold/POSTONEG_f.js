@@ -7,7 +7,7 @@ function POSTONEG_f() {
         this.model.nzcross = new ScilabDouble([1]);
         this.model.in1 = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
-        this.model.rpar = [[-1],[-1],[-1],[0]];
+        this.model.rpar = new ScilabDouble([-1],[-1],[-1],[0]);
         this.model.blocktype = new ScilabString(["z"]);
         this.model.dep_ut = [true,false];
         this.model.firing = [-1];

@@ -15,11 +15,11 @@ function CSCOPXY3D() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cscopxy3d"]), new ScilabDouble([4]));
         this.model.in1 = [[1],[1],[1]];
-        this.model.in2 = [[1],[1],[1]];
-        this.model.intyp = [[1],[1],[1]];
+        this.model.in2 = new ScilabDouble([1],[1],[1]);
+        this.model.intyp = new ScilabDouble([1],[1],[1]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.rpar = [[this.vec_x.slice()],[this.vec_y.slice()],[this.vec_z.slice()],[this.param3ds.slice()]];
-        this.model.ipar = [[this.win],[8],[this.N],[this.clrs.slice()],[this.siz.slice()],[8],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
+        this.model.rpar = new ScilabDouble([this.vec_x.slice()],[this.vec_y.slice()],[this.vec_z.slice()],[this.param3ds.slice()]);
+        this.model.ipar = new ScilabDouble([this.win],[8],[this.N],[this.clrs.slice()],[this.siz.slice()],[8],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         exprs = [[string(this.nbr_curves)],[strcat(string(this.clrs)," ")],[strcat(string(this.siz)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[strcat(string(this.vec_x)," ")],[strcat(string(this.vec_y)," ")],[strcat(string(this.vec_z)," ")],[strcat(string(this.param3ds)," ")],[string(this.N)]];
@@ -125,8 +125,8 @@ function CSCOPXY3D() {
                 rpar = [[this.vec_x.slice()],[this.vec_y.slice()],[this.vec_z.slice()],[this.param3ds.slice()]];
                 size_siz = size(this.siz,"*");
                 ipar = [[this.win],[size_siz],[this.N],[this.clrs.slice()],[this.siz.slice()],[1],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
-                this.model.rpar = rpar;
-                this.model.ipar = ipar;
+                this.model.rpar = new ScilabDouble(rpar);
+                this.model.ipar = new ScilabDouble(ipar);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

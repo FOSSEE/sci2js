@@ -6,7 +6,7 @@ function MATBKSL() {
         funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in1 = [[-1],[-1]];
-        this.model.in2 = [[-2],[-3]];
+        this.model.in2 = new ScilabDouble([-2],[-3]);
         this.model.intyp = [1,1];
         this.model.out = new ScilabDouble([-2]);
         this.model.out2 = new ScilabDouble([-3]);

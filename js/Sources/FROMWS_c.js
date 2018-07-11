@@ -10,7 +10,7 @@ function FROMWS_c() {
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([-2]);
         this.model.outtyp = new ScilabDouble([-1]);
-        this.model.ipar = [[length(this.varnam)],[this._str2code[this.varnam-1]],[this.Method],[this.ZC],[this.OutEnd]];
+        this.model.ipar = new ScilabDouble([length(this.varnam)],[this._str2code[this.varnam-1]],[this.Method],[this.ZC],[this.OutEnd]);
         this.model.evtin = [1];
         this.model.evtout = [1];
         this.model.firing = [0];
@@ -66,7 +66,7 @@ function FROMWS_c() {
                 ok = false;
             }
             if (ok) {
-                this.model.ipar = [[length(this.varnam)],[this._str2code[this.varnam-1]],[this.Method],[this.ZC],[this.OutEnd]];
+                this.model.ipar = new ScilabDouble([length(this.varnam)],[this._str2code[this.varnam-1]],[this.Method],[this.ZC],[this.OutEnd]);
                 [this.model,graphics,ok] = set_io(this.model,graphics,list(),list([-1,-2],-1),1,1);
                 if (ok) {
                     graphics.exprs = exprs;

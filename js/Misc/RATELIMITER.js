@@ -8,7 +8,7 @@ function RATELIMITER() {
         this.model.sim = list(new ScilabString(["ratelimiter"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
-        this.model.rpar = rpar;
+        this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string(this.maxp)],[string(this.minp)]];
@@ -42,7 +42,7 @@ function RATELIMITER() {
                 message("We must have max_slope> 0 > min_slope.");
             } else {
                 rpar = [[this.maxp],[this.minp]];
-                this.model.rpar = rpar;
+                this.model.rpar = new ScilabDouble(rpar);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

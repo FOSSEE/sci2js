@@ -10,7 +10,7 @@ function STEP() {
         this.model.out2 = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
         this.model.firing = new ScilabDouble([1]);
-        this.model.rpar = rpar;
+        this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
         exprs = [[string(1)],[string(rpar)]];
@@ -66,7 +66,7 @@ function STEP() {
                 } else {
                     rpar = [[this.in1],[this.fi]];
                 }
-                this.model.rpar = rpar;
+                this.model.rpar = new ScilabDouble(rpar);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

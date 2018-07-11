@@ -6,7 +6,7 @@ function NEGTOPOS_f() {
         this.model.nzcross = new ScilabDouble([1]);
         this.model.in1 = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
-        this.model.rpar = [[-1],[-1],[0],[-1]];
+        this.model.rpar = new ScilabDouble([-1],[-1],[0],[-1]);
         this.model.blocktype = new ScilabString(["z"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [true,false];

@@ -524,12 +524,24 @@ def p_modelvar_modelvar_expression(p):
 def p_assignment_model_modelvar_assignment_modelexpression(p):
     'assignment : MODEL DOT modelvar ASSIGNMENT modelexpression'
     var = 'this.%s.%s' % (p[1], p[3])
-    vartype = MODEL_MAP.get(p[5][1], 'ScilabDouble')
-    if vartype != '':
-        p[0] = '%*s%s = new %s([%s])' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, p[5][0])
+    value = p[5][0]
+    vartype = p[5][1]
+    add_var_vartype(var, vartype)
+    if vartype == MATRIX_TYPE:
+        vartype = DOUBLE_TYPE
+        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
+        if vartype != '':
+            if value[0] == '[':
+                value = value[1:-1]
+            p[0] = '%*s%s = new %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
+        else:
+            p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
     else:
-        p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, p[5][0])
-    add_var_vartype(var, p[5][1])
+        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
+        if vartype != '':
+            p[0] = '%*s%s = new %s([%s])' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
+        else:
+            p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
 
 def p_modelexpression_list_modelexpressionlist(p):
     'modelexpression : LIST OPENBRACKET modelexpressionlist CLOSEBRACKET'

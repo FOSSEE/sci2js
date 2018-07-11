@@ -12,8 +12,8 @@ function LOOKUP2D() {
         this.model.sim = list(new ScilabString(["lookup2d"]), new ScilabDouble([4]));
         this.model.in1 = [[1],[1]];
         this.model.out = new ScilabDouble([1]);
-        this.model.rpar = [[this.xx.slice()],[this.yy.slice()],[this.zz.slice()]];
-        this.model.ipar = [[Nx],[Ny],[this.Method]];
+        this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()],[this.zz.slice()]);
+        this.model.ipar = new ScilabDouble([Nx],[Ny],[this.Method]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = list(strcat(sci2exp(this.xx)),strcat(sci2exp(this.yy)),strcat(sci2exp(this.zz)),sci2exp(this.Method),Graf);
@@ -101,8 +101,8 @@ function LOOKUP2D() {
                     curwin = save_curwin;
                     gh.figure_id = curwin;
                 }
-                this.model.rpar = [[this.xx.slice()],[this.yy.slice()],[this.zz.slice()]];
-                this.model.ipar = [[nx],[ny],[mtd]];
+                this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()],[this.zz.slice()]);
+                this.model.ipar = new ScilabDouble([nx],[ny],[mtd]);
                 graphics.exprs = exprs;
                 this.x.model = this.model;
                 this.x.graphics = graphics;

@@ -10,7 +10,7 @@ function DEADBAND() {
         this.model.nzcross = new ScilabDouble([2]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
-        this.model.rpar = rpar;
+        this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string(this.maxp)],[string(this.minp)],[string(this.model.nmode)]];
@@ -46,7 +46,7 @@ function DEADBAND() {
                 message("Upper limit must be > Lower limit");
             } else {
                 rpar = [[this.maxp],[this.minp]];
-                this.model.rpar = rpar;
+                this.model.rpar = new ScilabDouble(rpar);
                 if (this.zeroc!=0) {
                     this.model.nzcross = new ScilabDouble([2]);
                     this.model.nmode = new ScilabDouble([1]);

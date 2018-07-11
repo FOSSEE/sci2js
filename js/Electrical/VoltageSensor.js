@@ -3,7 +3,7 @@ function VoltageSensor() {
     VoltageSensor.prototype.define = function VoltageSensor() {
         this.model = scicos_model();
         this.model.in1 = new ScilabDouble([1]);
-        this.model.out = [[1],[1]];
+        this.model.out = new ScilabDouble([1],[1]);
         this.model.sim = new ScilabString(["VoltageSensor"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];

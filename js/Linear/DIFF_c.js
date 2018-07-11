@@ -6,7 +6,7 @@ function DIFF_c() {
         this.model.sim = list(new ScilabString(["diffblk_c"]), new ScilabDouble([10004]));
         this.model.in1 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
-        this.model.state = this.x0;
+        this.model.state = new ScilabDouble(this.x0);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
         exprs = [[strcat(sci2exp(this.x0[1-1]))],[strcat(sci2exp(this.x0[2-1]))]];
@@ -51,7 +51,7 @@ function DIFF_c() {
             }
             if (!ask_again) {
                 graphics.exprs = exprs;
-                this.model.state = [[this.x0],[this.xd0]];
+                this.model.state = new ScilabDouble([this.x0],[this.xd0]);
                 this.model.out = [N];
                 this.model.in1 = new ScilabDouble([N]);
                 this.x.graphics = graphics;

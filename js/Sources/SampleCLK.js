@@ -47,7 +47,7 @@ function SampleCLK() {
                     needcompile = 4;
                     y = needcompile;
                 }
-                this.model.rpar = [[this.frequ],[this.offset]];
+                this.model.rpar = new ScilabDouble([this.frequ],[this.offset]);
                 this.model.evtout = new ScilabDouble([1]);
                 this.model.firing = new ScilabDouble([-1]);
                 graphics.exprs = exprs;

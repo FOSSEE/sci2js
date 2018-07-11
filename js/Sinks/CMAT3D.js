@@ -15,8 +15,8 @@ function CMAT3D() {
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.ipar = [[this.cmin],[this.cmax],[size_c],[size_x],[size_y]];
-        this.model.rpar = [[this.colormap.slice()],[this.x],[y]];
+        this.model.ipar = new ScilabDouble([this.cmin],[this.cmax],[size_c],[size_x],[size_y]);
+        this.model.rpar = new ScilabDouble([this.colormap.slice()],[this.x],[y]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[strcat(string(this.x)," ")],[strcat(string(y)," ")],[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
@@ -69,8 +69,8 @@ function CMAT3D() {
                 size_c = size(this.colormap.slice(),1);
                 ipar = [[this.cmin],[this.cmax],[size_c],[size_x]];
                 rpar = [[this.colormap.slice()],[this.vec_x.slice()],[this.vec_y.slice()]];
-                this.model.ipar = ipar;
-                this.model.rpar = rpar;
+                this.model.ipar = new ScilabDouble(ipar);
+                this.model.rpar = new ScilabDouble(rpar);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

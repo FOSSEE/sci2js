@@ -6,7 +6,7 @@ function Diode() {
         this.Maxexp = 15;
         this.R = 1.e8;
         this.model = scicos_model();
-        this.model.rpar = [[this.Ids],[this.Vt],[this.Maxexp],[this.R]];
+        this.model.rpar = new ScilabDouble([this.Ids],[this.Vt],[this.Maxexp],[this.R]);
         this.model.in1 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.sim = new ScilabString(["Diode"]);
@@ -51,7 +51,7 @@ function Diode() {
             if (!ok) {
                 break;
             }
-            this.model.rpar = [[this.Ids],[this.Vt],[this.Maxexp],[this.R]];
+            this.model.rpar = new ScilabDouble([this.Ids],[this.Vt],[this.Maxexp],[this.R]);
             this.model.equations.parameters = list(["Ids","Vt","Maxexp","R"],list(this.Ids,this.Vt,this.Maxexp,this.R));
             graphics.exprs = exprs;
             this.x.graphics = graphics;

@@ -4,7 +4,7 @@ function ANDLOG_f() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["andlog"]);
         this.model.out = new ScilabDouble([1]);
-        this.model.evtin = [[1],[1]];
+        this.model.evtin = new ScilabDouble([1],[1]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [false,false];

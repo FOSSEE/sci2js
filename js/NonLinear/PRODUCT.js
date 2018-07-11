@@ -6,7 +6,7 @@ function PRODUCT() {
         this.model.sim = list(new ScilabString(["product"]), new ScilabDouble([4]));
         this.model.in1 = [[-1],[-1]];
         this.model.out = new ScilabDouble([-1]);
-        this.model.ipar = this.sgn;
+        this.model.ipar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = sci2exp(this.sgn);

@@ -6,9 +6,9 @@ function SUMMATION() {
         this.model.sim = list(new ScilabString(["summation"]), new ScilabDouble([4]));
         this.model.in1 = [[-1],[-1]];
         this.model.out = new ScilabDouble([-1]);
-        this.model.in2 = [[-2],[-2]];
+        this.model.in2 = new ScilabDouble([-2],[-2]);
         this.model.out2 = new ScilabDouble([-2]);
-        this.model.ipar = this.sgn;
+        this.model.ipar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = sci2exp(this.sgn);

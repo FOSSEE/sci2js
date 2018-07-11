@@ -6,7 +6,7 @@ function BACKLASH() {
         this.model.sim = list(new ScilabString(["backlash"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
-        this.model.rpar = [[0],[1]];
+        this.model.rpar = new ScilabDouble([0],[1]);
         this.model.nzcross = new ScilabDouble([2]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
@@ -48,7 +48,7 @@ function BACKLASH() {
                 } else {
                     this.model.nzcross = new ScilabDouble([0]);
                 }
-                this.model.rpar = rpar;
+                this.model.rpar = new ScilabDouble(rpar);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

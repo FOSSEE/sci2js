@@ -16,7 +16,7 @@ function SUBMAT() {
         this.model.state = [];
         this.model.dstate = [];
         this.model.rpar = [];
-        this.model.ipar = [[1],[1],[1],[1]];
+        this.model.ipar = new ScilabDouble([1],[1],[1],[1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
@@ -90,7 +90,7 @@ function SUBMAT() {
                 message("index of ending column is out of range");
                 ok = false;
             }
-            this.model.ipar = [[this.a],[this.b],[this.c],[this.d]];
+            this.model.ipar = new ScilabDouble([this.a],[this.b],[this.c],[this.d]);
             in1 = [this.inp[1-1],this.inp[2-1]];
             out = [(this.b-this.a)+1,(this.d-this.c)+1];
             funtyp = 4;

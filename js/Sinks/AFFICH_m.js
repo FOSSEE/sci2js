@@ -12,8 +12,8 @@ function AFFICH_m() {
         this.model.in1 = new ScilabDouble([this.in1[1-1][1-1]]);
         this.model.in2 = new ScilabDouble([this.in1[1-1][2-1]]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.dstate = [[-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]];
-        this.model.ipar = [[this.font],[this.fontsize],[this.colr],[1000],[this.nt],[this.nd],[this.in1[1-1][1-1]]];
+        this.model.dstate = new ScilabDouble([-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]);
+        this.model.ipar = new ScilabDouble([this.font],[this.fontsize],[this.colr],[1000],[this.nt],[this.nd],[this.in1[1-1][1-1]]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
@@ -86,8 +86,8 @@ function AFFICH_m() {
                 [this.model,graphics,ok] = set_io(this.model,graphics,list(this.in1,1),list(),ones(1-this.herit,1),[]);
             }
             if (ok) {
-                this.model.ipar = [[this.font],[this.fontsize],[this.colr],[this.nt],[this.nd],[this.in1[1-1][1-1]]];
-                this.model.dstate = [[-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]];
+                this.model.ipar = new ScilabDouble([this.font],[this.fontsize],[this.colr],[this.nt],[this.nd],[this.in1[1-1][1-1]]);
+                this.model.dstate = new ScilabDouble([-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]);
                 this.model.evtin = new ScilabDouble([ones(1-this.herit,1)]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;

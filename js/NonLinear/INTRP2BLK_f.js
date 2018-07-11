@@ -8,8 +8,8 @@ function INTRP2BLK_f() {
         this.model.sim = list(new ScilabString(["intrp2"]), new ScilabDouble([1]));
         this.model.in1 = [[1],[1]];
         this.model.out = new ScilabDouble([1]);
-        this.model.rpar = [[this.a],[this.b],[this.c.slice()]];
-        this.model.ipar = [[2],[2]];
+        this.model.rpar = new ScilabDouble([this.a],[this.b],[this.c.slice()]);
+        this.model.ipar = new ScilabDouble([2],[2]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))],[strcat(sci2exp(this.c,0))]];
@@ -48,8 +48,8 @@ function INTRP2BLK_f() {
             } else {
                 if (ok) {
                     graphics.exprs = exprs;
-                    this.model.rpar = [[this.a.slice()],[this.b.slice()],[this.c.slice()]];
-                    this.model.ipar = [[size(this.a,"*")],[size(this.b,"*")]];
+                    this.model.rpar = new ScilabDouble([this.a.slice()],[this.b.slice()],[this.c.slice()]);
+                    this.model.ipar = new ScilabDouble([size(this.a,"*")],[size(this.b,"*")]);
                     this.x.graphics = graphics;
                     this.x.model = this.model;
                     break;

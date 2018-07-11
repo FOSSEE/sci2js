@@ -12,7 +12,7 @@ function SHIFT() {
         this.model.intyp = new ScilabDouble([3]);
         this.model.outtyp = new ScilabDouble([3]);
         this.model.rpar = [];
-        this.model.ipar = sgn;
+        this.model.ipar = new ScilabDouble(sgn);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[sci2exp(3)],[sci2exp(0)],[sci2exp(0)]];

@@ -6,7 +6,7 @@ function MIN_f() {
         this.model.sim = new ScilabString(["minblk"]);
         this.model.in1 = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([1]);
-        this.model.dstate = [[0],[0]];
+        this.model.dstate = new ScilabDouble([0],[0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = sci2exp(in1);

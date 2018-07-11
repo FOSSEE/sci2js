@@ -13,7 +13,7 @@ function BARXY() {
         this.model.intyp = [1];
         this.model.out = [];
         this.model.evtin = [1];
-        this.model.rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
+        this.model.rpar = new ScilabDouble([this.xmin],[this.xmax],[this.ymin],[this.ymax]);
         this.model.ipar = new ScilabDouble([1]);
         this.x = standard_define([2,2],this.model,[],[]);
         this.x.graphics.in_implicit = ["E","E"];
@@ -65,7 +65,7 @@ function BARXY() {
             if (!ok) {
                 message(mess);
             } else {
-                this.model.rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
+                this.model.rpar = new ScilabDouble([this.xmin],[this.xmax],[this.ymin],[this.ymax]);
                 this.model.ipar = new ScilabDouble([this.thickness]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;

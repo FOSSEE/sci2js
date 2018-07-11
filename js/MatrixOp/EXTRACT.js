@@ -84,7 +84,7 @@ function EXTRACT() {
                     ok = false;
                 }
             }
-            this.model.ipar = [[this.a],[this.b],[ma],[mb]];
+            this.model.ipar = new ScilabDouble([this.a],[this.b],[ma],[mb]);
             in1 = [this.model.in1,this.model.in2];
             out = [ma,mb];
             funtyp = 4;

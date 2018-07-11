@@ -7,7 +7,7 @@ function IFTHEL_f() {
         this.model.in2 = new ScilabDouble([1]);
         this.model.intyp = new ScilabDouble([-1]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.evtout = [[1],[1]];
+        this.model.evtout = new ScilabDouble([1],[1]);
         this.model.blocktype = new ScilabString(["l"]);
         this.model.firing = [-1,-1];
         this.model.dep_ut = [true,false];

@@ -9,7 +9,7 @@ function GENERAL_f() {
         this.model.nzcross = new ScilabDouble([this.in1]);
         this.model.in1 = new ScilabDouble([this.in1]);
         this.model.evtout = new ScilabDouble([ones(this.out,1)]);
-        this.model.rpar = [[0],[0],[0],[0]];
+        this.model.rpar = new ScilabDouble([0],[0],[0],[0]);
         this.model.blocktype = new ScilabString(["z"]);
         this.model.firing = new ScilabDouble([-ones(this.out,1)]);
         this.model.dep_ut = [true,false];

@@ -232,7 +232,7 @@ function EXTRACTBITS() {
             }
             if (ok) {
                 graphics.exprs = exprs;
-                this.model.ipar = [[int(this.bit.slice())],[int(numb.slice())]];
+                this.model.ipar = new ScilabDouble([int(this.bit.slice())],[int(numb.slice())]);
                 this.x.graphics = graphics;
                 this.x.model = this.model;
                 break;

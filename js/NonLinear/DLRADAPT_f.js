@@ -12,9 +12,9 @@ function DLRADAPT_f() {
         this.model.in1 = [[1],[1]];
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.dstate = [[this.last_u],[this.last_y]];
-        this.model.rpar = [[this.p.slice()],[real(this.rn.slice())],[imag(this.rn.slice())],[real(this.rd.slice())],[imag(this.rd.slice())],[this.g.slice()]];
-        this.model.ipar = [[0],[2],[2]];
+        this.model.dstate = new ScilabDouble([this.last_u],[this.last_y]);
+        this.model.rpar = new ScilabDouble([this.p.slice()],[real(this.rn.slice())],[imag(this.rn.slice())],[real(this.rd.slice())],[imag(this.rd.slice())],[this.g.slice()]);
+        this.model.ipar = new ScilabDouble([0],[2],[2]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
@@ -62,9 +62,9 @@ function DLRADAPT_f() {
             } else {
                 rpar = [[this.p.slice()],[real(this.rn.slice())],[imag(this.rn.slice())],[real(this.rd.slice())],[imag(this.rd.slice())],[this.g.slice()]];
                 ipar = [[m],[n],[npt]];
-                this.model.dstate = [[this.last_u.slice()],[this.last_y.slice()]];
-                this.model.rpar = rpar;
-                this.model.ipar = ipar;
+                this.model.dstate = new ScilabDouble([this.last_u.slice()],[this.last_y.slice()]);
+                this.model.rpar = new ScilabDouble(rpar);
+                this.model.ipar = new ScilabDouble(ipar);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;

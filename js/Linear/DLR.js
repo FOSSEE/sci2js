@@ -13,7 +13,7 @@ function DLR() {
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = x0.slice();
-        this.model.rpar = [[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
+        this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
         gr_i = [];
@@ -62,7 +62,7 @@ function DLR() {
                 }
                 rpar = [[A.slice()],[B.slice()],[C.slice()],[D.slice()]];
                 this.model.dstate = x0;
-                this.model.rpar = rpar;
+                this.model.rpar = new ScilabDouble(rpar);
                 if (norm(D,1)!=0) {
                     mmm = [true,false];
                 } else {

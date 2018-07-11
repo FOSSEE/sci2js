@@ -8,7 +8,7 @@ function M_SWITCH() {
         this.model.sim = list(new ScilabString(["mswitch"]), new ScilabDouble([4]));
         this.model.in1 = in1;
         this.model.out = new ScilabDouble([-1]);
-        this.model.ipar = ipar;
+        this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         exprs = [[string(this.nin)],[string(ipar)]];
@@ -63,7 +63,7 @@ function M_SWITCH() {
                 [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
                 if (ok) {
                     graphics.exprs = exprs;
-                    this.model.ipar = [[this.base],[this.rule]];
+                    this.model.ipar = new ScilabDouble([this.base],[this.rule]);
                     this.x.graphics = graphics;
                     this.x.model = this.model;
                     break;

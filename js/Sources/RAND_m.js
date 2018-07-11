@@ -18,7 +18,7 @@ function RAND_m() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = [];
         this.model.state = [];
-        this.model.dstate = [[int(rand()*(10^7-1))],[0*this.a.slice()]];
+        this.model.dstate = new ScilabDouble([int(rand()*(10^7-1))],[0*this.a.slice()]);
         this.model.rpar = [this.a.slice(),this.b.slice()];
         this.model.ipar = new ScilabDouble([this.flag]);
         this.model.blocktype = new ScilabString(["d"]);
@@ -66,14 +66,14 @@ function RAND_m() {
                 out = size(this.a);
                 if (this.typ==1) {
                     function_name = "rndblk_m";
-                    this.model.rpar = [[real(this.a.slice())],[real(this.b.slice())]];
-                    this.model.dstate = [[this.seed_c[1-1]],[0*real(this.a.slice())]];
+                    this.model.rpar = new ScilabDouble([real(this.a.slice())],[real(this.b.slice())]);
+                    this.model.dstate = new ScilabDouble([this.seed_c[1-1]],[0*real(this.a.slice())]);
                     ot = 1;
                 } else if (this.typ==2) {
                     function_name = "rndblkz_m";
                     ot = 2;
-                    this.model.rpar = [[real(this.a.slice())],[imag(this.a.slice())],[real(this.b.slice())],[imag(this.b.slice())]];
-                    this.model.dstate = [[this.seed_c.slice()],[0*[[real(this.a.slice())],[imag(this.a.slice())]]]];
+                    this.model.rpar = new ScilabDouble([real(this.a.slice())],[imag(this.a.slice())],[real(this.b.slice())],[imag(this.b.slice())]);
+                    this.model.dstate = new ScilabDouble([this.seed_c.slice()],[0*[[real(this.a.slice())],[imag(this.a.slice())]]]);
                 } else {
                     message("Datatype is not supported");
                     ok = false;

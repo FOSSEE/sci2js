@@ -14,7 +14,7 @@ function TOWS_c() {
         this.model.evtin = [1];
         this.model.evtout = [];
         this.model.rpar = [];
-        this.model.ipar = [[this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]];
+        this.model.ipar = new ScilabDouble([this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [false,false];
@@ -65,7 +65,7 @@ function TOWS_c() {
                 } else {
                     this.model.blocktype = new ScilabString(["d"]);
                 }
-                this.model.ipar = [[this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]];
+                this.model.ipar = new ScilabDouble([this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;
                 this.x.model = this.model;
