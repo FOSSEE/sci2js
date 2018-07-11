@@ -37,8 +37,8 @@ function DELAYV_f() {
         this.zz0 = inverse(arguments[0]["zz0"])
         this.T = parseFloat(arguments[0]["T"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         this.nin = this.model.in1[1-1];
         var z0 = this.model.dstate;
@@ -58,16 +58,16 @@ function DELAYV_f() {
                 var ok = false;
             }
             if (ok) {
-                var tmpvar0 = check_io(this.model,graphics,[[this.nin],[1]],this.nin,1,[[1],[1]])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = check_io(this.model,this.graphics,[[this.nin],[1]],this.nin,1,[[1],[1]]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.dstate = new ScilabDouble([this.zz0.slice()],[told]);
                 this.model.rpar = new ScilabDouble([this.T/(size(this.zz0,"*"))]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

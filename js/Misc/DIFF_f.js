@@ -28,17 +28,17 @@ function DIFF_f() {
         this.x0 = inverse(arguments[0]["x0"])
         this.xd0 = arguments[0]["xd0"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.x0,this.xd0,exprs] = scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            graphics.exprs = exprs;
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.model.state = new ScilabDouble([this.x0.slice()],[this.xd0.slice()]);
-            this.x.graphics = graphics;
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

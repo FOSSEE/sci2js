@@ -43,8 +43,8 @@ function WFILE_f() {
         var warnXcosMessage = msprintf("%s %s",warnMessage,warnAdvise);
         warnBlockByUID(arg1.model.label,warnXcosMessage);
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         var dstate = this.model.dstate;
         var lunit = dstate[2-1];
@@ -69,9 +69,9 @@ function WFILE_f() {
                 block_parameter_error("Wrong value for \'Output File Name\' parameter","You must provide a filename.");
                 var ok = false;
             } else if (fileparts(this.fname1)!="") {
-                var tmpvar0 = fileparts(this.fname1)
-                var pa = tmpvar0[0]
-                var fn = tmpvar0[1]
+                var tmpvar0 = fileparts(this.fname1);
+                var pa = tmpvar0[0];
+                var fn = tmpvar0[1];
                 var ex = tmpvar0[2];
                 if (!this.isdir[pa-1]) {
                     block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Output File Name"),msprintf("Directory \'%s\' does not exist",pa));
@@ -96,8 +96,8 @@ function WFILE_f() {
                 this.model.dstate = new ScilabDouble(dstate);
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.dep_ut = new ScilabDouble([true,false]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

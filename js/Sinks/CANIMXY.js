@@ -60,8 +60,8 @@ function CANIMXY() {
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.N = parseFloat(arguments[0]["N"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.xmin,this.xmax,this.ymin,this.ymax,this.N,exprs] = scicos_getvalue("Set Scope parameters",["Number of Curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin","Xmax","Ymin","Ymax","Buffer size"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
@@ -106,9 +106,9 @@ function CANIMXY() {
             } else {
                 var in1 = this.nbr_curves*ones(2,1);
                 var in2 = ones(2,1);
-                var tmpvar0 = set_io(this.model,graphics,list([in1,in2],ones(2,1)),list(),ones(1,1),[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list([in1,in2],ones(2,1)),list(),ones(1,1),[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (this.wpos==[]) {
                     this.wpos = [[-1],[-1]];
@@ -120,8 +120,8 @@ function CANIMXY() {
                 var ipar = [[this.win],[1],[this.N],[this.clrs],[this.siz],[0],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.ipar = new ScilabDouble(ipar);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

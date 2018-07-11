@@ -27,8 +27,8 @@ function DEMUX_f() {
     DEMUX_f.prototype.set = function DEMUX_f() {
         this.out = parseFloat(arguments[0]["out"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.out,exprs] = scicos_getvalue("Set DEMUX block parameters",["number of output ports or vector of sizes"],list("vec",-1),exprs);
@@ -40,9 +40,9 @@ function DEMUX_f() {
                     message("Block must have at least 2 and at most 8 output ports");
                     var ok = false;
                 } else {
-                    var tmpvar0 = check_io(this.model,graphics,0,-transpose([1:this.out]),[],[])
-                    this.model = tmpvar0[0]
-                    var graphics = tmpvar0[1]
+                    var tmpvar0 = check_io(this.model,this.graphics,0,-transpose([1:this.out]),[],[]);
+                    this.model = tmpvar0[0];
+                    this.graphics = tmpvar0[1];
                     var ok = tmpvar0[2];
                 }
             } else {
@@ -55,9 +55,9 @@ function DEMUX_f() {
                     } else {
                         var nin = sum(this.out);
                     }
-                    var tmpvar1 = check_io(this.model,graphics,nin,this.out.slice(),[],[])
-                    this.model = tmpvar1[0]
-                    var graphics = tmpvar1[1]
+                    var tmpvar1 = check_io(this.model,this.graphics,nin,this.out.slice(),[],[]);
+                    this.model = tmpvar1[0];
+                    this.graphics = tmpvar1[1];
                     var ok = tmpvar1[2];
                     if (ok) {
                         this.out = size(this.out,"*");
@@ -65,9 +65,9 @@ function DEMUX_f() {
                 }
             }
             if (ok) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.ipar = new ScilabDouble([this.out]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

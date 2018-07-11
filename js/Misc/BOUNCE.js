@@ -66,8 +66,8 @@ function BOUNCE() {
         this.g = parseFloat(arguments[0]["g"])
         this.C = parseFloat(arguments[0]["C"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")<9) {
             exprs[8-1] = "9.81";
@@ -102,9 +102,9 @@ function BOUNCE() {
             if (!ok) {
                 break;
             }
-            var tmpvar0 = check_io(this.model,graphics,[],[n,n],[],[])
-            this.model = tmpvar0[0]
-            var graphics = tmpvar0[1]
+            var tmpvar0 = check_io(this.model,this.graphics,[],[n,n],[],[]);
+            this.model = tmpvar0[0];
+            this.graphics = tmpvar0[1];
             var ok = tmpvar0[2];
             if (ok) {
                 var k = 1;
@@ -123,8 +123,8 @@ function BOUNCE() {
                 var state = transpose(state);
                 this.model.state = new ScilabDouble(state.slice());
                 this.model.nzcross = new ScilabDouble([n*(n-1)/2+4*n]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

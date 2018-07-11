@@ -39,17 +39,17 @@ function Switch() {
         this.Ron = parseFloat(arguments[0]["Ron"])
         this.Roff = parseFloat(arguments[0]["Roff"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.Ron,this.Roff,exprs] = scicos_getvalue("Set non-ideal electrical switch parameters",["Resistance in On state (Ohm)","Resistance in Off state (Ohm)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            this.model.equations.parameters[2] = list(new ScilabDouble([this.Ron]), new ScilabDouble([this.Roff]));
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.model.equations.parameters[2-1] = list(new ScilabDouble([this.Ron]), new ScilabDouble([this.Roff]));
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

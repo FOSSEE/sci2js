@@ -43,8 +43,8 @@ function Diode() {
         this.Maxexp = parseFloat(arguments[0]["Maxexp"])
         this.R = parseFloat(arguments[0]["R"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.Ids,this.Vt,this.Maxexp,this.R,exprs] = scicos_getvalue("Set Diode block parameter",["Saturation cuurent (A)","Voltage equivalent to temperature (Volt)","Max exponent for linear continuation","R (ohm)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
@@ -53,8 +53,8 @@ function Diode() {
             }
             this.model.rpar = new ScilabDouble([this.Ids],[this.Vt],[this.Maxexp],[this.R]);
             this.model.equations.parameters = list(["Ids","Vt","Maxexp","R"],list(this.Ids,this.Vt,this.Maxexp,this.R));
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

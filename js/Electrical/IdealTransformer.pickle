@@ -8,8 +8,10 @@ aS'model'
 p3
 aS'N'
 p4
-atp5
-Rp6
+aS'graphics'
+p5
+atp6
+Rp7
 .(dp0
 S'x.model.equations.parameters[2-1]'
 p1

@@ -30,8 +30,8 @@ function Modulo_Count() {
         this.ini_c = parseFloat(arguments[0]["ini_c"])
         this.base = parseFloat(arguments[0]["base"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.ini_c,this.base,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Modulo_Count")],[" "],["Modulo counter (0 to N counter)"],[" "]],["Initial State (zero or positive number)","Upper Limit (positive number)"],list("vec",1,"vec",1),exprs);
@@ -45,10 +45,10 @@ function Modulo_Count() {
             } else if (this.base<=0) {
                 block_parameter_error(msprintf("Wrong values for \'Upper Limit\' parameter: %d.",this.base),"Strictly positive integer expected.");
             } else {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.ipar = new ScilabDouble([this.base]);
                 this.model.dstate = new ScilabDouble([this.ini_c]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

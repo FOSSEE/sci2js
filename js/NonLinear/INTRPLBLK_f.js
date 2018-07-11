@@ -29,8 +29,8 @@ function INTRPLBLK_f() {
         this.a = inverse(arguments[0]["a"])
         this.b = inverse(arguments[0]["b"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.a,this.b,exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord."],list("vec",-1,"vec",-1),exprs);
@@ -43,9 +43,9 @@ function INTRPLBLK_f() {
                 message("X must be strictly increasing");
             } else {
                 if (ok) {
-                    graphics.exprs = exprs;
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.model.rpar = new ScilabDouble([this.a.slice()],[this.b.slice()]);
-                    this.x.graphics = graphics;
+                    this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;
                 }

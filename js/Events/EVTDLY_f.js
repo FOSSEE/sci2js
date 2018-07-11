@@ -30,8 +30,8 @@ function EVTDLY_f() {
         this.dt = parseFloat(arguments[0]["dt"])
         this.ff = parseFloat(arguments[0]["ff"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.dt,this.ff,exprs] = scicos_getvalue([["Set Event Delay  block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       if no initial event required"]],["Delay","Date of initial output event"],list("vec",1,"vec",1),exprs);
@@ -43,10 +43,10 @@ function EVTDLY_f() {
                 var ok = false;
             }
             if (ok) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.rpar = new ScilabDouble([this.dt]);
                 this.model.firing = new ScilabDouble([this.ff]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

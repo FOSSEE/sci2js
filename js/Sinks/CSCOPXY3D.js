@@ -59,8 +59,8 @@ function CSCOPXY3D() {
         this.param3ds = inverse(arguments[0]["param3ds"])
         this.N = parseFloat(arguments[0]["N"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,exprs] = scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","Line or Mark Size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",2,"vec",2,"vec",2,"vec",2,"vec",1),exprs);
@@ -115,9 +115,9 @@ function CSCOPXY3D() {
             if (ok) {
                 var in1 = this.nbr_curves*ones(3,1);
                 var in2 = ones(3,1);
-                var tmpvar0 = set_io(this.model,graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (this.wpos==[]) {
                     this.wpos = [[-1],[-1]];
@@ -130,8 +130,8 @@ function CSCOPXY3D() {
                 var ipar = [[this.win],[size_siz],[this.N],[this.clrs.slice()],[this.siz.slice()],[1],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.ipar = new ScilabDouble(ipar);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             } else {

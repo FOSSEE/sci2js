@@ -31,8 +31,8 @@ function CLKGotoTagVisibility() {
     CLKGotoTagVisibility.prototype.set = function CLKGotoTagVisibility() {
         this.tag = arguments[0]["tag"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.tag,exprs] = scicos_getvalue("Set parameters",["GotoTag"],list("str",-1),exprs);
@@ -44,9 +44,9 @@ function CLKGotoTagVisibility() {
                     var needcompile = 4;
                     var y = needcompile;
                 }
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.opar = list(new ScilabDouble([this.tag]));
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

@@ -30,8 +30,8 @@ function MAXMIN() {
         this.nin = arguments[0]["nin"]
         this.zcr = parseFloat(arguments[0]["zcr"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.mm,this.nin,this.zcr,exprs] = scicos_getvalue("Set Max/Min block parameters",["Min (1) or Max (2) ","Number of input vectors (1 or 2)","zero-crossing (1: yes, 0;no)"],list("vec",1,"vec",1,"vec",1),exprs);
@@ -50,14 +50,14 @@ function MAXMIN() {
             }
             if (ok) {
                 if (this.nin==1) {
-                    var tmpvar0 = check_io(this.model,graphics,-1,1,[],[])
-                    this.model = tmpvar0[0]
-                    var graphics = tmpvar0[1]
+                    var tmpvar0 = check_io(this.model,this.graphics,-1,1,[],[]);
+                    this.model = tmpvar0[0];
+                    this.graphics = tmpvar0[1];
                     var ok = tmpvar0[2];
                 } else {
-                    var tmpvar1 = check_io(this.model,graphics,[-1,-1],-1,[],[])
-                    this.model = tmpvar1[0]
-                    var graphics = tmpvar1[1]
+                    var tmpvar1 = check_io(this.model,this.graphics,[-1,-1],-1,[],[]);
+                    this.model = tmpvar1[0];
+                    this.graphics = tmpvar1[1];
                     var ok = tmpvar1[2];
                 }
             }
@@ -74,9 +74,9 @@ function MAXMIN() {
                 } else {
                     var label = "MAX";
                 }
-                graphics.style = "MAXMIN;displayedLabel="+label;
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.style = new ScilabString(["MAXMIN;displayedLabel="+label]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

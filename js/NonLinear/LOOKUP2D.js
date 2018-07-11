@@ -42,8 +42,8 @@ function LOOKUP2D() {
         this.graf = arguments[0]["graf"]
         this.x = arg1;
         this.model = arg1.model;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
         while (true) {
@@ -68,14 +68,14 @@ function LOOKUP2D() {
             if (!Ask_again) {
                 this.xx = this.xx.slice();
                 this.yy = this.yy.slice();
-                var tmpvar0 = size(this.xx)
-                var nx = tmpvar0[0]
+                var tmpvar0 = size(this.xx);
+                var nx = tmpvar0[0];
                 var mx = tmpvar0[1];
-                var tmpvar1 = size(this.yy)
-                var ny = tmpvar1[0]
+                var tmpvar1 = size(this.yy);
+                var ny = tmpvar1[0];
                 var my = tmpvar1[1];
-                var tmpvar2 = size(this.zz)
-                var nz = tmpvar2[0]
+                var tmpvar2 = size(this.zz);
+                var nz = tmpvar2[0];
                 var mz = tmpvar2[1];
                 if (((nx<=1)||(ny<=1))) {
                     x_message("input row/column data size should be greater than one");
@@ -85,13 +85,13 @@ function LOOKUP2D() {
                     x_message("incompatible size of x and y");
                     var Ask_again = true;
                 }
-                var tmpvar3 = test_increasing(this.xx)
+                var tmpvar3 = test_increasing(this.xx);
                 var ok = tmpvar3[0];
                 if ((!ok)) {
                     x_message("Row input values must be monotonically increasing");
                     var Ask_again = true;
                 }
-                var tmpvar4 = test_increasing(this.yy)
+                var tmpvar4 = test_increasing(this.yy);
                 var ok = tmpvar4[0];
                 if ((!ok)) {
                     x_message("Column input values must be monotonically increasing");
@@ -111,9 +111,9 @@ function LOOKUP2D() {
                 }
                 this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()],[this.zz.slice()]);
                 this.model.ipar = new ScilabDouble([nx],[ny],[mtd]);
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.model = this.model;
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 break;
             }
         }

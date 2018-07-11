@@ -53,8 +53,8 @@ function CSCOPE() {
         this.heritance = arguments[0]["heritance"]
         this.nom = arguments[0]["nom"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"str",1),exprs);
@@ -94,9 +94,9 @@ function CSCOPE() {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
             if (ok) {
-                var tmpvar0 = set_io(this.model,graphics,list([-1,1],1),list(),ones(1-this.heritance,1),[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list([-1,1],1),list(),ones(1-this.heritance,1),[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
@@ -112,9 +112,9 @@ function CSCOPE() {
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.evtin = new ScilabDouble([ones(1-this.heritance,1)]);
                 this.model.label = new ScilabDouble([this.nom]);
-                graphics.id = this.nom;
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.id = new ScilabDouble([this.nom]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

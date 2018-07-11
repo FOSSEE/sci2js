@@ -47,8 +47,8 @@ function SUBMAT() {
         this.d = arguments[0]["d"]
         this.inp = arguments[0]["inp"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var label = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var label = this.graphics.exprs;
         this.model = arg1.model;
         if (size(label,"*")==5) {
             label[6-1] = sci2exp([1,1]);
@@ -96,13 +96,13 @@ function SUBMAT() {
             var funtyp = 4;
             var label = exprs;
             if (ok) {
-                var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-                graphics.exprs = label;
-                arg1.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([label]);
+                arg1.graphics = this.graphics;
                 arg1.model = this.model;
                 this.x = arg1;
                 break;

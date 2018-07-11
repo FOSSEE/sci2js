@@ -66,8 +66,8 @@ function CBLOCK4() {
         this.lab = arguments[0]["lab"]
         this.x = arg1;
         this.model = arg1.model;
-        var graphics = arg1.graphics;
-        var label = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var label = this.graphics.exprs;
         while (true) {
             [ok,this.function_name,this.impli,this.in1,this.it,this.out,this.ot,this.ci,this.co,this.xx,this.z,this.oz,this.rpar,this.ipar,this.opar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block4 block parameters",["Simulation function","Is block implicit? (y,n)","Input ports sizes","Input ports type","Output port sizes","Output ports type","Input event ports sizes","Output events ports sizes","Initial continuous state","Initial discrete state","Initial object state","Real parameters vector","Integer parameters vector","Object parameters list","Number of modes","Number of zero crossings","Initial firing vector (<0 for no firing)","Direct feedthrough (y or n)","Time dependence (y or n)"],list("str",1,"str",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label[1-1]);
             if (!ok) {
@@ -117,16 +117,16 @@ function CBLOCK4() {
                     var tt = [];
                 }
                 var tt = label[2-1];
-                var tmpvar0 = set_io(this.model,graphics,list(this.in1,this.it),list(this.out,this.ot),this.ci,this.co)
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list(this.in1,this.it),list(this.out,this.ot),this.ci,this.co);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
                 while (true) {
-                    var tmpvar1 = CC4(funam,tt)
-                    var ok = tmpvar1[0]
-                    var tt = tmpvar1[1]
+                    var tmpvar1 = CC4(funam,tt);
+                    var ok = tmpvar1[0];
+                    var tt = tmpvar1[1];
                     var cancel = tmpvar1[2];
                     if (!ok) {
                         if (cancel) {
@@ -146,8 +146,8 @@ function CBLOCK4() {
                         this.model.dep_ut = new ScilabDouble(dep_ut);
                         label[2-1] = tt;
                         this.x.model = this.model;
-                        graphics.exprs = label;
-                        this.x.graphics = graphics;
+                        this.graphics.exprs = new ScilabDouble([label]);
+                        this.x.graphics = this.graphics;
                         break;
                     }
                 }

@@ -27,9 +27,9 @@ function OUT_f() {
     OUT_f.prototype.set = function OUT_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.x = arg1;
-        var graphics = arg1.graphics;
+        this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = graphics.exprs;
+        var exprs = this.graphics.exprs;
         if (size(exprs,"*")==2) {
             var exprs = exprs[1-1];
         }
@@ -43,8 +43,8 @@ function OUT_f() {
                 block_parameter_error(msprintf("Wrong value for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
                 this.model.ipar = new ScilabDouble([this.prt]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

@@ -28,8 +28,8 @@ function DIFF_c() {
         this.x0 = inverse(arguments[0]["x0"])
         this.xd0 = inverse(arguments[0]["xd0"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             var ask_again = false;
@@ -50,11 +50,11 @@ function DIFF_c() {
                 var ask_again = true;
             }
             if (!ask_again) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.state = new ScilabDouble([this.x0],[this.xd0]);
                 this.model.out = new ScilabDouble([N]);
                 this.model.in1 = new ScilabDouble([N]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

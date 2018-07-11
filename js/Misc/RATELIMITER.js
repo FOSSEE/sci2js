@@ -30,8 +30,8 @@ function RATELIMITER() {
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.minp = parseFloat(arguments[0]["minp"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.maxp,this.minp,exprs] = scicos_getvalue("Set rate limiter parameters",["max slope","min slope"],list("vec",1,"vec",1),exprs);
@@ -43,8 +43,8 @@ function RATELIMITER() {
             } else {
                 var rpar = [[this.maxp],[this.minp]];
                 this.model.rpar = new ScilabDouble(rpar);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

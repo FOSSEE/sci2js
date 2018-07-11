@@ -26,17 +26,17 @@ function EVTVARDLY() {
     EVTVARDLY.prototype.set = function EVTVARDLY() {
         this.fir = arguments[0]["fir"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.fir,exprs] = scicos_getvalue("Set parameter of variable event delay","Initial event firing time (<0 if absent)",list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            graphics.exprs = exprs;
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.model.firing = new ScilabDouble([this.fir]);
-            this.x.graphics = graphics;
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

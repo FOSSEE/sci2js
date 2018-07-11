@@ -26,8 +26,8 @@ function HALT_f() {
     HALT_f.prototype.set = function HALT_f() {
         this.n = parseFloat(arguments[0]["n"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.n,exprs] = scicos_getvalue("Set Halt block parameters",["State on halt"],list("vec",1),exprs);
@@ -35,9 +35,9 @@ function HALT_f() {
                 break;
             }
             if (ok) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.ipar = new ScilabDouble([this.n]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

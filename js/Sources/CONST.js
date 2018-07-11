@@ -25,8 +25,8 @@ function CONST() {
     CONST.prototype.set = function CONST() {
         this.C = parseFloat(arguments[0]["C"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.C,exprs] = scicos_getvalue(["Set Contant Block"],"Constant",list("vec",-1),exprs);
@@ -42,8 +42,8 @@ function CONST() {
             } else {
                 this.model.rpar = new ScilabDouble(this.C.slice());
                 this.model.out = new ScilabDouble([nout]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

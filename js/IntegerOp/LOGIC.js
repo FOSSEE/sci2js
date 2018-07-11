@@ -34,8 +34,8 @@ function LOGIC() {
         this.mat = inverse(arguments[0]["mat"])
         this.herit = arguments[0]["herit"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.mat,this.herit,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","LOGIC")],[" "],["Combinatorial logic"],[" "],["&nbsp; Rows of the matrix are the output values"],["&nbsp; Number of rows must be a power of two."],["&nbsp; Number of columns gives the number of outputs."],[" "]],["Truth Table (matrix of outputs)","Accepts Inherited Events (0:No, 1:Yes)"],list("mat",[-1,-2],"vec",1),exprs);
@@ -60,16 +60,16 @@ function LOGIC() {
                 var out = [ones(nout,1),ones(nout,1)];
                 var it = 5*ones(1,nin);
                 var ot = 5*ones(1,nout);
-                var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.herit,1),[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),ones(1-this.herit,1),[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.mat = int8(this.mat);
                 this.model.opar = list(new ScilabDouble([this.mat]));
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

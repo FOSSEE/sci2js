@@ -34,8 +34,8 @@ function SAT_f() {
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.pente = arguments[0]["pente"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.minp,this.maxp,this.pente,exprs] = scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),exprs);
@@ -50,8 +50,8 @@ function SAT_f() {
                 var rpar = [[this.minp/this.pente],[this.maxp/this.pente],[this.pente]];
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.firing = new ScilabDouble([]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

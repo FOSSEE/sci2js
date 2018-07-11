@@ -36,8 +36,8 @@ function GOTOMO() {
         this.tag = arguments[0]["tag"]
         this.tagvis = parseFloat(arguments[0]["tagvis"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),exprs);
@@ -54,11 +54,11 @@ function GOTOMO() {
                     var needcompile = 4;
                     var y = needcompile;
                 }
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.opar = list(new ScilabDouble([this.tag]));
                 this.model.ipar = new ScilabDouble([this.tagvis]);
                 this.x.model = this.model;
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 var arg1 = this.x;
                 break;
             }

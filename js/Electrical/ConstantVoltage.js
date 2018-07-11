@@ -33,8 +33,8 @@ function ConstantVoltage() {
     ConstantVoltage.prototype.set = function ConstantVoltage() {
         this.V = parseFloat(arguments[0]["V"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.V,exprs] = scicos_getvalue("Set ConstantVoltage block parameter","V (volt)",list("vec",1),exprs);
@@ -42,9 +42,9 @@ function ConstantVoltage() {
                 break;
             }
             this.model.rpar = new ScilabDouble([this.V]);
-            this.model.equations.parameters[2] = list(new ScilabDouble([this.V]));
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.model.equations.parameters[2-1] = list(new ScilabDouble([this.V]));
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

@@ -169,14 +169,20 @@ def p_jobsetstatementblock_jobsetstatement(p):
 # define statement
 
 def p_statement_assignment(p):
-    '''statement : assignment EOL
-                 | getvalueassignment EOL
+    'statement : assignment'
+    p[0] = '%s' % (p[1])
+
+def p_statement_getvalueassignment(p):
+    '''statement : getvalueassignment EOL
                  | function EOL'''
     p[0] = '%s;\n' % (p[1])
 
 def p_jobsetstatement_assignment(p):
-    '''jobsetstatement : assignment EOL
-                       | getvalueassignment EOL
+    'jobsetstatement : assignment'
+    p[0] = '%s' % (p[1])
+
+def p_jobsetstatement_getvalueassignment(p):
+    '''jobsetstatement : getvalueassignment EOL
                        | function EOL'''
     p[0] = '%s;\n' % (p[1])
 
@@ -499,14 +505,14 @@ def p_elsestatement_else(p):
 VARCOUNT = 0
 
 def p_lterm_assignment_expression(p):
-    '''assignment : lterm ASSIGNMENT expression
-                  | lterm ASSIGNMENT listcall'''
+    '''assignment : lterm ASSIGNMENT expression EOL
+                  | lterm ASSIGNMENT listcall EOL'''
     global VARCOUNT
     var = p[1]
     if var[0] == '[':
         prefix = 'var '
         tmpvar = 'tmpvar%d' % (VARCOUNT)
-        p[0] = '%*s%s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, tmpvar, p[3][0])
+        p[0] = '%*s%s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, tmpvar, p[3][0])
         VARCOUNT += 1
         var = var[1:-1]
         ltermvars = var.split(',')
@@ -515,18 +521,19 @@ def p_lterm_assignment_expression(p):
             prefix = ''
             if var in LOCAL_VARS and '.' not in var:
                 prefix = 'var '
-            p[0] += '\n%*s%s%s = %s[%d]' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, var, tmpvar, idx)
+            p[0] += '%*s%s%s = %s[%d];\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, var, tmpvar, idx)
             idx += 1
     else:
         prefix = ''
         if var in LOCAL_VARS and '.' not in var:
             prefix = 'var '
-        p[0] = '%*s%s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, var, p[3][0])
+        p[0] = '%*s%s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, var, p[3][0])
         add_var_vartype(var, p[3][1])
 
 def p_model_assignment_expression(p):
-    'assignment : MODEL ASSIGNMENT expression'
-    p[0] = '%*sthis.%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3][0])
+    '''assignment : GRAPHICS ASSIGNMENT expression EOL
+                  | MODEL ASSIGNMENT expression EOL'''
+    p[0] = '%*sthis.%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3][0])
     var = p[1]
     add_global_var(var)
     add_var_vartype(var, p[3][1])
@@ -545,10 +552,15 @@ def p_modelvar_in(p):
 
 def p_modelvar_modelvar_expression(p):
     'modelvar : modelvar OPENBRACKET expression CLOSEBRACKET'
-    p[0] = '%s[%s]' % (p[1], p[3][0])
+    p[0] = '%s[%s-1]' % (p[1], p[3][0])
+
+def p_modelvar_modelvar_expression_expression(p):
+    'modelvar : modelvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET'
+    p[0] = '%s[%s-1][%s-1]' % (p[1], p[3][0], p[5][0])
 
 def p_assignment_model_modelvar_assignment_modelexpression(p):
-    'assignment : MODEL DOT modelvar ASSIGNMENT modelexpression'
+    '''assignment : GRAPHICS DOT modelvar ASSIGNMENT modelexpression EOL
+                  | MODEL DOT modelvar ASSIGNMENT modelexpression EOL'''
     var = 'this.%s.%s' % (p[1], p[3])
     value = p[5][0]
     vartype = p[5][1]
@@ -559,22 +571,22 @@ def p_assignment_model_modelvar_assignment_modelexpression(p):
         if vartype != '':
             if value[0] == '[':
                 value = value[1:-1]
-            p[0] = '%*s%s = new %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
+            p[0] = '%*s%s = new %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
         else:
-            p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
+            p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
     elif vartype == VECTOR_TYPE:
         vartype = DOUBLE_TYPE
         vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
         if vartype != '':
-            p[0] = '%*s%s = new %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
+            p[0] = '%*s%s = new %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
         else:
-            p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
+            p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
     else:
         vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
         if vartype != '':
-            p[0] = '%*s%s = new %s([%s])' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
+            p[0] = '%*s%s = new %s([%s]);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
         else:
-            p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
+            p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
 
 def p_modelexpression_list_modelexpressionlist(p):
     'modelexpression : LIST OPENBRACKET modelexpressionlist CLOSEBRACKET'
@@ -720,6 +732,7 @@ def p_ltermarraylist_ltermarraylistterm(p):
 
 def p_ltermarraylistterm_var(p):
     '''ltermarraylistterm : VAR
+                          | GRAPHICS
                           | MODEL'''
     var = '%s' % (p[1])
     add_local_var(var)
@@ -777,8 +790,10 @@ def p_list_list_expression(p):
 
 def p_list_list_var_expression(p):
     '''list : list COMMA VAR ASSIGNMENT expression
+            | list COMMA GRAPHICS ASSIGNMENT expression
             | list COMMA MODEL ASSIGNMENT expression
             | list COMMA VAR ASSIGNMENT listcall
+            | list COMMA GRAPHICS ASSIGNMENT listcall
             | list COMMA MODEL ASSIGNMENT listcall'''
     p[0] = '%s,%s=%s' % (p[1], p[3], p[5][0])
 
@@ -967,6 +982,7 @@ def p_lterm_ltermarraylist(p):
 
 def p_lterm_lterm_dot_var(p):
     '''lterm : lterm DOT VAR
+             | lterm DOT GRAPHICS
              | lterm DOT MODEL'''
     p[0] = '%s.%s' % (p[1], p[3])
 
@@ -1185,6 +1201,7 @@ def p_term_termvar(p):
 # A.B
 def p_termvar_termvar_dot_var(p):
     '''termvar : termvar DOT VAR
+               | termvar DOT GRAPHICS
                | termvar DOT MODEL'''
     var = p[1][0]
     if var[:5] == 'this.':
@@ -1219,6 +1236,7 @@ def p_termvar_termvar_dot_in(p):
 # A
 def p_termvar_var(p):
     '''termvar : VAR
+               | GRAPHICS
                | MODEL'''
     var = p[1]
     add_global_var(var)

@@ -72,8 +72,8 @@ function CBLOCK() {
         this.lab = arguments[0]["lab"]
         this.x = arg1;
         this.model = arg1.model;
-        var graphics = arg1.graphics;
-        var label = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var label = this.graphics.exprs;
         while (true) {
             [ok,this.function_name,this.impli,this.i,this.o,this.ci,this.co,this.xx,this.ng,this.z,this.rpar,this.ipar,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block2 block parameters",["simulation function","is block implicit? (y,n)","input ports sizes","output ports sizes","input event ports sizes","output events ports sizes","initial continuous state","number of zero crossing surfaces","initial discrete state","Real parameters vector","Integer parameters vector","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label[1-1]);
             if (!ok) {
@@ -126,18 +126,18 @@ function CBLOCK() {
             }
             var tt = label[2-1];
             while (true) {
-                var tmpvar0 = CFORTR2(funam,tt)
-                var ok = tmpvar0[0]
-                var tt = tmpvar0[1]
+                var tmpvar0 = CFORTR2(funam,tt);
+                var ok = tmpvar0[0];
+                var tt = tmpvar0[1];
                 var cancel = tmpvar0[2];
                 if (!ok) {
                     if (cancel) {
                         break;
                     }
                 } else {
-                    var tmpvar1 = check_io(this.model,graphics,this.i,this.o,this.ci,this.co)
-                    this.model = tmpvar1[0]
-                    var graphics = tmpvar1[1]
+                    var tmpvar1 = check_io(this.model,this.graphics,this.i,this.o,this.ci,this.co);
+                    this.model = tmpvar1[0];
+                    this.graphics = tmpvar1[1];
                     var ok = tmpvar1[2];
                     if (ok) {
                         this.model.sim = list(new ScilabDouble([funam]), new ScilabDouble([funtyp]));
@@ -154,8 +154,8 @@ function CBLOCK() {
                         this.model.nzcross = new ScilabDouble([this.ng]);
                         label[2-1] = tt;
                         this.x.model = this.model;
-                        graphics.exprs = label;
-                        this.x.graphics = graphics;
+                        this.graphics.exprs = new ScilabDouble([label]);
+                        this.x.graphics = this.graphics;
                         break;
                     }
                 }

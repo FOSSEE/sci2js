@@ -37,8 +37,8 @@ function VsourceAC() {
         this.VA = parseFloat(arguments[0]["VA"])
         this.FR = parseFloat(arguments[0]["FR"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.VA,this.FR,exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","Frequency (Hz)"],list("vec",-1,"vec",-1),exprs);
@@ -46,9 +46,9 @@ function VsourceAC() {
                 break;
             }
             this.model.rpar = new ScilabDouble([this.VA],[this.FR]);
-            this.model.equations.parameters[2] = list(new ScilabDouble([this.VA]), new ScilabDouble([this.FR]));
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.model.equations.parameters[2-1] = list(new ScilabDouble([this.VA]), new ScilabDouble([this.FR]));
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

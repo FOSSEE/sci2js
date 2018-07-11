@@ -58,8 +58,8 @@ function MBLOCK() {
         this.lab_1 = arguments[0]["lab_1"]
         this.x = arg1;
         this.model = arg1.model;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         if (this.type[exprs-1]==15) {
             var paramv = list();
             this.pprop = [];
@@ -171,9 +171,9 @@ function MBLOCK() {
                 }
             }
             if (ok) {
-                var tmpvar0 = fileparts(this.funam)
-                var dirF = tmpvar0[0]
-                var nameF = tmpvar0[1]
+                var tmpvar0 = fileparts(this.funam);
+                var dirF = tmpvar0[0];
+                var nameF = tmpvar0[1];
                 var extF = tmpvar0[2];
                 if ((extF!=""&&extF!=".mo")||(dirF!=""&&extF!=".mo")) {
                     messagebox("Filename extention should be \'.mo \' !","modal","error");
@@ -183,9 +183,9 @@ function MBLOCK() {
             if (ok) {
                 var intypex = find(this.intype=="I");
                 var outtypex = find(this.outtype=="I");
-                var tmpvar1 = set_io(this.model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex)
-                this.model = tmpvar1[0]
-                var graphics = tmpvar1[1]
+                var tmpvar1 = set_io(this.model,this.graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
+                this.model = tmpvar1[0];
+                this.graphics = tmpvar1[1];
                 var ok = tmpvar1[2];
             }
             if (ok) {
@@ -245,8 +245,8 @@ function MBLOCK() {
                         var tt = [];
                     }
                 }
-                var tmpvar2 = MODCOM(this.funam,tt,this.in1,this.out,param,paramv,this.pprop)
-                var ok = tmpvar2[0]
+                var tmpvar2 = MODCOM(this.funam,tt,this.in1,this.out,param,paramv,this.pprop);
+                var ok = tmpvar2[0];
                 var tt = tmpvar2[1];
                 if (!ok) {
                     break;
@@ -267,7 +267,7 @@ function MBLOCK() {
                 for (i=1;i<=lstsize(paramv);i+=1) {
                     this.model.rpar = new ScilabDouble([this.model.rpar],[paramv[i-1].slice()]);
                 }
-                this.model.sim[1] = new ScilabDouble([this.funam]);
+                this.model.sim[1-1] = new ScilabDouble([this.funam]);
                 exprs.in1 = this.lab_1[1-1];
                 exprs.intype = this.lab_1[2-1];
                 exprs.out = this.lab_1[3-1];
@@ -289,11 +289,11 @@ function MBLOCK() {
                 exprs.nameF = this.lab_1[7-1];
                 exprs.funtxt = tt;
                 this.x.model = this.model;
-                graphics.gr_i[1-1][1-1] = "txt=[\'Modelica\';\' "+nameF+" \'];";
-                graphics.in_implicit = this.intype;
-                graphics.out_implicit = this.outtype;
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.gr_i[1-1][1-1] = new ScilabString(["txt=[\'Modelica\';\' "+nameF+" \'];"]);
+                this.graphics.in_implicit = new ScilabDouble(this.intype);
+                this.graphics.out_implicit = new ScilabDouble(this.outtype);
+                this.graphics.exprs = exprs;
+                this.x.graphics = this.graphics;
                 break;
             }
         }

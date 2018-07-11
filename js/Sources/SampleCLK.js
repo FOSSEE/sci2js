@@ -26,9 +26,9 @@ function SampleCLK() {
         this.frequ = arguments[0]["frequ"]
         this.offset = arguments[0]["offset"]
         this.x = arg1;
-        var graphics = arg1.graphics;
+        this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",1,"vec",1),exprs);
             if (!ok) {
@@ -50,8 +50,8 @@ function SampleCLK() {
                 this.model.rpar = new ScilabDouble([this.frequ],[this.offset]);
                 this.model.evtout = new ScilabDouble([1]);
                 this.model.firing = new ScilabDouble([-1]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

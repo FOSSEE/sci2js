@@ -30,8 +30,8 @@ function MATMUL() {
         this.rule = parseFloat(arguments[0]["rule"])
         this.np = parseFloat(arguments[0]["np"])
         this.x = arg1;
-        var graphics = this.x.graphics;
-        var label = graphics.exprs;
+        this.graphics = this.x.graphics;
+        var label = this.graphics.exprs;
         this.model = this.x.model;
         if (this.model.ipar==[]) {
             this.model.ipar = new ScilabDouble([1]);
@@ -146,16 +146,16 @@ function MATMUL() {
                 var in1 = [[-1,-2],[1,1]];
                 var out = [-1,-2];
             }
-            var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
-            this.model = tmpvar0[0]
-            var graphics = tmpvar0[1]
+            var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
+            this.model = tmpvar0[0];
+            this.graphics = tmpvar0[1];
             var ok = tmpvar0[2];
             if (ok) {
                 var label = exprs;
                 this.model.ipar = new ScilabDouble([this.rule]);
                 this.model.rpar = new ScilabDouble([kmin],[kmax]);
-                graphics.exprs = label;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([label]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 var arg1 = this.x;
                 break;

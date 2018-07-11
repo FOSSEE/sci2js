@@ -32,8 +32,8 @@ function M_SWITCH() {
         this.base = parseFloat(arguments[0]["base"])
         this.rule = arguments[0]["rule"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.nin,this.base,this.rule,exprs] = scicos_getvalue("Set parameters",["number of inputs","zero base indexing (0), otherwise 1","rounding rule: int (0), round (1), ceil (2), floor (3)"],list("vec",1,"vec",1,"vec",1),exprs);
@@ -60,14 +60,14 @@ function M_SWITCH() {
                 }
                 var it = [[-1],[-2*ones(this.nin,1)]];
                 var ot = -2;
-                var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    graphics.exprs = exprs;
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.model.ipar = new ScilabDouble([this.base],[this.rule]);
-                    this.x.graphics = graphics;
+                    this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;
                 }

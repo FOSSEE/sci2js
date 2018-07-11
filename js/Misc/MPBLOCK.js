@@ -43,8 +43,8 @@ function MPBLOCK() {
     MPBLOCK.prototype.set = function MPBLOCK() {
         this.x = arg1;
         this.model = arg1.model;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         if (this.type[exprs-1]==15) {
             var paramv = list();
             var pprop = [];
@@ -57,15 +57,15 @@ function MPBLOCK() {
         var lab_1 = list(exprs.in1,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
         var lab_2 = exprs.paramv;
         while (true) {
-            var tmpvar0 = getvalue("Set Modelica generic block parameters",[["Input variables:       "],["Input variables types: "],["Output variables:      "],["Output variables types:"],["Parameters in Modelica:"],["Parameters properties: "],["Model name in packages:"]],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),lab_1)
-            var ok = tmpvar0[0]
-            var Tin = tmpvar0[1]
-            var Tintype = tmpvar0[2]
-            var Tout = tmpvar0[3]
-            var Touttype = tmpvar0[4]
-            var Tparam = tmpvar0[5]
-            var pprop = tmpvar0[6]
-            var Tfunam = tmpvar0[7]
+            var tmpvar0 = getvalue("Set Modelica generic block parameters",[["Input variables:       "],["Input variables types: "],["Output variables:      "],["Output variables types:"],["Parameters in Modelica:"],["Parameters properties: "],["Model name in packages:"]],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),lab_1);
+            var ok = tmpvar0[0];
+            var Tin = tmpvar0[1];
+            var Tintype = tmpvar0[2];
+            var Tout = tmpvar0[3];
+            var Touttype = tmpvar0[4];
+            var Tparam = tmpvar0[5];
+            var pprop = tmpvar0[6];
+            var Tfunam = tmpvar0[7];
             var lab_1 = tmpvar0[8];
             if (!ok) {
                 break;
@@ -165,9 +165,9 @@ function MPBLOCK() {
                 }
             }
             if (ok) {
-                var tmpvar1 = fileparts(this.funam)
-                var dirF = tmpvar1[0]
-                var nameF = tmpvar1[1]
+                var tmpvar1 = fileparts(this.funam);
+                var dirF = tmpvar1[0];
+                var nameF = tmpvar1[1];
                 var extF = tmpvar1[2];
                 if ((extF!="")||(dirF!="")) {
                     x_message("Invalid model name!");
@@ -177,9 +177,9 @@ function MPBLOCK() {
             if (ok) {
                 var intypex = find(this.intype=="I");
                 var outtypex = find(this.outtype=="I");
-                var tmpvar2 = set_io(this.model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex)
-                this.model = tmpvar2[0]
-                var graphics = tmpvar2[1]
+                var tmpvar2 = set_io(this.model,this.graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
+                this.model = tmpvar2[0];
+                this.graphics = tmpvar2[1];
                 var ok = tmpvar2[2];
             }
             if (ok) {
@@ -251,7 +251,7 @@ function MPBLOCK() {
                 for (i=1;i<=lstsize(paramv);i+=1) {
                     this.model.rpar = new ScilabDouble([this.model.rpar],[double(paramv[i-1].slice())]);
                 }
-                this.model.sim[1] = new ScilabDouble([this.funam]);
+                this.model.sim[1-1] = new ScilabDouble([this.funam]);
                 exprs.in1 = lab_1[1-1];
                 exprs.intype = lab_1[2-1];
                 exprs.out = lab_1[3-1];
@@ -273,11 +273,11 @@ function MPBLOCK() {
                 exprs.nameF = lab_1[7-1];
                 exprs.funtxt = "";
                 this.x.model = this.model;
-                graphics.gr_i[1-1][1-1] = "txt=[\' "+nameF+" \'];";
-                graphics.in_implicit = this.intype;
-                graphics.out_implicit = this.outtype;
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.gr_i[1-1][1-1] = new ScilabString(["txt=[\' "+nameF+" \'];"]);
+                this.graphics.in_implicit = new ScilabDouble(this.intype);
+                this.graphics.out_implicit = new ScilabDouble(this.outtype);
+                this.graphics.exprs = exprs;
+                this.x.graphics = this.graphics;
                 break;
             }
         }

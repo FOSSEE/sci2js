@@ -38,8 +38,8 @@ function CMATVIEW() {
         this.cmin = parseFloat(arguments[0]["cmin"])
         this.cmax = parseFloat(arguments[0]["cmax"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.colormap,this.cmin,this.cmax,exprs] = scicos_getvalue("Set Scope parameters",["ColorMap","Minimum level range","Maximum level range"],list("vec",-1,"vec",1,"vec",1),exprs);
@@ -63,8 +63,8 @@ function CMATVIEW() {
                 var rpar = [[alpha_c],[beta_c],[this.colormap.slice()]];
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.rpar = new ScilabDouble(rpar);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

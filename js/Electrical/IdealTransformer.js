@@ -61,8 +61,8 @@ function IdealTransformer() {
     IdealTransformer.prototype.set = function IdealTransformer() {
         this.N = arguments[0]["N"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         this.x = arg1;
         var exprs = this.x.graphics.exprs;

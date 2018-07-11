@@ -31,8 +31,8 @@ function DOLLAR_f() {
         this.a = arguments[0]["a"]
         this.inh = parseFloat(arguments[0]["inh"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")<2) {
             exprs[2-1] = "0";
@@ -48,17 +48,17 @@ function DOLLAR_f() {
             }
             var in1 = out;
             if (ok) {
-                var tmpvar0 = check_io(this.model,graphics,-1,-1,ones(1-this.inh,1),[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = check_io(this.model,this.graphics,-1,-1,ones(1-this.inh,1),[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.dstate = new ScilabDouble([this.a]);
                 this.model.in1 = new ScilabDouble(in1);
                 this.model.out = new ScilabDouble(out);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

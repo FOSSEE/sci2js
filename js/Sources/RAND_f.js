@@ -38,8 +38,8 @@ function RAND_f() {
         this.b = parseFloat(arguments[0]["b"])
         this.seed_c = arguments[0]["seed_c"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==5) {
             var exprs = exprs.slice(1-1,3);
@@ -56,12 +56,12 @@ function RAND_f() {
                 message("flag must be equal to 1 or 0");
             } else {
                 var nout = size(this.a,"*");
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble(exprs);
                 this.model.out = new ScilabDouble([nout]);
                 this.model.ipar = new ScilabDouble([this.flag]);
                 this.model.rpar = new ScilabDouble([this.a.slice()],[this.b.slice()]);
                 this.model.dstate = new ScilabDouble([this.seed_c],[0*this.a.slice()]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

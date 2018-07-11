@@ -32,8 +32,8 @@ function MFCLCK_f() {
         this.dt = parseFloat(arguments[0]["dt"])
         this.nn = parseFloat(arguments[0]["nn"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         [ok,this.dt,this.nn,exprs] = scicos_getvalue("Set Multifrequency clock parameters",["basic period (1/f)","multiply by (n)"],list("vec",1,"vec",1),exprs);
         if (ok) {
@@ -42,8 +42,8 @@ function MFCLCK_f() {
             var hh = this.model.firing;
             hh[2-1] = 0;
             this.model.firing = new ScilabDouble(hh);
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
         }
         return new BasicBlock(this.x);

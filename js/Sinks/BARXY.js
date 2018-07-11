@@ -41,8 +41,8 @@ function BARXY() {
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.thickness = arguments[0]["thickness"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.xmin,this.xmax,this.ymin,this.ymax,this.thickness,exprs] = scicos_getvalue("Set Scope parameters",["Xmin","Xmax","Ymin","Ymax","Segs Thickness"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
@@ -67,8 +67,8 @@ function BARXY() {
             } else {
                 this.model.rpar = new ScilabDouble([this.xmin],[this.xmax],[this.ymin],[this.ymax]);
                 this.model.ipar = new ScilabDouble([this.thickness]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

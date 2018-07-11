@@ -36,8 +36,8 @@ function EXTRACTBITS() {
         this.bit = parseFloat(arguments[0]["bit"])
         this.scal = arguments[0]["scal"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.Datatype,this.rule,this.bit,this.scal,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","EXTRACTBITS")],[" "],["Bits Extraction"],[" "],["&nbsp;- Bits to Extract:"],["&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"],["&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"],["&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"],["&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"],["&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"],["&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"],["&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Bits to extract","Number of Bits or Index of Bit","Treat Bit Field as an Integer (0:No, 1:Yes)"],list("vec",1,"vec",1,"vec",-1,"vec",1),exprs);
@@ -228,15 +228,15 @@ function EXTRACTBITS() {
                 var it = this.Datatype;
                 var ot = this.Datatype;
                 var out = [1,1];
-                var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.ipar = new ScilabDouble([int(this.bit.slice())],[int(numb.slice())]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

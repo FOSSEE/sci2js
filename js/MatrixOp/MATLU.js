@@ -39,8 +39,8 @@ function MATLU() {
         this.lab = arguments[0]["lab"]
         this.x = arg1;
         this.model = arg1.model;
-        var graphics = arg1.graphics;
-        var label = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -62,16 +62,16 @@ function MATLU() {
                 var ok = false;
             }
             if (ok) {
-                var tmpvar0 = set_io(this.model,graphics,list([this.model.in1,this.model.in2],it),list([this.model.out,this.model.out2],ot),[],[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list([this.model.in1,this.model.in2],it),list([this.model.out,this.model.out2],ot),[],[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
                 var funtyp = 4;
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-                graphics.exprs = this.lab;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([this.lab]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

@@ -45,8 +45,8 @@ function RFILE_f() {
         this.frmt1 = parseFloat(arguments[0]["frmt1"])
         this.N = parseFloat(arguments[0]["N"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         var dstate = this.model.dstate;
         var ipar = this.model.ipar;
@@ -97,9 +97,9 @@ function RFILE_f() {
                     var ievt = 1;
                     var cout = 1;
                 }
-                var tmpvar0 = check_io(this.model,graphics,[],nout,1,cout)
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = check_io(this.model,this.graphics,[],nout,1,cout);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
                     if (ievt==0) {
@@ -113,8 +113,8 @@ function RFILE_f() {
                     }
                     this.model.dstate = new ScilabDouble(dstate);
                     this.model.ipar = new ScilabDouble(ipar);
-                    graphics.exprs = exprs;
-                    this.x.graphics = graphics;
+                    this.graphics.exprs = new ScilabDouble([exprs]);
+                    this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;
                 }

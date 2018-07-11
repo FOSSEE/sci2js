@@ -33,9 +33,9 @@ function INTMUL() {
         this.Datatype = arguments[0]["Datatype"]
         this.np = arguments[0]["np"]
         this.x = arg1;
-        var graphics = arg1.graphics;
+        this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             [ok,this.Datatype,this.np,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","INTMUL")],[" "],["Integer matrix multiplication"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"],list("vec",1,"vec",1),exprs);
             if (!ok) {
@@ -101,15 +101,15 @@ function INTMUL() {
             var in1 = [this.model.in1,this.model.in2];
             var out = [this.model.out,this.model.out2];
             if (ok) {
-                var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.np]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

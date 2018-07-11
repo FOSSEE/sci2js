@@ -8,11 +8,11 @@ function TEXT_f() {
         this.model.rpar = new ScilabString(["Text"]);
         this.model.ipar = new ScilabDouble([this.font],[this.siz]);
         var exprs = [["Text"],[string(this.font)],[string(this.siz)]];
-        var graphics = scicos_graphics();
-        graphics.orig = [0,0];
-        graphics.sz = [2,1];
-        graphics.exprs = exprs;
-        this.x = mlist(["Text","graphics","model","void","gui"],graphics,this.model," ","TEXT_f");
+        this.graphics = scicos_graphics();
+        this.graphics.orig = new ScilabDouble([0,0]);
+        this.graphics.sz = new ScilabDouble([2,1]);
+        this.graphics.exprs = new ScilabDouble(exprs);
+        this.x = mlist(["Text","graphics","model","void","gui"],this.graphics,this.model," ","TEXT_f");
         return new TextBlock(this.x);
     }
     TEXT_f.prototype.details = function TEXT_f() {
@@ -31,9 +31,9 @@ function TEXT_f() {
         this.font = parseFloat(arguments[0]["font"])
         this.siz = parseFloat(arguments[0]["siz"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var orig = graphics.orig;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var orig = this.graphics.orig;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==1) {
             var exprs = [[exprs],["3"],["1"]];
@@ -52,7 +52,7 @@ function TEXT_f() {
                 var ok = false;
             }
             if (ok) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble(exprs);
                 var gh_winpal = gca();
                 var default_font_style = gh_winpal.font_style;
                 var default_font_size = gh_winpal.font_size;
@@ -64,8 +64,8 @@ function TEXT_f() {
                 gh_winpal.font_size = default_font_size;
                 gh_winpal.font_color = default_font_color;
                 var sz = r.slice(3-1,4);
-                graphics.sz = sz;
-                this.x.graphics = graphics;
+                this.graphics.sz = new ScilabDouble(sz);
+                this.x.graphics = this.graphics;
                 var ipar = [[this.font],[this.siz]];
                 this.model.rpar = new ScilabDouble([this.txt]);
                 this.model.ipar = new ScilabDouble(ipar);

@@ -41,8 +41,8 @@ function CLSS() {
         this.D = parseFloat(arguments[0]["D"])
         this.x0 = parseFloat(arguments[0]["x0"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         if (size(exprs,"*")==7) {
             var exprs = exprs[[1:4,7]-1];
         }
@@ -60,8 +60,8 @@ function CLSS() {
             if (in1==0) {
                 var in1 = [];
             }
-            var tmpvar0 = size(this.A)
-            var ms = tmpvar0[0]
+            var tmpvar0 = size(this.A);
+            var ms = tmpvar0[0];
             var ns = tmpvar0[1];
             var okD = true;
             if (size(this.D,"*")!=size(this.C,1)*size(this.B,2)) {
@@ -76,12 +76,12 @@ function CLSS() {
             if (ms!=ns||!okD) {
                 message(_("Matrix A is not square or D has wrong dimension"));
             } else {
-                var tmpvar1 = check_io(this.model,graphics,in1,out,[],[])
-                this.model = tmpvar1[0]
-                var graphics = tmpvar1[1]
+                var tmpvar1 = check_io(this.model,this.graphics,in1,out,[],[]);
+                this.model = tmpvar1[0];
+                this.graphics = tmpvar1[1];
                 var ok = tmpvar1[2];
                 if (ok) {
-                    graphics.exprs = exprs;
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     var rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
                     if (this.D!=[]) {
                         if (norm(this.D,1)!=0) {
@@ -97,7 +97,7 @@ function CLSS() {
                     }
                     this.model.state = new ScilabDouble(this.x0.slice());
                     this.model.rpar = new ScilabDouble(rpar);
-                    this.x.graphics = graphics;
+                    this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;
                 }

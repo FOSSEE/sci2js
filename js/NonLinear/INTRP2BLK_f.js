@@ -33,8 +33,8 @@ function INTRP2BLK_f() {
         this.b = inverse(arguments[0]["b"])
         this.c = inverse(arguments[0]["c"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.a,this.b,this.c,exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord.","Z values"],list("vec",-1,"vec",-1,"mat",[-1,-1]),exprs);
@@ -47,10 +47,10 @@ function INTRP2BLK_f() {
                 message("X and Y must be strictly increasing");
             } else {
                 if (ok) {
-                    graphics.exprs = exprs;
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.model.rpar = new ScilabDouble([this.a.slice()],[this.b.slice()],[this.c.slice()]);
                     this.model.ipar = new ScilabDouble([size(this.a,"*")],[size(this.b,"*")]);
-                    this.x.graphics = graphics;
+                    this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;
                 }

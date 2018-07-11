@@ -30,8 +30,8 @@ function BACKLASH() {
         this.gap = arguments[0]["gap"]
         this.zcr = arguments[0]["zcr"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         var rpar = this.model.rpar;
         while (true) {
@@ -40,7 +40,7 @@ function BACKLASH() {
                 break;
             }
             if (ok) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 rpar[1-1] = this.ini;
                 rpar[2-1] = this.gap;
                 if (this.zcr!=0) {
@@ -49,7 +49,7 @@ function BACKLASH() {
                     this.model.nzcross = new ScilabDouble([0]);
                 }
                 this.model.rpar = new ScilabDouble(rpar);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

@@ -35,8 +35,8 @@ function WRITEAU_f() {
         this.N = parseFloat(arguments[0]["N"])
         this.swap = parseFloat(arguments[0]["swap"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         var ipar = this.model.ipar;
         var dstate = this.model.dstate;
@@ -68,8 +68,8 @@ function WRITEAU_f() {
                 this.model.in1 = new ScilabDouble([1]);
                 this.model.dstate = new ScilabDouble(dstate);
                 this.model.ipar = new ScilabDouble(ipar);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

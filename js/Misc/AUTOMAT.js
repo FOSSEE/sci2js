@@ -37,8 +37,8 @@ function AUTOMAT() {
     }
     AUTOMAT.prototype.set = function AUTOMAT() {
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         var ipar = this.model.ipar;
         var NMode = ipar[1-1];
@@ -74,8 +74,8 @@ function AUTOMAT() {
                 messagebox("the size of intial continuous-time states should be NX="+string(NX),"modal","error");
                 var ModifEncore = true;
             }
-            var tmpvar0 = size(this.XP)
-            var rXP = tmpvar0[0]
+            var tmpvar0 = size(this.XP);
+            var rXP = tmpvar0[0];
             var cXP = tmpvar0[1];
             if (cXP!=NX) {
                 messagebox("Xproperty matrix is not valid: it should have NX="+string(NX)+" columns","modal","error");
@@ -122,18 +122,18 @@ function AUTOMAT() {
                 }
             }
             if (!ModifEncore) {
-                var tmpvar1 = check_io(this.model,graphics,INP,OUT,[],[1])
-                this.model = tmpvar1[0]
-                var graphics = tmpvar1[1]
+                var tmpvar1 = check_io(this.model,this.graphics,INP,OUT,[],[1]);
+                this.model = tmpvar1[0];
+                this.graphics = tmpvar1[1];
                 this.ok = tmpvar1[2];
                 if (!this.ok) {
                     break;
                 }
                 this.model.nzcross = new ScilabDouble([nzcross]);
                 this.model.state = new ScilabDouble([ones(2*NX,1)]);
-                graphics.gr_i[1-1][1-1] = "txt=[\'Automaton\';\'nM="+string(NMode)+",nX="+string(NX)+"\'];";
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.gr_i[1-1][1-1] = new ScilabString(["txt=[\'Automaton\';\'nM="+string(NMode)+",nX="+string(NX)+"\'];"]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.rpar = new ScilabDouble([rpar]);
                 this.x.model = this.model;

@@ -23,8 +23,8 @@ function TrigFun() {
     TrigFun.prototype.set = function TrigFun() {
         this.fun = arguments[0]["fun"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         var PREVAR_FF = [["sin"],["cos"],["tan"],["asin"],["acos"],["atan"],["sinh"],["cosh"],["tanh"],["asinh"],["acosh"],["atanh"]];
         var PREVAR_GG = [["Choose among "+strcat(PREVAR_FF.slice(1-1,4),", ")],[strcat(PREVAR_FF.slice(5-1,$),", ")]];
@@ -36,9 +36,9 @@ function TrigFun() {
             if (find(PREVAR_FF==this.fun)==[]) {
                 message("Sorry but "+this.fun+" is not in the list!");
             } else {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 execstr("model.sim=list(\'"+this.fun+"_blk\',4)");
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

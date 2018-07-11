@@ -26,8 +26,8 @@ function POWBLK_f() {
     POWBLK_f.prototype.set = function POWBLK_f() {
         this.a = parseFloat(arguments[0]["a"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==2) {
             var exprs = exprs[2-1];
@@ -37,7 +37,7 @@ function POWBLK_f() {
             if (!ok) {
                 break;
             }
-            graphics.exprs = exprs;
+            this.graphics.exprs = new ScilabDouble([exprs]);
             if (this.a==int(this.a)) {
                 this.model.ipar = new ScilabDouble([this.a]);
                 this.model.rpar = new ScilabDouble([]);
@@ -46,7 +46,7 @@ function POWBLK_f() {
                 this.model.ipar = new ScilabDouble([]);
             }
             this.model.firing = new ScilabDouble([]);
-            this.x.graphics = graphics;
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

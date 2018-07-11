@@ -28,9 +28,9 @@ function CLKGOTO() {
         this.tag = arguments[0]["tag"]
         this.tagvis = parseFloat(arguments[0]["tagvis"])
         this.x = arg1;
-        var graphics = arg1.graphics;
+        this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set block parameters",["Tag","Tag Visibility (1=Local 2=Scoped 3=Global)"],list("str",-1,"vec",1),exprs);
             if (!ok) {
@@ -50,8 +50,8 @@ function CLKGOTO() {
                 this.model.ipar = new ScilabDouble([this.tagvis]);
                 this.model.evtin = new ScilabDouble([1]);
                 this.model.firing = new ScilabDouble([-1]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

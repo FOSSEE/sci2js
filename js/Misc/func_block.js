@@ -22,19 +22,19 @@ function func_block() {
     }
     func_block.prototype.set = function func_block() {
         this.model = arg1.model;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.x = arg1;
         this.model = this.x.model;
-        var tmpvar0 = genfunc(exprs)
-        var ok = tmpvar0[0]
-        var mac = tmpvar0[1]
+        var tmpvar0 = genfunc(exprs);
+        var ok = tmpvar0[0];
+        var mac = tmpvar0[1];
         var exprs = tmpvar0[2];
         if (ok) {
             this.model.sim = new ScilabDouble([mac]);
-            graphics.exprs = exprs;
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.x.model = this.model;
-            this.x.graphics = graphics;
+            this.x.graphics = this.graphics;
         }
         return new BasicBlock(this.x);
     }

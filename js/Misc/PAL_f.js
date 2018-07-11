@@ -24,10 +24,10 @@ function PAL_f() {
         return options;
     }
     PAL_f.prototype.set = function PAL_f() {
-        var tmpvar0 = scicos(arg1.model.rpar)
-        this.x = tmpvar0[0]
-        var newparameters = tmpvar0[1]
-        var needcompile = tmpvar0[2]
+        var tmpvar0 = scicos(arg1.model.rpar);
+        this.x = tmpvar0[0];
+        var newparameters = tmpvar0[1];
+        var needcompile = tmpvar0[2];
         var edited = tmpvar0[3];
         arg1.graphics.id = this.x.props.title[1-1];
         arg1.model.rpar = this.x;

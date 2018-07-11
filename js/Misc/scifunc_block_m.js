@@ -65,8 +65,8 @@ function scifunc_block_m() {
         var needcompile = 0;
         this.x = arg1;
         this.model = arg1.model;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         while (true) {
             [ok,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.auto0,this.deptime,this.lab] = scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],["input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","System parameters vector","initial firing vector (<0 for no firing)","is block always active (0:no, 1:yes)"],list("mat",[-1,2],"mat",[-2,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs[1-1]);
             if (!ok) {
@@ -85,17 +85,17 @@ function scifunc_block_m() {
             var nci = size(this.ci,1);
             this.co = int(this.co.slice());
             var nco = size(this.co,1);
-            var tmpvar0 = genfunc2(exprs[2-1],this.i,this.o,nci,nco,size(this.xx,1),size(this.z,1),nrp,"c")
-            var ok = tmpvar0[0]
-            var tt = tmpvar0[1]
+            var tmpvar0 = genfunc2(exprs[2-1],this.i,this.o,nci,nco,size(this.xx,1),size(this.z,1),nrp,"c");
+            var ok = tmpvar0[0];
+            var tt = tmpvar0[1];
             var dep_ut = tmpvar0[2];
             dep_ut[2-1] = (1==this.deptime);
             if (!ok) {
                 break;
             }
-            var tmpvar1 = set_io(this.model,graphics,list(this.i,it),list(this.o,ot),this.ci,this.co)
-            this.model = tmpvar1[0]
-            var graphics = tmpvar1[1]
+            var tmpvar1 = set_io(this.model,this.graphics,list(this.i,it),list(this.o,ot),this.ci,this.co);
+            this.model = tmpvar1[0];
+            this.graphics = tmpvar1[1];
             var ok = tmpvar1[2];
             if (ok) {
                 var auto = this.auto0;
@@ -114,8 +114,8 @@ function scifunc_block_m() {
                 this.model.dep_ut = new ScilabDouble([dep_ut]);
                 this.x.model = this.model;
                 exprs[2-1] = tt;
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 break;
             }
         }

@@ -24,16 +24,16 @@ function SOM_f() {
     }
     SOM_f.prototype.set = function SOM_f() {
         this.x = arg1;
-        var graphics = arg1.graphics;
+        this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = graphics.exprs;
+        var exprs = this.graphics.exprs;
         if (size(exprs,"*")==2) {
             var exprs = exprs[2-1];
         }
         if (size(exprs,"*")!=3) {
             var exprs = string(this.model.rpar);
         }
-        if (graphics.flip) {
+        if (this.graphics.flip) {
             var labs = ["down","left","up"];
         } else {
             var labs = ["down","right","up"];

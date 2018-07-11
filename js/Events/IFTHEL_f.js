@@ -32,8 +32,8 @@ function IFTHEL_f() {
         this.inh = inverse(arguments[0]["inh"])
         this.nmod = parseFloat(arguments[0]["nmod"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         if (exprs==[]) {
             var exprs = string(1);
@@ -53,17 +53,17 @@ function IFTHEL_f() {
             if (this.inh!=1) {
                 this.inh = [];
             }
-            var tmpvar0 = check_io(this.model,graphics,1,[],this.inh,[[1],[1]])
-            this.model = tmpvar0[0]
-            var graphics = tmpvar0[1]
+            var tmpvar0 = check_io(this.model,this.graphics,1,[],this.inh,[[1],[1]]);
+            this.model = tmpvar0[0];
+            this.graphics = tmpvar0[1];
             var ok = tmpvar0[2];
             if (ok) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabString([exprs]);
                 this.model.evtin = new ScilabDouble(this.inh);
-                this.model.sim[2] = new ScilabDouble([-1]);
+                this.model.sim[2-1] = new ScilabDouble([-1]);
                 this.model.nmode = new ScilabDouble([this.nmod]);
                 this.model.nzcross = new ScilabDouble([this.nmod]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

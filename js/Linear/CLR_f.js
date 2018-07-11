@@ -33,8 +33,8 @@ function CLR_f() {
         this.num = arguments[0]["num"]
         this.den = arguments[0]["den"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         var x0 = this.model.state;
         var rpar = this.model.rpar;
@@ -54,14 +54,14 @@ function CLR_f() {
             }
             if (ok) {
                 var H = cont_frm(this.num,this.den);
-                var tmpvar0 = H.slice(2-1,5)
-                var A = tmpvar0[0]
-                var B = tmpvar0[1]
-                var C = tmpvar0[2]
+                var tmpvar0 = H.slice(2-1,5);
+                var A = tmpvar0[0];
+                var B = tmpvar0[1];
+                var C = tmpvar0[2];
                 var D = tmpvar0[3];
-                graphics.exprs = exprs;
-                var tmpvar1 = size(A)
-                var ns1 = tmpvar1[0]
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                var tmpvar1 = size(A);
+                var ns1 = tmpvar1[0];
                 var ns1 = tmpvar1[1];
                 var rpar = [[matrix(A,ns1*ns1,1)],[matrix(B,ns1,1)],[matrix(C,ns1,1)],[D]];
                 if (norm(D,1)!=0) {
@@ -79,7 +79,7 @@ function CLR_f() {
                 }
                 this.model.state = new ScilabDouble(x0);
                 this.model.rpar = new ScilabDouble(rpar);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

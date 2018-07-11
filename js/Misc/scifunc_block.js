@@ -60,8 +60,8 @@ function scifunc_block() {
         var needcompile = 0;
         this.x = arg1;
         this.model = arg1.model;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         if (size(exprs[1-1],"*")==8) {
             exprs[1-1][9-1] = "0";
         }
@@ -83,17 +83,17 @@ function scifunc_block() {
             var nci = size(this.ci,1);
             this.co = int(this.co.slice());
             var nco = size(this.co,1);
-            var tmpvar0 = genfunc1(exprs[2-1],this.i,this.o,nci,nco,size(this.xx,1),size(this.z,1),nrp,"c")
-            var ok = tmpvar0[0]
-            var tt = tmpvar0[1]
+            var tmpvar0 = genfunc1(exprs[2-1],this.i,this.o,nci,nco,size(this.xx,1),size(this.z,1),nrp,"c");
+            var ok = tmpvar0[0];
+            var tt = tmpvar0[1];
             var dep_ut = tmpvar0[2];
             dep_ut[2-1] = (1==this.deptime);
             if (!ok) {
                 break;
             }
-            var tmpvar1 = check_io(this.model,graphics,this.i,this.o,this.ci,this.co)
-            this.model = tmpvar1[0]
-            var graphics = tmpvar1[1]
+            var tmpvar1 = check_io(this.model,this.graphics,this.i,this.o,this.ci,this.co);
+            this.model = tmpvar1[0];
+            this.graphics = tmpvar1[1];
             var ok = tmpvar1[2];
             if (ok) {
                 var auto = this.auto0;
@@ -112,8 +112,8 @@ function scifunc_block() {
                 this.model.dep_ut = new ScilabDouble([dep_ut]);
                 this.x.model = this.model;
                 exprs[2-1] = tt;
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 break;
             }
         }

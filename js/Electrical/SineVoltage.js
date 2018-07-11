@@ -46,8 +46,8 @@ function SineVoltage() {
         this.offset = parseFloat(arguments[0]["offset"])
         this.start = parseFloat(arguments[0]["start"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.V,this.ph,this.frq,this.offset,this.start,exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","phase (rad)","Frequency (Hz)","Voltageoffset (V)","Timeoffset (s)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
@@ -55,9 +55,9 @@ function SineVoltage() {
                 break;
             }
             this.model.rpar = new ScilabDouble([this.V],[this.ph],[this.frq],[this.offset],[this.start]);
-            this.model.equations.parameters[2] = list(new ScilabDouble([this.V]), new ScilabDouble([this.ph]), new ScilabDouble([this.frq]), new ScilabDouble([this.offset]), new ScilabDouble([this.start]));
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.model.equations.parameters[2-1] = list(new ScilabDouble([this.V]), new ScilabDouble([this.ph]), new ScilabDouble([this.frq]), new ScilabDouble([this.offset]), new ScilabDouble([this.start]));
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

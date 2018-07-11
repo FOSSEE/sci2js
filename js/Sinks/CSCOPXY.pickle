@@ -10,7 +10,7 @@ aS'ymax'
 p4
 aS'wpos'
 p5
-aS'win'
+aS'siz'
 p6
 aS'wdim'
 p7
@@ -18,7 +18,7 @@ aS'N'
 p8
 aS'xmax'
 p9
-aS'siz'
+aS'graphics'
 p10
 aS'xmin'
 p11
@@ -28,8 +28,10 @@ aS'model'
 p13
 aS'nbr_curves'
 p14
-atp15
-Rp16
+aS'win'
+p15
+atp16
+Rp17
 .(dp0
 S'clrs'
 p1

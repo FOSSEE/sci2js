@@ -49,8 +49,8 @@ function RAND_m() {
         this.b = parseFloat(arguments[0]["b"])
         this.seed_c = arguments[0]["seed_c"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==14) {
             exprs[9-1] = [];
@@ -79,15 +79,15 @@ function RAND_m() {
                     var ok = false;
                 }
                 if (ok) {
-                    var tmpvar0 = set_io(this.model,graphics,list([],[]),list(out,ot),1,[])
-                    this.model = tmpvar0[0]
-                    var graphics = tmpvar0[1]
+                    var tmpvar0 = set_io(this.model,this.graphics,list([],[]),list(out,ot),1,[]);
+                    this.model = tmpvar0[0];
+                    this.graphics = tmpvar0[1];
                     var ok = tmpvar0[2];
                     if (ok) {
                         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([4]));
-                        graphics.exprs = exprs;
+                        this.graphics.exprs = new ScilabDouble([exprs]);
                         this.model.ipar = new ScilabDouble([this.flag]);
-                        this.x.graphics = graphics;
+                        this.x.graphics = this.graphics;
                         this.x.model = this.model;
                         break;
                     }

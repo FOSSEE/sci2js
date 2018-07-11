@@ -49,8 +49,8 @@ function CFSCOPE() {
         this.N = parseFloat(arguments[0]["N"])
         this.wu = arguments[0]["wu"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.wu,exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Links to view"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",-1),exprs);
@@ -108,8 +108,8 @@ function CFSCOPE() {
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.firing = new ScilabDouble([]);
                 this.model.dep_ut = new ScilabDouble([true,false]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

@@ -35,8 +35,8 @@ function RAMP() {
         this.stt = parseFloat(arguments[0]["stt"])
         this.iout = parseFloat(arguments[0]["iout"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.slope,this.stt,this.iout,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","RAMP")],[" "],["Ramp function"],[" "]],["Slope","Start Time","Initial Value"],list("vec",1,"vec",1,"vec",1),exprs);
@@ -47,8 +47,8 @@ function RAMP() {
                 block_parameter_error(msprintf("Wrong value for \'Start Time\' parameter: %e.",this.stt),"Null or positive integer expected.");
             } else {
                 this.model.rpar = new ScilabDouble([this.slope],[this.stt],[this.iout]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

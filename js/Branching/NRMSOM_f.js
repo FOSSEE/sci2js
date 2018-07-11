@@ -26,21 +26,21 @@ function NRMSOM_f() {
     NRMSOM_f.prototype.set = function NRMSOM_f() {
         this.nin = parseFloat(arguments[0]["nin"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.nin,exprs] = scicos_getvalue("Set parameters",["number of inputs"],list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            var tmpvar0 = check_io(this.model,graphics,-ones(this.nin,1),-1,[],[])
-            this.model = tmpvar0[0]
-            var graphics = tmpvar0[1]
+            var tmpvar0 = check_io(this.model,this.graphics,-ones(this.nin,1),-1,[],[]);
+            this.model = tmpvar0[0];
+            this.graphics = tmpvar0[1];
             var ok = tmpvar0[2];
             if (ok) {
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

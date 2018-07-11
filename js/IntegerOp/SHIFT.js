@@ -36,9 +36,9 @@ function SHIFT() {
         this.nb = arguments[0]["nb"]
         this.np = arguments[0]["np"]
         this.x = arg1;
-        var graphics = arg1.graphics;
+        this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             [ok,this.Datatype,this.nb,this.np,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","SHIFT")],[" "],["Shift/Rotates bits"]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Number of Bits to Shift Left (Negative number to shift right)","Shift Type (0:Arithmetic, 1:Circular)"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
@@ -118,15 +118,15 @@ function SHIFT() {
                 var ok = false;
             }
             if (ok) {
-                var tmpvar0 = set_io(this.model,graphics,list([-1,-2],it),list([-1,-2],ot),[],[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list([-1,-2],it),list([-1,-2],ot),[],[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.nb]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

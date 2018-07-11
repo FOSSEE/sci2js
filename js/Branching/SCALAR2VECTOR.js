@@ -25,8 +25,8 @@ function SCALAR2VECTOR() {
     SCALAR2VECTOR.prototype.set = function SCALAR2VECTOR() {
         this.nout = parseFloat(arguments[0]["nout"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.nout,exprs] = scicos_getvalue("Set block parameters",["size of output (-1: if don\'t know)"],list("vec",1),exprs);
@@ -39,14 +39,14 @@ function SCALAR2VECTOR() {
                 var ok = false;
             }
             if (ok) {
-                var tmpvar0 = check_io(this.model,graphics,[1],this.nout,[],[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = check_io(this.model,this.graphics,[1],this.nout,[],[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

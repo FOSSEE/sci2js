@@ -33,8 +33,8 @@ function Resistor() {
     Resistor.prototype.set = function Resistor() {
         this.R = parseFloat(arguments[0]["R"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.R,exprs] = scicos_getvalue("Set Resistor block parameter","R (ohm)",list("vec",1),exprs);
@@ -42,9 +42,9 @@ function Resistor() {
                 break;
             }
             this.model.rpar = new ScilabDouble([this.R]);
-            this.model.equations.parameters[2] = list(new ScilabDouble([this.R]));
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.model.equations.parameters[2-1] = list(new ScilabDouble([this.R]));
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

@@ -22,8 +22,8 @@ function LOOKUP_f() {
     }
     LOOKUP_f.prototype.set = function LOOKUP_f() {
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         var rpar = this.model.rpar;
         var n = size(rpar,"*")/2;
@@ -32,10 +32,10 @@ function LOOKUP_f() {
         while (true) {
             [ln,fun]=where()
             if (!or(fun=="do_eval")) {
-                var tmpvar0 = edit_curv(xx,yy,"axy")
-                var xx = tmpvar0[0]
-                var yy = tmpvar0[1]
-                var ok = tmpvar0[2]
+                var tmpvar0 = edit_curv(xx,yy,"axy");
+                var xx = tmpvar0[0];
+                var yy = tmpvar0[1];
+                var ok = tmpvar0[2];
                 var gc = tmpvar0[3];
             } else {
                 var ok = true;
@@ -50,7 +50,7 @@ function LOOKUP_f() {
             }
             if (ok) {
                 this.model.rpar = new ScilabDouble([xx.slice()],[yy.slice()]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

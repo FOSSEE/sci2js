@@ -34,8 +34,8 @@ function GAINBLK() {
         this.gain = parseFloat(arguments[0]["gain"])
         this.over = arguments[0]["over"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==1) {
             var exprs = [[exprs],[sci2exp(0)]];
@@ -137,24 +137,24 @@ function GAINBLK() {
                     this.model.opar = list(this.gain.slice());
                 }
                 if (ok) {
-                    var tmpvar0 = size(this.gain)
-                    var out = tmpvar0[0]
+                    var tmpvar0 = size(this.gain);
+                    var out = tmpvar0[0];
                     var in1 = tmpvar0[1];
                     if (out*in1!=1) {
-                        var tmpvar1 = set_io(this.model,graphics,list([in1,-1],ot),list([out,-1],ot),[],[])
-                        this.model = tmpvar1[0]
-                        var graphics = tmpvar1[1]
+                        var tmpvar1 = set_io(this.model,this.graphics,list([in1,-1],ot),list([out,-1],ot),[],[]);
+                        this.model = tmpvar1[0];
+                        this.graphics = tmpvar1[1];
                         var ok = tmpvar1[2];
                     } else {
-                        var tmpvar2 = set_io(this.model,graphics,list([-1,-2],ot),list([-1,-2],ot),[],[])
-                        this.model = tmpvar2[0]
-                        var graphics = tmpvar2[1]
+                        var tmpvar2 = set_io(this.model,this.graphics,list([-1,-2],ot),list([-1,-2],ot),[],[]);
+                        this.model = tmpvar2[0];
+                        this.graphics = tmpvar2[1];
                         var ok = tmpvar2[2];
                     }
                 }
                 if (ok) {
-                    graphics.exprs = exprs;
-                    this.x.graphics = graphics;
+                    this.graphics.exprs = new ScilabDouble(exprs);
+                    this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;
                 }

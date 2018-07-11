@@ -39,17 +39,17 @@ function OpAmp() {
         this.SatH = arguments[0]["SatH"]
         this.SatL = arguments[0]["SatL"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (false) {
             [ok,this.OLGain,this.SatH,this.SatL,exprs] = scicos_getvalue("Set the Operational Amplifier parameters",["Open Loop Gain","Positive saturation voltage","Negative saturation voltage"],list("vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            this.model.equations.parameters[2] = list(new ScilabDouble([this.OLGain]), new ScilabDouble([this.SatH]), new ScilabDouble([this.SatL]));
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.model.equations.parameters[2-1] = list(new ScilabDouble([this.OLGain]), new ScilabDouble([this.SatH]), new ScilabDouble([this.SatL]));
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

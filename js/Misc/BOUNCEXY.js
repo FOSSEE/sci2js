@@ -61,8 +61,8 @@ function BOUNCEXY() {
         this.ymin = parseFloat(arguments[0]["ymin"])
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         var dstate = this.model.dstate;
         while (true) {
@@ -104,8 +104,8 @@ function BOUNCEXY() {
                 this.model.dstate = new ScilabDouble(z);
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.ipar = new ScilabDouble(ipar);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

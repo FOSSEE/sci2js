@@ -25,19 +25,19 @@ function EVTGEN_f() {
     EVTGEN_f.prototype.set = function EVTGEN_f() {
         this.tt = parseFloat(arguments[0]["tt"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.tt,exprs] = scicos_getvalue("Set Event time",["Event Time"],list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            graphics.exprs = exprs;
+            this.graphics.exprs = new ScilabDouble([exprs]);
             if (this.model.firing!=this.tt) {
                 this.model.firing = new ScilabDouble([this.tt]);
             }
-            this.x.graphics = graphics;
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

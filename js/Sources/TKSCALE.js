@@ -32,14 +32,14 @@ function TKSCALE() {
         this.b = parseFloat(arguments[0]["b"])
         this.f = parseFloat(arguments[0]["f"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         [ok,this.a,this.b,this.f,exprs] = scicos_getvalue("Set scale block parameters",["Min value","Max value","Normalization"],list("vec",1,"vec",1,"vec",1),exprs);
         if (ok) {
-            graphics.exprs = exprs;
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.model.rpar = new ScilabDouble([this.a],[this.b],[this.f]);
-            this.x.graphics = graphics;
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
         }
         return new BasicBlock(this.x);

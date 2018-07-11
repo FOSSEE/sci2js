@@ -27,85 +27,85 @@ function PDE() {
         this.rdnom = arguments[0]["rdnom"]
         this.lab = arguments[0]["lab"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var label = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var label = this.graphics.exprs;
         this.model = arg1.model;
         var params_pde = label[1-1];
         while (true) {
             [ln,fun]=where()
             if (!or(fun=="do_eval")) {
-                var tmpvar0 = IHM_EDP(params_pde)
-                var ok = tmpvar0[0]
-                var a_domaine = tmpvar0[1]
-                var b_domaine = tmpvar0[2]
-                var discr = tmpvar0[3]
-                var signe = tmpvar0[4]
-                var choix = tmpvar0[5]
-                var type_meth = tmpvar0[6]
-                var degre = tmpvar0[7]
-                var Nbr_maillage = tmpvar0[8]
-                var CI = tmpvar0[9]
-                var CI1 = tmpvar0[10]
-                var CLa_type = tmpvar0[11]
-                var CLa_exp = tmpvar0[12]
-                var CLb_type = tmpvar0[13]
-                var CLb_exp = tmpvar0[14]
-                var oper = tmpvar0[15]
-                var a1 = tmpvar0[16]
-                var b1 = tmpvar0[17]
-                var a2 = tmpvar0[18]
-                var b2 = tmpvar0[19]
-                var a3 = tmpvar0[20]
-                var b3 = tmpvar0[21]
-                var a4 = tmpvar0[22]
-                var b4 = tmpvar0[23]
-                var a5 = tmpvar0[24]
-                var b5 = tmpvar0[25]
-                var a6 = tmpvar0[26]
-                var b6 = tmpvar0[27]
-                var a7 = tmpvar0[28]
-                var b7 = tmpvar0[29]
-                var k = tmpvar0[30]
-                var mesures = tmpvar0[31]
+                var tmpvar0 = IHM_EDP(params_pde);
+                var ok = tmpvar0[0];
+                var a_domaine = tmpvar0[1];
+                var b_domaine = tmpvar0[2];
+                var discr = tmpvar0[3];
+                var signe = tmpvar0[4];
+                var choix = tmpvar0[5];
+                var type_meth = tmpvar0[6];
+                var degre = tmpvar0[7];
+                var Nbr_maillage = tmpvar0[8];
+                var CI = tmpvar0[9];
+                var CI1 = tmpvar0[10];
+                var CLa_type = tmpvar0[11];
+                var CLa_exp = tmpvar0[12];
+                var CLb_type = tmpvar0[13];
+                var CLb_exp = tmpvar0[14];
+                var oper = tmpvar0[15];
+                var a1 = tmpvar0[16];
+                var b1 = tmpvar0[17];
+                var a2 = tmpvar0[18];
+                var b2 = tmpvar0[19];
+                var a3 = tmpvar0[20];
+                var b3 = tmpvar0[21];
+                var a4 = tmpvar0[22];
+                var b4 = tmpvar0[23];
+                var a5 = tmpvar0[24];
+                var b5 = tmpvar0[25];
+                var a6 = tmpvar0[26];
+                var b6 = tmpvar0[27];
+                var a7 = tmpvar0[28];
+                var b7 = tmpvar0[29];
+                var k = tmpvar0[30];
+                var mesures = tmpvar0[31];
                 var params_pde = tmpvar0[32];
                 if (ok) {
                     return;
                 }
             } else {
                 if (exists("%scicos_context")) {
-                    var tmpvar1 = setvalue_IHM_EDP(params_pde)
-                    var ok = tmpvar1[0]
-                    var a_domaine = tmpvar1[1]
-                    var b_domaine = tmpvar1[2]
-                    var discr = tmpvar1[3]
-                    var signe = tmpvar1[4]
-                    var choix = tmpvar1[5]
-                    var type_meth = tmpvar1[6]
-                    var degre = tmpvar1[7]
-                    var Nbr_maillage = tmpvar1[8]
-                    var CI = tmpvar1[9]
-                    var CI1 = tmpvar1[10]
-                    var CLa_type = tmpvar1[11]
-                    var CLa_exp = tmpvar1[12]
-                    var CLb_type = tmpvar1[13]
-                    var CLb_exp = tmpvar1[14]
-                    var oper = tmpvar1[15]
-                    var a1 = tmpvar1[16]
-                    var b1 = tmpvar1[17]
-                    var a2 = tmpvar1[18]
-                    var b2 = tmpvar1[19]
-                    var a3 = tmpvar1[20]
-                    var b3 = tmpvar1[21]
-                    var a4 = tmpvar1[22]
-                    var b4 = tmpvar1[23]
-                    var a5 = tmpvar1[24]
-                    var b5 = tmpvar1[25]
-                    var a6 = tmpvar1[26]
-                    var b6 = tmpvar1[27]
-                    var a7 = tmpvar1[28]
-                    var b7 = tmpvar1[29]
-                    var k = tmpvar1[30]
-                    var mesures = tmpvar1[31]
+                    var tmpvar1 = setvalue_IHM_EDP(params_pde);
+                    var ok = tmpvar1[0];
+                    var a_domaine = tmpvar1[1];
+                    var b_domaine = tmpvar1[2];
+                    var discr = tmpvar1[3];
+                    var signe = tmpvar1[4];
+                    var choix = tmpvar1[5];
+                    var type_meth = tmpvar1[6];
+                    var degre = tmpvar1[7];
+                    var Nbr_maillage = tmpvar1[8];
+                    var CI = tmpvar1[9];
+                    var CI1 = tmpvar1[10];
+                    var CLa_type = tmpvar1[11];
+                    var CLa_exp = tmpvar1[12];
+                    var CLb_type = tmpvar1[13];
+                    var CLb_exp = tmpvar1[14];
+                    var oper = tmpvar1[15];
+                    var a1 = tmpvar1[16];
+                    var b1 = tmpvar1[17];
+                    var a2 = tmpvar1[18];
+                    var b2 = tmpvar1[19];
+                    var a3 = tmpvar1[20];
+                    var b3 = tmpvar1[21];
+                    var a4 = tmpvar1[22];
+                    var b4 = tmpvar1[23];
+                    var a5 = tmpvar1[24];
+                    var b5 = tmpvar1[25];
+                    var a6 = tmpvar1[26];
+                    var b6 = tmpvar1[27];
+                    var a7 = tmpvar1[28];
+                    var b7 = tmpvar1[29];
+                    var k = tmpvar1[30];
+                    var mesures = tmpvar1[31];
                     var params_pde = tmpvar1[32];
                 }
             }
@@ -151,10 +151,10 @@ function PDE() {
                 }
                 var type_meth = arbre_decision(delta);
             }
-            var tmpvar2 = translate(CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,type_meth,degre,a_domaine,b_domaine,Nbr_maillage,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,a7,b7,this.rdnom,mesures)
-            var flag_type = tmpvar2[0]
-            this.rdnom = tmpvar2[1]
-            var DF_type = tmpvar2[2]
+            var tmpvar2 = translate(CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,type_meth,degre,a_domaine,b_domaine,Nbr_maillage,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,a7,b7,this.rdnom,mesures);
+            var flag_type = tmpvar2[0];
+            this.rdnom = tmpvar2[1];
+            var DF_type = tmpvar2[2];
             var tt = tmpvar2[3];
             var Nbr = Nbr_maillage;
             if (((CLa_type==1)&&(DF_type==0||DF_type==1))||((CLb_type==1)&&(DF_type==0||DF_type==2))) {
@@ -192,21 +192,21 @@ function PDE() {
                     }
                 }
             }
-            var tmpvar3 = CFORTREDP(this.rdnom,tt)
+            var tmpvar3 = CFORTREDP(this.rdnom,tt);
             var ok1 = tmpvar3[0];
             if (!ok1) {
                 break;
             }
             if (!ok) {
-                var tmpvar4 = check_io(this.model,graphics,ones(k,1),out.slice(),[],[])
-                this.model = tmpvar4[0]
-                var graphics = tmpvar4[1]
+                var tmpvar4 = check_io(this.model,this.graphics,ones(k,1),out.slice(),[],[]);
+                this.model = tmpvar4[0];
+                this.graphics = tmpvar4[1];
                 var ok = tmpvar4[2];
             }
             label[1-1] = params_pde;
             label[2-1] = tt;
-            graphics.exprs = label;
-            this.x.graphics = graphics;
+            this.graphics.exprs = new ScilabDouble([label]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

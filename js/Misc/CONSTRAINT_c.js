@@ -26,8 +26,8 @@ function CONSTRAINT_c() {
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
         this.x0 = inverse(arguments[0]["x0"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.x0,exprs] = scicos_getvalue("Set solver block parameters","Initial guess values",list("vec",-1),exprs);
@@ -39,17 +39,17 @@ function CONSTRAINT_c() {
             if (N<=0) {
                 message("number of states (constraints) must be > 0 ");
             } else {
-                var tmpvar0 = check_io(this.model,graphics,N,N,[],[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = check_io(this.model,this.graphics,N,N,[],[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    graphics.exprs = exprs;
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.model.state = new ScilabDouble([this.x0],[zeros(N,1)]);
                     this.model.out = new ScilabDouble([N]);
                     this.model.in1 = new ScilabDouble([N]);
                     this.model.ipar = new ScilabDouble([-1*ones(N,1)]);
-                    this.x.graphics = graphics;
+                    this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;
                 }

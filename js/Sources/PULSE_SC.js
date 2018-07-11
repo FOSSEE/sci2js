@@ -61,8 +61,8 @@ function PULSE_SC() {
         var y = this.needcompile;
         arg1.model.ipar = 1;
         var typ = list();
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         var Btitre = "Set Pulse Generator parameters";
         var Exprs0 = [["E"],["W"],["F"],["A"]];
         var Bitems = [["Phase delay (secs):"],["Pulse Width (% of period):"],["Period (secs):"],["Amplitude:"]];
@@ -77,14 +77,14 @@ function PULSE_SC() {
             }
             var PREVAR_scicos_context = scicos_context;
             var sblock = this.x.model.rpar;
-            var tmpvar0 = script2var(sblock.props.context,PREVAR_scicos_context)
-            var PREVAR_scicos_context = tmpvar0[0]
+            var tmpvar0 = script2var(sblock.props.context,PREVAR_scicos_context);
+            var PREVAR_scicos_context = tmpvar0[0];
             var ierr = tmpvar0[1];
             if (ierr==0) {
-                var tmpvar1 = do_eval(sblock,list())
-                var sblock = tmpvar1[0]
-                %w = tmpvar1[1]
-                var needcompile2 = tmpvar1[2]
+                var tmpvar1 = do_eval(sblock,list());
+                var sblock = tmpvar1[0];
+                %w = tmpvar1[1];
+                var needcompile2 = tmpvar1[2];
                 var ok = tmpvar1[3];
                 if (ok) {
                     var y = max(2,this.needcompile,needcompile2);

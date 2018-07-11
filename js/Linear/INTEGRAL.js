@@ -38,8 +38,8 @@ function INTEGRAL() {
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.lowp = arguments[0]["lowp"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),exprs);
@@ -82,14 +82,14 @@ function INTEGRAL() {
             if (ok) {
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.state = new ScilabDouble(this.x0);
-                var tmpvar0 = check_io(this.model,graphics,size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,1),ones(this.reinit,1),[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = check_io(this.model,this.graphics,size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,1),ones(this.reinit,1),[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

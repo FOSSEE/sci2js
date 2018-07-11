@@ -47,8 +47,8 @@ function LOOKUP_c() {
         this.graf = arguments[0]["graf"]
         this.x = arg1;
         this.model = arg1.model;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
         while (true) {
@@ -81,11 +81,11 @@ function LOOKUP_c() {
             if (!Ask_again) {
                 this.xx = this.xx.slice();
                 this.yy = this.yy.slice();
-                var tmpvar0 = size(this.xx)
-                var nx = tmpvar0[0]
+                var tmpvar0 = size(this.xx);
+                var nx = tmpvar0[0];
                 var mx = tmpvar0[1];
-                var tmpvar1 = size(this.yy)
-                var ny = tmpvar1[0]
+                var tmpvar1 = size(this.yy);
+                var ny = tmpvar1[0];
                 var my = tmpvar1[1];
                 if (!((nx==ny)&&(mx==my))) {
                     x_message("incompatible size of x and y");
@@ -94,7 +94,7 @@ function LOOKUP_c() {
             }
             if (!Ask_again) {
                 this.xy = [this.xx,this.yy];
-                var tmpvar2 = cleandata(this.xy)
+                var tmpvar2 = cleandata(this.xy);
                 this.xy = tmpvar2[0];
                 var N = size(this.xy,"r");
                 exprs[5-1] = "n";
@@ -107,9 +107,9 @@ function LOOKUP_c() {
                     }
                     var save_curwin = this.curwin;
                     this.curwin = max(winsid())+1;
-                    var tmpvar3 = poke_point(this.xy,ipar,rpar)
-                    var orpar = tmpvar3[0]
-                    var oipar = tmpvar3[1]
+                    var tmpvar3 = poke_point(this.xy,ipar,rpar);
+                    var orpar = tmpvar3[0];
+                    var oipar = tmpvar3[1];
                     var ok = tmpvar3[2];
                     this.curwin = save_curwin;
                     if (!ok) {
@@ -142,9 +142,9 @@ function LOOKUP_c() {
                     }
                     var SaveExit = true;
                 } else {
-                    var tmpvar4 = Do_Spline(N,mtd,this.xy.slice()[1-1],this.xy.slice()[2-1],this.xy[$-1][1-1],this.xy[1-1][1-1],0)
-                    var Xdummy = tmpvar4[0]
-                    var Ydummy = tmpvar4[1]
+                    var tmpvar4 = Do_Spline(N,mtd,this.xy.slice()[1-1],this.xy.slice()[2-1],this.xy[$-1][1-1],this.xy[1-1][1-1],0);
+                    var Xdummy = tmpvar4[0];
+                    var Ydummy = tmpvar4[1];
                     var orpar = tmpvar4[2];
                     if ((METHOD=="periodic")) {
                         this.xy[N-1][2-1] = this.xy[1-1][2-1];
@@ -170,9 +170,9 @@ function LOOKUP_c() {
                 }
                 this.model.rpar = new ScilabDouble(orpar);
                 this.model.ipar = new ScilabDouble(oipar);
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.model = this.model;
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 break;
             }
         }

@@ -26,8 +26,8 @@ function END_c() {
     END_c.prototype.set = function END_c() {
         this.tf = parseFloat(arguments[0]["tf"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.tf,exprs] = scicos_getvalue("Set final simulation time",["Final simulation time"],list("vec",1),exprs);
@@ -35,9 +35,9 @@ function END_c() {
                 break;
             }
             if (ok) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.firing = new ScilabDouble([this.tf]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

@@ -19,12 +19,12 @@ function DEBUG() {
     }
     DEBUG.prototype.set = function DEBUG() {
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         var textmp = exprs[2-1];
         var ok = true;
         while (1==1) {
-            var tmpvar0 = dialog([["Enter scilab instructions for debugging."],[" Inputs are block and flag, output is block"]],textmp)
+            var tmpvar0 = dialog([["Enter scilab instructions for debugging."],[" Inputs are block and flag, output is block"]],textmp);
             var txt = tmpvar0[0];
             if (txt!=[]) {
                 var tt = ["block=debug_scicos(block,flag)"];
@@ -47,8 +47,8 @@ function DEBUG() {
             }
         }
         if (ok) {
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
         }
         return new BasicBlock(this.x);
     }

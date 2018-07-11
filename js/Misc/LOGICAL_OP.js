@@ -34,8 +34,8 @@ function LOGICAL_OP() {
         this.Datatype = arguments[0]["Datatype"]
         this.tp = parseFloat(arguments[0]["tp"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,1)==2) {
             var exprs = [[exprs],[sci2exp(1)],[sci2exp(0)]];
@@ -93,15 +93,15 @@ function LOGICAL_OP() {
                     var in1 = [-ones(this.nin,1),-2*ones(this.nin,1)];
                     if ((this.rule!=5)&&(this.nin==1)) {
                         var out = [1,1];
-                        var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
-                        this.model = tmpvar0[0]
-                        var graphics = tmpvar0[1]
+                        var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
+                        this.model = tmpvar0[0];
+                        this.graphics = tmpvar0[1];
                         var ok = tmpvar0[2];
                     } else {
                         var out = [-1,-2];
-                        var tmpvar1 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
-                        this.model = tmpvar1[0]
-                        var graphics = tmpvar1[1]
+                        var tmpvar1 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
+                        this.model = tmpvar1[0];
+                        this.graphics = tmpvar1[1];
                         var ok = tmpvar1[2];
                     }
                 }
@@ -119,9 +119,9 @@ function LOGICAL_OP() {
                     } else if (this.rule==5) {
                         var label = "NOT";
                     }
-                    graphics.exprs = exprs;
-                    graphics.style = ["blockWithLabel;displayedLabel="+label];
-                    this.x.graphics = graphics;
+                    this.graphics.exprs = new ScilabDouble(exprs);
+                    this.graphics.style = new ScilabDouble(["blockWithLabel;displayedLabel="+label]);
+                    this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;
                 }

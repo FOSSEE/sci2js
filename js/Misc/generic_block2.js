@@ -63,8 +63,8 @@ function generic_block2() {
         this.lab = arguments[0]["lab"]
         this.x = arg1;
         this.model = arg1.model;
-        var graphics = arg1.graphics;
-        var label = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -108,9 +108,9 @@ function generic_block2() {
             }
             var dep_ut = [this.depu,this.dept];
             if (ok) {
-                var tmpvar0 = check_io(this.model,graphics,this.i,this.o,this.ci,this.co)
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = check_io(this.model,this.graphics,this.i,this.o,this.ci,this.co);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
@@ -127,8 +127,8 @@ function generic_block2() {
                 this.model.nmode = new ScilabDouble([this.nmode]);
                 this.model.dep_ut = new ScilabDouble(dep_ut);
                 arg1.model = this.model;
-                graphics.exprs = label;
-                arg1.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([label]);
+                arg1.graphics = this.graphics;
                 this.x = arg1;
                 break;
             }

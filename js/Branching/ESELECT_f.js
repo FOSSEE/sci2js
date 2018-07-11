@@ -35,8 +35,8 @@ function ESELECT_f() {
         this.inh = parseFloat(arguments[0]["inh"])
         this.nmod = parseFloat(arguments[0]["nmod"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         if (size(exprs,"*")==1) {
             exprs[2-1] = string(1);
         }
@@ -61,15 +61,15 @@ function ESELECT_f() {
             if (this.out<2) {
                 message("Block must have at least two output ports");
             } else {
-                var tmpvar0 = check_io(this.model,graphics,1,[],this.inh,[ones(this.out,1)])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = check_io(this.model,this.graphics,1,[],this.inh,[ones(this.out,1)]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    graphics.exprs = exprs;
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.model.evtout = new ScilabDouble([ones(this.out,1)]);
                     this.model.firing = new ScilabDouble([-ones(this.out,1)]);
-                    this.x.graphics = graphics;
+                    this.x.graphics = this.graphics;
                     this.model.nmode = new ScilabDouble([this.nmod]);
                     this.model.nzcross = new ScilabDouble([this.nmod]);
                     this.x.model = this.model;

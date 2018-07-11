@@ -30,8 +30,8 @@ function SAMPHOLD_m() {
         this.it = arguments[0]["it"]
         this.x = arg1;
         this.x.model.firing = [];
-        var graphics = arg1.graphics;
-        var label = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var label = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.it,exprs] = scicos_getvalue("Set parameters Block",["Datatype(1=real double 2=Complex 3=int32 ...)"],list("vec",1),label);
@@ -44,13 +44,13 @@ function SAMPHOLD_m() {
             }
             if (ok) {
                 var in1 = [this.model.in1,this.model.in2];
-                var tmpvar0 = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list(in1,this.it),list(in1,this.it),1,[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    graphics.exprs = exprs;
-                    arg1.graphics = graphics;
+                    this.graphics.exprs = new ScilabDouble([exprs]);
+                    arg1.graphics = this.graphics;
                     arg1.model = this.model;
                     this.x = arg1;
                     break;

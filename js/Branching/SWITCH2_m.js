@@ -41,8 +41,8 @@ function SWITCH2_m() {
         this.thra = arguments[0]["thra"]
         this.nzz = parseFloat(arguments[0]["nzz"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.ot,this.rule,this.thra,this.nzz,exprs] = scicos_getvalue("Set parameters",["Datatype (1=real double  2=complex 3=int32 ...)","pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
@@ -56,7 +56,7 @@ function SWITCH2_m() {
             if ((this.rule>2)) {
                 this.rule = 2;
             }
-            graphics.exprs = exprs;
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.model.ipar = new ScilabDouble([this.rule]);
             this.model.rpar = new ScilabDouble([this.thra]);
             if (this.nzz!=0) {
@@ -76,13 +76,13 @@ function SWITCH2_m() {
                 it[3-1] = this.ot;
                 var in1 = [this.model.in1,this.model.in2];
                 var out = [this.model.out,this.model.out2];
-                var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,this.ot),[],[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,this.ot),[],[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

@@ -45,8 +45,8 @@ function BPLATFORM() {
         this.ymin = parseFloat(arguments[0]["ymin"])
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         var dstate = this.model.dstate;
         while (true) {
@@ -72,8 +72,8 @@ function BPLATFORM() {
             } else {
                 var rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
                 this.model.rpar = new ScilabDouble(rpar);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

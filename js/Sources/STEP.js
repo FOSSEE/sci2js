@@ -34,8 +34,8 @@ function STEP() {
         this.in1 = arguments[0]["in1"]
         this.fi = arguments[0]["fi"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.temps,this.in1,this.fi,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","STEP_FUNCTION")],[" "],["Step Function"],[" "]],["Step Time","Initial Value","Final Value"],list("vec",1,"vec",-1,"vec",-1),exprs);
@@ -57,9 +57,9 @@ function STEP() {
             if (ok) {
                 this.model.out2 = new ScilabDouble([1]);
                 this.model.outtyp = new ScilabDouble([1]);
-                var tmpvar0 = check_io(this.model,graphics,[],size(this.fi,"*"),1,1)
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = check_io(this.model,this.graphics,[],size(this.fi,"*"),1,1);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
@@ -70,8 +70,8 @@ function STEP() {
                     var rpar = [[this.in1],[this.fi]];
                 }
                 this.model.rpar = new ScilabDouble(rpar);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

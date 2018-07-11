@@ -26,8 +26,8 @@ function REGISTER_f() {
     REGISTER_f.prototype.set = function REGISTER_f() {
         this.z0 = parseFloat(arguments[0]["z0"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.z0,exprs] = scicos_getvalue("Set delay parameters","Register initial condition",list("vec",-1),exprs);
@@ -39,9 +39,9 @@ function REGISTER_f() {
                 var ok = false;
             }
             if (ok) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.dstate = new ScilabDouble([this.z0]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

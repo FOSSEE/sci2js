@@ -28,8 +28,8 @@ function EDGETRIGGER() {
     EDGETRIGGER.prototype.set = function EDGETRIGGER() {
         this.edge = parseFloat(arguments[0]["edge"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.edge,exprs] = scicos_getvalue("Set edge trigger block parameters",["rising (1), falling (-1), both (0)"],list("vec",1),exprs);
@@ -37,8 +37,8 @@ function EDGETRIGGER() {
                 break;
             }
             this.model.ipar = new ScilabDouble([sign(this.edge)]);
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

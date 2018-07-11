@@ -51,8 +51,8 @@ function PerteDP() {
         this.z2 = parseFloat(arguments[0]["z2"])
         this.p_rho = parseFloat(arguments[0]["p_rho"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.L,this.D,this.lambda,this.z1,this.z2,this.p_rho,exprs] = scicos_getvalue("Parametres du tuyau",["Longueur du tube : L (m)","Diamètre interne du tube : D (m)","Coefficient de perte de charge-frottement(S.U) : lambda","Altitude entrée tuyauterie : z1 (m)","Altitude sortie tuyauterie : z2 (m)","Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
@@ -60,9 +60,9 @@ function PerteDP() {
                 break;
             }
             this.model.rpar = new ScilabDouble([this.L],[this.D],[this.lambda],[this.z1],[this.z2],[this.p_rho]);
-            this.model.equations.parameters[2] = list(new ScilabDouble([this.L]), new ScilabDouble([this.D]), new ScilabDouble([this.lambda]), new ScilabDouble([this.z1]), new ScilabDouble([this.z2]), new ScilabDouble([this.p_rho]));
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.model.equations.parameters[2-1] = list(new ScilabDouble([this.L]), new ScilabDouble([this.D]), new ScilabDouble([this.lambda]), new ScilabDouble([this.z1]), new ScilabDouble([this.z2]), new ScilabDouble([this.p_rho]));
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

@@ -62,8 +62,8 @@ function Bache() {
         this.T0 = parseFloat(arguments[0]["T0"])
         this.p_rho = parseFloat(arguments[0]["p_rho"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.Patm,this.A,this.ze1,this.ze2,this.zs1,this.zs2,this.z0,this.T0,this.p_rho,exprs] = scicos_getvalue("Parametres de la bache",["Pression dans le ciel de la bache : Patm (Pa)","Section de la bache : A (m2)","Altitude du piquage d entrée 1: ze1 (m)","Altitude du piquage d entrée 2: ze2 (m)","Altitude du piquage de sortie 1: zs1 (m)","Altitude du piquage de sortie 2: zs2 (m)","Altitude initiale du fluide : z0 (m)","Température initiale du fluide : T0 (K)","Si >0, masse volumique imposée du fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
@@ -71,9 +71,9 @@ function Bache() {
                 break;
             }
             this.model.rpar = new ScilabDouble([this.Patm],[this.A],[this.ze1],[this.ze2],[this.zs1],[this.zs2],[this.z0],[this.T0],[this.p_rho]);
-            this.model.equations.parameters[2] = list(new ScilabDouble([this.Patm]), new ScilabDouble([this.A]), new ScilabDouble([this.ze1]), new ScilabDouble([this.ze2]), new ScilabDouble([this.zs1]), new ScilabDouble([this.zs2]), new ScilabDouble([this.z0]), new ScilabDouble([this.T0]), new ScilabDouble([this.p_rho]));
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.model.equations.parameters[2-1] = list(new ScilabDouble([this.Patm]), new ScilabDouble([this.A]), new ScilabDouble([this.ze1]), new ScilabDouble([this.ze2]), new ScilabDouble([this.zs1]), new ScilabDouble([this.zs2]), new ScilabDouble([this.z0]), new ScilabDouble([this.T0]), new ScilabDouble([this.p_rho]));
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

@@ -66,8 +66,8 @@ function GEN_SQR() {
         var y = this.needcompile;
         arg1.model.ipar = 1;
         var typ = list();
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         var Btitre = "Set GEN_SQR parameters";
         var Exprs0 = [["Amin"],["Amax"],["rule"],["F"]];
         var Bitems = [["Minimum Value"],["Maximum Value"],["Initial Value( 1= Minimum Value 2= Maximum Value)"],["Period (sec)"]];
@@ -82,14 +82,14 @@ function GEN_SQR() {
             }
             var PREVAR_scicos_context = scicos_context;
             var sblock = this.x.model.rpar;
-            var tmpvar0 = script2var(sblock.props.context,PREVAR_scicos_context)
-            var PREVAR_scicos_context = tmpvar0[0]
+            var tmpvar0 = script2var(sblock.props.context,PREVAR_scicos_context);
+            var PREVAR_scicos_context = tmpvar0[0];
             var ierr = tmpvar0[1];
             if (ierr==0) {
-                var tmpvar1 = do_eval(sblock,list())
-                var sblock = tmpvar1[0]
-                %w = tmpvar1[1]
-                var needcompile2 = tmpvar1[2]
+                var tmpvar1 = do_eval(sblock,list());
+                var sblock = tmpvar1[0];
+                %w = tmpvar1[1];
+                var needcompile2 = tmpvar1[2];
                 var ok = tmpvar1[3];
                 if (ok) {
                     var y = max(2,this.needcompile,needcompile2);

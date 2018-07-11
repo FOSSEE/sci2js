@@ -57,17 +57,17 @@ function NMOS() {
         this.dL = parseFloat(arguments[0]["dL"])
         this.RDS = parseFloat(arguments[0]["RDS"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS,exprs] = scicos_getvalue("Set NMOS Transistor block parameters",["Width [m]","Length [m]","Transconductance parameter [A/(V*V)]","Zero bias threshold voltage [V]","Bulk threshold parameter","Reduction of pinch-off region","Narrowing of channel [m]","Shortening of channel [m]","Drain-Source-Resistance [Ohm]"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
-            this.model.equations.parameters[2] = list(new ScilabDouble([this.W]), new ScilabDouble([this.L]), new ScilabDouble([this.Beta]), new ScilabDouble([this.Vt]), new ScilabDouble([this.K2]), new ScilabDouble([this.K5]), new ScilabDouble([this.dW]), new ScilabDouble([this.dL]), new ScilabDouble([this.RDS]));
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.model.equations.parameters[2-1] = list(new ScilabDouble([this.W]), new ScilabDouble([this.L]), new ScilabDouble([this.Beta]), new ScilabDouble([this.Vt]), new ScilabDouble([this.K2]), new ScilabDouble([this.K5]), new ScilabDouble([this.dW]), new ScilabDouble([this.dL]), new ScilabDouble([this.RDS]));
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

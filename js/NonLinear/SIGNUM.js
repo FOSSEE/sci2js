@@ -27,15 +27,15 @@ function SIGNUM() {
     SIGNUM.prototype.set = function SIGNUM() {
         this.zcr = arguments[0]["zcr"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.zcr,exprs] = scicos_getvalue("Set block parameters",["use zero_crossing (1: yes) (0:no)"],list("vec",1),exprs);
             if (!ok) {
                 break;
             }
-            graphics.exprs = exprs;
+            this.graphics.exprs = new ScilabDouble([exprs]);
             if (ok) {
                 if (this.zcr!=0) {
                     this.model.nmode = new ScilabDouble([-1]);
@@ -44,7 +44,7 @@ function SIGNUM() {
                     this.model.nmode = new ScilabDouble([0]);
                     this.model.nzcross = new ScilabDouble([0]);
                 }
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

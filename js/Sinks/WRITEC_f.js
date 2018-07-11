@@ -41,8 +41,8 @@ function WRITEC_f() {
         this.N = parseFloat(arguments[0]["N"])
         this.swap = parseFloat(arguments[0]["swap"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         var ipar = this.model.ipar;
         var dstate = this.model.dstate;
@@ -71,9 +71,9 @@ function WRITEC_f() {
             } else if (this.fname1=="") {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Output File Name"),"You must provide a filename.");
             } else if (fileparts(this.fname1)!="") {
-                var tmpvar0 = fileparts(this.fname1)
-                var pa = tmpvar0[0]
-                var fn = tmpvar0[1]
+                var tmpvar0 = fileparts(this.fname1);
+                var pa = tmpvar0[0];
+                var fn = tmpvar0[1];
                 var ex = tmpvar0[2];
                 if (!this.isdir[pa-1]) {
                     block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Output File Name"),msprintf("Directory \'%s\' does not exist",pa));
@@ -98,8 +98,8 @@ function WRITEC_f() {
                 this.model.in1 = new ScilabDouble([nin]);
                 this.model.dstate = new ScilabDouble(dstate);
                 this.model.ipar = new ScilabDouble(ipar);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

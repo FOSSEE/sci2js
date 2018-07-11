@@ -25,9 +25,9 @@ function IN_f() {
     }
     IN_f.prototype.set = function IN_f() {
         this.x = arg1;
-        var graphics = arg1.graphics;
+        this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = graphics.exprs;
+        var exprs = this.graphics.exprs;
         if (size(exprs,"*")==2) {
             var exprs = exprs[1-1];
         }
@@ -35,11 +35,11 @@ function IN_f() {
             var exprs = [[exprs[1-1]],["[-1 -2]"],["-1"]];
         }
         while (true) {
-            var tmpvar0 = getvalue(_("Set Input block parameters"),[[_("Port number")],[_("Outport size ([-1 -2] for inherit)")],[_("Outport Type (-1 for inherit)")]],list("vec",1,"vec",-1,"vec",1),exprs)
-            var ok = tmpvar0[0]
-            var prt = tmpvar0[1]
-            var otsz = tmpvar0[2]
-            var ot = tmpvar0[3]
+            var tmpvar0 = getvalue(_("Set Input block parameters"),[[_("Port number")],[_("Outport size ([-1 -2] for inherit)")],[_("Outport Type (-1 for inherit)")]],list("vec",1,"vec",-1,"vec",1),exprs);
+            var ok = tmpvar0[0];
+            var prt = tmpvar0[1];
+            var otsz = tmpvar0[2];
+            var ot = tmpvar0[3];
             var exprs = tmpvar0[4];
             if (!ok) {
                 break;
@@ -61,8 +61,8 @@ function IN_f() {
                 this.model.out = new ScilabDouble([otsz[1-1]]);
                 this.model.out2 = new ScilabDouble([otsz[2-1]]);
                 this.model.outtyp = new ScilabDouble([ot]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble(exprs);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

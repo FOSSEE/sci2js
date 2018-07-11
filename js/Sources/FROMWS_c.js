@@ -39,8 +39,8 @@ function FROMWS_c() {
         this.ZC = parseFloat(arguments[0]["ZC"])
         this.OutEnd = parseFloat(arguments[0]["OutEnd"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.varnam,this.Method,this.ZC,this.OutEnd,exprs] = scicos_getvalue("Set From_Workspace block parameters",["Variable name","Interpolation Method","Enable zero crossing(0:No, 1:Yes)?","Output at end(0:Zero, 1:Hold, 2:Repeat)"],list("str",1,"vec",1,"vec",1,"vec",1),exprs);
@@ -67,13 +67,13 @@ function FROMWS_c() {
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([length(this.varnam)],[this._str2code[this.varnam-1]],[this.Method],[this.ZC],[this.OutEnd]);
-                var tmpvar0 = set_io(this.model,graphics,list(),list([-1,-2],-1),1,1)
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = set_io(this.model,this.graphics,list(),list([-1,-2],-1),1,1);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    graphics.exprs = exprs;
-                    this.x.graphics = graphics;
+                    this.graphics.exprs = new ScilabDouble([exprs]);
+                    this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;
                 }

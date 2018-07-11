@@ -28,8 +28,8 @@ function CONST_m() {
     CONST_m.prototype.set = function CONST_m() {
         this.C = inverse(arguments[0]["C"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.C,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONST_m")],[" "],["Constant value generator"],[" "]],"Constant Value",list("vec",-1),exprs);
@@ -66,12 +66,12 @@ function CONST_m() {
                 }
                 if (ok) {
                     this.model.rpar = new ScilabDouble([]);
-                    var tmpvar0 = set_io(this.model,graphics,list(),list(nout,ot),[],[])
-                    this.model = tmpvar0[0]
-                    var graphics = tmpvar0[1]
+                    var tmpvar0 = set_io(this.model,this.graphics,list(),list(nout,ot),[],[]);
+                    this.model = tmpvar0[0];
+                    this.graphics = tmpvar0[1];
                     var ok = tmpvar0[2];
-                    graphics.exprs = exprs;
-                    this.x.graphics = graphics;
+                    this.graphics.exprs = new ScilabDouble([exprs]);
+                    this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;
                 }

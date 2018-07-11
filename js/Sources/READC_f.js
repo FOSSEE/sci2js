@@ -56,8 +56,8 @@ function READC_f() {
         this.swap = parseFloat(arguments[0]["swap"])
         this.x = arg1;
         this.model = this.x.model;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         var out = this.model.out;
         var dstate = this.model.dstate;
         var ipar = this.model.ipar;
@@ -113,9 +113,9 @@ function READC_f() {
                     var outpt = 1;
                 }
                 var out = size(this.outmask,"*");
-                var tmpvar0 = check_io(this.model,graphics,[],out,1,outpt)
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = check_io(this.model,this.graphics,[],out,1,outpt);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 this.frmt1 = part(this.frmt1,1,3);
                 if (ok) {
@@ -130,8 +130,8 @@ function READC_f() {
                     }
                     this.model.dstate = new ScilabDouble(dstate);
                     this.model.ipar = new ScilabDouble(ipar);
-                    graphics.exprs = exprs;
-                    this.x.graphics = graphics;
+                    this.graphics.exprs = new ScilabDouble([exprs]);
+                    this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;
                 }

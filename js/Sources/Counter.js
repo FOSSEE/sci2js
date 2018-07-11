@@ -34,8 +34,8 @@ function Counter() {
         this.maxim = parseFloat(arguments[0]["maxim"])
         this.rule = parseFloat(arguments[0]["rule"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.minim,this.maxim,this.rule,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Counter")],[" "],["Integer counter generator"],[" "]],["Minimum","Maximum","Rule (1:Increment, 2:Decrement)"],list("vec",1,"vec",1,"vec",1),exprs);
@@ -49,10 +49,10 @@ function Counter() {
             } else if ((this.rule!=1&&this.rule!=2)) {
                 block_parameter_error(msprintf("Wrong value for \'Rule\' parameter: %d",this.rule),msprintf("Must be in the interval %s.","[1,2]"));
             } else {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.dstate = new ScilabDouble([0]);
                 this.model.ipar = new ScilabDouble([this.rule],[this.maxim],[this.minim]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

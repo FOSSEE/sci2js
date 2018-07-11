@@ -24,9 +24,9 @@ function CLKFROM() {
     CLKFROM.prototype.set = function CLKFROM() {
         this.tag = arguments[0]["tag"]
         this.x = arg1;
-        var graphics = arg1.graphics;
+        this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             [ok,this.tag,exprs] = scicos_getvalue("Set block parameters","Tag",list("str",-1),exprs);
             if (!ok) {
@@ -39,8 +39,8 @@ function CLKFROM() {
             this.model.opar = list(new ScilabDouble([this.tag]));
             this.model.evtout = new ScilabDouble([1]);
             this.model.firing = new ScilabDouble([-1]);
-            graphics.exprs = exprs;
-            this.x.graphics = graphics;
+            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

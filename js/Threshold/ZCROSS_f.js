@@ -28,8 +28,8 @@ function ZCROSS_f() {
     ZCROSS_f.prototype.set = function ZCROSS_f() {
         this.in1 = parseFloat(arguments[0]["in1"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.in1,exprs] = scicos_getvalue([["Set Zero-Crossing parameters"],["All surfaces must cross together"]],"Input size",list("vec",1),exprs);
@@ -45,11 +45,11 @@ function ZCROSS_f() {
                     var kk = kk+2^(this.in1+jj-1);
                 }
                 this.model.rpar = new ScilabDouble([-ones(kk,1)],[zeros(2^(2*this.in1)-kk,1)]);
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.in1 = new ScilabDouble([this.in1]);
                 this.model.nzcross = new ScilabDouble([this.in1]);
                 this.model.firing = new ScilabDouble([-1]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

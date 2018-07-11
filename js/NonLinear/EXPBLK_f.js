@@ -26,8 +26,8 @@ function EXPBLK_f() {
     EXPBLK_f.prototype.set = function EXPBLK_f() {
         this.a = parseFloat(arguments[0]["a"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==2) {
             var exprs = exprs[2-1];
@@ -40,9 +40,9 @@ function EXPBLK_f() {
             if (or(this.a<=0)) {
                 message("a^u : a must be positive");
             } else {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.rpar = new ScilabDouble([this.a]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

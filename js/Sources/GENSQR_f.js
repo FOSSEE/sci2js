@@ -28,8 +28,8 @@ function GENSQR_f() {
     GENSQR_f.prototype.set = function GENSQR_f() {
         this.Amplitude = parseFloat(arguments[0]["Amplitude"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==2) {
             var exprs = exprs[2-1];
@@ -39,11 +39,11 @@ function GENSQR_f() {
             if (!ok) {
                 break;
             }
-            graphics.exprs = exprs;
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.model.dstate = new ScilabDouble([this.Amplitude]);
             this.model.out2 = new ScilabDouble([1]);
             this.model.outtyp = new ScilabDouble([1]);
-            this.x.graphics = graphics;
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

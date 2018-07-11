@@ -29,9 +29,9 @@ function M_freq() {
         this.frequ = inverse(arguments[0]["frequ"])
         this.offset = inverse(arguments[0]["offset"])
         this.x = arg1;
-        var graphics = arg1.graphics;
+        this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
@@ -50,32 +50,32 @@ function M_freq() {
                 var ok = false;
             }
             if (ok) {
-                var tmpvar0 = mfrequ_clk(this.frequ,this.offset)
-                var m = tmpvar0[0]
-                var den = tmpvar0[1]
-                var off = tmpvar0[2]
-                var count = tmpvar0[3]
-                var m1 = tmpvar0[4]
-                var fir = tmpvar0[5]
-                this.frequ = tmpvar0[6]
-                this.offset = tmpvar0[7]
+                var tmpvar0 = mfrequ_clk(this.frequ,this.offset);
+                var m = tmpvar0[0];
+                var den = tmpvar0[1];
+                var off = tmpvar0[2];
+                var count = tmpvar0[3];
+                var m1 = tmpvar0[4];
+                var fir = tmpvar0[5];
+                this.frequ = tmpvar0[6];
+                this.offset = tmpvar0[7];
                 var ok = tmpvar0[8];
             }
             if (ok) {
                 this.model.opar = list(m, new ScilabDouble([double(den)]), new ScilabDouble([off]), new ScilabDouble([count]));
                 var mn = (2^size(m1,"*"))-1;
-                var tmpvar1 = set_io(this.model,graphics,list(),list(),1,ones(mn,1))
-                this.model = tmpvar1[0]
-                var graphics = tmpvar1[1]
+                var tmpvar1 = set_io(this.model,this.graphics,list(),list(),1,ones(mn,1));
+                this.model = tmpvar1[0];
+                this.graphics = tmpvar1[1];
                 var ok = tmpvar1[2];
                 if (mn>3) {
-                    graphics.sz = [40+(mn-3)*10,40];
+                    this.graphics.sz = new ScilabDouble([40+(mn-3)*10,40]);
                 } else {
-                    graphics.sz = [50,40];
+                    this.graphics.sz = new ScilabDouble([50,40]);
                 }
                 this.model.firing = new ScilabDouble([fir]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

@@ -30,8 +30,8 @@ function QUANT_f() {
         this.pas = parseFloat(arguments[0]["pas"])
         this.meth = parseFloat(arguments[0]["meth"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.pas,this.meth,exprs] = scicos_getvalue("Set parameters",["Step","Quantization Type (1-4)"],list("vec",1,"vec",1),exprs);
@@ -54,8 +54,8 @@ function QUANT_f() {
                 case 4:
                     this.model.sim = new ScilabString(["qzcel"]);
                 }
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

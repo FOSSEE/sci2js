@@ -36,8 +36,8 @@ function SWITCH2() {
         this.thra = arguments[0]["thra"]
         this.nzz = parseFloat(arguments[0]["nzz"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.rule,this.thra,this.nzz,exprs] = scicos_getvalue("Set parameters",["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1),exprs);
@@ -51,7 +51,7 @@ function SWITCH2() {
             if ((this.rule>2)) {
                 this.rule = 2;
             }
-            graphics.exprs = exprs;
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.model.ipar = new ScilabDouble([this.rule]);
             this.model.rpar = new ScilabDouble([this.thra]);
             if (this.nzz!=0) {
@@ -61,7 +61,7 @@ function SWITCH2() {
                 this.model.nmode = new ScilabDouble([0]);
                 this.model.nzcross = new ScilabDouble([0]);
             }
-            this.x.graphics = graphics;
+            this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
         }

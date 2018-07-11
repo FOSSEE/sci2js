@@ -30,8 +30,8 @@ function OUTIMPL_f() {
     OUTIMPL_f.prototype.set = function OUTIMPL_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==2) {
             var exprs = exprs[1-1];
@@ -50,8 +50,8 @@ function OUTIMPL_f() {
                     var y = needcompile;
                 }
                 this.model.ipar = new ScilabDouble([this.prt]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

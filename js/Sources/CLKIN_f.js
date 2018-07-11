@@ -24,9 +24,9 @@ function CLKIN_f() {
     CLKIN_f.prototype.set = function CLKIN_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.x = arg1;
-        var graphics = arg1.graphics;
+        this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = graphics.exprs;
+        var exprs = this.graphics.exprs;
         var exprs = exprs[1-1];
         while (true) {
             [ok,this.prt,exprs] = scicos_getvalue("Set Event Input block parameters","Port number",list("vec",1),exprs);
@@ -40,8 +40,8 @@ function CLKIN_f() {
                 this.model.ipar = new ScilabDouble([this.prt]);
                 this.model.evtout = new ScilabDouble([1]);
                 this.model.firing = new ScilabDouble([-1]);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

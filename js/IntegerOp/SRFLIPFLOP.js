@@ -67,7 +67,7 @@ function SRFLIPFLOP() {
             }
             if (ok) {
                 xx.graphics.exprs[1-1] = this.exprs0;
-                this.model.odstate[1] = new ScilabDouble([this.init]);
+                this.model.odstate[1-1] = new ScilabDouble([this.init]);
                 xx.model = this.model;
                 arg1.model.rpar.objs[path-1] = xx;
                 break;

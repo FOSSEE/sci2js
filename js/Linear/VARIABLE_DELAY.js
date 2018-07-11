@@ -34,8 +34,8 @@ function VARIABLE_DELAY() {
         this.init = parseFloat(arguments[0]["init"])
         this.N = parseFloat(arguments[0]["N"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         var nin = this.model.in1[1-1];
         while (true) {
@@ -52,16 +52,16 @@ function VARIABLE_DELAY() {
                 var ok = false;
             }
             if (ok) {
-                var tmpvar0 = check_io(this.model,graphics,[[-1],[1]],-1,[],[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = check_io(this.model,this.graphics,[[-1],[1]],-1,[],[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                graphics.exprs = exprs;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.rpar = new ScilabDouble([this.T],[this.init]);
                 this.model.ipar = new ScilabDouble([this.N]);
-                this.x.graphics = graphics;
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

@@ -63,8 +63,8 @@ function Gyrator() {
         this.G1 = arguments[0]["G1"]
         this.G2 = arguments[0]["G2"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         this.x = arg1;
         var exprs = this.x.graphics.exprs;

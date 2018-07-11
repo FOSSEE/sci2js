@@ -49,8 +49,8 @@ function c_block() {
         this.lab = arguments[0]["lab"]
         this.x = arg1;
         this.model = arg1.model;
-        var graphics = arg1.graphics;
-        var label = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var label = this.graphics.exprs;
         while (true) {
             [ok,this.i,this.o,this.rpar,this.funam,this.lab] = scicos_getvalue("Set C_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
             if (!ok) {
@@ -69,23 +69,23 @@ function c_block() {
             if (this.model.sim[1-1]!=this.funam||size(this.model.in1,"*")!=size(this.i,"*")||size(this.model.out,"*")!=size(this.o,"*")) {
                 var tt = [];
             }
-            var tmpvar0 = CFORTR(this.funam,tt,this.i,this.o)
-            var ok = tmpvar0[0]
+            var tmpvar0 = CFORTR(this.funam,tt,this.i,this.o);
+            var ok = tmpvar0[0];
             var tt = tmpvar0[1];
             if (!ok) {
                 break;
             }
-            var tmpvar1 = check_io(this.model,graphics,this.i,this.o,[],[])
-            this.model = tmpvar1[0]
-            var graphics = tmpvar1[1]
+            var tmpvar1 = check_io(this.model,this.graphics,this.i,this.o,[],[]);
+            this.model = tmpvar1[0];
+            this.graphics = tmpvar1[1];
             var ok = tmpvar1[2];
             if (ok) {
-                this.model.sim[1] = new ScilabString([this.funam]);
+                this.model.sim[1-1] = new ScilabString([this.funam]);
                 this.model.rpar = new ScilabDouble(this.rpar);
                 label[2-1] = tt;
                 this.x.model = this.model;
-                graphics.exprs = label;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([label]);
+                this.x.graphics = this.graphics;
                 break;
             }
         }

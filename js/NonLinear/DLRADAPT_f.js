@@ -45,8 +45,8 @@ function DLRADAPT_f() {
         this.last_u = inverse(arguments[0]["last_u"])
         this.last_y = inverse(arguments[0]["last_y"])
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.p,this.rn,this.rd,this.g,this.last_u,this.last_y,exprs] = scicos_getvalue("Set block parameters",["Vector of p mesh points","Numerator roots (one line for each mesh)","Denominator roots (one line for each mesh)","Vector of gain at mesh points","past inputs (Num degree values)","past outputs (Den degree values)"],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),exprs);
@@ -54,8 +54,8 @@ function DLRADAPT_f() {
                 break;
             }
             var m = size(this.rn,2);
-            var tmpvar0 = size(this.rd)
-            var npt = tmpvar0[0]
+            var tmpvar0 = size(this.rd);
+            var npt = tmpvar0[0];
             var n = tmpvar0[1];
             if (m>=n) {
                 message("Transfer must be strictly proper");
@@ -67,8 +67,8 @@ function DLRADAPT_f() {
                 this.model.dstate = new ScilabDouble([this.last_u.slice()],[this.last_y.slice()]);
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.ipar = new ScilabDouble(ipar);
-                graphics.exprs = exprs;
-                this.x.graphics = graphics;
+                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
             }

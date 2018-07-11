@@ -31,8 +31,8 @@ function SWITCH_f() {
         this.nin = parseFloat(arguments[0]["nin"])
         this.z0 = arguments[0]["z0"]
         this.x = arg1;
-        var graphics = arg1.graphics;
-        var exprs = graphics.exprs;
+        this.graphics = arg1.graphics;
+        var exprs = this.graphics.exprs;
         this.model = arg1.model;
         var ipar = this.model.ipar;
         while (true) {
@@ -43,14 +43,14 @@ function SWITCH_f() {
             if (this.z0>this.nin||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
             } else {
-                var tmpvar0 = check_io(this.model,graphics,-ones(this.nin,1),-1,[],[])
-                this.model = tmpvar0[0]
-                var graphics = tmpvar0[1]
+                var tmpvar0 = check_io(this.model,this.graphics,-ones(this.nin,1),-1,[],[]);
+                this.model = tmpvar0[0];
+                this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    graphics.exprs = exprs;
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.model.ipar = new ScilabString([this.z0-1]);
-                    this.x.graphics = graphics;
+                    this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;
                 }
