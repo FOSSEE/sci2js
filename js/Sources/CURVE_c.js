@@ -4,10 +4,10 @@ function CURVE_c() {
         this.model = scicos_model();
         this.xx = [0,1,2];
         this.yy = [10,20,-30];
-        N = 3;
+        var N = 3;
         this.Method = 3;
         this.PeriodicOption = "y";
-        Graf = "n";
+        var Graf = "n";
         this.model.sim = list(new ScilabString(["curve_c"]), new ScilabDouble([4]));
         this.model.in1 = [];
         this.model.out = new ScilabDouble([1]);
@@ -18,8 +18,8 @@ function CURVE_c() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.firing = new ScilabDouble([0]);
-        exprs = [[sci2exp(this.Method)],[sci2exp(this.xx)],[sci2exp(this.yy)],[this.PeriodicOption],[Graf]];
-        gr_i = [];
+        var exprs = [[sci2exp(this.Method)],[sci2exp(this.xx)],[sci2exp(this.yy)],[this.PeriodicOption],[Graf]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -44,70 +44,78 @@ function CURVE_c() {
         this.graf = arguments[0]["graf"]
         this.x = arg1;
         this.model = arg1.model;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
-        ok = false;
-        SaveExit = false;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
+        var ok = false;
+        var SaveExit = false;
         while (true) {
-            Ask_again = false;
+            var Ask_again = false;
             [ok,this.Method,this.xx,this.yy,this.PeriodicOption,this.graf,exprs] = scicos_getvalue("Spline data",["Spline Method (0..7)","x","y","Periodic signal(y/n)?","Launch graphic window(y/n)?"],list("vec",1,"vec",-1,"vec",-1,"str",1,"str",1),exprs);
             if (!ok) {
                 break;
             }
             if (this.PeriodicOption=="y"||this.PeriodicOption=="Y") {
-                PO = 1;
+                var PO = 1;
             } else {
                 exprs[4-1] = "n";
-                PO = 0;
+                var PO = 0;
             }
-            mtd = int(this.Method);
+            var mtd = int(this.Method);
             if (mtd<0) {
-                mtd = 0;
+                var mtd = 0;
             }
             if (mtd>7) {
-                mtd = 7;
+                var mtd = 7;
             }
-            METHOD = getmethod(mtd);
+            var METHOD = getmethod(mtd);
             if (!Ask_again) {
                 this.xx = this.xx.slice();
                 this.yy = this.yy.slice();
-                [nx,mx] = size(this.xx);
-                [ny,my] = size(this.yy);
+                var tmpvar0 = size(this.xx)
+                var nx = tmpvar0[0]
+                var mx = tmpvar0[1];
+                var tmpvar1 = size(this.yy)
+                var ny = tmpvar1[0]
+                var my = tmpvar1[1];
                 if (!((nx==ny)&&(mx==my))) {
                     messagebox("Incompatible size of [x] and [y]","modal","error");
-                    Ask_again = true;
+                    var Ask_again = true;
                 }
             }
             if (!Ask_again) {
                 this.xy = [this.xx,this.yy];
-                [this.xy] = cleandata(this.xy);
-                N = size(this.xy,"r");
+                var tmpvar2 = cleandata(this.xy)
+                this.xy = tmpvar2[0];
+                var N = size(this.xy,"r");
                 exprs[5-1] = "n";
                 if (this.graf=="y"||this.graf=="Y") {
-                    ipar = [[N],[mtd],[PO]];
-                    rpar = [];
+                    var ipar = [[N],[mtd],[PO]];
+                    var rpar = [];
                     if ((winsid()==[])) {
                         this.curwin = 0;
                     } else {
                         this.curwin = max(winsid())+1;
                     }
-                    [orpar,oipar,ok] = poke_point(this.xy,ipar,rpar);
+                    var tmpvar3 = poke_point(this.xy,ipar,rpar)
+                    var orpar = tmpvar3[0]
+                    var oipar = tmpvar3[1]
+                    var ok = tmpvar3[2];
                     if (!ok) {
                         break;
                     }
-                    N2 = oipar[1-1];
-                    xy2 = [orpar.slice(1-1,N2),orpar.slice(N2+1-1,2*N2)];
-                    New_methhod = oipar[2-1];
-                    DChange = false;
-                    METHOD = getmethod(New_methhod);
+                    var N2 = oipar[1-1];
+                    var xy2 = [orpar.slice(1-1,N2),orpar.slice(N2+1-1,2*N2)];
+                    var New_methhod = oipar[2-1];
+                    var DChange = false;
+                    var METHOD = getmethod(New_methhod);
                     if (or(this.xy.slice()[1-1]!=xy2.slice()[1-1])) {
-                        DChange = true;
+                        var DChange = true;
                     }
                     if (or(this.xy.slice(1-1,N-1)[2-1]!=xy2.slice(1-1,N2-1)[2-1])) {
-                        DChange = true;
+                        var DChange = true;
                     }
                     if ((this.xy[N-1][2-1]!=xy2[N2-1][2-1]&&(METHOD!="periodic"))) {
-                        DChange = true;
+                        var DChange = true;
                     }
                     if (DChange) {
                         exprs[2-1] = strcat(sci2exp(xy2.slice()[1-1]));
@@ -115,31 +123,34 @@ function CURVE_c() {
                     }
                     exprs[1-1] = sci2exp(New_methhod);
                     if (oipar[3-1]==1) {
-                        perop = "y";
+                        var perop = "y";
                     } else {
-                        perop = "n";
+                        var perop = "n";
                     }
                     exprs[4-1] = perop;
-                    SaveExit = true;
+                    var SaveExit = true;
                 } else {
-                    [Xdummy,Ydummy,orpar] = Do_Spline(N,mtd,this.xy.slice()[1-1],this.xy.slice()[2-1]);
+                    var tmpvar4 = Do_Spline(N,mtd,this.xy.slice()[1-1],this.xy.slice()[2-1])
+                    var Xdummy = tmpvar4[0]
+                    var Ydummy = tmpvar4[1]
+                    var orpar = tmpvar4[2];
                     if ((METHOD=="periodic")) {
                         this.xy[N-1][2-1] = this.xy[1-1][2-1];
                     }
                     if ((METHOD=="order 2"||METHOD=="not_a_knot"||METHOD=="periodic"||METHOD=="monotone"||METHOD=="fast"||METHOD=="clamped")) {
-                        orpar = [[this.xy.slice()[1-1]],[this.xy.slice()[2-1]],[orpar]];
+                        var orpar = [[this.xy.slice()[1-1]],[this.xy.slice()[2-1]],[orpar]];
                     } else {
                         if ((METHOD=="zero order"||METHOD=="linear")) {
-                            orpar = [[this.xy.slice()[1-1]],[this.xy.slice()[2-1]]];
+                            var orpar = [[this.xy.slice()[1-1]],[this.xy.slice()[2-1]]];
                         }
                     }
                     exprs[1-1] = sci2exp(mtd);
-                    oipar = [[N],[mtd],[PO]];
-                    SaveExit = true;
+                    var oipar = [[N],[mtd],[PO]];
+                    var SaveExit = true;
                 }
             }
             if ((SaveExit)) {
-                xp = find(orpar.slice(1-1,oipar[1-1])>=0);
+                var xp = find(orpar.slice(1-1,oipar[1-1])>=0);
                 if ((xp!=[])) {
                     this.model.firing = new ScilabDouble([orpar[xp[1-1]-1]]);
                 } else {

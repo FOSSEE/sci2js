@@ -10,8 +10,8 @@ function REGISTER_f() {
         this.model.dstate = new ScilabDouble([this.z0]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
-        exprs = strcat(string(this.z0),";");
-        gr_i = [];
+        var exprs = strcat(string(this.z0),";");
+        var gr_i = [];
         this.x = standard_define([2.5,2.5],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -26,8 +26,8 @@ function REGISTER_f() {
     REGISTER_f.prototype.set = function REGISTER_f() {
         this.z0 = parseFloat(arguments[0]["z0"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.z0,exprs] = scicos_getvalue("Set delay parameters","Register initial condition",list("vec",-1),exprs);
@@ -36,7 +36,7 @@ function REGISTER_f() {
             }
             if (prod(size(this.z0))<1) {
                 message("Register length must be at least 1");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
                 graphics.exprs = exprs;

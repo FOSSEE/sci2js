@@ -9,8 +9,8 @@ function EXTRACTOR() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         this.model.ipar = new ScilabDouble([this.ind]);
-        exprs = [sci2exp(this.ind)];
-        gr_i = [];
+        var exprs = [sci2exp(this.ind)];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -26,8 +26,8 @@ function EXTRACTOR() {
     EXTRACTOR.prototype.set = function EXTRACTOR() {
         this.ind = parseFloat(arguments[0]["ind"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.ind,exprs] = scicos_getvalue("Set block parameters",["indices to extract"],list("vec",-1),exprs);
@@ -36,7 +36,10 @@ function EXTRACTOR() {
             }
             this.ind = int(this.ind);
             this.ind = this.ind.slice();
-            [this.model,graphics,ok] = check_io(this.model,graphics,[-1],size(this.ind,1),[],[]);
+            var tmpvar0 = check_io(this.model,graphics,[-1],size(this.ind,1),[],[])
+            this.model = tmpvar0[0]
+            var graphics = tmpvar0[1]
+            var ok = tmpvar0[2];
             if (ok) {
                 this.model.ipar = this.ind;
                 graphics.exprs = exprs;

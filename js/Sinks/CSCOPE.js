@@ -18,8 +18,8 @@ function CSCOPE() {
         this.model.ipar = new ScilabDouble([this.win],[1],[this.N],[this.clrs],[this.wpos],[this.wdim]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = [[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.ymin)],[string(this.ymax)],[string(this.per)],[string(this.N)],[transpose(string(0))],[emptystr()]];
-        gr_i = [];
+        var exprs = [[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.ymin)],[string(this.ymax)],[string(this.per)],[string(this.N)],[transpose(string(0))],[emptystr()]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -53,48 +53,51 @@ function CSCOPE() {
         this.heritance = arguments[0]["heritance"]
         this.nom = arguments[0]["nom"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"str",1),exprs);
             if (!ok) {
                 break;
             }
-            mess = [];
+            var mess = [];
             if (size(this.wpos,"*")!=0&&size(this.wpos,"*")!=2) {
-                mess = [[mess],["Window position must be [] or a 2 vector"],[" "]];
-                ok = false;
+                var mess = [[mess],["Window position must be [] or a 2 vector"],[" "]];
+                var ok = false;
             }
             if (size(this.wdim,"*")!=0&&size(this.wdim,"*")!=2) {
-                mess = [[mess],["Window dim must be [] or a 2 vector"],[" "]];
-                ok = false;
+                var mess = [[mess],["Window dim must be [] or a 2 vector"],[" "]];
+                var ok = false;
             }
             if (this.win<-1) {
-                mess = [[mess],["Window number can\'t be  < -1"],[" "]];
-                ok = false;
+                var mess = [[mess],["Window number can\'t be  < -1"],[" "]];
+                var ok = false;
             }
             if (this.per<=0) {
-                mess = [[mess],["Refresh period must be positive"],[" "]];
-                ok = false;
+                var mess = [[mess],["Refresh period must be positive"],[" "]];
+                var ok = false;
             }
             if (this.N<2) {
-                mess = [[mess],["Buffer size must be at least 2"],[" "]];
-                ok = false;
+                var mess = [[mess],["Buffer size must be at least 2"],[" "]];
+                var ok = false;
             }
             if (this.ymin>=this.ymax) {
-                mess = [[mess],["Ymax must be greater than Ymin"],[" "]];
-                ok = false;
+                var mess = [[mess],["Ymax must be greater than Ymin"],[" "]];
+                var ok = false;
             }
             if (!or(this.heritance==[0,1])) {
-                mess = [[mess],["Accept herited events must be 0 or 1"],[" "]];
-                ok = false;
+                var mess = [[mess],["Accept herited events must be 0 or 1"],[" "]];
+                var ok = false;
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
             if (ok) {
-                [this.model,graphics,ok] = set_io(this.model,graphics,list([-1,1],1),list(),ones(1-this.heritance,1),[]);
+                var tmpvar0 = set_io(this.model,graphics,list([-1,1],1),list(),ones(1-this.heritance,1),[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             }
             if (ok) {
                 if (this.wpos==[]) {
@@ -103,8 +106,8 @@ function CSCOPE() {
                 if (this.wdim==[]) {
                     this.wdim = [[-1],[-1]];
                 }
-                rpar = [[0],[this.ymin],[this.ymax],[this.per]];
-                ipar = [[this.win],[1],[this.N],[this.clrs.slice()],[this.wpos.slice()],[this.wdim.slice()]];
+                var rpar = [[0],[this.ymin],[this.ymax],[this.per]];
+                var ipar = [[this.win],[1],[this.N],[this.clrs.slice()],[this.wpos.slice()],[this.wdim.slice()]];
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.evtin = new ScilabDouble([ones(1-this.heritance,1)]);

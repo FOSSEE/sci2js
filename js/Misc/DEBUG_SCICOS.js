@@ -14,7 +14,10 @@ function DEBUG_SCICOS() {
     }
     DEBUG_SCICOS.prototype.set = function DEBUG_SCICOS() {
         arg1.gui = "DEBUG";
-        [this.x,y,typ] = DEBUG("set",arg1);
+        var tmpvar0 = DEBUG("set",arg1)
+        this.x = tmpvar0[0]
+        var y = tmpvar0[1]
+        var typ = tmpvar0[2];
         return new BasicBlock(this.x);
     }
 }

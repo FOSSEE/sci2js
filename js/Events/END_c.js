@@ -9,8 +9,8 @@ function END_c() {
         this.model.firing = new ScilabDouble([this.tf]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
-        exprs = string(this.tf);
-        gr_i = [];
+        var exprs = string(this.tf);
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -26,8 +26,8 @@ function END_c() {
     END_c.prototype.set = function END_c() {
         this.tf = parseFloat(arguments[0]["tf"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.tf,exprs] = scicos_getvalue("Set final simulation time",["Final simulation time"],list("vec",1),exprs);

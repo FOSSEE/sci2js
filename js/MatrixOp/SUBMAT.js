@@ -2,8 +2,8 @@
 function SUBMAT() {
     SUBMAT.prototype.define = function SUBMAT() {
         this.model = scicos_model();
-        function_name = "submat";
-        funtyp = 4;
+        var function_name = "submat";
+        var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in1 = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
@@ -20,8 +20,8 @@ function SUBMAT() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
-        label = [[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)]];
-        gr_i = [];
+        var label = [[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)]];
+        var gr_i = [];
         this.x = standard_define([2.5,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -47,8 +47,8 @@ function SUBMAT() {
         this.d = arguments[0]["d"]
         this.inp = arguments[0]["inp"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        label = graphics.exprs;
+        var graphics = arg1.graphics;
+        var label = graphics.exprs;
         this.model = arg1.model;
         if (size(label,"*")==5) {
             label[6-1] = sci2exp([1,1]);
@@ -59,44 +59,47 @@ function SUBMAT() {
                 break;
             }
             if ((this.typ==1)) {
-                function_name = "submat";
-                ot = 1;
-                it = 1;
+                var function_name = "submat";
+                var ot = 1;
+                var it = 1;
             } else if ((this.typ==2)) {
-                function_name = "submatz";
-                ot = 2;
-                it = 2;
+                var function_name = "submatz";
+                var ot = 2;
+                var it = 2;
             } else {
                 message("Datatype is not supported");
-                ok = false;
+                var ok = false;
             }
             if ((this.a<=0)||(this.b<=0)||(this.c<=0)||(this.d<=0)) {
                 message("invalid index");
-                ok = false;
+                var ok = false;
             }
             if (this.b<this.a) {
                 message("ending row must be greater than starting row");
-                ok = false;
+                var ok = false;
             }
             if (this.d<this.c) {
                 message("ending column must be greater than starting column");
-                ok = false;
+                var ok = false;
             }
             if (this.b>this.inp[1-1]) {
                 message("index of ending row is out of range");
-                ok = false;
+                var ok = false;
             }
             if (this.d>this.inp[2-1]) {
                 message("index of ending column is out of range");
-                ok = false;
+                var ok = false;
             }
             this.model.ipar = new ScilabDouble([this.a],[this.b],[this.c],[this.d]);
-            in1 = [this.inp[1-1],this.inp[2-1]];
-            out = [(this.b-this.a)+1,(this.d-this.c)+1];
-            funtyp = 4;
-            label = exprs;
+            var in1 = [this.inp[1-1],this.inp[2-1]];
+            var out = [(this.b-this.a)+1,(this.d-this.c)+1];
+            var funtyp = 4;
+            var label = exprs;
             if (ok) {
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;

@@ -8,13 +8,13 @@ function INIMPL_f() {
         this.model.ipar = [1];
         this.model.dep_ut = [false,false];
         this.model.blocktype = new ScilabString(["c"]);
-        mo = modelica();
+        var mo = modelica();
         mo.model = "PORT";
         mo.outputs = "n";
         this.model.equations = new ScilabDouble([mo]);
         this.prt = 1;
-        exprs = "1";
-        gr_i = [];
+        var exprs = "1";
+        var gr_i = [];
         this.x = standard_define([1,1],this.model,exprs,gr_i);
         this.x.graphics.out_implicit = ["I"];
         return new ImplicitInBlock(this.x);
@@ -30,11 +30,11 @@ function INIMPL_f() {
     INIMPL_f.prototype.set = function INIMPL_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==2) {
-            exprs = exprs[1-1];
+            var exprs = exprs[1-1];
         }
         while (true) {
             [ok,this.prt,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","INIMPL_f")],[" "],["Implicit input port"],[" "]],"Port Number",list("vec",1),exprs);
@@ -46,8 +46,8 @@ function INIMPL_f() {
                 block_parameter_error(msprintf("Wrong value for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
                 if (this.model.ipar!=this.prt) {
-                    needcompile = 4;
-                    y = needcompile;
+                    var needcompile = 4;
+                    var y = needcompile;
                 }
                 this.model.ipar = new ScilabDouble([this.prt]);
                 graphics.exprs = exprs;

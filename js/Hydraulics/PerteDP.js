@@ -14,7 +14,7 @@ function PerteDP() {
         this.model.sim = new ScilabString(["PerteDP"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        mo = modelica();
+        var mo = modelica();
         mo.model = "PerteDP";
         mo.inputs = "C1";
         mo.outputs = "C2";
@@ -22,8 +22,8 @@ function PerteDP() {
         this.model.equations = new ScilabDouble([mo]);
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
-        exprs = [[string(this.L)],[string(this.D)],[string(this.lambda)],[string(this.z1)],[string(this.z2)],[string(this.p_rho)]];
-        gr_i = [];
+        var exprs = [[string(this.L)],[string(this.D)],[string(this.lambda)],[string(this.z1)],[string(this.z2)],[string(this.p_rho)]];
+        var gr_i = [];
         this.x = standard_define([2,1],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -51,8 +51,8 @@ function PerteDP() {
         this.z2 = parseFloat(arguments[0]["z2"])
         this.p_rho = parseFloat(arguments[0]["p_rho"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.L,this.D,this.lambda,this.z1,this.z2,this.p_rho,exprs] = scicos_getvalue("Parametres du tuyau",["Longueur du tube : L (m)","Diamètre interne du tube : D (m)","Coefficient de perte de charge-frottement(S.U) : lambda","Altitude entrée tuyauterie : z1 (m)","Altitude sortie tuyauterie : z2 (m)","Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);

@@ -11,8 +11,8 @@ function TKSCALE() {
         this.model.rpar = new ScilabDouble([this.a],[this.b],[this.f]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
-        exprs = [[sci2exp(this.a)],[sci2exp(this.b)],[sci2exp(this.f)]];
-        gr_i = [];
+        var exprs = [[sci2exp(this.a)],[sci2exp(this.b)],[sci2exp(this.f)]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -32,8 +32,8 @@ function TKSCALE() {
         this.b = parseFloat(arguments[0]["b"])
         this.f = parseFloat(arguments[0]["f"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         [ok,this.a,this.b,this.f,exprs] = scicos_getvalue("Set scale block parameters",["Min value","Max value","Normalization"],list("vec",1,"vec",1,"vec",1),exprs);
         if (ok) {

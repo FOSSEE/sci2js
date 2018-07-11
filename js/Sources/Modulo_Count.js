@@ -11,8 +11,8 @@ function Modulo_Count() {
         this.model.ipar = new ScilabDouble([this.base]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
-        exprs = [[string(this.ini_c)],[string(this.base)]];
-        gr_i = [];
+        var exprs = [[string(this.ini_c)],[string(this.base)]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -30,8 +30,8 @@ function Modulo_Count() {
         this.ini_c = parseFloat(arguments[0]["ini_c"])
         this.base = parseFloat(arguments[0]["base"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.ini_c,this.base,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Modulo_Count")],[" "],["Modulo counter (0 to N counter)"],[" "]],["Initial State (zero or positive number)","Upper Limit (positive number)"],list("vec",1,"vec",1),exprs);

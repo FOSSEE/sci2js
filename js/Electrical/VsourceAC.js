@@ -10,14 +10,14 @@ function VsourceAC() {
         this.model.sim = new ScilabString(["VsourceAC"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        mo = modelica();
+        var mo = modelica();
         mo.model = "VsourceAC";
         mo.inputs = "p";
         mo.outputs = "n";
         mo.parameters = list([["VA"],["f"]],list(this.VA,this.FR));
         this.model.equations = new ScilabDouble([mo]);
-        exprs = [[string(this.VA)],[string(this.FR)]];
-        gr_i = [];
+        var exprs = [[string(this.VA)],[string(this.FR)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -37,8 +37,8 @@ function VsourceAC() {
         this.VA = parseFloat(arguments[0]["VA"])
         this.FR = parseFloat(arguments[0]["FR"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.VA,this.FR,exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","Frequency (Hz)"],list("vec",-1,"vec",-1),exprs);

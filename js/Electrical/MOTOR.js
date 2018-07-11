@@ -7,8 +7,8 @@ function MOTOR() {
         this.model.sim = new ScilabString(["motor"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        gr_i = [];
-        exprs = "";
+        var gr_i = [];
+        var exprs = "";
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.out_implicit = [["I"],["I"]];
         this.x.graphics.in_implicit = ["I"];

@@ -3,7 +3,7 @@ function DEADBAND() {
     DEADBAND.prototype.define = function DEADBAND() {
         this.minp = -.5;
         this.maxp = .5;
-        rpar = [[this.maxp],[this.minp]];
+        var rpar = [[this.maxp],[this.minp]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["deadband"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([1]);
@@ -13,8 +13,8 @@ function DEADBAND() {
         this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = [[string(this.maxp)],[string(this.minp)],[string(this.model.nmode)]];
-        gr_i = [];
+        var exprs = [[string(this.maxp)],[string(this.minp)],[string(this.model.nmode)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -34,8 +34,8 @@ function DEADBAND() {
         this.minp = parseFloat(arguments[0]["minp"])
         this.zeroc = arguments[0]["zeroc"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.maxp,this.minp,this.zeroc,exprs] = scicos_getvalue("Set Deadband parameters",["End of dead band","Start of dead band","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs);
@@ -45,7 +45,7 @@ function DEADBAND() {
             if (this.maxp<=this.minp) {
                 message("Upper limit must be > Lower limit");
             } else {
-                rpar = [[this.maxp],[this.minp]];
+                var rpar = [[this.maxp],[this.minp]];
                 this.model.rpar = new ScilabDouble(rpar);
                 if (this.zeroc!=0) {
                     this.model.nzcross = new ScilabDouble([2]);

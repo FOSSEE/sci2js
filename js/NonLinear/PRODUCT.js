@@ -9,8 +9,8 @@ function PRODUCT() {
         this.model.ipar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = sci2exp(this.sgn);
-        gr_i = [];
+        var exprs = sci2exp(this.sgn);
+        var gr_i = [];
         this.x = standard_define([2,3],this.model,exprs,gr_i);
         return new Product(this.x);
     }
@@ -25,9 +25,9 @@ function PRODUCT() {
     PRODUCT.prototype.set = function PRODUCT() {
         this.sgn = inverse(arguments[0]["sgn"])
         this.x = arg1;
-        graphics = arg1.graphics;
+        var graphics = arg1.graphics;
         this.model = arg1.model;
-        exprs = graphics.exprs;
+        var exprs = graphics.exprs;
         while (true) {
             [ok,this.sgn,exprs] = scicos_getvalue([["         Set multiplication block parameters"],["(multiplication is set with + 1, division with -1)"],[""]],"Number of inputs or sign vector",list("vec",-1),exprs);
             if (!ok) {
@@ -37,27 +37,30 @@ function PRODUCT() {
             if (size(this.sgn,1)==1) {
                 if (this.sgn<1) {
                     message("Number of inputs must be > 0");
-                    ok = false;
+                    var ok = false;
                 } else if (this.sgn==1) {
-                    in1 = -1;
+                    var in1 = -1;
                     this.sgn = [];
-                    nout = 1;
+                    var nout = 1;
                 } else {
-                    in1 = -ones(this.sgn,1);
+                    var in1 = -ones(this.sgn,1);
                     this.sgn = ones(this.sgn,1);
-                    nout = -1;
+                    var nout = -1;
                 }
             } else {
                 if (!and(abs(this.sgn)==1)) {
                     message("Signs can only be +1 or -1");
-                    ok = false;
+                    var ok = false;
                 } else {
-                    in1 = -ones(size(this.sgn,1),1);
-                    nout = -1;
+                    var in1 = -ones(size(this.sgn,1),1);
+                    var nout = -1;
                 }
             }
             if (ok) {
-                [this.model,graphics,ok] = check_io(this.model,graphics,in1,nout,[],[]);
+                var tmpvar0 = check_io(this.model,graphics,in1,nout,[],[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.sgn]);

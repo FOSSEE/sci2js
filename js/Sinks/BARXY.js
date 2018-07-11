@@ -41,26 +41,26 @@ function BARXY() {
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.thickness = arguments[0]["thickness"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.xmin,this.xmax,this.ymin,this.ymax,this.thickness,exprs] = scicos_getvalue("Set Scope parameters",["Xmin","Xmax","Ymin","Ymax","Segs Thickness"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            mess = [];
+            var mess = [];
             if (this.ymin>=this.ymax) {
-                mess = [[mess],["Ymax must be greater than Ymin"],[" "]];
-                ok = false;
+                var mess = [[mess],["Ymax must be greater than Ymin"],[" "]];
+                var ok = false;
             }
             if (this.xmin>=this.xmax) {
-                mess = [[mess],["Xmax must be greater than Xmin"],[" "]];
-                ok = false;
+                var mess = [[mess],["Xmax must be greater than Xmin"],[" "]];
+                var ok = false;
             }
             if (this.thickness<=0) {
-                mess = [[mess],["Thickness must be strictly positive."]];
-                ok = false;
+                var mess = [[mess],["Thickness must be strictly positive."]];
+                var ok = false;
             }
             if (!ok) {
                 message(mess);

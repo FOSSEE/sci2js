@@ -13,8 +13,8 @@ function MFCLCK_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [-1,0];
         this.model.dep_ut = [false,false];
-        exprs = [[string(this.dt)],[string(this.nn)]];
-        gr_i = [];
+        var exprs = [[string(this.dt)],[string(this.nn)]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -32,14 +32,14 @@ function MFCLCK_f() {
         this.dt = parseFloat(arguments[0]["dt"])
         this.nn = parseFloat(arguments[0]["nn"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         [ok,this.dt,this.nn,exprs] = scicos_getvalue("Set Multifrequency clock parameters",["basic period (1/f)","multiply by (n)"],list("vec",1,"vec",1),exprs);
         if (ok) {
             this.model.ipar = new ScilabDouble([this.nn]);
             this.model.rpar = new ScilabDouble([this.dt]);
-            hh = this.model.firing;
+            var hh = this.model.firing;
             hh[2-1] = 0;
             this.model.firing = hh;
             graphics.exprs = exprs;

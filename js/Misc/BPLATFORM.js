@@ -16,8 +16,8 @@ function BPLATFORM() {
         this.model.rpar = new ScilabDouble([this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
-        exprs = string(this.model.rpar);
-        gr_i = [];
+        var exprs = string(this.model.rpar);
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -45,32 +45,32 @@ function BPLATFORM() {
         this.ymin = parseFloat(arguments[0]["ymin"])
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
-        dstate = this.model.dstate;
+        var dstate = this.model.dstate;
         while (true) {
             [ok,this.plen,this.csiz,this.phi,this.xmin,this.xmax,this.ymin,this.ymax,exprs] = scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            mess = [];
+            var mess = [];
             if (this.plen<=0||this.csiz<=0) {
-                mess = [[mess],["Pendulum length and cart size must be positive."],[" "]];
-                ok = false;
+                var mess = [[mess],["Pendulum length and cart size must be positive."],[" "]];
+                var ok = false;
             }
             if (this.ymin>=this.ymax) {
-                mess = [[mess],["Ymax must be greater than Ymin"],[" "]];
-                ok = false;
+                var mess = [[mess],["Ymax must be greater than Ymin"],[" "]];
+                var ok = false;
             }
             if (this.xmin>=this.xmax) {
-                mess = [[mess],["Xmax must be greater than Xmin"],[" "]];
-                ok = false;
+                var mess = [[mess],["Xmax must be greater than Xmin"],[" "]];
+                var ok = false;
             }
             if (!ok) {
                 message(mess);
             } else {
-                rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
+                var rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
                 this.model.rpar = new ScilabDouble(rpar);
                 graphics.exprs = exprs;
                 this.x.graphics = graphics;

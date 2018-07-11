@@ -13,11 +13,11 @@ function FROMMO() {
         this.model.opar = list(new ScilabString(["A"]));
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
-        mo = modelica();
+        var mo = modelica();
         mo.model = "frommo";
         mo.outputs = "n";
-        exprs = ["A"];
-        gr_i = [];
+        var exprs = ["A"];
+        var gr_i = [];
         this.x = standard_define([2,1],this.model,exprs,gr_i);
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -34,8 +34,8 @@ function FROMMO() {
     FROMMO.prototype.set = function FROMMO() {
         this.tag = arguments[0]["tag"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.tag,exprs] = scicos_getvalue("Set parameters",["Tag"],list("str",-1),exprs);
@@ -44,8 +44,8 @@ function FROMMO() {
             }
             if (ok) {
                 if (this.model.opar!=list(this.tag)) {
-                    needcompile = 4;
-                    y = needcompile;
+                    var needcompile = 4;
+                    var y = needcompile;
                 }
                 graphics.exprs = exprs;
                 this.model.opar = list(new ScilabDouble([this.tag]));

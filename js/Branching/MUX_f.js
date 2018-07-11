@@ -9,8 +9,8 @@ function MUX_f() {
         this.model.ipar = new ScilabDouble([this.in1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = string(this.in1);
-        gr_i = [];
+        var exprs = string(this.in1);
+        var gr_i = [];
         this.x = standard_define([0.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -25,8 +25,8 @@ function MUX_f() {
     MUX_f.prototype.set = function MUX_f() {
         this.in1 = parseFloat(arguments[0]["in1"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.in1,exprs] = scicos_getvalue("Set MUX block parameters","number of input ports or vector of sizes",list("vec",-1),exprs);
@@ -36,21 +36,27 @@ function MUX_f() {
             if (size(this.in1,"*")==1) {
                 if (this.in1<2||this.in1>8) {
                     message("Block must have at least two input ports and at most eight");
-                    ok = false;
+                    var ok = false;
                 } else {
-                    [this.model,graphics,ok] = check_io(this.model,graphics,-transpose([1:this.in1]),0,[],[]);
+                    var tmpvar0 = check_io(this.model,graphics,-transpose([1:this.in1]),0,[],[])
+                    this.model = tmpvar0[0]
+                    var graphics = tmpvar0[1]
+                    var ok = tmpvar0[2];
                 }
             } else {
                 if (size(this.in1,"*")<2||size(this.in1,"*")>8||or(this.in1==0)) {
                     message([["Block must have at least two input ports"],["and at most eight, and size 0 is not allowed. "]]);
-                    ok = false;
+                    var ok = false;
                 } else {
                     if (min(this.in1)<0) {
-                        nout = 0;
+                        var nout = 0;
                     } else {
-                        nout = sum(this.in1);
+                        var nout = sum(this.in1);
                     }
-                    [this.model,graphics,ok] = check_io(this.model,graphics,this.in1.slice(),nout,[],[]);
+                    var tmpvar1 = check_io(this.model,graphics,this.in1.slice(),nout,[],[])
+                    this.model = tmpvar1[0]
+                    var graphics = tmpvar1[1]
+                    var ok = tmpvar1[2];
                     if (ok) {
                         this.in1 = size(this.in1,"*");
                     }

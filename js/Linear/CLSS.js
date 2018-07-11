@@ -6,8 +6,8 @@ function CLSS() {
         this.B = 1;
         this.C = 1;
         this.D = 0;
-        in1 = 1;
-        out = 1;
+        var in1 = 1;
+        var out = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["csslti4"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([in1]);
@@ -16,8 +16,8 @@ function CLSS() {
         this.model.rpar = new ScilabDouble([this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
-        exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
-        gr_i = [];
+        var exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
+        var gr_i = [];
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -41,10 +41,10 @@ function CLSS() {
         this.D = parseFloat(arguments[0]["D"])
         this.x0 = parseFloat(arguments[0]["x0"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         if (size(exprs,"*")==7) {
-            exprs = exprs[[1:4,7]-1];
+            var exprs = exprs[[1:4,7]-1];
         }
         this.model = arg1.model;
         while (true) {
@@ -52,37 +52,42 @@ function CLSS() {
             if (!ok) {
                 break;
             }
-            out = size(this.C,1);
+            var out = size(this.C,1);
             if (out==0) {
-                out = [];
+                var out = [];
             }
-            in1 = size(this.B,2);
+            var in1 = size(this.B,2);
             if (in1==0) {
-                in1 = [];
+                var in1 = [];
             }
-            [ms,ns] = size(this.A);
-            okD = true;
+            var tmpvar0 = size(this.A)
+            var ms = tmpvar0[0]
+            var ns = tmpvar0[1];
+            var okD = true;
             if (size(this.D,"*")!=size(this.C,1)*size(this.B,2)) {
                 if (size(this.D,"*")==1) {
                     this.D = this.D*ones(this.C*this.B);
                 } else if (size(this.D,"*")==0) {
                     this.D = zeros(this.C*this.B);
                 } else {
-                    okD = false;
+                    var okD = false;
                 }
             }
             if (ms!=ns||!okD) {
                 message(_("Matrix A is not square or D has wrong dimension"));
             } else {
-                [this.model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
+                var tmpvar1 = check_io(this.model,graphics,in1,out,[],[])
+                this.model = tmpvar1[0]
+                var graphics = tmpvar1[1]
+                var ok = tmpvar1[2];
                 if (ok) {
                     graphics.exprs = exprs;
-                    rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
+                    var rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
                     if (this.D!=[]) {
                         if (norm(this.D,1)!=0) {
-                            mmm = [true,true];
+                            var mmm = [true,true];
                         } else {
-                            mmm = [false,true];
+                            var mmm = [false,true];
                         }
                         if (or(this.model.dep_ut!=mmm)) {
                             this.model.dep_ut = mmm;

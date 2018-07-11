@@ -9,8 +9,8 @@ function CLKINV_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [false,false];
-        exprs = string(this.prt);
-        gr_i = [];
+        var exprs = string(this.prt);
+        var gr_i = [];
         this.x = standard_define([1,1],this.model,exprs,gr_i);
         return new EventInBlock(this.x);
     }
@@ -25,10 +25,10 @@ function CLKINV_f() {
     CLKINV_f.prototype.set = function CLKINV_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.x = arg1;
-        graphics = arg1.graphics;
+        var graphics = arg1.graphics;
         this.model = arg1.model;
-        exprs = graphics.exprs;
-        exprs = exprs[1-1];
+        var exprs = graphics.exprs;
+        var exprs = exprs[1-1];
         while (true) {
             [ok,this.prt,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CLKINV_f")],[" "],["Event input port"],[" "]],"Port Number",list("vec",1),exprs);
             this.prt = int(this.prt);

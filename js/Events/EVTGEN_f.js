@@ -8,8 +8,8 @@ function EVTGEN_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([this.tt]);
         this.model.dep_ut = [false,false];
-        exprs = string(this.tt);
-        gr_i = [];
+        var exprs = string(this.tt);
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -25,8 +25,8 @@ function EVTGEN_f() {
     EVTGEN_f.prototype.set = function EVTGEN_f() {
         this.tt = parseFloat(arguments[0]["tt"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.tt,exprs] = scicos_getvalue("Set Event time",["Event Time"],list("vec",1),exprs);

@@ -10,7 +10,7 @@ function NEGTOPOS_f() {
         this.model.blocktype = new ScilabString(["z"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [true,false];
-        gr_i = [];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }

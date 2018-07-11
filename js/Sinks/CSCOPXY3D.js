@@ -22,8 +22,8 @@ function CSCOPXY3D() {
         this.model.ipar = new ScilabDouble([this.win],[8],[this.N],[this.clrs.slice()],[this.siz.slice()],[8],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
-        exprs = [[string(this.nbr_curves)],[strcat(string(this.clrs)," ")],[strcat(string(this.siz)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[strcat(string(this.vec_x)," ")],[strcat(string(this.vec_y)," ")],[strcat(string(this.vec_z)," ")],[strcat(string(this.param3ds)," ")],[string(this.N)]];
-        gr_i = [];
+        var exprs = [[string(this.nbr_curves)],[strcat(string(this.clrs)," ")],[strcat(string(this.siz)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[strcat(string(this.vec_x)," ")],[strcat(string(this.vec_y)," ")],[strcat(string(this.vec_z)," ")],[strcat(string(this.param3ds)," ")],[string(this.N)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -59,72 +59,75 @@ function CSCOPXY3D() {
         this.param3ds = inverse(arguments[0]["param3ds"])
         this.N = parseFloat(arguments[0]["N"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,exprs] = scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","Line or Mark Size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",2,"vec",2,"vec",2,"vec",2,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            mess = [];
+            var mess = [];
             if (size(this.wpos,"*")!=0&&size(this.wpos,"*")!=2) {
-                mess = [[mess],["Window position must be [] or a 2 vector"],[" "]];
-                ok = false;
+                var mess = [[mess],["Window position must be [] or a 2 vector"],[" "]];
+                var ok = false;
             }
             if (size(this.wdim,"*")!=0&&size(this.wdim,"*")!=2) {
-                mess = [[mess],["Window dim must be [] or a 2 vector"],[" "]];
-                ok = false;
+                var mess = [[mess],["Window dim must be [] or a 2 vector"],[" "]];
+                var ok = false;
             }
             if (size(this.clrs,"*")!=size(this.siz,"*")) {
-                mess = [[mess],["Colors and Size must have same size"],[" "]];
-                ok = false;
+                var mess = [[mess],["Colors and Size must have same size"],[" "]];
+                var ok = false;
             }
             if (this.nbr_curves<=0) {
-                mess = [[mess],["Number of curves cannot be negative or null"],[" "]];
-                ok = false;
+                var mess = [[mess],["Number of curves cannot be negative or null"],[" "]];
+                var ok = false;
             }
             if (this.win<-1) {
-                mess = [[mess],["Window number cannot be inferior than -1"],[" "]];
-                ok = false;
+                var mess = [[mess],["Window number cannot be inferior than -1"],[" "]];
+                var ok = false;
             }
             if (this.N<1) {
-                mess = [[mess],["Buffer size must be at least 1"],[" "]];
-                ok = false;
+                var mess = [[mess],["Buffer size must be at least 1"],[" "]];
+                var ok = false;
             }
             if (this.N<2) {
                 for (i=1;i<=size(this.clrs,"*");i+=1) {
                     if (this.clrs[i-1]>0) {
-                        mess = [[mess],["Buffer size must be at least 2 or Change a color (must be >0)"],[" "]];
-                        ok = false;
+                        var mess = [[mess],["Buffer size must be at least 2 or Change a color (must be >0)"],[" "]];
+                        var ok = false;
                     }
                 }
             }
             if (this.vec_y[1-1]>=this.vec_y[2-1]) {
-                mess = [[mess],["Ymax must be higher than Ymin"],[" "]];
-                ok = false;
+                var mess = [[mess],["Ymax must be higher than Ymin"],[" "]];
+                var ok = false;
             }
             if (this.vec_x[1-1]>=this.vec_x[2-1]) {
-                mess = [[mess],["Xmax must be higher than Xmin"],[" "]];
-                ok = false;
+                var mess = [[mess],["Xmax must be higher than Xmin"],[" "]];
+                var ok = false;
             }
             if (this.vec_z[1-1]>=this.vec_z[2-1]) {
-                mess = [[mess],["Zmax must be higher than Zmin"],[" "]];
-                ok = false;
+                var mess = [[mess],["Zmax must be higher than Zmin"],[" "]];
+                var ok = false;
             }
             if (ok) {
-                in1 = this.nbr_curves*ones(3,1);
-                in2 = ones(3,1);
-                [this.model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[]);
+                var in1 = this.nbr_curves*ones(3,1);
+                var in2 = ones(3,1);
+                var tmpvar0 = set_io(this.model,graphics,list([in1,in2],ones(3,1)),list(),ones(1,1),[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
                 if (this.wpos==[]) {
                     this.wpos = [[-1],[-1]];
                 }
                 if (this.wdim==[]) {
                     this.wdim = [[-1],[-1]];
                 }
-                rpar = [[this.vec_x.slice()],[this.vec_y.slice()],[this.vec_z.slice()],[this.param3ds.slice()]];
-                size_siz = size(this.siz,"*");
-                ipar = [[this.win],[size_siz],[this.N],[this.clrs.slice()],[this.siz.slice()],[1],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
+                var rpar = [[this.vec_x.slice()],[this.vec_y.slice()],[this.vec_z.slice()],[this.param3ds.slice()]];
+                var size_siz = size(this.siz,"*");
+                var ipar = [[this.win],[size_siz],[this.N],[this.clrs.slice()],[this.siz.slice()],[1],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.ipar = new ScilabDouble(ipar);
                 graphics.exprs = exprs;

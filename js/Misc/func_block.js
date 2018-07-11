@@ -7,8 +7,8 @@ function func_block() {
         this.model.out = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = "v=sin(u);y=u*v";
-        gr_i = [];
+        var exprs = "v=sin(u);y=u*v";
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -22,11 +22,14 @@ function func_block() {
     }
     func_block.prototype.set = function func_block() {
         this.model = arg1.model;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.x = arg1;
         this.model = this.x.model;
-        [ok,mac,exprs] = this.genfunc[exprs-1];
+        var tmpvar0 = genfunc(exprs)
+        var ok = tmpvar0[0]
+        var mac = tmpvar0[1]
+        var exprs = tmpvar0[2];
         if (ok) {
             this.model.sim = new ScilabDouble([mac]);
             graphics.exprs = exprs;

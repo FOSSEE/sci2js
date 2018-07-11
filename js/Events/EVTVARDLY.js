@@ -10,8 +10,8 @@ function EVTVARDLY() {
         this.model.firing = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = string(this.model.firing);
-        gr_i = [];
+        var exprs = string(this.model.firing);
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -26,8 +26,8 @@ function EVTVARDLY() {
     EVTVARDLY.prototype.set = function EVTVARDLY() {
         this.fir = arguments[0]["fir"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.fir,exprs] = scicos_getvalue("Set parameter of variable event delay","Initial event firing time (<0 if absent)",list("vec",1),exprs);

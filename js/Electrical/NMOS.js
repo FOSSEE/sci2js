@@ -14,7 +14,7 @@ function NMOS() {
         this.model.sim = new ScilabString(["NMOS"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        mo = modelica();
+        var mo = modelica();
         mo.model = "NMOS";
         mo.outputs = [["D"],["B"],["S"]];
         mo.inputs = "G";
@@ -22,8 +22,8 @@ function NMOS() {
         this.model.equations = new ScilabDouble([mo]);
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
-        exprs = [[string(this.W)],[string(this.L)],[string(this.Beta)],[string(this.Vt)],[string(this.K2)],[string(this.K5)],[string(this.dW)],[string(this.dL)],[string(this.RDS)]];
-        gr_i = [];
+        var exprs = [[string(this.W)],[string(this.L)],[string(this.Beta)],[string(this.Vt)],[string(this.K2)],[string(this.K5)],[string(this.dW)],[string(this.dL)],[string(this.RDS)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = [["I"],["I"],["I"]];
@@ -57,8 +57,8 @@ function NMOS() {
         this.dL = parseFloat(arguments[0]["dL"])
         this.RDS = parseFloat(arguments[0]["RDS"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS,exprs] = scicos_getvalue("Set NMOS Transistor block parameters",["Width [m]","Length [m]","Transconductance parameter [A/(V*V)]","Zero bias threshold voltage [V]","Bulk threshold parameter","Reduction of pinch-off region","Narrowing of channel [m]","Shortening of channel [m]","Drain-Source-Resistance [Ohm]"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);

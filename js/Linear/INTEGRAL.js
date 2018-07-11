@@ -2,8 +2,8 @@
 function INTEGRAL() {
     INTEGRAL.prototype.define = function INTEGRAL() {
         this.maxp = 1;
-        minp = -1;
-        rpar = [];
+        var minp = -1;
+        var rpar = [];
         this.model = scicos_model();
         this.model.state = new ScilabDouble([0]);
         this.model.sim = list(new ScilabString(["integral_func"]), new ScilabDouble([4]));
@@ -12,8 +12,8 @@ function INTEGRAL() {
         this.model.rpar = rpar;
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
-        exprs = string([[0],[0],[0],[this.maxp],[minp]]);
-        gr_i = [];
+        var exprs = string([[0],[0],[0],[this.maxp],[minp]]);
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.id = "1/s";
         return new BasicBlock(this.x);
@@ -38,8 +38,8 @@ function INTEGRAL() {
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.lowp = arguments[0]["lowp"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),exprs);
@@ -62,27 +62,30 @@ function INTEGRAL() {
                 }
                 if ((size(this.x0,1)!=size(this.maxp,1)||size(this.x0,1)!=size(this.lowp,1))) {
                     message("x0 and Upper limit and Lower limit must have same size");
-                    ok = false;
+                    var ok = false;
                 } else if (or(this.maxp<=this.lowp)) {
                     message("Upper limits must be > Lower limits");
-                    ok = false;
+                    var ok = false;
                 } else if (or(this.x0>this.maxp)||or(this.x0<this.lowp)) {
                     message("Initial condition x0 should be inside the limits");
-                    ok = false;
+                    var ok = false;
                 } else {
-                    rpar = [[this.maxp],[this.lowp]];
+                    var rpar = [[this.maxp],[this.lowp]];
                     this.model.nzcross = new ScilabDouble([size(this.x0,1)]);
                     this.model.nmode = new ScilabDouble([size(this.x0,1)]);
                 }
             } else {
-                rpar = [];
+                var rpar = [];
                 this.model.nzcross = new ScilabDouble([0]);
                 this.model.nmode = new ScilabDouble([0]);
             }
             if (ok) {
                 this.model.rpar = rpar;
                 this.model.state = this.x0;
-                [this.model,graphics,ok] = check_io(this.model,graphics,size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,1),ones(this.reinit,1),[]);
+                var tmpvar0 = check_io(this.model,graphics,size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,1),ones(this.reinit,1),[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             }
             if (ok) {
                 graphics.exprs = exprs;

@@ -8,8 +8,8 @@ function MATTRAN() {
         this.model.out = new ScilabDouble([-2]);
         this.model.out2 = new ScilabDouble([-1]);
         this.model.dep_ut = [true,false];
-        label = [sci2exp(1)];
-        gr_i = [];
+        var label = [sci2exp(1)];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -27,8 +27,8 @@ function MATTRAN() {
         this.typ = inverse(arguments[0]["typ"])
         this.rule = arguments[0]["rule"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        label = graphics.exprs;
+        var graphics = arg1.graphics;
+        var label = graphics.exprs;
         this.model = arg1.model;
         if (size(label,"*")==1) {
             label[2-1] = sci2exp(1);
@@ -39,27 +39,30 @@ function MATTRAN() {
                 break;
             }
             if ((this.typ==1)) {
-                function_name = "mattran_m";
-                ot = 1;
-                it = 1;
+                var function_name = "mattran_m";
+                var ot = 1;
+                var it = 1;
             } else if ((this.typ==2)) {
                 if (this.rule==1) {
-                    function_name = "matztran_m";
+                    var function_name = "matztran_m";
                 } else {
-                    function_name = "mathermit_m";
+                    var function_name = "mathermit_m";
                 }
-                ot = 2;
-                it = 2;
+                var ot = 2;
+                var it = 2;
             } else {
                 message("Datatype is not supported");
-                ok = false;
+                var ok = false;
             }
-            in1 = [this.model.in1,this.model.in2];
-            out = [this.model.out,this.model.out2];
-            funtyp = 4;
+            var in1 = [this.model.in1,this.model.in2];
+            var out = [this.model.out,this.model.out2];
+            var funtyp = 4;
             if (ok) {
-                label = exprs;
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                var label = exprs;
+                var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;

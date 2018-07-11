@@ -2,10 +2,10 @@
 function WFILE_f() {
     WFILE_f.prototype.define = function WFILE_f() {
         this.in1 = 1;
-        nin = sum(this.in1);
-        frmt = "(7(e10.3,1x))";
-        fname = "foo";
-        lunit = 0;
+        var nin = sum(this.in1);
+        var frmt = "(7(e10.3,1x))";
+        var fname = "foo";
+        var lunit = 0;
         this.N = 2;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["writef"]);
@@ -15,8 +15,8 @@ function WFILE_f() {
         this.model.ipar = new ScilabDouble([length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [true,false];
-        exprs = [[sci2exp(this.in1)],[fname],[frmt],[string(this.N)]];
-        gr_i = [];
+        var exprs = [[sci2exp(this.in1)],[fname],[frmt],[string(this.N)]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -38,56 +38,59 @@ function WFILE_f() {
         this.frmt1 = parseFloat(arguments[0]["frmt1"])
         this.N = parseFloat(arguments[0]["N"])
         warnobsolete("WRITEC_f","6.0.0");
-        warnMessage = msprintf(_("Feature %s is obsolete."),"WFILE_f");
-        warnAdvise = msprintf(_("Please use %s instead."),"WRITEC_f");
-        warnXcosMessage = msprintf("%s %s",warnMessage,warnAdvise);
+        var warnMessage = msprintf(_("Feature %s is obsolete."),"WFILE_f");
+        var warnAdvise = msprintf(_("Please use %s instead."),"WRITEC_f");
+        var warnXcosMessage = msprintf("%s %s",warnMessage,warnAdvise);
         warnBlockByUID(arg1.model.label,warnXcosMessage);
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
-        dstate = this.model.dstate;
-        lunit = dstate[2-1];
-        fname = exprs[2-1];
-        frmt = exprs[3-1];
+        var dstate = this.model.dstate;
+        var lunit = dstate[2-1];
+        var fname = exprs[2-1];
+        var frmt = exprs[3-1];
         while (true) {
             [ok,this.in1,this.fname1,this.frmt1,this.N,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WFILE_f")],[" "],["Write to output file"],[" "],["Write is done on:"],["&nbsp; - A binary file if no format given"],["&nbsp; - A formatted text file if a  format (Fortran type) is given"]],["Input Size","Output File Name","Output Format","Buffer Size"],list("vec",1,"str",1,"str",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             this.in1 = int(this.in1);
-            nin = this.in1;
+            var nin = this.in1;
             this.fname1 = pathconvert(stripblanks(this.fname1),false,true);
             this.frmt1 = stripblanks(this.frmt1);
             if (lunit>0&&min(length(frmt),1)!=min(length(this.frmt1),1)) {
                 block_parameter_error("Simulation running !!! You cannot switch<br />between formatted and unformatted when running","End current simulation first.");
-                ok = false;
+                var ok = false;
             } else if (lunit>0&&this.fname1!=fname) {
                 block_parameter_error("You cannot modify \'Output File Name\' when running.","End current simulation first.");
-                ok = false;
+                var ok = false;
             } else if (this.fname1=="") {
                 block_parameter_error("Wrong value for \'Output File Name\' parameter","You must provide a filename.");
-                ok = false;
+                var ok = false;
             } else if (fileparts(this.fname1)!="") {
-                [pa,fn,ex] = fileparts(this.fname1);
+                var tmpvar0 = fileparts(this.fname1)
+                var pa = tmpvar0[0]
+                var fn = tmpvar0[1]
+                var ex = tmpvar0[2];
                 if (!this.isdir[pa-1]) {
                     block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Output File Name"),msprintf("Directory \'%s\' does not exist",pa));
-                    ok = false;
+                    var ok = false;
                 }
             } else if (this.frmt1!=""&&(part(this.frmt1,1)!="("||part(this.frmt1,length(this.frmt1))!=")")) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Input Format",this.frmt1),"You must enclose the format\'s string between parentheses.");
-                ok = false;
+                var ok = false;
             } else if (this.N<2) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Buffer Size",this.N),"Must be greater than 1.");
-                ok = false;
+                var ok = false;
             } else if (this.in1<=0) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Input Size",this.in1),"Strictly positive integer expected.");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
-                ipar = [[length(this.fname1)],[length(this.frmt1)],[0],[this.N],[this._str2code[this.fname1-1]],[this._str2code[this.frmt1-1]]];
+                var ipar = [[length(this.fname1)],[length(this.frmt1)],[0],[this.N],[this._str2code[this.fname1-1]],[this._str2code[this.frmt1-1]]];
                 if (prod(size(dstate))!=(nin+1)*this.N+2) {
-                    dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
+                    var dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
                 }
                 this.model.in1 = new ScilabDouble([nin]);
                 this.model.dstate = new ScilabDouble(dstate);

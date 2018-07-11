@@ -9,8 +9,8 @@ function INTEGRAL_f() {
         this.model.state = new ScilabDouble([this.x0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
-        exprs = strcat(sci2exp(this.x0));
-        gr_i = [];
+        var exprs = strcat(sci2exp(this.x0));
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -25,8 +25,8 @@ function INTEGRAL_f() {
     INTEGRAL_f.prototype.set = function INTEGRAL_f() {
         this.x0 = parseFloat(arguments[0]["x0"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.x0,exprs] = scicos_getvalue("Set continuous linear system parameters","Initial state",list("vec",1),exprs);

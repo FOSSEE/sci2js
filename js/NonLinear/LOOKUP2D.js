@@ -6,9 +6,9 @@ function LOOKUP2D() {
         this.yy = [1:3];
         this.zz = [[4,5,6],[16,19,20],[10,18,23],[6,3,-1]];
         this.Method = 1;
-        Graf = "n";
-        Nx = length(this.xx);
-        Ny = length(this.yy);
+        var Graf = "n";
+        var Nx = length(this.xx);
+        var Ny = length(this.yy);
         this.model.sim = list(new ScilabString(["lookup2d"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
@@ -16,8 +16,8 @@ function LOOKUP2D() {
         this.model.ipar = new ScilabDouble([Nx],[Ny],[this.Method]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = list(strcat(sci2exp(this.xx)),strcat(sci2exp(this.yy)),strcat(sci2exp(this.zz)),sci2exp(this.Method),Graf);
-        gr_i = [];
+        var exprs = list(strcat(sci2exp(this.xx)),strcat(sci2exp(this.yy)),strcat(sci2exp(this.zz)),sci2exp(this.Method),Graf);
+        var gr_i = [];
         this.x = standard_define([2.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -42,63 +42,71 @@ function LOOKUP2D() {
         this.graf = arguments[0]["graf"]
         this.x = arg1;
         this.model = arg1.model;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
-        ok = false;
-        SaveExit = false;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
+        var ok = false;
+        var SaveExit = false;
         while (true) {
-            Ask_again = false;
+            var Ask_again = false;
             [ok,this.xx,this.yy,this.zz,this.Method,this.graf,exprs] = scicos_getvalue("2D Lookup table parameters",["Row index input values","Column index input values","Table data","Lookup method(1..5)","Launch graphic window(y/n)?"],list("vec",-1,"vec",-1,"mat",[-1,-1],"vec",1,"str",1),exprs);
             if (!ok) {
                 break;
             }
-            mtd = int(this.Method);
+            var mtd = int(this.Method);
             if (mtd<1) {
-                mtd = 1;
+                var mtd = 1;
             }
             if (mtd>6) {
-                mtd = 6;
+                var mtd = 6;
             }
             if (this.graf!="y"&&this.graf!="Y") {
                 this.graf = "n";
             }
             exprs[5-1] = "n";
             exprs[4-1] = sci2exp(mtd);
-            METHOD = getmethod(mtd);
+            var METHOD = getmethod(mtd);
             if (!Ask_again) {
                 this.xx = this.xx.slice();
                 this.yy = this.yy.slice();
-                [nx,mx] = size(this.xx);
-                [ny,my] = size(this.yy);
-                [nz,mz] = size(this.zz);
+                var tmpvar0 = size(this.xx)
+                var nx = tmpvar0[0]
+                var mx = tmpvar0[1];
+                var tmpvar1 = size(this.yy)
+                var ny = tmpvar1[0]
+                var my = tmpvar1[1];
+                var tmpvar2 = size(this.zz)
+                var nz = tmpvar2[0]
+                var mz = tmpvar2[1];
                 if (((nx<=1)||(ny<=1))) {
                     x_message("input row/column data size should be greater than one");
-                    Ask_again = true;
+                    var Ask_again = true;
                 }
                 if (!((nx==nz)&&(ny==mz))) {
                     x_message("incompatible size of x and y");
-                    Ask_again = true;
+                    var Ask_again = true;
                 }
-                [ok] = test_increasing(this.xx);
+                var tmpvar3 = test_increasing(this.xx)
+                var ok = tmpvar3[0];
                 if ((!ok)) {
                     x_message("Row input values must be monotonically increasing");
-                    Ask_again = true;
+                    var Ask_again = true;
                 }
-                [ok] = test_increasing(this.yy);
+                var tmpvar4 = test_increasing(this.yy)
+                var ok = tmpvar4[0];
                 if ((!ok)) {
                     x_message("Column input values must be monotonically increasing");
-                    Ask_again = true;
+                    var Ask_again = true;
                 }
             }
             if (!Ask_again) {
                 if ((this.graf=="Y"||this.graf=="y")) {
-                    gh = gcf();
-                    curwin = gh.figure_id;
-                    save_curwin = curwin;
-                    gh2 = scf();
-                    curwin = max(winsid())+1;
+                    var gh = gcf();
+                    var curwin = gh.figure_id;
+                    var save_curwin = curwin;
+                    var gh2 = scf();
+                    var curwin = max(winsid())+1;
                     plot3d(this.xx,this.yy,this.zz,35,45,"X@Y@Z",[5,2,4]);
-                    curwin = save_curwin;
+                    var curwin = save_curwin;
                     gh.figure_id = curwin;
                 }
                 this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()],[this.zz.slice()]);

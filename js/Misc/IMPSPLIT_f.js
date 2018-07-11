@@ -3,7 +3,7 @@ function IMPSPLIT_f() {
     IMPSPLIT_f.prototype.define = function IMPSPLIT_f() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["limpsplit"]);
-        mo = modelica();
+        var mo = modelica();
         mo.model = "limpsplit";
         mo.inputs = "n";
         mo.outputs = [["n"],["n"]];

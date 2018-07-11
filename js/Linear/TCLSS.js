@@ -6,9 +6,9 @@ function TCLSS() {
         this.B = 1;
         this.C = 1;
         this.D = 0;
-        in1 = 1;
-        nx = size(this.x0,"*");
-        out = 1;
+        var in1 = 1;
+        var nx = size(this.x0,"*");
+        var out = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["tcslti4"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([in1],[nx]);
@@ -18,8 +18,8 @@ function TCLSS() {
         this.model.rpar = new ScilabDouble([this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
-        exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
-        gr_i = [];
+        var exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -43,38 +43,43 @@ function TCLSS() {
         this.D = parseFloat(arguments[0]["D"])
         this.x0 = parseFloat(arguments[0]["x0"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==7) {
-            exprs = exprs[[1:4,7]-1];
+            var exprs = exprs[[1:4,7]-1];
         }
         while (true) {
             [ok,this.A,this.B,this.C,this.D,this.x0,exprs] = scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),exprs);
             if (!ok) {
                 break;
             }
-            out = size(this.C,1);
+            var out = size(this.C,1);
             if (out==0) {
-                out = [];
+                var out = [];
             }
-            in1 = size(this.B,2);
+            var in1 = size(this.B,2);
             if (in1==0) {
-                in1 = [];
+                var in1 = [];
             }
-            [ms,ns] = size(this.A);
+            var tmpvar0 = size(this.A)
+            var ms = tmpvar0[0]
+            var ns = tmpvar0[1];
             if (ms!=ns) {
                 message("A matrix must be square");
             } else {
-                [this.model,graphics,ok] = check_io(this.model,graphics,[[in1],[ms]],out,1,[]);
+                var tmpvar1 = check_io(this.model,graphics,[[in1],[ms]],out,1,[])
+                this.model = tmpvar1[0]
+                var graphics = tmpvar1[1]
+                var ok = tmpvar1[2];
                 if (ok) {
                     graphics.exprs = exprs;
-                    rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
+                    var rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
                     if (this.D!=[]) {
                         if (norm(this.D,1)!=0) {
-                            mmm = [true,true];
+                            var mmm = [true,true];
                         } else {
-                            mmm = [false,true];
+                            var mmm = [false,true];
                         }
                         if (or(this.model.dep_ut!=mmm)) {
                             this.model.dep_ut = mmm;

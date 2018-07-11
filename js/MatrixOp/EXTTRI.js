@@ -2,8 +2,8 @@
 function EXTTRI() {
     EXTTRI.prototype.define = function EXTTRI() {
         this.model = scicos_model();
-        function_name = "extrilz";
-        funtyp = 4;
+        var function_name = "extrilz";
+        var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in1 = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
@@ -20,8 +20,8 @@ function EXTTRI() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
-        label = [[sci2exp(1)],[sci2exp(1)]];
-        gr_i = [];
+        var label = [[sci2exp(1)],[sci2exp(1)]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -41,8 +41,8 @@ function EXTTRI() {
         this.lab = arguments[0]["lab"]
         this.x = arg1;
         this.model = arg1.model;
-        graphics = arg1.graphics;
-        label = graphics.exprs;
+        var graphics = arg1.graphics;
+        var label = graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -51,42 +51,45 @@ function EXTTRI() {
             if (!ok) {
                 break;
             }
-            label = this.lab;
+            var label = this.lab;
             if ((this.typ==1)) {
                 if ((this.decomptyp==1)) {
-                    function_name = "exttril";
+                    var function_name = "exttril";
                 } else if ((this.decomptyp==2)) {
-                    function_name = "exttriu";
+                    var function_name = "exttriu";
                 } else if ((this.decomptyp==3)) {
-                    function_name = "extdiag";
+                    var function_name = "extdiag";
                 } else {
                     message("decomposition type is not supported");
-                    ok = false;
+                    var ok = false;
                 }
-                it = 1;
-                ot = 1;
+                var it = 1;
+                var ot = 1;
             } else if ((this.typ==2)) {
                 if ((this.decomptyp==1)) {
-                    function_name = "exttrilz";
+                    var function_name = "exttrilz";
                 } else if ((this.decomptyp==2)) {
-                    function_name = "exttriuz";
+                    var function_name = "exttriuz";
                 } else if ((this.decomptyp==3)) {
-                    function_name = "extdiagz";
+                    var function_name = "extdiagz";
                 } else {
                     message("decomposition type is not supported");
-                    ok = false;
+                    var ok = false;
                 }
-                it = 2;
-                ot = 2;
+                var it = 2;
+                var ot = 2;
             } else {
                 message("Datatype is not supported");
-                ok = false;
+                var ok = false;
             }
-            in1 = [this.model.in1,this.model.in2];
-            out = [this.model.out,this.model.out2];
-            funtyp = 4;
+            var in1 = [this.model.in1,this.model.in2];
+            var out = [this.model.out,this.model.out2];
+            var funtyp = 4;
             if (ok) {
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));

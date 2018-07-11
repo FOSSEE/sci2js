@@ -13,8 +13,8 @@ function IFTHEL_f() {
         this.model.dep_ut = [true,false];
         this.model.nmode = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([1]);
-        gr_i = [];
-        exprs = [[string(this.model.in1)],[string(this.model.nmode)]];
+        var gr_i = [];
+        var exprs = [[string(this.model.in1)],[string(this.model.nmode)]];
         this.x = standard_define([3,3],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -32,11 +32,11 @@ function IFTHEL_f() {
         this.inh = inverse(arguments[0]["inh"])
         this.nmod = parseFloat(arguments[0]["nmod"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         if (exprs==[]) {
-            exprs = string(1);
+            var exprs = string(1);
         }
         if (size(exprs,"*")==1) {
             exprs[2-1] = string(1);
@@ -53,7 +53,10 @@ function IFTHEL_f() {
             if (this.inh!=1) {
                 this.inh = [];
             }
-            [this.model,graphics,ok] = check_io(this.model,graphics,1,[],this.inh,[[1],[1]]);
+            var tmpvar0 = check_io(this.model,graphics,1,[],this.inh,[[1],[1]])
+            this.model = tmpvar0[0]
+            var graphics = tmpvar0[1]
+            var ok = tmpvar0[2];
             if (ok) {
                 graphics.exprs = exprs;
                 this.model.evtin = this.inh;

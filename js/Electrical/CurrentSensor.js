@@ -7,13 +7,13 @@ function CurrentSensor() {
         this.model.sim = new ScilabString(["CurrentSensor"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        mo = modelica();
+        var mo = modelica();
         mo.model = "CurrentSensor";
         mo.inputs = "p";
         mo.outputs = [["n"],["i"]];
         this.model.equations = new ScilabDouble([mo]);
-        exprs = [];
-        gr_i = [];
+        var exprs = [];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = [["I"],["E"]];

@@ -2,8 +2,8 @@
 function EXTRACT() {
     EXTRACT.prototype.define = function EXTRACT() {
         this.model = scicos_model();
-        function_name = "extract";
-        funtyp = 4;
+        var function_name = "extract";
+        var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in1 = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
@@ -20,8 +20,8 @@ function EXTRACT() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
-        label = [[sci2exp(1)],[sci2exp([1])],[sci2exp([1])]];
-        gr_i = [];
+        var label = [[sci2exp(1)],[sci2exp([1])],[sci2exp([1])]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -41,8 +41,8 @@ function EXTRACT() {
         this.a = inverse(arguments[0]["a"])
         this.b = inverse(arguments[0]["b"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        label = graphics.exprs;
+        var graphics = arg1.graphics;
+        var label = graphics.exprs;
         this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -55,42 +55,45 @@ function EXTRACT() {
                 break;
             }
             if ((this.typ==1)) {
-                function_name = "extract";
-                ot = 1;
-                it = 1;
+                var function_name = "extract";
+                var ot = 1;
+                var it = 1;
             } else if ((this.typ==2)) {
-                function_name = "extractz";
-                ot = 2;
-                it = 2;
+                var function_name = "extractz";
+                var ot = 2;
+                var it = 2;
             } else {
                 message("Datatype is not supported");
-                ok = false;
+                var ok = false;
             }
-            ma = size(this.a,1);
-            mb = size(this.b,1);
+            var ma = size(this.a,1);
+            var mb = size(this.b,1);
             if ((ma==0||mb==0)) {
                 message("empty field");
-                ok = false;
+                var ok = false;
             }
             for (i=1;i<=ma;i+=1) {
                 if ((this.a[i-1]<=0)) {
                     message("invalid index");
-                    ok = false;
+                    var ok = false;
                 }
             }
             for (j=1;j<=mb;j+=1) {
                 if ((this.b[j-1]<=0)) {
                     message("invalid index");
-                    ok = false;
+                    var ok = false;
                 }
             }
             this.model.ipar = new ScilabDouble([this.a],[this.b],[ma],[mb]);
-            in1 = [this.model.in1,this.model.in2];
-            out = [ma,mb];
-            funtyp = 4;
+            var in1 = [this.model.in1,this.model.in2];
+            var out = [ma,mb];
+            var funtyp = 4;
             if (ok) {
-                label = exprs;
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                var label = exprs;
+                var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;

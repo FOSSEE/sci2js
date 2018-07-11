@@ -9,8 +9,8 @@ function CONST() {
         this.model.rpar = new ScilabDouble([this.C]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
-        exprs = strcat(sci2exp(this.C));
-        gr_i = [];
+        var exprs = strcat(sci2exp(this.C));
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -25,16 +25,16 @@ function CONST() {
     CONST.prototype.set = function CONST() {
         this.C = parseFloat(arguments[0]["C"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.C,exprs] = scicos_getvalue(["Set Contant Block"],"Constant",list("vec",-1),exprs);
             if (!ok) {
                 break;
             }
-            sz = size(this.C);
-            nout = size(this.C,"*");
+            var sz = size(this.C);
+            var nout = size(this.C,"*");
             if (nout==0) {
                 message("C must have at least one element");
             } else if (and(sz>1)) {

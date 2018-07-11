@@ -2,8 +2,8 @@
 function MATRESH() {
     MATRESH.prototype.define = function MATRESH() {
         this.model = scicos_model();
-        function_name = "mat_reshape";
-        funtyp = 4;
+        var function_name = "mat_reshape";
+        var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in1 = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
@@ -20,8 +20,8 @@ function MATRESH() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
-        label = [[sci2exp(1)],[sci2exp([1,1])],[sci2exp([1,1])]];
-        gr_i = [];
+        var label = [[sci2exp(1)],[sci2exp([1,1])],[sci2exp([1,1])]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -43,8 +43,8 @@ function MATRESH() {
         this.lab = arguments[0]["lab"]
         this.x = arg1;
         this.model = arg1.model;
-        graphics = arg1.graphics;
-        label = graphics.exprs;
+        var graphics = arg1.graphics;
+        var label = graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -53,48 +53,51 @@ function MATRESH() {
             if (!ok) {
                 break;
             }
-            nout = size(this.out);
-            nin = size(this.l1);
+            var nout = size(this.out);
+            var nin = size(this.l1);
             if (nout==0) {
                 message("output must have at least one element");
-                ok = false;
+                var ok = false;
             }
             if (nin==0) {
                 message("input must have at least one element");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
                 if (((this.out[1-1]>(this.l1[1-1]*this.l1[2-1])))) {
                     message("the first dimension of the output is too big");
-                    ok = false;
+                    var ok = false;
                 }
                 if (((this.out[2-1]>(this.l1[1-1]*this.l1[2-1])))) {
                     message("the second dimension of the output is too big");
-                    ok = false;
+                    var ok = false;
                 }
                 if ((((this.out[2-1]*this.out[1-1])>(this.l1[1-1]*this.l1[2-1])))) {
                     message("the dimensions of the output are too big");
-                    ok = false;
+                    var ok = false;
                 }
             }
             if ((this.typ==1)) {
-                function_name = "mat_reshape";
-                ot = 1;
-                it = 1;
+                var function_name = "mat_reshape";
+                var ot = 1;
+                var it = 1;
             } else if ((this.typ==2)) {
-                function_name = "matz_reshape";
-                ot = 2;
-                it = 2;
+                var function_name = "matz_reshape";
+                var ot = 2;
+                var it = 2;
             } else {
                 message("Datatype is not supported");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
-                label = this.lab;
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(this.l1,it),list(this.out,ot),[],[]);
+                var label = this.lab;
+                var tmpvar0 = set_io(this.model,graphics,list(this.l1,it),list(this.out,ot),[],[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             }
             if (ok) {
-                funtyp = 4;
+                var funtyp = 4;
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;

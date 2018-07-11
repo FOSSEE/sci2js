@@ -2,8 +2,8 @@
 function INTEGRAL_m() {
     INTEGRAL_m.prototype.define = function INTEGRAL_m() {
         this.maxp = 1;
-        minp = -1;
-        rpar = [];
+        var minp = -1;
+        var rpar = [];
         this.model = scicos_model();
         this.model.state = new ScilabDouble([0]);
         this.model.sim = list(new ScilabString(["integral_func"]), new ScilabDouble([4]));
@@ -14,8 +14,8 @@ function INTEGRAL_m() {
         this.model.rpar = rpar;
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
-        exprs = string([[0],[0],[0],[this.maxp],[minp]]);
-        gr_i = [];
+        var exprs = string([[0],[0],[0],[this.maxp],[minp]]);
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -39,8 +39,8 @@ function INTEGRAL_m() {
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.lowp = parseFloat(arguments[0]["lowp"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("mat",[-1,-1],"vec",1,"vec",1,"mat",[-1,-1],"mat",[-1,-1]),exprs);
@@ -48,9 +48,9 @@ function INTEGRAL_m() {
                 break;
             }
             if (isreal(this.x0)) {
-                Datatype = 1;
+                var Datatype = 1;
             } else {
-                Datatype = 2;
+                var Datatype = 2;
             }
             if (this.reinit!=0) {
                 this.reinit = 1;
@@ -66,15 +66,15 @@ function INTEGRAL_m() {
                     }
                     if ((size(this.x0)!=size(this.maxp)||size(this.x0)!=size(this.lowp))) {
                         message("x0 and Upper limit and Lower limit must have same size");
-                        ok = false;
+                        var ok = false;
                     } else if (or(this.maxp<=this.lowp)) {
                         message("Upper limits must be > Lower limits");
-                        ok = false;
+                        var ok = false;
                     } else if (or(this.x0>this.maxp)||or(this.x0<this.lowp)) {
                         message("Initial condition x0 should be inside the limits");
-                        ok = false;
+                        var ok = false;
                     } else {
-                        rpar = [[real(this.maxp.slice())],[real(this.lowp.slice())]];
+                        var rpar = [[real(this.maxp.slice())],[real(this.lowp.slice())]];
                         this.model.nzcross = new ScilabDouble([size(this.x0,"*")]);
                         this.model.nmode = new ScilabDouble([size(this.x0,"*")]);
                     }
@@ -87,21 +87,21 @@ function INTEGRAL_m() {
                     }
                     if ((size(this.x0)!=size(this.maxp)||size(this.x0)!=size(this.lowp))) {
                         message("x0 and Upper limit and Lower limit must have same size");
-                        ok = false;
+                        var ok = false;
                     } else if (or(real(this.maxp)<=real(this.lowp))||or(imag(this.maxp)<=imag(this.lowp))) {
                         message("Upper limits must be > Lower limits");
-                        ok = false;
+                        var ok = false;
                     } else if (or(real(this.x0)>real(this.maxp))||or(real(this.x0)<real(this.lowp))||or(imag(this.x0)>imag(this.maxp))||or(imag(this.x0)<imag(this.lowp))) {
                         message("Initial condition x0 should be inside the limits");
-                        ok = false;
+                        var ok = false;
                     } else {
-                        rpar = [[real(this.maxp.slice())],[real(this.lowp.slice())],[imag(this.maxp.slice())],[imag(this.lowp.slice())]];
+                        var rpar = [[real(this.maxp.slice())],[real(this.lowp.slice())],[imag(this.maxp.slice())],[imag(this.lowp.slice())]];
                         this.model.nzcross = new ScilabDouble([2*size(this.x0,"*")]);
                         this.model.nmode = new ScilabDouble([2*size(this.x0,"*")]);
                     }
                 }
             } else {
-                rpar = [];
+                var rpar = [];
                 this.model.nzcross = new ScilabDouble([0]);
                 this.model.nmode = new ScilabDouble([0]);
             }
@@ -110,21 +110,24 @@ function INTEGRAL_m() {
                 if ((Datatype==1)) {
                     this.model.state = new ScilabDouble([real(this.x0.slice())]);
                     this.model.sim = list(new ScilabString(["integral_func"]), new ScilabDouble([4]));
-                    it = [[1],[ones(this.reinit,1)]];
-                    ot = 1;
+                    var it = [[1],[ones(this.reinit,1)]];
+                    var ot = 1;
                 } else if ((Datatype==2)) {
                     this.model.state = new ScilabDouble([real(this.x0.slice())],[imag(this.x0.slice())]);
                     this.model.sim = list(new ScilabString(["integralz_func"]), new ScilabDouble([4]));
-                    it = [[2],[2*ones(this.reinit,1)]];
-                    ot = 2;
+                    var it = [[2],[2*ones(this.reinit,1)]];
+                    var ot = 2;
                 } else {
                     message("Datatype is not supported");
-                    ok = false;
+                    var ok = false;
                 }
                 if (ok) {
-                    in1 = [size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,2)*[[1],[ones(this.reinit,1)]]];
-                    out = size(this.x0);
-                    [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.reinit,1),[]);
+                    var in1 = [size(this.x0,1)*[[1],[ones(this.reinit,1)]],size(this.x0,2)*[[1],[ones(this.reinit,1)]]];
+                    var out = size(this.x0);
+                    var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.reinit,1),[])
+                    this.model = tmpvar0[0]
+                    var graphics = tmpvar0[1]
+                    var ok = tmpvar0[2];
                 }
             }
             if (ok) {

@@ -12,8 +12,8 @@ function SAMPHOLD_m() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [true,false];
-        label = [sci2exp(1)];
-        gr_i = [];
+        var label = [sci2exp(1)];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -30,8 +30,8 @@ function SAMPHOLD_m() {
         this.it = arguments[0]["it"]
         this.x = arg1;
         this.x.model.firing = [];
-        graphics = arg1.graphics;
-        label = graphics.exprs;
+        var graphics = arg1.graphics;
+        var label = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.it,exprs] = scicos_getvalue("Set parameters Block",["Datatype(1=real double 2=Complex 3=int32 ...)"],list("vec",1),label);
@@ -40,11 +40,14 @@ function SAMPHOLD_m() {
             }
             if (((this.it<1)||(this.it>8))) {
                 message("Datatype is not supported");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
-                in1 = [this.model.in1,this.model.in2];
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[]);
+                var in1 = [this.model.in1,this.model.in2];
+                var tmpvar0 = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
                 if (ok) {
                     graphics.exprs = exprs;
                     arg1.graphics = graphics;

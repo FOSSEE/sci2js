@@ -9,8 +9,8 @@ function MATMUL() {
         this.model.out2 = new ScilabDouble([-3]);
         this.model.dep_ut = [true,false];
         this.model.ipar = new ScilabDouble([1]);
-        label = [sci2exp(this.model.ipar)];
-        gr_i = [];
+        var label = [sci2exp(this.model.ipar)];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -30,8 +30,8 @@ function MATMUL() {
         this.rule = parseFloat(arguments[0]["rule"])
         this.np = parseFloat(arguments[0]["np"])
         this.x = arg1;
-        graphics = this.x.graphics;
-        label = graphics.exprs;
+        var graphics = this.x.graphics;
+        var label = graphics.exprs;
         this.model = this.x.model;
         if (this.model.ipar==[]) {
             this.model.ipar = new ScilabDouble([1]);
@@ -50,17 +50,17 @@ function MATMUL() {
             this.rule = int(this.rule);
             if ((this.dtype<1||this.dtype>8)) {
                 message("type is not supported");
-                ok = false;
+                var ok = false;
             }
             if ((this.rule<1||this.rule>3)) {
                 message("Multiplication rule must be only 1,2 or 3");
-                ok = false;
+                var ok = false;
             }
             if ((this.dtype==1||this.dtype==2)) {
                 this.np = 0;
             }
-            TABMIN = [[0],[0],[-(2^31)],[-(2^15)],[-(2^7)],[0],[0],[0]];
-            TABMAX = [[0],[0],[(2^31)-1],[(2^15)-1],[(2^7)-1],[(2^32)-1],[(2^16)-1],[(2^8)-1]];
+            var TABMIN = [[0],[0],[-(2^31)],[-(2^15)],[-(2^7)],[0],[0],[0]];
+            var TABMAX = [[0],[0],[(2^31)-1],[(2^15)-1],[(2^7)-1],[(2^32)-1],[(2^16)-1],[(2^8)-1]];
             if (this.rule==2) {
                 if (this.np==0) {
                     this.model.sim = list(new ScilabString(["matmul2_m"]), new ScilabDouble([4]));
@@ -132,29 +132,32 @@ function MATMUL() {
                     }
                 }
             }
-            kmin = TABMIN[this.dtype-1];
-            kmax = TABMAX[this.dtype-1];
-            it = this.dtype*ones(1,2);
-            ot = this.dtype;
+            var kmin = TABMIN[this.dtype-1];
+            var kmax = TABMAX[this.dtype-1];
+            var it = this.dtype*ones(1,2);
+            var ot = this.dtype;
             if (this.rule==1) {
-                in1 = [[-1,-2],[-2,-3]];
-                out = [-1,-3];
+                var in1 = [[-1,-2],[-2,-3]];
+                var out = [-1,-3];
             } else if (this.rule==2) {
-                in1 = [[-1,-2],[-1,-2]];
-                out = [-1,-2];
+                var in1 = [[-1,-2],[-1,-2]];
+                var out = [-1,-2];
             } else {
-                in1 = [[-1,-2],[1,1]];
-                out = [-1,-2];
+                var in1 = [[-1,-2],[1,1]];
+                var out = [-1,-2];
             }
-            [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+            var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
+            this.model = tmpvar0[0]
+            var graphics = tmpvar0[1]
+            var ok = tmpvar0[2];
             if (ok) {
-                label = exprs;
+                var label = exprs;
                 this.model.ipar = new ScilabDouble([this.rule]);
                 this.model.rpar = new ScilabDouble([kmin],[kmax]);
                 graphics.exprs = label;
                 this.x.graphics = graphics;
                 this.x.model = this.model;
-                arg1 = this.x;
+                var arg1 = this.x;
                 break;
             }
         }

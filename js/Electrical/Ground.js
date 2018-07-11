@@ -7,12 +7,12 @@ function Ground() {
         this.model.sim = new ScilabString(["Ground"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        mo = modelica();
+        var mo = modelica();
         mo.model = "Ground";
         mo.inputs = "p";
         this.model.equations = new ScilabDouble([mo]);
-        exprs = "";
-        gr_i = [];
+        var exprs = "";
+        var gr_i = [];
         this.x = standard_define([1,1],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];

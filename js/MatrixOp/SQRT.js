@@ -10,8 +10,8 @@ function SQRT() {
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([-2]);
         this.model.dep_ut = [true,false];
-        label = [sci2exp(1)];
-        gr_i = [];
+        var label = [sci2exp(1)];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -27,8 +27,8 @@ function SQRT() {
     SQRT.prototype.set = function SQRT() {
         this.typ = inverse(arguments[0]["typ"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        label = graphics.exprs;
+        var graphics = arg1.graphics;
+        var label = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.typ,exprs] = scicos_getvalue("Set SQRT Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
@@ -36,21 +36,24 @@ function SQRT() {
                 break;
             }
             if ((this.typ==1)) {
-                function_name = "mat_sqrt";
+                var function_name = "mat_sqrt";
             } else if ((this.typ==2)) {
-                function_name = "matz_sqrt";
+                var function_name = "matz_sqrt";
             } else {
                 message("type is not supported");
-                ok = false;
+                var ok = false;
             }
-            it = this.typ;
-            ot = this.typ;
-            in1 = [this.model.in1,this.model.in2];
-            out = [this.model.out,this.model.out2];
-            funtyp = 4;
+            var it = this.typ;
+            var ot = this.typ;
+            var in1 = [this.model.in1,this.model.in2];
+            var out = [this.model.out,this.model.out2];
+            var funtyp = 4;
             if (ok) {
-                label = exprs;
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                var label = exprs;
+                var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;

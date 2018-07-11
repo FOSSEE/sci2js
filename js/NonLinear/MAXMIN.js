@@ -8,8 +8,8 @@ function MAXMIN() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
         this.model.ipar = new ScilabDouble([0]);
-        exprs = [string(transpose([2,1,1]))];
-        gr_i = [];
+        var exprs = [string(transpose([2,1,1]))];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.style = "MAXMIN;displayedLabel=MAX";
         return new BasicBlock(this.x);
@@ -30,8 +30,8 @@ function MAXMIN() {
         this.nin = arguments[0]["nin"]
         this.zcr = parseFloat(arguments[0]["zcr"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.mm,this.nin,this.zcr,exprs] = scicos_getvalue("Set Max/Min block parameters",["Min (1) or Max (2) ","Number of input vectors (1 or 2)","zero-crossing (1: yes, 0;no)"],list("vec",1,"vec",1,"vec",1),exprs);
@@ -46,13 +46,19 @@ function MAXMIN() {
             }
             if (this.nin!=1&&this.nin!=2) {
                 message("Wrong number of inputs, only 1 and 2 allowed");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
                 if (this.nin==1) {
-                    [this.model,graphics,ok] = check_io(this.model,graphics,-1,1,[],[]);
+                    var tmpvar0 = check_io(this.model,graphics,-1,1,[],[])
+                    this.model = tmpvar0[0]
+                    var graphics = tmpvar0[1]
+                    var ok = tmpvar0[2];
                 } else {
-                    [this.model,graphics,ok] = check_io(this.model,graphics,[-1,-1],-1,[],[]);
+                    var tmpvar1 = check_io(this.model,graphics,[-1,-1],-1,[],[])
+                    this.model = tmpvar1[0]
+                    var graphics = tmpvar1[1]
+                    var ok = tmpvar1[2];
                 }
             }
             if (ok) {
@@ -64,9 +70,9 @@ function MAXMIN() {
                 }
                 this.model.ipar = new ScilabDouble([this.mm]);
                 if (this.mm==1) {
-                    label = "MIN";
+                    var label = "MIN";
                 } else {
-                    label = "MAX";
+                    var label = "MAX";
                 }
                 graphics.style = "MAXMIN;displayedLabel="+label;
                 graphics.exprs = exprs;

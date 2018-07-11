@@ -18,8 +18,8 @@ function AFFICH_m() {
         this.model.firing = [];
         this.model.dep_ut = [true,false];
         this.model.label = new ScilabString([""]);
-        exprs = [[sci2exp([this.model.in1,this.model.in2])],[string(this.font)],[string(this.fontsize)],[string(this.colr)],[string(this.nt)],[string(this.nd)],[string(0)]];
-        gr_i = [];
+        var exprs = [[sci2exp([this.model.in1,this.model.in2])],[string(this.font)],[string(this.fontsize)],[string(this.colr)],[string(this.nt)],[string(this.nd)],[string(0)]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new AfficheBlock(this.x);
     }
@@ -47,43 +47,46 @@ function AFFICH_m() {
         this.nd = parseFloat(arguments[0]["nd"])
         this.herit = arguments[0]["herit"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.in1,this.font,this.fontsize,this.colr,this.nt,this.nd,this.herit,exprs] = scicos_getvalue("Set  parameters",["Input Size","Font number","Font size","Color","Total number of digits","Number of rational part digits","Block inherits (1) or not (0)"],list("mat",[1,2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            mess = [];
+            var mess = [];
             if (this.font<=0) {
-                mess = [[mess],["Font number must be positive"],[" "]];
-                ok = false;
+                var mess = [[mess],["Font number must be positive"],[" "]];
+                var ok = false;
             }
             if (this.fontsize<=0) {
-                mess = [[mess],["Font size must be positive"],[" "]];
-                ok = false;
+                var mess = [[mess],["Font size must be positive"],[" "]];
+                var ok = false;
             }
             if (this.nt<=3) {
-                mess = [[mess],["Total number of digits must be greater than 3"],[" "]];
-                ok = false;
+                var mess = [[mess],["Total number of digits must be greater than 3"],[" "]];
+                var ok = false;
             }
             if (this.nd<0) {
-                mess = [[mess],["Number of rational part digits must be ","greater or equal 0"],[" "]];
-                ok = false;
+                var mess = [[mess],["Number of rational part digits must be ","greater or equal 0"],[" "]];
+                var ok = false;
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
             if (!or(this.herit==[0,1])) {
-                mess = [[mess],["Accept inherited values are 0 and 1"],[" "]];
-                ok = false;
+                var mess = [[mess],["Accept inherited values are 0 and 1"],[" "]];
+                var ok = false;
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
             if (ok) {
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(this.in1,1),list(),ones(1-this.herit,1),[]);
+                var tmpvar0 = set_io(this.model,graphics,list(this.in1,1),list(),ones(1-this.herit,1),[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.font],[this.fontsize],[this.colr],[this.nt],[this.nd],[this.in1[1-1][1-1]]);

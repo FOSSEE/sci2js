@@ -23,8 +23,8 @@ function CANIMXY() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [false,false];
-        exprs = [[string(this.nbr_curves)],[string(this.clrs)],[string(this.siz)],[string(this.win)],["[]"],["[]"],[string(this.xmin)],[string(this.xmax)],[string(this.ymin)],[string(this.ymax)],[string(this.N)]];
-        gr_i = [];
+        var exprs = [[string(this.nbr_curves)],[string(this.clrs)],[string(this.siz)],[string(this.win)],["[]"],["[]"],[string(this.xmin)],[string(this.xmax)],[string(this.ymin)],[string(this.ymax)],[string(this.N)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -60,61 +60,64 @@ function CANIMXY() {
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.N = parseFloat(arguments[0]["N"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.xmin,this.xmax,this.ymin,this.ymax,this.N,exprs] = scicos_getvalue("Set Scope parameters",["Number of Curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin","Xmax","Ymin","Ymax","Buffer size"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            mess = [];
+            var mess = [];
             if (size(this.wpos,"*")!=0&&size(this.wpos,"*")!=2) {
-                mess = [[mess],["Window position must be [] or a 2 vector"],[" "]];
-                ok = false;
+                var mess = [[mess],["Window position must be [] or a 2 vector"],[" "]];
+                var ok = false;
             }
             if (size(this.wdim,"*")!=0&&size(this.wdim,"*")!=2) {
-                mess = [[mess],["Window dim must be [] or a 2 vector"],[" "]];
-                ok = false;
+                var mess = [[mess],["Window dim must be [] or a 2 vector"],[" "]];
+                var ok = false;
             }
             if (this.win<-1) {
-                mess = [[mess],["Window number cannot be inferior than -1"],[" "]];
-                ok = false;
+                var mess = [[mess],["Window number cannot be inferior than -1"],[" "]];
+                var ok = false;
             }
             if (this.nbr_curves<=0) {
-                mess = [[mess],["Number of curves cannot be negative or null"],[" "]];
-                ok = false;
+                var mess = [[mess],["Number of curves cannot be negative or null"],[" "]];
+                var ok = false;
             }
             if (this.N<1) {
-                mess = [[mess],["Buffer size must be at least 1"],[" "]];
-                ok = false;
+                var mess = [[mess],["Buffer size must be at least 1"],[" "]];
+                var ok = false;
             }
             if (this.N==1&&this.clrs>0) {
-                mess = [[mess],["Buffer size must be at least 2"],[" "]];
-                ok = false;
+                var mess = [[mess],["Buffer size must be at least 2"],[" "]];
+                var ok = false;
             }
             if (this.ymin>=this.ymax) {
-                mess = [[mess],["Ymax must be greater than Ymin"],[" "]];
-                ok = false;
+                var mess = [[mess],["Ymax must be greater than Ymin"],[" "]];
+                var ok = false;
             }
             if (this.xmin>=this.xmax) {
-                mess = [[mess],["Xmax must be greater than Xmin"],[" "]];
-                ok = false;
+                var mess = [[mess],["Xmax must be greater than Xmin"],[" "]];
+                var ok = false;
             }
             if (!ok) {
                 message(mess);
             } else {
-                in1 = this.nbr_curves*ones(2,1);
-                in2 = ones(2,1);
-                [this.model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],ones(2,1)),list(),ones(1,1),[]);
+                var in1 = this.nbr_curves*ones(2,1);
+                var in2 = ones(2,1);
+                var tmpvar0 = set_io(this.model,graphics,list([in1,in2],ones(2,1)),list(),ones(1,1),[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
                 if (this.wpos==[]) {
                     this.wpos = [[-1],[-1]];
                 }
                 if (this.wdim==[]) {
                     this.wdim = [[-1],[-1]];
                 }
-                rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
-                ipar = [[this.win],[1],[this.N],[this.clrs],[this.siz],[0],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
+                var rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
+                var ipar = [[this.win],[1],[this.N],[this.clrs],[this.siz],[0],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.ipar = new ScilabDouble(ipar);
                 graphics.exprs = exprs;

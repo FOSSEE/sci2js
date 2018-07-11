@@ -16,8 +16,8 @@ function generic_block2() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
-        label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp(this.model.in1)],[sci2exp(this.model.out)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]];
-        gr_i = [];
+        var label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp(this.model.in1)],[sci2exp(this.model.out)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -63,8 +63,8 @@ function generic_block2() {
         this.lab = arguments[0]["lab"]
         this.x = arg1;
         this.model = arg1.model;
-        graphics = arg1.graphics;
-        label = graphics.exprs;
+        var graphics = arg1.graphics;
+        var label = graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -73,7 +73,7 @@ function generic_block2() {
             if (!ok) {
                 break;
             }
-            label = this.lab;
+            var label = this.lab;
             this.function_name = stripblanks(this.function_name);
             this.xx = this.xx.slice();
             this.z = this.z.slice();
@@ -86,12 +86,12 @@ function generic_block2() {
             this.funtyp = int(this.funtyp);
             if (this.funtyp<0) {
                 message("function type cannot be negative");
-                ok = false;
+                var ok = false;
             }
             if ([[this.ci],[this.co]]!=[]) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
-                    ok = false;
+                    var ok = false;
                 }
             }
             this.depu = stripblanks(this.depu);
@@ -106,13 +106,16 @@ function generic_block2() {
             } else {
                 this.dept = false;
             }
-            dep_ut = [this.depu,this.dept];
+            var dep_ut = [this.depu,this.dept];
             if (ok) {
-                [this.model,graphics,ok] = check_io(this.model,graphics,this.i,this.o,this.ci,this.co);
+                var tmpvar0 = check_io(this.model,graphics,this.i,this.o,this.ci,this.co)
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             }
             if (ok) {
                 if (this.funtyp==3) {
-                    needcompile = 4;
+                    var needcompile = 4;
                 }
                 this.model.sim = list(new ScilabDouble([this.function_name]), new ScilabDouble([this.funtyp]));
                 this.model.state = this.xx;

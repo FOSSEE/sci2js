@@ -9,8 +9,8 @@ function DIFF_c() {
         this.model.state = new ScilabDouble(this.x0);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
-        exprs = [[strcat(sci2exp(this.x0[1-1]))],[strcat(sci2exp(this.x0[2-1]))]];
-        gr_i = [];
+        var exprs = [[strcat(sci2exp(this.x0[1-1]))],[strcat(sci2exp(this.x0[2-1]))]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -28,26 +28,26 @@ function DIFF_c() {
         this.x0 = inverse(arguments[0]["x0"])
         this.xd0 = inverse(arguments[0]["xd0"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            ask_again = false;
+            var ask_again = false;
             [ok,this.x0,this.xd0,exprs] = scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
                 break;
             }
             this.x0 = this.x0.slice();
-            N = size(this.x0,"*");
+            var N = size(this.x0,"*");
             this.xd0 = this.xd0.slice();
-            Nxd = size(this.xd0,"*");
+            var Nxd = size(this.xd0,"*");
             if ((N!=Nxd)) {
                 message("Incompatible sizes: states and their derivatives should have the same size ");
-                ask_again = true;
+                var ask_again = true;
             }
             if ((N<=0&&!ask_again)) {
                 x_message("number of states must be > 0 ");
-                ask_again = true;
+                var ask_again = true;
             }
             if (!ask_again) {
                 graphics.exprs = exprs;

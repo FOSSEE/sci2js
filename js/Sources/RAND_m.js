@@ -3,10 +3,10 @@ function RAND_m() {
     RAND_m.prototype.define = function RAND_m() {
         this.a = 0;
         this.b = 1;
-        dt = 0;
+        var dt = 0;
         this.flag = 0;
-        function_name = "rndblk_m";
-        funtyp = 4;
+        var function_name = "rndblk_m";
+        var funtyp = 4;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in1 = [];
@@ -24,8 +24,8 @@ function RAND_m() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [false,false];
-        exprs = [[sci2exp(1)],[string(this.flag)],[sci2exp([this.a])],[sci2exp([this.b])],[sci2exp([this.model.dstate[1-1],int(rand()*(10^7-1))])]];
-        gr_i = [];
+        var exprs = [[sci2exp(1)],[string(this.flag)],[sci2exp([this.a])],[sci2exp([this.b])],[sci2exp([this.model.dstate[1-1],int(rand()*(10^7-1))])]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -49,8 +49,8 @@ function RAND_m() {
         this.b = parseFloat(arguments[0]["b"])
         this.seed_c = arguments[0]["seed_c"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==14) {
             exprs[9-1] = [];
@@ -63,23 +63,26 @@ function RAND_m() {
             if (this.flag!=0&&this.flag!=1) {
                 message("flag must be equal to 1 or 0");
             } else {
-                out = size(this.a);
+                var out = size(this.a);
                 if (this.typ==1) {
-                    function_name = "rndblk_m";
+                    var function_name = "rndblk_m";
                     this.model.rpar = new ScilabDouble([real(this.a.slice())],[real(this.b.slice())]);
                     this.model.dstate = new ScilabDouble([this.seed_c[1-1]],[0*real(this.a.slice())]);
-                    ot = 1;
+                    var ot = 1;
                 } else if (this.typ==2) {
-                    function_name = "rndblkz_m";
-                    ot = 2;
+                    var function_name = "rndblkz_m";
+                    var ot = 2;
                     this.model.rpar = new ScilabDouble([real(this.a.slice())],[imag(this.a.slice())],[real(this.b.slice())],[imag(this.b.slice())]);
                     this.model.dstate = new ScilabDouble([this.seed_c.slice()],[0*[[real(this.a.slice())],[imag(this.a.slice())]]]);
                 } else {
                     message("Datatype is not supported");
-                    ok = false;
+                    var ok = false;
                 }
                 if (ok) {
-                    [this.model,graphics,ok] = set_io(this.model,graphics,list([],[]),list(out,ot),1,[]);
+                    var tmpvar0 = set_io(this.model,graphics,list([],[]),list(out,ot),1,[])
+                    this.model = tmpvar0[0]
+                    var graphics = tmpvar0[1]
+                    var ok = tmpvar0[2];
                     if (ok) {
                         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([4]));
                         graphics.exprs = exprs;

@@ -8,7 +8,7 @@ function CLKFROM() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [false,false];
-        exprs = "A";
+        var exprs = "A";
         this.x = standard_define([2,1],this.model,exprs," ");
         this.x.graphics.id = "From";
         return new BasicBlock(this.x);
@@ -24,17 +24,17 @@ function CLKFROM() {
     CLKFROM.prototype.set = function CLKFROM() {
         this.tag = arguments[0]["tag"]
         this.x = arg1;
-        graphics = arg1.graphics;
+        var graphics = arg1.graphics;
         this.model = arg1.model;
-        exprs = graphics.exprs;
+        var exprs = graphics.exprs;
         while (true) {
             [ok,this.tag,exprs] = scicos_getvalue("Set block parameters","Tag",list("str",-1),exprs);
             if (!ok) {
                 break;
             }
             if (this.model.opar!=list(this.tag)) {
-                needcompile = 4;
-                y = needcompile;
+                var needcompile = 4;
+                var y = needcompile;
             }
             this.model.opar = list(new ScilabDouble([this.tag]));
             this.model.evtout = new ScilabDouble([1]);

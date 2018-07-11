@@ -16,8 +16,8 @@ function FROMWS_c() {
         this.model.firing = [0];
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,true];
-        gr_i = [];
-        exprs = [[string(this.varnam)],[string(this.Method)],[string(this.ZC)],[string(this.OutEnd)]];
+        var gr_i = [];
+        var exprs = [[string(this.varnam)],[string(this.Method)],[string(this.ZC)],[string(this.OutEnd)]];
         this.x = standard_define([3.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -39,8 +39,8 @@ function FROMWS_c() {
         this.ZC = parseFloat(arguments[0]["ZC"])
         this.OutEnd = parseFloat(arguments[0]["OutEnd"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.varnam,this.Method,this.ZC,this.OutEnd,exprs] = scicos_getvalue("Set From_Workspace block parameters",["Variable name","Interpolation Method","Enable zero crossing(0:No, 1:Yes)?","Output at end(0:Zero, 1:Hold, 2:Repeat)"],list("str",1,"vec",1,"vec",1,"vec",1),exprs);
@@ -49,25 +49,28 @@ function FROMWS_c() {
             }
             if (!(this.Method==0||this.Method==1||this.Method==2||this.Method==3)) {
                 message("Interpolation method should be chosen in [0,1,2,3]");
-                ok = false;
+                var ok = false;
             }
             if (!(this.ZC==0||this.ZC==1)) {
                 message("Zero crossing should be either 0 or 1");
-                ok = false;
+                var ok = false;
             }
             if (!(this.OutEnd==0||this.OutEnd==1||this.OutEnd==2)) {
                 message("Output at end option should be either 0 or 1");
-                ok = false;
+                var ok = false;
             }
-            r = false;
-            ierr = execstr("r=validvar(varnam)","errcatch");
+            var r = false;
+            var ierr = execstr("r=validvar(varnam)","errcatch");
             if (!r) {
                 message([["Invalid variable name."],["Please choose another variable name."]]);
-                ok = false;
+                var ok = false;
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([length(this.varnam)],[this._str2code[this.varnam-1]],[this.Method],[this.ZC],[this.OutEnd]);
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(),list([-1,-2],-1),1,1);
+                var tmpvar0 = set_io(this.model,graphics,list(),list([-1,-2],-1),1,1)
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
                 if (ok) {
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;

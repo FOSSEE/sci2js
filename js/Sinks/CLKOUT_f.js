@@ -9,7 +9,7 @@ function CLKOUT_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [false,false];
-        exprs = string(this.prt);
+        var exprs = string(this.prt);
         this.x = standard_define([1,1],this.model,exprs," ");
         return new BasicBlock(this.x);
     }
@@ -24,10 +24,10 @@ function CLKOUT_f() {
     CLKOUT_f.prototype.set = function CLKOUT_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.x = arg1;
-        graphics = arg1.graphics;
+        var graphics = arg1.graphics;
         this.model = arg1.model;
-        exprs = graphics.exprs;
-        exprs = exprs[1-1];
+        var exprs = graphics.exprs;
+        var exprs = exprs[1-1];
         while (true) {
             [ok,this.prt,exprs] = scicos_getvalue("Set Event Output block parameters","Port number",list("vec",1),exprs);
             if (!ok) {

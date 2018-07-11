@@ -496,11 +496,33 @@ def p_elsestatement_else(p):
 
 # define assignment
 
+VARCOUNT = 0
+
 def p_lterm_assignment_expression(p):
     '''assignment : lterm ASSIGNMENT expression
                   | lterm ASSIGNMENT listcall'''
-    p[0] = '%*s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3][0])
-    add_var_vartype(p[1], p[3][1])
+    global VARCOUNT
+    var = p[1]
+    if var[0] == '[':
+        prefix = 'var '
+        tmpvar = 'tmpvar%d' % (VARCOUNT)
+        p[0] = '%*s%s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, tmpvar, p[3][0])
+        VARCOUNT += 1
+        var = var[1:-1]
+        ltermvars = var.split(',')
+        idx = 0
+        for var in ltermvars:
+            prefix = ''
+            if var in LOCAL_VARS and '.' not in var:
+                prefix = 'var '
+            p[0] += '\n%*s%s%s = %s[%d]' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, var, tmpvar, idx)
+            idx += 1
+    else:
+        prefix = ''
+        if var in LOCAL_VARS and '.' not in var:
+            prefix = 'var '
+        p[0] = '%*s%s%s = %s' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, var, p[3][0])
+        add_var_vartype(var, p[3][1])
 
 def p_model_assignment_expression(p):
     'assignment : MODEL ASSIGNMENT expression'

@@ -8,7 +8,7 @@ function SampleCLK() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = [false,false];
-        exprs = [[sci2exp(1)],[sci2exp(0)]];
+        var exprs = [[sci2exp(1)],[sci2exp(0)]];
         this.x = standard_define([2,2],this.model,exprs," ");
         return new BasicBlock(this.x);
     }
@@ -26,9 +26,9 @@ function SampleCLK() {
         this.frequ = arguments[0]["frequ"]
         this.offset = arguments[0]["offset"]
         this.x = arg1;
-        graphics = arg1.graphics;
+        var graphics = arg1.graphics;
         this.model = arg1.model;
-        exprs = graphics.exprs;
+        var exprs = graphics.exprs;
         while (true) {
             [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",1,"vec",1),exprs);
             if (!ok) {
@@ -36,16 +36,16 @@ function SampleCLK() {
             }
             if (this.frequ<0) {
                 message("Frequency must be a positif number");
-                ok = false;
+                var ok = false;
             }
             if (abs(this.offset)>this.frequ) {
                 message("The |Offset| must be less than the Frequency");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
                 if (or(this.model.rpar.slice()!=[[this.frequ],[this.offset]])) {
-                    needcompile = 4;
-                    y = needcompile;
+                    var needcompile = 4;
+                    var y = needcompile;
                 }
                 this.model.rpar = new ScilabDouble([this.frequ],[this.offset]);
                 this.model.evtout = new ScilabDouble([1]);

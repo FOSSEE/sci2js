@@ -10,8 +10,8 @@ function DEMUX_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
-        exprs = string(this.out);
-        gr_i = [];
+        var exprs = string(this.out);
+        var gr_i = [];
         this.x = standard_define([.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -27,8 +27,8 @@ function DEMUX_f() {
     DEMUX_f.prototype.set = function DEMUX_f() {
         this.out = parseFloat(arguments[0]["out"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.out,exprs] = scicos_getvalue("Set DEMUX block parameters",["number of output ports or vector of sizes"],list("vec",-1),exprs);
@@ -38,21 +38,27 @@ function DEMUX_f() {
             if (size(this.out,"*")==1) {
                 if (this.out<2||this.out>8) {
                     message("Block must have at least 2 and at most 8 output ports");
-                    ok = false;
+                    var ok = false;
                 } else {
-                    [this.model,graphics,ok] = check_io(this.model,graphics,0,-transpose([1:this.out]),[],[]);
+                    var tmpvar0 = check_io(this.model,graphics,0,-transpose([1:this.out]),[],[])
+                    this.model = tmpvar0[0]
+                    var graphics = tmpvar0[1]
+                    var ok = tmpvar0[2];
                 }
             } else {
                 if (size(this.out,"*")<2||size(this.out,"*")>8||or(this.out==0)) {
                     message([["Block must have at least 2 and at most 8 output ports"],["and size 0 is not allowed"]]);
-                    ok = false;
+                    var ok = false;
                 } else {
                     if (min(this.out)<0) {
-                        nin = 0;
+                        var nin = 0;
                     } else {
-                        nin = sum(this.out);
+                        var nin = sum(this.out);
                     }
-                    [this.model,graphics,ok] = check_io(this.model,graphics,nin,this.out.slice(),[],[]);
+                    var tmpvar1 = check_io(this.model,graphics,nin,this.out.slice(),[],[])
+                    this.model = tmpvar1[0]
+                    var graphics = tmpvar1[1]
+                    var ok = tmpvar1[2];
                     if (ok) {
                         this.out = size(this.out,"*");
                     }

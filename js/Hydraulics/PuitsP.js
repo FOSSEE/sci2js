@@ -10,14 +10,14 @@ function PuitsP() {
         this.model.sim = new ScilabString(["Puits"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        mo = modelica();
+        var mo = modelica();
         mo.model = "Puits";
         mo.inputs = ["C"];
         mo.parameters = list([["P0"],["T0"],["H0"],["option_temperature"]],[[this.P0],[this.T0],[this.H0],[this.option_temperature]]);
         this.model.equations = new ScilabDouble([mo]);
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
-        exprs = [[string(this.P0)],[string(this.T0)],[string(this.H0)],[string(this.option_temperature)]];
-        gr_i = [];
+        var exprs = [[string(this.P0)],[string(this.T0)],[string(this.H0)],[string(this.option_temperature)]];
+        var gr_i = [];
         this.x = standard_define([2.5,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -40,8 +40,8 @@ function PuitsP() {
         this.H0 = parseFloat(arguments[0]["H0"])
         this.option_temperature = parseFloat(arguments[0]["option_temperature"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.P0,this.T0,this.H0,this.option_temperature,exprs] = scicos_getvalue("Paramètres du puits",["Pression de la source : P0 (Pa)","Temperature de la source : T0 (K)","Enthalpie spécifique de la source : H0 (J/kg)","1:température fixée - 2:enthalpie fixée : option_temperature"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs);

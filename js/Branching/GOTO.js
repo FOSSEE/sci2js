@@ -13,8 +13,8 @@ function GOTO() {
         this.model.opar = list(new ScilabString(["A"]));
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
-        exprs = [["A"],[sci2exp(1)]];
-        gr_i = [];
+        var exprs = [["A"],[sci2exp(1)]];
+        var gr_i = [];
         this.x = standard_define([2,1],this.model,exprs,gr_i);
         this.x.graphics.id = "Goto";
         return new BasicBlock(this.x);
@@ -33,8 +33,8 @@ function GOTO() {
         this.tag = arguments[0]["tag"]
         this.tagvis = parseFloat(arguments[0]["tagvis"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.tag,this.tagvis,exprs] = scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),exprs);
@@ -44,19 +44,19 @@ function GOTO() {
             this.tagvis = int(this.tagvis);
             if (((this.tagvis<1)||(this.tagvis>3))) {
                 message("Tag Visibility must be between 1 and 3");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
                 if (((this.model.ipar!=this.tagvis)||(this.model.opar!=list(this.tag)))) {
-                    needcompile = 4;
-                    y = needcompile;
+                    var needcompile = 4;
+                    var y = needcompile;
                 }
                 graphics.exprs = exprs;
                 this.model.opar = list(new ScilabDouble([this.tag]));
                 this.model.ipar = new ScilabDouble([this.tagvis]);
                 this.x.model = this.model;
                 this.x.graphics = graphics;
-                arg1 = this.x;
+                var arg1 = this.x;
                 break;
             }
         }

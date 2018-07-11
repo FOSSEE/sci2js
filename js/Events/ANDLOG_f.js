@@ -8,7 +8,7 @@ function ANDLOG_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [];
         this.model.dep_ut = [false,false];
-        gr_i = [];
+        var gr_i = [];
         this.x = standard_define([3,3],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }

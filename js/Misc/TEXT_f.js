@@ -7,8 +7,8 @@ function TEXT_f() {
         this.model.sim = new ScilabString(["text"]);
         this.model.rpar = new ScilabString(["Text"]);
         this.model.ipar = new ScilabDouble([this.font],[this.siz]);
-        exprs = [["Text"],[string(this.font)],[string(this.siz)]];
-        graphics = scicos_graphics();
+        var exprs = [["Text"],[string(this.font)],[string(this.siz)]];
+        var graphics = scicos_graphics();
         graphics.orig = [0,0];
         graphics.sz = [2,1];
         graphics.exprs = exprs;
@@ -31,12 +31,12 @@ function TEXT_f() {
         this.font = parseFloat(arguments[0]["font"])
         this.siz = parseFloat(arguments[0]["siz"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        orig = graphics.orig;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var orig = graphics.orig;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==1) {
-            exprs = [[exprs],["3"],["1"]];
+            var exprs = [[exprs],["3"],["1"]];
         }
         while (true) {
             [ok,this.txt,this.font,this.siz,exprs] = scicos_getvalue("Set Text block parameters",["Text","Font number","Font size"],list("str",-1,"vec",1,"vec",1),exprs);
@@ -45,28 +45,28 @@ function TEXT_f() {
             }
             if (this.font<=0||this.font>6) {
                 message("Font number must be greater than 0 and less than 7");
-                ok = false;
+                var ok = false;
             }
             if (this.siz<0) {
                 message("Font size must be positive");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
                 graphics.exprs = exprs;
-                gh_winpal = gca();
-                default_font_style = gh_winpal.font_style;
-                default_font_size = gh_winpal.font_size;
-                default_font_color = gh_winpal.font_color;
+                var gh_winpal = gca();
+                var default_font_style = gh_winpal.font_style;
+                var default_font_size = gh_winpal.font_size;
+                var default_font_color = gh_winpal.font_color;
                 gh_winpal.font_style = this.font;
                 gh_winpal.font_size = this.siz;
-                r = xstringl(0,0,exprs[1-1],evstr(exprs[2-1]),evstr(exprs[3-1]));
+                var r = xstringl(0,0,exprs[1-1],evstr(exprs[2-1]),evstr(exprs[3-1]));
                 gh_winpal.font_style = default_font_style;
                 gh_winpal.font_size = default_font_size;
                 gh_winpal.font_color = default_font_color;
-                sz = r.slice(3-1,4);
+                var sz = r.slice(3-1,4);
                 graphics.sz = sz;
                 this.x.graphics = graphics;
-                ipar = [[this.font],[this.siz]];
+                var ipar = [[this.font],[this.siz]];
                 this.model.rpar = new ScilabDouble([this.txt]);
                 this.model.ipar = new ScilabDouble(ipar);
                 this.x.model = this.model;

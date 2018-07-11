@@ -2,8 +2,8 @@
 function RICC() {
     RICC.prototype.define = function RICC() {
         this.model = scicos_model();
-        function_name = "ricc_m";
-        funtyp = 4;
+        var function_name = "ricc_m";
+        var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in1 = new ScilabDouble([-1],[-1],[-1]);
         this.model.in2 = new ScilabDouble([-1],[-1],[-1]);
@@ -20,8 +20,8 @@ function RICC() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
-        label = [[sci2exp(1)],[sci2exp(1)]];
-        gr_i = [];
+        var label = [[sci2exp(1)],[sci2exp(1)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -39,8 +39,8 @@ function RICC() {
         this.tpe = arguments[0]["tpe"]
         this.mod = arguments[0]["mod"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        label = graphics.exprs;
+        var graphics = arg1.graphics;
+        var label = graphics.exprs;
         this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -50,12 +50,15 @@ function RICC() {
             if (!ok) {
                 break;
             }
-            in1 = [this.model.in1,this.model.in2];
-            out = [this.model.out,this.model.out2];
-            it = [1,1,1];
-            ot = 1;
-            label = exprs;
-            [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+            var in1 = [this.model.in1,this.model.in2];
+            var out = [this.model.out,this.model.out2];
+            var it = [1,1,1];
+            var ot = 1;
+            var label = exprs;
+            var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
+            this.model = tmpvar0[0]
+            var graphics = tmpvar0[1]
+            var ok = tmpvar0[2];
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.tpe],[this.mod]);
                 graphics.exprs = label;

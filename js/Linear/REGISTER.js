@@ -10,8 +10,8 @@ function REGISTER() {
         this.model.dstate = new ScilabDouble([this.z0]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
-        exprs = strcat(string(this.z0),";");
-        gr_i = [];
+        var exprs = strcat(string(this.z0),";");
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -29,11 +29,11 @@ function REGISTER() {
         this.z0 = parseFloat(arguments[0]["z0"])
         this.it = arguments[0]["it"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,1)==1) {
-            exprs = [[exprs],[sci2exp(1)]];
+            var exprs = [[exprs],[sci2exp(1)]];
         }
         while (true) {
             [ok,this.z0,this.it,exprs] = scicos_getvalue("Set delay parameters",["Register initial condition","Datatype (1=double 3=int32 ...)"],list("vec",-1,"vec",1),exprs);
@@ -42,7 +42,7 @@ function REGISTER() {
             }
             if (prod(size(this.z0))<1) {
                 message("Register length must be at least 1");
-                ok = false;
+                var ok = false;
             }
             if (this.it==1) {
                 this.model.sim = list(new ScilabString(["delay4"]), new ScilabDouble([4]));
@@ -70,14 +70,17 @@ function REGISTER() {
                     this.z0 = uint8(this.z0);
                 } else {
                     message("Datatype is not supported");
-                    ok = false;
+                    var ok = false;
                 }
                 this.model.odstate = list(new ScilabDouble([this.z0]));
                 this.model.dstate = [];
             }
             if (ok) {
-                in1 = [1,1];
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[]);
+                var in1 = [1,1];
+                var tmpvar0 = set_io(this.model,graphics,list(in1,this.it),list(in1,this.it),1,[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             }
             if (ok) {
                 graphics.exprs = exprs;

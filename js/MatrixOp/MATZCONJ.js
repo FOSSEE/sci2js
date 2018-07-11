@@ -2,8 +2,8 @@
 function MATZCONJ() {
     MATZCONJ.prototype.define = function MATZCONJ() {
         this.model = scicos_model();
-        function_name = "matz_conj";
-        funtyp = 4;
+        var function_name = "matz_conj";
+        var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in1 = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
@@ -20,8 +20,8 @@ function MATZCONJ() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
-        label = [];
-        gr_i = [];
+        var label = [];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }

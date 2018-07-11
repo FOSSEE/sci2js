@@ -20,8 +20,8 @@ function ISELECT_m() {
         this.model.dstate = new ScilabDouble([this.z0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = [[sci2exp(1)],[sci2exp(this.nout)],[sci2exp(this.z0)]];
-        gr_i = [];
+        var exprs = [[sci2exp(1)],[sci2exp(this.nout)],[sci2exp(this.z0)]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -41,8 +41,8 @@ function ISELECT_m() {
         this.nout = parseFloat(arguments[0]["nout"])
         this.z0 = parseFloat(arguments[0]["z0"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.typ,this.nout,this.z0,exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ...)","number of outputs","initial connected output"],list("vec",1,"vec",1,"vec",1),exprs);
@@ -53,14 +53,17 @@ function ISELECT_m() {
                 message("initial connected input is not a valid input port number");
             } else if (((this.typ<1)||(this.typ>8))) {
                 message("Datatype is not supported");
-                ok = false;
+                var ok = false;
             } else {
-                it = this.typ;
-                ot = this.typ*ones(1,this.nout);
+                var it = this.typ;
+                var ot = this.typ*ones(1,this.nout);
                 if (ok) {
-                    out = [-ones(this.nout,1),-2*ones(this.nout,1)];
-                    in1 = [-1,-2];
-                    [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.nout,1),[]);
+                    var out = [-ones(this.nout,1),-2*ones(this.nout,1)];
+                    var in1 = [-1,-2];
+                    var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(this.nout,1),[])
+                    this.model = tmpvar0[0]
+                    var graphics = tmpvar0[1]
+                    var ok = tmpvar0[2];
                     if (ok) {
                         graphics.exprs = exprs;
                         this.model.dstate = new ScilabDouble([this.z0]);

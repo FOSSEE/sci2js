@@ -10,8 +10,8 @@ function CONSTRAINT_c() {
         this.model.state = new ScilabDouble(this.x0);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
-        exprs = "0";
-        gr_i = [];
+        var exprs = "0";
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -26,8 +26,8 @@ function CONSTRAINT_c() {
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
         this.x0 = inverse(arguments[0]["x0"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.x0,exprs] = scicos_getvalue("Set solver block parameters","Initial guess values",list("vec",-1),exprs);
@@ -35,11 +35,14 @@ function CONSTRAINT_c() {
                 break;
             }
             this.x0 = this.x0.slice();
-            N = size(this.x0,"*");
+            var N = size(this.x0,"*");
             if (N<=0) {
                 message("number of states (constraints) must be > 0 ");
             } else {
-                [this.model,graphics,ok] = check_io(this.model,graphics,N,N,[],[]);
+                var tmpvar0 = check_io(this.model,graphics,N,N,[],[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.state = new ScilabDouble([this.x0],[zeros(N,1)]);

@@ -3,8 +3,8 @@ function SAT_f() {
     SAT_f.prototype.define = function SAT_f() {
         this.minp = -1;
         this.maxp = 1;
-        slope = 1;
-        rpar = [[this.minp],[this.maxp],[slope]];
+        var slope = 1;
+        var rpar = [[this.minp],[this.maxp],[slope]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["lusat"]), new ScilabDouble([1]));
         this.model.in1 = new ScilabDouble([1]);
@@ -13,8 +13,8 @@ function SAT_f() {
         this.model.rpar = new ScilabDouble([this.minp],[this.maxp],[slope]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = [[string(this.minp)],[string(this.maxp)],[string(slope)]];
-        gr_i = [];
+        var exprs = [[string(this.minp)],[string(this.maxp)],[string(slope)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -34,8 +34,8 @@ function SAT_f() {
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.pente = arguments[0]["pente"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.minp,this.maxp,this.pente,exprs] = scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),exprs);
@@ -47,7 +47,7 @@ function SAT_f() {
             } else if (this.pente<=0) {
                 message("Slope must be strictly positive");
             } else {
-                rpar = [[this.minp/this.pente],[this.maxp/this.pente],[this.pente]];
+                var rpar = [[this.minp/this.pente],[this.maxp/this.pente],[this.pente]];
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.firing = [];
                 graphics.exprs = exprs;

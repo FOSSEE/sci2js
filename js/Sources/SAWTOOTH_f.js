@@ -8,8 +8,8 @@ function SAWTOOTH_f() {
         this.model.dstate = new ScilabDouble([0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,true];
-        exprs = " ";
-        gr_i = [];
+        var exprs = " ";
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

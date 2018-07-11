@@ -14,8 +14,8 @@ function CEVENTSCOPE() {
         this.model.ipar = new ScilabDouble([this.win],[1],[this.clrs[this.nclock-1]],[this.wpos.slice()],[this.wdim.slice()]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
-        exprs = [[sci2exp(this.nclock)],[strcat(sci2exp(this.clrs[this.nclock-1])," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.per)]];
-        gr_i = [];
+        var exprs = [[sci2exp(this.nclock)],[strcat(sci2exp(this.clrs[this.nclock-1])," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.per)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -41,8 +41,8 @@ function CEVENTSCOPE() {
         this.wdim = inverse(arguments[0]["wdim"])
         this.per = parseFloat(arguments[0]["per"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.nclock,this.clrs,this.win,this.wpos,this.wdim,this.per,exprs] = scicos_getvalue("Set Scope parameters",["Number of event inputs","colors c (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Refresh period"],list("vec",1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",1),exprs);
@@ -52,33 +52,36 @@ function CEVENTSCOPE() {
             if (!ok) {
                 break;
             }
-            mess = [];
+            var mess = [];
             if (size(this.wpos,"*")!=0&&size(this.wpos,"*")!=2) {
-                mess = [[mess],["Window position must be [] or a 2 vector"],[" "]];
-                ok = false;
+                var mess = [[mess],["Window position must be [] or a 2 vector"],[" "]];
+                var ok = false;
             }
             if (size(this.wdim,"*")!=0&&size(this.wdim,"*")!=2) {
-                mess = [[mess],["Window dim must be [] or a 2 vector"],[" "]];
-                ok = false;
+                var mess = [[mess],["Window dim must be [] or a 2 vector"],[" "]];
+                var ok = false;
             }
             if (this.nclock<=0) {
-                mess = [[mess],["Block must have at least one input event"],[" "]];
-                ok = false;
+                var mess = [[mess],["Block must have at least one input event"],[" "]];
+                var ok = false;
             }
             if (size(this.clrs,"*")!=this.nclock) {
-                mess = [[mess],["Inputs color c size must be equal to Number of inputs"],[" "]];
-                ok = false;
+                var mess = [[mess],["Inputs color c size must be equal to Number of inputs"],[" "]];
+                var ok = false;
             }
             if (this.win<-1) {
-                mess = [[mess],["Window number cannot be inferior than -1"],[" "]];
-                ok = false;
+                var mess = [[mess],["Window number cannot be inferior than -1"],[" "]];
+                var ok = false;
             }
             if (this.per<=0) {
-                mess = [[mess],["Refresh period must be positive"],[" "]];
-                ok = false;
+                var mess = [[mess],["Refresh period must be positive"],[" "]];
+                var ok = false;
             }
             if (ok) {
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(),list(),ones(this.nclock,1),[]);
+                var tmpvar0 = set_io(this.model,graphics,list(),list(),ones(this.nclock,1),[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             } else {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
@@ -89,8 +92,8 @@ function CEVENTSCOPE() {
                 if (this.wdim==[]) {
                     this.wdim = [[-1],[-1]];
                 }
-                rpar = this.per;
-                ipar = [[this.win],[1],[this.clrs.slice()],[this.wpos.slice()],[this.wdim.slice()]];
+                var rpar = this.per;
+                var ipar = [[this.win],[1],[this.clrs.slice()],[this.wpos.slice()],[this.wdim.slice()]];
                 this.model.rpar = new ScilabDouble([rpar]);
                 this.model.ipar = new ScilabDouble(ipar);
                 graphics.exprs = exprs;

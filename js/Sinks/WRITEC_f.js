@@ -2,11 +2,11 @@
 function WRITEC_f() {
     WRITEC_f.prototype.define = function WRITEC_f() {
         this.in1 = 1;
-        nin = sum(this.in1);
-        frmt = "c  ";
-        fname = "foo";
+        var nin = sum(this.in1);
+        var frmt = "c  ";
+        var fname = "foo";
         this.swap = 0;
-        lunit = 0;
+        var lunit = 0;
         this.N = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["writec"]), new ScilabDouble([2]));
@@ -16,8 +16,8 @@ function WRITEC_f() {
         this.model.ipar = new ScilabDouble([length(fname)],[this._str2code[frmt-1]],[this.N],[this.swap],[this._str2code[fname-1]]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [true,false];
-        exprs = [[sci2exp(this.in1)],[fname],[frmt],[string(this.N),string(this.swap)]];
-        gr_i = [];
+        var exprs = [[sci2exp(this.in1)],[fname],[frmt],[string(this.N),string(this.swap)]];
+        var gr_i = [];
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -41,56 +41,59 @@ function WRITEC_f() {
         this.N = parseFloat(arguments[0]["N"])
         this.swap = parseFloat(arguments[0]["swap"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
-        ipar = this.model.ipar;
-        dstate = this.model.dstate;
-        lunit = dstate[2-1];
-        fname = exprs[2-1];
-        frmt = exprs[3-1];
+        var ipar = this.model.ipar;
+        var dstate = this.model.dstate;
+        var lunit = dstate[2-1];
+        var fname = exprs[2-1];
+        var frmt = exprs[3-1];
         while (true) {
             [ok,this.in1,this.fname1,this.frmt1,this.N,this.swap,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WRITEC_f")],[" "],["Write to C binary file"]],["Input Size","Output File Name","Output Format","Buffer Size","Swap Mode (0:No, 1:Yes)"],list("vec",1,"str",1,"str",1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
             this.in1 = int(this.in1);
-            nin = this.in1;
+            var nin = this.in1;
             this.fname1 = pathconvert(stripblanks(this.fname1),false,true);
             this.frmt1 = stripblanks(this.frmt1);
-            fmts = ["s","l","d","f","c","us","ul","uc","ull","uls","ubl","ubs","dl","fl","ll","sl","db","fb","lb","sb"];
+            var fmts = ["s","l","d","f","c","us","ul","uc","ull","uls","ubl","ubs","dl","fl","ll","sl","db","fb","lb","sb"];
             if (and(this.frmt1!=fmts)) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Input Format",this.frmt1),"Valid formats are: "+strcat(fmts,", "));
-                ok = false;
+                var ok = false;
             } else if (this.alreadyran&&this.fname1!=fname) {
                 block_parameter_error(msprintf("You cannot modify \'%s\' when running","Input Format"),"End current simulation first.");
-                ok = false;
+                var ok = false;
             } else if (this.alreadyran&&this.N!=ipar[5-1]) {
                 block_parameter_error(msprintf("You cannot modify \'Buffer Size\' when running.","Buffer Size"),"End current simulation first");
-                ok = false;
+                var ok = false;
             } else if (this.fname1=="") {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Output File Name"),"You must provide a filename.");
             } else if (fileparts(this.fname1)!="") {
-                [pa,fn,ex] = fileparts(this.fname1);
+                var tmpvar0 = fileparts(this.fname1)
+                var pa = tmpvar0[0]
+                var fn = tmpvar0[1]
+                var ex = tmpvar0[2];
                 if (!this.isdir[pa-1]) {
                     block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Output File Name"),msprintf("Directory \'%s\' does not exist",pa));
-                    ok = false;
+                    var ok = false;
                 }
             } else if (this.N<1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Buffer Size",this.N),"Strictly positive integer expected.");
-                ok = false;
+                var ok = false;
             } else if (this.in1<=0) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Input Size",this.in1),"Strictly positive integer expected.");
-                ok = false;
+                var ok = false;
             } else if (this.swap!=0&&this.swap!=1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Swap Mode",this.swap),msprintf("Must be in the interval %s.","[0, 1]"));
-                ok = false;
+                var ok = false;
             }
             this.frmt1 = part(this.frmt1,1,3);
             if (ok) {
-                ipar = [[length(this.fname1)],[this._str2code[this.frmt1-1]],[this.N],[this.swap],[this._str2code[this.fname1-1]]];
+                var ipar = [[length(this.fname1)],[this._str2code[this.frmt1-1]],[this.N],[this.swap],[this._str2code[this.fname1-1]]];
                 if (prod(size(dstate))!=(nin+1)*this.N+2) {
-                    dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
+                    var dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
                 }
                 this.model.in1 = new ScilabDouble([nin]);
                 this.model.dstate = new ScilabDouble(dstate);

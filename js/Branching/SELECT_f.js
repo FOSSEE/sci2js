@@ -2,7 +2,7 @@
 function SELECT_f() {
     SELECT_f.prototype.define = function SELECT_f() {
         this.z0 = 0;
-        in1 = [[-1],[-1]];
+        var in1 = [[-1],[-1]];
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["selector"]), new ScilabDouble([2]));
@@ -12,8 +12,8 @@ function SELECT_f() {
         this.model.dstate = new ScilabDouble([this.z0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = [[string(this.nin)],[string(this.z0+1)]];
-        gr_i = [];
+        var exprs = [[string(this.nin)],[string(this.z0+1)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -31,8 +31,8 @@ function SELECT_f() {
         this.nin = parseFloat(arguments[0]["nin"])
         this.z0 = parseFloat(arguments[0]["z0"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),exprs);
@@ -42,7 +42,10 @@ function SELECT_f() {
             if (this.z0>this.nin||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
             } else {
-                [this.model,graphics,ok] = check_io(this.model,graphics,-ones(this.nin,1),-1,ones(this.nin,1),[]);
+                var tmpvar0 = check_io(this.model,graphics,-ones(this.nin,1),-1,ones(this.nin,1),[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.dstate = new ScilabDouble([this.z0-1]);

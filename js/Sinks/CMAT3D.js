@@ -3,12 +3,12 @@ function CMAT3D() {
     CMAT3D.prototype.define = function CMAT3D() {
         this.cmin = 0;
         this.cmax = 100;
-        this.colormap = this.jetcolormap[25-1];
-        size_c = 25;
+        this.colormap = jetcolormap(25);
+        var size_c = 25;
         this.x = -1;
-        y = -1;
-        size_x = 1;
-        size_y = 1;
+        var y = -1;
+        var size_x = 1;
+        var size_y = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cmat3d"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([-1]);
@@ -19,8 +19,8 @@ function CMAT3D() {
         this.model.rpar = new ScilabDouble([this.colormap.slice()],[this.x],[y]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = [[strcat(string(this.x)," ")],[strcat(string(y)," ")],[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
-        gr_i = [];
+        var exprs = [[strcat(string(this.x)," ")],[strcat(string(y)," ")],[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -44,31 +44,31 @@ function CMAT3D() {
         this.cmin = parseFloat(arguments[0]["cmin"])
         this.cmax = parseFloat(arguments[0]["cmax"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.vec_x,this.vec_y,this.colormap,this.cmin,this.cmax,exprs] = scicos_getvalue("Set Scope parameters",["Bounds Vector X (-1 for standard)","Bounds Vector Y (-1 for standard)","ColorMap","Zmin","Zmax"],list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            mess = [];
+            var mess = [];
             if (size(this.vec_x,"*")!=size(this.vec_y,"*")) {
-                mess = [[mess],["Vector X and Vector Y must have the same size"],[" "]];
-                ok = false;
+                var mess = [[mess],["Vector X and Vector Y must have the same size"],[" "]];
+                var ok = false;
             }
             if (this.cmax<=this.cmin) {
-                mess = [[mess],["Error with minimum and maximum value"],[" "]];
-                ok = false;
+                var mess = [[mess],["Error with minimum and maximum value"],[" "]];
+                var ok = false;
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
             if (ok) {
-                size_x = size(this.vec_x,"*");
-                size_c = size(this.colormap.slice(),1);
-                ipar = [[this.cmin],[this.cmax],[size_c],[size_x]];
-                rpar = [[this.colormap.slice()],[this.vec_x.slice()],[this.vec_y.slice()]];
+                var size_x = size(this.vec_x,"*");
+                var size_c = size(this.colormap.slice(),1);
+                var ipar = [[this.cmin],[this.cmax],[size_c],[size_x]];
+                var rpar = [[this.colormap.slice()],[this.vec_x.slice()],[this.vec_y.slice()]];
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.rpar = new ScilabDouble(rpar);
                 graphics.exprs = exprs;

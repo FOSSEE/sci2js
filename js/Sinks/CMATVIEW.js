@@ -3,10 +3,10 @@ function CMATVIEW() {
     CMATVIEW.prototype.define = function CMATVIEW() {
         this.cmin = 0;
         this.cmax = 100;
-        size_c = 25;
-        this.colormap = this.jetcolormap[size_c-1];
-        alpha_c = 0.24;
-        beta_c = 1;
+        var size_c = 25;
+        this.colormap = jetcolormap(size_c);
+        var alpha_c = 0.24;
+        var beta_c = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cmatview"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([-1]);
@@ -17,8 +17,8 @@ function CMATVIEW() {
         this.model.rpar = new ScilabDouble([alpha_c],[beta_c],[this.colormap.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = [[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
-        gr_i = [];
+        var exprs = [[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -38,29 +38,29 @@ function CMATVIEW() {
         this.cmin = parseFloat(arguments[0]["cmin"])
         this.cmax = parseFloat(arguments[0]["cmax"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.colormap,this.cmin,this.cmax,exprs] = scicos_getvalue("Set Scope parameters",["ColorMap","Minimum level range","Maximum level range"],list("vec",-1,"vec",1,"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            mess = [];
+            var mess = [];
             if (this.cmax<=this.cmin) {
-                mess = [[mess],["Error with minimum and maximum value"],[" "]];
-                ok = false;
+                var mess = [[mess],["Error with minimum and maximum value"],[" "]];
+                var ok = false;
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
             }
             if (ok) {
-                size_c = size(this.colormap.slice(),1);
-                sol = inv([[this.cmin,1],[this.cmax,1]])*[[1],[size_c/3]];
-                alpha_c = sol[1-1];
-                beta_c = sol[2-1];
-                ipar = [[this.cmin],[this.cmax],[size_c]];
-                rpar = [[alpha_c],[beta_c],[this.colormap.slice()]];
+                var size_c = size(this.colormap.slice(),1);
+                var sol = inv([[this.cmin,1],[this.cmax,1]])*[[1],[size_c/3]];
+                var alpha_c = sol[1-1];
+                var beta_c = sol[2-1];
+                var ipar = [[this.cmin],[this.cmax],[size_c]];
+                var rpar = [[alpha_c],[beta_c],[this.colormap.slice()]];
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.rpar = new ScilabDouble(rpar);
                 graphics.exprs = exprs;

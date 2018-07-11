@@ -2,7 +2,7 @@
 function ISELECT_f() {
     ISELECT_f.prototype.define = function ISELECT_f() {
         this.z0 = 0;
-        out = [[-1],[-1]];
+        var out = [[-1],[-1]];
         this.nout = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["selector"]), new ScilabDouble([2]));
@@ -12,8 +12,8 @@ function ISELECT_f() {
         this.model.dstate = new ScilabDouble([this.z0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = [[string(this.nout)],[string(this.z0+1)]];
-        gr_i = [];
+        var exprs = [[string(this.nout)],[string(this.z0+1)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -31,8 +31,8 @@ function ISELECT_f() {
         this.nout = parseFloat(arguments[0]["nout"])
         this.z0 = parseFloat(arguments[0]["z0"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.nout,this.z0,exprs] = scicos_getvalue("Set parameters",["number of outputs","initial connected output"],list("vec",1,"vec",1),exprs);
@@ -42,7 +42,10 @@ function ISELECT_f() {
             if (this.z0>this.nout||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
             } else {
-                [this.model,graphics,ok] = check_io(this.model,graphics,-1,-ones(this.nout,1),ones(this.nout,1),[]);
+                var tmpvar0 = check_io(this.model,graphics,-1,-ones(this.nout,1),ones(this.nout,1),[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.dstate = new ScilabDouble([this.z0-1]);

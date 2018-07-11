@@ -13,7 +13,7 @@ function SELF_SWITCH() {
         this.x.model.out = 1;
         this.x.model.blocktype = "h";
         this.x.model.dep_ut = [false,false];
-        this.x.model.rpar = this.genSwitchInnerDiagram[this.stateOpen-1];
+        this.x.model.rpar = genSwitchInnerDiagram(this.stateOpen);
         this.x.model.opar = list(this.stateOpen);
         this.x.graphics.in_implicit = ["E"];
         this.x.graphics.in_style = "";
@@ -33,10 +33,10 @@ function SELF_SWITCH() {
     SELF_SWITCH.prototype.set = function SELF_SWITCH() {
         this.x = arg1;
         this.stateOpen = this.x.model.opar[1-1];
-        this.x.model.rpar = this.genSwitchInnerDiagram[!this.stateOpen-1];
+        this.x.model.rpar = genSwitchInnerDiagram(!this.stateOpen);
         this.x.model.opar = list(!this.stateOpen);
-        y = 0;
-        typ = list();
+        var y = 0;
+        var typ = list();
         if (this.stateOpen==false) {
             this.x.graphics.style = "SELF_SWITCH_OFF";
         } else {

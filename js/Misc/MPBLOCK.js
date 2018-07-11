@@ -5,11 +5,11 @@ function MPBLOCK() {
         this.intype = ["I"];
         this.out = [["y1"],["y2"]];
         this.outtype = [["I"],["I"]];
-        param = [];
-        paramv = list();
-        pprop = [];
-        nameF = "myModel";
-        exprs = tlist(["MPBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],sci2exp(this.in1.slice()),sci2exp(this.intype.slice()),sci2exp(this.out.slice()),sci2exp(this.outtype.slice()),sci2exp(param.slice()),list(string(0.1),string(.0001)),sci2exp(pprop.slice()),nameF,[]);
+        var param = [];
+        var paramv = list();
+        var pprop = [];
+        var nameF = "myModel";
+        var exprs = tlist(["MPBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],sci2exp(this.in1.slice()),sci2exp(this.intype.slice()),sci2exp(this.out.slice()),sci2exp(this.outtype.slice()),sci2exp(param.slice()),list(string(0.1),string(.0001)),sci2exp(pprop.slice()),nameF,[]);
         this.model = scicos_model();
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,true];
@@ -17,7 +17,7 @@ function MPBLOCK() {
         for (i=1;i<=lstsize(paramv);i+=1) {
             this.model.rpar = new ScilabDouble([this.model.rpar],[paramv[i-1].slice()]);
         }
-        mo = modelica();
+        var mo = modelica();
         mo.model = nameF;
         mo.parameters = list(param,paramv);
         this.model.sim = list(new ScilabString([mo.model]), new ScilabDouble([10004]));
@@ -26,7 +26,7 @@ function MPBLOCK() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"r"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"r"),1)]);
         this.model.equations = mo;
-        gr_i = [];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = this.intype;
         this.x.graphics.out_implicit = this.outtype;
@@ -43,35 +43,44 @@ function MPBLOCK() {
     MPBLOCK.prototype.set = function MPBLOCK() {
         this.x = arg1;
         this.model = arg1.model;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         if (this.type[exprs-1]==15) {
-            paramv = list();
-            pprop = [];
+            var paramv = list();
+            var pprop = [];
             for (i=1;i<=size(this.model.rpar,"*");i+=1) {
                 paramv[$+1-1] = string(this.model.rpar[i-1]);
                 pprop[$+1-1] = 0;
             }
-            exprs = tlist(["MPBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],exprs[1-1][1-1],exprs[1-1][2-1],exprs[1-1][3-1],exprs[1-1][4-1],exprs[1-1][5-1],paramv,sci2exp(pprop.slice()),exprs[1-1][7-1],exprs[2-1]);
+            var exprs = tlist(["MPBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],exprs[1-1][1-1],exprs[1-1][2-1],exprs[1-1][3-1],exprs[1-1][4-1],exprs[1-1][5-1],paramv,sci2exp(pprop.slice()),exprs[1-1][7-1],exprs[2-1]);
         }
-        lab_1 = list(exprs.in1,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
-        lab_2 = exprs.paramv;
+        var lab_1 = list(exprs.in1,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
+        var lab_2 = exprs.paramv;
         while (true) {
-            [ok,Tin,Tintype,Tout,Touttype,Tparam,pprop,Tfunam,lab_1] = getvalue("Set Modelica generic block parameters",[["Input variables:       "],["Input variables types: "],["Output variables:      "],["Output variables types:"],["Parameters in Modelica:"],["Parameters properties: "],["Model name in packages:"]],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),lab_1);
+            var tmpvar0 = getvalue("Set Modelica generic block parameters",[["Input variables:       "],["Input variables types: "],["Output variables:      "],["Output variables types:"],["Parameters in Modelica:"],["Parameters properties: "],["Model name in packages:"]],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),lab_1)
+            var ok = tmpvar0[0]
+            var Tin = tmpvar0[1]
+            var Tintype = tmpvar0[2]
+            var Tout = tmpvar0[3]
+            var Touttype = tmpvar0[4]
+            var Tparam = tmpvar0[5]
+            var pprop = tmpvar0[6]
+            var Tfunam = tmpvar0[7]
+            var lab_1 = tmpvar0[8];
             if (!ok) {
                 break;
             }
-            ierr = execstr("in=stripblanks(evstr(Tin));            intype=stripblanks(evstr(Tintype));            out=stripblanks(evstr(Tout));            outtype=stripblanks(evstr(Touttype));            param=stripblanks(evstr(Tparam));            funam=stripblanks(Tfunam)","errcatch");
+            var ierr = execstr("in=stripblanks(evstr(Tin));            intype=stripblanks(evstr(Tintype));            out=stripblanks(evstr(Tout));            outtype=stripblanks(evstr(Touttype));            param=stripblanks(evstr(Tparam));            funam=stripblanks(Tfunam)","errcatch");
             if (ierr!=0) {
                 x_message("Error in evaluation of variables.");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
                 for (i=1;i<=size(this.in1,"*");i+=1) {
-                    r = false;
-                    ierr = execstr("r=validvar(in(i))","errcatch");
+                    var r = false;
+                    var ierr = execstr("r=validvar(in(i))","errcatch");
                     if (!r) {
-                        ok = false;
+                        var ok = false;
                         break;
                     }
                 }
@@ -81,10 +90,10 @@ function MPBLOCK() {
             }
             if (ok) {
                 for (i=1;i<=size(this.out,"*");i+=1) {
-                    r = false;
-                    ierr = execstr("r=validvar(out(i))","errcatch");
+                    var r = false;
+                    var ierr = execstr("r=validvar(out(i))","errcatch");
                     if (!r) {
-                        ok = false;
+                        var ok = false;
                         break;
                     }
                 }
@@ -93,12 +102,12 @@ function MPBLOCK() {
                 }
             }
             if (ok) {
-                param = param.slice();
+                var param = param.slice();
                 for (i=1;i<=size(param,"*");i+=1) {
-                    r = false;
-                    ierr = execstr("r=validvar(param(i))","errcatch");
+                    var r = false;
+                    var ierr = execstr("r=validvar(param(i))","errcatch");
                     if (!r) {
-                        ok = false;
+                        var ok = false;
                         break;
                     }
                 }
@@ -110,7 +119,7 @@ function MPBLOCK() {
                 for (i=1;i<=size(this.intype,"*");i+=1) {
                     if (this.intype[i-1]!="E"&&this.intype[i-1]!="I") {
                         x_message("Input type should be \'E\' or \'I\'!");
-                        ok = false;
+                        var ok = false;
                         break;
                     }
                 }
@@ -119,7 +128,7 @@ function MPBLOCK() {
                 for (i=1;i<=size(this.outtype,"*");i+=1) {
                     if (this.outtype[i-1]!="E"&&this.outtype[i-1]!="I") {
                         x_message("Output type should be \'E\' or \'I\'!");
-                        ok = false;
+                        var ok = false;
                         break;
                     }
                 }
@@ -127,100 +136,106 @@ function MPBLOCK() {
             if (ok) {
                 if (or(size(this.intype)!=size(this.in1))) {
                     x_message("Input variables are not well defined!");
-                    ok = false;
+                    var ok = false;
                 }
             }
             if (ok) {
                 if (or(size(this.outtype)!=size(this.out))) {
                     x_message("Output variables are not well defined!");
-                    ok = false;
+                    var ok = false;
                 }
             }
             if (ok) {
-                pprop = pprop.slice();
+                var pprop = pprop.slice();
                 if ((size(param,"*")!=size(pprop,"*"))) {
                     x_message([["There is differences in"],["size of param and size "],["of param properties."]]);
-                    ok = false;
+                    var ok = false;
                 }
             }
             if (ok) {
                 if (max(pprop)>2||min(pprop)<0) {
                     x_message([["Parameters properties must be :"],["0 : if it is a paramaters"],["1 : if it is an initial value of state,"],["2 : it it is a fixed initial state value."]]);
-                    ok = false;
+                    var ok = false;
                 }
             }
             if (ok) {
                 if (this.funam=="") {
                     x_message("The model name is not defined!");
-                    ok = false;
+                    var ok = false;
                 }
             }
             if (ok) {
-                [dirF,nameF,extF] = fileparts(this.funam);
+                var tmpvar1 = fileparts(this.funam)
+                var dirF = tmpvar1[0]
+                var nameF = tmpvar1[1]
+                var extF = tmpvar1[2];
                 if ((extF!="")||(dirF!="")) {
                     x_message("Invalid model name!");
-                    ok = false;
+                    var ok = false;
                 }
             }
             if (ok) {
-                intypex = find(this.intype=="I");
-                outtypex = find(this.outtype=="I");
-                [this.model,graphics,ok] = set_io(this.model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex);
+                var intypex = find(this.intype=="I");
+                var outtypex = find(this.outtype=="I");
+                var tmpvar2 = set_io(this.model,graphics,list([ones(this.in1),ones(this.in1)],ones(this.in1)),list([ones(this.out),ones(this.out)],ones(this.out)),[],[],intypex,outtypex)
+                this.model = tmpvar2[0]
+                var graphics = tmpvar2[1]
+                var ok = tmpvar2[2];
             }
             if (ok) {
-                Tparam_lab = evstr(Tparam);
-                Tparam_sz = size(Tparam_lab,"*");
+                var Tparam_lab = evstr(Tparam);
+                var Tparam_sz = size(Tparam_lab,"*");
                 if (Tparam_sz>lstsize(lab_2)) {
                     for (i=1;i<=(Tparam_sz-lstsize(lab_2));i+=1) {
                         lab_2[$+1-1] = "0";
                     }
                 } else if (Tparam_sz<lstsize(lab_2)) {
-                    lab_2_tmp = list();
+                    var lab_2_tmp = list();
                     if (Tparam_sz!=0) {
                         for (i=1;i<=Tparam_sz;i+=1) {
-                            ee = evstr(exprs.param);
+                            var ee = evstr(exprs.param);
                             for (j=1;j<=size(ee,"r");j+=1) {
                                 if (ee[j-1]==Tparam_lab[i-1]) {
                                     lab_2_tmp[i-1] = lab_2[j-1];
                                 }
                             }
                         }
-                        lab_2 = lab_2_tmp;
+                        var lab_2 = lab_2_tmp;
                     }
                 }
                 if (Tparam_sz!=0) {
-                    lhs_txt = "";
-                    lab_txt = "";
-                    rhs_txt = "";
+                    var lhs_txt = "";
+                    var lab_txt = "";
+                    var rhs_txt = "";
                     for (i=1;i<=Tparam_sz;i+=1) {
-                        lhs_txt = lhs_txt+"%v"+string(i)+",";
+                        var lhs_txt = lhs_txt+"%v"+string(i)+",";
                         if (pprop[i-1]==0) {
-                            lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+"\';";
+                            var lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+"\';";
                         } else if (pprop[i-1]==1) {
-                            lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+" (state) \';";
+                            var lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+" (state) \';";
                         } else if (pprop[i-1]==2) {
-                            lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+" (fixed state) \';";
+                            var lab_txt = lab_txt+"\'"+Tparam_lab[i-1]+" (fixed state) \';";
                         }
-                        rhs_txt = rhs_txt+"\'vec\',-1,";
+                        var rhs_txt = rhs_txt+"\'vec\',-1,";
                     }
-                    lhs_txt = part(lhs_txt,1,length(lhs_txt)-1);
-                    lab_txt = part(lab_txt,1,length(lab_txt)-1);
-                    rhs_txt = part(rhs_txt,1,length(rhs_txt)-1);
-                    getvalue_txt = "[ok,"+lhs_txt+",lab_2]=scicos_getvalue(\'Set parameters values\',["+lab_txt+"],"+"list("+rhs_txt+"),lab_2)";
+                    var lhs_txt = part(lhs_txt,1,length(lhs_txt)-1);
+                    var lab_txt = part(lab_txt,1,length(lab_txt)-1);
+                    var rhs_txt = part(rhs_txt,1,length(rhs_txt)-1);
+                    var getvalue_txt = "[ok,"+lhs_txt+",lab_2]=scicos_getvalue(\'Set parameters values\',["+lab_txt+"],"+"list("+rhs_txt+"),lab_2)";
                     execstr(getvalue_txt);
                     if (!ok) {
-                        lab_2 = exprs.paramv;
+                        var lab_2 = exprs.paramv;
                     }
                 }
             }
             if (ok) {
-                paramv = list();
+                var paramv = list();
                 for (i=1;i<=Tparam_sz;i+=1) {
                     execstr("paramv("+string(i)+")=%v"+string(i));
                 }
             }
             if (ok) {
-                mo = modelica();
+                var mo = modelica();
                 mo.model = nameF;
                 mo.inputs = this.in1;
                 mo.outputs = this.out;

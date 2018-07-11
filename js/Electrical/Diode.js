@@ -12,14 +12,14 @@ function Diode() {
         this.model.sim = new ScilabString(["Diode"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        mo = modelica();
+        var mo = modelica();
         mo.model = "Diode";
         mo.inputs = "p";
         mo.outputs = "n";
         mo.parameters = list(["Ids","Vt","Maxexp","R"],list(this.Ids,this.Vt,this.Maxexp,this.R));
         this.model.equations = new ScilabDouble([mo]);
-        exprs = string([[this.Ids],[this.Vt],[this.Maxexp],[this.R]]);
-        gr_i = [];
+        var exprs = string([[this.Ids],[this.Vt],[this.Maxexp],[this.R]]);
+        var gr_i = [];
         this.x = standard_define([2,1],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -43,8 +43,8 @@ function Diode() {
         this.Maxexp = parseFloat(arguments[0]["Maxexp"])
         this.R = parseFloat(arguments[0]["R"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.Ids,this.Vt,this.Maxexp,this.R,exprs] = scicos_getvalue("Set Diode block parameter",["Saturation cuurent (A)","Voltage equivalent to temperature (Volt)","Max exponent for linear continuation","R (ohm)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);

@@ -13,8 +13,8 @@ function Counter() {
         this.model.ipar = new ScilabDouble([this.rule],[this.maxim],[this.minim]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
-        exprs = [[string(this.minim)],[string(this.maxim)],[string(this.rule)]];
-        gr_i = [];
+        var exprs = [[string(this.minim)],[string(this.maxim)],[string(this.rule)]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -34,8 +34,8 @@ function Counter() {
         this.maxim = parseFloat(arguments[0]["maxim"])
         this.rule = parseFloat(arguments[0]["rule"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.minim,this.maxim,this.rule,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Counter")],[" "],["Integer counter generator"],[" "]],["Minimum","Maximum","Rule (1:Increment, 2:Decrement)"],list("vec",1,"vec",1,"vec",1),exprs);

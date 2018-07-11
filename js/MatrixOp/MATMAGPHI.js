@@ -2,8 +2,8 @@
 function MATMAGPHI() {
     MATMAGPHI.prototype.define = function MATMAGPHI() {
         this.model = scicos_model();
-        function_name = "matz_abs";
-        funtyp = 4;
+        var function_name = "matz_abs";
+        var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in1 = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
@@ -20,8 +20,8 @@ function MATMAGPHI() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
-        label = [sci2exp(1)];
-        gr_i = [];
+        var label = [sci2exp(1)];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -39,8 +39,8 @@ function MATMAGPHI() {
         this.lab = arguments[0]["lab"]
         this.x = arg1;
         this.model = arg1.model;
-        graphics = arg1.graphics;
-        label = graphics.exprs;
+        var graphics = arg1.graphics;
+        var label = graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -49,26 +49,29 @@ function MATMAGPHI() {
             if (!ok) {
                 break;
             }
-            label = this.lab;
+            var label = this.lab;
             if ((this.decomptyp==1)) {
-                function_name = "matz_abs";
-                in1 = [-1,-2];
-                it = 2;
-                out = [[-1,-2],[-1,-2]];
-                ot = [1,1];
+                var function_name = "matz_abs";
+                var in1 = [-1,-2];
+                var it = 2;
+                var out = [[-1,-2],[-1,-2]];
+                var ot = [1,1];
             } else if ((this.decomptyp==2)) {
-                function_name = "matz_absc";
-                in1 = [[-1,-2],[-1,-2]];
-                it = [1,1];
-                out = [-1,-2];
-                ot = 2;
+                var function_name = "matz_absc";
+                var in1 = [[-1,-2],[-1,-2]];
+                var it = [1,1];
+                var out = [-1,-2];
+                var ot = 2;
             } else {
                 message("decomposition type is not supported");
-                ok = false;
+                var ok = false;
             }
-            funtyp = 4;
+            var funtyp = 4;
             if (ok) {
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+                var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));

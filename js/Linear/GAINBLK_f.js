@@ -2,8 +2,8 @@
 function GAINBLK_f() {
     GAINBLK_f.prototype.define = function GAINBLK_f() {
         this.gain = 1;
-        in1 = 1;
-        out = 1;
+        var in1 = 1;
+        var out = 1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["gain"]);
         this.model.in1 = new ScilabDouble([in1]);
@@ -11,8 +11,8 @@ function GAINBLK_f() {
         this.model.rpar = new ScilabDouble([this.gain]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = [strcat(sci2exp(this.gain))];
-        gr_i = [];
+        var exprs = [strcat(sci2exp(this.gain))];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -28,8 +28,8 @@ function GAINBLK_f() {
     GAINBLK_f.prototype.set = function GAINBLK_f() {
         this.gain = parseFloat(arguments[0]["gain"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.gain,exprs] = scicos_getvalue("Set gain block parameters",["Gain"],list("mat",[-1,-1]),exprs[1-1]);
@@ -39,8 +39,13 @@ function GAINBLK_f() {
             if (this.gain==[]) {
                 message("Gain must have at least one element");
             } else {
-                [out,in1] = size(this.gain);
-                [this.model,graphics,ok] = check_io(this.model,graphics,in1,out,[],[]);
+                var tmpvar0 = size(this.gain)
+                var out = tmpvar0[0]
+                var in1 = tmpvar0[1];
+                var tmpvar1 = check_io(this.model,graphics,in1,out,[],[])
+                this.model = tmpvar1[0]
+                var graphics = tmpvar1[1]
+                var ok = tmpvar1[2];
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.rpar = this.gain.slice();

@@ -9,12 +9,12 @@ function OUTIMPL_f() {
         this.model.ipar = [1];
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
-        mo = modelica();
+        var mo = modelica();
         mo.model = "PORT";
         mo.inputs = "n";
         this.model.equations = new ScilabDouble([mo]);
-        exprs = "1";
-        gr_i = [];
+        var exprs = "1";
+        var gr_i = [];
         this.x = standard_define([1,1],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
         return new ImplicitOutBlock(this.x);
@@ -30,11 +30,11 @@ function OUTIMPL_f() {
     OUTIMPL_f.prototype.set = function OUTIMPL_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==2) {
-            exprs = exprs[1-1];
+            var exprs = exprs[1-1];
         }
         while (true) {
             [ok,this.prt,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","OUTIMPL_f")],[" "],["Implicit output port"]],"Port number",list("vec",1),exprs);
@@ -46,8 +46,8 @@ function OUTIMPL_f() {
                 block_parameter_error(msprintf("Wrong value for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
                 if (this.model.ipar!=this.prt) {
-                    needcompile = 4;
-                    y = needcompile;
+                    var needcompile = 4;
+                    var y = needcompile;
                 }
                 this.model.ipar = new ScilabDouble([this.prt]);
                 graphics.exprs = exprs;

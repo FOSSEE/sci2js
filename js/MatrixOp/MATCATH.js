@@ -2,8 +2,8 @@
 function MATCATH() {
     MATCATH.prototype.define = function MATCATH() {
         this.model = scicos_model();
-        function_name = "mat_cath";
-        funtyp = 4;
+        var function_name = "mat_cath";
+        var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in1 = new ScilabDouble([-1],[-1]);
         this.model.in2 = new ScilabDouble([-2],[-3]);
@@ -20,8 +20,8 @@ function MATCATH() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = [];
         this.model.dep_ut = [true,false];
-        label = [sci2exp(2)];
-        gr_i = [];
+        var label = [sci2exp(2)];
+        var gr_i = [];
         this.x = standard_define([2,3],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -39,24 +39,27 @@ function MATCATH() {
         this.lab = arguments[0]["lab"]
         this.x = arg1;
         this.model = arg1.model;
-        graphics = arg1.graphics;
-        label = graphics.exprs;
+        var graphics = arg1.graphics;
+        var label = graphics.exprs;
         if (size(label,"*")>1) {
-            label = "size(evstr("+label[2-1]+"),\'*\')";
+            var label = "size(evstr("+label[2-1]+"),\'*\')";
         }
         while (true) {
             [ok,this.nin,this.lab] = scicos_getvalue("Set MATCATH block parameters",["Number of input"],list("vec",1),label);
             if (!ok) {
                 break;
             }
-            label = this.lab;
-            in1 = [-1*(ones(this.nin,1)),-(transpose([2:this.nin+1]))];
-            out = [-1,0];
-            it = -1*(ones(this.nin,1));
-            ot = -1;
-            [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[]);
+            var label = this.lab;
+            var in1 = [-1*(ones(this.nin,1)),-(transpose([2:this.nin+1]))];
+            var out = [-1,0];
+            var it = -1*(ones(this.nin,1));
+            var ot = -1;
+            var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),[],[])
+            this.model = tmpvar0[0]
+            var graphics = tmpvar0[1]
+            var ok = tmpvar0[2];
             if (ok) {
-                funtyp = 4;
+                var funtyp = 4;
                 this.model.sim = list(new ScilabString(["mat_cath"]), new ScilabDouble([funtyp]));
                 graphics.exprs = label;
                 arg1.graphics = graphics;

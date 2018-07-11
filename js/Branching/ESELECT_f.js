@@ -14,8 +14,8 @@ function ESELECT_f() {
         this.model.dep_ut = [true,false];
         this.model.nmode = new ScilabDouble([0]);
         this.model.nzcross = new ScilabDouble([0]);
-        gr_i = [];
-        exprs = [[string(this.out)],[string(1)],[string(this.model.nmode)]];
+        var gr_i = [];
+        var exprs = [[string(this.out)],[string(1)],[string(this.model.nmode)]];
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -35,8 +35,8 @@ function ESELECT_f() {
         this.inh = parseFloat(arguments[0]["inh"])
         this.nmod = parseFloat(arguments[0]["nmod"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         if (size(exprs,"*")==1) {
             exprs[2-1] = string(1);
         }
@@ -61,7 +61,10 @@ function ESELECT_f() {
             if (this.out<2) {
                 message("Block must have at least two output ports");
             } else {
-                [this.model,graphics,ok] = check_io(this.model,graphics,1,[],this.inh,[ones(this.out,1)]);
+                var tmpvar0 = check_io(this.model,graphics,1,[],this.inh,[ones(this.out,1)])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
                 if (ok) {
                     graphics.exprs = exprs;
                     this.model.evtout = new ScilabDouble([ones(this.out,1)]);

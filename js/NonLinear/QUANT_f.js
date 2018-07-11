@@ -11,8 +11,8 @@ function QUANT_f() {
         this.model.ipar = new ScilabDouble([this.meth]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = [[string(this.pas)],[string(this.meth)]];
-        gr_i = [];
+        var exprs = [[string(this.pas)],[string(this.meth)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -30,8 +30,8 @@ function QUANT_f() {
         this.pas = parseFloat(arguments[0]["pas"])
         this.meth = parseFloat(arguments[0]["meth"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.pas,this.meth,exprs] = scicos_getvalue("Set parameters",["Step","Quantization Type (1-4)"],list("vec",1,"vec",1),exprs);
@@ -41,7 +41,7 @@ function QUANT_f() {
             if (this.meth<1||this.meth>4) {
                 message("Quantization Type must be from 1 to 4");
             } else {
-                rpar = this.pas;
+                var rpar = this.pas;
                 this.model.rpar = new ScilabDouble([rpar]);
                 this.model.ipar = new ScilabDouble([this.meth]);
                 switch (this.meth) {

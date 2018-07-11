@@ -10,8 +10,8 @@ function M_freq() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [0,-1,-1];
         this.model.dep_ut = [false,false];
-        exprs = [[sci2exp([[1],[2]])],[sci2exp([[0],[0]])]];
-        gr_i = [];
+        var exprs = [[sci2exp([[1],[2]])],[sci2exp([[0],[0]])]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -29,9 +29,9 @@ function M_freq() {
         this.frequ = inverse(arguments[0]["frequ"])
         this.offset = inverse(arguments[0]["offset"])
         this.x = arg1;
-        graphics = arg1.graphics;
+        var graphics = arg1.graphics;
         this.model = arg1.model;
-        exprs = graphics.exprs;
+        var exprs = graphics.exprs;
         while (true) {
             [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",-1,"vec",-1),exprs);
             if (!ok) {
@@ -41,21 +41,33 @@ function M_freq() {
             this.frequ = this.frequ.slice();
             if ((size(this.frequ,"*"))!=(size(this.offset,"*"))) {
                 message("offset and frequency must have the same size");
-                ok = false;
+                var ok = false;
             } else if (or(this.frequ<0)) {
                 message("Frequency must be a positif number");
-                ok = false;
+                var ok = false;
             } else if (or(abs(this.offset)>this.frequ)) {
                 message("The |Offset| must be less than the Frequency");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
-                [m,den,off,count,m1,fir,this.frequ,this.offset,ok] = mfrequ_clk(this.frequ,this.offset);
+                var tmpvar0 = mfrequ_clk(this.frequ,this.offset)
+                var m = tmpvar0[0]
+                var den = tmpvar0[1]
+                var off = tmpvar0[2]
+                var count = tmpvar0[3]
+                var m1 = tmpvar0[4]
+                var fir = tmpvar0[5]
+                this.frequ = tmpvar0[6]
+                this.offset = tmpvar0[7]
+                var ok = tmpvar0[8];
             }
             if (ok) {
                 this.model.opar = list(m, new ScilabDouble([double(den)]), new ScilabDouble([off]), new ScilabDouble([count]));
-                mn = (2^size(m1,"*"))-1;
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(),list(),1,ones(mn,1));
+                var mn = (2^size(m1,"*"))-1;
+                var tmpvar1 = set_io(this.model,graphics,list(),list(),1,ones(mn,1))
+                this.model = tmpvar1[0]
+                var graphics = tmpvar1[1]
+                var ok = tmpvar1[2];
                 if (mn>3) {
                     graphics.sz = [40+(mn-3)*10,40];
                 } else {

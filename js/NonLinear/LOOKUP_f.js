@@ -8,7 +8,7 @@ function LOOKUP_f() {
         this.model.rpar = new ScilabDouble([-2],[-1],[1],[2],[-1],[1],[-1],[1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        gr_i = [];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -22,27 +22,31 @@ function LOOKUP_f() {
     }
     LOOKUP_f.prototype.set = function LOOKUP_f() {
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
-        rpar = this.model.rpar;
-        n = size(rpar,"*")/2;
-        xx = rpar.slice(1-1,n);
-        yy = rpar.slice(n+1-1,2*n);
+        var rpar = this.model.rpar;
+        var n = size(rpar,"*")/2;
+        var xx = rpar.slice(1-1,n);
+        var yy = rpar.slice(n+1-1,2*n);
         while (true) {
             [ln,fun]=where()
             if (!or(fun=="do_eval")) {
-                [xx,yy,ok,gc] = edit_curv(xx,yy,"axy");
+                var tmpvar0 = edit_curv(xx,yy,"axy")
+                var xx = tmpvar0[0]
+                var yy = tmpvar0[1]
+                var ok = tmpvar0[2]
+                var gc = tmpvar0[3];
             } else {
-                ok = true;
+                var ok = true;
             }
             if (!ok) {
                 break;
             }
-            n = size(xx,"*");
+            var n = size(xx,"*");
             if (or(xx.slice(2-1,n)-xx.slice(1-1,n-1)<=0)) {
                 message("You have not defined a function");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
                 this.model.rpar = new ScilabDouble([xx.slice()],[yy.slice()]);

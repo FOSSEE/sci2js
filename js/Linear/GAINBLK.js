@@ -2,10 +2,10 @@
 function GAINBLK() {
     GAINBLK.prototype.define = function GAINBLK() {
         this.gain = 1;
-        in1 = -1;
-        out = -1;
-        in2 = -2;
-        out2 = -2;
+        var in1 = -1;
+        var out = -1;
+        var in2 = -2;
+        var out2 = -2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["gainblk"]), new ScilabDouble([4]));
         this.model.in1 = new ScilabDouble([in1]);
@@ -15,8 +15,8 @@ function GAINBLK() {
         this.model.rpar = new ScilabDouble([this.gain]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = [strcat(sci2exp(this.gain))];
-        gr_i = [];
+        var exprs = [strcat(sci2exp(this.gain))];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -34,11 +34,11 @@ function GAINBLK() {
         this.gain = parseFloat(arguments[0]["gain"])
         this.over = arguments[0]["over"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         if (size(exprs,"*")==1) {
-            exprs = [[exprs],[sci2exp(0)]];
+            var exprs = [[exprs],[sci2exp(0)]];
         }
         while (true) {
             [ok,this.gain,this.over,exprs] = scicos_getvalue("Set gain block parameters",["Gain","Do On Overflow(0=Nothing 1=Saturate 2=Error)"],list("mat",[-1,-1],"vec",1),exprs);
@@ -50,98 +50,106 @@ function GAINBLK() {
             } else {
                 if (typeof(this.gain)=="constant") {
                     if (isreal(this.gain)) {
-                        it = 1;
-                        ot = 1;
+                        var it = 1;
+                        var ot = 1;
                         this.model.sim = list(new ScilabString(["gainblk"]), new ScilabDouble([4]));
                         this.model.rpar = this.gain.slice();
                         this.model.opar = list();
                     } else {
                         message("type is not supported");
-                        ok = false;
+                        var ok = false;
                     }
                 } else {
                     if ((this.over==0)) {
                         if ((typeof(this.gain)=="int32")) {
-                            ot = 3;
+                            var ot = 3;
                             this.model.sim = list(new ScilabString(["gainblk_i32n"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="int16")) {
-                            ot = 4;
+                            var ot = 4;
                             this.model.sim = list(new ScilabString(["gainblk_i16n"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="int8")) {
-                            ot = 5;
+                            var ot = 5;
                             this.model.sim = list(new ScilabString(["gainblk_i8n"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint32")) {
-                            ot = 6;
+                            var ot = 6;
                             this.model.sim = list(new ScilabString(["gainblk_ui32n"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint16")) {
-                            ot = 7;
+                            var ot = 7;
                             this.model.sim = list(new ScilabString(["gainblk_ui16n"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint8")) {
-                            ot = 8;
+                            var ot = 8;
                             this.model.sim = list(new ScilabString(["gainblk_ui8n"]), new ScilabDouble([4]));
                         } else {
                             message("type is not supported.");
-                            ok = false;
+                            var ok = false;
                         }
                     } else if ((this.over==1)) {
                         if ((typeof(this.gain)=="int32")) {
-                            ot = 3;
+                            var ot = 3;
                             this.model.sim = list(new ScilabString(["gainblk_i32s"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="int16")) {
-                            ot = 4;
+                            var ot = 4;
                             this.model.sim = list(new ScilabString(["gainblk_i16s"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="int8")) {
-                            ot = 5;
+                            var ot = 5;
                             this.model.sim = list(new ScilabString(["gainblk_i8s"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint32")) {
-                            ot = 6;
+                            var ot = 6;
                             this.model.sim = list(new ScilabString(["gainblk_ui32s"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint16")) {
-                            ot = 7;
+                            var ot = 7;
                             this.model.sim = list(new ScilabString(["gainblk_ui16s"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint8")) {
-                            ot = 8;
+                            var ot = 8;
                             this.model.sim = list(new ScilabString(["gainblk_ui8s"]), new ScilabDouble([4]));
                         } else {
                             message("type is not supported.");
-                            ok = false;
+                            var ok = false;
                         }
                     } else if ((this.over==2)) {
                         if ((typeof(this.gain)=="int32")) {
-                            ot = 3;
+                            var ot = 3;
                             this.model.sim = list(new ScilabString(["gainblk_i32e"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="int16")) {
-                            ot = 4;
+                            var ot = 4;
                             this.model.sim = list(new ScilabString(["gainblk_i16e"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="int8")) {
-                            ot = 5;
+                            var ot = 5;
                             this.model.sim = list(new ScilabString(["gainblk_i8e"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint32")) {
-                            ot = 6;
+                            var ot = 6;
                             this.model.sim = list(new ScilabString(["gainblk_ui32e"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint16")) {
-                            ot = 7;
+                            var ot = 7;
                             this.model.sim = list(new ScilabString(["gainblk_ui16e"]), new ScilabDouble([4]));
                         } else if ((typeof(this.gain)=="uint8")) {
-                            ot = 8;
+                            var ot = 8;
                             this.model.sim = list(new ScilabString(["gainblk_ui8e"]), new ScilabDouble([4]));
                         } else {
                             message("type is not an integer.");
-                            ok = false;
+                            var ok = false;
                         }
                     } else {
                         message("Do on Overflow must be 0,1,2");
-                        ok = false;
+                        var ok = false;
                     }
                     this.model.rpar = [];
                     this.model.opar = list(this.gain.slice());
                 }
                 if (ok) {
-                    [out,in1] = size(this.gain);
+                    var tmpvar0 = size(this.gain)
+                    var out = tmpvar0[0]
+                    var in1 = tmpvar0[1];
                     if (out*in1!=1) {
-                        [this.model,graphics,ok] = set_io(this.model,graphics,list([in1,-1],ot),list([out,-1],ot),[],[]);
+                        var tmpvar1 = set_io(this.model,graphics,list([in1,-1],ot),list([out,-1],ot),[],[])
+                        this.model = tmpvar1[0]
+                        var graphics = tmpvar1[1]
+                        var ok = tmpvar1[2];
                     } else {
-                        [this.model,graphics,ok] = set_io(this.model,graphics,list([-1,-2],ot),list([-1,-2],ot),[],[]);
+                        var tmpvar2 = set_io(this.model,graphics,list([-1,-2],ot),list([-1,-2],ot),[],[])
+                        this.model = tmpvar2[0]
+                        var graphics = tmpvar2[1]
+                        var ok = tmpvar2[2];
                     }
                 }
                 if (ok) {

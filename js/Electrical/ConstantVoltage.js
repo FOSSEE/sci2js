@@ -9,14 +9,14 @@ function ConstantVoltage() {
         this.model.sim = new ScilabString(["ConstantVoltage"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [false,false];
-        mo = modelica();
+        var mo = modelica();
         mo.model = "ConstantVoltage";
         mo.inputs = "p";
         mo.outputs = "n";
         mo.parameters = list("V",list(this.V));
         this.model.equations = new ScilabDouble([mo]);
-        exprs = string(this.V);
-        gr_i = [];
+        var exprs = string(this.V);
+        var gr_i = [];
         this.x = standard_define([1.5,1.1],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -33,8 +33,8 @@ function ConstantVoltage() {
     ConstantVoltage.prototype.set = function ConstantVoltage() {
         this.V = parseFloat(arguments[0]["V"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.V,exprs] = scicos_getvalue("Set ConstantVoltage block parameter","V (volt)",list("vec",1),exprs);

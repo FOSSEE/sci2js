@@ -8,8 +8,8 @@ function SCALAR2VECTOR() {
         this.model.in1 = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = [string([this.nout])];
-        gr_i = [];
+        var exprs = [string([this.nout])];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -25,8 +25,8 @@ function SCALAR2VECTOR() {
     SCALAR2VECTOR.prototype.set = function SCALAR2VECTOR() {
         this.nout = parseFloat(arguments[0]["nout"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.nout,exprs] = scicos_getvalue("Set block parameters",["size of output (-1: if don\'t know)"],list("vec",1),exprs);
@@ -36,10 +36,13 @@ function SCALAR2VECTOR() {
             this.nout = int(this.nout);
             if ((this.nout!=-1&&(this.nout<=0))) {
                 message("size of output must be -1 or >0");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
-                [this.model,graphics,ok] = check_io(this.model,graphics,[1],this.nout,[],[]);
+                var tmpvar0 = check_io(this.model,graphics,[1],this.nout,[],[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             }
             if (ok) {
                 graphics.exprs = exprs;

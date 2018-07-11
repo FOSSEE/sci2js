@@ -2,7 +2,7 @@
 function DELAYV_f() {
     DELAYV_f.prototype.define = function DELAYV_f() {
         this.nin = 1;
-        z0 = zeros(11,1);
+        var z0 = zeros(11,1);
         this.zz0 = z0.slice(1-1,$-1);
         this.T = 1;
         this.model = scicos_model();
@@ -16,8 +16,8 @@ function DELAYV_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = [0,-1];
         this.model.dep_ut = [true,false];
-        exprs = [[string(this.nin)],[strcat(string(z0.slice(1-1,$-1)),";")],[string(this.T)]];
-        gr_i = [];
+        var exprs = [[string(this.nin)],[strcat(string(z0.slice(1-1,$-1)),";")],[string(this.T)]];
+        var gr_i = [];
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -37,13 +37,13 @@ function DELAYV_f() {
         this.zz0 = inverse(arguments[0]["zz0"])
         this.T = parseFloat(arguments[0]["T"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         this.nin = this.model.in1[1-1];
-        z0 = this.model.dstate;
+        var z0 = this.model.dstate;
         this.zz0 = z0.slice(1-1,$-1);
-        told = z0[$-1];
+        var told = z0[$-1];
         while (true) {
             [ok,this.nin,this.zz0,this.T,exprs] = scicos_getvalue("Set delay parameters",["Number of inputs","Register initial condition","Max delay"],list("vec",1,"vec",-1,"vec",1),exprs);
             if (!ok) {
@@ -51,14 +51,17 @@ function DELAYV_f() {
             }
             if (size(this.zz0,"*")<2) {
                 message("Register length must be at least 2");
-                ok = false;
+                var ok = false;
             }
             if (this.T<=0) {
                 message("Delay must be positive");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
-                [this.model,graphics,ok] = check_io(this.model,graphics,[[this.nin],[1]],this.nin,1,[[1],[1]]);
+                var tmpvar0 = check_io(this.model,graphics,[[this.nin],[1]],this.nin,1,[[1],[1]])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             }
             if (ok) {
                 graphics.exprs = exprs;

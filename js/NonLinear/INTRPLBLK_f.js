@@ -10,8 +10,8 @@ function INTRPLBLK_f() {
         this.model.rpar = new ScilabDouble([this.a],[this.b]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))]];
-        gr_i = [];
+        var exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -29,8 +29,8 @@ function INTRPLBLK_f() {
         this.a = inverse(arguments[0]["a"])
         this.b = inverse(arguments[0]["b"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.a,this.b,exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord."],list("vec",-1,"vec",-1),exprs);

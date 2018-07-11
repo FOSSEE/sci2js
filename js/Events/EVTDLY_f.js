@@ -11,8 +11,8 @@ function EVTDLY_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([this.ff]);
         this.model.dep_ut = [false,false];
-        exprs = [[string(this.dt)],[sci2exp(this.ff)]];
-        gr_i = [];
+        var exprs = [[string(this.dt)],[sci2exp(this.ff)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -30,8 +30,8 @@ function EVTDLY_f() {
         this.dt = parseFloat(arguments[0]["dt"])
         this.ff = parseFloat(arguments[0]["ff"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.dt,this.ff,exprs] = scicos_getvalue([["Set Event Delay  block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       if no initial event required"]],["Delay","Date of initial output event"],list("vec",1,"vec",1),exprs);
@@ -40,7 +40,7 @@ function EVTDLY_f() {
             }
             if (this.dt<=0) {
                 message("Delay must be positive");
-                ok = false;
+                var ok = false;
             }
             if (ok) {
                 graphics.exprs = exprs;

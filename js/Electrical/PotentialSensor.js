@@ -8,12 +8,12 @@ function PotentialSensor() {
         this.model.sim = new ScilabString(["PotentialSensor"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        mo = modelica();
+        var mo = modelica();
         mo.model = "PotentialSensor";
         mo.inputs = "p";
         mo.outputs = ["v"];
         this.model.equations = new ScilabDouble([mo]);
-        gr_i = [];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,"",list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["E"];

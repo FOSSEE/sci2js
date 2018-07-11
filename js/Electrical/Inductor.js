@@ -9,14 +9,14 @@ function Inductor() {
         this.model.sim = new ScilabString(["Inductor"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        mo = modelica();
+        var mo = modelica();
         mo.model = "Inductor";
         mo.inputs = "p";
         mo.outputs = "n";
         mo.parameters = list("L",list(this.L));
         this.model.equations = new ScilabDouble([mo]);
-        exprs = string(this.L);
-        gr_i = [];
+        var exprs = string(this.L);
+        var gr_i = [];
         this.x = standard_define([2,0.9],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -33,8 +33,8 @@ function Inductor() {
     Inductor.prototype.set = function Inductor() {
         this.L = parseFloat(arguments[0]["L"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.L,exprs] = scicos_getvalue("Set Inductor block parameter","L (H)",list("vec",1),exprs);

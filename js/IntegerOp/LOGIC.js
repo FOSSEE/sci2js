@@ -15,8 +15,8 @@ function LOGIC() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = [true,false];
-        exprs = [[sci2exp(this.mat)],[sci2exp(0)]];
-        gr_i = [];
+        var exprs = [[sci2exp(this.mat)],[sci2exp(0)]];
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -34,33 +34,36 @@ function LOGIC() {
         this.mat = inverse(arguments[0]["mat"])
         this.herit = arguments[0]["herit"]
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.mat,this.herit,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","LOGIC")],[" "],["Combinatorial logic"],[" "],["&nbsp; Rows of the matrix are the output values"],["&nbsp; Number of rows must be a power of two."],["&nbsp; Number of columns gives the number of outputs."],[" "]],["Truth Table (matrix of outputs)","Accepts Inherited Events (0:No, 1:Yes)"],list("mat",[-1,-2],"vec",1),exprs);
             if (!ok) {
                 break;
             }
-            nout = size(this.mat,2);
-            nin = (log(size(this.mat,1))/log(2));
-            u1 = floor(nin);
+            var nout = size(this.mat,2);
+            var nin = (log(size(this.mat,1))/log(2));
+            var u1 = floor(nin);
             if ((u1!=nin)) {
                 block_parameter_error(msprintf("Wrong size for \'%s\' parameter: %d.","Truth Table",size(this.mat,1)),"Number of rows must be a power of two.");
-                ok = false;
+                var ok = false;
             } else if ((find(this.mat.slice()!=0&&this.mat.slice()!=1)!=[])) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Truth Table"),msprintf("Elements must be in the interval %s.","[0, 1]"));
-                ok = false;
+                var ok = false;
             } else if (this.herit<0||this.herit>1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Accepts Inherited Events",this.herit),msprintf("Must be in the interval %s.","[0, 1]"));
-                ok = false;
+                var ok = false;
             }
             if (ok) {
-                in1 = [ones(nin,1),ones(nin,1)];
-                out = [ones(nout,1),ones(nout,1)];
-                it = 5*ones(1,nin);
-                ot = 5*ones(1,nout);
-                [this.model,graphics,ok] = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.herit,1),[]);
+                var in1 = [ones(nin,1),ones(nin,1)];
+                var out = [ones(nout,1),ones(nout,1)];
+                var it = 5*ones(1,nin);
+                var ot = 5*ones(1,nout);
+                var tmpvar0 = set_io(this.model,graphics,list(in1,it),list(out,ot),ones(1-this.herit,1),[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             }
             if (ok) {
                 graphics.exprs = exprs;

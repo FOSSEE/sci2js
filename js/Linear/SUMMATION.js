@@ -11,8 +11,8 @@ function SUMMATION() {
         this.model.ipar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = [true,false];
-        exprs = sci2exp(this.sgn);
-        gr_i = [];
+        var exprs = sci2exp(this.sgn);
+        var gr_i = [];
         this.x = standard_define([2,3],this.model,exprs,gr_i);
         return new Summation(this.x);
     }
@@ -32,13 +32,13 @@ function SUMMATION() {
         this.sgn = inverse(arguments[0]["sgn"])
         this.satur = arguments[0]["satur"]
         this.x = arg1;
-        graphics = arg1.graphics;
+        var graphics = arg1.graphics;
         this.model = arg1.model;
-        exprs = graphics.exprs;
+        var exprs = graphics.exprs;
         if (size(exprs,1)==1) {
-            exprs = [[sci2exp(1)],[exprs],[sci2exp(0)]];
+            var exprs = [[sci2exp(1)],[exprs],[sci2exp(0)]];
         } else if (size(exprs,1)==2) {
-            exprs = [[exprs],[sci2exp(0)]];
+            var exprs = [[exprs],[sci2exp(0)]];
         }
         while (true) {
             [ok,this.Datatype,this.sgn,this.satur,exprs] = scicos_getvalue("Set sum block parameters",["Datatype (1=real double  2=complex 3=int32 ...)","Number of inputs or sign vector (of +1, -1)","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",-1,"vec",1),exprs);
@@ -48,45 +48,45 @@ function SUMMATION() {
             this.sgn = this.sgn.slice();
             if ((this.satur!=0&&this.satur!=1&&this.satur!=2)) {
                 message("Do on overflow must be 0,1,2");
-                ok = false;
+                var ok = false;
             }
             if (size(this.sgn,1)==1) {
                 if (this.sgn<1) {
                     message("Number of inputs must be > 0");
-                    ok = false;
+                    var ok = false;
                 } else if (this.sgn==1) {
-                    in1 = -1;
-                    in2 = -2;
+                    var in1 = -1;
+                    var in2 = -2;
                     this.sgn = [];
-                    nout = 1;
-                    nout2 = 1;
+                    var nout = 1;
+                    var nout2 = 1;
                 } else {
-                    in1 = -ones(this.sgn,1);
-                    in2 = 2*in1;
+                    var in1 = -ones(this.sgn,1);
+                    var in2 = 2*in1;
                     this.sgn = ones(this.sgn,1);
-                    nout = -1;
-                    nout2 = -2;
+                    var nout = -1;
+                    var nout2 = -2;
                 }
             } else {
                 if (!and(abs(this.sgn)==1)) {
                     message("Signs can only be +1 or -1");
-                    ok = false;
+                    var ok = false;
                 } else {
-                    in1 = -ones(size(this.sgn,1),1);
-                    in2 = 2*in1;
-                    nout = -1;
-                    nout2 = -2;
+                    var in1 = -ones(size(this.sgn,1),1);
+                    var in2 = 2*in1;
+                    var nout = -1;
+                    var nout2 = -2;
                 }
             }
-            it = this.Datatype*ones(1,size(in1,1));
-            ot = this.Datatype;
+            var it = this.Datatype*ones(1,size(in1,1));
+            var ot = this.Datatype;
             if (this.Datatype==1) {
                 this.model.sim = list(new ScilabString(["summation"]), new ScilabDouble([4]));
             } else if (this.Datatype==2) {
                 this.model.sim = list(new ScilabString(["summation_z"]), new ScilabDouble([4]));
             } else if (((this.Datatype<1)||(this.Datatype>8))) {
                 message("Datatype is not supported");
-                ok = false;
+                var ok = false;
             } else {
                 if (this.satur==0) {
                     if (this.Datatype==3) {
@@ -133,7 +133,10 @@ function SUMMATION() {
                 }
             }
             if (ok) {
-                [this.model,graphics,ok] = set_io(this.model,graphics,list([in1,in2],it),list([nout,nout2],ot),[],[]);
+                var tmpvar0 = set_io(this.model,graphics,list([in1,in2],it),list([nout,nout2],ot),[],[])
+                this.model = tmpvar0[0]
+                var graphics = tmpvar0[1]
+                var ok = tmpvar0[2];
             }
             if (ok) {
                 this.model.rpar = new ScilabDouble([this.satur]);

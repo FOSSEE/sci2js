@@ -12,8 +12,8 @@ function CONST_m() {
         this.model.opar = list();
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = [false,false];
-        exprs = sci2exp(this.C);
-        gr_i = [];
+        var exprs = sci2exp(this.C);
+        var gr_i = [];
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -28,15 +28,15 @@ function CONST_m() {
     CONST_m.prototype.set = function CONST_m() {
         this.C = inverse(arguments[0]["C"])
         this.x = arg1;
-        graphics = arg1.graphics;
-        exprs = graphics.exprs;
+        var graphics = arg1.graphics;
+        var exprs = graphics.exprs;
         this.model = arg1.model;
         while (true) {
             [ok,this.C,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONST_m")],[" "],["Constant value generator"],[" "]],"Constant Value",list("vec",-1),exprs);
             if (!ok) {
                 break;
             }
-            nout = size(this.C);
+            var nout = size(this.C);
             if (find(nout==0)!=[]) {
                 block_parameter_error(msprintf("Wrong size for \'%s\' parameter","Constant Value"),"Constant value must have at least one element.");
             } else {
@@ -44,29 +44,32 @@ function CONST_m() {
                 this.model.opar = list(this.C);
                 if ((this.type[this.C-1]==1)) {
                     if (isreal(this.C)) {
-                        ot = 1;
+                        var ot = 1;
                     } else {
-                        ot = 2;
+                        var ot = 2;
                     }
                 } else if ((typeof(this.C)=="int32")) {
-                    ot = 3;
+                    var ot = 3;
                 } else if ((typeof(this.C)=="int16")) {
-                    ot = 4;
+                    var ot = 4;
                 } else if ((typeof(this.C)=="int8")) {
-                    ot = 5;
+                    var ot = 5;
                 } else if ((typeof(this.C)=="uint32")) {
-                    ot = 6;
+                    var ot = 6;
                 } else if ((typeof(this.C)=="uint16")) {
-                    ot = 7;
+                    var ot = 7;
                 } else if ((typeof(this.C)=="uint8")) {
-                    ot = 8;
+                    var ot = 8;
                 } else {
                     block_parameter_error(msprintf("Wrong type for \'%s\' parameter","Constant Value"),"Value type must be a numeric type (double, complex, int, int8, ...).");
-                    ok = false;
+                    var ok = false;
                 }
                 if (ok) {
                     this.model.rpar = [];
-                    [this.model,graphics,ok] = set_io(this.model,graphics,list(),list(nout,ot),[],[]);
+                    var tmpvar0 = set_io(this.model,graphics,list(),list(nout,ot),[],[])
+                    this.model = tmpvar0[0]
+                    var graphics = tmpvar0[1]
+                    var ok = tmpvar0[2];
                     graphics.exprs = exprs;
                     this.x.graphics = graphics;
                     this.x.model = this.model;
