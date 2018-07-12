@@ -18,9 +18,9 @@ function CSCOPE() {
         this.model.ipar = new ScilabDouble([this.win],[1],[this.N],[this.clrs],[this.wpos],[this.wdim]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = [[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.ymin)],[string(this.ymax)],[string(this.per)],[string(this.N)],[transpose(string(0))],[emptystr()]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CSCOPE\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = [[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.ymin)],[string(this.ymax)],[string(this.per)],[string(this.N)],[transpose(string(0))],[emptystr()]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CSCOPE\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     CSCOPE.prototype.details = function CSCOPE() {
@@ -52,12 +52,13 @@ function CSCOPE() {
         this.N = parseFloat(arguments[0]["N"])
         this.heritance = arguments[0]["heritance"]
         this.nom = arguments[0]["nom"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"str",1),exprs);
+            [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,this.exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"str",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -113,7 +114,7 @@ function CSCOPE() {
                 this.model.evtin = new ScilabDouble([ones(1-this.heritance,1)]);
                 this.model.label = new ScilabDouble([this.nom]);
                 this.graphics.id = new ScilabDouble([this.nom]);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

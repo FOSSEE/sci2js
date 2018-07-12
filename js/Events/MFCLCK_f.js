@@ -13,9 +13,9 @@ function MFCLCK_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1,0]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var exprs = [[string(this.dt)],[string(this.nn)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MFCLCK_f\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,exprs,gr_i);
+        this.exprs = [[string(this.dt)],[string(this.nn)]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MFCLCK_f\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     MFCLCK_f.prototype.details = function MFCLCK_f() {
@@ -31,18 +31,19 @@ function MFCLCK_f() {
     MFCLCK_f.prototype.set = function MFCLCK_f() {
         this.dt = parseFloat(arguments[0]["dt"])
         this.nn = parseFloat(arguments[0]["nn"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
-        [ok,this.dt,this.nn,exprs] = scicos_getvalue("Set Multifrequency clock parameters",["basic period (1/f)","multiply by (n)"],list("vec",1,"vec",1),exprs);
+        [ok,this.dt,this.nn,this.exprs] = scicos_getvalue("Set Multifrequency clock parameters",["basic period (1/f)","multiply by (n)"],list("vec",1,"vec",1),this.exprs);
         if (ok) {
             this.model.ipar = new ScilabDouble([this.nn]);
             this.model.rpar = new ScilabDouble([this.dt]);
             var hh = this.model.firing;
             hh[2-1] = 0;
             this.model.firing = new ScilabDouble(hh);
-            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
         }

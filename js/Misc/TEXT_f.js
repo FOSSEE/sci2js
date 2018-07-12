@@ -7,11 +7,11 @@ function TEXT_f() {
         this.model.sim = new ScilabString(["text"]);
         this.model.rpar = new ScilabString(["Text"]);
         this.model.ipar = new ScilabDouble([this.font],[this.siz]);
-        var exprs = [["Text"],[string(this.font)],[string(this.siz)]];
+        this.exprs = [["Text"],[string(this.font)],[string(this.siz)]];
         this.graphics = scicos_graphics();
         this.graphics.orig = new ScilabDouble([0,0]);
         this.graphics.sz = new ScilabDouble([2,1]);
-        this.graphics.exprs = new ScilabDouble(exprs);
+        this.graphics.exprs = new ScilabDouble(this.exprs);
         this.x = mlist(["Text","graphics","model","void","gui"],this.graphics,this.model," ","TEXT_f");
         return new TextBlock(this.x);
     }
@@ -30,16 +30,17 @@ function TEXT_f() {
         this.txt = arguments[0]["txt"]
         this.font = parseFloat(arguments[0]["font"])
         this.siz = parseFloat(arguments[0]["siz"])
+        this.exprs = inverse(arguments[0]["exprs"])
         this.x = arg1;
         this.graphics = arg1.graphics;
         var orig = this.graphics.orig;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
-        if (size(exprs,"*")==1) {
-            var exprs = [[exprs],["3"],["1"]];
+        if (size(this.exprs,"*")==1) {
+            this.exprs = [[this.exprs],["3"],["1"]];
         }
         while (true) {
-            [ok,this.txt,this.font,this.siz,exprs] = scicos_getvalue("Set Text block parameters",["Text","Font number","Font size"],list("str",-1,"vec",1,"vec",1),exprs);
+            [ok,this.txt,this.font,this.siz,this.exprs] = scicos_getvalue("Set Text block parameters",["Text","Font number","Font size"],list("str",-1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -52,14 +53,14 @@ function TEXT_f() {
                 var ok = false;
             }
             if (ok) {
-                this.graphics.exprs = new ScilabDouble(exprs);
+                this.graphics.exprs = new ScilabDouble(this.exprs);
                 var gh_winpal = gca();
                 var default_font_style = gh_winpal.font_style;
                 var default_font_size = gh_winpal.font_size;
                 var default_font_color = gh_winpal.font_color;
                 gh_winpal.font_style = this.font;
                 gh_winpal.font_size = this.siz;
-                var r = xstringl(0,0,exprs[1-1],evstr(exprs[2-1]),evstr(exprs[3-1]));
+                var r = xstringl(0,0,this.exprs[1-1],evstr(this.exprs[2-1]),evstr(this.exprs[3-1]));
                 gh_winpal.font_style = default_font_style;
                 gh_winpal.font_size = default_font_size;
                 gh_winpal.font_color = default_font_color;

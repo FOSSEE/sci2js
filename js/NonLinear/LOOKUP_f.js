@@ -8,8 +8,8 @@ function LOOKUP_f() {
         this.model.rpar = new ScilabDouble([-2],[-1],[1],[2],[-1],[1],[-1],[1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP_f\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,[],gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP_f\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,[],this.gr_i);
         return new BasicBlock(this.x);
     }
     LOOKUP_f.prototype.details = function LOOKUP_f() {
@@ -23,7 +23,7 @@ function LOOKUP_f() {
     LOOKUP_f.prototype.set = function LOOKUP_f() {
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         var rpar = this.model.rpar;
         var n = size(rpar,"*")/2;

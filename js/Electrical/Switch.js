@@ -18,9 +18,9 @@ function Switch() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.model.rpar = new ScilabDouble([Z]);
-        var exprs = string(Z);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Switch\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
+        this.exprs = string(Z);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Switch\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = [["I"],["E"]];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -38,17 +38,18 @@ function Switch() {
     Switch.prototype.set = function Switch() {
         this.Ron = parseFloat(arguments[0]["Ron"])
         this.Roff = parseFloat(arguments[0]["Roff"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            [ok,this.Ron,this.Roff,exprs] = scicos_getvalue("Set non-ideal electrical switch parameters",["Resistance in On state (Ohm)","Resistance in Off state (Ohm)"],list("vec",1,"vec",1),exprs);
+            [ok,this.Ron,this.Roff,this.exprs] = scicos_getvalue("Set non-ideal electrical switch parameters",["Resistance in On state (Ohm)","Resistance in Off state (Ohm)"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
             this.model.equations.parameters[2-1] = list(new ScilabDouble([this.Ron]), new ScilabDouble([this.Roff]));
-            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;

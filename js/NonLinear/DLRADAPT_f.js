@@ -18,9 +18,9 @@ function DLRADAPT_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = [[sci2exp(this.p)],[sci2exp(this.rn)],[sci2exp(this.rd,0)],[sci2exp(this.g)],[sci2exp(this.last_u)],[sci2exp(this.last_y)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLRADAPT_f\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = [[sci2exp(this.p)],[sci2exp(this.rn)],[sci2exp(this.rd,0)],[sci2exp(this.g)],[sci2exp(this.last_u)],[sci2exp(this.last_y)]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLRADAPT_f\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     DLRADAPT_f.prototype.details = function DLRADAPT_f() {
@@ -44,12 +44,13 @@ function DLRADAPT_f() {
         this.g = inverse(arguments[0]["g"])
         this.last_u = inverse(arguments[0]["last_u"])
         this.last_y = inverse(arguments[0]["last_y"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            [ok,this.p,this.rn,this.rd,this.g,this.last_u,this.last_y,exprs] = scicos_getvalue("Set block parameters",["Vector of p mesh points","Numerator roots (one line for each mesh)","Denominator roots (one line for each mesh)","Vector of gain at mesh points","past inputs (Num degree values)","past outputs (Den degree values)"],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),exprs);
+            [ok,this.p,this.rn,this.rd,this.g,this.last_u,this.last_y,this.exprs] = scicos_getvalue("Set block parameters",["Vector of p mesh points","Numerator roots (one line for each mesh)","Denominator roots (one line for each mesh)","Vector of gain at mesh points","past inputs (Num degree values)","past outputs (Den degree values)"],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),this.exprs);
             if (!ok) {
                 break;
             }
@@ -67,7 +68,7 @@ function DLRADAPT_f() {
                 this.model.dstate = new ScilabDouble([this.last_u.slice()],[this.last_y.slice()]);
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.ipar = new ScilabDouble(ipar);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

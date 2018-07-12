@@ -18,9 +18,9 @@ function CURVE_c() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.firing = new ScilabDouble([0]);
-        var exprs = [[sci2exp(this.Method)],[sci2exp(this.xx)],[sci2exp(this.yy)],[this.PeriodicOption],[Graf]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CURVE_c\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = [[sci2exp(this.Method)],[sci2exp(this.xx)],[sci2exp(this.yy)],[this.PeriodicOption],[Graf]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CURVE_c\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     CURVE_c.prototype.details = function CURVE_c() {
@@ -42,22 +42,23 @@ function CURVE_c() {
         this.yy = inverse(arguments[0]["yy"])
         this.PeriodicOption = arguments[0]["PeriodicOption"]
         this.graf = arguments[0]["graf"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.model = arg1.model;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
         while (true) {
             var Ask_again = false;
-            [ok,this.Method,this.xx,this.yy,this.PeriodicOption,this.graf,exprs] = scicos_getvalue("Spline data",["Spline Method (0..7)","x","y","Periodic signal(y/n)?","Launch graphic window(y/n)?"],list("vec",1,"vec",-1,"vec",-1,"str",1,"str",1),exprs);
+            [ok,this.Method,this.xx,this.yy,this.PeriodicOption,this.graf,this.exprs] = scicos_getvalue("Spline data",["Spline Method (0..7)","x","y","Periodic signal(y/n)?","Launch graphic window(y/n)?"],list("vec",1,"vec",-1,"vec",-1,"str",1,"str",1),this.exprs);
             if (!ok) {
                 break;
             }
             if (this.PeriodicOption=="y"||this.PeriodicOption=="Y") {
                 var PO = 1;
             } else {
-                exprs[4-1] = "n";
+                this.exprs[4-1] = "n";
                 var PO = 0;
             }
             var mtd = int(this.Method);
@@ -87,7 +88,7 @@ function CURVE_c() {
                 var tmpvar2 = cleandata(this.xy);
                 this.xy = tmpvar2[0];
                 var N = size(this.xy,"r");
-                exprs[5-1] = "n";
+                this.exprs[5-1] = "n";
                 if (this.graf=="y"||this.graf=="Y") {
                     var ipar = [[N],[mtd],[PO]];
                     var rpar = [];
@@ -118,16 +119,16 @@ function CURVE_c() {
                         var DChange = true;
                     }
                     if (DChange) {
-                        exprs[2-1] = strcat(sci2exp(xy2.slice()[1-1]));
-                        exprs[3-1] = strcat(sci2exp(xy2.slice()[2-1]));
+                        this.exprs[2-1] = strcat(sci2exp(xy2.slice()[1-1]));
+                        this.exprs[3-1] = strcat(sci2exp(xy2.slice()[2-1]));
                     }
-                    exprs[1-1] = sci2exp(New_methhod);
+                    this.exprs[1-1] = sci2exp(New_methhod);
                     if (oipar[3-1]==1) {
                         var perop = "y";
                     } else {
                         var perop = "n";
                     }
-                    exprs[4-1] = perop;
+                    this.exprs[4-1] = perop;
                     var SaveExit = true;
                 } else {
                     var tmpvar4 = Do_Spline(N,mtd,this.xy.slice()[1-1],this.xy.slice()[2-1]);
@@ -144,7 +145,7 @@ function CURVE_c() {
                             var orpar = [[this.xy.slice()[1-1]],[this.xy.slice()[2-1]]];
                         }
                     }
-                    exprs[1-1] = sci2exp(mtd);
+                    this.exprs[1-1] = sci2exp(mtd);
                     var oipar = [[N],[mtd],[PO]];
                     var SaveExit = true;
                 }
@@ -158,7 +159,7 @@ function CURVE_c() {
                 }
                 this.model.rpar = new ScilabDouble(orpar);
                 this.model.ipar = new ScilabDouble(oipar);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.model = this.model;
                 this.x.graphics = this.graphics;
                 break;

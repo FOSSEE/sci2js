@@ -7,9 +7,9 @@ function func_block() {
         this.model.out = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = "v=sin(u);y=u*v";
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"func_block\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = "v=sin(u);y=u*v";
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"func_block\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     func_block.prototype.details = function func_block() {
@@ -23,16 +23,16 @@ function func_block() {
     func_block.prototype.set = function func_block() {
         this.model = arg1.model;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.x = arg1;
         this.model = this.x.model;
-        var tmpvar0 = genfunc(exprs);
+        var tmpvar0 = genfunc(this.exprs);
         var ok = tmpvar0[0];
         var mac = tmpvar0[1];
-        var exprs = tmpvar0[2];
+        this.exprs = tmpvar0[2];
         if (ok) {
             this.model.sim = new ScilabDouble([mac]);
-            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.x.model = this.model;
             this.x.graphics = this.graphics;
         }

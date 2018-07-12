@@ -24,9 +24,9 @@ function READC_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var exprs = [["[]"],[sci2exp(this.outmask)],[fname],[frmt],[string(this.M)],[string(this.N)],[string(this.offset)],[string(this.swap)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"READC_f\",sz(1),sz(2));"]);
-        this.x = standard_define([4,2],this.model,exprs,gr_i);
+        this.exprs = [["[]"],[sci2exp(this.outmask)],[fname],[frmt],[string(this.M)],[string(this.N)],[string(this.offset)],[string(this.swap)]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"READC_f\",sz(1),sz(2));"]);
+        this.x = standard_define([4,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     READC_f.prototype.details = function READC_f() {
@@ -54,20 +54,21 @@ function READC_f() {
         this.N = parseFloat(arguments[0]["N"])
         this.offset = parseFloat(arguments[0]["offset"])
         this.swap = parseFloat(arguments[0]["swap"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.model = this.x.model;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         var out = this.model.out;
         var dstate = this.model.dstate;
         var ipar = this.model.ipar;
         var imask = 9+ipar[1-1];
         var tmask = ipar[imask-1];
         var lunit = dstate[3-1];
-        var fname = exprs[3-1];
-        var frmt = exprs[4-1];
+        var fname = this.exprs[3-1];
+        var frmt = this.exprs[4-1];
         while (true) {
-            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.M,this.N,this.offset,this.swap,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","READC_f")],[" "],["Read from C binary file"]],["Time Record Selection","Outputs Record Selection","Input File Name","Input Format","Record Size","Buffer Size","Initial Record Index","Swap Mode (0:No, 1:Yes)"],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.M,this.N,this.offset,this.swap,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","READC_f")],[" "],["Read from C binary file"]],["Time Record Selection","Outputs Record Selection","Input File Name","Input Format","Record Size","Buffer Size","Initial Record Index","Swap Mode (0:No, 1:Yes)"],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -130,7 +131,7 @@ function READC_f() {
                     }
                     this.model.dstate = new ScilabDouble(dstate);
                     this.model.ipar = new ScilabDouble(ipar);
-                    this.graphics.exprs = new ScilabDouble([exprs]);
+                    this.graphics.exprs = new ScilabDouble([this.exprs]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;

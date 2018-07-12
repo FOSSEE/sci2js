@@ -13,9 +13,9 @@ function SAT_f() {
         this.model.rpar = new ScilabDouble([this.minp],[this.maxp],[slope]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = [[string(this.minp)],[string(this.maxp)],[string(slope)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SAT_f\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = [[string(this.minp)],[string(this.maxp)],[string(slope)]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SAT_f\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     SAT_f.prototype.details = function SAT_f() {
@@ -33,12 +33,13 @@ function SAT_f() {
         this.minp = parseFloat(arguments[0]["minp"])
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.pente = arguments[0]["pente"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            [ok,this.minp,this.maxp,this.pente,exprs] = scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.minp,this.maxp,this.pente,this.exprs] = scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -50,7 +51,7 @@ function SAT_f() {
                 var rpar = [[this.minp/this.pente],[this.maxp/this.pente],[this.pente]];
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.firing = new ScilabDouble([]);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

@@ -11,9 +11,9 @@ function TKSCALE() {
         this.model.rpar = new ScilabDouble([this.a],[this.b],[this.f]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var exprs = [[sci2exp(this.a)],[sci2exp(this.b)],[sci2exp(this.f)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TKSCALE\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,exprs,gr_i);
+        this.exprs = [[sci2exp(this.a)],[sci2exp(this.b)],[sci2exp(this.f)]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TKSCALE\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     TKSCALE.prototype.details = function TKSCALE() {
@@ -31,13 +31,14 @@ function TKSCALE() {
         this.a = parseFloat(arguments[0]["a"])
         this.b = parseFloat(arguments[0]["b"])
         this.f = parseFloat(arguments[0]["f"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
-        [ok,this.a,this.b,this.f,exprs] = scicos_getvalue("Set scale block parameters",["Min value","Max value","Normalization"],list("vec",1,"vec",1,"vec",1),exprs);
+        [ok,this.a,this.b,this.f,this.exprs] = scicos_getvalue("Set scale block parameters",["Min value","Max value","Normalization"],list("vec",1,"vec",1,"vec",1),this.exprs);
         if (ok) {
-            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.model.rpar = new ScilabDouble([this.a],[this.b],[this.f]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;

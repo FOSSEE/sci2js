@@ -15,9 +15,9 @@ function SWITCH2() {
         this.model.nmode = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = [[string(ipar)],[string(rpar)],[string(this.nzz)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SWITCH2\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = [[string(ipar)],[string(rpar)],[string(this.nzz)]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SWITCH2\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     SWITCH2.prototype.details = function SWITCH2() {
@@ -35,12 +35,13 @@ function SWITCH2() {
         this.rule = parseFloat(arguments[0]["rule"])
         this.thra = arguments[0]["thra"]
         this.nzz = parseFloat(arguments[0]["nzz"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            [ok,this.rule,this.thra,this.nzz,exprs] = scicos_getvalue("Set parameters",["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.rule,this.thra,this.nzz,this.exprs] = scicos_getvalue("Set parameters",["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -51,7 +52,7 @@ function SWITCH2() {
             if ((this.rule>2)) {
                 this.rule = 2;
             }
-            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.model.ipar = new ScilabDouble([this.rule]);
             this.model.rpar = new ScilabDouble([this.thra]);
             if (this.nzz!=0) {

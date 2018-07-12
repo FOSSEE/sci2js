@@ -21,9 +21,9 @@ function LOOKUP_c() {
         this.model.evtin = new ScilabDouble([]);
         this.model.evtout = new ScilabDouble([]);
         this.model.firing = new ScilabDouble([0]);
-        var exprs = [[sci2exp(this.Method)],[sci2exp(this.xx)],[sci2exp(this.yy)],[sci2exp(0)],[Graf]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP_c\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = [[sci2exp(this.Method)],[sci2exp(this.xx)],[sci2exp(this.yy)],[sci2exp(0)],[Graf]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP_c\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     LOOKUP_c.prototype.details = function LOOKUP_c() {
@@ -45,15 +45,16 @@ function LOOKUP_c() {
         this.yy = inverse(arguments[0]["yy"])
         this.extrapo = parseFloat(arguments[0]["extrapo"])
         this.graf = arguments[0]["graf"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.model = arg1.model;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
         while (true) {
             var Ask_again = false;
-            [ok,this.Method,this.xx,this.yy,this.extrapo,this.graf,exprs] = scicos_getvalue("Lookup table parameters",["Spline Interpolation method (0..9)","x","y","Extrapolate method (0,1)","Launch graphic window(y/n)?"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"str",1),exprs);
+            [ok,this.Method,this.xx,this.yy,this.extrapo,this.graf,this.exprs] = scicos_getvalue("Lookup table parameters",["Spline Interpolation method (0..9)","x","y","Extrapolate method (0,1)","Launch graphic window(y/n)?"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"str",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -97,7 +98,7 @@ function LOOKUP_c() {
                 var tmpvar2 = cleandata(this.xy);
                 this.xy = tmpvar2[0];
                 var N = size(this.xy,"r");
-                exprs[5-1] = "n";
+                this.exprs[5-1] = "n";
                 if (this.graf=="y"||this.graf=="Y") {
                     var ipar = [[N],[mtd],[PO],[this.extrapo]];
                     var rpar = [];
@@ -130,11 +131,11 @@ function LOOKUP_c() {
                         var DChange = true;
                     }
                     if (DChange) {
-                        exprs[2-1] = strcat(sci2exp(xy2.slice()[1-1]));
-                        exprs[3-1] = strcat(sci2exp(xy2.slice()[2-1]));
+                        this.exprs[2-1] = strcat(sci2exp(xy2.slice()[1-1]));
+                        this.exprs[3-1] = strcat(sci2exp(xy2.slice()[2-1]));
                     }
-                    exprs[1-1] = sci2exp(New_methhod);
-                    exprs[4-1] = sci2exp(oipar[4-1]);
+                    this.exprs[1-1] = sci2exp(New_methhod);
+                    this.exprs[4-1] = sci2exp(oipar[4-1]);
                     if (oipar[3-1]==1) {
                         var perop = "y";
                     } else {
@@ -156,7 +157,7 @@ function LOOKUP_c() {
                             var orpar = [[this.xy.slice()[1-1]],[this.xy.slice()[2-1]]];
                         }
                     }
-                    exprs[1-1] = sci2exp(mtd);
+                    this.exprs[1-1] = sci2exp(mtd);
                     var oipar = [[N],[mtd],[PO],[this.extrapo]];
                     var SaveExit = true;
                 }
@@ -170,7 +171,7 @@ function LOOKUP_c() {
                 }
                 this.model.rpar = new ScilabDouble(orpar);
                 this.model.ipar = new ScilabDouble(oipar);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.model = this.model;
                 this.x.graphics = this.graphics;
                 break;

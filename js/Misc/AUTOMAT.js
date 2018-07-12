@@ -8,7 +8,7 @@ function AUTOMAT() {
         this.XP = [[1],[1]];
         var C1 = [2];
         var C2 = [1];
-        var exprs = [[string(NMode)],[string(this.Minitial)],[string(NX)],[sci2exp(this.X0)],[sci2exp(this.XP)],[sci2exp(C1)],[sci2exp(C2)]];
+        this.exprs = [[string(NMode)],[string(this.Minitial)],[string(NX)],[sci2exp(this.X0)],[sci2exp(this.XP)],[sci2exp(C1)],[sci2exp(C2)]];
         var ipar = [[NMode],[this.Minitial],[NX],[this.XP],[C1],[C2]];
         var rpar = [this.X0];
         this.model = scicos_model();
@@ -23,8 +23,8 @@ function AUTOMAT() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         this.model.ipar = new ScilabDouble(ipar);
         this.model.rpar = new ScilabDouble(rpar);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"AUTOMAT\",sz(1),sz(2));"]);
-        this.x = standard_define([4,2],this.model,exprs,gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"AUTOMAT\",sz(1),sz(2));"]);
+        this.x = standard_define([4,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     AUTOMAT.prototype.details = function AUTOMAT() {
@@ -38,7 +38,7 @@ function AUTOMAT() {
     AUTOMAT.prototype.set = function AUTOMAT() {
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         var ipar = this.model.ipar;
         var NMode = ipar[1-1];
@@ -60,14 +60,14 @@ function AUTOMAT() {
             if (!this.ok) {
                 break;
             }
-            var NMode_old = size(exprs,"*")-5;
+            var NMode_old = size(this.exprs,"*")-5;
             var ModifEncore = false;
             if ((NMode_old>NMode)) {
-                exprs.slice(NMode+6-1,NMode_old+5) = [];
+                this.exprs.slice(NMode+6-1,NMode_old+5) = [];
                 var ModifEncore = true;
             }
             if ((NMode_old<NMode)) {
-                exprs.slice(NMode_old+6-1,NMode+5) = exprs[NMode_old+4-1];
+                this.exprs.slice(NMode_old+6-1,NMode+5) = this.exprs[NMode_old+4-1];
                 var ModifEncore = true;
             }
             if ((NX!=size(this.X0,"*"))) {
@@ -101,7 +101,7 @@ function AUTOMAT() {
                 var MaxModes = 1;
                 var nzcross = 0;
                 for (i=1;i<=NMode;i+=1) {
-                    var Ci = evstr(exprs[5+i-1]);
+                    var Ci = evstr(this.exprs[5+i-1]);
                     var ipar = [[ipar],[Ci]];
                     INP[i-1][1-1] = 2*NX+length(Ci);
                     if ((nzcross<length(Ci))) {
@@ -132,7 +132,7 @@ function AUTOMAT() {
                 this.model.nzcross = new ScilabDouble([nzcross]);
                 this.model.state = new ScilabDouble([ones(2*NX,1)]);
                 this.graphics.gr_i[1-1][1-1] = new ScilabString(["txt=[\'Automaton\';\'nM="+string(NMode)+",nX="+string(NX)+"\'];"]);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.graphics = this.graphics;
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.rpar = new ScilabDouble([rpar]);

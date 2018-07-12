@@ -78,6 +78,7 @@ function DELAY_f() {
     DELAY_f.prototype.set = function DELAY_f() {
         this.dt = arguments[0]["dt"]
         this.z0 = arguments[0]["z0"]
+        this.exprs = inverse(arguments[0]["exprs"])
         var ppath = list(0,0);
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
             var o = arg1.model.rpar.objs[i-1];
@@ -97,9 +98,9 @@ function DELAY_f() {
         var evtdly = this.x.model.rpar.objs[ppath[2-1]-1];
         var register_exprs = register.graphics.exprs;
         var evtdly_exprs = evtdly.graphics.exprs;
-        var exprs = [[evtdly_exprs[1-1]],[register_exprs]];
+        this.exprs = [[evtdly_exprs[1-1]],[register_exprs]];
         while (true) {
-            [ok,this.dt,this.z0,exprs] = scicos_getvalue([["This block implements as a discretized delay"],["it is consist of a shift register and a clock"],["value of the delay is given by;","the discretization time step multiplied by the"],["number-1 of state of the register"]],["Discretization time step","Register initial state"],list("vec",1,"vec",-1),exprs);
+            [ok,this.dt,this.z0,this.exprs] = scicos_getvalue([["This block implements as a discretized delay"],["it is consist of a shift register and a clock"],["value of the delay is given by;","the discretization time step multiplied by the"],["number-1 of state of the register"]],["Discretization time step","Register initial state"],list("vec",1,"vec",-1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -115,13 +116,13 @@ function DELAY_f() {
             if (!ok) {
                 message(mess);
             } else {
-                evtdly.graphics.exprs[1-1] = exprs[1-1];
+                evtdly.graphics.exprs[1-1] = this.exprs[1-1];
                 if (evtdly.model.rpar!=this.dt) {
                     evtdly.model.rpar = this.dt;
                     newpar[$+1-1] = ppath[2-1];
                 }
                 this.x.model.rpar.objs[ppath[2-1]-1] = evtdly;
-                register.graphics.exprs = exprs[2-1];
+                register.graphics.exprs = this.exprs[2-1];
                 if (or(register.model.dstate!=this.z0.slice())) {
                     register.model.dstate = this.z0.slice();
                     newpar[$+1-1] = ppath[1-1];

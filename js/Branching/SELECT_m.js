@@ -20,9 +20,9 @@ function SELECT_m() {
         this.model.dstate = new ScilabDouble([this.z0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = [[sci2exp(1)],[sci2exp(this.nin)],[sci2exp(this.z0)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SELECT_m\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,exprs,gr_i);
+        this.exprs = [[sci2exp(1)],[sci2exp(this.nin)],[sci2exp(this.z0)]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SELECT_m\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     SELECT_m.prototype.details = function SELECT_m() {
@@ -40,12 +40,13 @@ function SELECT_m() {
         this.typ = inverse(arguments[0]["typ"])
         this.nin = parseFloat(arguments[0]["nin"])
         this.z0 = parseFloat(arguments[0]["z0"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            [ok,this.typ,this.nin,this.z0,exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ..)","number of inputs","initial connected input"],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.typ,this.nin,this.z0,this.exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ..)","number of inputs","initial connected input"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -65,7 +66,7 @@ function SELECT_m() {
                     this.graphics = tmpvar0[1];
                     var ok = tmpvar0[2];
                     if (ok) {
-                        this.graphics.exprs = new ScilabDouble([exprs]);
+                        this.graphics.exprs = new ScilabDouble([this.exprs]);
                         this.model.dstate = new ScilabDouble([this.z0]);
                         this.x.graphics = this.graphics;
                         this.x.model = this.model;

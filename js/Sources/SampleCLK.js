@@ -8,8 +8,8 @@ function SampleCLK() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var exprs = [[sci2exp(1)],[sci2exp(0)]];
-        this.x = standard_define([2,2],this.model,exprs," ");
+        this.exprs = [[sci2exp(1)],[sci2exp(0)]];
+        this.x = standard_define([2,2],this.model,this.exprs," ");
         return new BasicBlock(this.x);
     }
     SampleCLK.prototype.details = function SampleCLK() {
@@ -25,12 +25,13 @@ function SampleCLK() {
     SampleCLK.prototype.set = function SampleCLK() {
         this.frequ = arguments[0]["frequ"]
         this.offset = arguments[0]["offset"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",1,"vec",1),exprs);
+            [ok,this.frequ,this.offset,this.exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -50,7 +51,7 @@ function SampleCLK() {
                 this.model.rpar = new ScilabDouble([this.frequ],[this.offset]);
                 this.model.evtout = new ScilabDouble([1]);
                 this.model.firing = new ScilabDouble([-1]);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

@@ -21,7 +21,7 @@ function CLOCK_c() {
         split.graphics.orig = [[380.71066],[172]];
         split.graphics.pein = 3;
         split.graphics.peout = [[5],[6]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLOCK_c\",sz(1),sz(2));"]);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLOCK_c\",sz(1),sz(2));"]);
         var diagram = scicos_diagram();
         diagram.objs[1-1] = output_port;
         diagram.objs[2-1] = evtdly;
@@ -32,7 +32,7 @@ function CLOCK_c() {
         this.x = scicos_block();
         this.x.gui = "CLOCK_c";
         this.x.graphics.sz = [2,2];
-        this.x.graphics.gr_i = gr_i;
+        this.x.graphics.gr_i = this.gr_i;
         this.x.graphics.peout = 0;
         this.x.model.sim = "csuper";
         this.x.model.evtout = 1;
@@ -65,13 +65,13 @@ function CLOCK_c() {
         }
         var newpar = list();
         var xx = arg1.model.rpar.objs[path-1];
-        var exprs = xx.graphics.exprs;
+        this.exprs = xx.graphics.exprs;
         this.model = xx.model;
         var t0_old = this.model.firing;
         var dt_old = this.model.rpar[1-1];
         var model_n = this.model;
         while (true) {
-            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue([[msprintf("Set %s block parameters","CLOCK_c")],[" "],["Event clock generator"],[" "],["&nbsp; Do not start if \'Initialisation Time\' is negative"],[" "]],["Period","Initialisation Time"],list("vec",1,"vec",1),exprs);
+            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue([[msprintf("Set %s block parameters","CLOCK_c")],[" "],["Event clock generator"],[" "],["&nbsp; Do not start if \'Initialisation Time\' is negative"],[" "]],["Period","Initialisation Time"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }

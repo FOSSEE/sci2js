@@ -6,7 +6,7 @@ function CLR_f() {
         var B = 1;
         var C = 1;
         var D = 0;
-        var exprs = [["1"],["1+s"]];
+        this.exprs = [["1"],["1+s"]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["csslti"]), new ScilabDouble([1]));
         this.model.in1 = new ScilabDouble([1]);
@@ -15,8 +15,8 @@ function CLR_f() {
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLR_f\",sz(1),sz(2));"]);
-        this.x = standard_define([2.5,2.5],this.model,exprs,gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLR_f\",sz(1),sz(2));"]);
+        this.x = standard_define([2.5,2.5],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     CLR_f.prototype.details = function CLR_f() {
@@ -32,9 +32,10 @@ function CLR_f() {
     CLR_f.prototype.set = function CLR_f() {
         this.num = arguments[0]["num"]
         this.den = arguments[0]["den"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         var x0 = this.model.state;
         var rpar = this.model.rpar;
@@ -44,7 +45,7 @@ function CLR_f() {
         var PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.s = %s;
         while (true) {
-            [ok,this.num,this.den,exprs] = scicos_getvalue("Set continuous SISO transfer parameters",["Numerator (s)","Denominator (s)"],list("pol",1,"pol",1),exprs);
+            [ok,this.num,this.den,this.exprs] = scicos_getvalue("Set continuous SISO transfer parameters",["Numerator (s)","Denominator (s)"],list("pol",1,"pol",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -59,7 +60,7 @@ function CLR_f() {
                 var B = tmpvar0[1];
                 var C = tmpvar0[2];
                 var D = tmpvar0[3];
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 var tmpvar1 = size(A);
                 var ns1 = tmpvar1[0];
                 var ns1 = tmpvar1[1];

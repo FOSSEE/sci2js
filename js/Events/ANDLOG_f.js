@@ -8,8 +8,8 @@ function ANDLOG_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ANDLOG_f\",sz(1),sz(2));"]);
-        this.x = standard_define([3,3],this.model,[],gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ANDLOG_f\",sz(1),sz(2));"]);
+        this.x = standard_define([3,3],this.model,[],this.gr_i);
         return new BasicBlock(this.x);
     }
     ANDLOG_f.prototype.details = function ANDLOG_f() {

@@ -12,9 +12,9 @@ function INTRP2BLK_f() {
         this.model.ipar = new ScilabDouble([2],[2]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))],[strcat(sci2exp(this.c,0))]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTRP2BLK_f\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,exprs,gr_i);
+        this.exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))],[strcat(sci2exp(this.c,0))]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTRP2BLK_f\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     INTRP2BLK_f.prototype.details = function INTRP2BLK_f() {
@@ -32,12 +32,13 @@ function INTRP2BLK_f() {
         this.a = inverse(arguments[0]["a"])
         this.b = inverse(arguments[0]["b"])
         this.c = inverse(arguments[0]["c"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            [ok,this.a,this.b,this.c,exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord.","Z values"],list("vec",-1,"vec",-1,"mat",[-1,-1]),exprs);
+            [ok,this.a,this.b,this.c,this.exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord.","Z values"],list("vec",-1,"vec",-1,"mat",[-1,-1]),this.exprs);
             if (!ok) {
                 break;
             }
@@ -47,7 +48,7 @@ function INTRP2BLK_f() {
                 message("X and Y must be strictly increasing");
             } else {
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble([exprs]);
+                    this.graphics.exprs = new ScilabDouble([this.exprs]);
                     this.model.rpar = new ScilabDouble([this.a.slice()],[this.b.slice()],[this.c.slice()]);
                     this.model.ipar = new ScilabDouble([size(this.a,"*")],[size(this.b,"*")]);
                     this.x.graphics = this.graphics;

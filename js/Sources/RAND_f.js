@@ -15,9 +15,9 @@ function RAND_f() {
         this.model.ipar = new ScilabDouble([this.flag]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var exprs = [[string(this.flag)],[sci2exp(this.a.slice())],[sci2exp(this.b.slice())],[string(this.model.dstate[1-1])]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RAND_f\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,exprs,gr_i);
+        this.exprs = [[string(this.flag)],[sci2exp(this.a.slice())],[sci2exp(this.b.slice())],[string(this.model.dstate[1-1])]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RAND_f\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     RAND_f.prototype.details = function RAND_f() {
@@ -37,18 +37,19 @@ function RAND_f() {
         this.a = parseFloat(arguments[0]["a"])
         this.b = parseFloat(arguments[0]["b"])
         this.seed_c = arguments[0]["seed_c"]
+        this.exprs = inverse(arguments[0]["exprs"])
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
-        if (size(exprs,"*")==5) {
-            var exprs = exprs.slice(1-1,3);
+        if (size(this.exprs,"*")==5) {
+            this.exprs = this.exprs.slice(1-1,3);
         }
-        if (size(exprs,"*")==3) {
-            var exprs = [[exprs],[string(this.model.dstate[1-1])]];
+        if (size(this.exprs,"*")==3) {
+            this.exprs = [[this.exprs],[string(this.model.dstate[1-1])]];
         }
         while (true) {
-            [ok,this.flag,this.a,this.b,this.seed_c,exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be vector with equal sizes"],["seed is the seed of random number generator (integer<2**31)"]],["flag","A","B","seed"],list("vec",1,"vec",-1,"vec","size(%2,\'*\')","vec",1),exprs);
+            [ok,this.flag,this.a,this.b,this.seed_c,this.exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be vector with equal sizes"],["seed is the seed of random number generator (integer<2**31)"]],["flag","A","B","seed"],list("vec",1,"vec",-1,"vec","size(%2,\'*\')","vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -56,7 +57,7 @@ function RAND_f() {
                 message("flag must be equal to 1 or 0");
             } else {
                 var nout = size(this.a,"*");
-                this.graphics.exprs = new ScilabDouble(exprs);
+                this.graphics.exprs = new ScilabDouble(this.exprs);
                 this.model.out = new ScilabDouble([nout]);
                 this.model.ipar = new ScilabDouble([this.flag]);
                 this.model.rpar = new ScilabDouble([this.a.slice()],[this.b.slice()]);

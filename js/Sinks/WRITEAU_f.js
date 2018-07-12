@@ -16,9 +16,9 @@ function WRITEAU_f() {
         this.model.ipar = new ScilabDouble([length(fname)],[this._str2code[frmt-1]],[this.N],[this.swap],[this._str2code[fname-1]]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = [string(this.N),string(this.swap)];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"WRITEAU_f\",sz(1),sz(2));"]);
-        this.x = standard_define([4,2],this.model,exprs,gr_i);
+        this.exprs = [string(this.N),string(this.swap)];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"WRITEAU_f\",sz(1),sz(2));"]);
+        this.x = standard_define([4,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     WRITEAU_f.prototype.details = function WRITEAU_f() {
@@ -34,15 +34,16 @@ function WRITEAU_f() {
     WRITEAU_f.prototype.set = function WRITEAU_f() {
         this.N = parseFloat(arguments[0]["N"])
         this.swap = parseFloat(arguments[0]["swap"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         var ipar = this.model.ipar;
         var dstate = this.model.dstate;
         var lunit = dstate[2-1];
         while (true) {
-            [ok,this.N,this.swap,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WRITEAU_f")],[" "],["Write \'.au\' sound file on audio device"]],["Buffer Size","Swap Mode (0:No, 1:Yes)"],list("vec",1,"vec",1),exprs);
+            [ok,this.N,this.swap,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WRITEAU_f")],[" "],["Write \'.au\' sound file on audio device"]],["Buffer Size","Swap Mode (0:No, 1:Yes)"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -68,7 +69,7 @@ function WRITEAU_f() {
                 this.model.in1 = new ScilabDouble([1]);
                 this.model.dstate = new ScilabDouble(dstate);
                 this.model.ipar = new ScilabDouble(ipar);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

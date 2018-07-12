@@ -20,9 +20,9 @@ function READAU_f() {
         this.model.ipar = new ScilabDouble([length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[M],[this.swap],[offset],[this._str2code[fname-1]],[tmask],[outmask]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var exprs = [[fname],[string(this.N)],[string(this.swap)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"READAU_f\",sz(1),sz(2));"]);
-        this.x = standard_define([5,2],this.model,exprs,gr_i);
+        this.exprs = [[fname],[string(this.N)],[string(this.swap)]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"READAU_f\",sz(1),sz(2));"]);
+        this.x = standard_define([5,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     READAU_f.prototype.details = function READAU_f() {
@@ -40,9 +40,10 @@ function READAU_f() {
         this.fname1 = parseFloat(arguments[0]["fname1"])
         this.N = parseFloat(arguments[0]["N"])
         this.swap = parseFloat(arguments[0]["swap"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         var out = this.model.out;
         var dstate = this.model.dstate;
@@ -50,9 +51,9 @@ function READAU_f() {
         var imask = 9+ipar[1-1];
         var tmask = ipar[imask-1];
         var lunit = dstate[3-1];
-        var fname = exprs[1-1];
+        var fname = this.exprs[1-1];
         while (true) {
-            [ok,this.fname1,this.N,this.swap,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","READAU_f")],[" "],["(Read Audio File)"],[" "],["Read is done on a binary \'.au\' file"]],["Input File Name","Buffer size","Swap Mode (0:No, 1:Yes)"],list("str",1,"vec",1,"vec",1),exprs);
+            [ok,this.fname1,this.N,this.swap,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","READAU_f")],[" "],["(Read Audio File)"],[" "],["Read is done on a binary \'.au\' file"]],["Input File Name","Buffer size","Swap Mode (0:No, 1:Yes)"],list("str",1,"vec",1,"vec",1),this.exprs);
             var tmask1 = [];
             var outmask = 1;
             var frmt1 = "uc";
@@ -86,7 +87,7 @@ function READAU_f() {
                     }
                     this.model.dstate = new ScilabDouble(dstate);
                     this.model.ipar = new ScilabDouble(ipar);
-                    this.graphics.exprs = new ScilabDouble([exprs]);
+                    this.graphics.exprs = new ScilabDouble([this.exprs]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;

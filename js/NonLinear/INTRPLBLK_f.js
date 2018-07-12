@@ -10,9 +10,9 @@ function INTRPLBLK_f() {
         this.model.rpar = new ScilabDouble([this.a],[this.b]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTRPLBLK_f\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTRPLBLK_f\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     INTRPLBLK_f.prototype.details = function INTRPLBLK_f() {
@@ -28,12 +28,13 @@ function INTRPLBLK_f() {
     INTRPLBLK_f.prototype.set = function INTRPLBLK_f() {
         this.a = inverse(arguments[0]["a"])
         this.b = inverse(arguments[0]["b"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            [ok,this.a,this.b,exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord."],list("vec",-1,"vec",-1),exprs);
+            [ok,this.a,this.b,this.exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord."],list("vec",-1,"vec",-1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -43,7 +44,7 @@ function INTRPLBLK_f() {
                 message("X must be strictly increasing");
             } else {
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble([exprs]);
+                    this.graphics.exprs = new ScilabDouble([this.exprs]);
                     this.model.rpar = new ScilabDouble([this.a.slice()],[this.b.slice()]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;

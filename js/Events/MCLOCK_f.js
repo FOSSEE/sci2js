@@ -3,12 +3,12 @@ function MCLOCK_f() {
     MCLOCK_f.prototype.define = function MCLOCK_f() {
         var nn = 2;
         var dt = 0.1;
-        var exprs = [[string(dt)],[string(nn)]];
+        this.exprs = [[string(dt)],[string(nn)]];
         var mfclck = MFCLCK_f("define");
         mfclck.graphics.orig = [334,199];
         mfclck.graphics.sz = [40,40];
         mfclck.graphics.flip = true;
-        mfclck.graphics.exprs = exprs;
+        mfclck.graphics.exprs = this.exprs;
         mfclck.graphics.pein = 12;
         mfclck.graphics.peout = [[4],[3]];
         mfclck.model.rpar = 0.1;
@@ -43,7 +43,7 @@ function MCLOCK_f() {
         split2.graphics.orig = [[482.45315],[169.33333]];
         split2.graphics.pein = 5;
         split2.graphics.peout = [[12],[13]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MCLOCK_f\",sz(1),sz(2));"]);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MCLOCK_f\",sz(1),sz(2));"]);
         var diagram = scicos_diagram();
         diagram.objs[1-1] = mfclck;
         diagram.objs[2-1] = clksom;
@@ -61,7 +61,7 @@ function MCLOCK_f() {
         this.x = scicos_block();
         this.x.gui = "MCLOCK_f";
         this.x.graphics.sz = [3,2];
-        this.x.graphics.gr_i = gr_i;
+        this.x.graphics.gr_i = this.gr_i;
         this.x.model.sim = "csuper";
         this.x.model.evtout = [[1],[1]];
         this.x.model.blocktype = "h";

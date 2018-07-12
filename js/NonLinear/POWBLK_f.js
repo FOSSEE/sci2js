@@ -10,9 +10,9 @@ function POWBLK_f() {
         this.model.rpar = new ScilabDouble([this.a]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = string(this.a);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"POWBLK_f\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = string(this.a);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"POWBLK_f\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     POWBLK_f.prototype.details = function POWBLK_f() {
@@ -25,19 +25,20 @@ function POWBLK_f() {
     }
     POWBLK_f.prototype.set = function POWBLK_f() {
         this.a = parseFloat(arguments[0]["a"])
+        this.exprs = parseFloat(arguments[0]["exprs"])
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
-        if (size(exprs,"*")==2) {
-            var exprs = exprs[2-1];
+        if (size(this.exprs,"*")==2) {
+            this.exprs = this.exprs[2-1];
         }
         while (true) {
-            [ok,this.a,exprs] = scicos_getvalue("Set u^a block parameters","to the power of",list("vec",1),exprs);
+            [ok,this.a,this.exprs] = scicos_getvalue("Set u^a block parameters","to the power of",list("vec",1),this.exprs);
             if (!ok) {
                 break;
             }
-            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.graphics.exprs = new ScilabDouble([this.exprs]);
             if (this.a==int(this.a)) {
                 this.model.ipar = new ScilabDouble([this.a]);
                 this.model.rpar = new ScilabDouble([]);

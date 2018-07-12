@@ -11,9 +11,9 @@ function GENSQR_f() {
         this.model.dstate = new ScilabDouble([this.Amplitude]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var exprs = string(this.Amplitude);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENSQR_f\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,exprs,gr_i);
+        this.exprs = string(this.Amplitude);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENSQR_f\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     GENSQR_f.prototype.details = function GENSQR_f() {
@@ -27,19 +27,20 @@ function GENSQR_f() {
     }
     GENSQR_f.prototype.set = function GENSQR_f() {
         this.Amplitude = parseFloat(arguments[0]["Amplitude"])
+        this.exprs = parseFloat(arguments[0]["exprs"])
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
-        if (size(exprs,"*")==2) {
-            var exprs = exprs[2-1];
+        if (size(this.exprs,"*")==2) {
+            this.exprs = this.exprs[2-1];
         }
         while (true) {
-            [ok,this.Amplitude,exprs] = scicos_getvalue(["Set Square generator block parameters"],["Amplitude"],list("vec",1),exprs);
+            [ok,this.Amplitude,this.exprs] = scicos_getvalue(["Set Square generator block parameters"],["Amplitude"],list("vec",1),this.exprs);
             if (!ok) {
                 break;
             }
-            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.model.dstate = new ScilabDouble([this.Amplitude]);
             this.model.out2 = new ScilabDouble([1]);
             this.model.outtyp = new ScilabDouble([1]);

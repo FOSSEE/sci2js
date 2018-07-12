@@ -40,9 +40,9 @@ function PULSE_SC() {
         var W = 30;
         var F = 1;
         var A = 1;
-        var exprs = [sci2exp(E),sci2exp(W),sci2exp(F),sci2exp(A)];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PULSE_SC\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,exprs,gr_i);
+        this.exprs = [sci2exp(E),sci2exp(W),sci2exp(F),sci2exp(A)];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PULSE_SC\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     PULSE_SC.prototype.details = function PULSE_SC() {
@@ -58,11 +58,12 @@ function PULSE_SC() {
         scicos_context.W = arguments[0]["scicos_context.W"]
         scicos_context.F = arguments[0]["scicos_context.F"]
         scicos_context.A = arguments[0]["scicos_context.A"]
+        this.exprs = arguments[0]["exprs"]
         var y = this.needcompile;
         arg1.model.ipar = 1;
         var typ = list();
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         var Btitre = "Set Pulse Generator parameters";
         var Exprs0 = [["E"],["W"],["F"],["A"]];
         var Bitems = [["Phase delay (secs):"],["Pulse Width (% of period):"],["Period (secs):"],["Amplitude:"]];
@@ -71,7 +72,7 @@ function PULSE_SC() {
         this.x = arg1;
         var ok = false;
         while (!ok) {
-            [ok,scicos_context.E,scicos_context.W,scicos_context.F,scicos_context.A,exprs] = scicos_getvalue(Btitre,Bitems,Ss,exprs);
+            [ok,scicos_context.E,scicos_context.W,scicos_context.F,scicos_context.A,this.exprs] = scicos_getvalue(Btitre,Bitems,Ss,this.exprs);
             if (!ok) {
                 return;
             }
@@ -88,7 +89,7 @@ function PULSE_SC() {
                 var ok = tmpvar1[3];
                 if (ok) {
                     var y = max(2,this.needcompile,needcompile2);
-                    this.x.graphics.exprs = exprs;
+                    this.x.graphics.exprs = this.exprs;
                     this.x.model.rpar = sblock;
                     break;
                 }

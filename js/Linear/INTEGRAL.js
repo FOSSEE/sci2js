@@ -12,9 +12,9 @@ function INTEGRAL() {
         this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
-        var exprs = string([[0],[0],[0],[this.maxp],[minp]]);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTEGRAL\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = string([[0],[0],[0],[this.maxp],[minp]]);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTEGRAL\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         this.x.graphics.id = "1/s";
         return new BasicBlock(this.x);
     }
@@ -37,12 +37,13 @@ function INTEGRAL() {
         this.satur = parseFloat(arguments[0]["satur"])
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.lowp = arguments[0]["lowp"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),exprs);
+            [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,this.exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -88,7 +89,7 @@ function INTEGRAL() {
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

@@ -13,9 +13,9 @@ function IFTHEL_f() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([1]);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IFTHEL_f\",sz(1),sz(2));"]);
-        var exprs = [[string(this.model.in1)],[string(this.model.nmode)]];
-        this.x = standard_define([3,3],this.model,exprs,gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IFTHEL_f\",sz(1),sz(2));"]);
+        this.exprs = [[string(this.model.in1)],[string(this.model.nmode)]];
+        this.x = standard_define([3,3],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     IFTHEL_f.prototype.details = function IFTHEL_f() {
@@ -31,18 +31,19 @@ function IFTHEL_f() {
     IFTHEL_f.prototype.set = function IFTHEL_f() {
         this.inh = inverse(arguments[0]["inh"])
         this.nmod = parseFloat(arguments[0]["nmod"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
-        if (exprs==[]) {
-            var exprs = string(1);
+        if (this.exprs==[]) {
+            this.exprs = string(1);
         }
-        if (size(exprs,"*")==1) {
-            exprs[2-1] = string(1);
+        if (size(this.exprs,"*")==1) {
+            this.exprs[2-1] = string(1);
         }
         while (true) {
-            [ok,this.inh,this.nmod,exprs] = scicos_getvalue("Set parameters",["Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1),exprs);
+            [ok,this.inh,this.nmod,this.exprs] = scicos_getvalue("Set parameters",["Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -58,7 +59,7 @@ function IFTHEL_f() {
             this.graphics = tmpvar0[1];
             var ok = tmpvar0[2];
             if (ok) {
-                this.graphics.exprs = new ScilabString([exprs]);
+                this.graphics.exprs = new ScilabString([this.exprs]);
                 this.model.evtin = new ScilabDouble(this.inh);
                 this.model.sim[2-1] = new ScilabDouble([-1]);
                 this.model.nmode = new ScilabDouble([this.nmod]);

@@ -20,9 +20,9 @@ function RFILE_f() {
         this.model.ipar = new ScilabDouble([length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]],[tmask],[this.outmask]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var exprs = [[sci2exp([])],[sci2exp(this.outmask)],[fname],[frmt],[string(this.N)],[sci2exp(out)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RFILE_f\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,exprs,gr_i);
+        this.exprs = [[sci2exp([])],[sci2exp(this.outmask)],[fname],[frmt],[string(this.N)],[sci2exp(out)]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RFILE_f\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     RFILE_f.prototype.details = function RFILE_f() {
@@ -44,9 +44,10 @@ function RFILE_f() {
         this.fname1 = parseFloat(arguments[0]["fname1"])
         this.frmt1 = parseFloat(arguments[0]["frmt1"])
         this.N = parseFloat(arguments[0]["N"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         var dstate = this.model.dstate;
         var ipar = this.model.ipar;
@@ -55,13 +56,13 @@ function RFILE_f() {
         var imask = 5+ipar[1-1]+ipar[2-1];
         var tmask = ipar[imask-1];
         var lunit = dstate[3-1];
-        var fname = exprs[3-1];
-        var frmt = exprs[4-1];
-        if (size(exprs,"*")>5) {
-            exprs[6-1] = [];
+        var fname = this.exprs[3-1];
+        var frmt = this.exprs[4-1];
+        if (size(this.exprs,"*")>5) {
+            this.exprs[6-1] = [];
         }
         while (true) {
-            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.N,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","RFILE_f")],[" "],["Read from an input file"],[" "],["Read is done on:"],["&nbsp; - A binary file if no format given"],["&nbsp; - A formatted text file if a  format (fortran type) is given"]],["Time Record Selection","Outputs Record Selection","Input File Name","Input Format","Buffer Size"],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1),exprs);
+            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.N,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","RFILE_f")],[" "],["Read from an input file"],[" "],["Read is done on:"],["&nbsp; - A binary file if no format given"],["&nbsp; - A formatted text file if a  format (fortran type) is given"]],["Time Record Selection","Outputs Record Selection","Input File Name","Input Format","Buffer Size"],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -113,7 +114,7 @@ function RFILE_f() {
                     }
                     this.model.dstate = new ScilabDouble(dstate);
                     this.model.ipar = new ScilabDouble(ipar);
-                    this.graphics.exprs = new ScilabDouble([exprs]);
+                    this.graphics.exprs = new ScilabDouble([this.exprs]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;

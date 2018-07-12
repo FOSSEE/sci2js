@@ -11,9 +11,9 @@ function M_SWITCH() {
         this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = [[string(this.nin)],[string(ipar)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"M_SWITCH\",sz(1),sz(2));"]);
-        this.x = standard_define([2.5,2],this.model,exprs,gr_i);
+        this.exprs = [[string(this.nin)],[string(ipar)]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"M_SWITCH\",sz(1),sz(2));"]);
+        this.x = standard_define([2.5,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     M_SWITCH.prototype.details = function M_SWITCH() {
@@ -31,12 +31,13 @@ function M_SWITCH() {
         this.nin = parseFloat(arguments[0]["nin"])
         this.base = parseFloat(arguments[0]["base"])
         this.rule = arguments[0]["rule"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            [ok,this.nin,this.base,this.rule,exprs] = scicos_getvalue("Set parameters",["number of inputs","zero base indexing (0), otherwise 1","rounding rule: int (0), round (1), ceil (2), floor (3)"],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.nin,this.base,this.rule,this.exprs] = scicos_getvalue("Set parameters",["number of inputs","zero base indexing (0), otherwise 1","rounding rule: int (0), round (1), ceil (2), floor (3)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -65,7 +66,7 @@ function M_SWITCH() {
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble([exprs]);
+                    this.graphics.exprs = new ScilabDouble([this.exprs]);
                     this.model.ipar = new ScilabDouble([this.base],[this.rule]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;

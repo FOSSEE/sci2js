@@ -11,9 +11,9 @@ function LOGICAL_OP() {
         this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = [[string(this.nin)],[string(ipar)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOGICAL_OP\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = [[string(this.nin)],[string(ipar)]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOGICAL_OP\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     LOGICAL_OP.prototype.details = function LOGICAL_OP() {
@@ -33,15 +33,16 @@ function LOGICAL_OP() {
         this.rule = parseFloat(arguments[0]["rule"])
         this.Datatype = arguments[0]["Datatype"]
         this.tp = parseFloat(arguments[0]["tp"])
+        this.exprs = inverse(arguments[0]["exprs"])
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
-        if (size(exprs,1)==2) {
-            var exprs = [[exprs],[sci2exp(1)],[sci2exp(0)]];
+        if (size(this.exprs,1)==2) {
+            this.exprs = [[this.exprs],[sci2exp(1)],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.nin,this.rule,this.Datatype,this.tp,exprs] = scicos_getvalue("Set parameters",["number of inputs","Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)","Datatype (1=double 3=int32 ...)","Bitwise Rule(0=No 1=yes)"],list("vec",1,"vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.nin,this.rule,this.Datatype,this.tp,this.exprs] = scicos_getvalue("Set parameters",["number of inputs","Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)","Datatype (1=double 3=int32 ...)","Bitwise Rule(0=No 1=yes)"],list("vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -119,7 +120,7 @@ function LOGICAL_OP() {
                     } else if (this.rule==5) {
                         var label = "NOT";
                     }
-                    this.graphics.exprs = new ScilabDouble(exprs);
+                    this.graphics.exprs = new ScilabDouble(this.exprs);
                     this.graphics.style = new ScilabDouble(["blockWithLabel;displayedLabel="+label]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;

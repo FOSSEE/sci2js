@@ -82,8 +82,8 @@ function Extract_Activation() {
         this.model.in1 = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Extract_Activation\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,[],gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Extract_Activation\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,[],this.gr_i);
         return new BasicBlock(this.x);
     }
     Extract_Activation.prototype.details = function Extract_Activation() {

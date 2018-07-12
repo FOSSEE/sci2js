@@ -9,9 +9,9 @@ function MUX_f() {
         this.model.ipar = new ScilabDouble([this.in1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = string(this.in1);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MUX_f\",sz(1),sz(2));"]);
-        this.x = standard_define([0.5,2],this.model,exprs,gr_i);
+        this.exprs = string(this.in1);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MUX_f\",sz(1),sz(2));"]);
+        this.x = standard_define([0.5,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     MUX_f.prototype.details = function MUX_f() {
@@ -24,12 +24,13 @@ function MUX_f() {
     }
     MUX_f.prototype.set = function MUX_f() {
         this.in1 = parseFloat(arguments[0]["in1"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            [ok,this.in1,exprs] = scicos_getvalue("Set MUX block parameters","number of input ports or vector of sizes",list("vec",-1),exprs);
+            [ok,this.in1,this.exprs] = scicos_getvalue("Set MUX block parameters","number of input ports or vector of sizes",list("vec",-1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -63,7 +64,7 @@ function MUX_f() {
                 }
             }
             if (ok) {
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.ipar = new ScilabDouble([this.in1]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;

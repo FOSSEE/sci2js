@@ -45,9 +45,9 @@ function GEN_SQR() {
         var Amax = 1;
         var rule = 1;
         var F = 1;
-        var exprs = [sci2exp(Amin),sci2exp(Amax),sci2exp(rule),sci2exp(F)];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GEN_SQR\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,exprs,gr_i);
+        this.exprs = [sci2exp(Amin),sci2exp(Amax),sci2exp(rule),sci2exp(F)];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GEN_SQR\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     GEN_SQR.prototype.details = function GEN_SQR() {
@@ -63,11 +63,12 @@ function GEN_SQR() {
         scicos_context.Amax = arguments[0]["scicos_context.Amax"]
         scicos_context.rule = arguments[0]["scicos_context.rule"]
         scicos_context.F = arguments[0]["scicos_context.F"]
+        this.exprs = arguments[0]["exprs"]
         var y = this.needcompile;
         arg1.model.ipar = 1;
         var typ = list();
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         var Btitre = "Set GEN_SQR parameters";
         var Exprs0 = [["Amin"],["Amax"],["rule"],["F"]];
         var Bitems = [["Minimum Value"],["Maximum Value"],["Initial Value( 1= Minimum Value 2= Maximum Value)"],["Period (sec)"]];
@@ -76,7 +77,7 @@ function GEN_SQR() {
         this.x = arg1;
         var ok = false;
         while (!ok) {
-            [ok,scicos_context.Amin,scicos_context.Amax,scicos_context.rule,scicos_context.F,exprs] = scicos_getvalue(Btitre,Bitems,Ss,exprs);
+            [ok,scicos_context.Amin,scicos_context.Amax,scicos_context.rule,scicos_context.F,this.exprs] = scicos_getvalue(Btitre,Bitems,Ss,this.exprs);
             if (!ok) {
                 return;
             }
@@ -93,7 +94,7 @@ function GEN_SQR() {
                 var ok = tmpvar1[3];
                 if (ok) {
                     var y = max(2,this.needcompile,needcompile2);
-                    this.x.graphics.exprs = exprs;
+                    this.x.graphics.exprs = this.exprs;
                     this.x.model.rpar = sblock;
                     break;
                 }

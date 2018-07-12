@@ -10,9 +10,9 @@ function REGISTER() {
         this.model.dstate = new ScilabDouble([this.z0]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var exprs = strcat(string(this.z0),";");
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"REGISTER\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,exprs,gr_i);
+        this.exprs = strcat(string(this.z0),";");
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"REGISTER\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     REGISTER.prototype.details = function REGISTER() {
@@ -28,15 +28,16 @@ function REGISTER() {
     REGISTER.prototype.set = function REGISTER() {
         this.z0 = parseFloat(arguments[0]["z0"])
         this.it = arguments[0]["it"]
+        this.exprs = inverse(arguments[0]["exprs"])
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
-        if (size(exprs,1)==1) {
-            var exprs = [[exprs],[sci2exp(1)]];
+        if (size(this.exprs,1)==1) {
+            this.exprs = [[this.exprs],[sci2exp(1)]];
         }
         while (true) {
-            [ok,this.z0,this.it,exprs] = scicos_getvalue("Set delay parameters",["Register initial condition","Datatype (1=double 3=int32 ...)"],list("vec",-1,"vec",1),exprs);
+            [ok,this.z0,this.it,this.exprs] = scicos_getvalue("Set delay parameters",["Register initial condition","Datatype (1=double 3=int32 ...)"],list("vec",-1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -83,7 +84,7 @@ function REGISTER() {
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                this.graphics.exprs = new ScilabDouble(exprs);
+                this.graphics.exprs = new ScilabDouble(this.exprs);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

@@ -13,9 +13,9 @@ function GENERAL_f() {
         this.model.blocktype = new ScilabString(["z"]);
         this.model.firing = new ScilabDouble([-ones(this.out,1)]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = [[strcat(sci2exp(this.in1))],[strcat(sci2exp(this.out))]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENERAL_f\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,exprs,gr_i);
+        this.exprs = [[strcat(sci2exp(this.in1))],[strcat(sci2exp(this.out))]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENERAL_f\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     GENERAL_f.prototype.details = function GENERAL_f() {
@@ -31,16 +31,17 @@ function GENERAL_f() {
     GENERAL_f.prototype.set = function GENERAL_f() {
         this.in1 = parseFloat(arguments[0]["in1"])
         this.out = parseFloat(arguments[0]["out"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         var rpar = this.model.rpar;
         this.in1 = this.model.in1;
         this.out = this.model.evtout;
         var nin = sum(this.in1);
         var nout = sum(this.out);
-        [ok,this.in1,this.out,exprs] = scicos_getvalue("Set General Zero-Crossing parameters",["Input size","Number of event output"],list("vec",1,"vec",1),exprs);
+        [ok,this.in1,this.out,this.exprs] = scicos_getvalue("Set General Zero-Crossing parameters",["Input size","Number of event output"],list("vec",1,"vec",1),this.exprs);
         if (ok) {
             var tmpvar0 = check_io(this.model,this.graphics,this.in1,[],[],ones(this.out,1));
             this.model = tmpvar0[0];
@@ -61,7 +62,7 @@ function GENERAL_f() {
                     this.model.nzcross = new ScilabDouble([this.in1]);
                     this.model.rpar = new ScilabDouble(rp.slice());
                     this.model.firing = new ScilabDouble([-ones(this.out,1)]);
-                    this.graphics.exprs = new ScilabDouble([exprs]);
+                    this.graphics.exprs = new ScilabDouble([this.exprs]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;
                 }

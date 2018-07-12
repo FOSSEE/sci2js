@@ -21,8 +21,8 @@ function SUBMAT() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUBMAT\",sz(1),sz(2));"]);
-        this.x = standard_define([2.5,2],this.model,label,gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUBMAT\",sz(1),sz(2));"]);
+        this.x = standard_define([2.5,2],this.model,label,this.gr_i);
         return new BasicBlock(this.x);
     }
     SUBMAT.prototype.details = function SUBMAT() {
@@ -46,6 +46,7 @@ function SUBMAT() {
         this.c = arguments[0]["c"]
         this.d = arguments[0]["d"]
         this.inp = arguments[0]["inp"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
@@ -54,7 +55,7 @@ function SUBMAT() {
             label[6-1] = sci2exp([1,1]);
         }
         while (true) {
-            [ok,this.typ,this.a,this.b,this.c,this.d,this.inp,exprs] = scicos_getvalue("Set SUBMAT Block",["Datatype (1=real double  2=Complex)","Starting Row Index","Ending Row Index","Starting Column Index","Ending Column Index","Input Dimensions"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label);
+            [ok,this.typ,this.a,this.b,this.c,this.d,this.inp,this.exprs] = scicos_getvalue("Set SUBMAT Block",["Datatype (1=real double  2=Complex)","Starting Row Index","Ending Row Index","Starting Column Index","Ending Column Index","Input Dimensions"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label);
             if (!ok) {
                 break;
             }
@@ -94,7 +95,7 @@ function SUBMAT() {
             var in1 = [this.inp[1-1],this.inp[2-1]];
             var out = [(this.b-this.a)+1,(this.d-this.c)+1];
             var funtyp = 4;
-            var label = exprs;
+            var label = this.exprs;
             if (ok) {
                 var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
                 this.model = tmpvar0[0];

@@ -9,9 +9,9 @@ function BIGSOM_f() {
         this.model.rpar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = sci2exp(this.sgn);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BIGSOM_f\",sz(1),sz(2));"]);
-        this.x = standard_define([2,3],this.model,exprs,gr_i);
+        this.exprs = sci2exp(this.sgn);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BIGSOM_f\",sz(1),sz(2));"]);
+        this.x = standard_define([2,3],this.model,this.exprs,this.gr_i);
         return new BigSom(this.x);
     }
     BIGSOM_f.prototype.details = function BIGSOM_f() {
@@ -24,12 +24,13 @@ function BIGSOM_f() {
     }
     BIGSOM_f.prototype.set = function BIGSOM_f() {
         this.sgn = inverse(arguments[0]["sgn"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.sgn,exprs] = scicos_getvalue("Set sum block parameters","Inputs ports signs/gain",list("vec",-1),exprs);
+            [ok,this.sgn,this.exprs] = scicos_getvalue("Set sum block parameters","Inputs ports signs/gain",list("vec",-1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -40,7 +41,7 @@ function BIGSOM_f() {
             var ok = tmpvar0[2];
             if (ok) {
                 this.model.rpar = new ScilabDouble(this.sgn.slice());
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

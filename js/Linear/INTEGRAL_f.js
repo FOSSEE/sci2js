@@ -9,9 +9,9 @@ function INTEGRAL_f() {
         this.model.state = new ScilabDouble([this.x0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
-        var exprs = strcat(sci2exp(this.x0));
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTEGRAL_f\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = strcat(sci2exp(this.x0));
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTEGRAL_f\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     INTEGRAL_f.prototype.details = function INTEGRAL_f() {
@@ -24,16 +24,17 @@ function INTEGRAL_f() {
     }
     INTEGRAL_f.prototype.set = function INTEGRAL_f() {
         this.x0 = parseFloat(arguments[0]["x0"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            [ok,this.x0,exprs] = scicos_getvalue("Set continuous linear system parameters","Initial state",list("vec",1),exprs);
+            [ok,this.x0,this.exprs] = scicos_getvalue("Set continuous linear system parameters","Initial state",list("vec",1),this.exprs);
             if (!ok) {
                 break;
             }
-            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.model.state = new ScilabDouble([this.x0]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;

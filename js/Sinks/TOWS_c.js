@@ -18,9 +18,9 @@ function TOWS_c() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TOWS_c\",sz(1),sz(2));"]);
-        var exprs = [[string(this.nz)],[string(this.varnam)],[string(this.herit)]];
-        this.x = standard_define([4,2],this.model,exprs,gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TOWS_c\",sz(1),sz(2));"]);
+        this.exprs = [[string(this.nz)],[string(this.varnam)],[string(this.herit)]];
+        this.x = standard_define([4,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     TOWS_c.prototype.details = function TOWS_c() {
@@ -38,12 +38,13 @@ function TOWS_c() {
         this.nz = parseFloat(arguments[0]["nz"])
         this.varnam = arguments[0]["varnam"]
         this.herit = parseFloat(arguments[0]["herit"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nz,this.varnam,this.herit,exprs] = scicos_getvalue("Set Xcos buffer block",["Size of buffer","Scilab variable name","Inherit (no:0, yes:1)"],list("vec",1,"str",1,"vec",1),exprs);
+            [ok,this.nz,this.varnam,this.herit,this.exprs] = scicos_getvalue("Set Xcos buffer block",["Size of buffer","Scilab variable name","Inherit (no:0, yes:1)"],list("vec",1,"str",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -69,7 +70,7 @@ function TOWS_c() {
                     this.model.blocktype = new ScilabString(["d"]);
                 }
                 this.model.ipar = new ScilabDouble([this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

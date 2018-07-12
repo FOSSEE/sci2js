@@ -20,7 +20,7 @@ function DSUPER() {
             this.x = arg1;
             return;
         }
-        var exprs = this.graphics.exprs[1-1];
+        this.exprs = this.graphics.exprs[1-1];
         var exprs0 = this.graphics.exprs[2-1][1-1];
         var btitre = this.graphics.exprs[2-1][2-1][1-1];
         var bitems = this.graphics.exprs[2-1][2-1].slice(2-1,$);
@@ -53,7 +53,7 @@ function DSUPER() {
             var needcompile2 = tmpvar1[2];
             this.ok = tmpvar1[3];
             var y = max(2,this.needcompile,needcompile2);
-            this.x.graphics.exprs[1-1] = exprs;
+            this.x.graphics.exprs[1-1] = this.exprs;
             this.x.model.rpar = sblock;
         } else {
             this.x = arg1;

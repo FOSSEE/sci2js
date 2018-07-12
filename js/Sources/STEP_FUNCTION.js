@@ -47,8 +47,8 @@ function STEP_FUNCTION() {
         this.model.out2 = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"STEP_FUNCTION\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,[],gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"STEP_FUNCTION\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,[],this.gr_i);
         return new BasicBlock(this.x);
     }
     STEP_FUNCTION.prototype.details = function STEP_FUNCTION() {

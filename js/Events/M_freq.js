@@ -10,9 +10,9 @@ function M_freq() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([0,-1,-1]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var exprs = [[sci2exp([[1],[2]])],[sci2exp([[0],[0]])]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"M_freq\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,exprs,gr_i);
+        this.exprs = [[sci2exp([[1],[2]])],[sci2exp([[0],[0]])]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"M_freq\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     M_freq.prototype.details = function M_freq() {
@@ -28,12 +28,13 @@ function M_freq() {
     M_freq.prototype.set = function M_freq() {
         this.frequ = inverse(arguments[0]["frequ"])
         this.offset = inverse(arguments[0]["offset"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.frequ,this.offset,exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",-1,"vec",-1),exprs);
+            [ok,this.frequ,this.offset,this.exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",-1,"vec",-1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -74,7 +75,7 @@ function M_freq() {
                     this.graphics.sz = new ScilabDouble([50,40]);
                 }
                 this.model.firing = new ScilabDouble([fir]);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

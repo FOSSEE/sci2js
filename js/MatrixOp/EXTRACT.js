@@ -21,8 +21,8 @@ function EXTRACT() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp([1])],[sci2exp([1])]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXTRACT\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,label,gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXTRACT\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,label,this.gr_i);
         return new BasicBlock(this.x);
     }
     EXTRACT.prototype.details = function EXTRACT() {
@@ -40,6 +40,7 @@ function EXTRACT() {
         this.typ = inverse(arguments[0]["typ"])
         this.a = inverse(arguments[0]["a"])
         this.b = inverse(arguments[0]["b"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
@@ -48,7 +49,7 @@ function EXTRACT() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.a,this.b,exprs] = scicos_getvalue("Set EXTRACT Block",["Datatype (1=real double  2=Complex)","Lines to extract","Columns to extract"],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
+            [ok,this.typ,this.a,this.b,this.exprs] = scicos_getvalue("Set EXTRACT Block",["Datatype (1=real double  2=Complex)","Lines to extract","Columns to extract"],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
             this.a = this.a.slice();
             this.b = this.b.slice();
             if (!ok) {
@@ -89,7 +90,7 @@ function EXTRACT() {
             var out = [ma,mb];
             var funtyp = 4;
             if (ok) {
-                var label = exprs;
+                var label = this.exprs;
                 var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];

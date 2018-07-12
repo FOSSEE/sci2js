@@ -9,8 +9,8 @@ function CLKOUTV_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var exprs = string(this.prt);
-        this.x = standard_define([1,1],this.model,exprs," ");
+        this.exprs = string(this.prt);
+        this.x = standard_define([1,1],this.model,this.exprs," ");
         return new EventOutBlock(this.x);
     }
     CLKOUTV_f.prototype.details = function CLKOUTV_f() {
@@ -23,12 +23,13 @@ function CLKOUTV_f() {
     }
     CLKOUTV_f.prototype.set = function CLKOUTV_f() {
         this.prt = arguments[0]["prt"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.prt,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CLKOUTV_f")],[" "],["Event output port"]],"Port number",list("vec",1),exprs);
+            [ok,this.prt,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CLKOUTV_f")],[" "],["Event output port"]],"Port number",list("vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -38,7 +39,7 @@ function CLKOUTV_f() {
             } else {
                 this.model.ipar = new ScilabDouble([this.prt]);
                 this.model.evtin = new ScilabDouble([1]);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
@@ -78,9 +79,9 @@ function CLKOUTV_f() {
         var y = orig[2-1]+sz[2-1]*[[0],[1/3],[1],[1],[1/3]];
         var xo = orig[1-1];
         var yo = orig[2-1]+sz[2-1]/3;
-        var gr_i = arg1.graphics.gr_i;
-        if (this.type[gr_i-1]==15) {
-            var coli = gr_i[2-1];
+        this.gr_i = arg1.graphics.gr_i;
+        if (this.type[this.gr_i-1]==15) {
+            var coli = this.gr_i[2-1];
             var pcoli = xget("pattern");
             xfpolys(this.x,y,coli);
             xset("pattern",coli);

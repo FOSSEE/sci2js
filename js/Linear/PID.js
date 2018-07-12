@@ -35,8 +35,8 @@ function PID() {
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         this.model.rpar = new ScilabDouble([scs_m]);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PID\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,[],gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PID\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,[],this.gr_i);
         return new BasicBlock(this.x);
     }
     PID.prototype.details = function PID() {
@@ -87,17 +87,17 @@ function PID() {
         }
         var newpar = list();
         var xx1 = arg1.model.rpar.objs[ppath[1-1]-1];
-        exprs[1-1] = xx1.graphics.exprs[1-1];
+        this.exprs[1-1] = xx1.graphics.exprs[1-1];
         var p_old = xx1.model.rpar;
         var xx2 = arg1.model.rpar.objs[ppath[2-1]-1];
-        exprs[2-1] = xx2.graphics.exprs[1-1];
+        this.exprs[2-1] = xx2.graphics.exprs[1-1];
         var i_old = xx2.model.rpar;
         var xx3 = arg1.model.rpar.objs[ppath[3-1]-1];
-        exprs[3-1] = xx3.graphics.exprs[1-1];
+        this.exprs[3-1] = xx3.graphics.exprs[1-1];
         var d_old = xx3.model.rpar;
         var y = 0;
         while (true) {
-            [ok,this.p,this.i,this.d,this.exprs0] = scicos_getvalue("Set PID parameters",["Proportional","Integral","Derivation"],list("vec",-1,"vec",-1,"vec",-1),exprs);
+            [ok,this.p,this.i,this.d,this.exprs0] = scicos_getvalue("Set PID parameters",["Proportional","Integral","Derivation"],list("vec",-1,"vec",-1,"vec",-1),this.exprs);
             if (!ok) {
                 break;
             }

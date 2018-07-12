@@ -15,9 +15,9 @@ function GAINBLK() {
         this.model.rpar = new ScilabDouble([this.gain]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = [strcat(sci2exp(this.gain))];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GAINBLK\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = [strcat(sci2exp(this.gain))];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GAINBLK\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     GAINBLK.prototype.details = function GAINBLK() {
@@ -33,15 +33,16 @@ function GAINBLK() {
     GAINBLK.prototype.set = function GAINBLK() {
         this.gain = parseFloat(arguments[0]["gain"])
         this.over = arguments[0]["over"]
+        this.exprs = inverse(arguments[0]["exprs"])
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
-        if (size(exprs,"*")==1) {
-            var exprs = [[exprs],[sci2exp(0)]];
+        if (size(this.exprs,"*")==1) {
+            this.exprs = [[this.exprs],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.gain,this.over,exprs] = scicos_getvalue("Set gain block parameters",["Gain","Do On Overflow(0=Nothing 1=Saturate 2=Error)"],list("mat",[-1,-1],"vec",1),exprs);
+            [ok,this.gain,this.over,this.exprs] = scicos_getvalue("Set gain block parameters",["Gain","Do On Overflow(0=Nothing 1=Saturate 2=Error)"],list("mat",[-1,-1],"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -153,7 +154,7 @@ function GAINBLK() {
                     }
                 }
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble(exprs);
+                    this.graphics.exprs = new ScilabDouble(this.exprs);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;

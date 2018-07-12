@@ -11,9 +11,9 @@ function OUT_f() {
         this.model.ipar = new ScilabDouble([this.prt]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var exprs = string(this.prt);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OUT_f\",sz(1),sz(2));"]);
-        this.x = standard_define([1,1],this.model,exprs,gr_i);
+        this.exprs = string(this.prt);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OUT_f\",sz(1),sz(2));"]);
+        this.x = standard_define([1,1],this.model,this.exprs,this.gr_i);
         return new ExplicitOutBlock(this.x);
     }
     OUT_f.prototype.details = function OUT_f() {
@@ -26,15 +26,16 @@ function OUT_f() {
     }
     OUT_f.prototype.set = function OUT_f() {
         this.prt = parseFloat(arguments[0]["prt"])
+        this.exprs = parseFloat(arguments[0]["exprs"])
         this.x = arg1;
         this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = this.graphics.exprs;
-        if (size(exprs,"*")==2) {
-            var exprs = exprs[1-1];
+        this.exprs = this.graphics.exprs;
+        if (size(this.exprs,"*")==2) {
+            this.exprs = this.exprs[1-1];
         }
         while (true) {
-            [ok,this.prt,exprs] = scicos_getvalue([[msprintf("Set %s block parameters","OUT_f")],[" "],["Regular output port"]],"Port number",list("vec",1),exprs);
+            [ok,this.prt,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","OUT_f")],[" "],["Regular output port"]],"Port number",list("vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -43,7 +44,7 @@ function OUT_f() {
                 block_parameter_error(msprintf("Wrong value for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
                 this.model.ipar = new ScilabDouble([this.prt]);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

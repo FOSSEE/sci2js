@@ -10,9 +10,9 @@ function RELATIONALOP() {
         this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = [[string(ipar)],[string(0)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RELATIONALOP\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = [[string(ipar)],[string(0)]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RELATIONALOP\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         this.x.graphics.style = ["fontSize=13;fontStyle=1;displayedLabel="+label];
         return new BasicBlock(this.x);
     }
@@ -31,15 +31,16 @@ function RELATIONALOP() {
         this.rule = parseFloat(arguments[0]["rule"])
         this.zcr = parseFloat(arguments[0]["zcr"])
         this.Datatype = arguments[0]["Datatype"]
+        this.exprs = inverse(arguments[0]["exprs"])
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
-        if (size(exprs,1)==2) {
-            var exprs = [[exprs],[sci2exp(1)]];
+        if (size(this.exprs,1)==2) {
+            this.exprs = [[this.exprs],[sci2exp(1)]];
         }
         while (true) {
-            [ok,this.rule,this.zcr,this.Datatype,exprs] = scicos_getvalue("Set parameters",["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)","Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.rule,this.zcr,this.Datatype,this.exprs] = scicos_getvalue("Set parameters",["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)","Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -93,7 +94,7 @@ function RELATIONALOP() {
                 } else if (this.rule==5) {
                     var label = "&#8805;";
                 }
-                this.graphics.exprs = new ScilabDouble(exprs);
+                this.graphics.exprs = new ScilabDouble(this.exprs);
                 this.graphics.style = new ScilabDouble(["fontSize=13;fontStyle=1;displayedLabel="+label]);
                 this.model.ipar = new ScilabDouble([this.rule]);
                 this.model.nzcross = new ScilabDouble([this.zcr]);

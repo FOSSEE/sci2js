@@ -28,8 +28,8 @@ function SRFLIPFLOP() {
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.rpar = new ScilabDouble([scs_m]);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SRFLIPFLOP\",sz(1),sz(2));"]);
-        this.x = standard_define([2,3],this.model,[],gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SRFLIPFLOP\",sz(1),sz(2));"]);
+        this.x = standard_define([2,3],this.model,[],this.gr_i);
         return new BasicBlock(this.x);
     }
     SRFLIPFLOP.prototype.details = function SRFLIPFLOP() {
@@ -52,11 +52,11 @@ function SRFLIPFLOP() {
         }
         var newpar = list();
         var xx = arg1.model.rpar.objs[path-1];
-        var exprs = xx.graphics.exprs[1-1];
+        this.exprs = xx.graphics.exprs[1-1];
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
         while (true) {
-            [ok,this.init,this.exprs0] = scicos_getvalue([[msprintf("Set %s block parameters","SRFLIPFLOP")],[" "],["SR flip-flop"],[" "],["The \'Initial Value\' must be 0 or 1 of type int8"],["&nbsp;- Negative values are considered as int8(0)"],["&nbsp;- Positive values are considered as int8(1)"],[" "]],"Initial Value",list("vec",1),exprs);
+            [ok,this.init,this.exprs0] = scicos_getvalue([[msprintf("Set %s block parameters","SRFLIPFLOP")],[" "],["SR flip-flop"],[" "],["The \'Initial Value\' must be 0 or 1 of type int8"],["&nbsp;- Negative values are considered as int8(0)"],["&nbsp;- Positive values are considered as int8(1)"],[" "]],"Initial Value",list("vec",1),this.exprs);
             if (!ok) {
                 break;
             }

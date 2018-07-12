@@ -9,9 +9,9 @@ function PRODUCT() {
         this.model.ipar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = sci2exp(this.sgn);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PRODUCT\",sz(1),sz(2));"]);
-        this.x = standard_define([2,3],this.model,exprs,gr_i);
+        this.exprs = sci2exp(this.sgn);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PRODUCT\",sz(1),sz(2));"]);
+        this.x = standard_define([2,3],this.model,this.exprs,this.gr_i);
         return new Product(this.x);
     }
     PRODUCT.prototype.details = function PRODUCT() {
@@ -24,12 +24,13 @@ function PRODUCT() {
     }
     PRODUCT.prototype.set = function PRODUCT() {
         this.sgn = inverse(arguments[0]["sgn"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.sgn,exprs] = scicos_getvalue([["         Set multiplication block parameters"],["(multiplication is set with + 1, division with -1)"],[""]],"Number of inputs or sign vector",list("vec",-1),exprs);
+            [ok,this.sgn,this.exprs] = scicos_getvalue([["         Set multiplication block parameters"],["(multiplication is set with + 1, division with -1)"],[""]],"Number of inputs or sign vector",list("vec",-1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -64,7 +65,7 @@ function PRODUCT() {
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.sgn]);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

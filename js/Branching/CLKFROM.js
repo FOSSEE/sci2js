@@ -8,8 +8,8 @@ function CLKFROM() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var exprs = "A";
-        this.x = standard_define([2,1],this.model,exprs," ");
+        this.exprs = "A";
+        this.x = standard_define([2,1],this.model,this.exprs," ");
         this.x.graphics.id = "From";
         return new BasicBlock(this.x);
     }
@@ -23,12 +23,13 @@ function CLKFROM() {
     }
     CLKFROM.prototype.set = function CLKFROM() {
         this.tag = arguments[0]["tag"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tag,exprs] = scicos_getvalue("Set block parameters","Tag",list("str",-1),exprs);
+            [ok,this.tag,this.exprs] = scicos_getvalue("Set block parameters","Tag",list("str",-1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -39,7 +40,7 @@ function CLKFROM() {
             this.model.opar = list(new ScilabDouble([this.tag]));
             this.model.evtout = new ScilabDouble([1]);
             this.model.firing = new ScilabDouble([-1]);
-            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;

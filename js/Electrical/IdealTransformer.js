@@ -36,15 +36,15 @@ function IdealTransformer() {
         mo.outputs = MO;
         this.model.rpar = new ScilabDouble(PrametersValue);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
-        var exprs = ["1"];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IdealTransformer\",sz(1),sz(2));"]);
+        this.exprs = ["1"];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IdealTransformer\",sz(1),sz(2));"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
         this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
-        this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
+        this.x = standard_define([2,2],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = Typein;
         this.x.graphics.out_implicit = Typeout;
         return new BasicBlock(this.x);
@@ -60,19 +60,20 @@ function IdealTransformer() {
     }
     IdealTransformer.prototype.set = function IdealTransformer() {
         this.N = arguments[0]["N"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         this.x = arg1;
-        var exprs = this.x.graphics.exprs;
+        this.exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,this.N,exprs] = scicos_getvalue([["Set Transformer block parameters:"],[""],["N:"+" Turn ratio (N1/N2)"]],["N"],list("vec",1),exprs);
+            [ok,this.N,this.exprs] = scicos_getvalue([["Set Transformer block parameters:"],[""],["N:"+" Turn ratio (N1/N2)"]],["N"],list("vec",1),this.exprs);
             if (!ok) {
                 break;
             }
             this.x.model.equations.parameters[2-1] = list(this.N);
-            this.x.graphics.exprs = exprs;
+            this.x.graphics.exprs = this.exprs;
             break;
         }
         return new BasicBlock(this.x);

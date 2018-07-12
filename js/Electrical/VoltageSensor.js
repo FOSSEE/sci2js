@@ -12,9 +12,9 @@ function VoltageSensor() {
         mo.inputs = "p";
         mo.outputs = [["n"],["v"]];
         this.model.equations = new ScilabDouble([mo]);
-        var exprs = [];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VoltageSensor\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
+        this.exprs = [];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VoltageSensor\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = [["I"],["E"]];
         return new VoltageSensorBlock(this.x);

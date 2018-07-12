@@ -11,9 +11,9 @@ function SUMMATION() {
         this.model.ipar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = sci2exp(this.sgn);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUMMATION\",sz(1),sz(2));"]);
-        this.x = standard_define([2,3],this.model,exprs,gr_i);
+        this.exprs = sci2exp(this.sgn);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUMMATION\",sz(1),sz(2));"]);
+        this.x = standard_define([2,3],this.model,this.exprs,this.gr_i);
         return new Summation(this.x);
     }
     SUMMATION.prototype.details = function SUMMATION() {
@@ -31,17 +31,18 @@ function SUMMATION() {
         this.Datatype = arguments[0]["Datatype"]
         this.sgn = inverse(arguments[0]["sgn"])
         this.satur = arguments[0]["satur"]
+        this.exprs = inverse(arguments[0]["exprs"])
         this.x = arg1;
         this.graphics = arg1.graphics;
         this.model = arg1.model;
-        var exprs = this.graphics.exprs;
-        if (size(exprs,1)==1) {
-            var exprs = [[sci2exp(1)],[exprs],[sci2exp(0)]];
-        } else if (size(exprs,1)==2) {
-            var exprs = [[exprs],[sci2exp(0)]];
+        this.exprs = this.graphics.exprs;
+        if (size(this.exprs,1)==1) {
+            this.exprs = [[sci2exp(1)],[this.exprs],[sci2exp(0)]];
+        } else if (size(this.exprs,1)==2) {
+            this.exprs = [[this.exprs],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.Datatype,this.sgn,this.satur,exprs] = scicos_getvalue("Set sum block parameters",["Datatype (1=real double  2=complex 3=int32 ...)","Number of inputs or sign vector (of +1, -1)","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",-1,"vec",1),exprs);
+            [ok,this.Datatype,this.sgn,this.satur,this.exprs] = scicos_getvalue("Set sum block parameters",["Datatype (1=real double  2=complex 3=int32 ...)","Number of inputs or sign vector (of +1, -1)","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",-1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -141,7 +142,7 @@ function SUMMATION() {
             if (ok) {
                 this.model.rpar = new ScilabDouble([this.satur]);
                 this.model.ipar = new ScilabDouble([this.sgn]);
-                this.graphics.exprs = new ScilabDouble(exprs);
+                this.graphics.exprs = new ScilabDouble(this.exprs);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

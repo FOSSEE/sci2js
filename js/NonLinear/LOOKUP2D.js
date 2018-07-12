@@ -16,9 +16,9 @@ function LOOKUP2D() {
         this.model.ipar = new ScilabDouble([Nx],[Ny],[this.Method]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = list(strcat(sci2exp(this.xx)),strcat(sci2exp(this.yy)),strcat(sci2exp(this.zz)),sci2exp(this.Method),Graf);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP2D\",sz(1),sz(2));"]);
-        this.x = standard_define([2.5,2],this.model,exprs,gr_i);
+        this.exprs = list(strcat(sci2exp(this.xx)),strcat(sci2exp(this.yy)),strcat(sci2exp(this.zz)),sci2exp(this.Method),Graf);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP2D\",sz(1),sz(2));"]);
+        this.x = standard_define([2.5,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     LOOKUP2D.prototype.details = function LOOKUP2D() {
@@ -40,15 +40,16 @@ function LOOKUP2D() {
         this.zz = inverse(arguments[0]["zz"])
         this.Method = parseFloat(arguments[0]["Method"])
         this.graf = arguments[0]["graf"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.model = arg1.model;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
         while (true) {
             var Ask_again = false;
-            [ok,this.xx,this.yy,this.zz,this.Method,this.graf,exprs] = scicos_getvalue("2D Lookup table parameters",["Row index input values","Column index input values","Table data","Lookup method(1..5)","Launch graphic window(y/n)?"],list("vec",-1,"vec",-1,"mat",[-1,-1],"vec",1,"str",1),exprs);
+            [ok,this.xx,this.yy,this.zz,this.Method,this.graf,this.exprs] = scicos_getvalue("2D Lookup table parameters",["Row index input values","Column index input values","Table data","Lookup method(1..5)","Launch graphic window(y/n)?"],list("vec",-1,"vec",-1,"mat",[-1,-1],"vec",1,"str",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -62,8 +63,8 @@ function LOOKUP2D() {
             if (this.graf!="y"&&this.graf!="Y") {
                 this.graf = "n";
             }
-            exprs[5-1] = "n";
-            exprs[4-1] = sci2exp(mtd);
+            this.exprs[5-1] = "n";
+            this.exprs[4-1] = sci2exp(mtd);
             var METHOD = getmethod(mtd);
             if (!Ask_again) {
                 this.xx = this.xx.slice();
@@ -111,7 +112,7 @@ function LOOKUP2D() {
                 }
                 this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()],[this.zz.slice()]);
                 this.model.ipar = new ScilabDouble([nx],[ny],[mtd]);
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.x.model = this.model;
                 this.x.graphics = this.graphics;
                 break;

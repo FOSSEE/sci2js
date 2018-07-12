@@ -14,9 +14,9 @@ function EXPBLK_m() {
         this.model.rpar = new ScilabDouble([this.a]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var exprs = ["%e"];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXPBLK_m\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.exprs = ["%e"];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXPBLK_m\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     EXPBLK_m.prototype.details = function EXPBLK_m() {
@@ -29,22 +29,23 @@ function EXPBLK_m() {
     }
     EXPBLK_m.prototype.set = function EXPBLK_m() {
         this.a = parseFloat(arguments[0]["a"])
+        this.exprs = parseFloat(arguments[0]["exprs"])
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
-        if (size(exprs,"*")==2) {
-            var exprs = exprs[2-1];
+        if (size(this.exprs,"*")==2) {
+            this.exprs = this.exprs[2-1];
         }
         while (true) {
-            [ok,this.a,exprs] = scicos_getvalue("Set a^u  block parameters","a (>0)",list("vec",1),exprs);
+            [ok,this.a,this.exprs] = scicos_getvalue("Set a^u  block parameters","a (>0)",list("vec",1),this.exprs);
             if (!ok) {
                 break;
             }
             if (or(this.a<=0)) {
                 message("a^u : a must be positive");
             } else {
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.rpar = new ScilabDouble([this.a]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;

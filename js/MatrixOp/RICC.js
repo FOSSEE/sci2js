@@ -21,8 +21,8 @@ function RICC() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp(1)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RICC\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,label,gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RICC\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,label,this.gr_i);
         return new BasicBlock(this.x);
     }
     RICC.prototype.details = function RICC() {
@@ -38,6 +38,7 @@ function RICC() {
     RICC.prototype.set = function RICC() {
         this.tpe = arguments[0]["tpe"]
         this.mod = arguments[0]["mod"]
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
@@ -46,7 +47,7 @@ function RICC() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.tpe,this.mod,exprs] = scicos_getvalue("Set RICC Block",["Type (1=Cont  2=Disc)","Model(1=Schr  2=sign(cont) inv(disc))"],list("vec",1,"vec",1),label);
+            [ok,this.tpe,this.mod,this.exprs] = scicos_getvalue("Set RICC Block",["Type (1=Cont  2=Disc)","Model(1=Schr  2=sign(cont) inv(disc))"],list("vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
@@ -54,7 +55,7 @@ function RICC() {
             var out = [this.model.out,this.model.out2];
             var it = [1,1,1];
             var ot = 1;
-            var label = exprs;
+            var label = this.exprs;
             var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
             this.model = tmpvar0[0];
             this.graphics = tmpvar0[1];

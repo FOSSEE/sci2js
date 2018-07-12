@@ -103,8 +103,8 @@ function freq_div() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"freq_div\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,[],gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"freq_div\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,[],this.gr_i);
         return new BasicBlock(this.x);
     }
     freq_div.prototype.details = function freq_div() {
@@ -120,6 +120,7 @@ function freq_div() {
     freq_div.prototype.set = function freq_div() {
         %ph = parseFloat(arguments[0]["%ph"])
         %df = parseFloat(arguments[0]["%df"])
+        this.exprs = inverse(arguments[0]["exprs"])
         for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
             var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="Modulo_Count") {
@@ -137,10 +138,10 @@ function freq_div() {
         var xx = arg1[spath-1];
         var xxn = xx;
         this.graphics = xx.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = xx.model;
         while (true) {
-            [ok,%ph,%df,exprs] = scicos_getvalue("Set frequency division block parameters",["Phase (0 to division factor -1)","Division factor"],list("vec",1,"vec",1),exprs);
+            [ok,%ph,%df,this.exprs] = scicos_getvalue("Set frequency division block parameters",["Phase (0 to division factor -1)","Division factor"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -152,7 +153,7 @@ function freq_div() {
                 if (%ph>%df-1) {
                     %ph = %df-1;
                 }
-                this.graphics.exprs = new ScilabDouble(exprs);
+                this.graphics.exprs = new ScilabDouble(this.exprs);
                 this.model.ipar = new ScilabDouble([%df]);
                 this.model.dstate = new ScilabDouble([%ph]);
                 xxn.graphics = this.graphics;

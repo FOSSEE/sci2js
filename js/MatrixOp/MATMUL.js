@@ -10,8 +10,8 @@ function MATMUL() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.ipar = new ScilabDouble([1]);
         var label = [sci2exp(this.model.ipar)];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATMUL\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,label,gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATMUL\",sz(1),sz(2));"]);
+        this.x = standard_define([3,2],this.model,label,this.gr_i);
         return new BasicBlock(this.x);
     }
     MATMUL.prototype.details = function MATMUL() {
@@ -29,6 +29,7 @@ function MATMUL() {
         this.dtype = arguments[0]["dtype"]
         this.rule = parseFloat(arguments[0]["rule"])
         this.np = parseFloat(arguments[0]["np"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = this.x.graphics;
         var label = this.graphics.exprs;
@@ -43,7 +44,7 @@ function MATMUL() {
             label[3-1] = sci2exp(1);
         }
         while (true) {
-            [ok,this.dtype,this.rule,this.np,exprs] = scicos_getvalue([["Set MATMUL parameter"],["For the Multipication rule:"],["    1= Matrix by Matrix"],["    2= Matrix by Matrix element wise "],["    3= Matrix by Scalar"],["In the third case the second input will be the scalar"]],["Datatype(1=real double 2=Complex 3=int32 ...)","Multiplication rule","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",1,"vec",1),label);
+            [ok,this.dtype,this.rule,this.np,this.exprs] = scicos_getvalue([["Set MATMUL parameter"],["For the Multipication rule:"],["    1= Matrix by Matrix"],["    2= Matrix by Matrix element wise "],["    3= Matrix by Scalar"],["In the third case the second input will be the scalar"]],["Datatype(1=real double 2=Complex 3=int32 ...)","Multiplication rule","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",1,"vec",1),label);
             if (!ok) {
                 break;
             }
@@ -151,7 +152,7 @@ function MATMUL() {
             this.graphics = tmpvar0[1];
             var ok = tmpvar0[2];
             if (ok) {
-                var label = exprs;
+                var label = this.exprs;
                 this.model.ipar = new ScilabDouble([this.rule]);
                 this.model.rpar = new ScilabDouble([kmin],[kmax]);
                 this.graphics.exprs = new ScilabDouble([label]);

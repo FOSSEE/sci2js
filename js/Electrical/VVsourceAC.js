@@ -16,9 +16,9 @@ function VVsourceAC() {
         mo.outputs = "n";
         mo.parameters = list(["f"],list(this.FR));
         this.model.equations = new ScilabDouble([mo]);
-        var exprs = [string(this.FR)];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VVsourceAC\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
+        this.exprs = [string(this.FR)];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VVsourceAC\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = ["I","E"];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -34,18 +34,19 @@ function VVsourceAC() {
     }
     VVsourceAC.prototype.set = function VVsourceAC() {
         this.FR = parseFloat(arguments[0]["FR"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         while (true) {
-            [ok,this.FR,exprs] = scicos_getvalue("Set voltage source parameter",["Frequency (Hz)"],list("vec",-1),exprs);
+            [ok,this.FR,this.exprs] = scicos_getvalue("Set voltage source parameter",["Frequency (Hz)"],list("vec",-1),this.exprs);
             if (!ok) {
                 break;
             }
             this.model.rpar = new ScilabDouble([this.FR]);
             this.model.equations.parameters[2-1] = list(new ScilabDouble([this.FR]));
-            this.graphics.exprs = new ScilabDouble([exprs]);
+            this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;

@@ -13,9 +13,9 @@ function TIME_DELAY() {
         this.model.ipar = new ScilabDouble([this.N]);
         this.model.blocktype = new ScilabString(["x"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
-        var exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TIME_DELAY\",sz(1),sz(2));"]);
-        this.x = standard_define([3.5,2],this.model,exprs,gr_i);
+        this.exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TIME_DELAY\",sz(1),sz(2));"]);
+        this.x = standard_define([3.5,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     TIME_DELAY.prototype.details = function TIME_DELAY() {
@@ -33,13 +33,14 @@ function TIME_DELAY() {
         this.T = parseFloat(arguments[0]["T"])
         this.init = parseFloat(arguments[0]["init"])
         this.N = parseFloat(arguments[0]["N"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
         var nin = this.model.in1[1-1];
         while (true) {
-            [ok,this.T,this.init,this.N,exprs] = scicos_getvalue("Set delay parameters",["Delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.T,this.init,this.N,this.exprs] = scicos_getvalue("Set delay parameters",["Delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -58,7 +59,7 @@ function TIME_DELAY() {
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.rpar = new ScilabDouble([this.T],[this.init]);
                 this.model.ipar = new ScilabDouble([this.N]);
                 this.model.dep_ut = new ScilabDouble([false,true]);

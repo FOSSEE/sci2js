@@ -4,7 +4,7 @@ function DOLLAR_f() {
         var z = 0;
         this.inh = 0;
         var in1 = 1;
-        var exprs = string([[z],[this.inh]]);
+        this.exprs = string([[z],[this.inh]]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["dollar"]);
         this.model.in1 = new ScilabDouble([in1]);
@@ -13,8 +13,8 @@ function DOLLAR_f() {
         this.model.dstate = new ScilabDouble([z]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DOLLAR_f\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,exprs,gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DOLLAR_f\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     DOLLAR_f.prototype.details = function DOLLAR_f() {
@@ -30,15 +30,16 @@ function DOLLAR_f() {
     DOLLAR_f.prototype.set = function DOLLAR_f() {
         this.a = arguments[0]["a"]
         this.inh = parseFloat(arguments[0]["inh"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
+        this.exprs = this.graphics.exprs;
         this.model = arg1.model;
-        if (size(exprs,"*")<2) {
-            exprs[2-1] = "0";
+        if (size(this.exprs,"*")<2) {
+            this.exprs[2-1] = "0";
         }
         while (true) {
-            [ok,this.a,this.inh,exprs] = scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("vec",-1,"vec",-1),exprs);
+            [ok,this.a,this.inh,this.exprs] = scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("vec",-1,"vec",-1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -54,7 +55,7 @@ function DOLLAR_f() {
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                this.graphics.exprs = new ScilabDouble([exprs]);
+                this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.dstate = new ScilabDouble([this.a]);
                 this.model.in1 = new ScilabDouble(in1);
                 this.model.out = new ScilabDouble(out);

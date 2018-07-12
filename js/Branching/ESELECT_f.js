@@ -14,9 +14,9 @@ function ESELECT_f() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.nmode = new ScilabDouble([0]);
         this.model.nzcross = new ScilabDouble([0]);
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ESELECT_f\",sz(1),sz(2));"]);
-        var exprs = [[string(this.out)],[string(1)],[string(this.model.nmode)]];
-        this.x = standard_define([4,2],this.model,exprs,gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ESELECT_f\",sz(1),sz(2));"]);
+        this.exprs = [[string(this.out)],[string(1)],[string(this.model.nmode)]];
+        this.x = standard_define([4,2],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     ESELECT_f.prototype.details = function ESELECT_f() {
@@ -34,18 +34,19 @@ function ESELECT_f() {
         this.out = parseFloat(arguments[0]["out"])
         this.inh = parseFloat(arguments[0]["inh"])
         this.nmod = parseFloat(arguments[0]["nmod"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
-        var exprs = this.graphics.exprs;
-        if (size(exprs,"*")==1) {
-            exprs[2-1] = string(1);
+        this.exprs = this.graphics.exprs;
+        if (size(this.exprs,"*")==1) {
+            this.exprs[2-1] = string(1);
         }
-        if (size(exprs,"*")==2) {
-            exprs[3-1] = string(0);
+        if (size(this.exprs,"*")==2) {
+            this.exprs[3-1] = string(0);
         }
         this.model = arg1.model;
         while (true) {
-            [ok,this.out,this.inh,this.nmod,exprs] = scicos_getvalue("Set ESELECT block parameters",["number of output event ports","Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1,"vec",1),exprs);
+            [ok,this.out,this.inh,this.nmod,this.exprs] = scicos_getvalue("Set ESELECT block parameters",["number of output event ports","Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
@@ -66,7 +67,7 @@ function ESELECT_f() {
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble([exprs]);
+                    this.graphics.exprs = new ScilabDouble([this.exprs]);
                     this.model.evtout = new ScilabDouble([ones(this.out,1)]);
                     this.model.firing = new ScilabDouble([-ones(this.out,1)]);
                     this.x.graphics = this.graphics;

@@ -21,8 +21,8 @@ function MATDET() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(1)];
-        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATDET\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,label,gr_i);
+        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATDET\",sz(1),sz(2));"]);
+        this.x = standard_define([2,2],this.model,label,this.gr_i);
         return new BasicBlock(this.x);
     }
     MATDET.prototype.details = function MATDET() {
@@ -36,6 +36,7 @@ function MATDET() {
     }
     MATDET.prototype.set = function MATDET() {
         this.typ = inverse(arguments[0]["typ"])
+        this.exprs = arguments[0]["exprs"]
         this.x = arg1;
         this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
@@ -44,7 +45,7 @@ function MATDET() {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,exprs] = scicos_getvalue("Set MATDET Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
+            [ok,this.typ,this.exprs] = scicos_getvalue("Set MATDET Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
             if (!ok) {
                 break;
             }
@@ -64,7 +65,7 @@ function MATDET() {
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
-                var label = exprs;
+                var label = this.exprs;
                 var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];
