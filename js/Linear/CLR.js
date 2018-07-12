@@ -15,7 +15,7 @@ function CLR() {
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLR\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

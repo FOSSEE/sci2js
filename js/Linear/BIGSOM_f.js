@@ -10,7 +10,7 @@ function BIGSOM_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = sci2exp(this.sgn);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BIGSOM_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,3],this.model,exprs,gr_i);
         return new BigSom(this.x);
     }

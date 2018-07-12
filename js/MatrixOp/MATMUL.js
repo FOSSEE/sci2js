@@ -10,7 +10,7 @@ function MATMUL() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.ipar = new ScilabDouble([1]);
         var label = [sci2exp(this.model.ipar)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATMUL\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }

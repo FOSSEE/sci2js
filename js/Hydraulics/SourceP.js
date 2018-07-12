@@ -19,7 +19,7 @@ function SourceP() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         var exprs = [[string(this.P0)],[string(this.T0)],[string(this.H0)],[string(this.option_temperature)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SourceP\",sz(1),sz(2));"]);
         this.x = standard_define([2.5,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);

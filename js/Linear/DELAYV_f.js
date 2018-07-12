@@ -17,7 +17,7 @@ function DELAYV_f() {
         this.model.firing = new ScilabDouble([0,-1]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.nin)],[strcat(string(z0.slice(1-1,$-1)),";")],[string(this.T)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DELAYV_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

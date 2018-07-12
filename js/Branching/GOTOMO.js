@@ -17,7 +17,7 @@ function GOTOMO() {
         mo.model = "gotomo";
         mo.inputs = "p";
         var exprs = [["A"],[sci2exp(1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GOTOMO\",sz(1),sz(2));"]);
         this.x = standard_define([2,1],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
         return new BasicBlock(this.x);

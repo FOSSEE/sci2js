@@ -21,7 +21,7 @@ function CLOCK_f() {
         split.graphics.orig = [[380.71066],[172]];
         split.graphics.pein = 3;
         split.graphics.peout = [[5],[6]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLOCK_f\",sz(1),sz(2));"]);
         var diagram = scicos_diagram();
         diagram.objs[1-1] = output_port;
         diagram.objs[2-1] = evtdly;

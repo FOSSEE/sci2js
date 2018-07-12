@@ -21,7 +21,7 @@ function ISELECT_m() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(1)],[sci2exp(this.nout)],[sci2exp(this.z0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ISELECT_m\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

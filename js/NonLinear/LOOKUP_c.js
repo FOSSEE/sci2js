@@ -22,7 +22,7 @@ function LOOKUP_c() {
         this.model.evtout = new ScilabDouble([]);
         this.model.firing = new ScilabDouble([0]);
         var exprs = [[sci2exp(this.Method)],[sci2exp(this.xx)],[sci2exp(this.yy)],[sci2exp(0)],[Graf]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP_c\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

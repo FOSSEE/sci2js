@@ -17,7 +17,7 @@ function OpAmp() {
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.model.rpar = new ScilabDouble(Z);
         var exprs = string(Z);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OpAmp\",sz(1),sz(2));"]);
         this.x = standard_define([3,5],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = [["I"],["I"]];
         this.x.graphics.out_implicit = ["I"];

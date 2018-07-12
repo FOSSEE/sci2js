@@ -14,7 +14,7 @@ function RELAY_f() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,true]);
         var exprs = [[string(this.nin)],[string(i0+1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RELAY_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

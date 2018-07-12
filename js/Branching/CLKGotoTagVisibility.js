@@ -15,7 +15,7 @@ function CLKGotoTagVisibility() {
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = "A";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLKGotoTagVisibility\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

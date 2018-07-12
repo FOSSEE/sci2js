@@ -122,15 +122,19 @@ def p_functionblock_functionstatement_statementblock_endfunction(p):
 
 def p_jobfunctionstatement_function_var(p):
     'jobfunctionstatement : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL'
+    global SCICOS_BLOCK_NAME
+    SCICOS_BLOCK_NAME = p[4]
     for var in (p[6], p[8], p[10]):
         FUNCTION_VARS.add(var)
-    p[0] = '%s' % (p[4])
+    p[0] = SCICOS_BLOCK_NAME
 
 def p_jobfunctionstatement_function_functionname(p):
     'jobfunctionstatement : FUNCTION lterm ASSIGNMENT FUNCTIONNAME OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL'
+    global SCICOS_BLOCK_NAME
+    SCICOS_BLOCK_NAME = p[4][0]
     for var in (p[6], p[8], p[10]):
         FUNCTION_VARS.add(var)
-    p[0] = '%s' % (p[4][0])
+    p[0] = SCICOS_BLOCK_NAME
 
 def p_functionstatement_function_var(p):
     'functionstatement : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET list CLOSEBRACKET EOL'
@@ -525,9 +529,12 @@ def p_lterm_assignment_expression(p):
             idx += 1
     else:
         prefix = ''
+        value = p[3][0]
+        if var == 'gr_i' and value == '[]':
+            value = 'new ScilabString(["xstringb(orig(1),orig(2),\\"%s\\",sz(1),sz(2));"])' % (SCICOS_BLOCK_NAME)
         if var in LOCAL_VARS and '.' not in var:
             prefix = 'var '
-        p[0] = '%*s%s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, var, p[3][0])
+        p[0] = '%*s%s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, var, value)
         add_var_vartype(var, p[3][1])
 
 def p_model_assignment_expression(p):

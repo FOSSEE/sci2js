@@ -23,7 +23,7 @@ function CMSCOPE() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[strcat(string(this.in1)," ")],[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp([])],[strcat(string(this.ymin)," ")],[strcat(string(this.ymax)," ")],[strcat(string(this.per)," ")],[string(this.N)],[string(0)],[emptystr()]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CMSCOPE\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

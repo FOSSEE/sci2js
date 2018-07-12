@@ -7,7 +7,7 @@ function SUM_f() {
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUM_f\",sz(1),sz(2));"]);
         var exprs = [];
         this.x = standard_define([1,1],this.model,exprs,gr_i);
         return new BasicBlock(this.x);

@@ -10,7 +10,7 @@ function MUX() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = string(this.in1);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MUX\",sz(1),sz(2));"]);
         this.x = standard_define([.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

@@ -20,7 +20,7 @@ function SineVoltage() {
         mo.parameters = list([["V"],["phase"],["freqHz"],["offset"],["startTime"]],list(this.V,this.ph,this.frq,this.offset,this.start));
         this.model.equations = new ScilabDouble([mo]);
         var exprs = [[string(this.V)],[string(this.ph)],[string(this.frq)],[string(this.offset)],[string(this.start)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SineVoltage\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];

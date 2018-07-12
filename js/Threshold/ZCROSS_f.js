@@ -13,7 +13,7 @@ function ZCROSS_f() {
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = strcat(sci2exp(this.in1));
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ZCROSS_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

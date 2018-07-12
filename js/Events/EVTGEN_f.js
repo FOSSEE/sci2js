@@ -9,7 +9,7 @@ function EVTGEN_f() {
         this.model.firing = new ScilabDouble([this.tt]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.tt);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EVTGEN_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

@@ -17,7 +17,7 @@ function WRITEAU_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [string(this.N),string(this.swap)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"WRITEAU_f\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

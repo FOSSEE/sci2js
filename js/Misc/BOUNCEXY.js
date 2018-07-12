@@ -31,7 +31,7 @@ function BOUNCEXY() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[strcat(sci2exp(this.clrs))],[strcat(sci2exp(this.siz))],[strcat(sci2exp(this.win))],[strcat(sci2exp(1))],[strcat(sci2exp(this.xmin))],[strcat(sci2exp(this.xmax))],[strcat(sci2exp(this.ymin))],[strcat(sci2exp(this.ymax))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BOUNCEXY\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

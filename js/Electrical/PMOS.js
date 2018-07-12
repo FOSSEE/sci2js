@@ -23,7 +23,7 @@ function PMOS() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         var exprs = [[string(this.W)],[string(this.L)],[string(this.Beta)],[string(this.Vt)],[string(this.K2)],[string(this.K5)],[string(this.dW)],[string(this.dL)],[string(this.RDS)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PMOS\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = [["I"],["I"],["I"]];

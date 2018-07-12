@@ -10,7 +10,7 @@ function DIFF_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[strcat(sci2exp(this.x0[1-1]))],[strcat(sci2exp(this.x0[2-1]))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DIFF_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

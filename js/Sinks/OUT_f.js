@@ -12,7 +12,7 @@ function OUT_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.prt);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OUT_f\",sz(1),sz(2));"]);
         this.x = standard_define([1,1],this.model,exprs,gr_i);
         return new ExplicitOutBlock(this.x);
     }

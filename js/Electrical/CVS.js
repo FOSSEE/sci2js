@@ -37,7 +37,7 @@ function CVS() {
         this.model.rpar = new ScilabDouble(PrametersValue);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         var exprs = [];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CVS\",sz(1),sz(2));"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;

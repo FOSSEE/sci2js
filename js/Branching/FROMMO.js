@@ -17,7 +17,7 @@ function FROMMO() {
         mo.model = "frommo";
         mo.outputs = "n";
         var exprs = ["A"];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROMMO\",sz(1),sz(2));"]);
         this.x = standard_define([2,1],this.model,exprs,gr_i);
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);

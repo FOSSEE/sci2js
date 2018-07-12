@@ -24,7 +24,7 @@ function CANIMXY() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.nbr_curves)],[string(this.clrs)],[string(this.siz)],[string(this.win)],["[]"],["[]"],[string(this.xmin)],[string(this.xmax)],[string(this.ymin)],[string(this.ymax)],[string(this.N)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CANIMXY\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

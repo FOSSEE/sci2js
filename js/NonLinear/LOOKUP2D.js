@@ -17,7 +17,7 @@ function LOOKUP2D() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = list(strcat(sci2exp(this.xx)),strcat(sci2exp(this.yy)),strcat(sci2exp(this.zz)),sci2exp(this.Method),Graf);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP2D\",sz(1),sz(2));"]);
         this.x = standard_define([2.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

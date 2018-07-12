@@ -14,7 +14,7 @@ function INIMPL_f() {
         this.model.equations = new ScilabDouble([mo]);
         this.prt = 1;
         var exprs = "1";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INIMPL_f\",sz(1),sz(2));"]);
         this.x = standard_define([1,1],this.model,exprs,gr_i);
         this.x.graphics.out_implicit = ["I"];
         return new ImplicitInBlock(this.x);

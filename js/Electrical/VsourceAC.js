@@ -17,7 +17,7 @@ function VsourceAC() {
         mo.parameters = list([["VA"],["f"]],list(this.VA,this.FR));
         this.model.equations = new ScilabDouble([mo]);
         var exprs = [[string(this.VA)],[string(this.FR)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VsourceAC\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];

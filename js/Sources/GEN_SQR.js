@@ -46,7 +46,7 @@ function GEN_SQR() {
         var rule = 1;
         var F = 1;
         var exprs = [sci2exp(Amin),sci2exp(Amax),sci2exp(rule),sci2exp(F)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GEN_SQR\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

@@ -17,7 +17,7 @@ function CFSCOPE() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.ymin)],[string(this.ymax)],[string(this.per)],[string(this.N)],[string([1])]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CFSCOPE\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

@@ -37,7 +37,7 @@ function PNP() {
         this.model.rpar = new ScilabDouble(PrametersValue);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         var exprs = [["50"],["0.1"],["1.e-16"],["0.02"],["0.12e-9"],["5e-9"],["1e-12"],["0.4e-12"],["0.5e-12"],["0.8"],["0.4"],["0.8"],["0.333"],["1e-15"],["1e-15"],["0.02585"],["40"]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PNP\",sz(1),sz(2));"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;

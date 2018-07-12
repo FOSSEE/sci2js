@@ -11,7 +11,7 @@ function REGISTER_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = strcat(string(this.z0),";");
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"REGISTER_f\",sz(1),sz(2));"]);
         this.x = standard_define([2.5,2.5],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

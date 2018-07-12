@@ -12,7 +12,7 @@ function GENSIN_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[string(rpar[1-1])],[string(rpar[2-1])],[string(rpar[3-1])]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENSIN_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

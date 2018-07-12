@@ -19,7 +19,7 @@ function Diode() {
         mo.parameters = list(["Ids","Vt","Maxexp","R"],list(this.Ids,this.Vt,this.Maxexp,this.R));
         this.model.equations = new ScilabDouble([mo]);
         var exprs = string([[this.Ids],[this.Vt],[this.Maxexp],[this.R]]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Diode\",sz(1),sz(2));"]);
         this.x = standard_define([2,1],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];

@@ -23,7 +23,7 @@ function CSCOPXY3D() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.nbr_curves)],[strcat(string(this.clrs)," ")],[strcat(string(this.siz)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[strcat(string(this.vec_x)," ")],[strcat(string(this.vec_y)," ")],[strcat(string(this.vec_z)," ")],[strcat(string(this.param3ds)," ")],[string(this.N)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CSCOPXY3D\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

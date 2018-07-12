@@ -43,7 +43,7 @@ function MCLOCK_f() {
         split2.graphics.orig = [[482.45315],[169.33333]];
         split2.graphics.pein = 5;
         split2.graphics.peout = [[12],[13]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MCLOCK_f\",sz(1),sz(2));"]);
         var diagram = scicos_diagram();
         diagram.objs[1-1] = mfclck;
         diagram.objs[2-1] = clksom;

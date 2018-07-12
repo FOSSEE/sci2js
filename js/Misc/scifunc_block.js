@@ -25,7 +25,7 @@ function scifunc_block() {
         this.model.firing = new ScilabDouble(auto);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = list([[sci2exp(in1)],[sci2exp(out)],[sci2exp(clkin)],[sci2exp(clkout)],[strcat(sci2exp(x0))],[strcat(sci2exp(z0))],[strcat(sci2exp(this.rpar))],[sci2exp(auto)]],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"scifunc_block\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

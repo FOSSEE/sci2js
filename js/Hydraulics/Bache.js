@@ -28,7 +28,7 @@ function Bache() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         var exprs = [[string(this.Patm)],[string(this.A)],[string(this.ze1)],[string(this.ze2)],[string(this.zs1)],[string(this.zs2)],[string(this.z0)],[string(this.T0)],[string(this.p_rho)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Bache\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = [["I"],["I"]];
         this.x.graphics.out_implicit = [["I"],["I"],["E"]];

@@ -16,7 +16,7 @@ function Inductor() {
         mo.parameters = list("L",list(this.L));
         this.model.equations = new ScilabDouble([mo]);
         var exprs = string(this.L);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Inductor\",sz(1),sz(2));"]);
         this.x = standard_define([2,0.9],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];

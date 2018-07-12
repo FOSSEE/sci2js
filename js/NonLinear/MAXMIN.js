@@ -9,7 +9,7 @@ function MAXMIN() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.ipar = new ScilabDouble([0]);
         var exprs = [string(transpose([2,1,1]))];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MAXMIN\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.style = "MAXMIN;displayedLabel=MAX";
         return new BasicBlock(this.x);

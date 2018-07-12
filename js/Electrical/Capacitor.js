@@ -17,7 +17,7 @@ function Capacitor() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         var exprs = string([[this.C],[this.v]]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Capacitor\",sz(1),sz(2));"]);
         this.x = standard_define([2,1.1],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];

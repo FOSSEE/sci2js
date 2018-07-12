@@ -127,7 +127,7 @@ function CLKGotoTagVisibility() {
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = "A";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLKGotoTagVisibility\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -180,7 +180,7 @@ function DEMUX() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = string(this.out);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DEMUX\",sz(1),sz(2));"]);
         this.x = standard_define([.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -257,7 +257,7 @@ function DEMUX_f() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = string(this.out);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DEMUX_f\",sz(1),sz(2));"]);
         this.x = standard_define([.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -337,7 +337,7 @@ function ESELECT_f() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.nmode = new ScilabDouble([0]);
         this.model.nzcross = new ScilabDouble([0]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ESELECT_f\",sz(1),sz(2));"]);
         var exprs = [[string(this.out)],[string(1)],[string(this.model.nmode)]];
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -415,7 +415,7 @@ function EXTRACTOR() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.ipar = new ScilabDouble([this.ind]);
         var exprs = [sci2exp(this.ind)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXTRACTOR\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -472,7 +472,7 @@ function FROM() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = ["A"];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROM\",sz(1),sz(2));"]);
         this.x = standard_define([2,1],this.model,exprs,gr_i);
         this.x.graphics.id = "From";
         return new BasicBlock(this.x);
@@ -532,7 +532,7 @@ function FROMMO() {
         mo.model = "frommo";
         mo.outputs = "n";
         var exprs = ["A"];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROMMO\",sz(1),sz(2));"]);
         this.x = standard_define([2,1],this.model,exprs,gr_i);
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -589,7 +589,7 @@ function GOTO() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [["A"],[sci2exp(1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GOTO\",sz(1),sz(2));"]);
         this.x = standard_define([2,1],this.model,exprs,gr_i);
         this.x.graphics.id = "Goto";
         return new BasicBlock(this.x);
@@ -658,7 +658,7 @@ function GOTOMO() {
         mo.model = "gotomo";
         mo.inputs = "p";
         var exprs = [["A"],[sci2exp(1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GOTOMO\",sz(1),sz(2));"]);
         this.x = standard_define([2,1],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -725,7 +725,7 @@ function GotoTagVisibility() {
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = "A";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GotoTagVisibility\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -782,7 +782,7 @@ function GotoTagVisibilityMO() {
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = "A";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GotoTagVisibilityMO\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -837,7 +837,7 @@ function ISELECT_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.nout)],[string(this.z0+1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ISELECT_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -905,7 +905,7 @@ function ISELECT_m() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(1)],[sci2exp(this.nout)],[sci2exp(this.z0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ISELECT_m\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -973,7 +973,7 @@ function MUX() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = string(this.in1);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MUX\",sz(1),sz(2));"]);
         this.x = standard_define([.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -1048,7 +1048,7 @@ function MUX_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = string(this.in1);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MUX_f\",sz(1),sz(2));"]);
         this.x = standard_define([0.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -1125,7 +1125,7 @@ function M_SWITCH() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.nin)],[string(ipar)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"M_SWITCH\",sz(1),sz(2));"]);
         this.x = standard_define([2.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -1201,7 +1201,7 @@ function NRMSOM_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [string(this.nin)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"NRMSOM_f\",sz(1),sz(2));"]);
         this.x = standard_define([.2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -1255,7 +1255,7 @@ function RELAY_f() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,true]);
         var exprs = [[string(this.nin)],[string(i0+1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RELAY_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -1312,7 +1312,7 @@ function SCALAR2VECTOR() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [string([this.nout])];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SCALAR2VECTOR\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -1372,7 +1372,7 @@ function SELECT_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.nin)],[string(this.z0+1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SELECT_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -1440,7 +1440,7 @@ function SELECT_m() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(1)],[sci2exp(this.nin)],[sci2exp(this.z0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SELECT_m\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -1561,7 +1561,7 @@ function SWITCH2() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(ipar)],[string(rpar)],[string(this.nzz)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SWITCH2\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -1634,7 +1634,7 @@ function SWITCH2_m() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(1)],[string(ipar)],[string(rpar)],[string(this.nzz)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SWITCH2_m\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -1720,7 +1720,7 @@ function SWITCH_f() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,true]);
         var exprs = [[string(this.nin)],[string(i0+1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SWITCH_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -1805,7 +1805,7 @@ function CCS() {
         this.model.rpar = new ScilabDouble(PrametersValue);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         var exprs = [];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CCS\",sz(1),sz(2));"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
@@ -1873,7 +1873,7 @@ function CVS() {
         this.model.rpar = new ScilabDouble(PrametersValue);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         var exprs = [];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CVS\",sz(1),sz(2));"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
@@ -1921,7 +1921,7 @@ function Capacitor() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         var exprs = string([[this.C],[this.v]]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Capacitor\",sz(1),sz(2));"]);
         this.x = standard_define([2,1.1],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -1977,7 +1977,7 @@ function ConstantVoltage() {
         mo.parameters = list("V",list(this.V));
         this.model.equations = new ScilabDouble([mo]);
         var exprs = string(this.V);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ConstantVoltage\",sz(1),sz(2));"]);
         this.x = standard_define([1.5,1.1],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -2027,7 +2027,7 @@ function CurrentSensor() {
         mo.outputs = [["n"],["i"]];
         this.model.equations = new ScilabDouble([mo]);
         var exprs = [];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CurrentSensor\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = [["I"],["E"]];
@@ -2067,7 +2067,7 @@ function Diode() {
         mo.parameters = list(["Ids","Vt","Maxexp","R"],list(this.Ids,this.Vt,this.Maxexp,this.R));
         this.model.equations = new ScilabDouble([mo]);
         var exprs = string([[this.Ids],[this.Vt],[this.Maxexp],[this.R]]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Diode\",sz(1),sz(2));"]);
         this.x = standard_define([2,1],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -2123,7 +2123,7 @@ function Ground() {
         mo.inputs = "p";
         this.model.equations = new ScilabDouble([mo]);
         var exprs = "";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Ground\",sz(1),sz(2));"]);
         this.x = standard_define([1,1],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -2181,7 +2181,7 @@ function Gyrator() {
         this.model.rpar = new ScilabDouble(PrametersValue);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         var exprs = [["1"],["1"]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Gyrator\",sz(1),sz(2));"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
@@ -2263,7 +2263,7 @@ function IdealTransformer() {
         this.model.rpar = new ScilabDouble(PrametersValue);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         var exprs = ["1"];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IdealTransformer\",sz(1),sz(2));"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
@@ -2322,7 +2322,7 @@ function Inductor() {
         mo.parameters = list("L",list(this.L));
         this.model.equations = new ScilabDouble([mo]);
         var exprs = string(this.L);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Inductor\",sz(1),sz(2));"]);
         this.x = standard_define([2,0.9],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -2366,7 +2366,7 @@ function MOTOR() {
         this.model.sim = new ScilabString(["motor"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MOTOR\",sz(1),sz(2));"]);
         var exprs = "";
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.out_implicit = [["I"],["I"]];
@@ -2411,7 +2411,7 @@ function NMOS() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         var exprs = [[string(this.W)],[string(this.L)],[string(this.Beta)],[string(this.Vt)],[string(this.K2)],[string(this.K5)],[string(this.dW)],[string(this.dL)],[string(this.RDS)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"NMOS\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = [["I"],["I"],["I"]];
@@ -2501,7 +2501,7 @@ function NPN() {
         this.model.rpar = new ScilabDouble(PrametersValue);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         var exprs = [["50"],["0.1"],["1.e-16"],["0.02"],["0.12e-9"],["5e-9"],["1e-12"],["0.4e-12"],["0.5e-12"],["0.8"],["0.4"],["0.8"],["0.333"],["1e-15"],["1e-15"],["0.02585"],["40"]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"NPN\",sz(1),sz(2));"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
@@ -2593,7 +2593,7 @@ function OpAmp() {
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.model.rpar = new ScilabDouble(Z);
         var exprs = string(Z);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OpAmp\",sz(1),sz(2));"]);
         this.x = standard_define([3,5],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = [["I"],["I"]];
         this.x.graphics.out_implicit = ["I"];
@@ -2657,7 +2657,7 @@ function PMOS() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         var exprs = [[string(this.W)],[string(this.L)],[string(this.Beta)],[string(this.Vt)],[string(this.K2)],[string(this.K5)],[string(this.dW)],[string(this.dL)],[string(this.RDS)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PMOS\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = [["I"],["I"],["I"]];
@@ -2747,7 +2747,7 @@ function PNP() {
         this.model.rpar = new ScilabDouble(PrametersValue);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         var exprs = [["50"],["0.1"],["1.e-16"],["0.02"],["0.12e-9"],["5e-9"],["1e-12"],["0.4e-12"],["0.5e-12"],["0.8"],["0.4"],["0.8"],["0.333"],["1e-15"],["1e-15"],["0.02585"],["40"]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PNP\",sz(1),sz(2));"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
@@ -2835,7 +2835,7 @@ function PotentialSensor() {
         mo.inputs = "p";
         mo.outputs = ["v"];
         this.model.equations = new ScilabDouble([mo]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PotentialSensor\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,"",list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["E"];
@@ -2872,7 +2872,7 @@ function Resistor() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         var exprs = string(this.R);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Resistor\",sz(1),sz(2));"]);
         this.x = standard_define([2,1],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -2929,7 +2929,7 @@ function SineVoltage() {
         mo.parameters = list([["V"],["phase"],["freqHz"],["offset"],["startTime"]],list(this.V,this.ph,this.frq,this.offset,this.start));
         this.model.equations = new ScilabDouble([mo]);
         var exprs = [[string(this.V)],[string(this.ph)],[string(this.frq)],[string(this.offset)],[string(this.start)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SineVoltage\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -2994,7 +2994,7 @@ function Switch() {
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.model.rpar = new ScilabDouble([Z]);
         var exprs = string(Z);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Switch\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = [["I"],["E"]];
         this.x.graphics.out_implicit = ["I"];
@@ -3050,7 +3050,7 @@ function VVsourceAC() {
         mo.parameters = list(["f"],list(this.FR));
         this.model.equations = new ScilabDouble([mo]);
         var exprs = [string(this.FR)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VVsourceAC\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I","E"];
         this.x.graphics.out_implicit = ["I"];
@@ -3101,7 +3101,7 @@ function VariableResistor() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         var exprs = [];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VariableResistor\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I","E"];
         this.x.graphics.out_implicit = ["I"];
@@ -3135,7 +3135,7 @@ function VoltageSensor() {
         mo.outputs = [["n"],["v"]];
         this.model.equations = new ScilabDouble([mo]);
         var exprs = [];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VoltageSensor\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = [["I"],["E"]];
@@ -3173,7 +3173,7 @@ function VsourceAC() {
         mo.parameters = list([["VA"],["f"]],list(this.VA,this.FR));
         this.model.equations = new ScilabDouble([mo]);
         var exprs = [[string(this.VA)],[string(this.FR)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VsourceAC\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -3303,7 +3303,7 @@ function ANDLOG_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ANDLOG_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,3],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -3330,7 +3330,7 @@ function CLKSOMV_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLKSOMV_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -3357,7 +3357,7 @@ function CLKSOM_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLKSOM_f\",sz(1),sz(2));"]);
         this.x = standard_define([1,1]/1.2,this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -3412,7 +3412,7 @@ function END_c() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.tf);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"END_c\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -3461,7 +3461,7 @@ function EVTDLY_c() {
         this.model.firing = new ScilabDouble([this.ff]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.dt)],[sci2exp(this.ff)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EVTDLY_c\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -3517,7 +3517,7 @@ function EVTDLY_f() {
         this.model.firing = new ScilabDouble([this.ff]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.dt)],[sci2exp(this.ff)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EVTDLY_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -3570,7 +3570,7 @@ function EVTGEN_f() {
         this.model.firing = new ScilabDouble([this.tt]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.tt);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EVTGEN_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -3618,7 +3618,7 @@ function EVTVARDLY() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = string(this.model.firing);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EVTVARDLY\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -3662,7 +3662,7 @@ function HALT_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.n);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"HALT_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -3712,7 +3712,7 @@ function IFTHEL_f() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([1]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IFTHEL_f\",sz(1),sz(2));"]);
         var exprs = [[string(this.model.in1)],[string(this.model.nmode)]];
         this.x = standard_define([3,3],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -3815,7 +3815,7 @@ function MCLOCK_f() {
         split2.graphics.orig = [[482.45315],[169.33333]];
         split2.graphics.pein = 5;
         split2.graphics.peout = [[12],[13]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MCLOCK_f\",sz(1),sz(2));"]);
         var diagram = scicos_diagram();
         diagram.objs[1-1] = mfclck;
         diagram.objs[2-1] = clksom;
@@ -3887,7 +3887,7 @@ function MFCLCK_f() {
         this.model.firing = new ScilabDouble([-1,0]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.dt)],[string(this.nn)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MFCLCK_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -3935,7 +3935,7 @@ function M_freq() {
         this.model.firing = new ScilabDouble([0,-1,-1]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[sci2exp([[1],[2]])],[sci2exp([[0],[0]])]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"M_freq\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -4140,7 +4140,7 @@ function freq_div() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"freq_div\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -4273,7 +4273,7 @@ function Bache() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         var exprs = [[string(this.Patm)],[string(this.A)],[string(this.ze1)],[string(this.ze2)],[string(this.zs1)],[string(this.zs2)],[string(this.z0)],[string(this.T0)],[string(this.p_rho)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Bache\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = [["I"],["I"]];
         this.x.graphics.out_implicit = [["I"],["I"],["E"]];
@@ -4364,7 +4364,7 @@ function Flowmeter() {
         this.model.rpar = new ScilabDouble([PrametersValue]);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
         var exprs = "1";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Flowmeter\",sz(1),sz(2));"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
@@ -4429,7 +4429,7 @@ function PerteDP() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         var exprs = [[string(this.L)],[string(this.D)],[string(this.lambda)],[string(this.z1)],[string(this.z2)],[string(this.p_rho)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PerteDP\",sz(1),sz(2));"]);
         this.x = standard_define([2,1],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
@@ -4494,7 +4494,7 @@ function PuitsP() {
         this.model.equations = new ScilabDouble([mo]);
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         var exprs = [[string(this.P0)],[string(this.T0)],[string(this.H0)],[string(this.option_temperature)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PuitsP\",sz(1),sz(2));"]);
         this.x = standard_define([2.5,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -4556,7 +4556,7 @@ function SourceP() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         var exprs = [[string(this.P0)],[string(this.T0)],[string(this.H0)],[string(this.option_temperature)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SourceP\",sz(1),sz(2));"]);
         this.x = standard_define([2.5,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -4618,7 +4618,7 @@ function VanneReglante() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         var exprs = [[string(this.Cvmax)],[string(this.p_rho)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VanneReglante\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = [["I"],["E"]];
         this.x.graphics.out_implicit = ["I"];
@@ -4671,7 +4671,7 @@ function BITCLEAR() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(3)],[sci2exp(0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BITCLEAR\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -4770,7 +4770,7 @@ function BITSET() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(3)],[sci2exp(0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BITSET\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -4869,7 +4869,7 @@ function CONVERT() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(1)],[sci2exp(3)],[sci2exp(0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CONVERT\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -5327,7 +5327,7 @@ function DFLIPFLOP() {
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.rpar = new ScilabDouble([scs_m]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DFLIPFLOP\",sz(1),sz(2));"]);
         this.x = standard_define([2,3],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -5379,7 +5379,7 @@ function DLATCH() {
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.rpar = new ScilabDouble([scs_m]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLATCH\",sz(1),sz(2));"]);
         this.x = standard_define([2,3],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -5412,7 +5412,7 @@ function EXTRACTBITS() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(3)],[sci2exp(1)],[sci2exp(0)],[sci2exp(0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXTRACTBITS\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -5659,7 +5659,7 @@ function INTMUL() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(3)],[sci2exp(0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTMUL\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -5807,7 +5807,7 @@ function JKFLIPFLOP() {
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.rpar = new ScilabDouble([scs_m]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"JKFLIPFLOP\",sz(1),sz(2));"]);
         this.x = standard_define([2,3],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -5881,7 +5881,7 @@ function LOGIC() {
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(this.mat)],[sci2exp(0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOGIC\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -5960,7 +5960,7 @@ function SHIFT() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(3)],[sci2exp(0)],[sci2exp(0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SHIFT\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -6108,7 +6108,7 @@ function SRFLIPFLOP() {
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.rpar = new ScilabDouble([scs_m]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SRFLIPFLOP\",sz(1),sz(2));"]);
         this.x = standard_define([2,3],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -6176,7 +6176,7 @@ function BIGSOM_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = sci2exp(this.sgn);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BIGSOM_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,3],this.model,exprs,gr_i);
         return new BigSom(this.x);
     }
@@ -6225,7 +6225,7 @@ function CLINDUMMY_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,true]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLINDUMMY_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -6259,7 +6259,7 @@ function CLR() {
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLR\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -6348,7 +6348,7 @@ function CLR_f() {
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLR_f\",sz(1),sz(2));"]);
         this.x = standard_define([2.5,2.5],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -6439,7 +6439,7 @@ function CLSS() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLSS\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -6547,7 +6547,7 @@ function CLSS_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLSS_f\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -6645,7 +6645,7 @@ function DELAYV_f() {
         this.model.firing = new ScilabDouble([0,-1]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.nin)],[strcat(string(z0.slice(1-1,$-1)),";")],[string(this.T)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DELAYV_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -6851,7 +6851,7 @@ function DERIV() {
         this.model.blocktype = new ScilabString(["x"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DERIV\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -6880,7 +6880,7 @@ function DIFF_c() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[strcat(sci2exp(this.x0[1-1]))],[strcat(sci2exp(this.x0[2-1]))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DIFF_c\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -6951,7 +6951,7 @@ function DLR() {
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLR\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -7039,7 +7039,7 @@ function DLR_f() {
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLR_f\",sz(1),sz(2));"]);
         this.x = standard_define([2.5,2.5],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -7127,7 +7127,7 @@ function DLSS() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLSS\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -7234,7 +7234,7 @@ function DLSS_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLSS_f\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -7328,7 +7328,7 @@ function DOLLAR() {
         this.model.dstate = new ScilabDouble([z]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DOLLAR\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -7431,7 +7431,7 @@ function DOLLAR_f() {
         this.model.dstate = new ScilabDouble([z]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DOLLAR_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -7499,7 +7499,7 @@ function DOLLAR_m() {
         this.model.dstate = new ScilabDouble([z]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DOLLAR_m\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -7605,7 +7605,7 @@ function GAINBLK() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [strcat(sci2exp(this.gain))];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GAINBLK\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -7766,7 +7766,7 @@ function GAINBLK_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [strcat(sci2exp(this.gain))];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GAINBLK_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -7826,7 +7826,7 @@ function GAIN_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[strcat(sci2exp(this.gain))],[strcat(sci2exp(in1))],[strcat(sci2exp(out))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GAIN_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -7887,7 +7887,7 @@ function INTEGRAL() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = string([[0],[0],[0],[this.maxp],[minp]]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTEGRAL\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.id = "1/s";
         return new BasicBlock(this.x);
@@ -7983,7 +7983,7 @@ function INTEGRAL_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = strcat(sci2exp(this.x0));
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTEGRAL_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -8033,7 +8033,7 @@ function INTEGRAL_m() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = string([[0],[0],[0],[this.maxp],[minp]]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTEGRAL_m\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -8195,7 +8195,7 @@ function PID() {
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         this.model.rpar = new ScilabDouble([scs_m]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PID\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -8300,7 +8300,7 @@ function REGISTER() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = strcat(string(this.z0),";");
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"REGISTER\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -8394,7 +8394,7 @@ function REGISTER_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = strcat(string(this.z0),";");
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"REGISTER_f\",sz(1),sz(2));"]);
         this.x = standard_define([2.5,2.5],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -8443,7 +8443,7 @@ function SAMPHOLD() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SAMPHOLD\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model," ",gr_i);
         return new BasicBlock(this.x);
     }
@@ -8476,7 +8476,7 @@ function SAMPHOLD_m() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(1)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SAMPHOLD_m\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -8534,7 +8534,7 @@ function SAMPLEHOLD_f() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SAMPLEHOLD_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model," ",gr_i);
         return new BasicBlock(this.x);
     }
@@ -8564,7 +8564,7 @@ function SOM_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(1)],[sci2exp(sgn)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SOM_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -8612,7 +8612,7 @@ function SUMMATION() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = sci2exp(this.sgn);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUMMATION\",sz(1),sz(2));"]);
         this.x = standard_define([2,3],this.model,exprs,gr_i);
         return new Summation(this.x);
     }
@@ -8759,7 +8759,7 @@ function SUM_f() {
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUM_f\",sz(1),sz(2));"]);
         var exprs = [];
         this.x = standard_define([1,1],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -8798,7 +8798,7 @@ function TCLSS() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TCLSS\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -8903,7 +8903,7 @@ function TCLSS_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TCLSS_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -9003,7 +9003,7 @@ function TIME_DELAY() {
         this.model.blocktype = new ScilabString(["x"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TIME_DELAY\",sz(1),sz(2));"]);
         this.x = standard_define([3.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -9075,7 +9075,7 @@ function VARIABLE_DELAY() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VARIABLE_DELAY\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -9153,7 +9153,7 @@ function CUMSUM() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp(0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CUMSUM\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -9261,7 +9261,7 @@ function EXTRACT() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp([1])],[sci2exp([1])]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXTRACT\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -9368,7 +9368,7 @@ function EXTTRI() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp(1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXTTRI\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -9473,7 +9473,7 @@ function MATBKSL() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(1)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATBKSL\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -9555,7 +9555,7 @@ function MATCATH() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(2)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATCATH\",sz(1),sz(2));"]);
         this.x = standard_define([2,3],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -9629,7 +9629,7 @@ function MATCATV() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(2)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATCATV\",sz(1),sz(2));"]);
         this.x = standard_define([2,3],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -9702,7 +9702,7 @@ function MATDET() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(1)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATDET\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -9784,7 +9784,7 @@ function MATDIAG() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(1)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATDIAG\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -9866,7 +9866,7 @@ function MATDIV() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(1)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATDIV\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -9948,7 +9948,7 @@ function MATEIG() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp(1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATEIG\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -10054,7 +10054,7 @@ function MATEXPM() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(1)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATEXPM\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -10136,7 +10136,7 @@ function MATINV() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(1)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATINV\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -10218,7 +10218,7 @@ function MATLU() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = sci2exp(1);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATLU\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -10299,7 +10299,7 @@ function MATMAGPHI() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(1)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATMAGPHI\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -10375,7 +10375,7 @@ function MATMUL() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.ipar = new ScilabDouble([1]);
         var label = [sci2exp(this.model.ipar)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATMUL\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -10552,7 +10552,7 @@ function MATPINV() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(1)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATPINV\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -10634,7 +10634,7 @@ function MATRESH() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp([1,1])],[sci2exp([1,1])]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATRESH\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -10746,7 +10746,7 @@ function MATSING() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp(1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATSING\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -10855,7 +10855,7 @@ function MATSUM() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp(0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATSUM\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -10953,7 +10953,7 @@ function MATTRAN() {
         this.model.out2 = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(1)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATTRAN\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -11041,7 +11041,7 @@ function MATZCONJ() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATZCONJ\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -11081,7 +11081,7 @@ function MATZREIM() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = sci2exp(1);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATZREIM\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -11168,7 +11168,7 @@ function RICC() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp(1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RICC\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -11241,7 +11241,7 @@ function ROOTCOEF() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp(1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ROOTCOEF\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -11315,7 +11315,7 @@ function SQRT() {
         this.model.out2 = new ScilabDouble([-2]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [sci2exp(1)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SQRT\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -11392,7 +11392,7 @@ function SUBMAT() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)],[sci2exp(1)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUBMAT\",sz(1),sz(2));"]);
         this.x = standard_define([2.5,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -11507,7 +11507,7 @@ function AUTOMAT() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         this.model.ipar = new ScilabDouble(ipar);
         this.model.rpar = new ScilabDouble(rpar);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"AUTOMAT\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -11639,7 +11639,7 @@ function BACKLASH() {
         this.model.nzcross = new ScilabDouble([2]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BACKLASH\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -11722,7 +11722,7 @@ function BOUNCE() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[strcat(sci2exp(this.rpar1))],[strcat(sci2exp(this.rpar2))],[strcat(sci2exp(this.walls))],[strcat(sci2exp(this.x))],[strcat(sci2exp(this.xd))],[strcat(sci2exp(this.y))],[strcat(sci2exp(this.yd))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BOUNCE\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -11853,7 +11853,7 @@ function BOUNCEXY() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[strcat(sci2exp(this.clrs))],[strcat(sci2exp(this.siz))],[strcat(sci2exp(this.win))],[strcat(sci2exp(1))],[strcat(sci2exp(this.xmin))],[strcat(sci2exp(this.xmax))],[strcat(sci2exp(this.ymin))],[strcat(sci2exp(this.ymax))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BOUNCEXY\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -11954,7 +11954,7 @@ function BPLATFORM() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.model.rpar);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BPLATFORM\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -12048,7 +12048,7 @@ function CBLOCK() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.nzcross = new ScilabDouble([this.ng]);
         var label = list(transpose([funam,"n",sci2exp(in1),sci2exp(out),sci2exp(clkin),sci2exp(clkout),sci2exp(x0),sci2exp(0),sci2exp(z0),sci2exp(this.rpar),sci2exp(this.ipar),sci2exp(auto),"y","n"]),[]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CBLOCK\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -12201,7 +12201,7 @@ function CBLOCK4() {
         this.model.outtyp = new ScilabDouble([1]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = list([[funam],["n"],[sci2exp([this.model.in1,this.model.in2])],[sci2exp(this.model.intyp)],[sci2exp([this.model.out,this.model.out2])],[sci2exp(this.model.outtyp)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.odstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.opar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]],[]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CBLOCK4\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -12363,7 +12363,7 @@ function CONSTRAINT2_c() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = list(strcat(sci2exp(this.x0)),strcat(sci2exp(this.xd0)),strcat(sci2exp(this.id)));
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CONSTRAINT2_c\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -12445,7 +12445,7 @@ function CONSTRAINT_c() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = "0";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CONSTRAINT_c\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -12508,7 +12508,7 @@ function DEADBAND() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.maxp)],[string(this.minp)],[string(this.model.nmode)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DEADBAND\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -12564,7 +12564,7 @@ function DEBUG() {
         this.model.sim = list(new ScilabString(["%debug_scicos"]), new ScilabDouble([99]));
         this.model.blocktype = new ScilabString(["d"]);
         var exprs = list("","xcos_debug_gui(flag,block);");
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DEBUG\",sz(1),sz(2));"]);
         this.x = standard_define([8,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -12647,7 +12647,7 @@ function DIFF_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[strcat(sci2exp(this.x0[1-1]))],[strcat(sci2exp(this.x0[2-1]))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DIFF_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -12760,7 +12760,7 @@ function EDGETRIGGER() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [string(this.edge)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EDGETRIGGER\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -12872,7 +12872,7 @@ function EDGE_TRIGGER() {
         this.model.in1 = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EDGE_TRIGGER\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -12962,7 +12962,7 @@ function ENDBLK() {
         scs_m_1.objs[1-1] = scicos_block(gui="END_c",graphics=scicos_graphics(orig=[272.104,249.11733],sz=[40,40],flip=true,theta=0,exprs="1.000E+08",pin=[],pout=[],pein=2,peout=2,gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim=list("scicosexit",4),in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=1,evtout=1,state=[],dstate=[],odstate=list(),rpar=[],ipar=[],opar=list(),blocktype="d",firing=1.000e+08,dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
         scs_m_1.objs[2-1] = scicos_link(xx=[[292.104],[292.104],[261.83733],[261.83733],[292.104],[292.104]],yy=[[243.40305],[234.45067],[234.45067],[305.584],[305.584],[294.83162]],id="drawlink",thick=[0,0],ct=[5,-1],from=[1,1,0],to=[1,1,1]);
         this.model = scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list());
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ENDBLK\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -13129,7 +13129,7 @@ function Extract_Activation() {
         this.model.in1 = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Extract_Activation\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -13163,7 +13163,7 @@ function HYSTHERESIS() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(rpar)],[string(sign(this.nzz))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"HYSTHERESIS\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -13256,7 +13256,7 @@ function LOGICAL_OP() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.nin)],[string(ipar)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOGICAL_OP\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -13402,7 +13402,7 @@ function MBLOCK() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"r"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"r"),1)]);
         this.model.equations = mo;
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MBLOCK\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = this.intype;
         this.x.graphics.out_implicit = this.outtype;
@@ -13691,7 +13691,7 @@ function MEMORY_f() {
         this.model.rpar = new ScilabDouble([z]);
         this.model.blocktype = new ScilabString(["m"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MEMORY_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -13773,7 +13773,7 @@ function MPBLOCK() {
         this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"r"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"r"),1)]);
         this.model.equations = mo;
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MPBLOCK\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = this.intype;
         this.x.graphics.out_implicit = this.outtype;
@@ -14043,7 +14043,7 @@ function PAL_f() {
         this.model.rpar = new ScilabDouble([scs]);
         this.model.blocktype = new ScilabString(["h"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PAL_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,[],gr_i);
         this.x.graphics.id = scs.props.title[1-1];
         return new BasicBlock(this.x);
@@ -14090,7 +14090,7 @@ function PENDULUM_ANIM() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.model.rpar);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PENDULUM_ANIM\",sz(1),sz(2));"]);
         this.x = standard_define([3,3],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -14168,7 +14168,7 @@ function RATELIMITER() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.maxp)],[string(this.minp)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RATELIMITER\",sz(1),sz(2));"]);
         this.x = standard_define([3.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -14221,7 +14221,7 @@ function RELATIONALOP() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(ipar)],[string(0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RELATIONALOP\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.style = ["fontSize=13;fontStyle=1;displayedLabel="+label];
         return new BasicBlock(this.x);
@@ -14361,7 +14361,7 @@ function SUPER_f() {
         this.model.rpar = new ScilabDouble([scs]);
         this.model.blocktype = new ScilabString(["h"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUPER_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new SuperBlock(this.x);
     }
@@ -14483,7 +14483,7 @@ function c_block() {
         this.model.firing = new ScilabDouble(auto);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = list([[sci2exp(in1)],[sci2exp(out)],[strcat(sci2exp(this.rpar))],[this.funam]],list([]));
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"c_block\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -14568,7 +14568,7 @@ function fortran_block() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.funam = "forty";
         var label = list([[sci2exp(this.model.in1)],[sci2exp(this.model.out)],[strcat(sci2exp(this.model.rpar))],[this.funam]],list([]));
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"fortran_block\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -14645,7 +14645,7 @@ function func_block() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = "v=sin(u);y=u*v";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"func_block\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -14695,7 +14695,7 @@ function generic_block() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp(this.model.in1)],[sci2exp(this.model.out)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.firing)],["y"],["n"]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"generic_block\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -14828,7 +14828,7 @@ function generic_block2() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp(this.model.in1)],[sci2exp(this.model.out)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"generic_block2\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -14963,7 +14963,7 @@ function generic_block3() {
         this.model.outtyp = new ScilabDouble([1]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp([this.model.in1,this.model.in2])],[sci2exp(this.model.intyp)],[sci2exp([this.model.out,this.model.out2]),sci2exp(this.model.outtyp)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.odstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.opar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"generic_block3\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -15126,7 +15126,7 @@ function scifunc_block() {
         this.model.firing = new ScilabDouble(auto);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = list([[sci2exp(in1)],[sci2exp(out)],[sci2exp(clkin)],[sci2exp(clkout)],[strcat(sci2exp(x0))],[strcat(sci2exp(z0))],[strcat(sci2exp(this.rpar))],[sci2exp(auto)]],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"scifunc_block\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -15254,7 +15254,7 @@ function scifunc_block_m() {
         this.model.firing = new ScilabDouble(auto);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = list([[sci2exp([in1,in1])],[sci2exp([out,out])],[sci2exp(clkin)],[sci2exp(clkout)],[strcat(sci2exp(x0))],[strcat(sci2exp(z0))],[strcat(sci2exp(this.rpar))],[sci2exp(auto)],[sci2exp(0)]],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"scifunc_block_m\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -15356,7 +15356,7 @@ function ABSBLK_f() {
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ABSBLK_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -15386,7 +15386,7 @@ function ABS_VALUE() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [string([1])];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ABS_VALUE\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -15437,7 +15437,7 @@ function COSBLK_f() {
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"COSBLK_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -15475,7 +15475,7 @@ function DLRADAPT_f() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(this.p)],[sci2exp(this.rn)],[sci2exp(this.rd,0)],[sci2exp(this.g)],[sci2exp(this.last_u)],[sci2exp(this.last_y)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLRADAPT_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -15545,7 +15545,7 @@ function EXPBLK_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = ["%e"];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXPBLK_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -15601,7 +15601,7 @@ function EXPBLK_m() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = ["%e"];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXPBLK_m\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -15651,7 +15651,7 @@ function FSV_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = " ";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FSV_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -15683,7 +15683,7 @@ function INTRP2BLK_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))],[strcat(sci2exp(this.c,0))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTRP2BLK_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -15742,7 +15742,7 @@ function INTRPLBLK_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTRPLBLK_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -15796,7 +15796,7 @@ function INVBLK() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = " ";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INVBLK\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -15824,7 +15824,7 @@ function INVBLK_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = " ";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INVBLK_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -15854,7 +15854,7 @@ function LOGBLK_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = "%e";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOGBLK_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -15914,7 +15914,7 @@ function LOOKUP2D() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = list(strcat(sci2exp(this.xx)),strcat(sci2exp(this.yy)),strcat(sci2exp(this.zz)),sci2exp(this.Method),Graf);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP2D\",sz(1),sz(2));"]);
         this.x = standard_define([2.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -16041,7 +16041,7 @@ function LOOKUP_c() {
         this.model.evtout = new ScilabDouble([]);
         this.model.firing = new ScilabDouble([0]);
         var exprs = [[sci2exp(this.Method)],[sci2exp(this.xx)],[sci2exp(this.yy)],[sci2exp(0)],[Graf]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP_c\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -16208,7 +16208,7 @@ function LOOKUP_f() {
         this.model.rpar = new ScilabDouble([-2],[-1],[1],[2],[-1],[1],[-1],[1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -16269,7 +16269,7 @@ function MAXMIN() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.ipar = new ScilabDouble([0]);
         var exprs = [string(transpose([2,1,1]))];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MAXMIN\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         this.x.graphics.style = "MAXMIN;displayedLabel=MAX";
         return new BasicBlock(this.x);
@@ -16356,7 +16356,7 @@ function MAX_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = " ";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MAX_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -16385,7 +16385,7 @@ function MIN_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = sci2exp(in1);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MIN_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -16415,7 +16415,7 @@ function POWBLK_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = string(this.a);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"POWBLK_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -16469,7 +16469,7 @@ function PRODUCT() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = sci2exp(this.sgn);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PRODUCT\",sz(1),sz(2));"]);
         this.x = standard_define([2,3],this.model,exprs,gr_i);
         return new Product(this.x);
     }
@@ -16571,7 +16571,7 @@ function QUANT_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.pas)],[string(this.meth)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"QUANT_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -16638,7 +16638,7 @@ function SATURATION() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.maxp)],[string(this.minp)],[string(this.model.nmode)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SATURATION\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -16703,7 +16703,7 @@ function SAT_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string(this.minp)],[string(this.maxp)],[string(slope)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SAT_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -16761,7 +16761,7 @@ function SIGNUM() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [string([1])];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SIGNUM\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -16812,7 +16812,7 @@ function SINBLK_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = " ";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SINBLK_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -16840,7 +16840,7 @@ function TANBLK_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = sci2exp(in1);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TANBLK_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -16868,7 +16868,7 @@ function TrigFun() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = "sin";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TrigFun\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -16918,7 +16918,7 @@ function PDE() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         var params_pde = tlist([["paramspde"],["a"],["b"],["txt_exp"],["check_op1"],["a1"],["b1"],["check_op2"],["a2"],["b2"],["check_op3"],["a3"],["b3"],["check_op4"],["a4"],["b4"],["check_op5"],["a5"],["b5"],["check_op6"],["a6"],["b6"],["check_op7"],["a7"],["b7"],["discr_cst"],["discr_non_cst"],["signe"],["rad_automatique"],["rad_manuel"],["methode"],["ord1"],["ord2"],["ord3"],["degre"],["nnode"],["txt_pas"],["CI"],["dCI"],["CLa"],["CLa_exp"],["CLb"],["CLb_exp"],["points"]],"","","","0","","IN_EDP1(t)","0","","IN_EDP2(t)","0","","IN_EDP3(t)","0","","IN_EDP4(t)","0","","IN_EDP5(t)","0","","IN_EDP6(t)","0","","IN_EDP7(t)","0","0","0","0","0","0","","","","","","","","","0","IN_CL1(t)","0","IN_CL2(t)","");
         var label = list(params_pde,[],"");
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PDE\",sz(1),sz(2));"]);
         this.x = standard_define([3,3],this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
@@ -17142,7 +17142,7 @@ function AFFICH_m() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.label = new ScilabString([""]);
         var exprs = [[sci2exp([this.model.in1,this.model.in2])],[string(this.font)],[string(this.fontsize)],[string(this.colr)],[string(this.nt)],[string(this.nd)],[string(0)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"AFFICH_m\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new AfficheBlock(this.x);
     }
@@ -17328,7 +17328,7 @@ function CANIMXY() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.nbr_curves)],[string(this.clrs)],[string(this.siz)],[string(this.win)],["[]"],["[]"],[string(this.xmin)],[string(this.xmax)],[string(this.ymin)],[string(this.ymax)],[string(this.N)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CANIMXY\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -17459,7 +17459,7 @@ function CANIMXY3D() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.nbr_curves)],[strcat(string(this.clrs)," ")],[strcat(string(this.siz)," ")],[string(this.win)],["[]"],["[]"],[strcat(string(this.vec_x)," ")],[strcat(string(this.vec_y)," ")],[strcat(string(this.vec_z)," ")],[strcat(string(this.param3ds)," ")],[string(this.N)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CANIMXY3D\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -17598,7 +17598,7 @@ function CEVENTSCOPE() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[sci2exp(this.nclock)],[strcat(sci2exp(this.clrs[this.nclock-1])," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.per)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CEVENTSCOPE\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -17707,7 +17707,7 @@ function CFSCOPE() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.ymin)],[string(this.ymax)],[string(this.per)],[string(this.N)],[string([1])]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CFSCOPE\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -17991,7 +17991,7 @@ function CMAT3D() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[strcat(string(this.x)," ")],[strcat(string(y)," ")],[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CMAT3D\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -18071,7 +18071,7 @@ function CMATVIEW() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CMATVIEW\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -18150,7 +18150,7 @@ function CMSCOPE() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[strcat(string(this.in1)," ")],[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp([])],[strcat(string(this.ymin)," ")],[strcat(string(this.ymax)," ")],[strcat(string(this.per)," ")],[string(this.N)],[string(0)],[emptystr()]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CMSCOPE\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -18303,7 +18303,7 @@ function CSCOPE() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.ymin)],[string(this.ymax)],[string(this.per)],[string(this.N)],[transpose(string(0))],[emptystr()]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CSCOPE\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -18431,7 +18431,7 @@ function CSCOPXY() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.nbr_curves)],[sci2exp(this.clrs)],[sci2exp(this.siz)],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.xmin)],[string(this.xmax)],[string(this.ymin)],[string(this.ymax)],[string(this.N)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CSCOPXY\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -18561,7 +18561,7 @@ function CSCOPXY3D() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.nbr_curves)],[strcat(string(this.clrs)," ")],[strcat(string(this.siz)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[strcat(string(this.vec_x)," ")],[strcat(string(this.vec_y)," ")],[strcat(string(this.vec_z)," ")],[strcat(string(this.param3ds)," ")],[string(this.N)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CSCOPXY3D\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -18695,7 +18695,7 @@ function OUTIMPL_f() {
         mo.inputs = "n";
         this.model.equations = new ScilabDouble([mo]);
         var exprs = "1";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OUTIMPL_f\",sz(1),sz(2));"]);
         this.x = standard_define([1,1],this.model,exprs,gr_i);
         this.x.graphics.in_implicit = ["I"];
         return new ImplicitOutBlock(this.x);
@@ -18754,7 +18754,7 @@ function OUT_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.prt);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OUT_f\",sz(1),sz(2));"]);
         this.x = standard_define([1,1],this.model,exprs,gr_i);
         return new ExplicitOutBlock(this.x);
     }
@@ -18814,7 +18814,7 @@ function TOWS_c() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TOWS_c\",sz(1),sz(2));"]);
         var exprs = [[string(this.nz)],[string(this.varnam)],[string(this.herit)]];
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -18885,7 +18885,7 @@ function TRASH_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = " ";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TRASH_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -18920,7 +18920,7 @@ function WFILE_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(this.in1)],[fname],[frmt],[string(this.N)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"WFILE_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -19028,7 +19028,7 @@ function WRITEAU_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [string(this.N),string(this.swap)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"WRITEAU_f\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -19107,7 +19107,7 @@ function WRITEC_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[sci2exp(this.in1)],[fname],[frmt],[string(this.N),string(this.swap)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"WRITEC_f\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -19209,7 +19209,7 @@ function CLKINV_f() {
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.prt);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLKINV_f\",sz(1),sz(2));"]);
         this.x = standard_define([1,1],this.model,exprs,gr_i);
         return new EventInBlock(this.x);
     }
@@ -19323,7 +19323,7 @@ function CLOCK_c() {
         split.graphics.orig = [[380.71066],[172]];
         split.graphics.pein = 3;
         split.graphics.peout = [[5],[6]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLOCK_c\",sz(1),sz(2));"]);
         var diagram = scicos_diagram();
         diagram.objs[1-1] = output_port;
         diagram.objs[2-1] = evtdly;
@@ -19427,7 +19427,7 @@ function CLOCK_f() {
         split.graphics.orig = [[380.71066],[172]];
         split.graphics.pein = 3;
         split.graphics.peout = [[5],[6]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLOCK_f\",sz(1),sz(2));"]);
         var diagram = scicos_diagram();
         diagram.objs[1-1] = output_port;
         diagram.objs[2-1] = evtdly;
@@ -19520,7 +19520,7 @@ function CONST() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = strcat(sci2exp(this.C));
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CONST\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -19573,7 +19573,7 @@ function CONST_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = strcat(sci2exp(this.C));
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CONST_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -19626,7 +19626,7 @@ function CONST_m() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = sci2exp(this.C);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CONST_m\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -19714,7 +19714,7 @@ function CURVE_c() {
         this.model.evtout = new ScilabDouble([1]);
         this.model.firing = new ScilabDouble([0]);
         var exprs = [[sci2exp(this.Method)],[sci2exp(this.xx)],[sci2exp(this.yy)],[this.PeriodicOption],[Graf]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CURVE_c\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -19879,7 +19879,7 @@ function CURV_f() {
         this.model.ipar = new ScilabDouble([size(xx,1)],[axisdata.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CURV_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -19951,7 +19951,7 @@ function Counter() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.minim)],[string(this.maxim)],[string(this.rule)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Counter\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -20006,7 +20006,7 @@ function FROMWSB() {
         scs_m_1.objs[3-1] = scicos_block(gui="OUT_f",graphics=scicos_graphics(orig=[358.9421,271.584],sz=[20,20],flip=true,theta=0,exprs="1",pin=4,pout=[],pein=[],peout=[],gr_i=[],id="",in_implicit="E",out_implicit=[]),model=scicos_model(sim="output",in1=-1,in2=-2,intyp=-1,out=[],out2=[],outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="c",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
         scs_m_1.objs[4-1] = scicos_link(xx=[[338.9421],[358.9421]],yy=[[281.584],[281.584]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[3,1,1]);
         this.model = scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=-1,out2=-2,outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list());
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROMWSB\",sz(1),sz(2));"]);
         this.x = standard_define([5,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -20107,7 +20107,7 @@ function FROMWS_c() {
         this.model.firing = new ScilabDouble([0]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROMWS_c\",sz(1),sz(2));"]);
         var exprs = [[string(this.varnam)],[string(this.Method)],[string(this.ZC)],[string(this.OutEnd)]];
         this.x = standard_define([3.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
@@ -20187,7 +20187,7 @@ function GENSIN_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[string(rpar[1-1])],[string(rpar[2-1])],[string(rpar[3-1])]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENSIN_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -20250,7 +20250,7 @@ function GENSQR_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = string(this.Amplitude);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENSQR_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -20336,7 +20336,7 @@ function GEN_SQR() {
         var rule = 1;
         var F = 1;
         var exprs = [sci2exp(Amin),sci2exp(Amax),sci2exp(rule),sci2exp(F)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GEN_SQR\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -20411,7 +20411,7 @@ function Ground_g() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Ground_g\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -20444,7 +20444,7 @@ function INIMPL_f() {
         this.model.equations = new ScilabDouble([mo]);
         this.prt = 1;
         var exprs = "1";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INIMPL_f\",sz(1),sz(2));"]);
         this.x = standard_define([1,1],this.model,exprs,gr_i);
         this.x.graphics.out_implicit = ["I"];
         return new ImplicitInBlock(this.x);
@@ -20502,7 +20502,7 @@ function IN_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = sci2exp(prt);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IN_f\",sz(1),sz(2));"]);
         this.x = standard_define([1,1],this.model,exprs,gr_i);
         return new ExplicitInBlock(this.x);
     }
@@ -20575,7 +20575,7 @@ function Modulo_Count() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.ini_c)],[string(this.base)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Modulo_Count\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -20662,7 +20662,7 @@ function PULSE_SC() {
         var F = 1;
         var A = 1;
         var exprs = [sci2exp(E),sci2exp(W),sci2exp(F),sci2exp(A)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PULSE_SC\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -20740,7 +20740,7 @@ function RAMP() {
         this.model.nzcross = new ScilabDouble([1]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [string(rpar)];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RAMP\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -20799,7 +20799,7 @@ function RAND_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.flag)],[sci2exp(this.a.slice())],[sci2exp(this.b.slice())],[string(this.model.dstate[1-1])]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RAND_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -20879,7 +20879,7 @@ function RAND_m() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[sci2exp(1)],[string(this.flag)],[sci2exp([this.a])],[sci2exp([this.b])],[sci2exp([this.model.dstate[1-1],int(rand()*(10^7-1))])]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RAND_m\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -20974,7 +20974,7 @@ function READAU_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[fname],[string(this.N)],[string(this.swap)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"READAU_f\",sz(1),sz(2));"]);
         this.x = standard_define([5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -21076,7 +21076,7 @@ function READC_f() {
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [["[]"],[sci2exp(this.outmask)],[fname],[frmt],[string(this.M)],[string(this.N)],[string(this.offset)],[string(this.swap)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"READC_f\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -21214,7 +21214,7 @@ function RFILE_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[sci2exp([])],[sci2exp(this.outmask)],[fname],[frmt],[string(this.N)],[sci2exp(out)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RFILE_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -21327,7 +21327,7 @@ function SAWTOOTH_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = " ";
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SAWTOOTH_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -21360,7 +21360,7 @@ function STEP() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(1)],[string(rpar)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"STEP\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -21474,7 +21474,7 @@ function STEP_FUNCTION() {
         this.model.out2 = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"STEP_FUNCTION\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -21628,7 +21628,7 @@ function Sigbuilder() {
         scs_m_1.objs[7-1] = scicos_block(gui="CLKOUTV_f",graphics=scicos_graphics(orig=[339.49528,505.10704],sz=[20,30],flip=true,theta=0,exprs="1",pin=[],pout=[],pein=8,peout=[],gr_i=[],id="",in_implicit=[],out_implicit=[]),model=scicos_model(sim="output",in1=[],in2=[],intyp=1,out=[],out2=[],outtyp=1,evtin=1,evtout=[],state=[],dstate=[],odstate=list(),rpar=[],ipar=1,opar=list(),blocktype="d",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list()),doc=list());
         scs_m_1.objs[8-1] = scicos_link(xx=[[349.49528],[349.49528]],yy=[[565.10704],[535.10704]],id="drawlink",thick=[0,0],ct=[5,-1],from=[3,1,0],to=[7,1,1]);
         this.model = scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=1,evtin=[],evtout=1,state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list());
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Sigbuilder\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -21720,7 +21720,7 @@ function TIME_f() {
         this.model.out = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TIME_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -21751,7 +21751,7 @@ function TKSCALE() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[sci2exp(this.a)],[sci2exp(this.b)],[sci2exp(this.f)]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TKSCALE\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -21800,7 +21800,7 @@ function GENERAL_f() {
         this.model.firing = new ScilabDouble([-ones(this.out,1)]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = [[strcat(sci2exp(this.in1))],[strcat(sci2exp(this.out))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENERAL_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
@@ -21868,7 +21868,7 @@ function NEGTOPOS_f() {
         this.model.blocktype = new ScilabString(["z"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"NEGTOPOS_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -21899,7 +21899,7 @@ function POSTONEG_f() {
         this.model.blocktype = new ScilabString(["z"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.firing = new ScilabDouble([-1]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"POSTONEG_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,[],gr_i);
         return new BasicBlock(this.x);
     }
@@ -21932,7 +21932,7 @@ function ZCROSS_f() {
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         var exprs = strcat(sci2exp(this.in1));
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ZCROSS_f\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

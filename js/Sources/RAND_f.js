@@ -16,7 +16,7 @@ function RAND_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[string(this.flag)],[sci2exp(this.a.slice())],[sci2exp(this.b.slice())],[string(this.model.dstate[1-1])]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RAND_f\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

@@ -25,7 +25,7 @@ function RAND_m() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         var exprs = [[sci2exp(1)],[string(this.flag)],[sci2exp([this.a])],[sci2exp([this.b])],[sci2exp([this.model.dstate[1-1],int(rand()*(10^7-1))])]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RAND_m\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }

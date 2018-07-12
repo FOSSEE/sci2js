@@ -19,7 +19,7 @@ function Switch() {
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.model.rpar = new ScilabDouble([Z]);
         var exprs = string(Z);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Switch\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,exprs,list(gr_i,0));
         this.x.graphics.in_implicit = [["I"],["E"]];
         this.x.graphics.out_implicit = ["I"];

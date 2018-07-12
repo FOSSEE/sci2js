@@ -13,7 +13,7 @@ function IFTHEL_f() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([1]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IFTHEL_f\",sz(1),sz(2));"]);
         var exprs = [[string(this.model.in1)],[string(this.model.nmode)]];
         this.x = standard_define([3,3],this.model,exprs,gr_i);
         return new BasicBlock(this.x);

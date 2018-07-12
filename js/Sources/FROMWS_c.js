@@ -16,7 +16,7 @@ function FROMWS_c() {
         this.model.firing = new ScilabDouble([0]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROMWS_c\",sz(1),sz(2));"]);
         var exprs = [[string(this.varnam)],[string(this.Method)],[string(this.ZC)],[string(this.OutEnd)]];
         this.x = standard_define([3.5,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);

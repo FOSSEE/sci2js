@@ -14,7 +14,7 @@ function ESELECT_f() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.nmode = new ScilabDouble([0]);
         this.model.nzcross = new ScilabDouble([0]);
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ESELECT_f\",sz(1),sz(2));"]);
         var exprs = [[string(this.out)],[string(1)],[string(this.model.nmode)]];
         this.x = standard_define([4,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);

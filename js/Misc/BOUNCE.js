@@ -34,7 +34,7 @@ function BOUNCE() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
         var exprs = [[strcat(sci2exp(this.rpar1))],[strcat(sci2exp(this.rpar2))],[strcat(sci2exp(this.walls))],[strcat(sci2exp(this.x))],[strcat(sci2exp(this.xd))],[strcat(sci2exp(this.y))],[strcat(sci2exp(this.yd))]];
-        var gr_i = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BOUNCE\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
