@@ -599,7 +599,8 @@ def p_modelexpression_list(p):
 def p_modelexpressionlist_expression(p):
     '''modelexpressionlist : expression
                            | listcall'''
-    vartype = MODEL_MAP.get(p[1][1], 'ScilabDouble')
+    vartype = p[1][1]
+    vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
     if vartype != '':
         p[0] = 'new %s([%s])' % (vartype, p[1][0])
     else:
@@ -608,7 +609,8 @@ def p_modelexpressionlist_expression(p):
 def p_modelexpressionlist_modelexpression_list_expression(p):
     '''modelexpressionlist : modelexpressionlist COMMA expression
                            | modelexpressionlist COMMA listcall'''
-    vartype = MODEL_MAP.get(p[3][1], 'ScilabDouble')
+    vartype = p[3][1]
+    vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
     if vartype != '':
         p[0] = '%s, new %s([%s])' % (p[1], vartype, p[3][0])
     else:
@@ -766,6 +768,10 @@ def p_termarrayarraylist_termarraylist_semicolon_termarraylist(p):
     'termarrayarraylist : termarraylist SEMICOLON termarraylist'
     p[0] = ('[%s],[%s]' % (p[1][0], p[3][0]), p[1][1])
 
+def p_termarrayarraylist_termarraylist_semicolon(p):
+    'termarrayarraylist : termarraylist SEMICOLON'
+    p[0] = ('[%s]' % (p[1][0]), p[1][1])
+
 def p_termarraylist_termarraylist_comma_expression(p):
     '''termarraylist : termarraylist COMMA expression
                      | termarraylist SPACE expression'''
@@ -839,11 +845,6 @@ def p_expression_termarrayarraylist(p):
     '''expression : OPENSQBRACKET termarrayarraylist CLOSESQBRACKET
                   | OPENSQBRACKET termarrayarraylist SEMICOLON CLOSESQBRACKET'''
     p[0] = ('[%s]' % (p[2][0]), MATRIX_TYPE)
-
-# [2+1,1;]
-def p_expression_termarraylist_semicolon(p):
-    '''expression : OPENSQBRACKET termarraylist SEMICOLON CLOSESQBRACKET'''
-    p[0] = ('[[%s]]' % (p[2][0]), MATRIX_TYPE)
 
 # [2 3 4]
 # [2,3,4]
