@@ -71,8 +71,7 @@ p22
 g18
 sS'x'
 p23
-g6
-sS'model'
+NsS'model'
 p24
 g10
 sS'typ'

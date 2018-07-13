@@ -66,8 +66,7 @@ p19
 g15
 sS'x'
 p20
-g2
-sS'model'
+NsS'model'
 p21
 g7
 sS'model.sim'

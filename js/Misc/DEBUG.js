@@ -6,7 +6,7 @@ function DEBUG() {
         this.model.blocktype = new ScilabString(["d"]);
         this.exprs = list("","xcos_debug_gui(flag,block);");
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DEBUG\",sz(1),sz(2));"]);
-        this.x = standard_define([8,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([8,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     DEBUG.prototype.details = function DEBUG() {

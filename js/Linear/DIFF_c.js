@@ -11,7 +11,7 @@ function DIFF_c() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         this.exprs = [[strcat(sci2exp(this.x0[1-1]))],[strcat(sci2exp(this.x0[2-1]))]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DIFF_c\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     DIFF_c.prototype.details = function DIFF_c() {

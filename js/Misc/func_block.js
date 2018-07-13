@@ -9,7 +9,7 @@ function func_block() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.exprs = "v=sin(u);y=u*v";
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"func_block\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     func_block.prototype.details = function func_block() {

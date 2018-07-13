@@ -60,8 +60,7 @@ p17
 g4
 sS'x'
 p18
-g10
-sS'model'
+NsS'model'
 p19
 S'object'
 p20

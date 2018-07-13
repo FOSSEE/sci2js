@@ -14,7 +14,7 @@ function VariableResistor() {
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = [];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VariableResistor\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,this.exprs,list(this.gr_i,0));
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = ["I","E"];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);

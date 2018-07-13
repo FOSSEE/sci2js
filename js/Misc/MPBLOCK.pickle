@@ -221,8 +221,7 @@ p70
 g30
 sS'x'
 p71
-g4
-sS'model'
+NsS'model'
 p72
 g6
 sS'exprs.paramv'

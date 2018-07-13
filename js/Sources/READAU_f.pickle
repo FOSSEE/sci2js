@@ -130,8 +130,7 @@ p39
 g2
 sS'x'
 p40
-g12
-sS'model'
+NsS'model'
 p41
 g6
 sS'nout'

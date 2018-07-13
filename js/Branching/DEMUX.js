@@ -12,7 +12,7 @@ function DEMUX() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.exprs = string(this.out);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DEMUX\",sz(1),sz(2));"]);
-        this.x = standard_define([.5,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([.5,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     DEMUX.prototype.details = function DEMUX() {

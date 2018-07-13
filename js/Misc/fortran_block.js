@@ -17,7 +17,7 @@ function fortran_block() {
         this.funam = "forty";
         var label = list([[sci2exp(this.model.in)],[sci2exp(this.model.out)],[strcat(sci2exp(this.model.rpar))],[this.funam]],list([]));
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"fortran_block\",sz(1),sz(2));"]);
-        this.x = standard_define([4,2],this.model,label,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([4,2]),this.model,label,this.gr_i);
         return new BasicBlock(this.x);
     }
     fortran_block.prototype.details = function fortran_block() {

@@ -15,7 +15,7 @@ function Ground_g() {
         this.model.dep_ut = new ScilabDouble([false,false]);
         this.exprs = [];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Ground_g\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     Ground_g.prototype.details = function Ground_g() {

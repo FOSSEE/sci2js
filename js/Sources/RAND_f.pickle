@@ -96,8 +96,7 @@ p27
 g20
 sS'x'
 p28
-g8
-sS'model'
+NsS'model'
 p29
 g4
 sS'nout'

@@ -78,7 +78,7 @@ function EDGE_TRIGGER() {
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EDGE_TRIGGER\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,[],this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,[],this.gr_i);
         return new BasicBlock(this.x);
     }
     EDGE_TRIGGER.prototype.details = function EDGE_TRIGGER() {

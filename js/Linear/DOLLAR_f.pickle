@@ -83,8 +83,7 @@ p24
 g10
 sS'x'
 p25
-g2
-sS'model'
+NsS'model'
 p26
 g4
 sS'z'

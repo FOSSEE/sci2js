@@ -120,8 +120,7 @@ p35
 g12
 sS'x'
 p36
-g8
-sS'model'
+NsS'model'
 p37
 g2
 sS'lambda'

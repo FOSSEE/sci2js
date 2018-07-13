@@ -13,7 +13,7 @@ function Ground() {
         this.model.equations = new ScilabDouble([mo]);
         this.exprs = "";
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Ground\",sz(1),sz(2));"]);
-        this.x = standard_define([1,1],this.model,this.exprs,list(this.gr_i,0));
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
         return new GroundBlock(this.x);

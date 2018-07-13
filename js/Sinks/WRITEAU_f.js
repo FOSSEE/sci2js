@@ -18,7 +18,7 @@ function WRITEAU_f() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.exprs = [string(this.N),string(this.swap)];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"WRITEAU_f\",sz(1),sz(2));"]);
-        this.x = standard_define([4,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([4,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     WRITEAU_f.prototype.details = function WRITEAU_f() {

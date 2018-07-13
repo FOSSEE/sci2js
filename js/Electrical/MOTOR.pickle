@@ -50,13 +50,11 @@ p13
 g8
 sS'x'
 p14
-S'double'
+NsS'model'
 p15
-sS'model'
-p16
 S'object'
-p17
+p16
 sS'typ'
-p18
+p17
 g8
 s.

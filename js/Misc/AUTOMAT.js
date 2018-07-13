@@ -24,7 +24,7 @@ function AUTOMAT() {
         this.model.ipar = new ScilabDouble(ipar);
         this.model.rpar = new ScilabDouble(rpar);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"AUTOMAT\",sz(1),sz(2));"]);
-        this.x = standard_define([4,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([4,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     AUTOMAT.prototype.details = function AUTOMAT() {

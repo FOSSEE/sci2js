@@ -44,7 +44,7 @@ function CVS() {
         this.model.equations = new ScilabDouble([mo]);
         this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
-        this.x = standard_define([2.1,3],this.model,this.exprs,list(this.gr_i,0));
+        this.x = new standard_define(new ScilabDouble([2.1,3]),this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = Typein;
         this.x.graphics.out_implicit = Typeout;
         return new BasicBlock(this.x);

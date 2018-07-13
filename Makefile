@@ -1,10 +1,13 @@
 SCIFILES := $(wildcard macros/*/*.sci)
 
 JSFILES := $(SCIFILES:macros/%.sci=js/%.js)
+LEXFILES := $(SCIFILES:macros/%.sci=js/%.lex)
 
 JSDIRS := $(sort $(dir $(JSFILES)))
 
 all: combined.js
+
+lexfiles: $(LEXFILES)
 
 combined.js: $(JSFILES) Makefile
 	@echo -n "Making $@ ... "; \
@@ -33,6 +36,7 @@ parsetab.py: macros/Misc/DEBUG_SCICOS.sci sci2jsyacc.py sci2jslex.py
 	./sci2jsyacc.py $< /dev/null 3 > /dev/null
 
 $(JSFILES): | $(JSDIRS)
+$(LEXFILES): | $(JSDIRS)
 
 $(JSDIRS):
 	mkdir -p $@
@@ -44,6 +48,6 @@ clean:
 	$(RM) -r js
 	$(RM) combined.js
 
-.PHONY: clean
+.PHONY: lexfiles clean
 
 .SECONDARY:

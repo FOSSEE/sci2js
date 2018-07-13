@@ -20,7 +20,7 @@ function TOWS_c() {
         this.model.dep_ut = new ScilabDouble([false,false]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TOWS_c\",sz(1),sz(2));"]);
         this.exprs = [[string(this.nz)],[string(this.varnam)],[string(this.herit)]];
-        this.x = standard_define([4,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([4,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     TOWS_c.prototype.details = function TOWS_c() {

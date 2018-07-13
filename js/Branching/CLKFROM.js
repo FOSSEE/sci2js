@@ -9,7 +9,7 @@ function CLKFROM() {
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         this.exprs = "A";
-        this.x = standard_define([2,1],this.model,this.exprs," ");
+        this.x = new standard_define(new ScilabDouble([2,1]),this.model,this.exprs," ");
         this.x.graphics.id = "From";
         return new BasicBlock(this.x);
     }

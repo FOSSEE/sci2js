@@ -96,8 +96,7 @@ p29
 g8
 sS'x'
 p30
-g5
-sS'model'
+NsS'model'
 p31
 g2
 s.

@@ -15,7 +15,7 @@ function OUTIMPL_f() {
         this.model.equations = new ScilabDouble([mo]);
         this.exprs = "1";
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OUTIMPL_f\",sz(1),sz(2));"]);
-        this.x = standard_define([1,1],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,this.exprs,this.gr_i);
         this.x.graphics.in_implicit = ["I"];
         return new ImplicitOutBlock(this.x);
     }

@@ -123,8 +123,7 @@ p38
 g8
 sS'x'
 p39
-g5
-sS'model'
+NsS'model'
 p40
 g2
 sS'it[1-1]'

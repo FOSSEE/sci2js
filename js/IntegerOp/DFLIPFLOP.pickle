@@ -236,8 +236,7 @@ p77
 g22
 sS'x'
 p78
-g2
-sS'scs_m.objs[27-1]'
+NsS'scs_m.objs[27-1]'
 p79
 g2
 sS'scs_m.objs[35-1]'

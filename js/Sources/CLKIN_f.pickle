@@ -55,8 +55,7 @@ p15
 g11
 sS'x'
 p16
-g4
-sS'model'
+NsS'model'
 p17
 g8
 sS'model.ipar'

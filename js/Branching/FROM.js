@@ -15,7 +15,7 @@ function FROM() {
         this.model.dep_ut = new ScilabDouble([false,false]);
         this.exprs = ["A"];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROM\",sz(1),sz(2));"]);
-        this.x = standard_define([2,1],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,1]),this.model,this.exprs,this.gr_i);
         this.x.graphics.id = "From";
         return new BasicBlock(this.x);
     }

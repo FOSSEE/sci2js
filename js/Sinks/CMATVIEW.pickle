@@ -112,8 +112,7 @@ p35
 g27
 sS'x'
 p36
-g2
-sS'model'
+NsS'model'
 p37
 g4
 sS'cmax'

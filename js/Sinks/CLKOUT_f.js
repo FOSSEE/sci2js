@@ -10,7 +10,7 @@ function CLKOUT_f() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         this.exprs = string(this.prt);
-        this.x = standard_define([1,1],this.model,this.exprs," ");
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,this.exprs," ");
         return new BasicBlock(this.x);
     }
     CLKOUT_f.prototype.details = function CLKOUT_f() {

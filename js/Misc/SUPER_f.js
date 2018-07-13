@@ -19,7 +19,7 @@ function SUPER_f() {
         this.model.blocktype = new ScilabString(["h"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUPER_f\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,[],this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,[],this.gr_i);
         return new SuperBlock(this.x);
     }
     SUPER_f.prototype.details = function SUPER_f() {

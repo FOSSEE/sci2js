@@ -11,7 +11,7 @@ function BACKLASH() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BACKLASH\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     BACKLASH.prototype.details = function BACKLASH() {

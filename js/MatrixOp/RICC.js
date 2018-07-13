@@ -22,7 +22,7 @@ function RICC() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[sci2exp(1)],[sci2exp(1)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RICC\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,label,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,label,this.gr_i);
         return new BasicBlock(this.x);
     }
     RICC.prototype.details = function RICC() {

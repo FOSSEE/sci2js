@@ -108,8 +108,7 @@ p31
 g20
 sS'x'
 p32
-g8
-sS'model'
+NsS'model'
 p33
 g2
 s.

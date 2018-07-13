@@ -16,7 +16,7 @@ function EXPBLK_m() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.exprs = ["%e"];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXPBLK_m\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     EXPBLK_m.prototype.details = function EXPBLK_m() {

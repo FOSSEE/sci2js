@@ -15,7 +15,7 @@ function GENERAL_f() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.exprs = [[strcat(sci2exp(this.in1))],[strcat(sci2exp(this.out))]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENERAL_f\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     GENERAL_f.prototype.details = function GENERAL_f() {

@@ -75,8 +75,7 @@ p22
 g18
 sS'x'
 p23
-g4
-sS'model'
+NsS'model'
 p24
 g8
 sS'rpar[1-1]'

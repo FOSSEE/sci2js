@@ -11,7 +11,7 @@ function PRODUCT() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.exprs = sci2exp(this.sgn);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PRODUCT\",sz(1),sz(2));"]);
-        this.x = standard_define([2,3],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,3]),this.model,this.exprs,this.gr_i);
         return new Product(this.x);
     }
     PRODUCT.prototype.details = function PRODUCT() {

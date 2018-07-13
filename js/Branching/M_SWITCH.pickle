@@ -93,8 +93,7 @@ p28
 g10
 sS'x'
 p29
-g8
-sS'model'
+NsS'model'
 p30
 g2
 sS'ot'

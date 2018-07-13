@@ -19,7 +19,7 @@ function CMATVIEW() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.exprs = [[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CMATVIEW\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     CMATVIEW.prototype.details = function CMATVIEW() {

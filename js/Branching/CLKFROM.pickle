@@ -58,8 +58,7 @@ p16
 g2
 sS'x'
 p17
-g2
-sS'model'
+NsS'model'
 p18
 g8
 sS'typ'

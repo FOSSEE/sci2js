@@ -67,8 +67,7 @@ p20
 g13
 sS'x'
 p21
-g4
-sS'model'
+NsS'model'
 p22
 g8
 sS'typ'

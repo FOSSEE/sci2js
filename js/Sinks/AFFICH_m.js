@@ -20,7 +20,7 @@ function AFFICH_m() {
         this.model.label = new ScilabString([""]);
         this.exprs = [[sci2exp([this.model.in,this.model.in2])],[string(this.font)],[string(this.fontsize)],[string(this.colr)],[string(this.nt)],[string(this.nd)],[string(0)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"AFFICH_m\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,this.exprs,this.gr_i);
         return new AfficheBlock(this.x);
     }
     AFFICH_m.prototype.details = function AFFICH_m() {

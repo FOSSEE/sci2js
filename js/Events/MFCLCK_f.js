@@ -15,7 +15,7 @@ function MFCLCK_f() {
         this.model.dep_ut = new ScilabDouble([false,false]);
         this.exprs = [[string(this.dt)],[string(this.nn)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MFCLCK_f\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     MFCLCK_f.prototype.details = function MFCLCK_f() {

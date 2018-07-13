@@ -12,7 +12,7 @@ function Sigbuilder() {
         scs_m_1.objs[8-1] = scicos_link(xx=[[349.49528],[349.49528]],yy=[[565.10704],[535.10704]],id="drawlink",thick=[0,0],ct=[5,-1],from=[3,1,0],to=[7,1,1]);
         this.model = scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=-1,out2=[],outtyp=1,evtin=[],evtout=1,state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list());
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Sigbuilder\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,[],this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,[],this.gr_i);
         return new BasicBlock(this.x);
     }
     Sigbuilder.prototype.details = function Sigbuilder() {

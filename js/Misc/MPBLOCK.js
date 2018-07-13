@@ -27,7 +27,7 @@ function MPBLOCK() {
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"r"),1)]);
         this.model.equations = mo;
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MPBLOCK\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,this.exprs,this.gr_i);
         this.x.graphics.in_implicit = this.intype;
         this.x.graphics.out_implicit = this.outtype;
         return new BasicBlock(this.x);

@@ -127,8 +127,7 @@ p36
 g18
 sS'x'
 p37
-g10
-sS'model'
+NsS'model'
 p38
 g5
 s.

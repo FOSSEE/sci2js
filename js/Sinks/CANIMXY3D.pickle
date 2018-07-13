@@ -152,8 +152,7 @@ p43
 g19
 sS'x'
 p44
-g5
-sS'model'
+NsS'model'
 p45
 g12
 sS'nbr_curves'

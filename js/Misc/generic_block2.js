@@ -18,7 +18,7 @@ function generic_block2() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         var label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp(this.model.in)],[sci2exp(this.model.out)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"generic_block2\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,label,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,label,this.gr_i);
         return new BasicBlock(this.x);
     }
     generic_block2.prototype.details = function generic_block2() {

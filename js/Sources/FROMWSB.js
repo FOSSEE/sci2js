@@ -8,7 +8,7 @@ function FROMWSB() {
         scs_m_1.objs[4-1] = scicos_link(xx=[[338.9421],[358.9421]],yy=[[281.584],[281.584]],id="drawlink",thick=[0,0],ct=[1,1],from=[1,1,0],to=[3,1,1]);
         this.model = scicos_model(sim="csuper",in1=[],in2=[],intyp=1,out=-1,out2=-2,outtyp=1,evtin=[],evtout=[],state=[],dstate=[],odstate=list(),rpar=scs_m_1,ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[false,false],label="",nzcross=0,nmode=0,equations=list());
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROMWSB\",sz(1),sz(2));"]);
-        this.x = standard_define([5,2],this.model,[],this.gr_i);
+        this.x = new standard_define(new ScilabDouble([5,2]),this.model,[],this.gr_i);
         return new BasicBlock(this.x);
     }
     FROMWSB.prototype.details = function FROMWSB() {

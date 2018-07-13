@@ -106,8 +106,7 @@ p32
 g8
 sS'x'
 p33
-g10
-sS'model'
+NsS'model'
 p34
 g2
 sS'ot'

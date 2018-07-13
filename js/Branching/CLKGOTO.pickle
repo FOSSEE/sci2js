@@ -68,8 +68,7 @@ p20
 g2
 sS'x'
 p21
-g2
-sS'model'
+NsS'model'
 p22
 g9
 sS'model.ipar'

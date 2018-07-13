@@ -29,7 +29,7 @@ function SRFLIPFLOP() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.rpar = new ScilabDouble([scs_m]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SRFLIPFLOP\",sz(1),sz(2));"]);
-        this.x = standard_define([2,3],this.model,[],this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,3]),this.model,[],this.gr_i);
         return new BasicBlock(this.x);
     }
     SRFLIPFLOP.prototype.details = function SRFLIPFLOP() {

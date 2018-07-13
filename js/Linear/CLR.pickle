@@ -116,8 +116,7 @@ p37
 g23
 sS'x'
 p38
-g8
-sS'model'
+NsS'model'
 p39
 g2
 sS'nout'

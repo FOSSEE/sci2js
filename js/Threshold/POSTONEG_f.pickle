@@ -55,8 +55,7 @@ p16
 g8
 sS'x'
 p17
-g4
-sS'model'
+NsS'model'
 p18
 S'object'
 p19

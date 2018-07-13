@@ -156,8 +156,7 @@ p45
 g4
 sS'x'
 p46
-g20
-sS'model'
+NsS'model'
 p47
 g7
 s.

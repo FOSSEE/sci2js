@@ -146,8 +146,7 @@ p41
 g33
 sS'x'
 p42
-g2
-sS'model'
+NsS'model'
 p43
 g14
 sS'nbr_curves'

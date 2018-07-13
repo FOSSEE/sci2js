@@ -13,7 +13,7 @@ function GENSIN_f() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         this.exprs = [[string(rpar[1-1])],[string(rpar[2-1])],[string(rpar[3-1])]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENSIN_f\",sz(1),sz(2));"]);
-        this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     GENSIN_f.prototype.details = function GENSIN_f() {

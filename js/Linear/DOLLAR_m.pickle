@@ -99,8 +99,7 @@ p30
 g13
 sS'x'
 p31
-g4
-sS'model'
+NsS'model'
 p32
 g6
 sS'z'

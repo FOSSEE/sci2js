@@ -11,7 +11,7 @@ function INTEGRAL_f() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         this.exprs = strcat(sci2exp(this.x0));
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTEGRAL_f\",sz(1),sz(2));"]);
-        this.x = standard_define([2,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     INTEGRAL_f.prototype.details = function INTEGRAL_f() {

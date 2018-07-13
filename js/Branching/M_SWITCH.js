@@ -13,7 +13,7 @@ function M_SWITCH() {
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.exprs = [[string(this.nin)],[string(ipar)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"M_SWITCH\",sz(1),sz(2));"]);
-        this.x = standard_define([2.5,2],this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2.5,2]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
     M_SWITCH.prototype.details = function M_SWITCH() {

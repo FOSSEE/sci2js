@@ -179,21 +179,23 @@ def p_jobsetstatementblock_jobsetstatement(p):
 # define statement
 
 def p_statement_assignment(p):
-    'statement : assignment'
+    '''statement : assignment
+                 | getvalueassignment
+                 | standarddefineassignment'''
     p[0] = '%s' % (p[1])
 
 def p_statement_getvalueassignment(p):
-    '''statement : getvalueassignment EOL
-                 | function EOL'''
+    '''statement : function EOL'''
     p[0] = '%s;\n' % (p[1])
 
 def p_jobsetstatement_assignment(p):
-    'jobsetstatement : assignment'
+    '''jobsetstatement : assignment
+                       | getvalueassignment
+                       | standarddefineassignment'''
     p[0] = '%s' % (p[1])
 
 def p_jobsetstatement_getvalueassignment(p):
-    '''jobsetstatement : getvalueassignment EOL
-                       | function EOL'''
+    '''jobsetstatement : function EOL'''
     p[0] = '%s;\n' % (p[1])
 
 def p_statement_break(p):
@@ -634,8 +636,8 @@ def p_modelexpression_expression(p):
     p[0] = p[1]
 
 def p_getvalueassignment_getvalue_arguments(p):
-    'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET getvaluearguments CLOSEBRACKET'
-    p[0] = '%*s%s = %s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5])
+    'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET getvaluearguments CLOSEBRACKET EOL'
+    p[0] = '%*s%s = %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5])
     global SET_BLOCK, OPTIONS_BLOCK
     lterm = p[1]
     if lterm[0] == '[':
@@ -732,6 +734,22 @@ def p_getvaluearg4_expression(p):
     '''getvaluearg4 : expression
                     | listcall'''
     p[0] = '%s' % (p[1][0])
+
+def p_standarddefineassignment_standarddefinearguments(p):
+    'standarddefineassignment : lterm ASSIGNMENT STANDARD_DEFINE OPENBRACKET standarddefineargumentlist CLOSEBRACKET EOL'
+    p[0] = '%*s%s = new %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5])
+
+def p_standarddefineargumentlist_standarddefineargumentlist_expression(p):
+    '''standarddefineargumentlist : standarddefineargumentlist COMMA expression
+                                  | standarddefineargumentlist COMMA listcall'''
+    p[0] = '%s,%s' % (p[1], p[3][0])
+
+def p_standarddefineargumentlist_expression(p):
+    'standarddefineargumentlist : expression'
+    value = p[1][0]
+    if ']/' in value:
+        value = re.sub(r'\]/.*', ']', value)
+    p[0] = 'new ScilabDouble(%s)' % (value)
 
 # end define assignment
 
