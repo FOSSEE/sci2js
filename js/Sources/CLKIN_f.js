@@ -24,9 +24,6 @@ function CLKIN_f() {
     CLKIN_f.prototype.set = function CLKIN_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         this.exprs = this.exprs[1-1];
         while (true) {

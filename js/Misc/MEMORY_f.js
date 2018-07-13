@@ -6,7 +6,7 @@ function MEMORY_f() {
         this.exprs = [[string(z)],[string(1)]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["memo"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([in1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([0]);
@@ -31,10 +31,7 @@ function MEMORY_f() {
         this.a = arguments[0]["a"]
         this.inh = parseFloat(arguments[0]["inh"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.a,this.inh,this.exprs] = scicos_getvalue("Set memory block parameters",["initial condition","Inherit (1: no, 0: yes)"],list("vec",-1,"vec",1),this.exprs);
             if (!ok) {
@@ -58,7 +55,7 @@ function MEMORY_f() {
             if (ok) {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.rpar = new ScilabDouble([this.a]);
-                this.model.in1 = new ScilabDouble([in1]);
+                this.model.in = new ScilabDouble([in1]);
                 this.model.out = new ScilabDouble([out]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;

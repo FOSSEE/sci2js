@@ -14,7 +14,7 @@ function CMSCOPE() {
         var period = transpose(this.per.slice());
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cmscope"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble(this.in1);
+        this.model.in = new ScilabDouble(this.in1);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.intyp = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -59,10 +59,7 @@ function CMSCOPE() {
         this.heritance = arguments[0]["heritance"]
         this.nom = arguments[0]["nom"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.in1,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,this.exprs] = scicos_getvalue("Set Scope parameters",["Input ports sizes","Drawing colors (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin vector","Ymax vector","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec",1,"vec",1,"str",1),this.exprs);
             if (!ok) {

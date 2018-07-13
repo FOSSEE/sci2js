@@ -5,7 +5,7 @@ function SELECT_m() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["selector_m"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1]);
         this.model.in2 = new ScilabDouble([-2],[-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -41,10 +41,7 @@ function SELECT_m() {
         this.nin = parseFloat(arguments[0]["nin"])
         this.z0 = parseFloat(arguments[0]["z0"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.typ,this.nin,this.z0,this.exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ..)","number of inputs","initial connected input"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

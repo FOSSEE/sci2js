@@ -22,7 +22,6 @@ function SAWTOOTH_f() {
         return options;
     }
     SAWTOOTH_f.prototype.set = function SAWTOOTH_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

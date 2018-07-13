@@ -57,10 +57,10 @@ g5
 sS'in1'
 p16
 g9
-sS'model.in1'
+sS'model.outtyp'
 p17
 g5
-sS'model.outtyp'
+sS'model.in'
 p18
 g5
 sS'graphics.exprs'

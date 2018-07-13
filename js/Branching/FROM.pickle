@@ -35,9 +35,9 @@ sS'model.in2'
 p7
 S'vector'
 p8
-sS'model.in1'
+sS'model.intyp'
 p9
-g8
+g6
 sS'x.graphics'
 p10
 g2
@@ -48,12 +48,12 @@ p12
 sS'model.out2'
 p13
 g6
-sS'model.intyp'
+sS'y'
 p14
 g6
-sS'y'
+sS'model.in'
 p15
-g6
+g8
 sS'graphics.exprs'
 p16
 NsS'model.ipar'

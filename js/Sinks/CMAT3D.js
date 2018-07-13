@@ -11,7 +11,7 @@ function CMAT3D() {
         var size_y = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cmat3d"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -44,10 +44,7 @@ function CMAT3D() {
         this.cmin = parseFloat(arguments[0]["cmin"])
         this.cmax = parseFloat(arguments[0]["cmax"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.vec_x,this.vec_y,this.colormap,this.cmin,this.cmax,this.exprs] = scicos_getvalue("Set Scope parameters",["Bounds Vector X (-1 for standard)","Bounds Vector Y (-1 for standard)","ColorMap","Zmin","Zmax"],list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

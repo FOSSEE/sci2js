@@ -25,8 +25,6 @@ function Sigbuilder() {
     }
     Sigbuilder.prototype.set = function Sigbuilder() {
         var ppath = list(0);
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="CURVE_c") {
                 ppath[1-1] = i;
                 break;
@@ -43,20 +41,19 @@ function Sigbuilder() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
-            var xx = arg1[spath-1];
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (diffobjs(this.xxn,xx)) {
                 this.model = xx.model;
                 var model_n = this.xxn.model;
                 if (!is_modelica_block(xx)) {
                     var modified = or(this.model.sim!=model_n.sim)||!isequal(this.model.state,model_n.state)||!isequal(this.model.dstate,model_n.dstate)||!isequal(this.model.odstate,model_n.odstate)||!isequal(this.model.rpar,model_n.rpar)||!isequal(this.model.ipar,model_n.ipar)||!isequal(this.model.opar,model_n.opar)||!isequal(this.model.label,model_n.label);
-                    if (or(this.model.in1!=model_n.in1)||or(this.model.out!=model_n.out)||or(this.model.in2!=model_n.in2)||or(this.model.out2!=model_n.out2)||or(this.model.outtyp!=model_n.outtyp)||or(this.model.intyp!=model_n.intyp)) {
+                    if (or(this.model.in!=model_n.in)||or(this.model.out!=model_n.out)||or(this.model.in2!=model_n.in2)||or(this.model.out2!=model_n.out2)||or(this.model.outtyp!=model_n.outtyp)||or(this.model.intyp!=model_n.intyp)) {
                         var needcompile = 1;
                     }
                     if (or(this.model.firing!=model_n.firing)) {
                         var needcompile = 2;
                     }
-                    if ((size(this.model.in1,"*")!=size(model_n.in1,"*"))||(size(this.model.out,"*")!=size(model_n.out,"*"))) {
+                    if ((size(this.model.in,"*")!=size(model_n.in,"*"))||(size(this.model.out,"*")!=size(model_n.out,"*"))) {
                         var needcompile = 4;
                     }
                     if (this.model.sim=="input"||this.model.sim=="output") {
@@ -85,12 +82,10 @@ function Sigbuilder() {
                         var needcompile = 4;
                     }
                 }
-                arg1[spath-1] = this.xxn;
                 newpar[size(newpar)+1-1] = path;
                 this.y = max(this.y,needcompile);
             }
         }
-        this.x = arg1;
         var typ = newpar;
         return new BasicBlock(this.x);
     }

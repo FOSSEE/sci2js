@@ -42,7 +42,7 @@ function PNP() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
         this.x = standard_define([2,2],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = Typein;
@@ -93,11 +93,7 @@ function PNP() {
         this.Vt = arguments[0]["Vt"]
         this.EMinMax = arguments[0]["EMinMax"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        this.x = arg1;
         this.exprs = this.x.graphics.exprs;
         while (true) {
             [ok,this.Bf,this.Br,this.Is,this.Vak,this.Tauf,this.Taur,this.Ccs,this.Cje,this.Cjc,this.Phie,this.Me,this.Phic,this.Mc,this.Gbc,this.Gbe,this.Vt,this.EMinMax,this.exprs] = scicos_getvalue([["Set PNP block parameters:"],[""]],["Bf  : Forward beta","Br  : Reverse beta","Is  : Transport saturation current","Vak : Early voltage (inverse), 1/Volt","Tauf: Ideal forward transit time","Taur: Ideal reverse transit time","Ccs : Collector-substrat(ground) cap.","Cje : Base-emitter zero bias depletion cap.","Cjc : Base-coll. zero bias depletion cap.","Phie: Base-emitter diffusion voltage","Me  : Base-emitter gradation exponent","Phic: Base-collector diffusion voltage","Mc  : Base-collector gradation exponent","Gbc : Base-collector conductance","Gbe : Base-emitter conductance","Vt  : Voltage equivalent of temperature","EMinMax: if x > EMinMax, the exp(x) function is linearized"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);

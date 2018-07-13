@@ -28,10 +28,7 @@ function GENSQR_f() {
     GENSQR_f.prototype.set = function GENSQR_f() {
         this.Amplitude = parseFloat(arguments[0]["Amplitude"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }

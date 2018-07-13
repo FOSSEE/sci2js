@@ -32,10 +32,7 @@ function MFCLCK_f() {
         this.dt = parseFloat(arguments[0]["dt"])
         this.nn = parseFloat(arguments[0]["nn"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         [ok,this.dt,this.nn,this.exprs] = scicos_getvalue("Set Multifrequency clock parameters",["basic period (1/f)","multiply by (n)"],list("vec",1,"vec",1),this.exprs);
         if (ok) {
             this.model.ipar = new ScilabDouble([this.nn]);

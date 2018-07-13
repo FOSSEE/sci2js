@@ -4,7 +4,7 @@ function SAMPHOLD() {
         var in1 = -1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["samphold4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["d"]);
@@ -22,7 +22,6 @@ function SAMPHOLD() {
         return options;
     }
     SAMPHOLD.prototype.set = function SAMPHOLD() {
-        this.x = arg1;
         this.x.model.firing = [];
         return new BasicBlock(this.x);
     }

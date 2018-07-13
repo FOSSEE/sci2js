@@ -21,7 +21,6 @@ function ANDLOG_f() {
         return options;
     }
     ANDLOG_f.prototype.set = function ANDLOG_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

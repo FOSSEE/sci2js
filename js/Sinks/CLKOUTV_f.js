@@ -24,9 +24,6 @@ function CLKOUTV_f() {
     CLKOUTV_f.prototype.set = function CLKOUTV_f() {
         this.prt = arguments[0]["prt"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.prt,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CLKOUTV_f")],[" "],["Event output port"]],"Port number",list("vec",1),this.exprs);
@@ -48,14 +45,11 @@ function CLKOUTV_f() {
         return new EventOutBlock(this.x);
     }
     CLKOUTV_f.prototype.getinputs = function CLKOUTV_f() {
-        var orig = arg1.graphics.orig;
-        var sz = arg1.graphics.sz;
         this.x = orig[1-1]+sz[1-1]/2;
         var y = orig[2-1]+sz[2-1];
         var typ = -ones(this.x);
     }
     CLKOUTV_f.prototype.getorigin = function CLKOUTV_f() {
-        var tmpvar0 = standard_origin(arg1);
         this.x = tmpvar0[0];
         var y = tmpvar0[1];
     }
@@ -67,10 +61,6 @@ function CLKOUTV_f() {
     CLKOUTV_f.prototype.plot = function CLKOUTV_f() {
         var xf = 60;
         var yf = 40;
-        var orig = arg1.graphics.orig;
-        var sz = arg1.graphics.sz;
-        var orient = arg1.graphics.flip;
-        this.prt = arg1.model.ipar;
         var pat = xget("pattern");
         xset("pattern",this.default_color[-1-1]);
         var thick = xget("thickness");
@@ -79,7 +69,6 @@ function CLKOUTV_f() {
         var y = orig[2-1]+sz[2-1]*[[0],[1/3],[1],[1],[1/3]];
         var xo = orig[1-1];
         var yo = orig[2-1]+sz[2-1]/3;
-        this.gr_i = arg1.graphics.gr_i;
         if (this.type[this.gr_i-1]==15) {
             var coli = this.gr_i[2-1];
             var pcoli = xget("pattern");
@@ -96,7 +85,6 @@ function CLKOUTV_f() {
         xfpoly(in1.slice()[1-1]+ones(4,1)*(orig[1-1]+sz[1-1]/2),in1.slice()[2-1]+ones(4,1)*(orig[2-1]+sz[2-1]),1);
         xset("thickness",thick);
         xset("pattern",pat);
-        var ident = arg1.graphics.id;
         if (ident!=[]&&ident!="") {
             var font = xget("font");
             xset("font",this.options.ID[1-1][1-1],this.options.ID[1-1][2-1]);

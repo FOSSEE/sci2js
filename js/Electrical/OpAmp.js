@@ -13,7 +13,7 @@ function OpAmp() {
         mo.outputs = ["out"];
         mo.parameters = list(S,Z);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.model.rpar = new ScilabDouble(Z);
         this.exprs = string(Z);
@@ -39,10 +39,7 @@ function OpAmp() {
         this.SatH = arguments[0]["SatH"]
         this.SatL = arguments[0]["SatL"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (false) {
             [ok,this.OLGain,this.SatH,this.SatL,this.exprs] = scicos_getvalue("Set the Operational Amplifier parameters",["Open Loop Gain","Positive saturation voltage","Negative saturation voltage"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

@@ -5,7 +5,7 @@ function EXTRACT() {
         var function_name = "extract";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
@@ -41,10 +41,7 @@ function EXTRACT() {
         this.a = inverse(arguments[0]["a"])
         this.b = inverse(arguments[0]["b"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -86,7 +83,7 @@ function EXTRACT() {
                 }
             }
             this.model.ipar = new ScilabDouble([this.a],[this.b],[ma],[mb]);
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [ma,mb];
             var funtyp = 4;
             if (ok) {
@@ -97,9 +94,6 @@ function EXTRACT() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }

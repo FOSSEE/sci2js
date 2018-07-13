@@ -4,7 +4,7 @@ function MAX_f() {
         var in1 = -1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["maxblk"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([0],[0]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -23,7 +23,6 @@ function MAX_f() {
         return options;
     }
     MAX_f.prototype.set = function MAX_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

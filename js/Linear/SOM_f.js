@@ -4,7 +4,7 @@ function SOM_f() {
         var sgn = [[1],[1],[1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["sum"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble([-1],[-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble(sgn);
         this.model.blocktype = new ScilabString(["c"]);
@@ -23,9 +23,6 @@ function SOM_f() {
         return options;
     }
     SOM_f.prototype.set = function SOM_f() {
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];

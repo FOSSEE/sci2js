@@ -69,7 +69,7 @@ g4
 sS'model.in2'
 p16
 g2
-sS'model.in1'
+sS'model.intyp'
 p17
 g2
 sS'z[6*(i-1)+2-1]'
@@ -106,10 +106,10 @@ g2
 sS'imode'
 p29
 g4
-sS'model.intyp'
+sS'model.rpar'
 p30
 g2
-sS'model.rpar'
+sS'model.in'
 p31
 g2
 sS'graphics'

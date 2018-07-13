@@ -4,7 +4,7 @@ function CONVERT() {
         var sgn = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["convert"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.out2 = new ScilabDouble([-2]);
@@ -35,9 +35,6 @@ function CONVERT() {
         this.ot = parseFloat(arguments[0]["ot"])
         this.np = arguments[0]["np"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.it,this.ot,this.np,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONVERT")],[" "],["Type conversion"],[" "]],["Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"],list("vec",1,"vec",1,"vec",1),this.exprs);
@@ -366,7 +363,7 @@ function CONVERT() {
                     }
                 }
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             if (ok) {
                 var tmpvar0 = set_io(this.model,this.graphics,list(in1,this.it),list(out,this.ot),[],[]);

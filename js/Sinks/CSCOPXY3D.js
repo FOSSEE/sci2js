@@ -14,7 +14,7 @@ function CSCOPXY3D() {
         this.nbr_curves = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cscopxy3d"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1],[1],[1]);
+        this.model.in = new ScilabDouble([1],[1],[1]);
         this.model.in2 = new ScilabDouble([1],[1],[1]);
         this.model.intyp = new ScilabDouble([1],[1],[1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -59,10 +59,7 @@ function CSCOPXY3D() {
         this.param3ds = inverse(arguments[0]["param3ds"])
         this.N = parseFloat(arguments[0]["N"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","Line or Mark Size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",2,"vec",2,"vec",2,"vec",2,"vec",1),this.exprs);
             if (!ok) {

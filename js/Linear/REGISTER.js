@@ -4,7 +4,7 @@ function REGISTER() {
         this.z0 = zeros(10,1);
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["delay4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([this.z0]);
@@ -29,10 +29,7 @@ function REGISTER() {
         this.z0 = parseFloat(arguments[0]["z0"])
         this.it = arguments[0]["it"]
         this.exprs = inverse(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,1)==1) {
             this.exprs = [[this.exprs],[sci2exp(1)]];
         }

@@ -31,11 +31,8 @@ function TEXT_f() {
         this.font = parseFloat(arguments[0]["font"])
         this.siz = parseFloat(arguments[0]["siz"])
         this.exprs = inverse(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var orig = this.graphics.orig;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==1) {
             this.exprs = [[this.exprs],["3"],["1"]];
         }

@@ -5,7 +5,7 @@ function OUT_f() {
         this.prt = 1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["output"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble([this.prt]);
@@ -27,9 +27,6 @@ function OUT_f() {
     OUT_f.prototype.set = function OUT_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[1-1];

@@ -9,7 +9,7 @@ function DLRADAPT_f() {
         this.last_y = [[0],[0]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["dlradp"]);
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([this.last_u],[this.last_y]);
@@ -45,10 +45,7 @@ function DLRADAPT_f() {
         this.last_u = inverse(arguments[0]["last_u"])
         this.last_y = inverse(arguments[0]["last_y"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.p,this.rn,this.rd,this.g,this.last_u,this.last_y,this.exprs] = scicos_getvalue("Set block parameters",["Vector of p mesh points","Numerator roots (one line for each mesh)","Denominator roots (one line for each mesh)","Vector of gain at mesh points","past inputs (Num degree values)","past outputs (Den degree values)"],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),this.exprs);
             if (!ok) {

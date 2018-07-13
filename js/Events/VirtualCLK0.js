@@ -22,7 +22,6 @@ function VirtualCLK0() {
         return options;
     }
     VirtualCLK0.prototype.set = function VirtualCLK0() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

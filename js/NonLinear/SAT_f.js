@@ -7,7 +7,7 @@ function SAT_f() {
         var rpar = [[this.minp],[this.maxp],[slope]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["lusat"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([2]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.minp],[this.maxp],[slope]);
@@ -34,10 +34,7 @@ function SAT_f() {
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.pente = arguments[0]["pente"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.minp,this.maxp,this.pente,this.exprs] = scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

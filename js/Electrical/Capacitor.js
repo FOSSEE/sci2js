@@ -14,7 +14,7 @@ function Capacitor() {
         mo.outputs = "n";
         mo.parameters = list(["C","v"],list(this.C,this.v),[0,1]);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = string([[this.C],[this.v]]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Capacitor\",sz(1),sz(2));"]);
@@ -37,10 +37,7 @@ function Capacitor() {
         this.C = parseFloat(arguments[0]["C"])
         this.v = parseFloat(arguments[0]["v"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.C,this.v,this.exprs] = scicos_getvalue("Set Capacitor block parameter",["C (F)","Initial Voltage"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {

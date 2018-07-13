@@ -4,7 +4,7 @@ function CONSTRAINT_c() {
         this.x0 = [[0],[0]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["constraint_c"]), new ScilabDouble([10004]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.ipar = new ScilabDouble([0]);
         this.model.state = new ScilabDouble(this.x0);
@@ -26,10 +26,7 @@ function CONSTRAINT_c() {
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
         this.x0 = inverse(arguments[0]["x0"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.x0,this.exprs] = scicos_getvalue("Set solver block parameters","Initial guess values",list("vec",-1),this.exprs);
             if (!ok) {
@@ -48,7 +45,7 @@ function CONSTRAINT_c() {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
                     this.model.state = new ScilabDouble([this.x0],[zeros(N,1)]);
                     this.model.out = new ScilabDouble([N]);
-                    this.model.in1 = new ScilabDouble([N]);
+                    this.model.in = new ScilabDouble([N]);
                     this.model.ipar = new ScilabDouble([-1*ones(N,1)]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;

@@ -47,9 +47,9 @@ p10
 sS'model.in2'
 p11
 g5
-sS'model.in1'
+sS'model.intyp'
 p12
-g8
+g5
 sS'herit'
 p13
 g5
@@ -78,10 +78,10 @@ p21
 sS'model.evtout'
 p22
 g8
-sS'model.intyp'
-p23
-g5
 sS'model.rpar'
+p23
+g8
+sS'model.in'
 p24
 g8
 sS'graphics.exprs'

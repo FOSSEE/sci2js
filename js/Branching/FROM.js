@@ -3,7 +3,7 @@ function FROM() {
     FROM.prototype.define = function FROM() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["from"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.in2 = new ScilabDouble([]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -31,10 +31,7 @@ function FROM() {
     FROM.prototype.set = function FROM() {
         this.tag = arguments[0]["tag"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tag,this.exprs] = scicos_getvalue("Set parameters",["Tag"],list("str",-1),this.exprs);
             if (!ok) {

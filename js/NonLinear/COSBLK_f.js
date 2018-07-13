@@ -4,7 +4,7 @@ function COSBLK_f() {
         var in1 = 1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["cosblk"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -21,7 +21,6 @@ function COSBLK_f() {
         return options;
     }
     COSBLK_f.prototype.set = function COSBLK_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

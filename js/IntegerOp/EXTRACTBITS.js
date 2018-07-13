@@ -4,7 +4,7 @@ function EXTRACTBITS() {
         var numb = [];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["extract_bit_32_UH0"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
@@ -36,10 +36,7 @@ function EXTRACTBITS() {
         this.bit = parseFloat(arguments[0]["bit"])
         this.scal = arguments[0]["scal"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.Datatype,this.rule,this.bit,this.scal,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","EXTRACTBITS")],[" "],["Bits Extraction"],[" "],["&nbsp;- Bits to Extract:"],["&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"],["&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"],["&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"],["&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"],["&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"],["&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"],["&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Bits to extract","Number of Bits or Index of Bit","Treat Bit Field as an Integer (0:No, 1:Yes)"],list("vec",1,"vec",1,"vec",-1,"vec",1),this.exprs);
             if (!ok) {
@@ -53,7 +50,7 @@ function EXTRACTBITS() {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Treat Bit Field as an Integer",this.scal),msprintf("Must be in the interval %s.","[0, 1]"));
                 var ok = false;
             } else {
-                var in1 = [this.model.in1,this.model.in2];
+                var in1 = [this.model.in,this.model.in2];
                 this.bit = int(this.bit);
                 this.rule = int(this.rule);
                 if ((this.rule==3)||(this.rule==4)) {

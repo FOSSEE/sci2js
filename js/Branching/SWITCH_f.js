@@ -6,7 +6,7 @@ function SWITCH_f() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["switchn"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble(in1);
+        this.model.in = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble([i0]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -31,10 +31,7 @@ function SWITCH_f() {
         this.nin = parseFloat(arguments[0]["nin"])
         this.z0 = arguments[0]["z0"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var ipar = this.model.ipar;
         while (true) {
             [ok,this.nin,this.z0,this.exprs] = scicos_getvalue("Set switch parameters",["number of inputs","connected input"],list("vec",1,"vec",1),this.exprs);

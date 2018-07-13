@@ -21,7 +21,6 @@ function CLKSOM_f() {
         return options;
     }
     CLKSOM_f.prototype.set = function CLKSOM_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

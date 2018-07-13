@@ -2,7 +2,7 @@
 function VsourceAC() {
     VsourceAC.prototype.define = function VsourceAC() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.VA = 220;
         this.FR = 50;
@@ -37,10 +37,7 @@ function VsourceAC() {
         this.VA = parseFloat(arguments[0]["VA"])
         this.FR = parseFloat(arguments[0]["FR"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.VA,this.FR,this.exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","Frequency (Hz)"],list("vec",-1,"vec",-1),this.exprs);
             if (!ok) {

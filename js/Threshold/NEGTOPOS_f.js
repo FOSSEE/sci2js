@@ -4,7 +4,7 @@ function NEGTOPOS_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["zcross"]), new ScilabDouble([1]));
         this.model.nzcross = new ScilabDouble([1]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([-1],[-1],[0],[-1]);
         this.model.blocktype = new ScilabString(["z"]);
@@ -23,7 +23,6 @@ function NEGTOPOS_f() {
         return options;
     }
     NEGTOPOS_f.prototype.set = function NEGTOPOS_f() {
-        this.x = arg1;
         this.x.model.firing = -1;
         return new BasicBlock(this.x);
     }

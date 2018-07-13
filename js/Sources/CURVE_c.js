@@ -9,7 +9,7 @@ function CURVE_c() {
         this.PeriodicOption = "y";
         var Graf = "n";
         this.model.sim = list(new ScilabString(["curve_c"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()]);
         this.model.ipar = new ScilabDouble([N],[this.Method],[1]);
@@ -43,9 +43,6 @@ function CURVE_c() {
         this.PeriodicOption = arguments[0]["PeriodicOption"]
         this.graf = arguments[0]["graf"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;

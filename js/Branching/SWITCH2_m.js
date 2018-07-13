@@ -6,7 +6,7 @@ function SWITCH2_m() {
         var rpar = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["switch2_m"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1],[1],[-1]);
+        this.model.in = new ScilabDouble([-1],[1],[-1]);
         this.model.in2 = new ScilabDouble([-2],[1],[-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -41,10 +41,7 @@ function SWITCH2_m() {
         this.thra = arguments[0]["thra"]
         this.nzz = parseFloat(arguments[0]["nzz"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.ot,this.rule,this.thra,this.nzz,this.exprs] = scicos_getvalue("Set parameters",["Datatype (1=real double  2=complex 3=int32 ...)","pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -75,7 +72,7 @@ function SWITCH2_m() {
                 it[1-1] = this.ot;
                 it[2-1] = 1;
                 it[3-1] = this.ot;
-                var in1 = [this.model.in1,this.model.in2];
+                var in1 = [this.model.in,this.model.in2];
                 var out = [this.model.out,this.model.out2];
                 var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,this.ot),[],[]);
                 this.model = tmpvar0[0];

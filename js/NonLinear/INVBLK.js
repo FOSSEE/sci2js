@@ -4,7 +4,7 @@ function INVBLK() {
         var in1 = -1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["invblk4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([in1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -22,7 +22,6 @@ function INVBLK() {
         return options;
     }
     INVBLK.prototype.set = function INVBLK() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

@@ -2,7 +2,7 @@
 function PerteDP() {
     PerteDP.prototype.define = function PerteDP() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.L = 10;
         this.D = 0.2;
@@ -20,7 +20,7 @@ function PerteDP() {
         mo.outputs = "C2";
         mo.parameters = list([["L"],["D"],["lambda"],["z1"],["z2"],["p_rho"]],[[this.L],[this.D],[this.lambda],[this.z1],[this.z2],[this.p_rho]]);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = [[string(this.L)],[string(this.D)],[string(this.lambda)],[string(this.z1)],[string(this.z2)],[string(this.p_rho)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PerteDP\",sz(1),sz(2));"]);
@@ -51,10 +51,7 @@ function PerteDP() {
         this.z2 = parseFloat(arguments[0]["z2"])
         this.p_rho = parseFloat(arguments[0]["p_rho"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.L,this.D,this.lambda,this.z1,this.z2,this.p_rho,this.exprs] = scicos_getvalue("Parametres du tuyau",["Longueur du tube : L (m)","Diamètre interne du tube : D (m)","Coefficient de perte de charge-frottement(S.U) : lambda","Altitude entrée tuyauterie : z1 (m)","Altitude sortie tuyauterie : z2 (m)","Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
             if (!ok) {

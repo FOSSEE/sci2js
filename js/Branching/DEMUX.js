@@ -4,7 +4,7 @@ function DEMUX() {
         this.out = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["multiplex"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([0]);
+        this.model.in = new ScilabDouble([0]);
         this.model.out = new ScilabDouble(-transpose([1:this.out]));
         this.model.ipar = new ScilabDouble([this.out]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -27,10 +27,7 @@ function DEMUX() {
     DEMUX.prototype.set = function DEMUX() {
         this.out = parseFloat(arguments[0]["out"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.out,this.exprs] = scicos_getvalue("Set DEMUX block parameters",["number of output ports or vector of sizes"],list("intvec",-1),this.exprs);
             if (!ok) {

@@ -30,10 +30,7 @@ function Modulo_Count() {
         this.ini_c = parseFloat(arguments[0]["ini_c"])
         this.base = parseFloat(arguments[0]["base"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.ini_c,this.base,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Modulo_Count")],[" "],["Modulo counter (0 to N counter)"],[" "]],["Initial State (zero or positive number)","Upper Limit (positive number)"],list("vec",1,"vec",1),this.exprs);
             this.ini_c = int(this.ini_c);

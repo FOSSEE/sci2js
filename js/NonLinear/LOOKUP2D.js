@@ -10,7 +10,7 @@ function LOOKUP2D() {
         var Nx = length(this.xx);
         var Ny = length(this.yy);
         this.model.sim = list(new ScilabString(["lookup2d"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()],[this.zz.slice()]);
         this.model.ipar = new ScilabDouble([Nx],[Ny],[this.Method]);
@@ -41,9 +41,6 @@ function LOOKUP2D() {
         this.Method = parseFloat(arguments[0]["Method"])
         this.graf = arguments[0]["graf"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;

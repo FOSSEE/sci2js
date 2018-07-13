@@ -3,7 +3,7 @@ function fortran_block() {
     fortran_block.prototype.define = function fortran_block() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString([" "]), new ScilabDouble([1001]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([]);
         this.model.evtout = new ScilabDouble([]);
@@ -15,7 +15,7 @@ function fortran_block() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.funam = "forty";
-        var label = list([[sci2exp(this.model.in1)],[sci2exp(this.model.out)],[strcat(sci2exp(this.model.rpar))],[this.funam]],list([]));
+        var label = list([[sci2exp(this.model.in)],[sci2exp(this.model.out)],[strcat(sci2exp(this.model.rpar))],[this.funam]],list([]));
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"fortran_block\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,label,this.gr_i);
         return new BasicBlock(this.x);
@@ -38,9 +38,6 @@ function fortran_block() {
         this.rpar = inverse(arguments[0]["rpar"])
         this.funam = arguments[0]["funam"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         while (true) {
             [ok,this.i,this.o,this.rpar,this.funam,this.lab] = scicos_getvalue("Set fortran_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
@@ -57,7 +54,7 @@ function fortran_block() {
             this.o = int(this.o.slice());
             var no = size(this.o,1);
             var tt = label[2-1];
-            if (this.model.sim[1-1]!=this.funam||size(this.model.in1,"*")!=size(this.i,"*")||size(this.model.out,"*")!=size(this.o,"*")) {
+            if (this.model.sim[1-1]!=this.funam||size(this.model.in,"*")!=size(this.i,"*")||size(this.model.out,"*")!=size(this.o,"*")) {
                 var tt = [];
             }
             var tmpvar0 = FORTR(this.funam,tt,this.i,this.o);

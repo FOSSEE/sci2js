@@ -6,7 +6,7 @@ function GAINBLK_f() {
         var out = 1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["gain"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
         this.model.rpar = new ScilabDouble([this.gain]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -28,10 +28,7 @@ function GAINBLK_f() {
     GAINBLK_f.prototype.set = function GAINBLK_f() {
         this.gain = parseFloat(arguments[0]["gain"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.gain,this.exprs] = scicos_getvalue("Set gain block parameters",["Gain"],list("mat",[-1,-1]),this.exprs[1-1]);
             if (!ok) {

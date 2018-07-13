@@ -24,9 +24,6 @@ function CLKFROM() {
     CLKFROM.prototype.set = function CLKFROM() {
         this.tag = arguments[0]["tag"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.tag,this.exprs] = scicos_getvalue("Set block parameters","Tag",list("str",-1),this.exprs);

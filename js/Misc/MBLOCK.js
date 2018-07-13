@@ -23,7 +23,7 @@ function MBLOCK() {
         this.model.sim = list(new ScilabString([mo.model]), new ScilabDouble([30004]));
         mo.inputs = this.in1;
         mo.outputs = this.out;
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"r"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"r"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"r"),1)]);
         this.model.equations = mo;
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MBLOCK\",sz(1),sz(2));"]);
@@ -56,9 +56,6 @@ function MBLOCK() {
         this.pprop = inverse(arguments[0]["pprop"])
         this.Tfunam = arguments[0]["Tfunam"]
         this.lab_1 = arguments[0]["lab_1"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         if (this.type[this.exprs-1]==15) {
             var paramv = list();
@@ -69,7 +66,7 @@ function MBLOCK() {
             }
             this.exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],this.exprs[1-1][1-1],this.exprs[1-1][2-1],this.exprs[1-1][3-1],this.exprs[1-1][4-1],this.exprs[1-1][5-1],paramv,sci2exp(this.pprop.slice()),this.exprs[1-1][7-1],this.exprs[2-1]);
         }
-        this.lab_1 = list(this.exprs.in1,this.exprs.intype,this.exprs.out,this.exprs.outtype,this.exprs.param,this.exprs.pprop,this.exprs.nameF);
+        this.lab_1 = list(this.exprs.in,this.exprs.intype,this.exprs.out,this.exprs.outtype,this.exprs.param,this.exprs.pprop,this.exprs.nameF);
         var lab_2 = this.exprs.paramv;
         while (true) {
             [ok,this.Tin,this.Tintype,this.Tout,this.Touttype,this.Tparam,this.pprop,this.Tfunam,this.lab_1] = scicos_getvalue("Set Modelica generic block parameters",["Input variables:       ","Input variables types: ","Output variables:      ","Output variables types:","Parameters in Modelica:","Parameters properties: ","Function name:         "],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),this.lab_1);
@@ -268,7 +265,7 @@ function MBLOCK() {
                     this.model.rpar = new ScilabDouble([this.model.rpar],[paramv[i-1].slice()]);
                 }
                 this.model.sim[1-1] = new ScilabDouble([this.funam]);
-                this.exprs.in1 = this.lab_1[1-1];
+                this.exprs.in = this.lab_1[1-1];
                 this.exprs.intype = this.lab_1[2-1];
                 this.exprs.out = this.lab_1[3-1];
                 this.exprs.outtype = this.lab_1[4-1];

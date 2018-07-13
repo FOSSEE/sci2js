@@ -15,7 +15,7 @@ function PULSE_SC() {
         scs_m_1.objs[11-1] = scicos_link(xx=[[154.57795],[174.57795]],yy=[[206.09381],[206.09381]],id="drawlink",thick=[0,0],ct=[1,1],from=[3,1,0],to=[10,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.in2 = new ScilabDouble([]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -60,16 +60,13 @@ function PULSE_SC() {
         scicos_context.A = arguments[0]["scicos_context.A"]
         this.exprs = arguments[0]["exprs"]
         var y = this.needcompile;
-        arg1.model.ipar = 1;
         var typ = list();
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var Btitre = "Set Pulse Generator parameters";
         var Exprs0 = [["E"],["W"],["F"],["A"]];
         var Bitems = [["Phase delay (secs):"],["Pulse Width (% of period):"],["Period (secs):"],["Amplitude:"]];
         var Ss = list("pol",-1,"pol",-1,"pol",-1,"mat",[-1,-1]);
         var scicos_context = struct();
-        this.x = arg1;
         var ok = false;
         while (!ok) {
             [ok,scicos_context.E,scicos_context.W,scicos_context.F,scicos_context.A,this.exprs] = scicos_getvalue(Btitre,Bitems,Ss,this.exprs);

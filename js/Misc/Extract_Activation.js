@@ -79,7 +79,7 @@ function Extract_Activation() {
         lnk={};
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Extract_Activation\",sz(1),sz(2));"]);
@@ -95,7 +95,6 @@ function Extract_Activation() {
         return options;
     }
     Extract_Activation.prototype.set = function Extract_Activation() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

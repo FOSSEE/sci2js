@@ -3,7 +3,7 @@ function SUM_f() {
     SUM_f.prototype.define = function SUM_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["plusblk"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble([-1],[-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -21,7 +21,6 @@ function SUM_f() {
         return options;
     }
     SUM_f.prototype.set = function SUM_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

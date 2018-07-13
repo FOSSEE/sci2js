@@ -34,10 +34,7 @@ function STEP() {
         this.in1 = arguments[0]["in1"]
         this.fi = arguments[0]["fi"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.temps,this.in1,this.fi,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","STEP_FUNCTION")],[" "],["Step Function"],[" "]],["Step Time","Initial Value","Final Value"],list("vec",1,"vec",-1,"vec",-1),this.exprs);
             if (!ok) {

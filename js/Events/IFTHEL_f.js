@@ -3,7 +3,7 @@ function IFTHEL_f() {
     IFTHEL_f.prototype.define = function IFTHEL_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["ifthel"]), new ScilabDouble([-1]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.intyp = new ScilabDouble([-1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -14,7 +14,7 @@ function IFTHEL_f() {
         this.model.nmode = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([1]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IFTHEL_f\",sz(1),sz(2));"]);
-        this.exprs = [[string(this.model.in1)],[string(this.model.nmode)]];
+        this.exprs = [[string(this.model.in)],[string(this.model.nmode)]];
         this.x = standard_define([3,3],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
@@ -32,10 +32,7 @@ function IFTHEL_f() {
         this.inh = inverse(arguments[0]["inh"])
         this.nmod = parseFloat(arguments[0]["nmod"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (this.exprs==[]) {
             this.exprs = string(1);
         }

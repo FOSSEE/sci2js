@@ -5,7 +5,7 @@ function MATRESH() {
         var function_name = "mat_reshape";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -41,9 +41,6 @@ function MATRESH() {
         this.l1 = arguments[0]["l1"]
         this.out = arguments[0]["out"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -100,9 +97,6 @@ function MATRESH() {
                 var funtyp = 4;
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }

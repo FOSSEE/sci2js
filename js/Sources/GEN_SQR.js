@@ -20,7 +20,7 @@ function GEN_SQR() {
         scs_m_1.objs[16-1] = scicos_link(xx=[[48.313686],[48.229901]],yy=[[403.57431],[385.21998]],id="drawlink",thick=[0,0],ct=[5,-1],from=[15,1,0],to=[1,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.in2 = new ScilabDouble([]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -65,16 +65,13 @@ function GEN_SQR() {
         scicos_context.F = arguments[0]["scicos_context.F"]
         this.exprs = arguments[0]["exprs"]
         var y = this.needcompile;
-        arg1.model.ipar = 1;
         var typ = list();
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var Btitre = "Set GEN_SQR parameters";
         var Exprs0 = [["Amin"],["Amax"],["rule"],["F"]];
         var Bitems = [["Minimum Value"],["Maximum Value"],["Initial Value( 1= Minimum Value 2= Maximum Value)"],["Period (sec)"]];
         var Ss = list("mat",[-1,-1],"mat",[-1,-1],"pol",-1,"pol",-1);
         var scicos_context = struct();
-        this.x = arg1;
         var ok = false;
         while (!ok) {
             [ok,scicos_context.Amin,scicos_context.Amax,scicos_context.rule,scicos_context.F,this.exprs] = scicos_getvalue(Btitre,Bitems,Ss,this.exprs);

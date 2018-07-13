@@ -4,7 +4,7 @@ function Ground_g() {
         var C = [0];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cstblk4_m"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([]);
         this.model.out2 = new ScilabDouble([1]);
@@ -27,7 +27,6 @@ function Ground_g() {
         return options;
     }
     Ground_g.prototype.set = function Ground_g() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

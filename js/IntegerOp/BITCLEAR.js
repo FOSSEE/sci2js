@@ -3,7 +3,7 @@ function BITCLEAR() {
     BITCLEAR.prototype.define = function BITCLEAR() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["bit_clear_32"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
@@ -31,16 +31,13 @@ function BITCLEAR() {
         this.Datatype = arguments[0]["Datatype"]
         this.bit = parseFloat(arguments[0]["bit"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.Datatype,this.bit,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","BITCLEAR")],[" "],["Clear a bit"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Index of Bit (0 is least significant)"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             if (floor(this.bit)!=this.bit) {
                 block_parameter_error(msprintf("Wrong type for \'%s\' parameter: %5.1f.","Index of Bit",this.bit),"Must be integer.");
                 var ok = false;

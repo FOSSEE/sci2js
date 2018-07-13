@@ -7,7 +7,7 @@ function TIME_DELAY() {
         this.N = 1024;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["time_delay"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([nin]);
+        this.model.in = new ScilabDouble([nin]);
         this.model.out = new ScilabDouble([nin]);
         this.model.rpar = new ScilabDouble([this.T,this.init]);
         this.model.ipar = new ScilabDouble([this.N]);
@@ -34,11 +34,8 @@ function TIME_DELAY() {
         this.init = parseFloat(arguments[0]["init"])
         this.N = parseFloat(arguments[0]["N"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        var nin = this.model.in1[1-1];
+        var nin = this.model.in[1-1];
         while (true) {
             [ok,this.T,this.init,this.N,this.exprs] = scicos_getvalue("Set delay parameters",["Delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

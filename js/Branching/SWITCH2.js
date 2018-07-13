@@ -7,7 +7,7 @@ function SWITCH2() {
         var rpar = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["switch2"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble(in1);
+        this.model.in = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble(ipar);
         this.model.rpar = new ScilabDouble([rpar]);
@@ -36,10 +36,7 @@ function SWITCH2() {
         this.thra = arguments[0]["thra"]
         this.nzz = parseFloat(arguments[0]["nzz"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.rule,this.thra,this.nzz,this.exprs] = scicos_getvalue("Set parameters",["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

@@ -121,8 +121,6 @@ function freq_div() {
         %ph = parseFloat(arguments[0]["%ph"])
         %df = parseFloat(arguments[0]["%df"])
         this.exprs = inverse(arguments[0]["exprs"])
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="Modulo_Count") {
                 var path = i;
                 break;
@@ -135,7 +133,6 @@ function freq_div() {
         spath[$+1-1] = "rpar";
         spath[$+1-1] = "objs";
         spath[$+1-1] = path;
-        var xx = arg1[spath-1];
         var xxn = xx;
         this.graphics = xx.graphics;
         this.exprs = this.graphics.exprs;
@@ -166,7 +163,7 @@ function freq_div() {
             var model_n = xxn.model;
             if (!is_modelica_block(xx)) {
                 var modified = or(this.model.sim!=model_n.sim)||!isequal(this.model.state,model_n.state)||!isequal(this.model.dstate,model_n.dstate)||!isequal(this.model.rpar,model_n.rpar)||!isequal(this.model.ipar,model_n.ipar)||!isequal(this.model.label,model_n.label);
-                if (or(this.model.in1!=model_n.in1)||or(this.model.out!=model_n.out)) {
+                if (or(this.model.in!=model_n.in)||or(this.model.out!=model_n.out)) {
                     var needcompile = 1;
                 }
                 if (or(this.model.firing!=model_n.firing)) {
@@ -198,11 +195,9 @@ function freq_div() {
                     var needcompile = 4;
                 }
             }
-            arg1[spath-1] = xxn;
             newpar[size(newpar)+1-1] = 1;
             var y = max(y,needcompile);
         }
-        this.x = arg1;
         var typ = newpar;
         return new BasicBlock(this.x);
     }

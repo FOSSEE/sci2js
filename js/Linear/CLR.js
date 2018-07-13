@@ -9,7 +9,7 @@ function CLR() {
         this.exprs = [["1"],["1+s"]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["csslti4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.state = new ScilabDouble([x0]);
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
@@ -33,10 +33,7 @@ function CLR() {
         this.num = arguments[0]["num"]
         this.den = arguments[0]["den"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var x0 = this.model.state;
         var rpar = this.model.rpar;
         var ns = prod(size(x0));

@@ -8,7 +8,7 @@ function ISELECT_m() {
         this.model.out = new ScilabDouble([-1],[-1]);
         this.model.out2 = new ScilabDouble([-2],[-2]);
         this.model.outtyp = new ScilabDouble([1]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([]);
@@ -41,10 +41,7 @@ function ISELECT_m() {
         this.nout = parseFloat(arguments[0]["nout"])
         this.z0 = parseFloat(arguments[0]["z0"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.typ,this.nout,this.z0,this.exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ...)","number of outputs","initial connected output"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

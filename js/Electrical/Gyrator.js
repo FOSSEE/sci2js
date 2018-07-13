@@ -42,7 +42,7 @@ function Gyrator() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
         this.x = standard_define([2,2],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = Typein;
@@ -63,11 +63,7 @@ function Gyrator() {
         this.G1 = arguments[0]["G1"]
         this.G2 = arguments[0]["G2"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        this.x = arg1;
         this.exprs = this.x.graphics.exprs;
         while (true) {
             [ok,this.G1,this.G2,this.exprs] = scicos_getvalue([["Set Gyrator block parameters:"],[""],["G1: Gyration conductance"],["G2: Gyration conductance"]],["G1","G2"],list("vec",1,"vec",1),this.exprs);

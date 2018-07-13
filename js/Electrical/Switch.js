@@ -15,7 +15,7 @@ function Switch() {
         mo.outputs = "n";
         mo.parameters = list(S,Z);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.model.rpar = new ScilabDouble([Z]);
         this.exprs = string(Z);
@@ -39,10 +39,7 @@ function Switch() {
         this.Ron = parseFloat(arguments[0]["Ron"])
         this.Roff = parseFloat(arguments[0]["Roff"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.Ron,this.Roff,this.exprs] = scicos_getvalue("Set non-ideal electrical switch parameters",["Resistance in On state (Ohm)","Resistance in Off state (Ohm)"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {

@@ -5,7 +5,7 @@ function PAL_f() {
         scs.props.title = "Palette";
         this.model = scicos_model();
         this.model.sim = new ScilabString(["palette"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([]);
         this.model.rpar = new ScilabDouble([scs]);
         this.model.blocktype = new ScilabString(["h"]);
@@ -24,14 +24,10 @@ function PAL_f() {
         return options;
     }
     PAL_f.prototype.set = function PAL_f() {
-        var tmpvar0 = scicos(arg1.model.rpar);
         this.x = tmpvar0[0];
         var newparameters = tmpvar0[1];
         var needcompile = tmpvar0[2];
         var edited = tmpvar0[3];
-        arg1.graphics.id = this.x.props.title[1-1];
-        arg1.model.rpar = this.x;
-        this.x = arg1;
         var y = [];
         var typ = [];
         %exit = resume(false)

@@ -4,7 +4,7 @@ function LOGIC() {
         this.mat = [[0],[0],[0],[1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["logic"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
@@ -34,10 +34,7 @@ function LOGIC() {
         this.mat = inverse(arguments[0]["mat"])
         this.herit = arguments[0]["herit"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.mat,this.herit,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","LOGIC")],[" "],["Combinatorial logic"],[" "],["&nbsp; Rows of the matrix are the output values"],["&nbsp; Number of rows must be a power of two."],["&nbsp; Number of columns gives the number of outputs."],[" "]],["Truth Table (matrix of outputs)","Accepts Inherited Events (0:No, 1:Yes)"],list("mat",[-1,-2],"vec",1),this.exprs);
             if (!ok) {

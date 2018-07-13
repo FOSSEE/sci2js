@@ -2,7 +2,7 @@
 function Inductor() {
     Inductor.prototype.define = function Inductor() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.L = 1.e-5;
         this.model.rpar = new ScilabDouble([this.L]);
@@ -33,10 +33,7 @@ function Inductor() {
     Inductor.prototype.set = function Inductor() {
         this.L = parseFloat(arguments[0]["L"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.L,this.exprs] = scicos_getvalue("Set Inductor block parameter","L (H)",list("vec",1),this.exprs);
             if (!ok) {

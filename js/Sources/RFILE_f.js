@@ -45,10 +45,7 @@ function RFILE_f() {
         this.frmt1 = parseFloat(arguments[0]["frmt1"])
         this.N = parseFloat(arguments[0]["N"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var dstate = this.model.dstate;
         var ipar = this.model.ipar;
         var ievt = ipar[3-1];

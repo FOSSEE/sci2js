@@ -8,7 +8,7 @@ function IMPSPLIT_f() {
         mo.inputs = "n";
         mo.outputs = [["n"],["n"]];
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.x = standard_define([1,1]/3,this.model,[],[]);
         this.x.graphics.in_implicit = ["I"];
@@ -24,7 +24,6 @@ function IMPSPLIT_f() {
         return options;
     }
     IMPSPLIT_f.prototype.set = function IMPSPLIT_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

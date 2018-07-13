@@ -3,7 +3,7 @@ function func_block() {
     func_block.prototype.define = function func_block() {
         this.model = scicos_model();
         this.model.sim = new ScilabString([" "]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -21,10 +21,7 @@ function func_block() {
         return options;
     }
     func_block.prototype.set = function func_block() {
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.x = arg1;
         this.model = this.x.model;
         var tmpvar0 = genfunc(this.exprs);
         var ok = tmpvar0[0];

@@ -6,7 +6,7 @@ function CONSTRAINT2_c() {
         this.id = [0];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["constraint_c"]), new ScilabDouble([10004]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.state = new ScilabDouble([this.x0],[this.xd0]);
         this.model.ipar = new ScilabDouble(this.id);
@@ -33,10 +33,7 @@ function CONSTRAINT2_c() {
         this.xd0 = inverse(arguments[0]["xd0"])
         this.id = inverse(arguments[0]["id"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             var ask_again = false;
             [ok,this.x0,this.xd0,this.id,this.exprs] = scicos_getvalue("Set Constraint block parameters",["Initial guess values of states x","Initial guess values of derivative x\'","Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0"],list("vec",-1,"vec",-1,"vec",-1),this.exprs);
@@ -73,7 +70,7 @@ function CONSTRAINT2_c() {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.state = new ScilabDouble([this.x0],[this.xd0]);
                 this.model.out = new ScilabDouble([N],[N]);
-                this.model.in1 = new ScilabDouble([N]);
+                this.model.in = new ScilabDouble([N]);
                 this.model.ipar = new ScilabDouble(this.id);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;

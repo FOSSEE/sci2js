@@ -2,7 +2,7 @@
 function PotentialSensor() {
     PotentialSensor.prototype.define = function PotentialSensor() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([]);
         this.model.sim = new ScilabString(["PotentialSensor"]);
@@ -28,7 +28,6 @@ function PotentialSensor() {
         return options;
     }
     PotentialSensor.prototype.set = function PotentialSensor() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

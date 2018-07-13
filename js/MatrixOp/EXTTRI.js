@@ -5,7 +5,7 @@ function EXTTRI() {
         var function_name = "extrilz";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -39,9 +39,6 @@ function EXTTRI() {
         this.typ = inverse(arguments[0]["typ"])
         this.decomptyp = arguments[0]["decomptyp"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -82,7 +79,7 @@ function EXTTRI() {
                 message("Datatype is not supported");
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -93,10 +90,7 @@ function EXTTRI() {
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-                arg1.model = this.model;
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                this.x = arg1;
                 break;
             }
         }

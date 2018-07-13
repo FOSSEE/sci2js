@@ -29,9 +29,6 @@ function M_freq() {
         this.frequ = inverse(arguments[0]["frequ"])
         this.offset = inverse(arguments[0]["offset"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.frequ,this.offset,this.exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",-1,"vec",-1),this.exprs);

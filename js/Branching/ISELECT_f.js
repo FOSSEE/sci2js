@@ -6,7 +6,7 @@ function ISELECT_f() {
         this.nout = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["selector"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble(out);
         this.model.evtin = new ScilabDouble([ones(out)]);
         this.model.dstate = new ScilabDouble([this.z0]);
@@ -31,10 +31,7 @@ function ISELECT_f() {
         this.nout = parseFloat(arguments[0]["nout"])
         this.z0 = parseFloat(arguments[0]["z0"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nout,this.z0,this.exprs] = scicos_getvalue("Set parameters",["number of outputs","initial connected output"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {

@@ -4,7 +4,7 @@ function BACKLASH() {
         this.exprs = [["0"],["1"],["1"]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["backlash"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([0],[1]);
         this.model.nzcross = new ScilabDouble([2]);
@@ -30,10 +30,7 @@ function BACKLASH() {
         this.gap = arguments[0]["gap"]
         this.zcr = arguments[0]["zcr"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var rpar = this.model.rpar;
         while (true) {
             [ok,this.ini,this.gap,this.zcr,this.exprs] = scicos_getvalue("Set backlash parameters",["initial output","gap","use zero-crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);

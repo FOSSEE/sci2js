@@ -9,7 +9,7 @@ function CURV_f() {
         var rpar = [[xx],[yy],[rect.slice()]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["intplt"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([xx],[yy],[rect.slice()]);
         this.model.ipar = new ScilabDouble([size(xx,1)],[axisdata.slice()]);
@@ -28,9 +28,6 @@ function CURV_f() {
         return options;
     }
     CURV_f.prototype.set = function CURV_f() {
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var rpar = this.model.rpar;
         var ipar = this.model.ipar;
         var n = ipar[1-1];

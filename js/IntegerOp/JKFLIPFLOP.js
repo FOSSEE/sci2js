@@ -34,7 +34,7 @@ function JKFLIPFLOP() {
         scs_m.objs[22-1] = scicos_link(xx=[[446.2036],[466.2036]],yy=[[179.25363],[179.25363]],id="drawlink",thick=[0,0],ct=[1,1],from=[9,1,0],to=[21,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([1],[1],[1]);
+        this.model.in = new ScilabDouble([1],[1],[1]);
         this.model.in2 = new ScilabDouble([1],[1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);
@@ -59,15 +59,12 @@ function JKFLIPFLOP() {
     JKFLIPFLOP.prototype.set = function JKFLIPFLOP() {
         this.init = parseFloat(arguments[0]["init"])
         this.exprs0 = arguments[0]["exprs0"]
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
-        var xx = arg1.model.rpar.objs[path-1];
         this.exprs = xx.graphics.exprs[1-1];
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
@@ -85,7 +82,6 @@ function JKFLIPFLOP() {
                 xx.graphics.exprs[1-1] = this.exprs0;
                 this.model.odstate[1-1] = new ScilabDouble([this.init]);
                 xx.model = this.model;
-                arg1.model.rpar.objs[path-1] = xx;
                 break;
             }
         }
@@ -94,7 +90,6 @@ function JKFLIPFLOP() {
             newpar[size(newpar)+1-1] = 1;
             var needcompile = 2;
         }
-        this.x = arg1;
         var y = needcompile;
         var typ = newpar;
         return new BasicBlock(this.x);

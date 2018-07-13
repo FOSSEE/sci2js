@@ -3,7 +3,7 @@ function TrigFun() {
     TrigFun.prototype.define = function TrigFun() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["sin_blk"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -23,10 +23,7 @@ function TrigFun() {
     TrigFun.prototype.set = function TrigFun() {
         this.fun = arguments[0]["fun"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var PREVAR_FF = [["sin"],["cos"],["tan"],["asin"],["acos"],["atan"],["sinh"],["cosh"],["tanh"],["asinh"],["acosh"],["atanh"]];
         var PREVAR_GG = [["Choose among "+strcat(PREVAR_FF.slice(1-1,4),", ")],[strcat(PREVAR_FF.slice(5-1,$),", ")]];
         while (true) {

@@ -4,7 +4,7 @@ function CONST_m() {
         this.C = [1];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cstblk4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([size(this.C,1)]);
         this.model.in2 = new ScilabDouble([]);
         this.model.out2 = new ScilabDouble([size(this.C,2)]);
@@ -28,10 +28,7 @@ function CONST_m() {
     CONST_m.prototype.set = function CONST_m() {
         this.C = inverse(arguments[0]["C"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.C,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONST_m")],[" "],["Constant value generator"],[" "]],"Constant Value",list("vec",-1),this.exprs);
             if (!ok) {

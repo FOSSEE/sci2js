@@ -2,7 +2,7 @@
 function OUTIMPL_f() {
     OUTIMPL_f.prototype.define = function OUTIMPL_f() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([1]);
         this.prt = 1;
         this.model.sim = new ScilabString(["outimpl"]);
@@ -30,10 +30,7 @@ function OUTIMPL_f() {
     OUTIMPL_f.prototype.set = function OUTIMPL_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[1-1];
         }

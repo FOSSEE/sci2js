@@ -10,7 +10,7 @@ function WRITEAU_f() {
         this.N = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["writeau"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([-1],[lunit],[zeros((nin+1)*this.N,1)]);
         this.model.ipar = new ScilabDouble([length(fname)],[this._str2code[frmt-1]],[this.N],[this.swap],[this._str2code[fname-1]]);
@@ -35,10 +35,7 @@ function WRITEAU_f() {
         this.N = parseFloat(arguments[0]["N"])
         this.swap = parseFloat(arguments[0]["swap"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var ipar = this.model.ipar;
         var dstate = this.model.dstate;
         var lunit = dstate[2-1];
@@ -66,7 +63,7 @@ function WRITEAU_f() {
                 if (prod(size(dstate))!=(nin+1)*this.N+2) {
                     var dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
                 }
-                this.model.in1 = new ScilabDouble([1]);
+                this.model.in = new ScilabDouble([1]);
                 this.model.dstate = new ScilabDouble(dstate);
                 this.model.ipar = new ScilabDouble(ipar);
                 this.graphics.exprs = new ScilabDouble([this.exprs]);

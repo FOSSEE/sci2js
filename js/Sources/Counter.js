@@ -34,10 +34,7 @@ function Counter() {
         this.maxim = parseFloat(arguments[0]["maxim"])
         this.rule = parseFloat(arguments[0]["rule"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.minim,this.maxim,this.rule,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Counter")],[" "],["Integer counter generator"],[" "]],["Minimum","Maximum","Rule (1:Increment, 2:Decrement)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

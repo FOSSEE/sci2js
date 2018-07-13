@@ -3,7 +3,7 @@ function MOTOR() {
     MOTOR.prototype.define = function MOTOR() {
         this.model = scicos_model();
         this.model.out = new ScilabDouble([1],[1]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.sim = new ScilabString(["motor"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -23,7 +23,6 @@ function MOTOR() {
         return options;
     }
     MOTOR.prototype.set = function MOTOR() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

@@ -5,7 +5,7 @@ function QUANT_f() {
         this.meth = 1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["qzrnd"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble([this.pas]);
         this.model.ipar = new ScilabDouble([this.meth]);
@@ -30,10 +30,7 @@ function QUANT_f() {
         this.pas = parseFloat(arguments[0]["pas"])
         this.meth = parseFloat(arguments[0]["meth"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.pas,this.meth,this.exprs] = scicos_getvalue("Set parameters",["Step","Quantization Type (1-4)"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {

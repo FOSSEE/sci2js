@@ -14,10 +14,7 @@ function DSUPER() {
     DSUPER.prototype.set = function DSUPER() {
         var y = this.needcompile;
         var typ = list();
-        this.graphics = arg1.graphics;
         if ((length(this.graphics.exprs)==0)) {
-            warnBlockByUID(arg1.model.label,"Invalid masked block.");
-            this.x = arg1;
             return;
         }
         this.exprs = this.graphics.exprs[1-1];
@@ -25,15 +22,12 @@ function DSUPER() {
         var btitre = this.graphics.exprs[2-1][2-1][1-1];
         var bitems = this.graphics.exprs[2-1][2-1].slice(2-1,$);
         if (exprs0==[]) {
-            this.x = arg1;
             return;
         }
-        var context = [arg1.model.rpar.props.context];
         var tmpvar0 = script2var(context,PREVAR_scicos_context);
         var PREVAR_scicos_context = tmpvar0[0];
         var ierr = tmpvar0[1];
         if (ierr!=0) {
-            this.x = arg1;
             return;
         }
         var tt = "scicos_context."+exprs0[1-1];
@@ -44,7 +38,6 @@ function DSUPER() {
         var scicos_context = PREVAR_scicos_context;
         execstr("[ok,"+tt+",exprs]=scicos_getvalue(btitre,bitems,ss,exprs)");
         if (this.ok) {
-            this.x = arg1;
             var PREVAR_scicos_context = scicos_context;
             var sblock = this.x.model.rpar;
             var tmpvar1 = do_eval(sblock,list(),scicos_context);
@@ -56,7 +49,6 @@ function DSUPER() {
             this.x.graphics.exprs[1-1] = this.exprs;
             this.x.model.rpar = sblock;
         } else {
-            this.x = arg1;
         }
         return new BasicBlock(this.x);
     }

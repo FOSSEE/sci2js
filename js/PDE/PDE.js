@@ -4,7 +4,7 @@ function PDE() {
         this.model = scicos_model();
         this.model.state = new ScilabDouble([zeros(10,1)]);
         this.model.sim = list(new ScilabString(["PDE"]), new ScilabDouble([0]));
-        this.model.in1 = new ScilabDouble([1],[1],[1],[1],[1]);
+        this.model.in = new ScilabDouble([1],[1],[1],[1],[1]);
         this.model.out = new ScilabDouble([10],[0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
@@ -26,10 +26,7 @@ function PDE() {
         this.okk = parseBoolean(arguments[0]["okk"])
         this.rdnom = arguments[0]["rdnom"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         var params_pde = label[1-1];
         while (true) {
             [ln,fun]=where()

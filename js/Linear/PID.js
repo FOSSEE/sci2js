@@ -25,7 +25,7 @@ function PID() {
         scs_m.objs[21-1] = scicos_link(xx=[[213.97067],[233.97067]],yy=[[203.11733],[203.11733]],id="drawlink",thick=[0,0],ct=[1,1],from=[20,1,0],to=[15,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([-2]);
@@ -56,11 +56,7 @@ function PID() {
         this.d = arguments[0]["d"]
         this.exprs0 = arguments[0]["exprs0"]
         var ppath = list(0,0,0);
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[this.i-1];
             if (typeof(o)=="Link") {
-                var from = arg1.model.rpar.objs[o.from[1-1]-1];
-                var to = arg1.model.rpar.objs[o.to[1-1]-1];
                 if (from.gui=="GAINBLK") {
                     switch (to.gui) {
                     case "SUMMATION":
@@ -86,13 +82,10 @@ function PID() {
             }
         }
         var newpar = list();
-        var xx1 = arg1.model.rpar.objs[ppath[1-1]-1];
         this.exprs[1-1] = xx1.graphics.exprs[1-1];
         var p_old = xx1.model.rpar;
-        var xx2 = arg1.model.rpar.objs[ppath[2-1]-1];
         this.exprs[2-1] = xx2.graphics.exprs[1-1];
         var i_old = xx2.model.rpar;
-        var xx3 = arg1.model.rpar.objs[ppath[3-1]-1];
         this.exprs[3-1] = xx3.graphics.exprs[1-1];
         var d_old = xx3.model.rpar;
         var y = 0;
@@ -108,9 +101,6 @@ function PID() {
                 xx2.model.rpar = this.i;
                 xx3.graphics.exprs = this.exprs0[3-1];
                 xx3.model.rpar = this.d;
-                arg1.model.rpar.objs[ppath[1-1]-1] = xx1;
-                arg1.model.rpar.objs[ppath[2-1]-1] = xx2;
-                arg1.model.rpar.objs[ppath[3-1]-1] = xx3;
                 break;
             }
         }
@@ -121,7 +111,6 @@ function PID() {
             newpar[size(newpar)+1-1] = ppath[3-1];
             var needcompile = 2;
         }
-        this.x = arg1;
         var y = max(y,needcompile);
         var typ = newpar;
         return new BasicBlock(this.x);

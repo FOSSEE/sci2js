@@ -8,7 +8,7 @@ function DLSS_f() {
         this.D = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["dsslti"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble(this.x0.slice());
@@ -40,13 +40,10 @@ function DLSS_f() {
         this.D = parseFloat(arguments[0]["D"])
         this.x0 = parseFloat(arguments[0]["x0"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
-        this.model = arg1.model;
         while (true) {
             [ok,this.A,this.B,this.C,this.D,this.x0,this.exprs] = scicos_getvalue("Set discrete linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),this.exprs);
             if (!ok) {

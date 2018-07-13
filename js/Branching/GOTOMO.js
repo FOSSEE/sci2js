@@ -3,7 +3,7 @@ function GOTOMO() {
     GOTOMO.prototype.define = function GOTOMO() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["gotomo"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([]);
         this.model.out = new ScilabDouble([]);
@@ -36,10 +36,7 @@ function GOTOMO() {
         this.tag = arguments[0]["tag"]
         this.tagvis = parseFloat(arguments[0]["tagvis"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tag,this.tagvis,this.exprs] = scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),this.exprs);
             if (!ok) {
@@ -60,7 +57,6 @@ function GOTOMO() {
                 this.model.ipar = new ScilabDouble([this.tagvis]);
                 this.x.model = this.model;
                 this.x.graphics = this.graphics;
-                var arg1 = this.x;
                 break;
             }
         }

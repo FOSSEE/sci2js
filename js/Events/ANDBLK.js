@@ -76,7 +76,6 @@ function ANDBLK() {
         return options;
     }
     ANDBLK.prototype.set = function ANDBLK() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

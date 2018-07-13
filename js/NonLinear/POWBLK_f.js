@@ -5,7 +5,7 @@ function POWBLK_f() {
         this.a = 1.5;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["powblk"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble([this.a]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -26,10 +26,7 @@ function POWBLK_f() {
     POWBLK_f.prototype.set = function POWBLK_f() {
         this.a = parseFloat(arguments[0]["a"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }

@@ -10,7 +10,7 @@ function VariableResistor() {
         mo.inputs = ["p","R"];
         mo.outputs = "n";
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = [];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VariableResistor\",sz(1),sz(2));"]);
@@ -28,7 +28,6 @@ function VariableResistor() {
         return options;
     }
     VariableResistor.prototype.set = function VariableResistor() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

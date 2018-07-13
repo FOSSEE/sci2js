@@ -6,7 +6,7 @@ function M_SWITCH() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["mswitch"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble(in1);
+        this.model.in = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
@@ -32,10 +32,7 @@ function M_SWITCH() {
         this.base = parseFloat(arguments[0]["base"])
         this.rule = arguments[0]["rule"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nin,this.base,this.rule,this.exprs] = scicos_getvalue("Set parameters",["number of inputs","zero base indexing (0), otherwise 1","rounding rule: int (0), round (1), ceil (2), floor (3)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

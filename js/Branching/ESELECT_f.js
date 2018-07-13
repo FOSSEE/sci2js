@@ -4,7 +4,7 @@ function ESELECT_f() {
         this.out = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["eselect"]), new ScilabDouble([-2]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.intyp = new ScilabDouble([-1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -35,8 +35,6 @@ function ESELECT_f() {
         this.inh = parseFloat(arguments[0]["inh"])
         this.nmod = parseFloat(arguments[0]["nmod"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==1) {
             this.exprs[2-1] = string(1);
@@ -44,7 +42,6 @@ function ESELECT_f() {
         if (size(this.exprs,"*")==2) {
             this.exprs[3-1] = string(0);
         }
-        this.model = arg1.model;
         while (true) {
             [ok,this.out,this.inh,this.nmod,this.exprs] = scicos_getvalue("Set ESELECT block parameters",["number of output event ports","Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

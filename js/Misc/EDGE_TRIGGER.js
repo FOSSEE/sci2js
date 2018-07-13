@@ -74,7 +74,7 @@ function EDGE_TRIGGER() {
         lnk={};
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EDGE_TRIGGER\",sz(1),sz(2));"]);
@@ -90,8 +90,6 @@ function EDGE_TRIGGER() {
         return options;
     }
     EDGE_TRIGGER.prototype.set = function EDGE_TRIGGER() {
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="EDGETRIGGER") {
                 var ppath = list(i);
                 break;
@@ -108,20 +106,19 @@ function EDGE_TRIGGER() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
-            var xx = arg1[spath-1];
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (diffobjs(this.xxn,xx)) {
                 this.model = xx.model;
                 var model_n = this.xxn.model;
                 if (!is_modelica_block(xx)) {
                     var modified = or(this.model.sim!=model_n.sim)||!isequal(this.model.state,model_n.state)||!isequal(this.model.dstate,model_n.dstate)||!isequal(this.model.rpar,model_n.rpar)||!isequal(this.model.ipar,model_n.ipar)||!isequal(this.model.label,model_n.label);
-                    if (or(this.model.in1!=model_n.in1)||or(this.model.out!=model_n.out)) {
+                    if (or(this.model.in!=model_n.in)||or(this.model.out!=model_n.out)) {
                         var needcompile = 1;
                     }
                     if (or(this.model.firing!=model_n.firing)) {
                         var needcompile = 2;
                     }
-                    if ((size(this.model.in1,"*")!=size(model_n.in1,"*"))||(size(this.model.out,"*")!=size(model_n.out,"*"))) {
+                    if ((size(this.model.in,"*")!=size(model_n.in,"*"))||(size(this.model.out,"*")!=size(model_n.out,"*"))) {
                         var needcompile = 4;
                     }
                     if (this.model.sim=="input"||this.model.sim=="output") {
@@ -150,12 +147,10 @@ function EDGE_TRIGGER() {
                         var needcompile = 4;
                     }
                 }
-                arg1[spath-1] = this.xxn;
                 newpar[size(newpar)+1-1] = path;
                 var y = max(y,needcompile);
             }
         }
-        this.x = arg1;
         var typ = newpar;
         return new BasicBlock(this.x);
     }

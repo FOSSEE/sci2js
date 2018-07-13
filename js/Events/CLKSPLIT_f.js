@@ -20,7 +20,6 @@ function CLKSPLIT_f() {
         return options;
     }
     CLKSPLIT_f.prototype.set = function CLKSPLIT_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

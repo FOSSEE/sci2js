@@ -7,7 +7,7 @@ function INTEGRAL_m() {
         this.model = scicos_model();
         this.model.state = new ScilabDouble([0]);
         this.model.sim = list(new ScilabString(["integral_func"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
@@ -39,10 +39,7 @@ function INTEGRAL_m() {
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.lowp = parseFloat(arguments[0]["lowp"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,this.exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("mat",[-1,-1],"vec",1,"vec",1,"mat",[-1,-1],"mat",[-1,-1]),this.exprs);
             if (!ok) {

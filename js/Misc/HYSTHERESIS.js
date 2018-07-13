@@ -7,7 +7,7 @@ function HYSTHERESIS() {
         var rpar = [[1],[0],[1],[0]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["hystheresis"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble(rpar);
         this.model.nzcross = new ScilabDouble([this.nzz]);
@@ -39,10 +39,7 @@ function HYSTHERESIS() {
         this.out_low = arguments[0]["out_low"]
         this.nzz = parseFloat(arguments[0]["nzz"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.high_lim,this.low_lim,this.out_high,this.out_low,this.nzz,this.exprs] = scicos_getvalue("Set parameters",["switch on at","switch off at","output when on","output when off","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

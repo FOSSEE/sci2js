@@ -24,9 +24,6 @@ function IN_f() {
         return options;
     }
     IN_f.prototype.set = function IN_f() {
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[1-1];

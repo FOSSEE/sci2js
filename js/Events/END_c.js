@@ -26,10 +26,7 @@ function END_c() {
     END_c.prototype.set = function END_c() {
         this.tf = parseFloat(arguments[0]["tf"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tf,this.exprs] = scicos_getvalue("Set final simulation time",["Final simulation time"],list("vec",1),this.exprs);
             if (!ok) {

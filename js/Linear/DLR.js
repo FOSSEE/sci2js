@@ -9,7 +9,7 @@ function DLR() {
         this.exprs = [["1"],["1+z"]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["dsslti4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble(x0.slice());
@@ -34,10 +34,7 @@ function DLR() {
         this.num = arguments[0]["num"]
         this.den = arguments[0]["den"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var x0 = this.model.dstate;
         var ns = prod(size(x0));
         var PREVAR_scicos_context = PREVAR_scicos_context;

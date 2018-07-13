@@ -7,7 +7,7 @@ function MATCATV() {
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in2 = new ScilabDouble([-1],[-1]);
-        this.model.in1 = new ScilabDouble([-2],[-3]);
+        this.model.in = new ScilabDouble([-2],[-3]);
         this.model.intyp = new ScilabDouble([-1,-1]);
         this.model.out = new ScilabDouble([0]);
         this.model.out2 = new ScilabDouble([-1]);
@@ -38,9 +38,6 @@ function MATCATV() {
     MATCATV.prototype.set = function MATCATV() {
         this.nin = arguments[0]["nin"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")>1) {
             var label = "size(evstr("+label[2-1]+"),\'*\')";
@@ -63,9 +60,6 @@ function MATCATV() {
                 var funtyp = 4;
                 this.model.sim = list(new ScilabString(["mat_catv"]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }

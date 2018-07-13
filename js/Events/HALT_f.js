@@ -26,10 +26,7 @@ function HALT_f() {
     HALT_f.prototype.set = function HALT_f() {
         this.n = parseFloat(arguments[0]["n"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.n,this.exprs] = scicos_getvalue("Set Halt block parameters",["State on halt"],list("vec",1),this.exprs);
             if (!ok) {

@@ -2,7 +2,7 @@
 function CurrentSensor() {
     CurrentSensor.prototype.define = function CurrentSensor() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.sim = new ScilabString(["CurrentSensor"]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -28,7 +28,6 @@ function CurrentSensor() {
         return options;
     }
     CurrentSensor.prototype.set = function CurrentSensor() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

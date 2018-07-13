@@ -2,7 +2,7 @@
 function Ground() {
     Ground.prototype.define = function Ground() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([]);
         this.model.sim = new ScilabString(["Ground"]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -27,7 +27,6 @@ function Ground() {
         return options;
     }
     Ground.prototype.set = function Ground() {
-        this.x = arg1;
         return new GroundBlock(this.x);
     }
 }

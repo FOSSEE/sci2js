@@ -5,7 +5,7 @@ function ZCROSS_f() {
         this.in1 = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["zcross"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([this.in1]);
+        this.model.in = new ScilabDouble([this.in1]);
         this.model.nzcross = new ScilabDouble([this.in1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([-1],[-1],[0],[0]);
@@ -28,10 +28,7 @@ function ZCROSS_f() {
     ZCROSS_f.prototype.set = function ZCROSS_f() {
         this.in1 = parseFloat(arguments[0]["in1"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.in1,this.exprs] = scicos_getvalue([["Set Zero-Crossing parameters"],["All surfaces must cross together"]],"Input size",list("vec",1),this.exprs);
             if (!ok) {
@@ -47,7 +44,7 @@ function ZCROSS_f() {
                 }
                 this.model.rpar = new ScilabDouble([-ones(kk,1)],[zeros(2^(2*this.in1)-kk,1)]);
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
-                this.model.in1 = new ScilabDouble([this.in1]);
+                this.model.in = new ScilabDouble([this.in1]);
                 this.model.nzcross = new ScilabDouble([this.in1]);
                 this.model.firing = new ScilabDouble([-1]);
                 this.x.graphics = this.graphics;

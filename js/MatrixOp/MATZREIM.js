@@ -5,7 +5,7 @@ function MATZREIM() {
         var function_name = "matz_reim";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([2]);
         this.model.out = new ScilabDouble([-1],[-1]);
@@ -37,9 +37,6 @@ function MATZREIM() {
     MATZREIM.prototype.set = function MATZREIM() {
         this.decomptyp = arguments[0]["decomptyp"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -75,10 +72,7 @@ function MATZREIM() {
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-                arg1.model = this.model;
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                this.x = arg1;
                 break;
             }
         }

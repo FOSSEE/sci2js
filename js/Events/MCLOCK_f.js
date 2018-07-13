@@ -78,8 +78,6 @@ function MCLOCK_f() {
         return options;
     }
     MCLOCK_f.prototype.set = function MCLOCK_f() {
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="MFCLCK_f") {
                 var path = i;
                 break;
@@ -87,13 +85,10 @@ function MCLOCK_f() {
         }
         var newpar = list();
         var spath = list("model","rpar","objs",path);
-        var xx = arg1[spath-1];
         execstr("xxn="+xx.gui+"(\'set\',xx)");
         if (or(this.xxn!=xx)) {
-            arg1[spath-1] = this.xxn;
             newpar[size(newpar)+1-1] = path;
         }
-        this.x = arg1;
         var y = 0;
         var typ = newpar;
         return new BasicBlock(this.x);

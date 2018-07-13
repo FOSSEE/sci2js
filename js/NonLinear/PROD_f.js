@@ -3,7 +3,7 @@ function PROD_f() {
     PROD_f.prototype.define = function PROD_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["prod"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble([-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -19,7 +19,6 @@ function PROD_f() {
         return options;
     }
     PROD_f.prototype.set = function PROD_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

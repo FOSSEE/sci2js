@@ -3,7 +3,7 @@ function MATTRAN() {
     MATTRAN.prototype.define = function MATTRAN() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["mattran_m"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.out = new ScilabDouble([-2]);
         this.model.out2 = new ScilabDouble([-1]);
@@ -27,10 +27,7 @@ function MATTRAN() {
         this.typ = inverse(arguments[0]["typ"])
         this.rule = arguments[0]["rule"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==1) {
             label[2-1] = sci2exp(1);
         }
@@ -55,7 +52,7 @@ function MATTRAN() {
                 message("Datatype is not supported");
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -66,9 +63,6 @@ function MATTRAN() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }

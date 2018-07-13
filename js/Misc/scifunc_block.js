@@ -12,7 +12,7 @@ function scifunc_block() {
         this.rpar = [];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["scifunc"]), new ScilabDouble([3]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
         this.model.evtin = new ScilabDouble(clkin);
         this.model.evtout = new ScilabDouble(clkout);
@@ -58,9 +58,6 @@ function scifunc_block() {
         this.deptime = arguments[0]["deptime"]
         this.lab = arguments[0]["lab"]
         var needcompile = 0;
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs[1-1],"*")==8) {
             this.exprs[1-1][9-1] = "0";

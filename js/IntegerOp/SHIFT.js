@@ -5,7 +5,7 @@ function SHIFT() {
         var OPER = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["shift_32_LA"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.out2 = new ScilabDouble([-2]);
@@ -36,9 +36,6 @@ function SHIFT() {
         this.nb = arguments[0]["nb"]
         this.np = arguments[0]["np"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.Datatype,this.nb,this.np,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","SHIFT")],[" "],["Shift/Rotates bits"]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Number of Bits to Shift Left (Negative number to shift right)","Shift Type (0:Arithmetic, 1:Circular)"],list("vec",1,"vec",1,"vec",1),this.exprs);

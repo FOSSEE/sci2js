@@ -18,8 +18,6 @@ function DEBUG() {
         return options;
     }
     DEBUG.prototype.set = function DEBUG() {
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var textmp = this.exprs[2-1];
         var ok = true;

@@ -89,13 +89,13 @@ p21
 sS'mess'
 p22
 g2
-sS'model.in1'
-p23
-g5
 sS'model.rpar'
-p24
+p23
 g2
 sS'N'
+p24
+g5
+sS'model.in'
 p25
 g5
 sS'wdim'

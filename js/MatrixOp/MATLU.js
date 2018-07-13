@@ -5,7 +5,7 @@ function MATLU() {
         var function_name = "mat_lu";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-1]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1],[-1]);
@@ -37,9 +37,6 @@ function MATLU() {
     MATLU.prototype.set = function MATLU() {
         this.typ = inverse(arguments[0]["typ"])
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -62,7 +59,7 @@ function MATLU() {
                 var ok = false;
             }
             if (ok) {
-                var tmpvar0 = set_io(this.model,this.graphics,list([this.model.in1,this.model.in2],it),list([this.model.out,this.model.out2],ot),[],[]);
+                var tmpvar0 = set_io(this.model,this.graphics,list([this.model.in,this.model.in2],it),list([this.model.out,this.model.out2],ot),[],[]);
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];

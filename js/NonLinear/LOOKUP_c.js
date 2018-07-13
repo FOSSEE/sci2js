@@ -8,7 +8,7 @@ function LOOKUP_c() {
         this.Method = 1;
         var Graf = "n";
         this.model.sim = list(new ScilabString(["lookup_c"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.outtyp = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
@@ -46,9 +46,6 @@ function LOOKUP_c() {
         this.extrapo = parseFloat(arguments[0]["extrapo"])
         this.graf = arguments[0]["graf"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;

@@ -4,7 +4,7 @@ function MUX_f() {
         this.in1 = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["mux"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble(-transpose([1:this.in1]));
+        this.model.in = new ScilabDouble(-transpose([1:this.in1]));
         this.model.out = new ScilabDouble([0]);
         this.model.ipar = new ScilabDouble([this.in1]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -25,10 +25,7 @@ function MUX_f() {
     MUX_f.prototype.set = function MUX_f() {
         this.in1 = parseFloat(arguments[0]["in1"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.in1,this.exprs] = scicos_getvalue("Set MUX block parameters","number of input ports or vector of sizes",list("vec",-1),this.exprs);
             if (!ok) {

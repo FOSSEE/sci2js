@@ -4,7 +4,7 @@ function TANBLK_f() {
         var in1 = -1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["tanblk"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([in1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -22,7 +22,6 @@ function TANBLK_f() {
         return options;
     }
     TANBLK_f.prototype.set = function TANBLK_f() {
-        this.x = arg1;
         this.x.model.firing = [];
         return new BasicBlock(this.x);
     }

@@ -39,7 +39,7 @@ p8
 sS'model.in2'
 p9
 g2
-sS'model.in1'
+sS'model.intyp'
 p10
 g2
 sS'x.graphics'
@@ -52,10 +52,10 @@ p13
 sS'model.out2'
 p14
 g8
-sS'model.intyp'
+sS'y'
 p15
 g2
-sS'y'
+sS'model.in'
 p16
 g2
 sS'graphics.exprs'

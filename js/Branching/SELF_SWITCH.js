@@ -9,7 +9,7 @@ function SELF_SWITCH() {
         this.x.graphics.pin = 0;
         this.x.graphics.pout = 0;
         this.x.model.sim = "csuper";
-        this.x.model.in1 = 1;
+        this.x.model.in = 1;
         this.x.model.out = 1;
         this.x.model.blocktype = "h";
         this.x.model.dep_ut = [false,false];
@@ -31,7 +31,6 @@ function SELF_SWITCH() {
         return options;
     }
     SELF_SWITCH.prototype.set = function SELF_SWITCH() {
-        this.x = arg1;
         this.stateOpen = this.x.model.opar[1-1];
         this.x.model.rpar = genSwitchInnerDiagram(!this.stateOpen);
         this.x.model.opar = list(!this.stateOpen);

@@ -7,7 +7,7 @@ function DOLLAR_f() {
         this.exprs = string([[z],[this.inh]]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["dollar"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([in1]);
         this.model.evtin = new ScilabDouble([1-this.inh]);
         this.model.dstate = new ScilabDouble([z]);
@@ -31,10 +31,7 @@ function DOLLAR_f() {
         this.a = arguments[0]["a"]
         this.inh = parseFloat(arguments[0]["inh"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")<2) {
             this.exprs[2-1] = "0";
         }
@@ -57,7 +54,7 @@ function DOLLAR_f() {
             if (ok) {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.dstate = new ScilabDouble([this.a]);
-                this.model.in1 = new ScilabDouble(in1);
+                this.model.in = new ScilabDouble(in1);
                 this.model.out = new ScilabDouble(out);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;

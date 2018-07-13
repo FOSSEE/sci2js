@@ -7,7 +7,7 @@ function RAMP() {
         var rpar = [[this.slope],[this.stt],[this.iout]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["ramp"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
@@ -35,10 +35,7 @@ function RAMP() {
         this.stt = parseFloat(arguments[0]["stt"])
         this.iout = parseFloat(arguments[0]["iout"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.slope,this.stt,this.iout,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","RAMP")],[" "],["Ramp function"],[" "]],["Slope","Start Time","Initial Value"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

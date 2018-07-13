@@ -3,7 +3,7 @@ function CLKGotoTagVisibility() {
     CLKGotoTagVisibility.prototype.define = function CLKGotoTagVisibility() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["clkgototagvisibility"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.in2 = new ScilabDouble([]);
         this.model.out = new ScilabDouble([]);
         this.model.out2 = new ScilabDouble([]);
@@ -31,10 +31,7 @@ function CLKGotoTagVisibility() {
     CLKGotoTagVisibility.prototype.set = function CLKGotoTagVisibility() {
         this.tag = arguments[0]["tag"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tag,this.exprs] = scicos_getvalue("Set parameters",["GotoTag"],list("str",-1),this.exprs);
             if (!ok) {

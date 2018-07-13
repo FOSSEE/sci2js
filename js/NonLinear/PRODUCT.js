@@ -4,7 +4,7 @@ function PRODUCT() {
         this.sgn = [[1],[-1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["product"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
@@ -25,9 +25,6 @@ function PRODUCT() {
     PRODUCT.prototype.set = function PRODUCT() {
         this.sgn = inverse(arguments[0]["sgn"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.sgn,this.exprs] = scicos_getvalue([["         Set multiplication block parameters"],["(multiplication is set with + 1, division with -1)"],[""]],"Number of inputs or sign vector",list("vec",-1),this.exprs);

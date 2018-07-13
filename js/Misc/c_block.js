@@ -13,7 +13,7 @@ function c_block() {
         this.funam = "toto";
         this.model = scicos_model();
         this.model.sim = list(new ScilabString([" "]), new ScilabDouble([2001]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
         this.model.evtin = new ScilabDouble(clkin);
         this.model.evtout = new ScilabDouble(clkout);
@@ -47,9 +47,6 @@ function c_block() {
         this.rpar = inverse(arguments[0]["rpar"])
         this.funam = arguments[0]["funam"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         while (true) {
             [ok,this.i,this.o,this.rpar,this.funam,this.lab] = scicos_getvalue("Set C_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
@@ -66,7 +63,7 @@ function c_block() {
             this.o = int(this.o.slice());
             var no = size(this.o,1);
             var tt = label[2-1];
-            if (this.model.sim[1-1]!=this.funam||size(this.model.in1,"*")!=size(this.i,"*")||size(this.model.out,"*")!=size(this.o,"*")) {
+            if (this.model.sim[1-1]!=this.funam||size(this.model.in,"*")!=size(this.i,"*")||size(this.model.out,"*")!=size(this.o,"*")) {
                 var tt = [];
             }
             var tmpvar0 = CFORTR(this.funam,tt,this.i,this.o);

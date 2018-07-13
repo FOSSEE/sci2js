@@ -14,7 +14,7 @@ function CANIMXY() {
         this.nbr_curves = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["canimxy"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.intyp = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -60,10 +60,7 @@ function CANIMXY() {
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.N = parseFloat(arguments[0]["N"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.xmin,this.xmax,this.ymin,this.ymax,this.N,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of Curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin","Xmax","Ymin","Ymax","Buffer size"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

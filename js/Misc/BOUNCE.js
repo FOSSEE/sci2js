@@ -25,7 +25,7 @@ function BOUNCE() {
         var state = transpose(state);
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["bounce_ball"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([n],[n]);
         this.model.state = new ScilabDouble(state.slice());
         this.model.rpar = new ScilabDouble([this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]);
@@ -66,10 +66,7 @@ function BOUNCE() {
         this.g = parseFloat(arguments[0]["g"])
         this.C = parseFloat(arguments[0]["C"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")<9) {
             this.exprs[8-1] = "9.81";
             this.exprs[9-1] = "0";

@@ -13,7 +13,7 @@ function AUTOMAT() {
         var rpar = [this.X0];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["automat"]), new ScilabDouble([10004]));
-        this.model.in1 = new ScilabDouble([2*NX+1],[2*NX+1]);
+        this.model.in = new ScilabDouble([2*NX+1],[2*NX+1]);
         this.model.out = new ScilabDouble([2],[2*NX]);
         this.model.state = new ScilabDouble([ones(2*NX,1)]);
         this.model.nzcross = new ScilabDouble([1]);
@@ -36,10 +36,7 @@ function AUTOMAT() {
         return options;
     }
     AUTOMAT.prototype.set = function AUTOMAT() {
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var ipar = this.model.ipar;
         var NMode = ipar[1-1];
         var NX = ipar[3-1];

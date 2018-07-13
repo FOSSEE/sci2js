@@ -2,7 +2,7 @@
 function VanneReglante() {
     VanneReglante.prototype.define = function VanneReglante() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.Cvmax = 8005.42;
         this.p_rho = 0;
@@ -16,7 +16,7 @@ function VanneReglante() {
         mo.outputs = "C2";
         mo.parameters = list([["Cvmax"],["p_rho"]],[[this.Cvmax],[this.p_rho]]);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = [[string(this.Cvmax)],[string(this.p_rho)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VanneReglante\",sz(1),sz(2));"]);
@@ -39,10 +39,7 @@ function VanneReglante() {
         this.Cvmax = parseFloat(arguments[0]["Cvmax"])
         this.p_rho = parseFloat(arguments[0]["p_rho"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.Cvmax,this.p_rho,this.exprs] = scicos_getvalue("Paramètres de la vanne reglante",["Cvmax","p_rho"],list("vec",-1,"vec",-1),this.exprs);
             if (!ok) {

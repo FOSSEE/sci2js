@@ -4,7 +4,7 @@ function TRASH_f() {
         var in1 = -1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["trash"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
@@ -22,7 +22,6 @@ function TRASH_f() {
         return options;
     }
     TRASH_f.prototype.set = function TRASH_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

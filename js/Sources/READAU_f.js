@@ -41,10 +41,7 @@ function READAU_f() {
         this.N = parseFloat(arguments[0]["N"])
         this.swap = parseFloat(arguments[0]["swap"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var out = this.model.out;
         var dstate = this.model.dstate;
         var ipar = this.model.ipar;

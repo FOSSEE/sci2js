@@ -21,7 +21,6 @@ function CLKSOMV_f() {
         return options;
     }
     CLKSOMV_f.prototype.set = function CLKSOMV_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

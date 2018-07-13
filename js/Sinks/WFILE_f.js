@@ -9,7 +9,7 @@ function WFILE_f() {
         this.N = 2;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["writef"]);
-        this.model.in1 = new ScilabDouble([this.in1]);
+        this.model.in = new ScilabDouble([this.in1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([-1],[lunit],[zeros((nin+1)*this.N,1)]);
         this.model.ipar = new ScilabDouble([length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]]);
@@ -42,11 +42,7 @@ function WFILE_f() {
         var warnMessage = msprintf(_("Feature %s is obsolete."),"WFILE_f");
         var warnAdvise = msprintf(_("Please use %s instead."),"WRITEC_f");
         var warnXcosMessage = msprintf("%s %s",warnMessage,warnAdvise);
-        warnBlockByUID(arg1.model.label,warnXcosMessage);
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var dstate = this.model.dstate;
         var lunit = dstate[2-1];
         var fname = this.exprs[2-1];
@@ -93,7 +89,7 @@ function WFILE_f() {
                 if (prod(size(dstate))!=(nin+1)*this.N+2) {
                     var dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
                 }
-                this.model.in1 = new ScilabDouble([nin]);
+                this.model.in = new ScilabDouble([nin]);
                 this.model.dstate = new ScilabDouble(dstate);
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.dep_ut = new ScilabDouble([true,false]);

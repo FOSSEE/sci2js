@@ -5,7 +5,7 @@ function NRMSOM_f() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["junk"]);
-        this.model.in1 = new ScilabDouble(in1);
+        this.model.in = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -26,10 +26,7 @@ function NRMSOM_f() {
     NRMSOM_f.prototype.set = function NRMSOM_f() {
         this.nin = parseFloat(arguments[0]["nin"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nin,this.exprs] = scicos_getvalue("Set parameters",["number of inputs"],list("vec",1),this.exprs);
             if (!ok) {

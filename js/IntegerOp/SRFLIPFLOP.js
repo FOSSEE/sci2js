@@ -18,7 +18,7 @@ function SRFLIPFLOP() {
         scs_m.objs[14-1] = scicos_link(xx=[[363.03733],[383.03733]],yy=[[248.584],[248.584]],id="drawlink",thick=[0,0],ct=[1,1],from=[5,2,0],to=[13,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);
@@ -43,15 +43,12 @@ function SRFLIPFLOP() {
     SRFLIPFLOP.prototype.set = function SRFLIPFLOP() {
         this.init = parseFloat(arguments[0]["init"])
         this.exprs0 = arguments[0]["exprs0"]
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
-        var xx = arg1.model.rpar.objs[path-1];
         this.exprs = xx.graphics.exprs[1-1];
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
@@ -69,7 +66,6 @@ function SRFLIPFLOP() {
                 xx.graphics.exprs[1-1] = this.exprs0;
                 this.model.odstate[1-1] = new ScilabDouble([this.init]);
                 xx.model = this.model;
-                arg1.model.rpar.objs[path-1] = xx;
                 break;
             }
         }
@@ -78,7 +74,6 @@ function SRFLIPFLOP() {
             newpar[size(newpar)+1-1] = path;
             var needcompile = 2;
         }
-        this.x = arg1;
         var y = needcompile;
         var typ = newpar;
         return new BasicBlock(this.x);

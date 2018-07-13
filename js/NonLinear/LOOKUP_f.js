@@ -3,7 +3,7 @@ function LOOKUP_f() {
     LOOKUP_f.prototype.define = function LOOKUP_f() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["lookup"]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([-2],[-1],[1],[2],[-1],[1],[-1],[1]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -21,10 +21,7 @@ function LOOKUP_f() {
         return options;
     }
     LOOKUP_f.prototype.set = function LOOKUP_f() {
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var rpar = this.model.rpar;
         var n = size(rpar,"*")/2;
         var xx = rpar.slice(1-1,n);

@@ -3,7 +3,7 @@ function SQRT() {
     SQRT.prototype.define = function SQRT() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["mat_sqrt"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
@@ -27,10 +27,7 @@ function SQRT() {
     SQRT.prototype.set = function SQRT() {
         this.typ = inverse(arguments[0]["typ"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.typ,this.exprs] = scicos_getvalue("Set SQRT Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
             if (!ok) {
@@ -46,7 +43,7 @@ function SQRT() {
             }
             var it = this.typ;
             var ot = this.typ;
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -57,9 +54,6 @@ function SQRT() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }

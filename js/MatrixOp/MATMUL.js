@@ -3,7 +3,7 @@ function MATMUL() {
     MATMUL.prototype.define = function MATMUL() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["matmul_m"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1],[-2]);
+        this.model.in = new ScilabDouble([-1],[-2]);
         this.model.in2 = new ScilabDouble([-2],[-3]);
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([-3]);
@@ -30,7 +30,6 @@ function MATMUL() {
         this.rule = parseFloat(arguments[0]["rule"])
         this.np = parseFloat(arguments[0]["np"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
         this.graphics = this.x.graphics;
         var label = this.graphics.exprs;
         this.model = this.x.model;
@@ -158,7 +157,6 @@ function MATMUL() {
                 this.graphics.exprs = new ScilabDouble([label]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
-                var arg1 = this.x;
                 break;
             }
         }

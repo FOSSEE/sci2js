@@ -7,7 +7,7 @@ function TOWS_c() {
         this.herit = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["tows_c"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([nu]);
+        this.model.in = new ScilabDouble([nu]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([]);
@@ -39,9 +39,6 @@ function TOWS_c() {
         this.varnam = arguments[0]["varnam"]
         this.herit = parseFloat(arguments[0]["herit"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.nz,this.varnam,this.herit,this.exprs] = scicos_getvalue("Set Xcos buffer block",["Size of buffer","Scilab variable name","Inherit (no:0, yes:1)"],list("vec",1,"str",1,"vec",1),this.exprs);

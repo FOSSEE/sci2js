@@ -6,7 +6,7 @@ function DEADBAND() {
         var rpar = [[this.maxp],[this.minp]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["deadband"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([2]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
@@ -34,10 +34,7 @@ function DEADBAND() {
         this.minp = parseFloat(arguments[0]["minp"])
         this.zeroc = arguments[0]["zeroc"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.maxp,this.minp,this.zeroc,this.exprs] = scicos_getvalue("Set Deadband parameters",["End of dead band","Start of dead band","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

@@ -21,7 +21,6 @@ function CLINDUMMY_f() {
         return options;
     }
     CLINDUMMY_f.prototype.set = function CLINDUMMY_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

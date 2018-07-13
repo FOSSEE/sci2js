@@ -5,7 +5,7 @@ function EXPBLK_m() {
         this.a = math.E;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["expblk_m"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([-2]);
@@ -30,10 +30,7 @@ function EXPBLK_m() {
     EXPBLK_m.prototype.set = function EXPBLK_m() {
         this.a = parseFloat(arguments[0]["a"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }

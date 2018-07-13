@@ -7,7 +7,7 @@ function DELAYV_f() {
         this.T = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["delayv"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([this.nin],[1]);
+        this.model.in = new ScilabDouble([this.nin],[1]);
         this.model.out = new ScilabDouble([this.nin]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1],[1]);
@@ -37,11 +37,8 @@ function DELAYV_f() {
         this.zz0 = inverse(arguments[0]["zz0"])
         this.T = parseFloat(arguments[0]["T"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        this.nin = this.model.in1[1-1];
+        this.nin = this.model.in[1-1];
         var z0 = this.model.dstate;
         this.zz0 = z0.slice(1-1,$-1);
         var told = z0[$-1];

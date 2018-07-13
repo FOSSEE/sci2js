@@ -6,7 +6,7 @@ function LOGICAL_OP() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["logicalop"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble(in1);
+        this.model.in = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
@@ -34,10 +34,7 @@ function LOGICAL_OP() {
         this.Datatype = arguments[0]["Datatype"]
         this.tp = parseFloat(arguments[0]["tp"])
         this.exprs = inverse(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,1)==2) {
             this.exprs = [[this.exprs],[sci2exp(1)],[sci2exp(0)]];
         }

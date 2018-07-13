@@ -9,7 +9,7 @@ function BARXY() {
         this.model.sim = list(new ScilabString(["BARXY_sim"]), new ScilabDouble([5]));
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        this.model.in1 = new ScilabDouble([-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([]);
         this.model.evtin = new ScilabDouble([1]);
@@ -41,10 +41,7 @@ function BARXY() {
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.thickness = arguments[0]["thickness"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.xmin,this.xmax,this.ymin,this.ymax,this.thickness,this.exprs] = scicos_getvalue("Set Scope parameters",["Xmin","Xmax","Ymin","Ymax","Segs Thickness"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

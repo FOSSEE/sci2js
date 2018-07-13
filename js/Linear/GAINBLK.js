@@ -8,7 +8,7 @@ function GAINBLK() {
         var out2 = -2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["gainblk"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
         this.model.in2 = new ScilabDouble([in2]);
         this.model.out2 = new ScilabDouble([out2]);
@@ -34,10 +34,7 @@ function GAINBLK() {
         this.gain = parseFloat(arguments[0]["gain"])
         this.over = arguments[0]["over"]
         this.exprs = inverse(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==1) {
             this.exprs = [[this.exprs],[sci2exp(0)]];
         }

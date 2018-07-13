@@ -30,10 +30,7 @@ function INIMPL_f() {
     INIMPL_f.prototype.set = function INIMPL_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[1-1];
         }

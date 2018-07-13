@@ -55,9 +55,7 @@ function READC_f() {
         this.offset = parseFloat(arguments[0]["offset"])
         this.swap = parseFloat(arguments[0]["swap"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
         this.model = this.x.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var out = this.model.out;
         var dstate = this.model.dstate;

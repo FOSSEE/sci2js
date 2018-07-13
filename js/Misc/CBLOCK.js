@@ -15,7 +15,7 @@ function CBLOCK() {
         this.ng = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString([" "]), new ScilabDouble([2004]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
         this.model.evtin = new ScilabDouble(clkin);
         this.model.evtout = new ScilabDouble(clkout);
@@ -70,9 +70,6 @@ function CBLOCK() {
         this.depu = parseBoolean(arguments[0]["depu"])
         this.dept = parseBoolean(arguments[0]["dept"])
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         while (true) {
             [ok,this.function_name,this.impli,this.i,this.o,this.ci,this.co,this.xx,this.ng,this.z,this.rpar,this.ipar,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block2 block parameters",["simulation function","is block implicit? (y,n)","input ports sizes","output ports sizes","input event ports sizes","output events ports sizes","initial continuous state","number of zero crossing surfaces","initial discrete state","Real parameters vector","Integer parameters vector","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label[1-1]);
@@ -141,7 +138,7 @@ function CBLOCK() {
                     var ok = tmpvar1[2];
                     if (ok) {
                         this.model.sim = list(new ScilabDouble([funam]), new ScilabDouble([funtyp]));
-                        this.model.in1 = new ScilabDouble([this.i]);
+                        this.model.in = new ScilabDouble([this.i]);
                         this.model.out = new ScilabDouble([this.o]);
                         this.model.evtin = new ScilabDouble([this.ci]);
                         this.model.evtout = new ScilabDouble([this.co]);

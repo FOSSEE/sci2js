@@ -13,7 +13,7 @@ function SUPER_f() {
         scs.objs[2-1] = out;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["super"]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([scs]);
         this.model.blocktype = new ScilabString(["h"]);
@@ -31,7 +31,6 @@ function SUPER_f() {
         return options;
     }
     SUPER_f.prototype.set = function SUPER_f() {
-        xcos(arg1.model.rpar);
         return new SuperBlock(this.x);
     }
 }

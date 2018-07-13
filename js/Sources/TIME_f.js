@@ -19,7 +19,6 @@ function TIME_f() {
         return options;
     }
     TIME_f.prototype.set = function TIME_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

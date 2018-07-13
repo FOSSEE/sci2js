@@ -43,9 +43,9 @@ p10
 sS'model.in2'
 p11
 g2
-sS'model.in1'
+sS'model.intyp'
 p12
-g2
+g10
 sS'x.graphics'
 p13
 g5
@@ -61,10 +61,10 @@ g7
 sS'model.out2'
 p17
 g10
-sS'model.intyp'
-p18
-g10
 sS'y'
+p18
+g2
+sS'model.in'
 p19
 g2
 sS'graphics.exprs'

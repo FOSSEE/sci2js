@@ -3,7 +3,7 @@ function SPLIT_f() {
     SPLIT_f.prototype.define = function SPLIT_f() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["lsplit"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1],[-1],[-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -19,7 +19,6 @@ function SPLIT_f() {
         return options;
     }
     SPLIT_f.prototype.set = function SPLIT_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

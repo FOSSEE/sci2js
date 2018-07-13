@@ -56,15 +56,12 @@ function CLOCK_c() {
         this.dt = arguments[0]["dt"]
         this.t0 = arguments[0]["t0"]
         this.exprs0 = arguments[0]["exprs0"]
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="EVTDLY_c") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
-        var xx = arg1.model.rpar.objs[path-1];
         this.exprs = xx.graphics.exprs;
         this.model = xx.model;
         var t0_old = this.model.firing;
@@ -84,7 +81,6 @@ function CLOCK_c() {
                 this.model.rpar = new ScilabDouble([this.dt],[this.t0]);
                 this.model.firing = new ScilabDouble([this.t0]);
                 xx.model = this.model;
-                arg1.model.rpar.objs[path-1] = xx;
                 break;
             }
         }
@@ -96,7 +92,6 @@ function CLOCK_c() {
         } else {
             var needcompile = 0;
         }
-        this.x = arg1;
         var y = needcompile;
         var typ = newpar;
         return new BasicBlock(this.x);

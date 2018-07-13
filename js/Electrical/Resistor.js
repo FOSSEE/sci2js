@@ -13,7 +13,7 @@ function Resistor() {
         mo.outputs = "n";
         mo.parameters = list("R",list(this.R));
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = string(this.R);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Resistor\",sz(1),sz(2));"]);
@@ -33,10 +33,7 @@ function Resistor() {
     Resistor.prototype.set = function Resistor() {
         this.R = parseFloat(arguments[0]["R"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.R,this.exprs] = scicos_getvalue("Set Resistor block parameter","R (ohm)",list("vec",1),this.exprs);
             if (!ok) {

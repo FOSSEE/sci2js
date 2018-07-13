@@ -42,7 +42,7 @@ function IdealTransformer() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
         this.x = standard_define([2,2],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = Typein;
@@ -61,11 +61,7 @@ function IdealTransformer() {
     IdealTransformer.prototype.set = function IdealTransformer() {
         this.N = arguments[0]["N"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        this.x = arg1;
         this.exprs = this.x.graphics.exprs;
         while (true) {
             [ok,this.N,this.exprs] = scicos_getvalue([["Set Transformer block parameters:"],[""],["N:"+" Turn ratio (N1/N2)"]],["N"],list("vec",1),this.exprs);

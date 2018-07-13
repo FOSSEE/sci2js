@@ -60,8 +60,6 @@ function STEP_FUNCTION() {
         return options;
     }
     STEP_FUNCTION.prototype.set = function STEP_FUNCTION() {
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="STEP") {
                 var ppath = list(i);
                 break;
@@ -77,14 +75,13 @@ function STEP_FUNCTION() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
-            var xx = arg1[spath-1];
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (diffobjs(this.xxn,xx)) {
                 this.model = xx.model;
                 var model_n = this.xxn.model;
                 if (!is_modelica_block(xx)) {
                     var modified = or(this.model.sim!=model_n.sim)||!isequal(this.model.state,model_n.state)||!isequal(this.model.dstate,model_n.dstate)||!isequal(this.model.rpar,model_n.rpar)||!isequal(this.model.ipar,model_n.ipar)||!isequal(this.model.label,model_n.label);
-                    if (or(this.model.in1!=model_n.in1)||or(this.model.out!=model_n.out)) {
+                    if (or(this.model.in!=model_n.in)||or(this.model.out!=model_n.out)) {
                         var needcompile = 1;
                     }
                     if (or(this.model.firing!=model_n.firing)) {
@@ -116,11 +113,9 @@ function STEP_FUNCTION() {
                         var needcompile = 4;
                     }
                 }
-                arg1[spath-1] = this.xxn;
                 newpar[size(newpar)+1-1] = path;
             }
         }
-        this.x = arg1;
         var y = needcompile;
         var typ = newpar;
         return new BasicBlock(this.x);

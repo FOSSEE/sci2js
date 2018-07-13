@@ -4,7 +4,7 @@ function MAXMIN() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["minmax"]), new ScilabDouble([4]));
         this.model.out = new ScilabDouble([1]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.ipar = new ScilabDouble([0]);
@@ -30,10 +30,7 @@ function MAXMIN() {
         this.nin = arguments[0]["nin"]
         this.zcr = parseFloat(arguments[0]["zcr"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.mm,this.nin,this.zcr,this.exprs] = scicos_getvalue("Set Max/Min block parameters",["Min (1) or Max (2) ","Number of input vectors (1 or 2)","zero-crossing (1: yes, 0;no)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {

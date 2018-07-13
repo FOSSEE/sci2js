@@ -5,7 +5,7 @@ function RICC() {
         var function_name = "ricc_m";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1],[-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1],[-1]);
         this.model.in2 = new ScilabDouble([-1],[-1],[-1]);
         this.model.intyp = new ScilabDouble([1,1,1]);
         this.model.out = new ScilabDouble([-1]);
@@ -39,10 +39,7 @@ function RICC() {
         this.tpe = arguments[0]["tpe"]
         this.mod = arguments[0]["mod"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -51,7 +48,7 @@ function RICC() {
             if (!ok) {
                 break;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var it = [1,1,1];
             var ot = 1;
@@ -63,9 +60,6 @@ function RICC() {
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.tpe],[this.mod]);
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }

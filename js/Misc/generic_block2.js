@@ -5,7 +5,7 @@ function generic_block2() {
         this.function_name = "sinblk";
         this.funtyp = 1;
         this.model.sim = list(new ScilabString([this.function_name]), new ScilabDouble([this.funtyp]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([]);
         this.model.evtout = new ScilabDouble([]);
@@ -16,7 +16,7 @@ function generic_block2() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp(this.model.in1)],[sci2exp(this.model.out)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]];
+        var label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp(this.model.in)],[sci2exp(this.model.out)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"generic_block2\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,this.gr_i);
         return new BasicBlock(this.x);
@@ -61,9 +61,6 @@ function generic_block2() {
         this.depu = parseBoolean(arguments[0]["depu"])
         this.dept = parseBoolean(arguments[0]["dept"])
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -126,10 +123,7 @@ function generic_block2() {
                 this.model.nzcross = new ScilabDouble([this.nzcr]);
                 this.model.nmode = new ScilabDouble([this.nmode]);
                 this.model.dep_ut = new ScilabDouble(dep_ut);
-                arg1.model = this.model;
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                this.x = arg1;
                 break;
             }
         }

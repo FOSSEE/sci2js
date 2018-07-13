@@ -25,10 +25,7 @@ function EVTGEN_f() {
     EVTGEN_f.prototype.set = function EVTGEN_f() {
         this.tt = parseFloat(arguments[0]["tt"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tt,this.exprs] = scicos_getvalue("Set Event time",["Event Time"],list("vec",1),this.exprs);
             if (!ok) {

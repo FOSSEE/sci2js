@@ -5,7 +5,7 @@ function MATZCONJ() {
         var function_name = "matz_conj";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([2]);
         this.model.out = new ScilabDouble([-1]);
@@ -34,7 +34,6 @@ function MATZCONJ() {
         return options;
     }
     MATZCONJ.prototype.set = function MATZCONJ() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }

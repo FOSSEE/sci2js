@@ -24,9 +24,6 @@ function CLKFROM() {
     CLKFROM.prototype.set = function CLKFROM() {
         this.tag = arguments[0]["tag"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.tag,this.exprs] = scicos_getvalue("Set block parameters","Tag",list("str",-1),this.exprs);
@@ -79,9 +76,6 @@ function CLKGOTO() {
         this.tag = arguments[0]["tag"]
         this.tagvis = parseFloat(arguments[0]["tagvis"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.tag,this.tagvis,this.exprs] = scicos_getvalue("Set block parameters",["Tag","Tag Visibility (1=Local 2=Scoped 3=Global)"],list("str",-1,"vec",1),this.exprs);
@@ -117,7 +111,7 @@ function CLKGotoTagVisibility() {
     CLKGotoTagVisibility.prototype.define = function CLKGotoTagVisibility() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["clkgototagvisibility"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.in2 = new ScilabDouble([]);
         this.model.out = new ScilabDouble([]);
         this.model.out2 = new ScilabDouble([]);
@@ -145,10 +139,7 @@ function CLKGotoTagVisibility() {
     CLKGotoTagVisibility.prototype.set = function CLKGotoTagVisibility() {
         this.tag = arguments[0]["tag"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tag,this.exprs] = scicos_getvalue("Set parameters",["GotoTag"],list("str",-1),this.exprs);
             if (!ok) {
@@ -176,7 +167,7 @@ function DEMUX() {
         this.out = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["multiplex"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([0]);
+        this.model.in = new ScilabDouble([0]);
         this.model.out = new ScilabDouble(-transpose([1:this.out]));
         this.model.ipar = new ScilabDouble([this.out]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -199,10 +190,7 @@ function DEMUX() {
     DEMUX.prototype.set = function DEMUX() {
         this.out = parseFloat(arguments[0]["out"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.out,this.exprs] = scicos_getvalue("Set DEMUX block parameters",["number of output ports or vector of sizes"],list("intvec",-1),this.exprs);
             if (!ok) {
@@ -254,7 +242,7 @@ function DEMUX_f() {
         this.out = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["demux"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([0]);
+        this.model.in = new ScilabDouble([0]);
         this.model.out = new ScilabDouble(-transpose([1:this.out]));
         this.model.ipar = new ScilabDouble([this.out]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -277,10 +265,7 @@ function DEMUX_f() {
     DEMUX_f.prototype.set = function DEMUX_f() {
         this.out = parseFloat(arguments[0]["out"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.out,this.exprs] = scicos_getvalue("Set DEMUX block parameters",["number of output ports or vector of sizes"],list("vec",-1),this.exprs);
             if (!ok) {
@@ -332,7 +317,7 @@ function ESELECT_f() {
         this.out = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["eselect"]), new ScilabDouble([-2]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.intyp = new ScilabDouble([-1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -363,8 +348,6 @@ function ESELECT_f() {
         this.inh = parseFloat(arguments[0]["inh"])
         this.nmod = parseFloat(arguments[0]["nmod"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==1) {
             this.exprs[2-1] = string(1);
@@ -372,7 +355,6 @@ function ESELECT_f() {
         if (size(this.exprs,"*")==2) {
             this.exprs[3-1] = string(0);
         }
-        this.model = arg1.model;
         while (true) {
             [ok,this.out,this.inh,this.nmod,this.exprs] = scicos_getvalue("Set ESELECT block parameters",["number of output event ports","Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -415,7 +397,7 @@ function EXTRACTOR() {
         this.ind = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["extractor"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -437,10 +419,7 @@ function EXTRACTOR() {
     EXTRACTOR.prototype.set = function EXTRACTOR() {
         this.ind = parseFloat(arguments[0]["ind"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.ind,this.exprs] = scicos_getvalue("Set block parameters",["indices to extract"],list("vec",-1),this.exprs);
             if (!ok) {
@@ -468,7 +447,7 @@ function FROM() {
     FROM.prototype.define = function FROM() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["from"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.in2 = new ScilabDouble([]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -496,10 +475,7 @@ function FROM() {
     FROM.prototype.set = function FROM() {
         this.tag = arguments[0]["tag"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tag,this.exprs] = scicos_getvalue("Set parameters",["Tag"],list("str",-1),this.exprs);
             if (!ok) {
@@ -526,7 +502,7 @@ function FROMMO() {
     FROMMO.prototype.define = function FROMMO() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["frommo"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.in2 = new ScilabDouble([]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -557,10 +533,7 @@ function FROMMO() {
     FROMMO.prototype.set = function FROMMO() {
         this.tag = arguments[0]["tag"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tag,this.exprs] = scicos_getvalue("Set parameters",["Tag"],list("str",-1),this.exprs);
             if (!ok) {
@@ -587,7 +560,7 @@ function GOTO() {
     GOTO.prototype.define = function GOTO() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["goto"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([]);
@@ -617,10 +590,7 @@ function GOTO() {
         this.tag = arguments[0]["tag"]
         this.tagvis = parseFloat(arguments[0]["tagvis"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tag,this.tagvis,this.exprs] = scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),this.exprs);
             if (!ok) {
@@ -641,7 +611,6 @@ function GOTO() {
                 this.model.ipar = new ScilabDouble([this.tagvis]);
                 this.x.model = this.model;
                 this.x.graphics = this.graphics;
-                var arg1 = this.x;
                 break;
             }
         }
@@ -654,7 +623,7 @@ function GOTOMO() {
     GOTOMO.prototype.define = function GOTOMO() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["gotomo"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([]);
         this.model.out = new ScilabDouble([]);
@@ -687,10 +656,7 @@ function GOTOMO() {
         this.tag = arguments[0]["tag"]
         this.tagvis = parseFloat(arguments[0]["tagvis"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tag,this.tagvis,this.exprs] = scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),this.exprs);
             if (!ok) {
@@ -711,7 +677,6 @@ function GOTOMO() {
                 this.model.ipar = new ScilabDouble([this.tagvis]);
                 this.x.model = this.model;
                 this.x.graphics = this.graphics;
-                var arg1 = this.x;
                 break;
             }
         }
@@ -724,7 +689,7 @@ function GotoTagVisibility() {
     GotoTagVisibility.prototype.define = function GotoTagVisibility() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["gototagvisibility"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.in2 = new ScilabDouble([]);
         this.model.out = new ScilabDouble([]);
         this.model.out2 = new ScilabDouble([]);
@@ -752,10 +717,7 @@ function GotoTagVisibility() {
     GotoTagVisibility.prototype.set = function GotoTagVisibility() {
         this.tag = arguments[0]["tag"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tag,this.exprs] = scicos_getvalue("Set parameters",["GotoTag"],list("str",-1),this.exprs);
             if (!ok) {
@@ -782,7 +744,7 @@ function GotoTagVisibilityMO() {
     GotoTagVisibilityMO.prototype.define = function GotoTagVisibilityMO() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["gototagvisibilitymo"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.in2 = new ScilabDouble([]);
         this.model.out = new ScilabDouble([]);
         this.model.out2 = new ScilabDouble([]);
@@ -810,10 +772,7 @@ function GotoTagVisibilityMO() {
     GotoTagVisibilityMO.prototype.set = function GotoTagVisibilityMO() {
         this.tag = arguments[0]["tag"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tag,this.exprs] = scicos_getvalue("Set parameters",["GotoTag"],list("str",-1),this.exprs);
             if (!ok) {
@@ -843,7 +802,7 @@ function ISELECT_f() {
         this.nout = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["selector"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble(out);
         this.model.evtin = new ScilabDouble([ones(out)]);
         this.model.dstate = new ScilabDouble([this.z0]);
@@ -868,10 +827,7 @@ function ISELECT_f() {
         this.nout = parseFloat(arguments[0]["nout"])
         this.z0 = parseFloat(arguments[0]["z0"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nout,this.z0,this.exprs] = scicos_getvalue("Set parameters",["number of outputs","initial connected output"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -906,7 +862,7 @@ function ISELECT_m() {
         this.model.out = new ScilabDouble([-1],[-1]);
         this.model.out2 = new ScilabDouble([-2],[-2]);
         this.model.outtyp = new ScilabDouble([1]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([]);
@@ -939,10 +895,7 @@ function ISELECT_m() {
         this.nout = parseFloat(arguments[0]["nout"])
         this.z0 = parseFloat(arguments[0]["z0"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.typ,this.nout,this.z0,this.exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ...)","number of outputs","initial connected output"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -982,7 +935,7 @@ function MUX() {
         this.in1 = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["multiplex"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble(-transpose([1:this.in1]));
+        this.model.in = new ScilabDouble(-transpose([1:this.in1]));
         this.model.out = new ScilabDouble([0]);
         this.model.ipar = new ScilabDouble([this.in1]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -1003,10 +956,7 @@ function MUX() {
     MUX.prototype.set = function MUX() {
         this.in1 = parseFloat(arguments[0]["in1"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.in1,this.exprs] = scicos_getvalue("Set MUX block parameters","number of input ports or vector of sizes",list("intvec",-1),this.exprs);
             if (!ok) {
@@ -1058,7 +1008,7 @@ function MUX_f() {
         this.in1 = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["mux"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble(-transpose([1:this.in1]));
+        this.model.in = new ScilabDouble(-transpose([1:this.in1]));
         this.model.out = new ScilabDouble([0]);
         this.model.ipar = new ScilabDouble([this.in1]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -1079,10 +1029,7 @@ function MUX_f() {
     MUX_f.prototype.set = function MUX_f() {
         this.in1 = parseFloat(arguments[0]["in1"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.in1,this.exprs] = scicos_getvalue("Set MUX block parameters","number of input ports or vector of sizes",list("vec",-1),this.exprs);
             if (!ok) {
@@ -1136,7 +1083,7 @@ function M_SWITCH() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["mswitch"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble(in1);
+        this.model.in = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
@@ -1162,10 +1109,7 @@ function M_SWITCH() {
         this.base = parseFloat(arguments[0]["base"])
         this.rule = arguments[0]["rule"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nin,this.base,this.rule,this.exprs] = scicos_getvalue("Set parameters",["number of inputs","zero base indexing (0), otherwise 1","rounding rule: int (0), round (1), ceil (2), floor (3)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -1214,7 +1158,7 @@ function NRMSOM_f() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["junk"]);
-        this.model.in1 = new ScilabDouble(in1);
+        this.model.in = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -1235,10 +1179,7 @@ function NRMSOM_f() {
     NRMSOM_f.prototype.set = function NRMSOM_f() {
         this.nin = parseFloat(arguments[0]["nin"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nin,this.exprs] = scicos_getvalue("Set parameters",["number of inputs"],list("vec",1),this.exprs);
             if (!ok) {
@@ -1266,7 +1207,7 @@ function RELAY_f() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["relay"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble(in1);
+        this.model.in = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.evtin = new ScilabDouble([ones(in1)]);
         this.model.dstate = new ScilabDouble([i0]);
@@ -1292,10 +1233,7 @@ function RELAY_f() {
         this.nin = parseFloat(arguments[0]["nin"])
         this.z0 = arguments[0]["z0"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var ipar = this.model.ipar;
         while (true) {
             [ok,this.nin,this.z0,this.exprs] = scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),this.exprs);
@@ -1328,7 +1266,7 @@ function SCALAR2VECTOR() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["scalar2vector"]), new ScilabDouble([4]));
         this.model.out = new ScilabDouble([this.nout]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.exprs = [string([this.nout])];
@@ -1348,10 +1286,7 @@ function SCALAR2VECTOR() {
     SCALAR2VECTOR.prototype.set = function SCALAR2VECTOR() {
         this.nout = parseFloat(arguments[0]["nout"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nout,this.exprs] = scicos_getvalue("Set block parameters",["size of output (-1: if don\'t know)"],list("vec",1),this.exprs);
             if (!ok) {
@@ -1386,7 +1321,7 @@ function SELECT_f() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["selector"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble(in1);
+        this.model.in = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.evtin = new ScilabDouble([ones(in1)]);
         this.model.dstate = new ScilabDouble([this.z0]);
@@ -1411,10 +1346,7 @@ function SELECT_f() {
         this.nin = parseFloat(arguments[0]["nin"])
         this.z0 = parseFloat(arguments[0]["z0"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nin,this.z0,this.exprs] = scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -1446,7 +1378,7 @@ function SELECT_m() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["selector_m"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1]);
         this.model.in2 = new ScilabDouble([-2],[-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -1482,10 +1414,7 @@ function SELECT_m() {
         this.nin = parseFloat(arguments[0]["nin"])
         this.z0 = parseFloat(arguments[0]["z0"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.typ,this.nin,this.z0,this.exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ..)","number of inputs","initial connected input"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -1530,7 +1459,7 @@ function SELF_SWITCH() {
         this.x.graphics.pin = 0;
         this.x.graphics.pout = 0;
         this.x.model.sim = "csuper";
-        this.x.model.in1 = 1;
+        this.x.model.in = 1;
         this.x.model.out = 1;
         this.x.model.blocktype = "h";
         this.x.model.dep_ut = [false,false];
@@ -1552,7 +1481,6 @@ function SELF_SWITCH() {
         return options;
     }
     SELF_SWITCH.prototype.set = function SELF_SWITCH() {
-        this.x = arg1;
         this.stateOpen = this.x.model.opar[1-1];
         this.x.model.rpar = genSwitchInnerDiagram(!this.stateOpen);
         this.x.model.opar = list(!this.stateOpen);
@@ -1575,7 +1503,7 @@ function SWITCH2() {
         var rpar = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["switch2"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble(in1);
+        this.model.in = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble(ipar);
         this.model.rpar = new ScilabDouble([rpar]);
@@ -1604,10 +1532,7 @@ function SWITCH2() {
         this.thra = arguments[0]["thra"]
         this.nzz = parseFloat(arguments[0]["nzz"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.rule,this.thra,this.nzz,this.exprs] = scicos_getvalue("Set parameters",["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -1645,7 +1570,7 @@ function SWITCH2_m() {
         var rpar = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["switch2_m"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1],[1],[-1]);
+        this.model.in = new ScilabDouble([-1],[1],[-1]);
         this.model.in2 = new ScilabDouble([-2],[1],[-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -1680,10 +1605,7 @@ function SWITCH2_m() {
         this.thra = arguments[0]["thra"]
         this.nzz = parseFloat(arguments[0]["nzz"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.ot,this.rule,this.thra,this.nzz,this.exprs] = scicos_getvalue("Set parameters",["Datatype (1=real double  2=complex 3=int32 ...)","pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -1714,7 +1636,7 @@ function SWITCH2_m() {
                 it[1-1] = this.ot;
                 it[2-1] = 1;
                 it[3-1] = this.ot;
-                var in1 = [this.model.in1,this.model.in2];
+                var in1 = [this.model.in,this.model.in2];
                 var out = [this.model.out,this.model.out2];
                 var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,this.ot),[],[]);
                 this.model = tmpvar0[0];
@@ -1738,7 +1660,7 @@ function SWITCH_f() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["switchn"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble(in1);
+        this.model.in = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble([i0]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -1763,10 +1685,7 @@ function SWITCH_f() {
         this.nin = parseFloat(arguments[0]["nin"])
         this.z0 = arguments[0]["z0"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var ipar = this.model.ipar;
         while (true) {
             [ok,this.nin,this.z0,this.exprs] = scicos_getvalue("Set switch parameters",["number of inputs","connected input"],list("vec",1,"vec",1),this.exprs);
@@ -1836,7 +1755,7 @@ function CCS() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
         this.x = standard_define([2.1,3],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = Typein;
@@ -1852,11 +1771,7 @@ function CCS() {
         return options;
     }
     CCS.prototype.set = function CCS() {
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -1904,7 +1819,7 @@ function CVS() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
         this.x = standard_define([2.1,3],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = Typein;
@@ -1920,11 +1835,7 @@ function CVS() {
         return options;
     }
     CVS.prototype.set = function CVS() {
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -1944,7 +1855,7 @@ function Capacitor() {
         mo.outputs = "n";
         mo.parameters = list(["C","v"],list(this.C,this.v),[0,1]);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = string([[this.C],[this.v]]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Capacitor\",sz(1),sz(2));"]);
@@ -1967,10 +1878,7 @@ function Capacitor() {
         this.C = parseFloat(arguments[0]["C"])
         this.v = parseFloat(arguments[0]["v"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.C,this.v,this.exprs] = scicos_getvalue("Set Capacitor block parameter",["C (F)","Initial Voltage"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -1992,7 +1900,7 @@ function ConstantVoltage() {
         this.V = 0.01;
         this.model = scicos_model();
         this.model.rpar = new ScilabDouble([this.V]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.sim = new ScilabString(["ConstantVoltage"]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -2021,10 +1929,7 @@ function ConstantVoltage() {
     ConstantVoltage.prototype.set = function ConstantVoltage() {
         this.V = parseFloat(arguments[0]["V"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.V,this.exprs] = scicos_getvalue("Set ConstantVoltage block parameter","V (volt)",list("vec",1),this.exprs);
             if (!ok) {
@@ -2044,7 +1949,7 @@ function ConstantVoltage() {
 function CurrentSensor() {
     CurrentSensor.prototype.define = function CurrentSensor() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.sim = new ScilabString(["CurrentSensor"]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -2070,7 +1975,6 @@ function CurrentSensor() {
         return options;
     }
     CurrentSensor.prototype.set = function CurrentSensor() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -2083,7 +1987,7 @@ function Diode() {
         this.R = 1.e8;
         this.model = scicos_model();
         this.model.rpar = new ScilabDouble([this.Ids],[this.Vt],[this.Maxexp],[this.R]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.sim = new ScilabString(["Diode"]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -2119,10 +2023,7 @@ function Diode() {
         this.Maxexp = parseFloat(arguments[0]["Maxexp"])
         this.R = parseFloat(arguments[0]["R"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.Ids,this.Vt,this.Maxexp,this.R,this.exprs] = scicos_getvalue("Set Diode block parameter",["Saturation cuurent (A)","Voltage equivalent to temperature (Volt)","Max exponent for linear continuation","R (ohm)"],list("vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -2142,7 +2043,7 @@ function Diode() {
 function Ground() {
     Ground.prototype.define = function Ground() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([]);
         this.model.sim = new ScilabString(["Ground"]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -2167,7 +2068,6 @@ function Ground() {
         return options;
     }
     Ground.prototype.set = function Ground() {
-        this.x = arg1;
         return new GroundBlock(this.x);
     }
 }
@@ -2215,7 +2115,7 @@ function Gyrator() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
         this.x = standard_define([2,2],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = Typein;
@@ -2236,11 +2136,7 @@ function Gyrator() {
         this.G1 = arguments[0]["G1"]
         this.G2 = arguments[0]["G2"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        this.x = arg1;
         this.exprs = this.x.graphics.exprs;
         while (true) {
             [ok,this.G1,this.G2,this.exprs] = scicos_getvalue([["Set Gyrator block parameters:"],[""],["G1: Gyration conductance"],["G2: Gyration conductance"]],["G1","G2"],list("vec",1,"vec",1),this.exprs);
@@ -2298,7 +2194,7 @@ function IdealTransformer() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
         this.x = standard_define([2,2],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = Typein;
@@ -2317,11 +2213,7 @@ function IdealTransformer() {
     IdealTransformer.prototype.set = function IdealTransformer() {
         this.N = arguments[0]["N"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        this.x = arg1;
         this.exprs = this.x.graphics.exprs;
         while (true) {
             [ok,this.N,this.exprs] = scicos_getvalue([["Set Transformer block parameters:"],[""],["N:"+" Turn ratio (N1/N2)"]],["N"],list("vec",1),this.exprs);
@@ -2339,7 +2231,7 @@ function IdealTransformer() {
 function Inductor() {
     Inductor.prototype.define = function Inductor() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.L = 1.e-5;
         this.model.rpar = new ScilabDouble([this.L]);
@@ -2370,10 +2262,7 @@ function Inductor() {
     Inductor.prototype.set = function Inductor() {
         this.L = parseFloat(arguments[0]["L"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.L,this.exprs] = scicos_getvalue("Set Inductor block parameter","L (H)",list("vec",1),this.exprs);
             if (!ok) {
@@ -2394,7 +2283,7 @@ function MOTOR() {
     MOTOR.prototype.define = function MOTOR() {
         this.model = scicos_model();
         this.model.out = new ScilabDouble([1],[1]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.sim = new ScilabString(["motor"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -2414,7 +2303,6 @@ function MOTOR() {
         return options;
     }
     MOTOR.prototype.set = function MOTOR() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -2440,7 +2328,7 @@ function NMOS() {
         mo.inputs = "G";
         mo.parameters = list([["W"],["L"],["Beta"],["Vt"],["K2"],["K5"],["dW"],["dL"],["RDS"]],[[this.W],[this.L],[this.Beta],[this.Vt],[this.K2],[this.K5],[this.dW],[this.dL],[this.RDS]]);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = [[string(this.W)],[string(this.L)],[string(this.Beta)],[string(this.Vt)],[string(this.K2)],[string(this.K5)],[string(this.dW)],[string(this.dL)],[string(this.RDS)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"NMOS\",sz(1),sz(2));"]);
@@ -2477,10 +2365,7 @@ function NMOS() {
         this.dL = parseFloat(arguments[0]["dL"])
         this.RDS = parseFloat(arguments[0]["RDS"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS,this.exprs] = scicos_getvalue("Set NMOS Transistor block parameters",["Width [m]","Length [m]","Transconductance parameter [A/(V*V)]","Zero bias threshold voltage [V]","Bulk threshold parameter","Reduction of pinch-off region","Narrowing of channel [m]","Shortening of channel [m]","Drain-Source-Resistance [Ohm]"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
             if (!ok) {
@@ -2539,7 +2424,7 @@ function NPN() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
         this.x = standard_define([2,2],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = Typein;
@@ -2590,11 +2475,7 @@ function NPN() {
         this.Vt = arguments[0]["Vt"]
         this.EMinMax = arguments[0]["EMinMax"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        this.x = arg1;
         this.exprs = this.x.graphics.exprs;
         while (true) {
             [ok,this.Bf,this.Br,this.Is,this.Vak,this.Tauf,this.Taur,this.Ccs,this.Cje,this.Cjc,this.Phie,this.Me,this.Phic,this.Mc,this.Gbc,this.Gbe,this.Vt,this.EMinMax,this.exprs] = scicos_getvalue([["Set NPN block parameters:"],[""]],["Bf  : Forward beta","Br  : Reverse beta","Is  : Transport saturation current","Vak : Early voltage (inverse), 1/Volt","Tauf: Ideal forward transit time","Taur: Ideal reverse transit time","Ccs : Collector-substrat(ground) cap.","Cje : Base-emitter zero bias depletion cap.","Cjc : Base-coll. zero bias depletion cap.","Phie: Base-emitter diffusion voltage","Me  : Base-emitter gradation exponent","Phic: Base-collector diffusion voltage","Mc  : Base-collector gradation exponent","Gbc : Base-collector conductance","Gbe : Base-emitter conductance","Vt  : Voltage equivalent of temperature","EMinmax: if x > EMinMax, the exp(x) is linearized"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
@@ -2623,7 +2504,7 @@ function OpAmp() {
         mo.outputs = ["out"];
         mo.parameters = list(S,Z);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.model.rpar = new ScilabDouble(Z);
         this.exprs = string(Z);
@@ -2649,10 +2530,7 @@ function OpAmp() {
         this.SatH = arguments[0]["SatH"]
         this.SatL = arguments[0]["SatL"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (false) {
             [ok,this.OLGain,this.SatH,this.SatL,this.exprs] = scicos_getvalue("Set the Operational Amplifier parameters",["Open Loop Gain","Positive saturation voltage","Negative saturation voltage"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -2689,7 +2567,7 @@ function PMOS() {
         mo.inputs = "G";
         mo.parameters = list([["W"],["L"],["Beta"],["Vt"],["K2"],["K5"],["dW"],["dL"],["RDS"]],[[this.W],[this.L],[this.Beta],[this.Vt],[this.K2],[this.K5],[this.dW],[this.dL],[this.RDS]]);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = [[string(this.W)],[string(this.L)],[string(this.Beta)],[string(this.Vt)],[string(this.K2)],[string(this.K5)],[string(this.dW)],[string(this.dL)],[string(this.RDS)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PMOS\",sz(1),sz(2));"]);
@@ -2726,10 +2604,7 @@ function PMOS() {
         this.dL = parseFloat(arguments[0]["dL"])
         this.RDS = parseFloat(arguments[0]["RDS"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS,this.exprs] = scicos_getvalue("Set PMOS Transistor parameters",["Width [m]","Length [m]","Transconductance parameter [A/(V*V)]","Zero bias threshold voltage [V]","Bulk threshold parameter","Reduction of pinch-off region","Narrowing of channel [m]","Shortening of channel [m]","Drain-Source-Resistance [Ohm]"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
             if (!ok) {
@@ -2788,7 +2663,7 @@ function PNP() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
         this.x = standard_define([2,2],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = Typein;
@@ -2839,11 +2714,7 @@ function PNP() {
         this.Vt = arguments[0]["Vt"]
         this.EMinMax = arguments[0]["EMinMax"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        this.x = arg1;
         this.exprs = this.x.graphics.exprs;
         while (true) {
             [ok,this.Bf,this.Br,this.Is,this.Vak,this.Tauf,this.Taur,this.Ccs,this.Cje,this.Cjc,this.Phie,this.Me,this.Phic,this.Mc,this.Gbc,this.Gbe,this.Vt,this.EMinMax,this.exprs] = scicos_getvalue([["Set PNP block parameters:"],[""]],["Bf  : Forward beta","Br  : Reverse beta","Is  : Transport saturation current","Vak : Early voltage (inverse), 1/Volt","Tauf: Ideal forward transit time","Taur: Ideal reverse transit time","Ccs : Collector-substrat(ground) cap.","Cje : Base-emitter zero bias depletion cap.","Cjc : Base-coll. zero bias depletion cap.","Phie: Base-emitter diffusion voltage","Me  : Base-emitter gradation exponent","Phic: Base-collector diffusion voltage","Mc  : Base-collector gradation exponent","Gbc : Base-collector conductance","Gbe : Base-emitter conductance","Vt  : Voltage equivalent of temperature","EMinMax: if x > EMinMax, the exp(x) function is linearized"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
@@ -2861,7 +2732,7 @@ function PNP() {
 function PotentialSensor() {
     PotentialSensor.prototype.define = function PotentialSensor() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([]);
         this.model.sim = new ScilabString(["PotentialSensor"]);
@@ -2887,7 +2758,6 @@ function PotentialSensor() {
         return options;
     }
     PotentialSensor.prototype.set = function PotentialSensor() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -2906,7 +2776,7 @@ function Resistor() {
         mo.outputs = "n";
         mo.parameters = list("R",list(this.R));
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = string(this.R);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Resistor\",sz(1),sz(2));"]);
@@ -2926,10 +2796,7 @@ function Resistor() {
     Resistor.prototype.set = function Resistor() {
         this.R = parseFloat(arguments[0]["R"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.R,this.exprs] = scicos_getvalue("Set Resistor block parameter","R (ohm)",list("vec",1),this.exprs);
             if (!ok) {
@@ -2949,7 +2816,7 @@ function Resistor() {
 function SineVoltage() {
     SineVoltage.prototype.define = function SineVoltage() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.V = 1;
         this.ph = 0;
@@ -2993,10 +2860,7 @@ function SineVoltage() {
         this.offset = parseFloat(arguments[0]["offset"])
         this.start = parseFloat(arguments[0]["start"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.V,this.ph,this.frq,this.offset,this.start,this.exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","phase (rad)","Frequency (Hz)","Voltageoffset (V)","Timeoffset (s)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -3029,7 +2893,7 @@ function Switch() {
         mo.outputs = "n";
         mo.parameters = list(S,Z);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.model.rpar = new ScilabDouble([Z]);
         this.exprs = string(Z);
@@ -3053,10 +2917,7 @@ function Switch() {
         this.Ron = parseFloat(arguments[0]["Ron"])
         this.Roff = parseFloat(arguments[0]["Roff"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.Ron,this.Roff,this.exprs] = scicos_getvalue("Set non-ideal electrical switch parameters",["Resistance in On state (Ohm)","Resistance in Off state (Ohm)"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -3075,7 +2936,7 @@ function Switch() {
 function VVsourceAC() {
     VVsourceAC.prototype.define = function VVsourceAC() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         var VA = 220;
         this.FR = 50;
@@ -3108,10 +2969,7 @@ function VVsourceAC() {
     VVsourceAC.prototype.set = function VVsourceAC() {
         this.FR = parseFloat(arguments[0]["FR"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.FR,this.exprs] = scicos_getvalue("Set voltage source parameter",["Frequency (Hz)"],list("vec",-1),this.exprs);
             if (!ok) {
@@ -3139,7 +2997,7 @@ function VariableResistor() {
         mo.inputs = ["p","R"];
         mo.outputs = "n";
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = [];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VariableResistor\",sz(1),sz(2));"]);
@@ -3157,7 +3015,6 @@ function VariableResistor() {
         return options;
     }
     VariableResistor.prototype.set = function VariableResistor() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -3165,7 +3022,7 @@ function VariableResistor() {
 function VoltageSensor() {
     VoltageSensor.prototype.define = function VoltageSensor() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.sim = new ScilabString(["VoltageSensor"]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -3191,7 +3048,6 @@ function VoltageSensor() {
         return options;
     }
     VoltageSensor.prototype.set = function VoltageSensor() {
-        this.x = arg1;
         return new VoltageSensorBlock(this.x);
     }
 }
@@ -3199,7 +3055,7 @@ function VoltageSensor() {
 function VsourceAC() {
     VsourceAC.prototype.define = function VsourceAC() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.VA = 220;
         this.FR = 50;
@@ -3234,10 +3090,7 @@ function VsourceAC() {
         this.VA = parseFloat(arguments[0]["VA"])
         this.FR = parseFloat(arguments[0]["FR"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.VA,this.FR,this.exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","Frequency (Hz)"],list("vec",-1,"vec",-1),this.exprs);
             if (!ok) {
@@ -3331,7 +3184,6 @@ function ANDBLK() {
         return options;
     }
     ANDBLK.prototype.set = function ANDBLK() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -3358,7 +3210,6 @@ function ANDLOG_f() {
         return options;
     }
     ANDLOG_f.prototype.set = function ANDLOG_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -3385,7 +3236,6 @@ function CLKSOMV_f() {
         return options;
     }
     CLKSOMV_f.prototype.set = function CLKSOMV_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -3412,7 +3262,6 @@ function CLKSOM_f() {
         return options;
     }
     CLKSOM_f.prototype.set = function CLKSOM_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -3438,7 +3287,6 @@ function CLKSPLIT_f() {
         return options;
     }
     CLKSPLIT_f.prototype.set = function CLKSPLIT_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -3470,10 +3318,7 @@ function END_c() {
     END_c.prototype.set = function END_c() {
         this.tf = parseFloat(arguments[0]["tf"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tf,this.exprs] = scicos_getvalue("Set final simulation time",["Final simulation time"],list("vec",1),this.exprs);
             if (!ok) {
@@ -3522,10 +3367,7 @@ function EVTDLY_c() {
         this.dt = parseFloat(arguments[0]["dt"])
         this.ff = parseFloat(arguments[0]["ff"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.dt,this.ff,this.exprs] = scicos_getvalue([["Set Event Delay block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       to disable any output event."]],["Delay","Date of initial output event"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -3579,10 +3421,7 @@ function EVTDLY_f() {
         this.dt = parseFloat(arguments[0]["dt"])
         this.ff = parseFloat(arguments[0]["ff"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.dt,this.ff,this.exprs] = scicos_getvalue([["Set Event Delay  block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       if no initial event required"]],["Delay","Date of initial output event"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -3631,10 +3470,7 @@ function EVTGEN_f() {
     EVTGEN_f.prototype.set = function EVTGEN_f() {
         this.tt = parseFloat(arguments[0]["tt"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.tt,this.exprs] = scicos_getvalue("Set Event time",["Event Time"],list("vec",1),this.exprs);
             if (!ok) {
@@ -3656,7 +3492,7 @@ function EVTVARDLY() {
     EVTVARDLY.prototype.define = function EVTVARDLY() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["evtvardly"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["d"]);
@@ -3679,10 +3515,7 @@ function EVTVARDLY() {
     EVTVARDLY.prototype.set = function EVTVARDLY() {
         this.fir = arguments[0]["fir"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.fir,this.exprs] = scicos_getvalue("Set parameter of variable event delay","Initial event firing time (<0 if absent)",list("vec",1),this.exprs);
             if (!ok) {
@@ -3725,10 +3558,7 @@ function HALT_f() {
     HALT_f.prototype.set = function HALT_f() {
         this.n = parseFloat(arguments[0]["n"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.n,this.exprs] = scicos_getvalue("Set Halt block parameters",["State on halt"],list("vec",1),this.exprs);
             if (!ok) {
@@ -3750,7 +3580,7 @@ function IFTHEL_f() {
     IFTHEL_f.prototype.define = function IFTHEL_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["ifthel"]), new ScilabDouble([-1]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.intyp = new ScilabDouble([-1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -3761,7 +3591,7 @@ function IFTHEL_f() {
         this.model.nmode = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([1]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IFTHEL_f\",sz(1),sz(2));"]);
-        this.exprs = [[string(this.model.in1)],[string(this.model.nmode)]];
+        this.exprs = [[string(this.model.in)],[string(this.model.nmode)]];
         this.x = standard_define([3,3],this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
     }
@@ -3779,10 +3609,7 @@ function IFTHEL_f() {
         this.inh = inverse(arguments[0]["inh"])
         this.nmod = parseFloat(arguments[0]["nmod"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (this.exprs==[]) {
             this.exprs = string(1);
         }
@@ -3899,8 +3726,6 @@ function MCLOCK_f() {
         return options;
     }
     MCLOCK_f.prototype.set = function MCLOCK_f() {
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="MFCLCK_f") {
                 var path = i;
                 break;
@@ -3908,13 +3733,10 @@ function MCLOCK_f() {
         }
         var newpar = list();
         var spath = list("model","rpar","objs",path);
-        var xx = arg1[spath-1];
         execstr("xxn="+xx.gui+"(\'set\',xx)");
         if (or(this.xxn!=xx)) {
-            arg1[spath-1] = this.xxn;
             newpar[size(newpar)+1-1] = path;
         }
-        this.x = arg1;
         var y = 0;
         var typ = newpar;
         return new BasicBlock(this.x);
@@ -3954,10 +3776,7 @@ function MFCLCK_f() {
         this.dt = parseFloat(arguments[0]["dt"])
         this.nn = parseFloat(arguments[0]["nn"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         [ok,this.dt,this.nn,this.exprs] = scicos_getvalue("Set Multifrequency clock parameters",["basic period (1/f)","multiply by (n)"],list("vec",1,"vec",1),this.exprs);
         if (ok) {
             this.model.ipar = new ScilabDouble([this.nn]);
@@ -4003,9 +3822,6 @@ function M_freq() {
         this.frequ = inverse(arguments[0]["frequ"])
         this.offset = inverse(arguments[0]["offset"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.frequ,this.offset,this.exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",-1,"vec",-1),this.exprs);
@@ -4082,7 +3898,6 @@ function VirtualCLK0() {
         return options;
     }
     VirtualCLK0.prototype.set = function VirtualCLK0() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -4209,8 +4024,6 @@ function freq_div() {
         %ph = parseFloat(arguments[0]["%ph"])
         %df = parseFloat(arguments[0]["%df"])
         this.exprs = inverse(arguments[0]["exprs"])
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="Modulo_Count") {
                 var path = i;
                 break;
@@ -4223,7 +4036,6 @@ function freq_div() {
         spath[$+1-1] = "rpar";
         spath[$+1-1] = "objs";
         spath[$+1-1] = path;
-        var xx = arg1[spath-1];
         var xxn = xx;
         this.graphics = xx.graphics;
         this.exprs = this.graphics.exprs;
@@ -4254,7 +4066,7 @@ function freq_div() {
             var model_n = xxn.model;
             if (!is_modelica_block(xx)) {
                 var modified = or(this.model.sim!=model_n.sim)||!isequal(this.model.state,model_n.state)||!isequal(this.model.dstate,model_n.dstate)||!isequal(this.model.rpar,model_n.rpar)||!isequal(this.model.ipar,model_n.ipar)||!isequal(this.model.label,model_n.label);
-                if (or(this.model.in1!=model_n.in1)||or(this.model.out!=model_n.out)) {
+                if (or(this.model.in!=model_n.in)||or(this.model.out!=model_n.out)) {
                     var needcompile = 1;
                 }
                 if (or(this.model.firing!=model_n.firing)) {
@@ -4286,11 +4098,9 @@ function freq_div() {
                     var needcompile = 4;
                 }
             }
-            arg1[spath-1] = xxn;
             newpar[size(newpar)+1-1] = 1;
             var y = max(y,needcompile);
         }
-        this.x = arg1;
         var typ = newpar;
         return new BasicBlock(this.x);
     }
@@ -4301,7 +4111,7 @@ function Bache() {
         var in1 = 2;
         var out = 3;
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([-transpose([1:in1])]);
+        this.model.in = new ScilabDouble([-transpose([1:in1])]);
         this.model.out = new ScilabDouble([-transpose([1:out])]);
         this.Patm = 1.013e5;
         this.A = 1;
@@ -4322,7 +4132,7 @@ function Bache() {
         mo.outputs = ["Cs1","Cs2","yNiveau"];
         mo.parameters = list([["Patm"],["A"],["ze1"],["ze2"],["zs1"],["zs2"],["z0"],["T0"],["p_rho"]],[[this.Patm],[this.A],[this.ze1],[this.ze2],[this.zs1],[this.zs2],[this.z0],[this.T0],[this.p_rho]]);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = [[string(this.Patm)],[string(this.A)],[string(this.ze1)],[string(this.ze2)],[string(this.zs1)],[string(this.zs2)],[string(this.z0)],[string(this.T0)],[string(this.p_rho)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Bache\",sz(1),sz(2));"]);
@@ -4359,10 +4169,7 @@ function Bache() {
         this.T0 = parseFloat(arguments[0]["T0"])
         this.p_rho = parseFloat(arguments[0]["p_rho"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.Patm,this.A,this.ze1,this.ze2,this.zs1,this.zs2,this.z0,this.T0,this.p_rho,this.exprs] = scicos_getvalue("Parametres de la bache",["Pression dans le ciel de la bache : Patm (Pa)","Section de la bache : A (m2)","Altitude du piquage d entrée 1: ze1 (m)","Altitude du piquage d entrée 2: ze2 (m)","Altitude du piquage de sortie 1: zs1 (m)","Altitude du piquage de sortie 2: zs2 (m)","Altitude initiale du fluide : z0 (m)","Température initiale du fluide : T0 (K)","Si >0, masse volumique imposée du fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
             if (!ok) {
@@ -4422,7 +4229,7 @@ function Flowmeter() {
         this.model.dep_ut = new ScilabDouble([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(MI,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
         this.x = standard_define([2,2],this.model,this.exprs,list(this.gr_i,0));
         this.x.graphics.in_implicit = Typein;
@@ -4440,11 +4247,7 @@ function Flowmeter() {
     Flowmeter.prototype.set = function Flowmeter() {
         this.Qini = arguments[0]["Qini"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        this.x = arg1;
         this.exprs = this.x.graphics.exprs;
         while (false) {
             [ok,this.Qini,this.exprs] = scicos_getvalue([["Set Flowmeter block parameters:"],[""],["Qini: "]],"Qini",list("vec",1),this.exprs);
@@ -4462,7 +4265,7 @@ function Flowmeter() {
 function PerteDP() {
     PerteDP.prototype.define = function PerteDP() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.L = 10;
         this.D = 0.2;
@@ -4480,7 +4283,7 @@ function PerteDP() {
         mo.outputs = "C2";
         mo.parameters = list([["L"],["D"],["lambda"],["z1"],["z2"],["p_rho"]],[[this.L],[this.D],[this.lambda],[this.z1],[this.z2],[this.p_rho]]);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = [[string(this.L)],[string(this.D)],[string(this.lambda)],[string(this.z1)],[string(this.z2)],[string(this.p_rho)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PerteDP\",sz(1),sz(2));"]);
@@ -4511,10 +4314,7 @@ function PerteDP() {
         this.z2 = parseFloat(arguments[0]["z2"])
         this.p_rho = parseFloat(arguments[0]["p_rho"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.L,this.D,this.lambda,this.z1,this.z2,this.p_rho,this.exprs] = scicos_getvalue("Parametres du tuyau",["Longueur du tube : L (m)","Diamètre interne du tube : D (m)","Coefficient de perte de charge-frottement(S.U) : lambda","Altitude entrée tuyauterie : z1 (m)","Altitude sortie tuyauterie : z2 (m)","Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
             if (!ok) {
@@ -4547,7 +4347,7 @@ function PuitsP() {
         mo.inputs = ["C"];
         mo.parameters = list([["P0"],["T0"],["H0"],["option_temperature"]],[[this.P0],[this.T0],[this.H0],[this.option_temperature]]);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.exprs = [[string(this.P0)],[string(this.T0)],[string(this.H0)],[string(this.option_temperature)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PuitsP\",sz(1),sz(2));"]);
         this.x = standard_define([2.5,2],this.model,this.exprs,list(this.gr_i,0));
@@ -4572,10 +4372,7 @@ function PuitsP() {
         this.H0 = parseFloat(arguments[0]["H0"])
         this.option_temperature = parseFloat(arguments[0]["option_temperature"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.P0,this.T0,this.H0,this.option_temperature,this.exprs] = scicos_getvalue("Paramètres du puits",["Pression de la source : P0 (Pa)","Temperature de la source : T0 (K)","Enthalpie spécifique de la source : H0 (J/kg)","1:température fixée - 2:enthalpie fixée : option_temperature"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
             if (!ok) {
@@ -4609,7 +4406,7 @@ function SourceP() {
         mo.outputs = ["C"];
         mo.parameters = list([["P0"],["T0"],["H0"],["option_temperature"]],[[this.P0],[this.T0],[this.H0],[this.option_temperature]]);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = [[string(this.P0)],[string(this.T0)],[string(this.H0)],[string(this.option_temperature)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SourceP\",sz(1),sz(2));"]);
@@ -4635,10 +4432,7 @@ function SourceP() {
         this.H0 = parseFloat(arguments[0]["H0"])
         this.option_temperature = parseFloat(arguments[0]["option_temperature"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.P0,this.T0,this.H0,this.option_temperature,this.exprs] = scicos_getvalue("Paramètres du puits",["Pression de la source : P0 (Pa)","Temperature de la source : T0 (K)","Enthalpie spécifique de la source : H0 (J/kg)","1:température fixée - 2:enthalpie fixée : option_temperature"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
             if (!ok) {
@@ -4658,7 +4452,7 @@ function SourceP() {
 function VanneReglante() {
     VanneReglante.prototype.define = function VanneReglante() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.Cvmax = 8005.42;
         this.p_rho = 0;
@@ -4672,7 +4466,7 @@ function VanneReglante() {
         mo.outputs = "C2";
         mo.parameters = list([["Cvmax"],["p_rho"]],[[this.Cvmax],[this.p_rho]]);
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.exprs = [[string(this.Cvmax)],[string(this.p_rho)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VanneReglante\",sz(1),sz(2));"]);
@@ -4695,10 +4489,7 @@ function VanneReglante() {
         this.Cvmax = parseFloat(arguments[0]["Cvmax"])
         this.p_rho = parseFloat(arguments[0]["p_rho"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.Cvmax,this.p_rho,this.exprs] = scicos_getvalue("Paramètres de la vanne reglante",["Cvmax","p_rho"],list("vec",-1,"vec",-1),this.exprs);
             if (!ok) {
@@ -4719,7 +4510,7 @@ function BITCLEAR() {
     BITCLEAR.prototype.define = function BITCLEAR() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["bit_clear_32"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
@@ -4747,16 +4538,13 @@ function BITCLEAR() {
         this.Datatype = arguments[0]["Datatype"]
         this.bit = parseFloat(arguments[0]["bit"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.Datatype,this.bit,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","BITCLEAR")],[" "],["Clear a bit"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Index of Bit (0 is least significant)"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             if (floor(this.bit)!=this.bit) {
                 block_parameter_error(msprintf("Wrong type for \'%s\' parameter: %5.1f.","Index of Bit",this.bit),"Must be integer.");
                 var ok = false;
@@ -4819,7 +4607,7 @@ function BITSET() {
     BITSET.prototype.define = function BITSET() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["bit_set_32"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
@@ -4847,16 +4635,13 @@ function BITSET() {
         this.Datatype = arguments[0]["Datatype"]
         this.bit = parseFloat(arguments[0]["bit"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.Datatype,this.bit,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","BITSET")],[" "],["Set a bit"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Index of Bit (0 is least significant)"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
                 break;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             if (floor(this.bit)!=this.bit) {
                 block_parameter_error(msprintf("Wrong type for \'%s\' parameter: %5.1f.","Index of Bit",this.bit),"Must be integer.");
                 var ok = false;
@@ -4918,7 +4703,7 @@ function CONVERT() {
         var sgn = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["convert"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.out2 = new ScilabDouble([-2]);
@@ -4949,9 +4734,6 @@ function CONVERT() {
         this.ot = parseFloat(arguments[0]["ot"])
         this.np = arguments[0]["np"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.it,this.ot,this.np,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONVERT")],[" "],["Type conversion"],[" "]],["Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"],list("vec",1,"vec",1,"vec",1),this.exprs);
@@ -5280,7 +5062,7 @@ function CONVERT() {
                     }
                 }
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             if (ok) {
                 var tmpvar0 = set_io(this.model,this.graphics,list(in1,this.it),list(out,this.ot),[],[]);
@@ -5378,7 +5160,7 @@ function DFLIPFLOP() {
         scs_m.objs[44-1] = scicos_link(xx=[[279.98293],[279.98293],[325.53038],[325.53038]],yy=[[372.50232],[315.89455],[315.89455],[299.28749]],id="drawlink",thick=[0,0],ct=[5,-1],from=[2,2,0],to=[32,2,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([1],[1],[1]);
+        this.model.in = new ScilabDouble([1],[1],[1]);
         this.model.in2 = new ScilabDouble([1],[1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);
@@ -5401,7 +5183,6 @@ function DFLIPFLOP() {
         return options;
     }
     DFLIPFLOP.prototype.set = function DFLIPFLOP() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -5430,7 +5211,7 @@ function DLATCH() {
         scs_m.objs[19-1] = scicos_link(xx=[[305.09603],[325.09603]],yy=[[280.83282],[280.83282]],id="drawlink",thick=[0,0],ct=[1,1],from=[10,2,0],to=[18,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);
@@ -5453,7 +5234,6 @@ function DLATCH() {
         return options;
     }
     DLATCH.prototype.set = function DLATCH() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -5463,7 +5243,7 @@ function EXTRACTBITS() {
         var numb = [];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["extract_bit_32_UH0"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
@@ -5495,10 +5275,7 @@ function EXTRACTBITS() {
         this.bit = parseFloat(arguments[0]["bit"])
         this.scal = arguments[0]["scal"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.Datatype,this.rule,this.bit,this.scal,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","EXTRACTBITS")],[" "],["Bits Extraction"],[" "],["&nbsp;- Bits to Extract:"],["&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"],["&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"],["&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"],["&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"],["&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"],["&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"],["&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Bits to extract","Number of Bits or Index of Bit","Treat Bit Field as an Integer (0:No, 1:Yes)"],list("vec",1,"vec",1,"vec",-1,"vec",1),this.exprs);
             if (!ok) {
@@ -5512,7 +5289,7 @@ function EXTRACTBITS() {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Treat Bit Field as an Integer",this.scal),msprintf("Must be in the interval %s.","[0, 1]"));
                 var ok = false;
             } else {
-                var in1 = [this.model.in1,this.model.in2];
+                var in1 = [this.model.in,this.model.in2];
                 this.bit = int(this.bit);
                 this.rule = int(this.rule);
                 if ((this.rule==3)||(this.rule==4)) {
@@ -5710,7 +5487,7 @@ function INTMUL() {
         var sgn = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["matmul_i32"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1],[-2]);
+        this.model.in = new ScilabDouble([-1],[-2]);
         this.model.out = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2],[-3]);
         this.model.out2 = new ScilabDouble([-3]);
@@ -5739,9 +5516,6 @@ function INTMUL() {
         this.Datatype = arguments[0]["Datatype"]
         this.np = arguments[0]["np"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.Datatype,this.np,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","INTMUL")],[" "],["Integer matrix multiplication"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"],list("vec",1,"vec",1),this.exprs);
@@ -5805,7 +5579,7 @@ function INTMUL() {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Data Type",ot),msprintf("Must be in the interval %s.","[3, 8]"));
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             if (ok) {
                 var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
@@ -5860,7 +5634,7 @@ function JKFLIPFLOP() {
         scs_m.objs[22-1] = scicos_link(xx=[[446.2036],[466.2036]],yy=[[179.25363],[179.25363]],id="drawlink",thick=[0,0],ct=[1,1],from=[9,1,0],to=[21,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([1],[1],[1]);
+        this.model.in = new ScilabDouble([1],[1],[1]);
         this.model.in2 = new ScilabDouble([1],[1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);
@@ -5885,15 +5659,12 @@ function JKFLIPFLOP() {
     JKFLIPFLOP.prototype.set = function JKFLIPFLOP() {
         this.init = parseFloat(arguments[0]["init"])
         this.exprs0 = arguments[0]["exprs0"]
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
-        var xx = arg1.model.rpar.objs[path-1];
         this.exprs = xx.graphics.exprs[1-1];
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
@@ -5911,7 +5682,6 @@ function JKFLIPFLOP() {
                 xx.graphics.exprs[1-1] = this.exprs0;
                 this.model.odstate[1-1] = new ScilabDouble([this.init]);
                 xx.model = this.model;
-                arg1.model.rpar.objs[path-1] = xx;
                 break;
             }
         }
@@ -5920,7 +5690,6 @@ function JKFLIPFLOP() {
             newpar[size(newpar)+1-1] = 1;
             var needcompile = 2;
         }
-        this.x = arg1;
         var y = needcompile;
         var typ = newpar;
         return new BasicBlock(this.x);
@@ -5932,7 +5701,7 @@ function LOGIC() {
         this.mat = [[0],[0],[0],[1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["logic"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
@@ -5962,10 +5731,7 @@ function LOGIC() {
         this.mat = inverse(arguments[0]["mat"])
         this.herit = arguments[0]["herit"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.mat,this.herit,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","LOGIC")],[" "],["Combinatorial logic"],[" "],["&nbsp; Rows of the matrix are the output values"],["&nbsp; Number of rows must be a power of two."],["&nbsp; Number of columns gives the number of outputs."],[" "]],["Truth Table (matrix of outputs)","Accepts Inherited Events (0:No, 1:Yes)"],list("mat",[-1,-2],"vec",1),this.exprs);
             if (!ok) {
@@ -6013,7 +5779,7 @@ function SHIFT() {
         var OPER = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["shift_32_LA"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.out2 = new ScilabDouble([-2]);
@@ -6044,9 +5810,6 @@ function SHIFT() {
         this.nb = arguments[0]["nb"]
         this.np = arguments[0]["np"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.Datatype,this.nb,this.np,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","SHIFT")],[" "],["Shift/Rotates bits"]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Number of Bits to Shift Left (Negative number to shift right)","Shift Type (0:Arithmetic, 1:Circular)"],list("vec",1,"vec",1,"vec",1),this.exprs);
@@ -6163,7 +5926,7 @@ function SRFLIPFLOP() {
         scs_m.objs[14-1] = scicos_link(xx=[[363.03733],[383.03733]],yy=[[248.584],[248.584]],id="drawlink",thick=[0,0],ct=[1,1],from=[5,2,0],to=[13,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.out2 = new ScilabDouble([1],[1]);
@@ -6188,15 +5951,12 @@ function SRFLIPFLOP() {
     SRFLIPFLOP.prototype.set = function SRFLIPFLOP() {
         this.init = parseFloat(arguments[0]["init"])
         this.exprs0 = arguments[0]["exprs0"]
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
-        var xx = arg1.model.rpar.objs[path-1];
         this.exprs = xx.graphics.exprs[1-1];
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
@@ -6214,7 +5974,6 @@ function SRFLIPFLOP() {
                 xx.graphics.exprs[1-1] = this.exprs0;
                 this.model.odstate[1-1] = new ScilabDouble([this.init]);
                 xx.model = this.model;
-                arg1.model.rpar.objs[path-1] = xx;
                 break;
             }
         }
@@ -6223,7 +5982,6 @@ function SRFLIPFLOP() {
             newpar[size(newpar)+1-1] = path;
             var needcompile = 2;
         }
-        this.x = arg1;
         var y = needcompile;
         var typ = newpar;
         return new BasicBlock(this.x);
@@ -6235,7 +5993,7 @@ function BIGSOM_f() {
         this.sgn = [[1],[1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["sum"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble([-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
@@ -6256,9 +6014,6 @@ function BIGSOM_f() {
     BIGSOM_f.prototype.set = function BIGSOM_f() {
         this.sgn = inverse(arguments[0]["sgn"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.sgn,this.exprs] = scicos_getvalue("Set sum block parameters","Inputs ports signs/gain",list("vec",-1),this.exprs);
@@ -6304,7 +6059,6 @@ function CLINDUMMY_f() {
         return options;
     }
     CLINDUMMY_f.prototype.set = function CLINDUMMY_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -6319,7 +6073,7 @@ function CLR() {
         this.exprs = [["1"],["1+s"]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["csslti4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.state = new ScilabDouble([x0]);
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
@@ -6343,10 +6097,7 @@ function CLR() {
         this.num = arguments[0]["num"]
         this.den = arguments[0]["den"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var x0 = this.model.state;
         var rpar = this.model.rpar;
         var ns = prod(size(x0));
@@ -6409,7 +6160,7 @@ function CLR_f() {
         this.exprs = [["1"],["1+s"]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["csslti"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.state = new ScilabDouble([x0]);
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
@@ -6433,10 +6184,7 @@ function CLR_f() {
         this.num = arguments[0]["num"]
         this.den = arguments[0]["den"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var x0 = this.model.state;
         var rpar = this.model.rpar;
         var ns = prod(size(x0));
@@ -6500,7 +6248,7 @@ function CLSS() {
         var out = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["csslti4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
         this.model.state = new ScilabDouble([this.x0]);
         this.model.rpar = new ScilabDouble([this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]);
@@ -6531,13 +6279,10 @@ function CLSS() {
         this.D = parseFloat(arguments[0]["D"])
         this.x0 = parseFloat(arguments[0]["x0"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
-        this.model = arg1.model;
         while (true) {
             [ok,this.A,this.B,this.C,this.D,this.x0,this.exprs] = scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),this.exprs);
             if (!ok) {
@@ -6609,7 +6354,7 @@ function CLSS_f() {
         var out = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["csslti"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
         this.model.state = new ScilabDouble([this.x0]);
         this.model.rpar = new ScilabDouble([this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]);
@@ -6640,13 +6385,10 @@ function CLSS_f() {
         this.D = parseFloat(arguments[0]["D"])
         this.x0 = parseFloat(arguments[0]["x0"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
-        this.model = arg1.model;
         while (true) {
             [ok,this.A,this.B,this.C,this.D,this.x0,this.exprs] = scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),this.exprs);
             if (!ok) {
@@ -6705,7 +6447,7 @@ function DELAYV_f() {
         this.T = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["delayv"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([this.nin],[1]);
+        this.model.in = new ScilabDouble([this.nin],[1]);
         this.model.out = new ScilabDouble([this.nin]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1],[1]);
@@ -6735,11 +6477,8 @@ function DELAYV_f() {
         this.zz0 = inverse(arguments[0]["zz0"])
         this.T = parseFloat(arguments[0]["T"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        this.nin = this.model.in1[1-1];
+        this.nin = this.model.in[1-1];
         var z0 = this.model.dstate;
         this.zz0 = z0.slice(1-1,$-1);
         var told = z0[$-1];
@@ -6830,7 +6569,7 @@ function DELAY_f() {
         this.x.graphics.pin = 0;
         this.x.graphics.pout = 0;
         this.x.model.sim = "csuper";
-        this.x.model.in1 = 1;
+        this.x.model.in = 1;
         this.x.model.out = 1;
         this.x.model.blocktype = "h";
         this.x.model.dep_ut = [false,false];
@@ -6856,8 +6595,6 @@ function DELAY_f() {
         this.z0 = arguments[0]["z0"]
         this.exprs = inverse(arguments[0]["exprs"])
         var ppath = list(0,0);
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="REGISTER_f") {
                 ppath[1-1] = i;
             }
@@ -6868,7 +6605,6 @@ function DELAY_f() {
                 break;
             }
         }
-        this.x = arg1;
         var newpar = list();
         var register = this.x.model.rpar.objs[ppath[1-1]-1];
         var evtdly = this.x.model.rpar.objs[ppath[2-1]-1];
@@ -6918,7 +6654,7 @@ function DERIV() {
     DERIV.prototype.define = function DERIV() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["deriv"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["x"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -6936,7 +6672,6 @@ function DERIV() {
         return options;
     }
     DERIV.prototype.set = function DERIV() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -6946,7 +6681,7 @@ function DIFF_c() {
         this.x0 = [[0],[0]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["diffblk_c"]), new ScilabDouble([10004]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.state = new ScilabDouble(this.x0);
         this.model.blocktype = new ScilabString(["c"]);
@@ -6970,10 +6705,7 @@ function DIFF_c() {
         this.x0 = inverse(arguments[0]["x0"])
         this.xd0 = inverse(arguments[0]["xd0"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             var ask_again = false;
             [ok,this.x0,this.xd0,this.exprs] = scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",-1,"vec",-1),this.exprs);
@@ -6996,7 +6728,7 @@ function DIFF_c() {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.state = new ScilabDouble([this.x0],[this.xd0]);
                 this.model.out = new ScilabDouble([N]);
-                this.model.in1 = new ScilabDouble([N]);
+                this.model.in = new ScilabDouble([N]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
@@ -7017,7 +6749,7 @@ function DLR() {
         this.exprs = [["1"],["1+z"]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["dsslti4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble(x0.slice());
@@ -7042,10 +6774,7 @@ function DLR() {
         this.num = arguments[0]["num"]
         this.den = arguments[0]["den"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var x0 = this.model.dstate;
         var ns = prod(size(x0));
         var PREVAR_scicos_context = PREVAR_scicos_context;
@@ -7106,7 +6835,7 @@ function DLR_f() {
         this.exprs = [["1"],["1+z"]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["dsslti"]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble(x0.slice());
@@ -7131,10 +6860,7 @@ function DLR_f() {
         this.num = arguments[0]["num"]
         this.den = arguments[0]["den"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var x0 = this.model.dstate;
         var ns = prod(size(x0));
         var PREVAR_scicos_context = PREVAR_scicos_context;
@@ -7194,7 +6920,7 @@ function DLSS() {
         this.D = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["dsslti4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble(this.x0.slice());
@@ -7226,13 +6952,10 @@ function DLSS() {
         this.D = parseFloat(arguments[0]["D"])
         this.x0 = parseFloat(arguments[0]["x0"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
-        this.model = arg1.model;
         while (true) {
             [ok,this.A,this.B,this.C,this.D,this.x0,this.exprs] = scicos_getvalue("Set discrete linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),this.exprs);
             if (!ok) {
@@ -7302,7 +7025,7 @@ function DLSS_f() {
         this.D = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["dsslti"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble(this.x0.slice());
@@ -7334,13 +7057,10 @@ function DLSS_f() {
         this.D = parseFloat(arguments[0]["D"])
         this.x0 = parseFloat(arguments[0]["x0"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
-        this.model = arg1.model;
         while (true) {
             [ok,this.A,this.B,this.C,this.D,this.x0,this.exprs] = scicos_getvalue("Set discrete linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),this.exprs);
             if (!ok) {
@@ -7399,7 +7119,7 @@ function DOLLAR() {
         this.exprs = string([[z],[this.inh]]);
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["dollar4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([in1]);
         this.model.evtin = new ScilabDouble([1-this.inh]);
         this.model.dstate = new ScilabDouble([z]);
@@ -7423,10 +7143,7 @@ function DOLLAR() {
         this.a = arguments[0]["a"]
         this.inh = parseFloat(arguments[0]["inh"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")<2) {
             this.exprs[2-1] = "0";
         }
@@ -7503,7 +7220,7 @@ function DOLLAR_f() {
         this.exprs = string([[z],[this.inh]]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["dollar"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([in1]);
         this.model.evtin = new ScilabDouble([1-this.inh]);
         this.model.dstate = new ScilabDouble([z]);
@@ -7527,10 +7244,7 @@ function DOLLAR_f() {
         this.a = arguments[0]["a"]
         this.inh = parseFloat(arguments[0]["inh"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")<2) {
             this.exprs[2-1] = "0";
         }
@@ -7553,7 +7267,7 @@ function DOLLAR_f() {
             if (ok) {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.dstate = new ScilabDouble([this.a]);
-                this.model.in1 = new ScilabDouble(in1);
+                this.model.in = new ScilabDouble(in1);
                 this.model.out = new ScilabDouble(out);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
@@ -7572,7 +7286,7 @@ function DOLLAR_m() {
         this.exprs = string([[z],[this.inh]]);
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["dollar4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([in1]);
         this.model.evtin = new ScilabDouble([1-this.inh]);
         this.model.dstate = new ScilabDouble([z]);
@@ -7596,10 +7310,7 @@ function DOLLAR_m() {
         this.a = arguments[0]["a"]
         this.inh = parseFloat(arguments[0]["inh"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")<2) {
             this.exprs[2-1] = "0";
         }
@@ -7677,7 +7388,7 @@ function GAINBLK() {
         var out2 = -2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["gainblk"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
         this.model.in2 = new ScilabDouble([in2]);
         this.model.out2 = new ScilabDouble([out2]);
@@ -7703,10 +7414,7 @@ function GAINBLK() {
         this.gain = parseFloat(arguments[0]["gain"])
         this.over = arguments[0]["over"]
         this.exprs = inverse(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==1) {
             this.exprs = [[this.exprs],[sci2exp(0)]];
         }
@@ -7841,7 +7549,7 @@ function GAINBLK_f() {
         var out = 1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["gain"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
         this.model.rpar = new ScilabDouble([this.gain]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -7863,10 +7571,7 @@ function GAINBLK_f() {
     GAINBLK_f.prototype.set = function GAINBLK_f() {
         this.gain = parseFloat(arguments[0]["gain"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.gain,this.exprs] = scicos_getvalue("Set gain block parameters",["Gain"],list("mat",[-1,-1]),this.exprs[1-1]);
             if (!ok) {
@@ -7902,7 +7607,7 @@ function GAIN_f() {
         var out = 1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["gain"]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.gain]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -7924,10 +7629,7 @@ function GAIN_f() {
     GAIN_f.prototype.set = function GAIN_f() {
         this.gain = parseFloat(arguments[0]["gain"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.gain,this.exprs] = scicos_getvalue("Set gain block parameters",["Gain"],list("mat",[-1,-1]),this.exprs[1-1]);
             if (!ok) {
@@ -7964,7 +7666,7 @@ function INTEGRAL() {
         this.model = scicos_model();
         this.model.state = new ScilabDouble([0]);
         this.model.sim = list(new ScilabString(["integral_func"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
@@ -7995,10 +7697,7 @@ function INTEGRAL() {
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.lowp = arguments[0]["lowp"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,this.exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),this.exprs);
             if (!ok) {
@@ -8061,7 +7760,7 @@ function INTEGRAL_f() {
         this.x0 = 0;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["integr"]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.state = new ScilabDouble([this.x0]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -8082,10 +7781,7 @@ function INTEGRAL_f() {
     INTEGRAL_f.prototype.set = function INTEGRAL_f() {
         this.x0 = parseFloat(arguments[0]["x0"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.x0,this.exprs] = scicos_getvalue("Set continuous linear system parameters","Initial state",list("vec",1),this.exprs);
             if (!ok) {
@@ -8110,7 +7806,7 @@ function INTEGRAL_m() {
         this.model = scicos_model();
         this.model.state = new ScilabDouble([0]);
         this.model.sim = list(new ScilabString(["integral_func"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
@@ -8142,10 +7838,7 @@ function INTEGRAL_m() {
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.lowp = parseFloat(arguments[0]["lowp"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,this.exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("mat",[-1,-1],"vec",1,"vec",1,"mat",[-1,-1],"mat",[-1,-1]),this.exprs);
             if (!ok) {
@@ -8271,7 +7964,7 @@ function PID() {
         scs_m.objs[21-1] = scicos_link(xx=[[213.97067],[233.97067]],yy=[[203.11733],[203.11733]],id="drawlink",thick=[0,0],ct=[1,1],from=[20,1,0],to=[15,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([-2]);
@@ -8302,11 +7995,7 @@ function PID() {
         this.d = arguments[0]["d"]
         this.exprs0 = arguments[0]["exprs0"]
         var ppath = list(0,0,0);
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[this.i-1];
             if (typeof(o)=="Link") {
-                var from = arg1.model.rpar.objs[o.from[1-1]-1];
-                var to = arg1.model.rpar.objs[o.to[1-1]-1];
                 if (from.gui=="GAINBLK") {
                     switch (to.gui) {
                     case "SUMMATION":
@@ -8332,13 +8021,10 @@ function PID() {
             }
         }
         var newpar = list();
-        var xx1 = arg1.model.rpar.objs[ppath[1-1]-1];
         this.exprs[1-1] = xx1.graphics.exprs[1-1];
         var p_old = xx1.model.rpar;
-        var xx2 = arg1.model.rpar.objs[ppath[2-1]-1];
         this.exprs[2-1] = xx2.graphics.exprs[1-1];
         var i_old = xx2.model.rpar;
-        var xx3 = arg1.model.rpar.objs[ppath[3-1]-1];
         this.exprs[3-1] = xx3.graphics.exprs[1-1];
         var d_old = xx3.model.rpar;
         var y = 0;
@@ -8354,9 +8040,6 @@ function PID() {
                 xx2.model.rpar = this.i;
                 xx3.graphics.exprs = this.exprs0[3-1];
                 xx3.model.rpar = this.d;
-                arg1.model.rpar.objs[ppath[1-1]-1] = xx1;
-                arg1.model.rpar.objs[ppath[2-1]-1] = xx2;
-                arg1.model.rpar.objs[ppath[3-1]-1] = xx3;
                 break;
             }
         }
@@ -8367,7 +8050,6 @@ function PID() {
             newpar[size(newpar)+1-1] = ppath[3-1];
             var needcompile = 2;
         }
-        this.x = arg1;
         var y = max(y,needcompile);
         var typ = newpar;
         return new BasicBlock(this.x);
@@ -8379,7 +8061,7 @@ function REGISTER() {
         this.z0 = zeros(10,1);
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["delay4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([this.z0]);
@@ -8404,10 +8086,7 @@ function REGISTER() {
         this.z0 = parseFloat(arguments[0]["z0"])
         this.it = arguments[0]["it"]
         this.exprs = inverse(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,1)==1) {
             this.exprs = [[this.exprs],[sci2exp(1)]];
         }
@@ -8474,7 +8153,7 @@ function REGISTER_f() {
         this.z0 = zeros(10,1);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["delay"]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([this.z0]);
@@ -8496,10 +8175,7 @@ function REGISTER_f() {
     REGISTER_f.prototype.set = function REGISTER_f() {
         this.z0 = parseFloat(arguments[0]["z0"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.z0,this.exprs] = scicos_getvalue("Set delay parameters","Register initial condition",list("vec",-1),this.exprs);
             if (!ok) {
@@ -8526,7 +8202,7 @@ function SAMPHOLD() {
         var in1 = -1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["samphold4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["d"]);
@@ -8544,7 +8220,6 @@ function SAMPHOLD() {
         return options;
     }
     SAMPHOLD.prototype.set = function SAMPHOLD() {
-        this.x = arg1;
         this.x.model.firing = [];
         return new BasicBlock(this.x);
     }
@@ -8554,7 +8229,7 @@ function SAMPHOLD_m() {
     SAMPHOLD_m.prototype.define = function SAMPHOLD_m() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["samphold4_m"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
@@ -8580,11 +8255,8 @@ function SAMPHOLD_m() {
     SAMPHOLD_m.prototype.set = function SAMPHOLD_m() {
         this.it = arguments[0]["it"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
         this.x.model.firing = [];
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.it,this.exprs] = scicos_getvalue("Set parameters Block",["Datatype(1=real double 2=Complex 3=int32 ...)"],list("vec",1),label);
             if (!ok) {
@@ -8595,16 +8267,13 @@ function SAMPHOLD_m() {
                 var ok = false;
             }
             if (ok) {
-                var in1 = [this.model.in1,this.model.in2];
+                var in1 = [this.model.in,this.model.in2];
                 var tmpvar0 = set_io(this.model,this.graphics,list(in1,this.it),list(in1,this.it),1,[]);
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
-                    arg1.graphics = this.graphics;
-                    arg1.model = this.model;
-                    this.x = arg1;
                     break;
                 }
             }
@@ -8618,7 +8287,7 @@ function SAMPLEHOLD_f() {
         var in1 = -1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["samphold"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["d"]);
@@ -8636,7 +8305,6 @@ function SAMPLEHOLD_f() {
         return options;
     }
     SAMPLEHOLD_f.prototype.set = function SAMPLEHOLD_f() {
-        this.x = arg1;
         this.x.model.firing = [];
         return new BasicBlock(this.x);
     }
@@ -8647,7 +8315,7 @@ function SOM_f() {
         var sgn = [[1],[1],[1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["sum"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble([-1],[-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble(sgn);
         this.model.blocktype = new ScilabString(["c"]);
@@ -8666,9 +8334,6 @@ function SOM_f() {
         return options;
     }
     SOM_f.prototype.set = function SOM_f() {
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
@@ -8693,7 +8358,7 @@ function SUMMATION() {
         this.sgn = [[1],[-1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["summation"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2],[-2]);
         this.model.out2 = new ScilabDouble([-2]);
@@ -8721,9 +8386,6 @@ function SUMMATION() {
         this.sgn = inverse(arguments[0]["sgn"])
         this.satur = arguments[0]["satur"]
         this.exprs = inverse(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,1)==1) {
             this.exprs = [[sci2exp(1)],[this.exprs],[sci2exp(0)]];
@@ -8845,7 +8507,7 @@ function SUM_f() {
     SUM_f.prototype.define = function SUM_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["plusblk"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble([-1],[-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -8863,7 +8525,6 @@ function SUM_f() {
         return options;
     }
     SUM_f.prototype.set = function SUM_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -8880,7 +8541,7 @@ function TCLSS() {
         var out = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["tcslti4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([in1],[nx]);
+        this.model.in = new ScilabDouble([in1],[nx]);
         this.model.out = new ScilabDouble([out]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.state = new ScilabDouble([this.x0]);
@@ -8912,10 +8573,7 @@ function TCLSS() {
         this.D = parseFloat(arguments[0]["D"])
         this.x0 = parseFloat(arguments[0]["x0"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
@@ -8986,7 +8644,7 @@ function TCLSS_f() {
         var out = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["tcslti"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([in1],[nx]);
+        this.model.in = new ScilabDouble([in1],[nx]);
         this.model.out = new ScilabDouble([out]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.state = new ScilabDouble([this.x0]);
@@ -9018,10 +8676,7 @@ function TCLSS_f() {
         this.D = parseFloat(arguments[0]["D"])
         this.x0 = parseFloat(arguments[0]["x0"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
@@ -9088,7 +8743,7 @@ function TIME_DELAY() {
         this.N = 1024;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["time_delay"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([nin]);
+        this.model.in = new ScilabDouble([nin]);
         this.model.out = new ScilabDouble([nin]);
         this.model.rpar = new ScilabDouble([this.T,this.init]);
         this.model.ipar = new ScilabDouble([this.N]);
@@ -9115,11 +8770,8 @@ function TIME_DELAY() {
         this.init = parseFloat(arguments[0]["init"])
         this.N = parseFloat(arguments[0]["N"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        var nin = this.model.in1[1-1];
+        var nin = this.model.in[1-1];
         while (true) {
             [ok,this.T,this.init,this.N,this.exprs] = scicos_getvalue("Set delay parameters",["Delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -9161,7 +8813,7 @@ function VARIABLE_DELAY() {
         this.N = 1024;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["variable_delay"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([nin],[1]);
+        this.model.in = new ScilabDouble([nin],[1]);
         this.model.out = new ScilabDouble([nin]);
         this.model.rpar = new ScilabDouble([this.T,this.init]);
         this.model.ipar = new ScilabDouble([this.N]);
@@ -9188,11 +8840,8 @@ function VARIABLE_DELAY() {
         this.init = parseFloat(arguments[0]["init"])
         this.N = parseFloat(arguments[0]["N"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
-        var nin = this.model.in1[1-1];
+        var nin = this.model.in[1-1];
         while (true) {
             [ok,this.T,this.init,this.N,this.exprs] = scicos_getvalue("Set delay parameters",["Max delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -9231,7 +8880,7 @@ function CUMSUM() {
         var function_name = "cumsum_m";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -9265,9 +8914,6 @@ function CUMSUM() {
         this.typ = inverse(arguments[0]["typ"])
         this.decomptyp = arguments[0]["decomptyp"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -9311,7 +8957,7 @@ function CUMSUM() {
                 message("Datatype is not supported");
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -9322,10 +8968,7 @@ function CUMSUM() {
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-                arg1.model = this.model;
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                this.x = arg1;
                 break;
             }
         }
@@ -9339,7 +8982,7 @@ function EXTRACT() {
         var function_name = "extract";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
@@ -9375,10 +9018,7 @@ function EXTRACT() {
         this.a = inverse(arguments[0]["a"])
         this.b = inverse(arguments[0]["b"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -9420,7 +9060,7 @@ function EXTRACT() {
                 }
             }
             this.model.ipar = new ScilabDouble([this.a],[this.b],[ma],[mb]);
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [ma,mb];
             var funtyp = 4;
             if (ok) {
@@ -9431,9 +9071,6 @@ function EXTRACT() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -9447,7 +9084,7 @@ function EXTTRI() {
         var function_name = "extrilz";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -9481,9 +9118,6 @@ function EXTTRI() {
         this.typ = inverse(arguments[0]["typ"])
         this.decomptyp = arguments[0]["decomptyp"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -9524,7 +9158,7 @@ function EXTTRI() {
                 message("Datatype is not supported");
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -9535,10 +9169,7 @@ function EXTTRI() {
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-                arg1.model = this.model;
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                this.x = arg1;
                 break;
             }
         }
@@ -9552,7 +9183,7 @@ function MATBKSL() {
         var function_name = "mat_bksl";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1]);
         this.model.in2 = new ScilabDouble([-2],[-3]);
         this.model.intyp = new ScilabDouble([1,1]);
         this.model.out = new ScilabDouble([-2]);
@@ -9584,10 +9215,7 @@ function MATBKSL() {
     MATBKSL.prototype.set = function MATBKSL() {
         this.typ = inverse(arguments[0]["typ"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -9608,7 +9236,7 @@ function MATBKSL() {
                 message("Datatype is not supported");
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -9619,9 +9247,6 @@ function MATBKSL() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -9635,7 +9260,7 @@ function MATCATH() {
         var function_name = "mat_cath";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1]);
         this.model.in2 = new ScilabDouble([-2],[-3]);
         this.model.intyp = new ScilabDouble([1,1]);
         this.model.out = new ScilabDouble([-1]);
@@ -9667,9 +9292,6 @@ function MATCATH() {
     MATCATH.prototype.set = function MATCATH() {
         this.nin = arguments[0]["nin"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")>1) {
             var label = "size(evstr("+label[2-1]+"),\'*\')";
@@ -9692,9 +9314,6 @@ function MATCATH() {
                 var funtyp = 4;
                 this.model.sim = list(new ScilabString(["mat_cath"]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -9710,7 +9329,7 @@ function MATCATV() {
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
         this.model.in2 = new ScilabDouble([-1],[-1]);
-        this.model.in1 = new ScilabDouble([-2],[-3]);
+        this.model.in = new ScilabDouble([-2],[-3]);
         this.model.intyp = new ScilabDouble([-1,-1]);
         this.model.out = new ScilabDouble([0]);
         this.model.out2 = new ScilabDouble([-1]);
@@ -9741,9 +9360,6 @@ function MATCATV() {
     MATCATV.prototype.set = function MATCATV() {
         this.nin = arguments[0]["nin"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")>1) {
             var label = "size(evstr("+label[2-1]+"),\'*\')";
@@ -9766,9 +9382,6 @@ function MATCATV() {
                 var funtyp = 4;
                 this.model.sim = list(new ScilabString(["mat_catv"]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -9782,7 +9395,7 @@ function MATDET() {
         var function_name = "mat_det";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-1]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
@@ -9814,10 +9427,7 @@ function MATDET() {
     MATDET.prototype.set = function MATDET() {
         this.typ = inverse(arguments[0]["typ"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -9838,7 +9448,7 @@ function MATDET() {
                 message("Datatype is not supported");
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -9849,9 +9459,6 @@ function MATDET() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -9865,7 +9472,7 @@ function MATDIAG() {
         var function_name = "mat_diag";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -9897,10 +9504,7 @@ function MATDIAG() {
     MATDIAG.prototype.set = function MATDIAG() {
         this.typ = inverse(arguments[0]["typ"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -9921,7 +9525,7 @@ function MATDIAG() {
                 message("Datatype is not supported");
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -9932,9 +9536,6 @@ function MATDIAG() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -9948,7 +9549,7 @@ function MATDIV() {
         var function_name = "mat_div";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1],[-2]);
+        this.model.in = new ScilabDouble([-1],[-2]);
         this.model.in2 = new ScilabDouble([-3],[-3]);
         this.model.intyp = new ScilabDouble([1,1]);
         this.model.out = new ScilabDouble([-1]);
@@ -9980,10 +9581,7 @@ function MATDIV() {
     MATDIV.prototype.set = function MATDIV() {
         this.typ = inverse(arguments[0]["typ"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -10004,7 +9602,7 @@ function MATDIV() {
                 message("Datatype is not supported");
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -10015,9 +9613,6 @@ function MATDIV() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -10031,7 +9626,7 @@ function MATEIG() {
         var function_name = "mat_vps";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-1]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -10065,9 +9660,6 @@ function MATEIG() {
         this.typ = inverse(arguments[0]["typ"])
         this.decomptyp = arguments[0]["decomptyp"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -10120,10 +9712,7 @@ function MATEIG() {
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-                arg1.model = this.model;
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                this.x = arg1;
                 break;
             }
         }
@@ -10137,7 +9726,7 @@ function MATEXPM() {
         var function_name = "mat_expm";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-1]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -10169,10 +9758,7 @@ function MATEXPM() {
     MATEXPM.prototype.set = function MATEXPM() {
         this.typ = inverse(arguments[0]["typ"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -10193,7 +9779,7 @@ function MATEXPM() {
                 message("Datatype is not supported");
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -10204,9 +9790,6 @@ function MATEXPM() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -10220,7 +9803,7 @@ function MATINV() {
         var function_name = "mat_inv";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-1]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -10252,10 +9835,7 @@ function MATINV() {
     MATINV.prototype.set = function MATINV() {
         this.typ = inverse(arguments[0]["typ"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -10276,7 +9856,7 @@ function MATINV() {
                 message("Datatype is not supported");
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -10287,9 +9867,6 @@ function MATINV() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -10303,7 +9880,7 @@ function MATLU() {
         var function_name = "mat_lu";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-1]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1],[-1]);
@@ -10335,9 +9912,6 @@ function MATLU() {
     MATLU.prototype.set = function MATLU() {
         this.typ = inverse(arguments[0]["typ"])
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -10360,7 +9934,7 @@ function MATLU() {
                 var ok = false;
             }
             if (ok) {
-                var tmpvar0 = set_io(this.model,this.graphics,list([this.model.in1,this.model.in2],it),list([this.model.out,this.model.out2],ot),[],[]);
+                var tmpvar0 = set_io(this.model,this.graphics,list([this.model.in,this.model.in2],it),list([this.model.out,this.model.out2],ot),[],[]);
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
@@ -10384,7 +9958,7 @@ function MATMAGPHI() {
         var function_name = "matz_abs";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([2]);
         this.model.out = new ScilabDouble([-1],[-1]);
@@ -10416,9 +9990,6 @@ function MATMAGPHI() {
     MATMAGPHI.prototype.set = function MATMAGPHI() {
         this.decomptyp = arguments[0]["decomptyp"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -10454,10 +10025,7 @@ function MATMAGPHI() {
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-                arg1.model = this.model;
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                this.x = arg1;
                 break;
             }
         }
@@ -10469,7 +10037,7 @@ function MATMUL() {
     MATMUL.prototype.define = function MATMUL() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["matmul_m"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1],[-2]);
+        this.model.in = new ScilabDouble([-1],[-2]);
         this.model.in2 = new ScilabDouble([-2],[-3]);
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([-3]);
@@ -10496,7 +10064,6 @@ function MATMUL() {
         this.rule = parseFloat(arguments[0]["rule"])
         this.np = parseFloat(arguments[0]["np"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
         this.graphics = this.x.graphics;
         var label = this.graphics.exprs;
         this.model = this.x.model;
@@ -10624,7 +10191,6 @@ function MATMUL() {
                 this.graphics.exprs = new ScilabDouble([label]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
-                var arg1 = this.x;
                 break;
             }
         }
@@ -10638,7 +10204,7 @@ function MATPINV() {
         var function_name = "mat_pinv";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-2]);
@@ -10670,10 +10236,7 @@ function MATPINV() {
     MATPINV.prototype.set = function MATPINV() {
         this.typ = inverse(arguments[0]["typ"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -10694,7 +10257,7 @@ function MATPINV() {
                 message("Datatype is not supported");
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -10705,9 +10268,6 @@ function MATPINV() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -10721,7 +10281,7 @@ function MATRESH() {
         var function_name = "mat_reshape";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -10757,9 +10317,6 @@ function MATRESH() {
         this.l1 = arguments[0]["l1"]
         this.out = arguments[0]["out"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -10816,9 +10373,6 @@ function MATRESH() {
                 var funtyp = 4;
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -10833,7 +10387,7 @@ function MATSING() {
         var function_name = "mat_sing";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -10867,9 +10421,6 @@ function MATSING() {
         this.typ = inverse(arguments[0]["typ"])
         this.decomptyp = arguments[0]["decomptyp"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -10925,10 +10476,7 @@ function MATSING() {
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-                arg1.model = this.model;
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                this.x = arg1;
                 break;
             }
         }
@@ -10942,7 +10490,7 @@ function MATSUM() {
         var function_name = "mat_sum";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
@@ -10976,9 +10524,6 @@ function MATSUM() {
         this.typ = inverse(arguments[0]["typ"])
         this.decomptyp = arguments[0]["decomptyp"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -11025,7 +10570,7 @@ function MATSUM() {
                 message("Datatype is not supported");
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var funtyp = 4;
             if (ok) {
                 var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
@@ -11035,10 +10580,7 @@ function MATSUM() {
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-                arg1.model = this.model;
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                this.x = arg1;
                 break;
             }
         }
@@ -11050,7 +10592,7 @@ function MATTRAN() {
     MATTRAN.prototype.define = function MATTRAN() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["mattran_m"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.out = new ScilabDouble([-2]);
         this.model.out2 = new ScilabDouble([-1]);
@@ -11074,10 +10616,7 @@ function MATTRAN() {
         this.typ = inverse(arguments[0]["typ"])
         this.rule = arguments[0]["rule"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==1) {
             label[2-1] = sci2exp(1);
         }
@@ -11102,7 +10641,7 @@ function MATTRAN() {
                 message("Datatype is not supported");
                 var ok = false;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -11113,9 +10652,6 @@ function MATTRAN() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -11129,7 +10665,7 @@ function MATZCONJ() {
         var function_name = "matz_conj";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([2]);
         this.model.out = new ScilabDouble([-1]);
@@ -11158,7 +10694,6 @@ function MATZCONJ() {
         return options;
     }
     MATZCONJ.prototype.set = function MATZCONJ() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -11169,7 +10704,7 @@ function MATZREIM() {
         var function_name = "matz_reim";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([2]);
         this.model.out = new ScilabDouble([-1],[-1]);
@@ -11201,9 +10736,6 @@ function MATZREIM() {
     MATZREIM.prototype.set = function MATZREIM() {
         this.decomptyp = arguments[0]["decomptyp"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -11239,10 +10771,7 @@ function MATZREIM() {
             }
             if (ok) {
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-                arg1.model = this.model;
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                this.x = arg1;
                 break;
             }
         }
@@ -11256,7 +10785,7 @@ function RICC() {
         var function_name = "ricc_m";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1],[-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1],[-1]);
         this.model.in2 = new ScilabDouble([-1],[-1],[-1]);
         this.model.intyp = new ScilabDouble([1,1,1]);
         this.model.out = new ScilabDouble([-1]);
@@ -11290,10 +10819,7 @@ function RICC() {
         this.tpe = arguments[0]["tpe"]
         this.mod = arguments[0]["mod"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -11302,7 +10828,7 @@ function RICC() {
             if (!ok) {
                 break;
             }
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var it = [1,1,1];
             var ot = 1;
@@ -11314,9 +10840,6 @@ function RICC() {
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.tpe],[this.mod]);
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -11330,7 +10853,7 @@ function ROOTCOEF() {
         var function_name = "root_coef";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-2]);
@@ -11364,10 +10887,7 @@ function ROOTCOEF() {
         this.typ = inverse(arguments[0]["typ"])
         this.inp = arguments[0]["inp"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
@@ -11399,9 +10919,6 @@ function ROOTCOEF() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -11413,7 +10930,7 @@ function SQRT() {
     SQRT.prototype.define = function SQRT() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["mat_sqrt"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
@@ -11437,10 +10954,7 @@ function SQRT() {
     SQRT.prototype.set = function SQRT() {
         this.typ = inverse(arguments[0]["typ"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.typ,this.exprs] = scicos_getvalue("Set SQRT Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
             if (!ok) {
@@ -11456,7 +10970,7 @@ function SQRT() {
             }
             var it = this.typ;
             var ot = this.typ;
-            var in1 = [this.model.in1,this.model.in2];
+            var in1 = [this.model.in,this.model.in2];
             var out = [this.model.out,this.model.out2];
             var funtyp = 4;
             if (ok) {
@@ -11467,9 +10981,6 @@ function SQRT() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -11483,7 +10994,7 @@ function SUBMAT() {
         var function_name = "submat";
         var funtyp = 4;
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -11525,10 +11036,7 @@ function SUBMAT() {
         this.d = arguments[0]["d"]
         this.inp = arguments[0]["inp"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(label,"*")==5) {
             label[6-1] = sci2exp([1,1]);
         }
@@ -11581,9 +11089,6 @@ function SUBMAT() {
                 var ok = tmpvar0[2];
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                arg1.model = this.model;
-                this.x = arg1;
                 break;
             }
         }
@@ -11605,7 +11110,7 @@ function AUTOMAT() {
         var rpar = [this.X0];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["automat"]), new ScilabDouble([10004]));
-        this.model.in1 = new ScilabDouble([2*NX+1],[2*NX+1]);
+        this.model.in = new ScilabDouble([2*NX+1],[2*NX+1]);
         this.model.out = new ScilabDouble([2],[2*NX]);
         this.model.state = new ScilabDouble([ones(2*NX,1)]);
         this.model.nzcross = new ScilabDouble([1]);
@@ -11628,10 +11133,7 @@ function AUTOMAT() {
         return options;
     }
     AUTOMAT.prototype.set = function AUTOMAT() {
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var ipar = this.model.ipar;
         var NMode = ipar[1-1];
         var NX = ipar[3-1];
@@ -11741,7 +11243,7 @@ function BACKLASH() {
         this.exprs = [["0"],["1"],["1"]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["backlash"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([0],[1]);
         this.model.nzcross = new ScilabDouble([2]);
@@ -11767,10 +11269,7 @@ function BACKLASH() {
         this.gap = arguments[0]["gap"]
         this.zcr = arguments[0]["zcr"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var rpar = this.model.rpar;
         while (true) {
             [ok,this.ini,this.gap,this.zcr,this.exprs] = scicos_getvalue("Set backlash parameters",["initial output","gap","use zero-crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
@@ -11822,7 +11321,7 @@ function BOUNCE() {
         var state = transpose(state);
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["bounce_ball"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([n],[n]);
         this.model.state = new ScilabDouble(state.slice());
         this.model.rpar = new ScilabDouble([this.rpar1],[this.rpar2],[this.walls],[this.g],[this.C]);
@@ -11863,10 +11362,7 @@ function BOUNCE() {
         this.g = parseFloat(arguments[0]["g"])
         this.C = parseFloat(arguments[0]["C"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")<9) {
             this.exprs[8-1] = "9.81";
             this.exprs[9-1] = "0";
@@ -11943,7 +11439,7 @@ function BOUNCEXY() {
         this.ymax = 15;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["bouncexy"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.intyp = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -11993,10 +11489,7 @@ function BOUNCEXY() {
         this.ymin = parseFloat(arguments[0]["ymin"])
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var dstate = this.model.dstate;
         while (true) {
             [ok,this.clrs,this.siz,this.win,this.imode,this.xmin,this.xmax,this.ymin,this.ymax,this.exprs] = scicos_getvalue("Set Scope parameters",["colors","radii","window number (-1 for automatic)","animation mode (0,1)","Xmin","Xmax","Ymin","Ymax"],list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
@@ -12058,7 +11551,7 @@ function BPLATFORM() {
         this.ymax = 15;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["bplatform2"]), new ScilabDouble([5]));
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([0]);
         this.model.rpar = new ScilabDouble([this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]);
@@ -12093,10 +11586,7 @@ function BPLATFORM() {
         this.ymin = parseFloat(arguments[0]["ymin"])
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var dstate = this.model.dstate;
         while (true) {
             [ok,this.plen,this.csiz,this.phi,this.xmin,this.xmax,this.ymin,this.ymax,this.exprs] = scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
@@ -12147,7 +11637,7 @@ function CBLOCK() {
         this.ng = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString([" "]), new ScilabDouble([2004]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
         this.model.evtin = new ScilabDouble(clkin);
         this.model.evtout = new ScilabDouble(clkout);
@@ -12202,9 +11692,6 @@ function CBLOCK() {
         this.depu = parseBoolean(arguments[0]["depu"])
         this.dept = parseBoolean(arguments[0]["dept"])
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         while (true) {
             [ok,this.function_name,this.impli,this.i,this.o,this.ci,this.co,this.xx,this.ng,this.z,this.rpar,this.ipar,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block2 block parameters",["simulation function","is block implicit? (y,n)","input ports sizes","output ports sizes","input event ports sizes","output events ports sizes","initial continuous state","number of zero crossing surfaces","initial discrete state","Real parameters vector","Integer parameters vector","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label[1-1]);
@@ -12273,7 +11760,7 @@ function CBLOCK() {
                     var ok = tmpvar1[2];
                     if (ok) {
                         this.model.sim = list(new ScilabDouble([funam]), new ScilabDouble([funtyp]));
-                        this.model.in1 = new ScilabDouble([this.i]);
+                        this.model.in = new ScilabDouble([this.i]);
                         this.model.out = new ScilabDouble([this.o]);
                         this.model.evtin = new ScilabDouble([this.ci]);
                         this.model.evtout = new ScilabDouble([this.co]);
@@ -12305,14 +11792,14 @@ function CBLOCK4() {
         var funam = "toto";
         this.model = scicos_model();
         this.model.sim = list(new ScilabString([" "]), new ScilabDouble([2004]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var label = list([[funam],["n"],[sci2exp([this.model.in1,this.model.in2])],[sci2exp(this.model.intyp)],[sci2exp([this.model.out,this.model.out2])],[sci2exp(this.model.outtyp)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.odstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.opar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]],[]);
+        var label = list([[funam],["n"],[sci2exp([this.model.in,this.model.in2])],[sci2exp(this.model.intyp)],[sci2exp([this.model.out,this.model.out2])],[sci2exp(this.model.outtyp)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.odstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.opar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]],[]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CBLOCK4\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,label,this.gr_i);
         return new BasicBlock(this.x);
@@ -12365,9 +11852,6 @@ function CBLOCK4() {
         this.depu = parseBoolean(arguments[0]["depu"])
         this.dept = parseBoolean(arguments[0]["dept"])
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         while (true) {
             [ok,this.function_name,this.impli,this.in1,this.it,this.out,this.ot,this.ci,this.co,this.xx,this.z,this.oz,this.rpar,this.ipar,this.opar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block4 block parameters",["Simulation function","Is block implicit? (y,n)","Input ports sizes","Input ports type","Output port sizes","Output ports type","Input event ports sizes","Output events ports sizes","Initial continuous state","Initial discrete state","Initial object state","Real parameters vector","Integer parameters vector","Object parameters list","Number of modes","Number of zero crossings","Initial firing vector (<0 for no firing)","Direct feedthrough (y or n)","Time dependence (y or n)"],list("str",1,"str",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label[1-1]);
@@ -12468,7 +11952,7 @@ function CONSTRAINT2_c() {
         this.id = [0];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["constraint_c"]), new ScilabDouble([10004]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1],[1]);
         this.model.state = new ScilabDouble([this.x0],[this.xd0]);
         this.model.ipar = new ScilabDouble(this.id);
@@ -12495,10 +11979,7 @@ function CONSTRAINT2_c() {
         this.xd0 = inverse(arguments[0]["xd0"])
         this.id = inverse(arguments[0]["id"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             var ask_again = false;
             [ok,this.x0,this.xd0,this.id,this.exprs] = scicos_getvalue("Set Constraint block parameters",["Initial guess values of states x","Initial guess values of derivative x\'","Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0"],list("vec",-1,"vec",-1,"vec",-1),this.exprs);
@@ -12535,7 +12016,7 @@ function CONSTRAINT2_c() {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.state = new ScilabDouble([this.x0],[this.xd0]);
                 this.model.out = new ScilabDouble([N],[N]);
-                this.model.in1 = new ScilabDouble([N]);
+                this.model.in = new ScilabDouble([N]);
                 this.model.ipar = new ScilabDouble(this.id);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
@@ -12551,7 +12032,7 @@ function CONSTRAINT_c() {
         this.x0 = [[0],[0]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["constraint_c"]), new ScilabDouble([10004]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.ipar = new ScilabDouble([0]);
         this.model.state = new ScilabDouble(this.x0);
@@ -12573,10 +12054,7 @@ function CONSTRAINT_c() {
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
         this.x0 = inverse(arguments[0]["x0"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.x0,this.exprs] = scicos_getvalue("Set solver block parameters","Initial guess values",list("vec",-1),this.exprs);
             if (!ok) {
@@ -12595,7 +12073,7 @@ function CONSTRAINT_c() {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
                     this.model.state = new ScilabDouble([this.x0],[zeros(N,1)]);
                     this.model.out = new ScilabDouble([N]);
-                    this.model.in1 = new ScilabDouble([N]);
+                    this.model.in = new ScilabDouble([N]);
                     this.model.ipar = new ScilabDouble([-1*ones(N,1)]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;
@@ -12614,7 +12092,7 @@ function DEADBAND() {
         var rpar = [[this.maxp],[this.minp]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["deadband"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([2]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
@@ -12642,10 +12120,7 @@ function DEADBAND() {
         this.minp = parseFloat(arguments[0]["minp"])
         this.zeroc = arguments[0]["zeroc"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.maxp,this.minp,this.zeroc,this.exprs] = scicos_getvalue("Set Deadband parameters",["End of dead band","Start of dead band","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -12692,8 +12167,6 @@ function DEBUG() {
         return options;
     }
     DEBUG.prototype.set = function DEBUG() {
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var textmp = this.exprs[2-1];
         var ok = true;
@@ -12742,8 +12215,6 @@ function DEBUG_SCICOS() {
         return options;
     }
     DEBUG_SCICOS.prototype.set = function DEBUG_SCICOS() {
-        arg1.gui = "DEBUG";
-        var tmpvar0 = DEBUG("set",arg1);
         this.x = tmpvar0[0];
         var y = tmpvar0[1];
         var typ = tmpvar0[2];
@@ -12756,7 +12227,7 @@ function DIFF_f() {
         this.x0 = [[0],[0]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["diffblk"]), new ScilabDouble([10001]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.state = new ScilabDouble(this.x0);
         this.model.blocktype = new ScilabString(["c"]);
@@ -12780,10 +12251,7 @@ function DIFF_f() {
         this.x0 = inverse(arguments[0]["x0"])
         this.xd0 = arguments[0]["xd0"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.x0,this.xd0,this.exprs] = scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -12815,10 +12283,7 @@ function DSUPER() {
     DSUPER.prototype.set = function DSUPER() {
         var y = this.needcompile;
         var typ = list();
-        this.graphics = arg1.graphics;
         if ((length(this.graphics.exprs)==0)) {
-            warnBlockByUID(arg1.model.label,"Invalid masked block.");
-            this.x = arg1;
             return;
         }
         this.exprs = this.graphics.exprs[1-1];
@@ -12826,15 +12291,12 @@ function DSUPER() {
         var btitre = this.graphics.exprs[2-1][2-1][1-1];
         var bitems = this.graphics.exprs[2-1][2-1].slice(2-1,$);
         if (exprs0==[]) {
-            this.x = arg1;
             return;
         }
-        var context = [arg1.model.rpar.props.context];
         var tmpvar0 = script2var(context,PREVAR_scicos_context);
         var PREVAR_scicos_context = tmpvar0[0];
         var ierr = tmpvar0[1];
         if (ierr!=0) {
-            this.x = arg1;
             return;
         }
         var tt = "scicos_context."+exprs0[1-1];
@@ -12845,7 +12307,6 @@ function DSUPER() {
         var scicos_context = PREVAR_scicos_context;
         execstr("[ok,"+tt+",exprs]=scicos_getvalue(btitre,bitems,ss,exprs)");
         if (this.ok) {
-            this.x = arg1;
             var PREVAR_scicos_context = scicos_context;
             var sblock = this.x.model.rpar;
             var tmpvar1 = do_eval(sblock,list(),scicos_context);
@@ -12857,7 +12318,6 @@ function DSUPER() {
             this.x.graphics.exprs[1-1] = this.exprs;
             this.x.model.rpar = sblock;
         } else {
-            this.x = arg1;
         }
         return new BasicBlock(this.x);
     }
@@ -12868,7 +12328,7 @@ function EDGETRIGGER() {
         this.edge = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["edgetrig"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([0]);
         this.model.nzcross = new ScilabDouble([1]);
@@ -12892,10 +12352,7 @@ function EDGETRIGGER() {
     EDGETRIGGER.prototype.set = function EDGETRIGGER() {
         this.edge = parseFloat(arguments[0]["edge"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.edge,this.exprs] = scicos_getvalue("Set edge trigger block parameters",["rising (1), falling (-1), both (0)"],list("vec",1),this.exprs);
             if (!ok) {
@@ -12986,7 +12443,7 @@ function EDGE_TRIGGER() {
         lnk={};
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EDGE_TRIGGER\",sz(1),sz(2));"]);
@@ -13002,8 +12459,6 @@ function EDGE_TRIGGER() {
         return options;
     }
     EDGE_TRIGGER.prototype.set = function EDGE_TRIGGER() {
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="EDGETRIGGER") {
                 var ppath = list(i);
                 break;
@@ -13020,20 +12475,19 @@ function EDGE_TRIGGER() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
-            var xx = arg1[spath-1];
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (diffobjs(this.xxn,xx)) {
                 this.model = xx.model;
                 var model_n = this.xxn.model;
                 if (!is_modelica_block(xx)) {
                     var modified = or(this.model.sim!=model_n.sim)||!isequal(this.model.state,model_n.state)||!isequal(this.model.dstate,model_n.dstate)||!isequal(this.model.rpar,model_n.rpar)||!isequal(this.model.ipar,model_n.ipar)||!isequal(this.model.label,model_n.label);
-                    if (or(this.model.in1!=model_n.in1)||or(this.model.out!=model_n.out)) {
+                    if (or(this.model.in!=model_n.in)||or(this.model.out!=model_n.out)) {
                         var needcompile = 1;
                     }
                     if (or(this.model.firing!=model_n.firing)) {
                         var needcompile = 2;
                     }
-                    if ((size(this.model.in1,"*")!=size(model_n.in1,"*"))||(size(this.model.out,"*")!=size(model_n.out,"*"))) {
+                    if ((size(this.model.in,"*")!=size(model_n.in,"*"))||(size(this.model.out,"*")!=size(model_n.out,"*"))) {
                         var needcompile = 4;
                     }
                     if (this.model.sim=="input"||this.model.sim=="output") {
@@ -13062,12 +12516,10 @@ function EDGE_TRIGGER() {
                         var needcompile = 4;
                     }
                 }
-                arg1[spath-1] = this.xxn;
                 newpar[size(newpar)+1-1] = path;
                 var y = max(y,needcompile);
             }
         }
-        this.x = arg1;
         var typ = newpar;
         return new BasicBlock(this.x);
     }
@@ -13092,8 +12544,6 @@ function ENDBLK() {
         return options;
     }
     ENDBLK.prototype.set = function ENDBLK() {
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="END_c") {
                 var ppath = list(i);
                 break;
@@ -13110,20 +12560,19 @@ function ENDBLK() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
-            var xx = arg1[spath-1];
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (!isequalbitwise(this.xxn,xx)) {
                 this.model = xx.model;
                 var model_n = this.xxn.model;
                 if (!is_modelica_block(xx)) {
                     var modified = or(this.model.sim!=model_n.sim)||!isequal(this.model.state,model_n.state)||!isequal(this.model.dstate,model_n.dstate)||!isequal(this.model.odstate,model_n.odstate)||!isequal(this.model.rpar,model_n.rpar)||!isequal(this.model.ipar,model_n.ipar)||!isequal(this.model.opar,model_n.opar)||!isequal(this.model.label,model_n.label);
-                    if (or(this.model.in1!=model_n.in1)||or(this.model.out!=model_n.out)||or(this.model.in2!=model_n.in2)||or(this.model.out2!=model_n.out2)||or(this.model.outtyp!=model_n.outtyp)||or(this.model.intyp!=model_n.intyp)) {
+                    if (or(this.model.in!=model_n.in)||or(this.model.out!=model_n.out)||or(this.model.in2!=model_n.in2)||or(this.model.out2!=model_n.out2)||or(this.model.outtyp!=model_n.outtyp)||or(this.model.intyp!=model_n.intyp)) {
                         var needcompile = 1;
                     }
                     if (or(this.model.firing!=model_n.firing)) {
                         var needcompile = 2;
                     }
-                    if ((size(this.model.in1,"*")!=size(model_n.in1,"*"))||(size(this.model.out,"*")!=size(model_n.out,"*"))||(size(this.model.evtin,"*")!=size(model_n.evtin,"*"))) {
+                    if ((size(this.model.in,"*")!=size(model_n.in,"*"))||(size(this.model.out,"*")!=size(model_n.out,"*"))||(size(this.model.evtin,"*")!=size(model_n.evtin,"*"))) {
                         var needcompile = 4;
                     }
                     if (this.model.sim=="input"||this.model.sim=="output") {
@@ -13152,12 +12601,10 @@ function ENDBLK() {
                         var needcompile = 4;
                     }
                 }
-                arg1[spath-1] = this.xxn;
                 newpar[size(newpar)+1-1] = path;
                 var y = max(y,needcompile);
             }
         }
-        this.x = arg1;
         var typ = newpar;
         return new BasicBlock(this.x);
     }
@@ -13243,7 +12690,7 @@ function Extract_Activation() {
         lnk={};
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Extract_Activation\",sz(1),sz(2));"]);
@@ -13259,7 +12706,6 @@ function Extract_Activation() {
         return options;
     }
     Extract_Activation.prototype.set = function Extract_Activation() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -13272,7 +12718,7 @@ function HYSTHERESIS() {
         var rpar = [[1],[0],[1],[0]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["hystheresis"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble(rpar);
         this.model.nzcross = new ScilabDouble([this.nzz]);
@@ -13304,10 +12750,7 @@ function HYSTHERESIS() {
         this.out_low = arguments[0]["out_low"]
         this.nzz = parseFloat(arguments[0]["nzz"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.high_lim,this.low_lim,this.out_high,this.out_low,this.nzz,this.exprs] = scicos_getvalue("Set parameters",["switch on at","switch off at","output when on","output when off","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -13340,7 +12783,7 @@ function IMPSPLIT_f() {
         mo.inputs = "n";
         mo.outputs = [["n"],["n"]];
         this.model.equations = new ScilabDouble([mo]);
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.x = standard_define([1,1]/3,this.model,[],[]);
         this.x.graphics.in_implicit = ["I"];
@@ -13356,7 +12799,6 @@ function IMPSPLIT_f() {
         return options;
     }
     IMPSPLIT_f.prototype.set = function IMPSPLIT_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -13368,7 +12810,7 @@ function LOGICAL_OP() {
         this.nin = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["logicalop"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble(in1);
+        this.model.in = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
@@ -13396,10 +12838,7 @@ function LOGICAL_OP() {
         this.Datatype = arguments[0]["Datatype"]
         this.tp = parseFloat(arguments[0]["tp"])
         this.exprs = inverse(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,1)==2) {
             this.exprs = [[this.exprs],[sci2exp(1)],[sci2exp(0)]];
         }
@@ -13518,7 +12957,7 @@ function MBLOCK() {
         this.model.sim = list(new ScilabString([mo.model]), new ScilabDouble([30004]));
         mo.inputs = this.in1;
         mo.outputs = this.out;
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"r"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"r"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"r"),1)]);
         this.model.equations = mo;
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MBLOCK\",sz(1),sz(2));"]);
@@ -13551,9 +12990,6 @@ function MBLOCK() {
         this.pprop = inverse(arguments[0]["pprop"])
         this.Tfunam = arguments[0]["Tfunam"]
         this.lab_1 = arguments[0]["lab_1"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         if (this.type[this.exprs-1]==15) {
             var paramv = list();
@@ -13564,7 +13000,7 @@ function MBLOCK() {
             }
             this.exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],this.exprs[1-1][1-1],this.exprs[1-1][2-1],this.exprs[1-1][3-1],this.exprs[1-1][4-1],this.exprs[1-1][5-1],paramv,sci2exp(this.pprop.slice()),this.exprs[1-1][7-1],this.exprs[2-1]);
         }
-        this.lab_1 = list(this.exprs.in1,this.exprs.intype,this.exprs.out,this.exprs.outtype,this.exprs.param,this.exprs.pprop,this.exprs.nameF);
+        this.lab_1 = list(this.exprs.in,this.exprs.intype,this.exprs.out,this.exprs.outtype,this.exprs.param,this.exprs.pprop,this.exprs.nameF);
         var lab_2 = this.exprs.paramv;
         while (true) {
             [ok,this.Tin,this.Tintype,this.Tout,this.Touttype,this.Tparam,this.pprop,this.Tfunam,this.lab_1] = scicos_getvalue("Set Modelica generic block parameters",["Input variables:       ","Input variables types: ","Output variables:      ","Output variables types:","Parameters in Modelica:","Parameters properties: ","Function name:         "],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),this.lab_1);
@@ -13763,7 +13199,7 @@ function MBLOCK() {
                     this.model.rpar = new ScilabDouble([this.model.rpar],[paramv[i-1].slice()]);
                 }
                 this.model.sim[1-1] = new ScilabDouble([this.funam]);
-                this.exprs.in1 = this.lab_1[1-1];
+                this.exprs.in = this.lab_1[1-1];
                 this.exprs.intype = this.lab_1[2-1];
                 this.exprs.out = this.lab_1[3-1];
                 this.exprs.outtype = this.lab_1[4-1];
@@ -13803,7 +13239,7 @@ function MEMORY_f() {
         this.exprs = [[string(z)],[string(1)]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["memo"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([in1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([0]);
@@ -13828,10 +13264,7 @@ function MEMORY_f() {
         this.a = arguments[0]["a"]
         this.inh = parseFloat(arguments[0]["inh"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.a,this.inh,this.exprs] = scicos_getvalue("Set memory block parameters",["initial condition","Inherit (1: no, 0: yes)"],list("vec",-1,"vec",1),this.exprs);
             if (!ok) {
@@ -13855,7 +13288,7 @@ function MEMORY_f() {
             if (ok) {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.rpar = new ScilabDouble([this.a]);
-                this.model.in1 = new ScilabDouble([in1]);
+                this.model.in = new ScilabDouble([in1]);
                 this.model.out = new ScilabDouble([out]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
@@ -13890,7 +13323,7 @@ function MPBLOCK() {
         this.model.sim = list(new ScilabString([mo.model]), new ScilabDouble([10004]));
         mo.inputs = this.in1;
         mo.outputs = this.out;
-        this.model.in1 = new ScilabDouble([ones(size(mo.inputs,"r"),1)]);
+        this.model.in = new ScilabDouble([ones(size(mo.inputs,"r"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"r"),1)]);
         this.model.equations = mo;
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MPBLOCK\",sz(1),sz(2));"]);
@@ -13908,9 +13341,6 @@ function MPBLOCK() {
         return options;
     }
     MPBLOCK.prototype.set = function MPBLOCK() {
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         if (this.type[this.exprs-1]==15) {
             var paramv = list();
@@ -13921,7 +13351,7 @@ function MPBLOCK() {
             }
             this.exprs = tlist(["MPBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],this.exprs[1-1][1-1],this.exprs[1-1][2-1],this.exprs[1-1][3-1],this.exprs[1-1][4-1],this.exprs[1-1][5-1],paramv,sci2exp(pprop.slice()),this.exprs[1-1][7-1],this.exprs[2-1]);
         }
-        var lab_1 = list(this.exprs.in1,this.exprs.intype,this.exprs.out,this.exprs.outtype,this.exprs.param,this.exprs.pprop,this.exprs.nameF);
+        var lab_1 = list(this.exprs.in,this.exprs.intype,this.exprs.out,this.exprs.outtype,this.exprs.param,this.exprs.pprop,this.exprs.nameF);
         var lab_2 = this.exprs.paramv;
         while (true) {
             var tmpvar0 = getvalue("Set Modelica generic block parameters",[["Input variables:       "],["Input variables types: "],["Output variables:      "],["Output variables types:"],["Parameters in Modelica:"],["Parameters properties: "],["Model name in packages:"]],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),lab_1);
@@ -14119,7 +13549,7 @@ function MPBLOCK() {
                     this.model.rpar = new ScilabDouble([this.model.rpar],[double(paramv[i-1].slice())]);
                 }
                 this.model.sim[1-1] = new ScilabDouble([this.funam]);
-                this.exprs.in1 = lab_1[1-1];
+                this.exprs.in = lab_1[1-1];
                 this.exprs.intype = lab_1[2-1];
                 this.exprs.out = lab_1[3-1];
                 this.exprs.outtype = lab_1[4-1];
@@ -14158,7 +13588,7 @@ function PAL_f() {
         scs.props.title = "Palette";
         this.model = scicos_model();
         this.model.sim = new ScilabString(["palette"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([]);
         this.model.rpar = new ScilabDouble([scs]);
         this.model.blocktype = new ScilabString(["h"]);
@@ -14177,14 +13607,10 @@ function PAL_f() {
         return options;
     }
     PAL_f.prototype.set = function PAL_f() {
-        var tmpvar0 = scicos(arg1.model.rpar);
         this.x = tmpvar0[0];
         var newparameters = tmpvar0[1];
         var needcompile = tmpvar0[2];
         var edited = tmpvar0[3];
-        arg1.graphics.id = this.x.props.title[1-1];
-        arg1.model.rpar = this.x;
-        this.x = arg1;
         var y = [];
         var typ = [];
         %exit = resume(false)
@@ -14203,7 +13629,7 @@ function PENDULUM_ANIM() {
         this.ymax = 5;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["anim_pen"]), new ScilabDouble([5]));
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([0]);
         this.model.rpar = new ScilabDouble([this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]);
@@ -14238,10 +13664,7 @@ function PENDULUM_ANIM() {
         this.ymin = parseFloat(arguments[0]["ymin"])
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var dstate = this.model.dstate;
         while (true) {
             [ok,this.plen,this.csiz,this.phi,this.xmin,this.xmax,this.ymin,this.ymax,this.exprs] = scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
@@ -14283,7 +13706,7 @@ function RATELIMITER() {
         var rpar = [[this.maxp],[this.minp]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["ratelimiter"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
@@ -14307,10 +13730,7 @@ function RATELIMITER() {
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.minp = parseFloat(arguments[0]["minp"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.maxp,this.minp,this.exprs] = scicos_getvalue("Set rate limiter parameters",["max slope","min slope"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -14337,7 +13757,7 @@ function RELATIONALOP() {
         var label = "&lt";
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["relationalop"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
@@ -14364,10 +13784,7 @@ function RELATIONALOP() {
         this.zcr = parseFloat(arguments[0]["zcr"])
         this.Datatype = arguments[0]["Datatype"]
         this.exprs = inverse(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,1)==2) {
             this.exprs = [[this.exprs],[sci2exp(1)]];
         }
@@ -14444,7 +13861,7 @@ function SPLIT_f() {
     SPLIT_f.prototype.define = function SPLIT_f() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["lsplit"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1],[-1],[-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -14460,7 +13877,6 @@ function SPLIT_f() {
         return options;
     }
     SPLIT_f.prototype.set = function SPLIT_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -14479,7 +13895,7 @@ function SUPER_f() {
         scs.objs[2-1] = out;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["super"]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([scs]);
         this.model.blocktype = new ScilabString(["h"]);
@@ -14497,7 +13913,6 @@ function SUPER_f() {
         return options;
     }
     SUPER_f.prototype.set = function SUPER_f() {
-        xcos(arg1.model.rpar);
         return new SuperBlock(this.x);
     }
 }
@@ -14534,11 +13949,8 @@ function TEXT_f() {
         this.font = parseFloat(arguments[0]["font"])
         this.siz = parseFloat(arguments[0]["siz"])
         this.exprs = inverse(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var orig = this.graphics.orig;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==1) {
             this.exprs = [[this.exprs],["3"],["1"]];
         }
@@ -14595,7 +14007,7 @@ function c_block() {
         this.funam = "toto";
         this.model = scicos_model();
         this.model.sim = list(new ScilabString([" "]), new ScilabDouble([2001]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
         this.model.evtin = new ScilabDouble(clkin);
         this.model.evtout = new ScilabDouble(clkout);
@@ -14629,9 +14041,6 @@ function c_block() {
         this.rpar = inverse(arguments[0]["rpar"])
         this.funam = arguments[0]["funam"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         while (true) {
             [ok,this.i,this.o,this.rpar,this.funam,this.lab] = scicos_getvalue("Set C_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
@@ -14648,7 +14057,7 @@ function c_block() {
             this.o = int(this.o.slice());
             var no = size(this.o,1);
             var tt = label[2-1];
-            if (this.model.sim[1-1]!=this.funam||size(this.model.in1,"*")!=size(this.i,"*")||size(this.model.out,"*")!=size(this.o,"*")) {
+            if (this.model.sim[1-1]!=this.funam||size(this.model.in,"*")!=size(this.i,"*")||size(this.model.out,"*")!=size(this.o,"*")) {
                 var tt = [];
             }
             var tmpvar0 = CFORTR(this.funam,tt,this.i,this.o);
@@ -14679,7 +14088,7 @@ function fortran_block() {
     fortran_block.prototype.define = function fortran_block() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString([" "]), new ScilabDouble([1001]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([]);
         this.model.evtout = new ScilabDouble([]);
@@ -14691,7 +14100,7 @@ function fortran_block() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.funam = "forty";
-        var label = list([[sci2exp(this.model.in1)],[sci2exp(this.model.out)],[strcat(sci2exp(this.model.rpar))],[this.funam]],list([]));
+        var label = list([[sci2exp(this.model.in)],[sci2exp(this.model.out)],[strcat(sci2exp(this.model.rpar))],[this.funam]],list([]));
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"fortran_block\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,label,this.gr_i);
         return new BasicBlock(this.x);
@@ -14714,9 +14123,6 @@ function fortran_block() {
         this.rpar = inverse(arguments[0]["rpar"])
         this.funam = arguments[0]["funam"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         while (true) {
             [ok,this.i,this.o,this.rpar,this.funam,this.lab] = scicos_getvalue("Set fortran_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
@@ -14733,7 +14139,7 @@ function fortran_block() {
             this.o = int(this.o.slice());
             var no = size(this.o,1);
             var tt = label[2-1];
-            if (this.model.sim[1-1]!=this.funam||size(this.model.in1,"*")!=size(this.i,"*")||size(this.model.out,"*")!=size(this.o,"*")) {
+            if (this.model.sim[1-1]!=this.funam||size(this.model.in,"*")!=size(this.i,"*")||size(this.model.out,"*")!=size(this.o,"*")) {
                 var tt = [];
             }
             var tmpvar0 = FORTR(this.funam,tt,this.i,this.o);
@@ -14764,7 +14170,7 @@ function func_block() {
     func_block.prototype.define = function func_block() {
         this.model = scicos_model();
         this.model.sim = new ScilabString([" "]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -14782,10 +14188,7 @@ function func_block() {
         return options;
     }
     func_block.prototype.set = function func_block() {
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.x = arg1;
         this.model = this.x.model;
         var tmpvar0 = genfunc(this.exprs);
         var ok = tmpvar0[0];
@@ -14807,7 +14210,7 @@ function generic_block() {
         this.function_name = "sinblk";
         this.funtyp = 1;
         this.model.sim = list(new ScilabString([this.function_name]), new ScilabDouble([this.funtyp]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([]);
         this.model.evtout = new ScilabDouble([]);
@@ -14818,7 +14221,7 @@ function generic_block() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp(this.model.in1)],[sci2exp(this.model.out)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.firing)],["y"],["n"]];
+        var label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp(this.model.in)],[sci2exp(this.model.out)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.firing)],["y"],["n"]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"generic_block\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,this.gr_i);
         return new BasicBlock(this.x);
@@ -14859,9 +14262,6 @@ function generic_block() {
         this.depu = parseBoolean(arguments[0]["depu"])
         this.dept = parseBoolean(arguments[0]["dept"])
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -14922,10 +14322,7 @@ function generic_block() {
                 this.model.ipar = new ScilabDouble([this.ipar]);
                 this.model.firing = new ScilabDouble([this.auto0]);
                 this.model.dep_ut = new ScilabDouble(dep_ut);
-                arg1.model = this.model;
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                this.x = arg1;
                 break;
             }
         }
@@ -14940,7 +14337,7 @@ function generic_block2() {
         this.function_name = "sinblk";
         this.funtyp = 1;
         this.model.sim = list(new ScilabString([this.function_name]), new ScilabDouble([this.funtyp]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([]);
         this.model.evtout = new ScilabDouble([]);
@@ -14951,7 +14348,7 @@ function generic_block2() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp(this.model.in1)],[sci2exp(this.model.out)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]];
+        var label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp(this.model.in)],[sci2exp(this.model.out)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"generic_block2\",sz(1),sz(2));"]);
         this.x = standard_define([2,2],this.model,label,this.gr_i);
         return new BasicBlock(this.x);
@@ -14996,9 +14393,6 @@ function generic_block2() {
         this.depu = parseBoolean(arguments[0]["depu"])
         this.dept = parseBoolean(arguments[0]["dept"])
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -15061,10 +14455,7 @@ function generic_block2() {
                 this.model.nzcross = new ScilabDouble([this.nzcr]);
                 this.model.nmode = new ScilabDouble([this.nmode]);
                 this.model.dep_ut = new ScilabDouble(dep_ut);
-                arg1.model = this.model;
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                this.x = arg1;
                 break;
             }
         }
@@ -15079,14 +14470,14 @@ function generic_block3() {
         this.function_name = "sinblk";
         this.funtyp = 4;
         this.model.sim = list(new ScilabString([this.function_name]), new ScilabDouble([this.funtyp]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        var label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp([this.model.in1,this.model.in2])],[sci2exp(this.model.intyp)],[sci2exp([this.model.out,this.model.out2]),sci2exp(this.model.outtyp)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.odstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.opar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]];
+        var label = [[this.function_name],[sci2exp(this.funtyp)],[sci2exp([this.model.in,this.model.in2])],[sci2exp(this.model.intyp)],[sci2exp([this.model.out,this.model.out2]),sci2exp(this.model.outtyp)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.odstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.opar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"generic_block3\",sz(1),sz(2));"]);
         this.x = standard_define([4,2],this.model,label,this.gr_i);
         return new BasicBlock(this.x);
@@ -15139,9 +14530,6 @@ function generic_block3() {
         this.depu = parseBoolean(arguments[0]["depu"])
         this.dept = parseBoolean(arguments[0]["dept"])
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
@@ -15212,10 +14600,7 @@ function generic_block3() {
                 this.model.nzcross = new ScilabDouble([this.nzcr]);
                 this.model.nmode = new ScilabDouble([this.nmode]);
                 this.model.dep_ut = new ScilabDouble(dep_ut);
-                arg1.model = this.model;
                 this.graphics.exprs = new ScilabDouble([label]);
-                arg1.graphics = this.graphics;
-                this.x = arg1;
                 break;
             }
         }
@@ -15237,7 +14622,7 @@ function scifunc_block() {
         this.rpar = [];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["scifunc"]), new ScilabDouble([3]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([out]);
         this.model.evtin = new ScilabDouble(clkin);
         this.model.evtout = new ScilabDouble(clkout);
@@ -15283,9 +14668,6 @@ function scifunc_block() {
         this.deptime = arguments[0]["deptime"]
         this.lab = arguments[0]["lab"]
         var needcompile = 0;
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs[1-1],"*")==8) {
             this.exprs[1-1][9-1] = "0";
@@ -15361,7 +14743,7 @@ function scifunc_block_m() {
         var it = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["scifunc"]), new ScilabDouble([3]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.in2 = new ScilabDouble([in1]);
         this.model.intyp = new ScilabDouble([it]);
         this.model.out = new ScilabDouble([out]);
@@ -15411,9 +14793,6 @@ function scifunc_block_m() {
         this.deptime = arguments[0]["deptime"]
         this.lab = arguments[0]["lab"]
         var needcompile = 0;
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.auto0,this.deptime,this.lab] = scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],["input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","System parameters vector","initial firing vector (<0 for no firing)","is block always active (0:no, 1:yes)"],list("mat",[-1,2],"mat",[-2,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),this.exprs[1-1]);
@@ -15476,7 +14855,7 @@ function ABSBLK_f() {
     ABSBLK_f.prototype.define = function ABSBLK_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["absblk"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -15493,7 +14872,6 @@ function ABSBLK_f() {
         return options;
     }
     ABSBLK_f.prototype.set = function ABSBLK_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -15503,7 +14881,7 @@ function ABS_VALUE() {
         var nu = -1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["absolute_value"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([nu]);
+        this.model.in = new ScilabDouble([nu]);
         this.model.out = new ScilabDouble([nu]);
         this.model.nzcross = new ScilabDouble([nu]);
         this.model.nmode = new ScilabDouble([nu]);
@@ -15526,10 +14904,7 @@ function ABS_VALUE() {
     ABS_VALUE.prototype.set = function ABS_VALUE() {
         this.zcr = arguments[0]["zcr"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.zcr,this.exprs] = scicos_getvalue("Set block parameters",["use zero_crossing (1: yes) (0:no)"],list("vec",1),this.exprs);
             if (!ok) {
@@ -15558,7 +14933,7 @@ function COSBLK_f() {
         var in1 = 1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["cosblk"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -15575,7 +14950,6 @@ function COSBLK_f() {
         return options;
     }
     COSBLK_f.prototype.set = function COSBLK_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -15590,7 +14964,7 @@ function DLRADAPT_f() {
         this.last_y = [[0],[0]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["dlradp"]);
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([this.last_u],[this.last_y]);
@@ -15626,10 +15000,7 @@ function DLRADAPT_f() {
         this.last_u = inverse(arguments[0]["last_u"])
         this.last_y = inverse(arguments[0]["last_y"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.p,this.rn,this.rd,this.g,this.last_u,this.last_y,this.exprs] = scicos_getvalue("Set block parameters",["Vector of p mesh points","Numerator roots (one line for each mesh)","Denominator roots (one line for each mesh)","Vector of gain at mesh points","past inputs (Num degree values)","past outputs (Den degree values)"],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),this.exprs);
             if (!ok) {
@@ -15665,7 +15036,7 @@ function EXPBLK_f() {
         this.a = math.E;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["expblk"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble([this.a]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -15686,10 +15057,7 @@ function EXPBLK_f() {
     EXPBLK_f.prototype.set = function EXPBLK_f() {
         this.a = parseFloat(arguments[0]["a"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }
@@ -15718,7 +15086,7 @@ function EXPBLK_m() {
         this.a = math.E;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["expblk_m"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([-2]);
@@ -15743,10 +15111,7 @@ function EXPBLK_m() {
     EXPBLK_m.prototype.set = function EXPBLK_m() {
         this.a = parseFloat(arguments[0]["a"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }
@@ -15774,7 +15139,7 @@ function FSV_f() {
         var in1 = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["fsv"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([in1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -15792,7 +15157,6 @@ function FSV_f() {
         return options;
     }
     FSV_f.prototype.set = function FSV_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -15804,7 +15168,7 @@ function INTRP2BLK_f() {
         this.c = [[0,1],[1,2]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["intrp2"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.a],[this.b],[this.c.slice()]);
         this.model.ipar = new ScilabDouble([2],[2]);
@@ -15831,10 +15195,7 @@ function INTRP2BLK_f() {
         this.b = inverse(arguments[0]["b"])
         this.c = inverse(arguments[0]["c"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.a,this.b,this.c,this.exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord.","Z values"],list("vec",-1,"vec",-1,"mat",[-1,-1]),this.exprs);
             if (!ok) {
@@ -15865,7 +15226,7 @@ function INTRPLBLK_f() {
         this.b = [[0],[1]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["intrpl"]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.a],[this.b]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -15889,10 +15250,7 @@ function INTRPLBLK_f() {
         this.a = inverse(arguments[0]["a"])
         this.b = inverse(arguments[0]["b"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.a,this.b,this.exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord."],list("vec",-1,"vec",-1),this.exprs);
             if (!ok) {
@@ -15921,7 +15279,7 @@ function INVBLK() {
         var in1 = -1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["invblk4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([in1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -15939,7 +15297,6 @@ function INVBLK() {
         return options;
     }
     INVBLK.prototype.set = function INVBLK() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -15949,7 +15306,7 @@ function INVBLK_f() {
         var in1 = -1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["invblk"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([in1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -15967,7 +15324,6 @@ function INVBLK_f() {
         return options;
     }
     INVBLK_f.prototype.set = function INVBLK_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -15978,7 +15334,7 @@ function LOGBLK_f() {
         this.a = math.E;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["logblk"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble([this.a]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -15999,10 +15355,7 @@ function LOGBLK_f() {
     LOGBLK_f.prototype.set = function LOGBLK_f() {
         this.a = parseFloat(arguments[0]["a"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }
@@ -16038,7 +15391,7 @@ function LOOKUP2D() {
         var Nx = length(this.xx);
         var Ny = length(this.yy);
         this.model.sim = list(new ScilabString(["lookup2d"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()],[this.zz.slice()]);
         this.model.ipar = new ScilabDouble([Nx],[Ny],[this.Method]);
@@ -16069,9 +15422,6 @@ function LOOKUP2D() {
         this.Method = parseFloat(arguments[0]["Method"])
         this.graf = arguments[0]["graf"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
@@ -16159,7 +15509,7 @@ function LOOKUP_c() {
         this.Method = 1;
         var Graf = "n";
         this.model.sim = list(new ScilabString(["lookup_c"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.outtyp = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
@@ -16197,9 +15547,6 @@ function LOOKUP_c() {
         this.extrapo = parseFloat(arguments[0]["extrapo"])
         this.graf = arguments[0]["graf"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
@@ -16336,7 +15683,7 @@ function LOOKUP_f() {
     LOOKUP_f.prototype.define = function LOOKUP_f() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["lookup"]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([-2],[-1],[1],[2],[-1],[1],[-1],[1]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -16354,10 +15701,7 @@ function LOOKUP_f() {
         return options;
     }
     LOOKUP_f.prototype.set = function LOOKUP_f() {
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var rpar = this.model.rpar;
         var n = size(rpar,"*")/2;
         var xx = rpar.slice(1-1,n);
@@ -16397,7 +15741,7 @@ function MAXMIN() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["minmax"]), new ScilabDouble([4]));
         this.model.out = new ScilabDouble([1]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.ipar = new ScilabDouble([0]);
@@ -16423,10 +15767,7 @@ function MAXMIN() {
         this.nin = arguments[0]["nin"]
         this.zcr = parseFloat(arguments[0]["zcr"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.mm,this.nin,this.zcr,this.exprs] = scicos_getvalue("Set Max/Min block parameters",["Min (1) or Max (2) ","Number of input vectors (1 or 2)","zero-crossing (1: yes, 0;no)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -16484,7 +15825,7 @@ function MAX_f() {
         var in1 = -1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["maxblk"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([0],[0]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -16503,7 +15844,6 @@ function MAX_f() {
         return options;
     }
     MAX_f.prototype.set = function MAX_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -16513,7 +15853,7 @@ function MIN_f() {
         var in1 = -1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["minblk"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([0],[0]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -16532,7 +15872,6 @@ function MIN_f() {
         return options;
     }
     MIN_f.prototype.set = function MIN_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -16543,7 +15882,7 @@ function POWBLK_f() {
         this.a = 1.5;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["powblk"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble([this.a]);
         this.model.blocktype = new ScilabString(["c"]);
@@ -16564,10 +15903,7 @@ function POWBLK_f() {
     POWBLK_f.prototype.set = function POWBLK_f() {
         this.a = parseFloat(arguments[0]["a"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }
@@ -16598,7 +15934,7 @@ function PRODUCT() {
         this.sgn = [[1],[-1]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["product"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
@@ -16619,9 +15955,6 @@ function PRODUCT() {
     PRODUCT.prototype.set = function PRODUCT() {
         this.sgn = inverse(arguments[0]["sgn"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.sgn,this.exprs] = scicos_getvalue([["         Set multiplication block parameters"],["(multiplication is set with + 1, division with -1)"],[""]],"Number of inputs or sign vector",list("vec",-1),this.exprs);
@@ -16673,7 +16006,7 @@ function PROD_f() {
     PROD_f.prototype.define = function PROD_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["prod"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble([-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -16689,7 +16022,6 @@ function PROD_f() {
         return options;
     }
     PROD_f.prototype.set = function PROD_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -16700,7 +16032,7 @@ function QUANT_f() {
         this.meth = 1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["qzrnd"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.rpar = new ScilabDouble([this.pas]);
         this.model.ipar = new ScilabDouble([this.meth]);
@@ -16725,10 +16057,7 @@ function QUANT_f() {
         this.pas = parseFloat(arguments[0]["pas"])
         this.meth = parseFloat(arguments[0]["meth"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.pas,this.meth,this.exprs] = scicos_getvalue("Set parameters",["Step","Quantization Type (1-4)"],list("vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -16767,7 +16096,7 @@ function SATURATION() {
         var rpar = [[this.maxp],[this.minp]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["satur"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([2]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([1]);
@@ -16795,10 +16124,7 @@ function SATURATION() {
         this.minp = parseFloat(arguments[0]["minp"])
         this.zeroc = arguments[0]["zeroc"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.maxp,this.minp,this.zeroc,this.exprs] = scicos_getvalue("Set Saturation parameters",["Upper limit","Lower limit","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -16834,7 +16160,7 @@ function SAT_f() {
         var rpar = [[this.minp],[this.maxp],[slope]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["lusat"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([2]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.minp],[this.maxp],[slope]);
@@ -16861,10 +16187,7 @@ function SAT_f() {
         this.maxp = parseFloat(arguments[0]["maxp"])
         this.pente = arguments[0]["pente"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.minp,this.maxp,this.pente,this.exprs] = scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -16893,7 +16216,7 @@ function SIGNUM() {
         var nu = -1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["signum"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([nu]);
+        this.model.in = new ScilabDouble([nu]);
         this.model.out = new ScilabDouble([nu]);
         this.model.nzcross = new ScilabDouble([nu]);
         this.model.nmode = new ScilabDouble([nu]);
@@ -16916,10 +16239,7 @@ function SIGNUM() {
     SIGNUM.prototype.set = function SIGNUM() {
         this.zcr = arguments[0]["zcr"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.zcr,this.exprs] = scicos_getvalue("Set block parameters",["use zero_crossing (1: yes) (0:no)"],list("vec",1),this.exprs);
             if (!ok) {
@@ -16947,7 +16267,7 @@ function SINBLK_f() {
     SINBLK_f.prototype.define = function SINBLK_f() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["sinblk"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -16965,7 +16285,6 @@ function SINBLK_f() {
         return options;
     }
     SINBLK_f.prototype.set = function SINBLK_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -16975,7 +16294,7 @@ function TANBLK_f() {
         var in1 = -1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["tanblk"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.out = new ScilabDouble([in1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -16993,7 +16312,6 @@ function TANBLK_f() {
         return options;
     }
     TANBLK_f.prototype.set = function TANBLK_f() {
-        this.x = arg1;
         this.x.model.firing = [];
         return new BasicBlock(this.x);
     }
@@ -17003,7 +16321,7 @@ function TrigFun() {
     TrigFun.prototype.define = function TrigFun() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["sin_blk"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
@@ -17023,10 +16341,7 @@ function TrigFun() {
     TrigFun.prototype.set = function TrigFun() {
         this.fun = arguments[0]["fun"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var PREVAR_FF = [["sin"],["cos"],["tan"],["asin"],["acos"],["atan"],["sinh"],["cosh"],["tanh"],["asinh"],["acosh"],["atanh"]];
         var PREVAR_GG = [["Choose among "+strcat(PREVAR_FF.slice(1-1,4),", ")],[strcat(PREVAR_FF.slice(5-1,$),", ")]];
         while (true) {
@@ -17053,7 +16368,7 @@ function PDE() {
         this.model = scicos_model();
         this.model.state = new ScilabDouble([zeros(10,1)]);
         this.model.sim = list(new ScilabString(["PDE"]), new ScilabDouble([0]));
-        this.model.in1 = new ScilabDouble([1],[1],[1],[1],[1]);
+        this.model.in = new ScilabDouble([1],[1],[1],[1],[1]);
         this.model.out = new ScilabDouble([10],[0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabDouble([false,true]);
@@ -17075,10 +16390,7 @@ function PDE() {
         this.okk = parseBoolean(arguments[0]["okk"])
         this.rdnom = arguments[0]["rdnom"]
         this.lab = arguments[0]["lab"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         var label = this.graphics.exprs;
-        this.model = arg1.model;
         var params_pde = label[1-1];
         while (true) {
             [ln,fun]=where()
@@ -17273,7 +16585,7 @@ function AFFICH_m() {
         this.in1 = [1,1];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["affich2"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([this.in1[1-1][1-1]]);
+        this.model.in = new ScilabDouble([this.in1[1-1][1-1]]);
         this.model.in2 = new ScilabDouble([this.in1[1-1][2-1]]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]);
@@ -17282,7 +16594,7 @@ function AFFICH_m() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabDouble([true,false]);
         this.model.label = new ScilabString([""]);
-        this.exprs = [[sci2exp([this.model.in1,this.model.in2])],[string(this.font)],[string(this.fontsize)],[string(this.colr)],[string(this.nt)],[string(this.nd)],[string(0)]];
+        this.exprs = [[sci2exp([this.model.in,this.model.in2])],[string(this.font)],[string(this.fontsize)],[string(this.colr)],[string(this.nt)],[string(this.nd)],[string(0)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"AFFICH_m\",sz(1),sz(2));"]);
         this.x = standard_define([3,2],this.model,this.exprs,this.gr_i);
         return new AfficheBlock(this.x);
@@ -17311,10 +16623,7 @@ function AFFICH_m() {
         this.nd = parseFloat(arguments[0]["nd"])
         this.herit = arguments[0]["herit"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.in1,this.font,this.fontsize,this.colr,this.nt,this.nd,this.herit,this.exprs] = scicos_getvalue("Set  parameters",["Input Size","Font number","Font size","Color","Total number of digits","Number of rational part digits","Block inherits (1) or not (0)"],list("mat",[1,2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -17377,7 +16686,7 @@ function BARXY() {
         this.model.sim = list(new ScilabString(["BARXY_sim"]), new ScilabDouble([5]));
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([true,false]);
-        this.model.in1 = new ScilabDouble([-1],[-1]);
+        this.model.in = new ScilabDouble([-1],[-1]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([]);
         this.model.evtin = new ScilabDouble([1]);
@@ -17409,10 +16718,7 @@ function BARXY() {
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.thickness = arguments[0]["thickness"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.xmin,this.xmax,this.ymin,this.ymax,this.thickness,this.exprs] = scicos_getvalue("Set Scope parameters",["Xmin","Xmax","Ymin","Ymax","Segs Thickness"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -17461,7 +16767,7 @@ function CANIMXY() {
         this.nbr_curves = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["canimxy"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.intyp = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -17507,10 +16813,7 @@ function CANIMXY() {
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.N = parseFloat(arguments[0]["N"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.xmin,this.xmax,this.ymin,this.ymax,this.N,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of Curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin","Xmax","Ymin","Ymax","Buffer size"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -17593,7 +16896,7 @@ function CANIMXY3D() {
         this.nbr_curves = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["canimxy3d"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1],[1],[1]);
+        this.model.in = new ScilabDouble([1],[1],[1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([1],[1],[1]);
         this.model.intyp = new ScilabDouble([1],[1],[1]);
@@ -17639,10 +16942,7 @@ function CANIMXY3D() {
         this.param3ds = inverse(arguments[0]["param3ds"])
         this.N = parseFloat(arguments[0]["N"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),this.exprs);
             if (!ok) {
@@ -17769,10 +17069,7 @@ function CEVENTSCOPE() {
         this.wdim = inverse(arguments[0]["wdim"])
         this.per = parseFloat(arguments[0]["per"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nclock,this.clrs,this.win,this.wpos,this.wdim,this.per,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of event inputs","colors c (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Refresh period"],list("vec",1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",1),this.exprs);
             this.nclock = int(this.nclock);
@@ -17885,10 +17182,7 @@ function CFSCOPE() {
         this.N = parseFloat(arguments[0]["N"])
         this.wu = arguments[0]["wu"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.wu,this.exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Links to view"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",-1),this.exprs);
             if (!ok) {
@@ -17980,9 +17274,6 @@ function CLKOUTV_f() {
     CLKOUTV_f.prototype.set = function CLKOUTV_f() {
         this.prt = arguments[0]["prt"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.prt,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CLKOUTV_f")],[" "],["Event output port"]],"Port number",list("vec",1),this.exprs);
@@ -18004,14 +17295,11 @@ function CLKOUTV_f() {
         return new EventOutBlock(this.x);
     }
     CLKOUTV_f.prototype.getinputs = function CLKOUTV_f() {
-        var orig = arg1.graphics.orig;
-        var sz = arg1.graphics.sz;
         this.x = orig[1-1]+sz[1-1]/2;
         var y = orig[2-1]+sz[2-1];
         var typ = -ones(this.x);
     }
     CLKOUTV_f.prototype.getorigin = function CLKOUTV_f() {
-        var tmpvar0 = standard_origin(arg1);
         this.x = tmpvar0[0];
         var y = tmpvar0[1];
     }
@@ -18023,10 +17311,6 @@ function CLKOUTV_f() {
     CLKOUTV_f.prototype.plot = function CLKOUTV_f() {
         var xf = 60;
         var yf = 40;
-        var orig = arg1.graphics.orig;
-        var sz = arg1.graphics.sz;
-        var orient = arg1.graphics.flip;
-        this.prt = arg1.model.ipar;
         var pat = xget("pattern");
         xset("pattern",this.default_color[-1-1]);
         var thick = xget("thickness");
@@ -18035,7 +17319,6 @@ function CLKOUTV_f() {
         var y = orig[2-1]+sz[2-1]*[[0],[1/3],[1],[1],[1/3]];
         var xo = orig[1-1];
         var yo = orig[2-1]+sz[2-1]/3;
-        this.gr_i = arg1.graphics.gr_i;
         if (this.type[this.gr_i-1]==15) {
             var coli = this.gr_i[2-1];
             var pcoli = xget("pattern");
@@ -18052,7 +17335,6 @@ function CLKOUTV_f() {
         xfpoly(in1.slice()[1-1]+ones(4,1)*(orig[1-1]+sz[1-1]/2),in1.slice()[2-1]+ones(4,1)*(orig[2-1]+sz[2-1]),1);
         xset("thickness",thick);
         xset("pattern",pat);
-        var ident = arg1.graphics.id;
         if (ident!=[]&&ident!="") {
             var font = xget("font");
             xset("font",this.options.ID[1-1][1-1],this.options.ID[1-1][2-1]);
@@ -18092,9 +17374,6 @@ function CLKOUT_f() {
     CLKOUT_f.prototype.set = function CLKOUT_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         this.exprs = this.exprs[1-1];
         while (true) {
@@ -18131,7 +17410,7 @@ function CMAT3D() {
         var size_y = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cmat3d"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -18164,10 +17443,7 @@ function CMAT3D() {
         this.cmin = parseFloat(arguments[0]["cmin"])
         this.cmax = parseFloat(arguments[0]["cmax"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.vec_x,this.vec_y,this.colormap,this.cmin,this.cmax,this.exprs] = scicos_getvalue("Set Scope parameters",["Bounds Vector X (-1 for standard)","Bounds Vector Y (-1 for standard)","ColorMap","Zmin","Zmax"],list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -18212,7 +17488,7 @@ function CMATVIEW() {
         var beta_c = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cmatview"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -18241,10 +17517,7 @@ function CMATVIEW() {
         this.cmin = parseFloat(arguments[0]["cmin"])
         this.cmax = parseFloat(arguments[0]["cmax"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.colormap,this.cmin,this.cmax,this.exprs] = scicos_getvalue("Set Scope parameters",["ColorMap","Minimum level range","Maximum level range"],list("vec",-1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -18292,7 +17565,7 @@ function CMSCOPE() {
         var period = transpose(this.per.slice());
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cmscope"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble(this.in1);
+        this.model.in = new ScilabDouble(this.in1);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.intyp = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -18337,10 +17610,7 @@ function CMSCOPE() {
         this.heritance = arguments[0]["heritance"]
         this.nom = arguments[0]["nom"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.in1,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,this.exprs] = scicos_getvalue("Set Scope parameters",["Input ports sizes","Drawing colors (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin vector","Ymax vector","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec",1,"vec",1,"str",1),this.exprs);
             if (!ok) {
@@ -18447,7 +17717,7 @@ function CSCOPE() {
         this.per = 30;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cscope"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([0],[this.ymin],[this.ymax],[this.per]);
@@ -18489,10 +17759,7 @@ function CSCOPE() {
         this.heritance = arguments[0]["heritance"]
         this.nom = arguments[0]["nom"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,this.exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"str",1),this.exprs);
             if (!ok) {
@@ -18575,7 +17842,7 @@ function CSCOPXY() {
         this.nbr_curves = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cscopxy"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1],[1]);
+        this.model.in = new ScilabDouble([1],[1]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.intyp = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -18620,10 +17887,7 @@ function CSCOPXY() {
         this.ymax = parseFloat(arguments[0]["ymax"])
         this.N = parseFloat(arguments[0]["N"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.xmin,this.xmax,this.ymin,this.ymax,this.N,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of Curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin","Xmax","Ymin","Ymax","Buffer size"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -18706,7 +17970,7 @@ function CSCOPXY3D() {
         this.nbr_curves = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cscopxy3d"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([1],[1],[1]);
+        this.model.in = new ScilabDouble([1],[1],[1]);
         this.model.in2 = new ScilabDouble([1],[1],[1]);
         this.model.intyp = new ScilabDouble([1],[1],[1]);
         this.model.evtin = new ScilabDouble([1]);
@@ -18751,10 +18015,7 @@ function CSCOPXY3D() {
         this.param3ds = inverse(arguments[0]["param3ds"])
         this.N = parseFloat(arguments[0]["N"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","Line or Mark Size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",2,"vec",2,"vec",2,"vec",2,"vec",1),this.exprs);
             if (!ok) {
@@ -18838,7 +18099,7 @@ function CSCOPXY3D() {
 function OUTIMPL_f() {
     OUTIMPL_f.prototype.define = function OUTIMPL_f() {
         this.model = scicos_model();
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([1]);
         this.prt = 1;
         this.model.sim = new ScilabString(["outimpl"]);
@@ -18866,10 +18127,7 @@ function OUTIMPL_f() {
     OUTIMPL_f.prototype.set = function OUTIMPL_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[1-1];
         }
@@ -18903,7 +18161,7 @@ function OUT_f() {
         this.prt = 1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["output"]);
-        this.model.in1 = new ScilabDouble([-1]);
+        this.model.in = new ScilabDouble([-1]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([-1]);
         this.model.ipar = new ScilabDouble([this.prt]);
@@ -18925,9 +18183,6 @@ function OUT_f() {
     OUT_f.prototype.set = function OUT_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[1-1];
@@ -18960,7 +18215,7 @@ function TOWS_c() {
         this.herit = 0;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["tows_c"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([nu]);
+        this.model.in = new ScilabDouble([nu]);
         this.model.in2 = new ScilabDouble([-2]);
         this.model.intyp = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([]);
@@ -18992,9 +18247,6 @@ function TOWS_c() {
         this.varnam = arguments[0]["varnam"]
         this.herit = parseFloat(arguments[0]["herit"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.nz,this.varnam,this.herit,this.exprs] = scicos_getvalue("Set Xcos buffer block",["Size of buffer","Scilab variable name","Inherit (no:0, yes:1)"],list("vec",1,"str",1,"vec",1),this.exprs);
@@ -19038,7 +18290,7 @@ function TRASH_f() {
         var in1 = -1;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["trash"]);
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabDouble([false,false]);
@@ -19056,7 +18308,6 @@ function TRASH_f() {
         return options;
     }
     TRASH_f.prototype.set = function TRASH_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -19071,7 +18322,7 @@ function WFILE_f() {
         this.N = 2;
         this.model = scicos_model();
         this.model.sim = new ScilabString(["writef"]);
-        this.model.in1 = new ScilabDouble([this.in1]);
+        this.model.in = new ScilabDouble([this.in1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([-1],[lunit],[zeros((nin+1)*this.N,1)]);
         this.model.ipar = new ScilabDouble([length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]]);
@@ -19104,11 +18355,7 @@ function WFILE_f() {
         var warnMessage = msprintf(_("Feature %s is obsolete."),"WFILE_f");
         var warnAdvise = msprintf(_("Please use %s instead."),"WRITEC_f");
         var warnXcosMessage = msprintf("%s %s",warnMessage,warnAdvise);
-        warnBlockByUID(arg1.model.label,warnXcosMessage);
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var dstate = this.model.dstate;
         var lunit = dstate[2-1];
         var fname = this.exprs[2-1];
@@ -19155,7 +18402,7 @@ function WFILE_f() {
                 if (prod(size(dstate))!=(nin+1)*this.N+2) {
                     var dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
                 }
-                this.model.in1 = new ScilabDouble([nin]);
+                this.model.in = new ScilabDouble([nin]);
                 this.model.dstate = new ScilabDouble(dstate);
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.dep_ut = new ScilabDouble([true,false]);
@@ -19180,7 +18427,7 @@ function WRITEAU_f() {
         this.N = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["writeau"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble([in1]);
+        this.model.in = new ScilabDouble([in1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([-1],[lunit],[zeros((nin+1)*this.N,1)]);
         this.model.ipar = new ScilabDouble([length(fname)],[this._str2code[frmt-1]],[this.N],[this.swap],[this._str2code[fname-1]]);
@@ -19205,10 +18452,7 @@ function WRITEAU_f() {
         this.N = parseFloat(arguments[0]["N"])
         this.swap = parseFloat(arguments[0]["swap"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var ipar = this.model.ipar;
         var dstate = this.model.dstate;
         var lunit = dstate[2-1];
@@ -19236,7 +18480,7 @@ function WRITEAU_f() {
                 if (prod(size(dstate))!=(nin+1)*this.N+2) {
                     var dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
                 }
-                this.model.in1 = new ScilabDouble([1]);
+                this.model.in = new ScilabDouble([1]);
                 this.model.dstate = new ScilabDouble(dstate);
                 this.model.ipar = new ScilabDouble(ipar);
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
@@ -19260,7 +18504,7 @@ function WRITEC_f() {
         this.N = 2;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["writec"]), new ScilabDouble([2]));
-        this.model.in1 = new ScilabDouble([this.in1]);
+        this.model.in = new ScilabDouble([this.in1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.dstate = new ScilabDouble([-1],[lunit],[zeros((nin+1)*this.N,1)]);
         this.model.ipar = new ScilabDouble([length(fname)],[this._str2code[frmt-1]],[this.N],[this.swap],[this._str2code[fname-1]]);
@@ -19291,10 +18535,7 @@ function WRITEC_f() {
         this.N = parseFloat(arguments[0]["N"])
         this.swap = parseFloat(arguments[0]["swap"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var ipar = this.model.ipar;
         var dstate = this.model.dstate;
         var lunit = dstate[2-1];
@@ -19346,7 +18587,7 @@ function WRITEC_f() {
                 if (prod(size(dstate))!=(nin+1)*this.N+2) {
                     var dstate = [[-1],[lunit],[zeros((nin+1)*this.N,1)]];
                 }
-                this.model.in1 = new ScilabDouble([nin]);
+                this.model.in = new ScilabDouble([nin]);
                 this.model.dstate = new ScilabDouble(dstate);
                 this.model.ipar = new ScilabDouble(ipar);
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
@@ -19385,9 +18626,6 @@ function CLKINV_f() {
     CLKINV_f.prototype.set = function CLKINV_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         this.exprs = this.exprs[1-1];
         while (true) {
@@ -19437,9 +18675,6 @@ function CLKIN_f() {
     CLKIN_f.prototype.set = function CLKIN_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         this.exprs = this.exprs[1-1];
         while (true) {
@@ -19521,15 +18756,12 @@ function CLOCK_c() {
         this.dt = arguments[0]["dt"]
         this.t0 = arguments[0]["t0"]
         this.exprs0 = arguments[0]["exprs0"]
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="EVTDLY_c") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
-        var xx = arg1.model.rpar.objs[path-1];
         this.exprs = xx.graphics.exprs;
         this.model = xx.model;
         var t0_old = this.model.firing;
@@ -19549,7 +18781,6 @@ function CLOCK_c() {
                 this.model.rpar = new ScilabDouble([this.dt],[this.t0]);
                 this.model.firing = new ScilabDouble([this.t0]);
                 xx.model = this.model;
-                arg1.model.rpar.objs[path-1] = xx;
                 break;
             }
         }
@@ -19561,7 +18792,6 @@ function CLOCK_c() {
         } else {
             var needcompile = 0;
         }
-        this.x = arg1;
         var y = needcompile;
         var typ = newpar;
         return new BasicBlock(this.x);
@@ -19625,15 +18855,12 @@ function CLOCK_f() {
         this.dt = arguments[0]["dt"]
         this.t0 = arguments[0]["t0"]
         this.exprs0 = arguments[0]["exprs0"]
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
-        var xx = arg1.model.rpar.objs[path-1];
         this.exprs = xx.graphics.exprs;
         this.model = xx.model;
         var t0_old = this.model.firing;
@@ -19653,7 +18880,6 @@ function CLOCK_f() {
                 this.model.rpar = new ScilabDouble([this.dt]);
                 this.model.firing = new ScilabDouble([this.t0]);
                 xx.model = this.model;
-                arg1.model.rpar.objs[path-1] = xx;
                 break;
             }
         }
@@ -19665,7 +18891,6 @@ function CLOCK_f() {
         } else {
             var needcompile = 0;
         }
-        this.x = arg1;
         var y = needcompile;
         var typ = newpar;
         return new BasicBlock(this.x);
@@ -19677,7 +18902,7 @@ function CONST() {
         this.C = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cstblk4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.C]);
         this.model.blocktype = new ScilabString(["d"]);
@@ -19698,10 +18923,7 @@ function CONST() {
     CONST.prototype.set = function CONST() {
         this.C = parseFloat(arguments[0]["C"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.C,this.exprs] = scicos_getvalue(["Set Contant Block"],"Constant",list("vec",-1),this.exprs);
             if (!ok) {
@@ -19731,7 +18953,7 @@ function CONST_f() {
         this.C = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cstblk"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.C]);
         this.model.blocktype = new ScilabString(["d"]);
@@ -19752,10 +18974,7 @@ function CONST_f() {
     CONST_f.prototype.set = function CONST_f() {
         this.C = parseFloat(arguments[0]["C"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.C,this.exprs] = scicos_getvalue(["Set Contant Block"],"Constant",list("vec",-1),this.exprs);
             if (!ok) {
@@ -19782,7 +19001,7 @@ function CONST_m() {
         this.C = [1];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cstblk4"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([size(this.C,1)]);
         this.model.in2 = new ScilabDouble([]);
         this.model.out2 = new ScilabDouble([size(this.C,2)]);
@@ -19806,10 +19025,7 @@ function CONST_m() {
     CONST_m.prototype.set = function CONST_m() {
         this.C = inverse(arguments[0]["C"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.C,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONST_m")],[" "],["Constant value generator"],[" "]],"Constant Value",list("vec",-1),this.exprs);
             if (!ok) {
@@ -19870,7 +19086,7 @@ function CURVE_c() {
         this.PeriodicOption = "y";
         var Graf = "n";
         this.model.sim = list(new ScilabString(["curve_c"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()]);
         this.model.ipar = new ScilabDouble([N],[this.Method],[1]);
@@ -19904,9 +19120,6 @@ function CURVE_c() {
         this.PeriodicOption = arguments[0]["PeriodicOption"]
         this.graf = arguments[0]["graf"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
@@ -20040,7 +19253,7 @@ function CURV_f() {
         var rpar = [[xx],[yy],[rect.slice()]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["intplt"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([xx],[yy],[rect.slice()]);
         this.model.ipar = new ScilabDouble([size(xx,1)],[axisdata.slice()]);
@@ -20059,9 +19272,6 @@ function CURV_f() {
         return options;
     }
     CURV_f.prototype.set = function CURV_f() {
-        this.x = arg1;
-        this.model = arg1.model;
-        this.graphics = arg1.graphics;
         var rpar = this.model.rpar;
         var ipar = this.model.ipar;
         var n = ipar[1-1];
@@ -20138,10 +19348,7 @@ function Counter() {
         this.maxim = parseFloat(arguments[0]["maxim"])
         this.rule = parseFloat(arguments[0]["rule"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.minim,this.maxim,this.rule,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Counter")],[" "],["Integer counter generator"],[" "]],["Minimum","Maximum","Rule (1:Increment, 2:Decrement)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -20187,8 +19394,6 @@ function FROMWSB() {
         return options;
     }
     FROMWSB.prototype.set = function FROMWSB() {
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="FROMWS_c") {
                 var ppath = list(i);
                 break;
@@ -20205,20 +19410,19 @@ function FROMWSB() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
-            var xx = arg1[spath-1];
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (!isequalbitwise(this.xxn,xx)) {
                 this.model = xx.model;
                 var model_n = this.xxn.model;
                 if (!is_modelica_block(xx)) {
                     var modified = or(this.model.sim!=model_n.sim)||!isequal(this.model.state,model_n.state)||!isequal(this.model.dstate,model_n.dstate)||!isequal(this.model.odstate,model_n.odstate)||!isequal(this.model.rpar,model_n.rpar)||!isequal(this.model.ipar,model_n.ipar)||!isequal(this.model.opar,model_n.opar)||!isequal(this.model.label,model_n.label);
-                    if (or(this.model.in1!=model_n.in1)||or(this.model.out!=model_n.out)||or(this.model.in2!=model_n.in2)||or(this.model.out2!=model_n.out2)||or(this.model.outtyp!=model_n.outtyp)||or(this.model.intyp!=model_n.intyp)) {
+                    if (or(this.model.in!=model_n.in)||or(this.model.out!=model_n.out)||or(this.model.in2!=model_n.in2)||or(this.model.out2!=model_n.out2)||or(this.model.outtyp!=model_n.outtyp)||or(this.model.intyp!=model_n.intyp)) {
                         var needcompile = 1;
                     }
                     if (or(this.model.firing!=model_n.firing)) {
                         var needcompile = 2;
                     }
-                    if ((size(this.model.in1,"*")!=size(model_n.in1,"*"))||(size(this.model.out,"*")!=size(model_n.out,"*"))) {
+                    if ((size(this.model.in,"*")!=size(model_n.in,"*"))||(size(this.model.out,"*")!=size(model_n.out,"*"))) {
                         var needcompile = 4;
                     }
                     if (this.model.sim=="input"||this.model.sim=="output") {
@@ -20247,12 +19451,10 @@ function FROMWSB() {
                         var needcompile = 4;
                     }
                 }
-                arg1[spath-1] = this.xxn;
                 newpar[size(newpar)+1-1] = path;
                 var y = max(y,needcompile);
             }
         }
-        this.x = arg1;
         var typ = newpar;
         return new BasicBlock(this.x);
     }
@@ -20298,10 +19500,7 @@ function FROMWS_c() {
         this.ZC = parseFloat(arguments[0]["ZC"])
         this.OutEnd = parseFloat(arguments[0]["OutEnd"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.varnam,this.Method,this.ZC,this.OutEnd,this.exprs] = scicos_getvalue("Set From_Workspace block parameters",["Variable name","Interpolation Method","Enable zero crossing(0:No, 1:Yes)?","Output at end(0:Zero, 1:Hold, 2:Repeat)"],list("str",1,"vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -20348,7 +19547,7 @@ function GENSIN_f() {
         var rpar = [[1],[1],[0]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["gensin"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
@@ -20376,10 +19575,7 @@ function GENSIN_f() {
         this.F = arguments[0]["F"]
         this.P = arguments[0]["P"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.M,this.F,this.P,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","GENSIN_f")],[" "],["Sine wave generator"],[" "]],["Magnitude","Frequency (rad/s)","Phase (rad)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -20436,10 +19632,7 @@ function GENSQR_f() {
     GENSQR_f.prototype.set = function GENSQR_f() {
         this.Amplitude = parseFloat(arguments[0]["Amplitude"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }
@@ -20481,7 +19674,7 @@ function GEN_SQR() {
         scs_m_1.objs[16-1] = scicos_link(xx=[[48.313686],[48.229901]],yy=[[403.57431],[385.21998]],id="drawlink",thick=[0,0],ct=[5,-1],from=[15,1,0],to=[1,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.in2 = new ScilabDouble([]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -20526,16 +19719,13 @@ function GEN_SQR() {
         scicos_context.F = arguments[0]["scicos_context.F"]
         this.exprs = arguments[0]["exprs"]
         var y = this.needcompile;
-        arg1.model.ipar = 1;
         var typ = list();
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var Btitre = "Set GEN_SQR parameters";
         var Exprs0 = [["Amin"],["Amax"],["rule"],["F"]];
         var Bitems = [["Minimum Value"],["Maximum Value"],["Initial Value( 1= Minimum Value 2= Maximum Value)"],["Period (sec)"]];
         var Ss = list("mat",[-1,-1],"mat",[-1,-1],"pol",-1,"pol",-1);
         var scicos_context = struct();
-        this.x = arg1;
         var ok = false;
         while (!ok) {
             [ok,scicos_context.Amin,scicos_context.Amax,scicos_context.rule,scicos_context.F,this.exprs] = scicos_getvalue(Btitre,Bitems,Ss,this.exprs);
@@ -20573,7 +19763,7 @@ function Ground_g() {
         var C = [0];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cstblk4_m"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.in2 = new ScilabDouble([]);
         this.model.out2 = new ScilabDouble([1]);
@@ -20596,7 +19786,6 @@ function Ground_g() {
         return options;
     }
     Ground_g.prototype.set = function Ground_g() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -20632,10 +19821,7 @@ function INIMPL_f() {
     INIMPL_f.prototype.set = function INIMPL_f() {
         this.prt = parseFloat(arguments[0]["prt"])
         this.exprs = parseFloat(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[1-1];
         }
@@ -20688,9 +19874,6 @@ function IN_f() {
         return options;
     }
     IN_f.prototype.set = function IN_f() {
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[1-1];
@@ -20766,10 +19949,7 @@ function Modulo_Count() {
         this.ini_c = parseFloat(arguments[0]["ini_c"])
         this.base = parseFloat(arguments[0]["base"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.ini_c,this.base,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Modulo_Count")],[" "],["Modulo counter (0 to N counter)"],[" "]],["Initial State (zero or positive number)","Upper Limit (positive number)"],list("vec",1,"vec",1),this.exprs);
             this.ini_c = int(this.ini_c);
@@ -20810,7 +19990,7 @@ function PULSE_SC() {
         scs_m_1.objs[11-1] = scicos_link(xx=[[154.57795],[174.57795]],yy=[[206.09381],[206.09381]],id="drawlink",thick=[0,0],ct=[1,1],from=[3,1,0],to=[10,1,1]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["csuper"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.in2 = new ScilabDouble([]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([-1]);
@@ -20855,16 +20035,13 @@ function PULSE_SC() {
         scicos_context.A = arguments[0]["scicos_context.A"]
         this.exprs = arguments[0]["exprs"]
         var y = this.needcompile;
-        arg1.model.ipar = 1;
         var typ = list();
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var Btitre = "Set Pulse Generator parameters";
         var Exprs0 = [["E"],["W"],["F"],["A"]];
         var Bitems = [["Phase delay (secs):"],["Pulse Width (% of period):"],["Period (secs):"],["Amplitude:"]];
         var Ss = list("pol",-1,"pol",-1,"pol",-1,"mat",[-1,-1]);
         var scicos_context = struct();
-        this.x = arg1;
         var ok = false;
         while (!ok) {
             [ok,scicos_context.E,scicos_context.W,scicos_context.F,scicos_context.A,this.exprs] = scicos_getvalue(Btitre,Bitems,Ss,this.exprs);
@@ -20907,7 +20084,7 @@ function RAMP() {
         var rpar = [[this.slope],[this.stt],[this.iout]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["ramp"]), new ScilabDouble([4]));
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
@@ -20935,10 +20112,7 @@ function RAMP() {
         this.stt = parseFloat(arguments[0]["stt"])
         this.iout = parseFloat(arguments[0]["iout"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.slope,this.stt,this.iout,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","RAMP")],[" "],["Ramp function"],[" "]],["Slope","Start Time","Initial Value"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
@@ -20997,10 +20171,7 @@ function RAND_f() {
         this.b = parseFloat(arguments[0]["b"])
         this.seed_c = arguments[0]["seed_c"]
         this.exprs = inverse(arguments[0]["exprs"])
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==5) {
             this.exprs = this.exprs.slice(1-1,3);
         }
@@ -21040,7 +20211,7 @@ function RAND_m() {
         var funtyp = 4;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.in2 = new ScilabDouble([]);
         this.model.intyp = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
@@ -21080,10 +20251,7 @@ function RAND_m() {
         this.b = parseFloat(arguments[0]["b"])
         this.seed_c = arguments[0]["seed_c"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         if (size(this.exprs,"*")==14) {
             this.exprs[9-1] = [];
         }
@@ -21172,10 +20340,7 @@ function READAU_f() {
         this.N = parseFloat(arguments[0]["N"])
         this.swap = parseFloat(arguments[0]["swap"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var out = this.model.out;
         var dstate = this.model.dstate;
         var ipar = this.model.ipar;
@@ -21285,9 +20450,7 @@ function READC_f() {
         this.offset = parseFloat(arguments[0]["offset"])
         this.swap = parseFloat(arguments[0]["swap"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
         this.model = this.x.model;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
         var out = this.model.out;
         var dstate = this.model.dstate;
@@ -21418,10 +20581,7 @@ function RFILE_f() {
         this.frmt1 = parseFloat(arguments[0]["frmt1"])
         this.N = parseFloat(arguments[0]["N"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var dstate = this.model.dstate;
         var ipar = this.model.ipar;
         var ievt = ipar[3-1];
@@ -21521,7 +20681,6 @@ function SAWTOOTH_f() {
         return options;
     }
     SAWTOOTH_f.prototype.set = function SAWTOOTH_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -21561,10 +20720,7 @@ function STEP() {
         this.in1 = arguments[0]["in1"]
         this.fi = arguments[0]["fi"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.temps,this.in1,this.fi,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","STEP_FUNCTION")],[" "],["Step Function"],[" "]],["Step Time","Initial Value","Final Value"],list("vec",1,"vec",-1,"vec",-1),this.exprs);
             if (!ok) {
@@ -21669,8 +20825,6 @@ function STEP_FUNCTION() {
         return options;
     }
     STEP_FUNCTION.prototype.set = function STEP_FUNCTION() {
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="STEP") {
                 var ppath = list(i);
                 break;
@@ -21686,14 +20840,13 @@ function STEP_FUNCTION() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
-            var xx = arg1[spath-1];
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (diffobjs(this.xxn,xx)) {
                 this.model = xx.model;
                 var model_n = this.xxn.model;
                 if (!is_modelica_block(xx)) {
                     var modified = or(this.model.sim!=model_n.sim)||!isequal(this.model.state,model_n.state)||!isequal(this.model.dstate,model_n.dstate)||!isequal(this.model.rpar,model_n.rpar)||!isequal(this.model.ipar,model_n.ipar)||!isequal(this.model.label,model_n.label);
-                    if (or(this.model.in1!=model_n.in1)||or(this.model.out!=model_n.out)) {
+                    if (or(this.model.in!=model_n.in)||or(this.model.out!=model_n.out)) {
                         var needcompile = 1;
                     }
                     if (or(this.model.firing!=model_n.firing)) {
@@ -21725,11 +20878,9 @@ function STEP_FUNCTION() {
                         var needcompile = 4;
                     }
                 }
-                arg1[spath-1] = this.xxn;
                 newpar[size(newpar)+1-1] = path;
             }
         }
-        this.x = arg1;
         var y = needcompile;
         var typ = newpar;
         return new BasicBlock(this.x);
@@ -21763,9 +20914,6 @@ function SampleCLK() {
         this.frequ = arguments[0]["frequ"]
         this.offset = arguments[0]["offset"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
-        this.model = arg1.model;
         this.exprs = this.graphics.exprs;
         while (true) {
             [ok,this.frequ,this.offset,this.exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",1,"vec",1),this.exprs);
@@ -21825,8 +20973,6 @@ function Sigbuilder() {
     }
     Sigbuilder.prototype.set = function Sigbuilder() {
         var ppath = list(0);
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="CURVE_c") {
                 ppath[1-1] = i;
                 break;
@@ -21843,20 +20989,19 @@ function Sigbuilder() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
-            var xx = arg1[spath-1];
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (diffobjs(this.xxn,xx)) {
                 this.model = xx.model;
                 var model_n = this.xxn.model;
                 if (!is_modelica_block(xx)) {
                     var modified = or(this.model.sim!=model_n.sim)||!isequal(this.model.state,model_n.state)||!isequal(this.model.dstate,model_n.dstate)||!isequal(this.model.odstate,model_n.odstate)||!isequal(this.model.rpar,model_n.rpar)||!isequal(this.model.ipar,model_n.ipar)||!isequal(this.model.opar,model_n.opar)||!isequal(this.model.label,model_n.label);
-                    if (or(this.model.in1!=model_n.in1)||or(this.model.out!=model_n.out)||or(this.model.in2!=model_n.in2)||or(this.model.out2!=model_n.out2)||or(this.model.outtyp!=model_n.outtyp)||or(this.model.intyp!=model_n.intyp)) {
+                    if (or(this.model.in!=model_n.in)||or(this.model.out!=model_n.out)||or(this.model.in2!=model_n.in2)||or(this.model.out2!=model_n.out2)||or(this.model.outtyp!=model_n.outtyp)||or(this.model.intyp!=model_n.intyp)) {
                         var needcompile = 1;
                     }
                     if (or(this.model.firing!=model_n.firing)) {
                         var needcompile = 2;
                     }
-                    if ((size(this.model.in1,"*")!=size(model_n.in1,"*"))||(size(this.model.out,"*")!=size(model_n.out,"*"))) {
+                    if ((size(this.model.in,"*")!=size(model_n.in,"*"))||(size(this.model.out,"*")!=size(model_n.out,"*"))) {
                         var needcompile = 4;
                     }
                     if (this.model.sim=="input"||this.model.sim=="output") {
@@ -21885,12 +21030,10 @@ function Sigbuilder() {
                         var needcompile = 4;
                     }
                 }
-                arg1[spath-1] = this.xxn;
                 newpar[size(newpar)+1-1] = path;
                 this.y = max(this.y,needcompile);
             }
         }
-        this.x = arg1;
         var typ = newpar;
         return new BasicBlock(this.x);
     }
@@ -21916,7 +21059,6 @@ function TIME_f() {
         return options;
     }
     TIME_f.prototype.set = function TIME_f() {
-        this.x = arg1;
         return new BasicBlock(this.x);
     }
 }
@@ -21954,10 +21096,7 @@ function TKSCALE() {
         this.b = parseFloat(arguments[0]["b"])
         this.f = parseFloat(arguments[0]["f"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         [ok,this.a,this.b,this.f,this.exprs] = scicos_getvalue("Set scale block parameters",["Min value","Max value","Normalization"],list("vec",1,"vec",1,"vec",1),this.exprs);
         if (ok) {
             this.graphics.exprs = new ScilabDouble([this.exprs]);
@@ -21977,7 +21116,7 @@ function GENERAL_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["zcross"]), new ScilabDouble([1]));
         this.model.nzcross = new ScilabDouble([this.in1]);
-        this.model.in1 = new ScilabDouble([this.in1]);
+        this.model.in = new ScilabDouble([this.in1]);
         this.model.evtout = new ScilabDouble([ones(this.out,1)]);
         this.model.rpar = new ScilabDouble([0],[0],[0],[0]);
         this.model.blocktype = new ScilabString(["z"]);
@@ -22002,12 +21141,9 @@ function GENERAL_f() {
         this.in1 = parseFloat(arguments[0]["in1"])
         this.out = parseFloat(arguments[0]["out"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         var rpar = this.model.rpar;
-        this.in1 = this.model.in1;
+        this.in1 = this.model.in;
         this.out = this.model.evtout;
         var nin = sum(this.in1);
         var nout = sum(this.out);
@@ -22047,7 +21183,7 @@ function NEGTOPOS_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["zcross"]), new ScilabDouble([1]));
         this.model.nzcross = new ScilabDouble([1]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([-1],[-1],[0],[-1]);
         this.model.blocktype = new ScilabString(["z"]);
@@ -22066,7 +21202,6 @@ function NEGTOPOS_f() {
         return options;
     }
     NEGTOPOS_f.prototype.set = function NEGTOPOS_f() {
-        this.x = arg1;
         this.x.model.firing = -1;
         return new BasicBlock(this.x);
     }
@@ -22078,7 +21213,7 @@ function POSTONEG_f() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["zcross"]), new ScilabDouble([1]));
         this.model.nzcross = new ScilabDouble([1]);
-        this.model.in1 = new ScilabDouble([1]);
+        this.model.in = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([-1],[-1],[-1],[0]);
         this.model.blocktype = new ScilabString(["z"]);
@@ -22097,7 +21232,6 @@ function POSTONEG_f() {
         return options;
     }
     POSTONEG_f.prototype.set = function POSTONEG_f() {
-        this.x = arg1;
         this.x.model.firing = [-1];
         return new BasicBlock(this.x);
     }
@@ -22109,7 +21243,7 @@ function ZCROSS_f() {
         this.in1 = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["zcross"]), new ScilabDouble([1]));
-        this.model.in1 = new ScilabDouble([this.in1]);
+        this.model.in = new ScilabDouble([this.in1]);
         this.model.nzcross = new ScilabDouble([this.in1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([-1],[-1],[0],[0]);
@@ -22132,10 +21266,7 @@ function ZCROSS_f() {
     ZCROSS_f.prototype.set = function ZCROSS_f() {
         this.in1 = parseFloat(arguments[0]["in1"])
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.in1,this.exprs] = scicos_getvalue([["Set Zero-Crossing parameters"],["All surfaces must cross together"]],"Input size",list("vec",1),this.exprs);
             if (!ok) {
@@ -22151,7 +21282,7 @@ function ZCROSS_f() {
                 }
                 this.model.rpar = new ScilabDouble([-ones(kk,1)],[zeros(2^(2*this.in1)-kk,1)]);
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
-                this.model.in1 = new ScilabDouble([this.in1]);
+                this.model.in = new ScilabDouble([this.in1]);
                 this.model.nzcross = new ScilabDouble([this.in1]);
                 this.model.firing = new ScilabDouble([-1]);
                 this.x.graphics = this.graphics;

@@ -561,7 +561,7 @@ def p_modelvar_var(p):
 
 def p_modelvar_in(p):
     'modelvar : IN'
-    p[0] = '%s1' % (p[1])
+    p[0] = '%s' % (p[1])
 
 def p_modelvar_modelvar_expression(p):
     'modelvar : modelvar OPENBRACKET expression CLOSEBRACKET'
@@ -1002,7 +1002,7 @@ def p_lterm_lterm_dot_var(p):
 
 def p_lterm_lterm_dot_in(p):
     'lterm : lterm DOT IN'
-    p[0] = '%s.%s1' % (p[1], p[3])
+    p[0] = '%s.%s' % (p[1], p[3])
 
 def p_lterm_var(p):
     'lterm : VAR'
@@ -1239,7 +1239,7 @@ def p_termvar_termvar_dot_in(p):
     else:
         basevar = var
     add_object_var(basevar)
-    var = '%s.%s1' % (var, p[3])
+    var = '%s.%s' % (var, p[3])
     if var[:5] == 'this.':
         basevar = var[5:]
     else:

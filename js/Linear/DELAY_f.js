@@ -54,7 +54,7 @@ function DELAY_f() {
         this.x.graphics.pin = 0;
         this.x.graphics.pout = 0;
         this.x.model.sim = "csuper";
-        this.x.model.in1 = 1;
+        this.x.model.in = 1;
         this.x.model.out = 1;
         this.x.model.blocktype = "h";
         this.x.model.dep_ut = [false,false];
@@ -80,8 +80,6 @@ function DELAY_f() {
         this.z0 = arguments[0]["z0"]
         this.exprs = inverse(arguments[0]["exprs"])
         var ppath = list(0,0);
-        for (i=1;i<=length(arg1.model.rpar.objs);i+=1) {
-            var o = arg1.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="REGISTER_f") {
                 ppath[1-1] = i;
             }
@@ -92,7 +90,6 @@ function DELAY_f() {
                 break;
             }
         }
-        this.x = arg1;
         var newpar = list();
         var register = this.x.model.rpar.objs[ppath[1-1]-1];
         var evtdly = this.x.model.rpar.objs[ppath[2-1]-1];

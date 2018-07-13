@@ -4,7 +4,7 @@ function GENSIN_f() {
         var rpar = [[1],[1],[0]];
         this.model = scicos_model();
         this.model.sim = new ScilabString(["gensin"]);
-        this.model.in1 = new ScilabDouble([]);
+        this.model.in = new ScilabDouble([]);
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
@@ -32,10 +32,7 @@ function GENSIN_f() {
         this.F = arguments[0]["F"]
         this.P = arguments[0]["P"]
         this.exprs = arguments[0]["exprs"]
-        this.x = arg1;
-        this.graphics = arg1.graphics;
         this.exprs = this.graphics.exprs;
-        this.model = arg1.model;
         while (true) {
             [ok,this.M,this.F,this.P,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","GENSIN_f")],[" "],["Sine wave generator"],[" "]],["Magnitude","Frequency (rad/s)","Phase (rad)"],list("vec",1,"vec",1,"vec",1),this.exprs);
             if (!ok) {
