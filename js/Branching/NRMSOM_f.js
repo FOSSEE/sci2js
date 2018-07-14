@@ -8,7 +8,7 @@ function NRMSOM_f() {
         this.model.in = new ScilabDouble(in1);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.exprs = [string(this.nin)];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"NRMSOM_f\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([.2,2]),this.model,this.exprs,this.gr_i);

@@ -13,7 +13,7 @@ function fortran_block() {
         this.model.ipar = new ScilabDouble([0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = new ScilabDouble([]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.funam = "forty";
         var label = list([[sci2exp(this.model.in)],[sci2exp(this.model.out)],[strcat(sci2exp(this.model.rpar))],[this.funam]],list([]));
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"fortran_block\",sz(1),sz(2));"]);

@@ -6,7 +6,7 @@ function MOTOR() {
         this.model.in = new ScilabDouble([1]);
         this.model.sim = new ScilabString(["motor"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MOTOR\",sz(1),sz(2));"]);
         this.exprs = "";
         this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);

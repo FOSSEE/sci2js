@@ -9,7 +9,7 @@ function VanneReglante() {
         this.model.rpar = new ScilabDouble([this.Cvmax],[this.p_rho]);
         this.model.sim = new ScilabString(["VanneReglante"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var mo = modelica();
         mo.model = "VanneReglante";
         mo.inputs = ["C1","Ouv"];

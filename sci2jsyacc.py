@@ -15,7 +15,8 @@ import sys
 import pickle
 import ply.yacc as yacc
 
-from sci2jslex import tokens, JOBTYPES, BOOLEAN_TYPE, DOUBLE_TYPE, LIST_TYPE, MATRIX_TYPE, NULL_TYPE, OBJECT_TYPE, STRING_TYPE, VECTOR_TYPE
+from sci2jslex import tokens, JOBTYPES
+from sci2jslex import BOOLEAN_TYPE, DOUBLE_TYPE, LIST_TYPE, MATRIX_TYPE, NULL_TYPE, OBJECT_TYPE, STRING_TYPE, VECTOR_TYPE, VECTOR_BOOLEAN_TYPE
 
 precedence = (
     ('left', 'COLON'),
@@ -589,6 +590,13 @@ def p_assignment_model_modelvar_assignment_modelexpression(p):
             p[0] = '%*s%s = new %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
         else:
             p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
+    elif vartype == VECTOR_BOOLEAN_TYPE:
+        vartype = BOOLEAN_TYPE
+        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
+        if vartype != '':
+            p[0] = '%*s%s = new %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
+        else:
+            p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
     elif vartype == VECTOR_TYPE:
         vartype = DOUBLE_TYPE
         vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
@@ -817,7 +825,11 @@ def p_termarrayarraylist_termarraylist_semicolon(p):
 def p_termarraylist_termarraylist_comma_expression(p):
     '''termarraylist : termarraylist COMMA expression
                      | termarraylist SPACE expression'''
-    p[0] = ('%s,%s' % (p[1][0], p[3][0]), p[1][1])
+    if p[1][1] == p[3][1]:
+        vartype = p[1][1]
+    else:
+        vartype = DOUBLE_TYPE
+    p[0] = ('%s,%s' % (p[1][0], p[3][0]), vartype)
 
 def p_termarraylist_expression(p):
     'termarraylist : expression'
@@ -894,7 +906,11 @@ def p_expression_termarraylist(p):
     '''expression : OPENSQBRACKET termarraylist CLOSESQBRACKET
                   | OPENSQBRACKET termarraylist COMMA CLOSESQBRACKET
                   | OPENSQBRACKET termarraylist SPACE CLOSESQBRACKET'''
-    p[0] = ('[%s]' % (p[2][0]), VECTOR_TYPE)
+    if p[2][1] == BOOLEAN_TYPE:
+        vartype = VECTOR_BOOLEAN_TYPE
+    else:
+        vartype = VECTOR_TYPE
+    p[0] = ('[%s]' % (p[2][0]), vartype)
 
 # []
 def p_expression_empty(p):

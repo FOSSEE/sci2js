@@ -15,7 +15,7 @@ function DLR_f() {
         this.model.dstate = new ScilabDouble(x0.slice());
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = new ScilabDouble([false,false]);
+        this.model.dep_ut = new ScilabBoolean([false,false]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLR_f\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([2.5,2.5]),this.model,this.exprs,this.gr_i);
         return new BasicBlock(this.x);
@@ -73,7 +73,7 @@ function DLR_f() {
                     var mmm = [false,false];
                 }
                 if (or(this.model.dep_ut!=mmm)) {
-                    this.model.dep_ut = new ScilabDouble(mmm);
+                    this.model.dep_ut = new ScilabBoolean(mmm);
                 }
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;

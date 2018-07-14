@@ -17,7 +17,7 @@ function SWITCH2_m() {
         this.model.nzcross = new ScilabDouble([this.nzz]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.exprs = [[sci2exp(1)],[string(ipar)],[string(rpar)],[string(this.nzz)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SWITCH2_m\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);

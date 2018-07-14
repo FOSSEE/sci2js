@@ -7,7 +7,7 @@ function Capacitor() {
         this.model.rpar = new ScilabDouble([this.C],[this.v]);
         this.model.sim = new ScilabString(["Capacitor"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var mo = modelica();
         mo.model = "Capacitor";
         mo.inputs = "p";

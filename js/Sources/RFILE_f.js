@@ -19,7 +19,7 @@ function RFILE_f() {
         this.model.dstate = new ScilabDouble(dstate);
         this.model.ipar = new ScilabDouble([length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]],[tmask],[this.outmask]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = new ScilabDouble([false,false]);
+        this.model.dep_ut = new ScilabBoolean([false,false]);
         this.exprs = [[sci2exp([])],[sci2exp(this.outmask)],[fname],[frmt],[string(this.N)],[sci2exp(out)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RFILE_f\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([3,2]),this.model,this.exprs,this.gr_i);

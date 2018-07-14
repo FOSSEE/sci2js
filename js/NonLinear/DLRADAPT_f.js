@@ -17,7 +17,7 @@ function DLRADAPT_f() {
         this.model.ipar = new ScilabDouble([0],[2],[2]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.exprs = [[sci2exp(this.p)],[sci2exp(this.rn)],[sci2exp(this.rd,0)],[sci2exp(this.g)],[sci2exp(this.last_u)],[sci2exp(this.last_y)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLRADAPT_f\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);

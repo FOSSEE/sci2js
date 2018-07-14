@@ -32,7 +32,7 @@ function BOUNCE() {
         this.model.ipar = new ScilabDouble(ipar);
         this.model.nzcross = new ScilabDouble([n*(n-1)/2+4*n]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([false,true]);
+        this.model.dep_ut = new ScilabBoolean([false,true]);
         this.exprs = [[strcat(sci2exp(this.rpar1))],[strcat(sci2exp(this.rpar2))],[strcat(sci2exp(this.walls))],[strcat(sci2exp(this.x))],[strcat(sci2exp(this.xd))],[strcat(sci2exp(this.y))],[strcat(sci2exp(this.yd))]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BOUNCE\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([3,2]),this.model,this.exprs,this.gr_i);

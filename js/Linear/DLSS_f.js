@@ -14,7 +14,7 @@ function DLSS_f() {
         this.model.dstate = new ScilabDouble(this.x0.slice());
         this.model.rpar = new ScilabDouble([this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = new ScilabDouble([false,false]);
+        this.model.dep_ut = new ScilabBoolean([false,false]);
         this.exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLSS_f\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([4,2]),this.model,this.exprs,this.gr_i);
@@ -77,10 +77,10 @@ function DLSS_f() {
                             var mmm = [false,false];
                         }
                         if (or(this.model.dep_ut!=mmm)) {
-                            this.model.dep_ut = new ScilabDouble(mmm);
+                            this.model.dep_ut = new ScilabBoolean(mmm);
                         }
                     } else {
-                        this.model.dep_ut = new ScilabDouble([false,false]);
+                        this.model.dep_ut = new ScilabBoolean([false,false]);
                     }
                     this.model.dstate = new ScilabDouble(this.x0.slice());
                     this.model.rpar = new ScilabDouble(rpar);

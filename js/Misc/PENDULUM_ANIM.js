@@ -15,7 +15,7 @@ function PENDULUM_ANIM() {
         this.model.dstate = new ScilabDouble([0]);
         this.model.rpar = new ScilabDouble([this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = new ScilabDouble([false,false]);
+        this.model.dep_ut = new ScilabBoolean([false,false]);
         this.exprs = string(this.model.rpar);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PENDULUM_ANIM\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([3,3]),this.model,this.exprs,this.gr_i);

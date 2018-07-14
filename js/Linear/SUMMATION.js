@@ -10,7 +10,7 @@ function SUMMATION() {
         this.model.out2 = new ScilabDouble([-2]);
         this.model.ipar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.exprs = sci2exp(this.sgn);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUMMATION\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([2,3]),this.model,this.exprs,this.gr_i);

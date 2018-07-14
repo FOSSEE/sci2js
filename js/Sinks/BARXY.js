@@ -8,7 +8,7 @@ function BARXY() {
         this.ymax = 15;
         this.model.sim = list(new ScilabString(["BARXY_sim"]), new ScilabDouble([5]));
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.model.in = new ScilabDouble([-1],[-1]);
         this.model.intyp = new ScilabDouble([1]);
         this.model.out = new ScilabDouble([]);

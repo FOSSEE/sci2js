@@ -17,7 +17,7 @@ function TCLSS() {
         this.model.state = new ScilabDouble([this.x0]);
         this.model.rpar = new ScilabDouble([this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([false,true]);
+        this.model.dep_ut = new ScilabBoolean([false,true]);
         this.exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TCLSS\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([3,2]),this.model,this.exprs,this.gr_i);
@@ -80,10 +80,10 @@ function TCLSS() {
                             var mmm = [false,true];
                         }
                         if (or(this.model.dep_ut!=mmm)) {
-                            this.model.dep_ut = new ScilabDouble(mmm);
+                            this.model.dep_ut = new ScilabBoolean(mmm);
                         }
                     } else {
-                        this.model.dep_ut = new ScilabDouble([false,true]);
+                        this.model.dep_ut = new ScilabBoolean([false,true]);
                     }
                     this.model.state = new ScilabDouble(this.x0.slice());
                     this.model.rpar = new ScilabDouble(rpar);

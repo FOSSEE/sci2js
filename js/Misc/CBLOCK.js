@@ -25,7 +25,7 @@ function CBLOCK() {
         this.model.ipar = new ScilabDouble(this.ipar);
         this.model.blocktype = new ScilabString([typ]);
         this.model.firing = new ScilabDouble(auto);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.model.nzcross = new ScilabDouble([this.ng]);
         var label = list(transpose([funam,"n",sci2exp(in1),sci2exp(out),sci2exp(clkin),sci2exp(clkout),sci2exp(x0),sci2exp(0),sci2exp(z0),sci2exp(this.rpar),sci2exp(this.ipar),sci2exp(auto),"y","n"]),[]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CBLOCK\",sz(1),sz(2));"]);
@@ -147,7 +147,7 @@ function CBLOCK() {
                         this.model.rpar = new ScilabDouble(this.rpar);
                         this.model.ipar = new ScilabDouble([this.ipar]);
                         this.model.firing = new ScilabDouble([this.auto0]);
-                        this.model.dep_ut = new ScilabDouble(dep_ut);
+                        this.model.dep_ut = new ScilabBoolean(dep_ut);
                         this.model.nzcross = new ScilabDouble([this.ng]);
                         label[2-1] = tt;
                         this.x.model = this.model;

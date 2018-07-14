@@ -14,7 +14,7 @@ function SHIFT() {
         this.model.rpar = new ScilabDouble([]);
         this.model.ipar = new ScilabDouble(sgn);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.exprs = [[sci2exp(3)],[sci2exp(0)],[sci2exp(0)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SHIFT\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([3,2]),this.model,this.exprs,this.gr_i);

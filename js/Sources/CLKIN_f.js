@@ -8,7 +8,7 @@ function CLKIN_f() {
         this.model.ipar = new ScilabDouble([this.prt]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
-        this.model.dep_ut = new ScilabDouble([false,false]);
+        this.model.dep_ut = new ScilabBoolean([false,false]);
         this.exprs = string(this.prt);
         this.x = new standard_define(new ScilabDouble([1,1]),this.model,this.exprs," ");
         return new BasicBlock(this.x);

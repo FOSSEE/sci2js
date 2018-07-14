@@ -12,7 +12,7 @@ function STEP() {
         this.model.firing = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([false,false]);
+        this.model.dep_ut = new ScilabBoolean([false,false]);
         this.exprs = [[string(1)],[string(rpar)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"STEP\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);

@@ -12,7 +12,7 @@ function SineVoltage() {
         this.model.rpar = new ScilabDouble([this.V],[this.ph],[this.frq],[this.offset],[this.start]);
         this.model.sim = new ScilabString(["SineVoltage"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var mo = modelica();
         mo.model = "SineVoltage";
         mo.inputs = "p";

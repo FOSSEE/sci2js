@@ -23,7 +23,7 @@ function c_block() {
         this.model.ipar = new ScilabDouble([0]);
         this.model.blocktype = new ScilabString([typ]);
         this.model.firing = new ScilabDouble(auto);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var label = list([[sci2exp(in1)],[sci2exp(out)],[strcat(sci2exp(this.rpar))],[this.funam]],list([]));
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"c_block\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([3,2]),this.model,label,this.gr_i);

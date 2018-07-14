@@ -7,7 +7,7 @@ function EXTRACTOR() {
         this.model.in = new ScilabDouble([-1]);
         this.model.out = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.model.ipar = new ScilabDouble([this.ind]);
         this.exprs = [sci2exp(this.ind)];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXTRACTOR\",sz(1),sz(2));"]);

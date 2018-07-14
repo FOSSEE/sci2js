@@ -12,7 +12,7 @@ function VARIABLE_DELAY() {
         this.model.rpar = new ScilabDouble([this.T,this.init]);
         this.model.ipar = new ScilabDouble([this.N]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = new ScilabDouble([false,false]);
+        this.model.dep_ut = new ScilabBoolean([false,false]);
         this.exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VARIABLE_DELAY\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([3,2]),this.model,this.exprs,this.gr_i);

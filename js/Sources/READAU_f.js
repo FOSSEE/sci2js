@@ -19,7 +19,7 @@ function READAU_f() {
         this.model.dstate = new ScilabDouble([1],[1],[lunit],[zeros(this.N*M,1)]);
         this.model.ipar = new ScilabDouble([length(fname)],[this._str2code[frmt-1]],[ievt],[this.N],[M],[this.swap],[offset],[this._str2code[fname-1]],[tmask],[outmask]);
         this.model.blocktype = new ScilabString(["d"]);
-        this.model.dep_ut = new ScilabDouble([false,false]);
+        this.model.dep_ut = new ScilabBoolean([false,false]);
         this.exprs = [[fname],[string(this.N)],[string(this.swap)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"READAU_f\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([5,2]),this.model,this.exprs,this.gr_i);

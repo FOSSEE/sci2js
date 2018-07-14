@@ -4,7 +4,7 @@ function VariableResistor() {
         this.model = scicos_model();
         this.model.sim = new ScilabString(["VariableResistor"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var mo = modelica();
         mo.model = "VariableResistor";
         mo.inputs = ["p","R"];

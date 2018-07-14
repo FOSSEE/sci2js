@@ -13,7 +13,7 @@ function NMOS() {
         this.RDS = 1.e+7;
         this.model.sim = new ScilabString(["NMOS"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var mo = modelica();
         mo.model = "NMOS";
         mo.outputs = [["D"],["B"],["S"]];

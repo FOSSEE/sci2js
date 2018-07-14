@@ -36,7 +36,7 @@ function GEN_SQR() {
         this.model.opar = list();
         this.model.blocktype = new ScilabString(["h"]);
         this.model.firing = new ScilabDouble([]);
-        this.model.dep_ut = new ScilabDouble([false,false]);
+        this.model.dep_ut = new ScilabBoolean([false,false]);
         this.model.label = new ScilabString([""]);
         this.model.nzcross = new ScilabDouble([0]);
         this.model.nmode = new ScilabDouble([0]);

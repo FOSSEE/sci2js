@@ -8,7 +8,7 @@ function OUTIMPL_f() {
         this.model.sim = new ScilabString(["outimpl"]);
         this.model.ipar = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([false,false]);
+        this.model.dep_ut = new ScilabBoolean([false,false]);
         var mo = modelica();
         mo.model = "PORT";
         mo.inputs = "n";

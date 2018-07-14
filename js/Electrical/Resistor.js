@@ -6,7 +6,7 @@ function Resistor() {
         this.model.rpar = new ScilabDouble([this.R]);
         this.model.sim = new ScilabString(["resistor"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var mo = modelica();
         mo.model = "Resistor";
         mo.inputs = "p";

@@ -7,7 +7,7 @@ function PotentialSensor() {
         this.model.rpar = new ScilabDouble([]);
         this.model.sim = new ScilabString(["PotentialSensor"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var mo = modelica();
         mo.model = "PotentialSensor";
         mo.inputs = "p";

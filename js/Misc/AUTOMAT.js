@@ -20,7 +20,7 @@ function AUTOMAT() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.firing = new ScilabDouble([-1]);
-        this.model.dep_ut = new ScilabDouble([false,true]);
+        this.model.dep_ut = new ScilabBoolean([false,true]);
         this.model.ipar = new ScilabDouble(ipar);
         this.model.rpar = new ScilabDouble(rpar);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"AUTOMAT\",sz(1),sz(2));"]);

@@ -17,7 +17,7 @@ function LOOKUP_c() {
         this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()]);
         this.model.ipar = new ScilabDouble([N],[this.Method],[0],[0]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.model.evtin = new ScilabDouble([]);
         this.model.evtout = new ScilabDouble([]);
         this.model.firing = new ScilabDouble([0]);

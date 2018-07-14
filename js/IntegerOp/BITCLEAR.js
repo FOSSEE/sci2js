@@ -11,7 +11,7 @@ function BITCLEAR() {
         this.model.outtyp = new ScilabDouble([3]);
         this.model.opar = list(new ScilabDouble([int32(0)]));
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.exprs = [[sci2exp(3)],[sci2exp(0)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BITCLEAR\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([4,2]),this.model,this.exprs,this.gr_i);

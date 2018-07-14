@@ -7,7 +7,7 @@ function SampleCLK() {
         this.model.rpar = new ScilabDouble([1,0]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
-        this.model.dep_ut = new ScilabDouble([false,false]);
+        this.model.dep_ut = new ScilabBoolean([false,false]);
         this.exprs = [[sci2exp(1)],[sci2exp(0)]];
         this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs," ");
         return new BasicBlock(this.x);

@@ -6,7 +6,7 @@ function Ground() {
         this.model.out = new ScilabDouble([]);
         this.model.sim = new ScilabString(["Ground"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var mo = modelica();
         mo.model = "Ground";
         mo.inputs = "p";

@@ -6,7 +6,7 @@ function PROD_f() {
         this.model.in = new ScilabDouble([-1],[-1]);
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.x = new standard_define(new ScilabDouble([1,1]),this.model,[],[]);
         return new BasicBlock(this.x);
     }

@@ -19,7 +19,7 @@ function MATCATH() {
         this.model.ipar = new ScilabDouble([]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = new ScilabDouble([]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var label = [sci2exp(2)];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATCATH\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([2,3]),this.model,label,this.gr_i);

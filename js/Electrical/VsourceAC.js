@@ -9,7 +9,7 @@ function VsourceAC() {
         this.model.rpar = new ScilabDouble([this.VA],[this.FR]);
         this.model.sim = new ScilabString(["VsourceAC"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var mo = modelica();
         mo.model = "VsourceAC";
         mo.inputs = "p";

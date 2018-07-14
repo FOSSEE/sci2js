@@ -18,7 +18,7 @@ function CMAT3D() {
         this.model.ipar = new ScilabDouble([this.cmin],[this.cmax],[size_c],[size_x],[size_y]);
         this.model.rpar = new ScilabDouble([this.colormap.slice()],[this.x],[y]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.exprs = [[strcat(string(this.x)," ")],[strcat(string(y)," ")],[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CMAT3D\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);

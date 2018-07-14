@@ -10,7 +10,7 @@ function CBLOCK4() {
         this.model.out = new ScilabDouble([1]);
         this.model.out2 = new ScilabDouble([1]);
         this.model.outtyp = new ScilabDouble([1]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var label = list([[funam],["n"],[sci2exp([this.model.in,this.model.in2])],[sci2exp(this.model.intyp)],[sci2exp([this.model.out,this.model.out2])],[sci2exp(this.model.outtyp)],[sci2exp(this.model.evtin)],[sci2exp(this.model.evtout)],[sci2exp(this.model.state)],[sci2exp(this.model.dstate)],[sci2exp(this.model.odstate)],[sci2exp(this.model.rpar)],[sci2exp(this.model.ipar)],[sci2exp(this.model.opar)],[sci2exp(this.model.nmode)],[sci2exp(this.model.nzcross)],[sci2exp(this.model.firing)],["y"],["n"]],[]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CBLOCK4\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([4,2]),this.model,label,this.gr_i);
@@ -140,7 +140,7 @@ function CBLOCK4() {
                         this.model.firing = new ScilabDouble([this.auto0]);
                         this.model.nzcross = new ScilabDouble([this.nzcr]);
                         this.model.nmode = new ScilabDouble([this.nmode]);
-                        this.model.dep_ut = new ScilabDouble(dep_ut);
+                        this.model.dep_ut = new ScilabBoolean(dep_ut);
                         label[2-1] = tt;
                         this.x.model = this.model;
                         this.graphics.exprs = new ScilabDouble([label]);

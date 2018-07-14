@@ -7,7 +7,7 @@ function MATMUL() {
         this.model.in2 = new ScilabDouble([-2],[-3]);
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([-3]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         this.model.ipar = new ScilabDouble([1]);
         var label = [sci2exp(this.model.ipar)];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATMUL\",sz(1),sz(2));"]);

@@ -12,7 +12,7 @@ function TIME_DELAY() {
         this.model.rpar = new ScilabDouble([this.T,this.init]);
         this.model.ipar = new ScilabDouble([this.N]);
         this.model.blocktype = new ScilabString(["x"]);
-        this.model.dep_ut = new ScilabDouble([false,true]);
+        this.model.dep_ut = new ScilabBoolean([false,true]);
         this.exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TIME_DELAY\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([3.5,2]),this.model,this.exprs,this.gr_i);
@@ -59,7 +59,7 @@ function TIME_DELAY() {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.rpar = new ScilabDouble([this.T],[this.init]);
                 this.model.ipar = new ScilabDouble([this.N]);
-                this.model.dep_ut = new ScilabDouble([false,true]);
+                this.model.dep_ut = new ScilabBoolean([false,true]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

@@ -12,7 +12,7 @@ function FROMMO() {
         this.model.ipar = new ScilabDouble([]);
         this.model.opar = list(new ScilabString(["A"]));
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([false,false]);
+        this.model.dep_ut = new ScilabBoolean([false,false]);
         var mo = modelica();
         mo.model = "frommo";
         mo.outputs = "n";

@@ -6,7 +6,7 @@ function INIMPL_f() {
         this.model.out = new ScilabDouble([-1]);
         this.model.out2 = new ScilabDouble([1]);
         this.model.ipar = new ScilabDouble([1]);
-        this.model.dep_ut = new ScilabDouble([false,false]);
+        this.model.dep_ut = new ScilabBoolean([false,false]);
         this.model.blocktype = new ScilabString(["c"]);
         var mo = modelica();
         mo.model = "PORT";

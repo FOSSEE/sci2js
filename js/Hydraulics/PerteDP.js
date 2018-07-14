@@ -13,7 +13,7 @@ function PerteDP() {
         this.model.rpar = new ScilabDouble([this.L],[this.D],[this.lambda],[this.z1],[this.z2],[this.p_rho]);
         this.model.sim = new ScilabString(["PerteDP"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var mo = modelica();
         mo.model = "PerteDP";
         mo.inputs = "C1";

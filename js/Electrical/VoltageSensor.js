@@ -6,7 +6,7 @@ function VoltageSensor() {
         this.model.out = new ScilabDouble([1],[1]);
         this.model.sim = new ScilabString(["VoltageSensor"]);
         this.model.blocktype = new ScilabString(["c"]);
-        this.model.dep_ut = new ScilabDouble([true,false]);
+        this.model.dep_ut = new ScilabBoolean([true,false]);
         var mo = modelica();
         mo.model = "VoltageSensor";
         mo.inputs = "p";
