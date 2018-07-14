@@ -735,21 +735,32 @@ def p_getvaluearg4_expression(p):
                     | listcall'''
     p[0] = '%s' % (p[1][0])
 
-def p_standarddefineassignment_standarddefinearguments(p):
-    'standarddefineassignment : lterm ASSIGNMENT STANDARD_DEFINE OPENBRACKET standarddefineargumentlist CLOSEBRACKET EOL'
-    p[0] = '%*s%s = new %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5])
+def p_standarddefineassignment_arg1_arg2_arg3_arg4(p):
+    'standarddefineassignment : lterm ASSIGNMENT STANDARD_DEFINE OPENBRACKET standarddefinearg1 COMMA standarddefinearg2 COMMA standarddefinearg3 COMMA standarddefinearg4 CLOSEBRACKET EOL'
+    p[0] = '%*s%s = new %s(%s,%s,%s,%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5], p[7], p[9], p[11])
 
-def p_standarddefineargumentlist_standarddefineargumentlist_expression(p):
-    '''standarddefineargumentlist : standarddefineargumentlist COMMA expression
-                                  | standarddefineargumentlist COMMA listcall'''
-    p[0] = '%s,%s' % (p[1], p[3][0])
-
-def p_standarddefineargumentlist_expression(p):
-    'standarddefineargumentlist : expression'
+def p_standarddefinearg1_expression(p):
+    'standarddefinearg1 : expression'
     value = p[1][0]
     if ']/' in value:
         value = re.sub(r'\]/.*', ']', value)
     p[0] = 'new ScilabDouble(%s)' % (value)
+
+def p_standarddefinearg2_expression(p):
+    'standarddefinearg2 : expression'
+    value = p[1][0]
+    p[0] = '%s' % (value)
+
+def p_standarddefinearg3_expression(p):
+    'standarddefinearg3 : expression'
+    value = p[1][0]
+    p[0] = '%s' % (value)
+
+def p_standarddefinearg4_expression(p):
+    '''standarddefinearg4 : expression
+                          | listcall'''
+    value = p[1][0]
+    p[0] = '%s' % (value)
 
 # end define assignment
 
