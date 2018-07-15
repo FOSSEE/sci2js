@@ -92,7 +92,7 @@ function RELATIONALOP() {
                     var label = "&#8805;";
                 }
                 this.graphics.exprs = new ScilabDouble(this.exprs);
-                this.graphics.style = new ScilabDouble(["fontSize=13;fontStyle=1;displayedLabel="+label]);
+                this.graphics.style = new ScilabString(["fontSize=13;fontStyle=1;displayedLabel="+label]);
                 this.model.ipar = new ScilabDouble([this.rule]);
                 this.model.nzcross = new ScilabDouble([this.zcr]);
                 this.model.nmode = new ScilabDouble([this.zcr]);

@@ -2030,7 +2030,7 @@ function Diode() {
                 break;
             }
             this.model.rpar = new ScilabDouble([this.Ids],[this.Vt],[this.Maxexp],[this.R]);
-            this.model.equations.parameters = list(["Ids","Vt","Maxexp","R"],list(this.Ids,this.Vt,this.Maxexp,this.R));
+            this.model.equations.parameters = list(new ScilabDouble([["Ids","Vt","Maxexp","R"]]),list(this.Ids,this.Vt,this.Maxexp,this.R));
             this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
@@ -3933,7 +3933,7 @@ function freq_div() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([120,0]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.peout = new ScilabDouble([6]);
         blk.graphics = this.graphics;
@@ -3944,7 +3944,7 @@ function freq_div() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([130,-160]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.pein = new ScilabDouble([8]);
         blk.graphics = this.graphics;
@@ -12409,7 +12409,7 @@ function EDGE_TRIGGER() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([0,10]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.pout = new ScilabDouble([5]);
         blk.graphics = this.graphics;
@@ -12420,7 +12420,7 @@ function EDGE_TRIGGER() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([170,-60]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.pein = new ScilabDouble([7]);
         blk.graphics = this.graphics;
@@ -12650,7 +12650,7 @@ function Extract_Activation() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([0,10]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.pout = new ScilabDouble([7]);
         blk.graphics = this.graphics;
@@ -12661,7 +12661,7 @@ function Extract_Activation() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([110,-140]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.pein = new ScilabDouble([8]);
         blk.graphics = this.graphics;
@@ -12922,7 +12922,7 @@ function LOGICAL_OP() {
                         var label = "NOT";
                     }
                     this.graphics.exprs = new ScilabDouble(this.exprs);
-                    this.graphics.style = new ScilabDouble(["blockWithLabel;displayedLabel="+label]);
+                    this.graphics.style = new ScilabString(["blockWithLabel;displayedLabel="+label]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;
@@ -13221,7 +13221,7 @@ function MBLOCK() {
                 this.exprs.funtxt = tt;
                 this.x.model = this.model;
                 this.graphics.gr_i[1-1][1-1] = new ScilabString(["txt=[\'Modelica\';\' "+nameF+" \'];"]);
-                this.graphics.in_implicit = new ScilabDouble(this.intype);
+                this.graphics.in_implicit = new ScilabString(this.intype);
                 this.graphics.out_implicit = new ScilabDouble(this.outtype);
                 this.graphics.exprs = this.exprs;
                 this.x.graphics = this.graphics;
@@ -13571,7 +13571,7 @@ function MPBLOCK() {
                 this.exprs.funtxt = "";
                 this.x.model = this.model;
                 this.graphics.gr_i[1-1][1-1] = new ScilabString(["txt=[\' "+nameF+" \'];"]);
-                this.graphics.in_implicit = new ScilabDouble(this.intype);
+                this.graphics.in_implicit = new ScilabString(this.intype);
                 this.graphics.out_implicit = new ScilabDouble(this.outtype);
                 this.graphics.exprs = this.exprs;
                 this.x.graphics = this.graphics;
@@ -13844,7 +13844,7 @@ function RELATIONALOP() {
                     var label = "&#8805;";
                 }
                 this.graphics.exprs = new ScilabDouble(this.exprs);
-                this.graphics.style = new ScilabDouble(["fontSize=13;fontStyle=1;displayedLabel="+label]);
+                this.graphics.style = new ScilabString(["fontSize=13;fontStyle=1;displayedLabel="+label]);
                 this.model.ipar = new ScilabDouble([this.rule]);
                 this.model.nzcross = new ScilabDouble([this.zcr]);
                 this.model.nmode = new ScilabDouble([this.zcr]);
@@ -20787,7 +20787,7 @@ function STEP_FUNCTION() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([80,10]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.pin = new ScilabDouble([3]);
         blk.graphics = this.graphics;

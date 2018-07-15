@@ -50,7 +50,7 @@ function Diode() {
                 break;
             }
             this.model.rpar = new ScilabDouble([this.Ids],[this.Vt],[this.Maxexp],[this.R]);
-            this.model.equations.parameters = list(["Ids","Vt","Maxexp","R"],list(this.Ids,this.Vt,this.Maxexp,this.R));
+            this.model.equations.parameters = list(new ScilabDouble([["Ids","Vt","Maxexp","R"]]),list(this.Ids,this.Vt,this.Maxexp,this.R));
             this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;

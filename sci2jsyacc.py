@@ -16,7 +16,7 @@ import pickle
 import ply.yacc as yacc
 
 from sci2jslex import tokens, JOBTYPES
-from sci2jslex import BOOLEAN_TYPE, DOUBLE_TYPE, LIST_TYPE, MATRIX_TYPE, NULL_TYPE, OBJECT_TYPE, STRING_TYPE, VECTOR_TYPE, VECTOR_BOOLEAN_TYPE
+from sci2jslex import BOOLEAN_TYPE, DOUBLE_TYPE, LIST_TYPE, MATRIX_TYPE, NULL_TYPE, OBJECT_TYPE, STRING_TYPE, VECTOR_TYPE, VECTOR_BOOLEAN_TYPE, VECTOR_STRING_TYPE
 
 precedence = (
     ('left', 'COLON'),
@@ -597,6 +597,13 @@ def p_assignment_model_modelvar_assignment_modelexpression(p):
             p[0] = '%*s%s = new %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
         else:
             p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
+    elif vartype == VECTOR_STRING_TYPE:
+        vartype = STRING_TYPE
+        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
+        if vartype != '':
+            p[0] = '%*s%s = new %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
+        else:
+            p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
     elif vartype == VECTOR_TYPE:
         vartype = DOUBLE_TYPE
         vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
@@ -908,6 +915,8 @@ def p_expression_termarraylist(p):
                   | OPENSQBRACKET termarraylist SPACE CLOSESQBRACKET'''
     if p[2][1] == BOOLEAN_TYPE:
         vartype = VECTOR_BOOLEAN_TYPE
+    elif p[2][1] == STRING_TYPE:
+        vartype = VECTOR_STRING_TYPE
     else:
         vartype = VECTOR_TYPE
     p[0] = ('[%s]' % (p[2][0]), vartype)

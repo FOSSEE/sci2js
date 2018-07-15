@@ -39,7 +39,7 @@ function Extract_Activation() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([0,10]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.pout = new ScilabDouble([7]);
         blk.graphics = this.graphics;
@@ -50,7 +50,7 @@ function Extract_Activation() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([110,-140]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.pein = new ScilabDouble([8]);
         blk.graphics = this.graphics;

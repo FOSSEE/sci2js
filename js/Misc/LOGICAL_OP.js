@@ -118,7 +118,7 @@ function LOGICAL_OP() {
                         var label = "NOT";
                     }
                     this.graphics.exprs = new ScilabDouble(this.exprs);
-                    this.graphics.style = new ScilabDouble(["blockWithLabel;displayedLabel="+label]);
+                    this.graphics.style = new ScilabString(["blockWithLabel;displayedLabel="+label]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;

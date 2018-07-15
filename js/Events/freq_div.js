@@ -30,7 +30,7 @@ function freq_div() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([120,0]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.peout = new ScilabDouble([6]);
         blk.graphics = this.graphics;
@@ -41,7 +41,7 @@ function freq_div() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([130,-160]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.pein = new ScilabDouble([8]);
         blk.graphics = this.graphics;

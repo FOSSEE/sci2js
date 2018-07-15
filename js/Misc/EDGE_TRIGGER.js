@@ -40,7 +40,7 @@ function EDGE_TRIGGER() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([0,10]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.pout = new ScilabDouble([5]);
         blk.graphics = this.graphics;
@@ -51,7 +51,7 @@ function EDGE_TRIGGER() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([170,-60]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.pein = new ScilabDouble([7]);
         blk.graphics = this.graphics;

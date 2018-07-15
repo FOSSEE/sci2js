@@ -22,7 +22,7 @@ function STEP_FUNCTION() {
         this.model = blk.model;
         this.graphics.orig = new ScilabDouble([80,10]);
         this.graphics.sz = new ScilabDouble([20,20]);
-        this.graphics.exprs = new ScilabDouble(["1"]);
+        this.graphics.exprs = new ScilabString(["1"]);
         this.model.ipar = new ScilabDouble([1]);
         this.graphics.pin = new ScilabDouble([3]);
         blk.graphics = this.graphics;

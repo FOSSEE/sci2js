@@ -271,7 +271,7 @@ function MPBLOCK() {
                 this.exprs.funtxt = "";
                 this.x.model = this.model;
                 this.graphics.gr_i[1-1][1-1] = new ScilabString(["txt=[\' "+nameF+" \'];"]);
-                this.graphics.in_implicit = new ScilabDouble(this.intype);
+                this.graphics.in_implicit = new ScilabString(this.intype);
                 this.graphics.out_implicit = new ScilabDouble(this.outtype);
                 this.graphics.exprs = this.exprs;
                 this.x.graphics = this.graphics;
