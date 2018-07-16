@@ -33,15 +33,15 @@ function HYSTHERESIS() {
         return options;
     }
     HYSTHERESIS.prototype.set = function HYSTHERESIS() {
-        this.high_lim = arguments[0]["high_lim"]
-        this.low_lim = arguments[0]["low_lim"]
-        this.out_high = arguments[0]["out_high"]
-        this.out_low = arguments[0]["out_low"]
-        this.nzz = parseFloat(arguments[0]["nzz"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.high_lim,this.low_lim,this.out_high,this.out_low,this.nzz,this.exprs] = scicos_getvalue("Set parameters",["switch on at","switch off at","output when on","output when off","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.high_lim = arguments[0]["high_lim"];
+            this.low_lim = arguments[0]["low_lim"];
+            this.out_high = arguments[0]["out_high"];
+            this.out_low = arguments[0]["out_low"];
+            this.nzz = parseFloat(arguments[0]["nzz"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

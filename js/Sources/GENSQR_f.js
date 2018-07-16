@@ -26,14 +26,14 @@ function GENSQR_f() {
         return options;
     }
     GENSQR_f.prototype.set = function GENSQR_f() {
-        this.Amplitude = parseFloat(arguments[0]["Amplitude"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }
         while (true) {
-            [ok,this.Amplitude,this.exprs] = scicos_getvalue(["Set Square generator block parameters"],["Amplitude"],list("vec",1),this.exprs);
+            var ok = true;
+            this.Amplitude = parseFloat(arguments[0]["Amplitude"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

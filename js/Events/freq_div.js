@@ -118,9 +118,6 @@ function freq_div() {
         return options;
     }
     freq_div.prototype.set = function freq_div() {
-        %ph = parseFloat(arguments[0]["%ph"])
-        %df = parseFloat(arguments[0]["%df"])
-        this.exprs = inverse(arguments[0]["exprs"])
             if (typeof(o)=="Block"&&o.gui=="Modulo_Count") {
                 var path = i;
                 break;
@@ -138,7 +135,10 @@ function freq_div() {
         this.exprs = this.graphics.exprs;
         this.model = xx.model;
         while (true) {
-            [ok,%ph,%df,this.exprs] = scicos_getvalue("Set frequency division block parameters",["Phase (0 to division factor -1)","Division factor"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            %ph = parseFloat(arguments[0]["%ph"]);
+            %df = parseFloat(arguments[0]["%df"]);
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

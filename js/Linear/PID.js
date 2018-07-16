@@ -51,10 +51,6 @@ function PID() {
         return options;
     }
     PID.prototype.set = function PID() {
-        this.p = arguments[0]["p"]
-        this.i = arguments[0]["i"]
-        this.d = arguments[0]["d"]
-        this.exprs0 = arguments[0]["exprs0"]
         var ppath = list(0,0,0);
             if (typeof(o)=="Link") {
                 if (from.gui=="GAINBLK") {
@@ -90,7 +86,11 @@ function PID() {
         var d_old = xx3.model.rpar;
         var y = 0;
         while (true) {
-            [ok,this.p,this.i,this.d,this.exprs0] = scicos_getvalue("Set PID parameters",["Proportional","Integral","Derivation"],list("vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.p = arguments[0]["p"];
+            this.i = arguments[0]["i"];
+            this.d = arguments[0]["d"];
+            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }

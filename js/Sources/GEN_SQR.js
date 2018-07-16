@@ -59,11 +59,6 @@ function GEN_SQR() {
         return options;
     }
     GEN_SQR.prototype.set = function GEN_SQR() {
-        scicos_context.Amin = arguments[0]["scicos_context.Amin"]
-        scicos_context.Amax = arguments[0]["scicos_context.Amax"]
-        scicos_context.rule = arguments[0]["scicos_context.rule"]
-        scicos_context.F = arguments[0]["scicos_context.F"]
-        this.exprs = arguments[0]["exprs"]
         var y = this.needcompile;
         var typ = list();
         this.exprs = this.graphics.exprs;
@@ -74,7 +69,12 @@ function GEN_SQR() {
         var scicos_context = struct();
         var ok = false;
         while (!ok) {
-            [ok,scicos_context.Amin,scicos_context.Amax,scicos_context.rule,scicos_context.F,this.exprs] = scicos_getvalue(Btitre,Bitems,Ss,this.exprs);
+            var ok = true;
+            scicos_context.Amin = arguments[0]["scicos_context.Amin"];
+            scicos_context.Amax = arguments[0]["scicos_context.Amax"];
+            scicos_context.rule = arguments[0]["scicos_context.rule"];
+            scicos_context.F = arguments[0]["scicos_context.F"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 return;
             }

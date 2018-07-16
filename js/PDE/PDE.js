@@ -23,9 +23,6 @@ function PDE() {
         return options;
     }
     PDE.prototype.set = function PDE() {
-        this.okk = parseBoolean(arguments[0]["okk"])
-        this.rdnom = arguments[0]["rdnom"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         var params_pde = label[1-1];
         while (true) {
@@ -110,7 +107,10 @@ function PDE() {
             this.rdnom = "PDE";
             var ok1 = true;
             while (true) {
-                [this.okk,this.rdnom,this.lab] = scicos_getvalue("PLEASE, GIVE US THE BLOCK\'s NAME. ","New block\'s name :",list("str",1),label[3-1]);
+                var ok = true;
+                this.okk = parseBoolean(arguments[0]["okk"]);
+                this.rdnom = arguments[0]["rdnom"];
+                this.lab = arguments[0]["lab"];
                 if (this.okk==false) {
                     var ok1 = false;
                     return;

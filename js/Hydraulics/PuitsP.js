@@ -35,14 +35,14 @@ function PuitsP() {
         return options;
     }
     PuitsP.prototype.set = function PuitsP() {
-        this.P0 = parseFloat(arguments[0]["P0"])
-        this.T0 = parseFloat(arguments[0]["T0"])
-        this.H0 = parseFloat(arguments[0]["H0"])
-        this.option_temperature = parseFloat(arguments[0]["option_temperature"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.P0,this.T0,this.H0,this.option_temperature,this.exprs] = scicos_getvalue("Paramètres du puits",["Pression de la source : P0 (Pa)","Temperature de la source : T0 (K)","Enthalpie spécifique de la source : H0 (J/kg)","1:température fixée - 2:enthalpie fixée : option_temperature"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.P0 = parseFloat(arguments[0]["P0"]);
+            this.T0 = parseFloat(arguments[0]["T0"]);
+            this.H0 = parseFloat(arguments[0]["H0"]);
+            this.option_temperature = parseFloat(arguments[0]["option_temperature"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

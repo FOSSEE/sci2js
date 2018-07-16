@@ -36,12 +36,12 @@ function VanneReglante() {
         return options;
     }
     VanneReglante.prototype.set = function VanneReglante() {
-        this.Cvmax = parseFloat(arguments[0]["Cvmax"])
-        this.p_rho = parseFloat(arguments[0]["p_rho"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Cvmax,this.p_rho,this.exprs] = scicos_getvalue("Paramètres de la vanne reglante",["Cvmax","p_rho"],list("vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.Cvmax = parseFloat(arguments[0]["Cvmax"]);
+            this.p_rho = parseFloat(arguments[0]["p_rho"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

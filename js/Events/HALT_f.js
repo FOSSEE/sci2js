@@ -24,11 +24,11 @@ function HALT_f() {
         return options;
     }
     HALT_f.prototype.set = function HALT_f() {
-        this.n = parseFloat(arguments[0]["n"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.n,this.exprs] = scicos_getvalue("Set Halt block parameters",["State on halt"],list("vec",1),this.exprs);
+            var ok = true;
+            this.n = parseFloat(arguments[0]["n"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

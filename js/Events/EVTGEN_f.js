@@ -23,11 +23,11 @@ function EVTGEN_f() {
         return options;
     }
     EVTGEN_f.prototype.set = function EVTGEN_f() {
-        this.tt = parseFloat(arguments[0]["tt"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tt,this.exprs] = scicos_getvalue("Set Event time",["Event Time"],list("vec",1),this.exprs);
+            var ok = true;
+            this.tt = parseFloat(arguments[0]["tt"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -27,12 +27,12 @@ function RATELIMITER() {
         return options;
     }
     RATELIMITER.prototype.set = function RATELIMITER() {
-        this.maxp = parseFloat(arguments[0]["maxp"])
-        this.minp = parseFloat(arguments[0]["minp"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.maxp,this.minp,this.exprs] = scicos_getvalue("Set rate limiter parameters",["max slope","min slope"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.maxp = parseFloat(arguments[0]["maxp"]);
+            this.minp = parseFloat(arguments[0]["minp"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

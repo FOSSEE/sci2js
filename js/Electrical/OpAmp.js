@@ -35,13 +35,13 @@ function OpAmp() {
         return options;
     }
     OpAmp.prototype.set = function OpAmp() {
-        this.OLGain = arguments[0]["OLGain"]
-        this.SatH = arguments[0]["SatH"]
-        this.SatL = arguments[0]["SatL"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (false) {
-            [ok,this.OLGain,this.SatH,this.SatL,this.exprs] = scicos_getvalue("Set the Operational Amplifier parameters",["Open Loop Gain","Positive saturation voltage","Negative saturation voltage"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.OLGain = arguments[0]["OLGain"];
+            this.SatH = arguments[0]["SatH"];
+            this.SatL = arguments[0]["SatL"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

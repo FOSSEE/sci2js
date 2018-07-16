@@ -43,18 +43,18 @@ function RAND_m() {
         return options;
     }
     RAND_m.prototype.set = function RAND_m() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.flag = parseFloat(arguments[0]["flag"])
-        this.a = parseFloat(arguments[0]["a"])
-        this.b = parseFloat(arguments[0]["b"])
-        this.seed_c = arguments[0]["seed_c"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==14) {
             this.exprs[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.flag,this.a,this.b,this.seed_c,this.exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be matrix with equal sizes"]],["Datatype(1=real double  2=complex)","flag","A","B","SEED"],list("vec",1,"vec",1,"mat",[-1,-2],"mat","[-1 -2]","mat",[1,2]),this.exprs);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.flag = parseFloat(arguments[0]["flag"]);
+            this.a = parseFloat(arguments[0]["a"]);
+            this.b = parseFloat(arguments[0]["b"]);
+            this.seed_c = arguments[0]["seed_c"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

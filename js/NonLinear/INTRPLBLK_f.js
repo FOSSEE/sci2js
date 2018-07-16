@@ -26,12 +26,12 @@ function INTRPLBLK_f() {
         return options;
     }
     INTRPLBLK_f.prototype.set = function INTRPLBLK_f() {
-        this.a = inverse(arguments[0]["a"])
-        this.b = inverse(arguments[0]["b"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.a,this.b,this.exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord."],list("vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.a = inverse(arguments[0]["a"]);
+            this.b = inverse(arguments[0]["b"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

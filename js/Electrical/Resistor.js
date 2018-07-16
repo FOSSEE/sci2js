@@ -31,11 +31,11 @@ function Resistor() {
         return options;
     }
     Resistor.prototype.set = function Resistor() {
-        this.R = parseFloat(arguments[0]["R"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.R,this.exprs] = scicos_getvalue("Set Resistor block parameter","R (ohm)",list("vec",1),this.exprs);
+            var ok = true;
+            this.R = parseFloat(arguments[0]["R"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

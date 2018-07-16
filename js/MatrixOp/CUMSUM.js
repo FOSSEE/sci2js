@@ -36,15 +36,15 @@ function CUMSUM() {
         return options;
     }
     CUMSUM.prototype.set = function CUMSUM() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.decomptyp = arguments[0]["decomptyp"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set CUMSUM block parameters",["Datatype(1=real double  2=Complex)","Sum along (0=the first non singleton dimension  1=Rows  2=Columns)"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.decomptyp = arguments[0]["decomptyp"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }

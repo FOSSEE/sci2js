@@ -52,19 +52,19 @@ function BOUNCEXY() {
         return options;
     }
     BOUNCEXY.prototype.set = function BOUNCEXY() {
-        this.clrs = inverse(arguments[0]["clrs"])
-        this.siz = inverse(arguments[0]["siz"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.imode = parseFloat(arguments[0]["imode"])
-        this.xmin = parseFloat(arguments[0]["xmin"])
-        this.xmax = parseFloat(arguments[0]["xmax"])
-        this.ymin = parseFloat(arguments[0]["ymin"])
-        this.ymax = parseFloat(arguments[0]["ymax"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
         while (true) {
-            [ok,this.clrs,this.siz,this.win,this.imode,this.xmin,this.xmax,this.ymin,this.ymax,this.exprs] = scicos_getvalue("Set Scope parameters",["colors","radii","window number (-1 for automatic)","animation mode (0,1)","Xmin","Xmax","Ymin","Ymax"],list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.clrs = inverse(arguments[0]["clrs"]);
+            this.siz = inverse(arguments[0]["siz"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.imode = parseFloat(arguments[0]["imode"]);
+            this.xmin = parseFloat(arguments[0]["xmin"]);
+            this.xmax = parseFloat(arguments[0]["xmax"]);
+            this.ymin = parseFloat(arguments[0]["ymin"]);
+            this.ymax = parseFloat(arguments[0]["ymax"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

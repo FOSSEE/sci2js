@@ -28,13 +28,13 @@ function SWITCH_f() {
         return options;
     }
     SWITCH_f.prototype.set = function SWITCH_f() {
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.z0 = arguments[0]["z0"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var ipar = this.model.ipar;
         while (true) {
-            [ok,this.nin,this.z0,this.exprs] = scicos_getvalue("Set switch parameters",["number of inputs","connected input"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.z0 = arguments[0]["z0"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -58,12 +58,12 @@ function Flowmeter() {
         return options;
     }
     Flowmeter.prototype.set = function Flowmeter() {
-        this.Qini = arguments[0]["Qini"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         this.exprs = this.x.graphics.exprs;
         while (false) {
-            [ok,this.Qini,this.exprs] = scicos_getvalue([["Set Flowmeter block parameters:"],[""],["Qini: "]],"Qini",list("vec",1),this.exprs);
+            var ok = true;
+            this.Qini = arguments[0]["Qini"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

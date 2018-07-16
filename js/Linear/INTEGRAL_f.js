@@ -23,11 +23,11 @@ function INTEGRAL_f() {
         return options;
     }
     INTEGRAL_f.prototype.set = function INTEGRAL_f() {
-        this.x0 = parseFloat(arguments[0]["x0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.x0,this.exprs] = scicos_getvalue("Set continuous linear system parameters","Initial state",list("vec",1),this.exprs);
+            var ok = true;
+            this.x0 = parseFloat(arguments[0]["x0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

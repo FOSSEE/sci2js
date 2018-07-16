@@ -28,12 +28,12 @@ function TKSCALE() {
         return options;
     }
     TKSCALE.prototype.set = function TKSCALE() {
-        this.a = parseFloat(arguments[0]["a"])
-        this.b = parseFloat(arguments[0]["b"])
-        this.f = parseFloat(arguments[0]["f"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
-        [ok,this.a,this.b,this.f,this.exprs] = scicos_getvalue("Set scale block parameters",["Min value","Max value","Normalization"],list("vec",1,"vec",1,"vec",1),this.exprs);
+        var ok = true;
+        this.a = parseFloat(arguments[0]["a"]);
+        this.b = parseFloat(arguments[0]["b"]);
+        this.f = parseFloat(arguments[0]["f"]);
+        this.exprs = arguments[0]["exprs"];
         if (ok) {
             this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.model.rpar = new ScilabDouble([this.a],[this.b],[this.f]);

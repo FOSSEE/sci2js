@@ -35,12 +35,6 @@ function WRITEC_f() {
         return options;
     }
     WRITEC_f.prototype.set = function WRITEC_f() {
-        this.in1 = parseFloat(arguments[0]["in1"])
-        this.fname1 = parseFloat(arguments[0]["fname1"])
-        this.frmt1 = arguments[0]["frmt1"]
-        this.N = parseFloat(arguments[0]["N"])
-        this.swap = parseFloat(arguments[0]["swap"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var ipar = this.model.ipar;
         var dstate = this.model.dstate;
@@ -48,7 +42,13 @@ function WRITEC_f() {
         var fname = this.exprs[2-1];
         var frmt = this.exprs[3-1];
         while (true) {
-            [ok,this.in1,this.fname1,this.frmt1,this.N,this.swap,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WRITEC_f")],[" "],["Write to C binary file"]],["Input Size","Output File Name","Output Format","Buffer Size","Swap Mode (0:No, 1:Yes)"],list("vec",1,"str",1,"str",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.in1 = parseFloat(arguments[0]["in1"]);
+            this.fname1 = parseFloat(arguments[0]["fname1"]);
+            this.frmt1 = arguments[0]["frmt1"];
+            this.N = parseFloat(arguments[0]["N"]);
+            this.swap = parseFloat(arguments[0]["swap"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

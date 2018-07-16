@@ -34,12 +34,12 @@ function VsourceAC() {
         return options;
     }
     VsourceAC.prototype.set = function VsourceAC() {
-        this.VA = parseFloat(arguments[0]["VA"])
-        this.FR = parseFloat(arguments[0]["FR"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.VA,this.FR,this.exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","Frequency (Hz)"],list("vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.VA = parseFloat(arguments[0]["VA"]);
+            this.FR = parseFloat(arguments[0]["FR"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

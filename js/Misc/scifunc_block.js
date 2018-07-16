@@ -47,23 +47,23 @@ function scifunc_block() {
         return options;
     }
     scifunc_block.prototype.set = function scifunc_block() {
-        this.i = parseFloat(arguments[0]["i"])
-        this.o = parseFloat(arguments[0]["o"])
-        this.ci = parseFloat(arguments[0]["ci"])
-        this.co = parseFloat(arguments[0]["co"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.z = inverse(arguments[0]["z"])
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.auto0 = arguments[0]["auto0"]
-        this.deptime = arguments[0]["deptime"]
-        this.lab = arguments[0]["lab"]
         var needcompile = 0;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs[1-1],"*")==8) {
             this.exprs[1-1][9-1] = "0";
         }
         while (true) {
-            [ok,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.auto0,this.deptime,this.lab] = scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],["input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","System parameters vector","initial firing vector (<0 for no firing)","is block always active (0:no, 1:yes)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%4)","vec",1),this.exprs[1-1]);
+            var ok = true;
+            this.i = parseFloat(arguments[0]["i"]);
+            this.o = parseFloat(arguments[0]["o"]);
+            this.ci = parseFloat(arguments[0]["ci"]);
+            this.co = parseFloat(arguments[0]["co"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.z = inverse(arguments[0]["z"]);
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.auto0 = arguments[0]["auto0"];
+            this.deptime = arguments[0]["deptime"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }

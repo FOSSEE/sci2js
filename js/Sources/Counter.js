@@ -30,13 +30,13 @@ function Counter() {
         return options;
     }
     Counter.prototype.set = function Counter() {
-        this.minim = parseFloat(arguments[0]["minim"])
-        this.maxim = parseFloat(arguments[0]["maxim"])
-        this.rule = parseFloat(arguments[0]["rule"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.minim,this.maxim,this.rule,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Counter")],[" "],["Integer counter generator"],[" "]],["Minimum","Maximum","Rule (1:Increment, 2:Decrement)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.minim = parseFloat(arguments[0]["minim"]);
+            this.maxim = parseFloat(arguments[0]["maxim"]);
+            this.rule = parseFloat(arguments[0]["rule"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

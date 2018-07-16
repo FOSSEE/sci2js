@@ -23,11 +23,11 @@ function SCALAR2VECTOR() {
         return options;
     }
     SCALAR2VECTOR.prototype.set = function SCALAR2VECTOR() {
-        this.nout = parseFloat(arguments[0]["nout"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nout,this.exprs] = scicos_getvalue("Set block parameters",["size of output (-1: if don\'t know)"],list("vec",1),this.exprs);
+            var ok = true;
+            this.nout = parseFloat(arguments[0]["nout"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

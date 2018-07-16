@@ -76,9 +76,6 @@ function DELAY_f() {
         return options;
     }
     DELAY_f.prototype.set = function DELAY_f() {
-        this.dt = arguments[0]["dt"]
-        this.z0 = arguments[0]["z0"]
-        this.exprs = inverse(arguments[0]["exprs"])
         var ppath = list(0,0);
             if (typeof(o)=="Block"&&o.gui=="REGISTER_f") {
                 ppath[1-1] = i;
@@ -97,7 +94,10 @@ function DELAY_f() {
         var evtdly_exprs = evtdly.graphics.exprs;
         this.exprs = [[evtdly_exprs[1-1]],[register_exprs]];
         while (true) {
-            [ok,this.dt,this.z0,this.exprs] = scicos_getvalue([["This block implements as a discretized delay"],["it is consist of a shift register and a clock"],["value of the delay is given by;","the discretization time step multiplied by the"],["number-1 of state of the register"]],["Discretization time step","Register initial state"],list("vec",1,"vec",-1),this.exprs);
+            var ok = true;
+            this.dt = arguments[0]["dt"];
+            this.z0 = arguments[0]["z0"];
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

@@ -23,12 +23,12 @@ function CLKINV_f() {
         return options;
     }
     CLKINV_f.prototype.set = function CLKINV_f() {
-        this.prt = parseFloat(arguments[0]["prt"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         this.exprs = this.exprs[1-1];
         while (true) {
-            [ok,this.prt,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CLKINV_f")],[" "],["Event input port"],[" "]],"Port Number",list("vec",1),this.exprs);
+            var ok = true;
+            this.prt = parseFloat(arguments[0]["prt"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             this.prt = int(this.prt);
             if (!ok) {
                 break;

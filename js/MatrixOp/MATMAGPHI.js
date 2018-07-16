@@ -35,14 +35,14 @@ function MATMAGPHI() {
         return options;
     }
     MATMAGPHI.prototype.set = function MATMAGPHI() {
-        this.decomptyp = arguments[0]["decomptyp"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.decomptyp,this.lab] = scicos_getvalue("Set MATMAGPHI block parameters",["decomposition type (1=Complex2MAG&PHI 2=MAG&PHI2Complex)"],list("vec",1),label);
+            var ok = true;
+            this.decomptyp = arguments[0]["decomptyp"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }

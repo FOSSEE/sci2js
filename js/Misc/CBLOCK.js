@@ -55,24 +55,24 @@ function CBLOCK() {
         return options;
     }
     CBLOCK.prototype.set = function CBLOCK() {
-        this.function_name = arguments[0]["function_name"]
-        this.impli = arguments[0]["impli"]
-        this.i = parseFloat(arguments[0]["i"])
-        this.o = parseFloat(arguments[0]["o"])
-        this.ci = parseFloat(arguments[0]["ci"])
-        this.co = parseFloat(arguments[0]["co"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.ng = parseFloat(arguments[0]["ng"])
-        this.z = inverse(arguments[0]["z"])
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.ipar = inverse(arguments[0]["ipar"])
-        this.auto0 = arguments[0]["auto0"]
-        this.depu = parseBoolean(arguments[0]["depu"])
-        this.dept = parseBoolean(arguments[0]["dept"])
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         while (true) {
-            [ok,this.function_name,this.impli,this.i,this.o,this.ci,this.co,this.xx,this.ng,this.z,this.rpar,this.ipar,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block2 block parameters",["simulation function","is block implicit? (y,n)","input ports sizes","output ports sizes","input event ports sizes","output events ports sizes","initial continuous state","number of zero crossing surfaces","initial discrete state","Real parameters vector","Integer parameters vector","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label[1-1]);
+            var ok = true;
+            this.function_name = arguments[0]["function_name"];
+            this.impli = arguments[0]["impli"];
+            this.i = parseFloat(arguments[0]["i"]);
+            this.o = parseFloat(arguments[0]["o"]);
+            this.ci = parseFloat(arguments[0]["ci"]);
+            this.co = parseFloat(arguments[0]["co"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.ng = parseFloat(arguments[0]["ng"]);
+            this.z = inverse(arguments[0]["z"]);
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.ipar = inverse(arguments[0]["ipar"]);
+            this.auto0 = arguments[0]["auto0"];
+            this.depu = parseBoolean(arguments[0]["depu"]);
+            this.dept = parseBoolean(arguments[0]["dept"]);
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }

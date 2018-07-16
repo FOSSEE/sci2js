@@ -41,8 +41,6 @@ function SRFLIPFLOP() {
         return options;
     }
     SRFLIPFLOP.prototype.set = function SRFLIPFLOP() {
-        this.init = parseFloat(arguments[0]["init"])
-        this.exprs0 = arguments[0]["exprs0"]
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
                 var path = i;
                 break;
@@ -53,7 +51,9 @@ function SRFLIPFLOP() {
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
         while (true) {
-            [ok,this.init,this.exprs0] = scicos_getvalue([[msprintf("Set %s block parameters","SRFLIPFLOP")],[" "],["SR flip-flop"],[" "],["The \'Initial Value\' must be 0 or 1 of type int8"],["&nbsp;- Negative values are considered as int8(0)"],["&nbsp;- Positive values are considered as int8(1)"],[" "]],"Initial Value",list("vec",1),this.exprs);
+            var ok = true;
+            this.init = parseFloat(arguments[0]["init"]);
+            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }

@@ -53,9 +53,6 @@ function CLOCK_f() {
         return options;
     }
     CLOCK_f.prototype.set = function CLOCK_f() {
-        this.dt = arguments[0]["dt"]
-        this.t0 = arguments[0]["t0"]
-        this.exprs0 = arguments[0]["exprs0"]
             if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
                 var path = i;
                 break;
@@ -68,7 +65,10 @@ function CLOCK_f() {
         var dt_old = this.model.rpar;
         var model_n = this.model;
         while (true) {
-            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue("Set Clock  block parameters",["Period","Init time"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.dt = arguments[0]["dt"];
+            this.t0 = arguments[0]["t0"];
+            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }

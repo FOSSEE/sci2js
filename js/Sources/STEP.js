@@ -30,13 +30,13 @@ function STEP() {
         return options;
     }
     STEP.prototype.set = function STEP() {
-        this.temps = arguments[0]["temps"]
-        this.in1 = arguments[0]["in1"]
-        this.fi = arguments[0]["fi"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.temps,this.in1,this.fi,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","STEP_FUNCTION")],[" "],["Step Function"],[" "]],["Step Time","Initial Value","Final Value"],list("vec",1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.temps = arguments[0]["temps"];
+            this.in1 = arguments[0]["in1"];
+            this.fi = arguments[0]["fi"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

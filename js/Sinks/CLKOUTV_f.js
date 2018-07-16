@@ -22,11 +22,11 @@ function CLKOUTV_f() {
         return options;
     }
     CLKOUTV_f.prototype.set = function CLKOUTV_f() {
-        this.prt = arguments[0]["prt"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.prt,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CLKOUTV_f")],[" "],["Event output port"]],"Port number",list("vec",1),this.exprs);
+            var ok = true;
+            this.prt = arguments[0]["prt"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

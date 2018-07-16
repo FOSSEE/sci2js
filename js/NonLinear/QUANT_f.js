@@ -27,12 +27,12 @@ function QUANT_f() {
         return options;
     }
     QUANT_f.prototype.set = function QUANT_f() {
-        this.pas = parseFloat(arguments[0]["pas"])
-        this.meth = parseFloat(arguments[0]["meth"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.pas,this.meth,this.exprs] = scicos_getvalue("Set parameters",["Step","Quantization Type (1-4)"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.pas = parseFloat(arguments[0]["pas"]);
+            this.meth = parseFloat(arguments[0]["meth"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -35,13 +35,13 @@ function TOWS_c() {
         return options;
     }
     TOWS_c.prototype.set = function TOWS_c() {
-        this.nz = parseFloat(arguments[0]["nz"])
-        this.varnam = arguments[0]["varnam"]
-        this.herit = parseFloat(arguments[0]["herit"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nz,this.varnam,this.herit,this.exprs] = scicos_getvalue("Set Xcos buffer block",["Size of buffer","Scilab variable name","Inherit (no:0, yes:1)"],list("vec",1,"str",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nz = parseFloat(arguments[0]["nz"]);
+            this.varnam = arguments[0]["varnam"];
+            this.herit = parseFloat(arguments[0]["herit"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

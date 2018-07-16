@@ -23,11 +23,11 @@ function PRODUCT() {
         return options;
     }
     PRODUCT.prototype.set = function PRODUCT() {
-        this.sgn = inverse(arguments[0]["sgn"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.sgn,this.exprs] = scicos_getvalue([["         Set multiplication block parameters"],["(multiplication is set with + 1, division with -1)"],[""]],"Number of inputs or sign vector",list("vec",-1),this.exprs);
+            var ok = true;
+            this.sgn = inverse(arguments[0]["sgn"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

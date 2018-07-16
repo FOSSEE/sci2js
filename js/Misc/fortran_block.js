@@ -33,14 +33,14 @@ function fortran_block() {
         return options;
     }
     fortran_block.prototype.set = function fortran_block() {
-        this.i = parseFloat(arguments[0]["i"])
-        this.o = parseFloat(arguments[0]["o"])
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.funam = arguments[0]["funam"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         while (true) {
-            [ok,this.i,this.o,this.rpar,this.funam,this.lab] = scicos_getvalue("Set fortran_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
+            var ok = true;
+            this.i = parseFloat(arguments[0]["i"]);
+            this.o = parseFloat(arguments[0]["o"]);
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.funam = arguments[0]["funam"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }

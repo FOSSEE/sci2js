@@ -87,7 +87,6 @@ def p_functionblocks_jobfunctionblock(p):
 
 # define functionblock
 
-SET_BLOCK = ''
 OPTIONS_BLOCK = ''
 
 def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
@@ -118,7 +117,7 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
         jgetoutputs = '%s%s.prototype.getoutputs = function %s() {\n%s%s}\n' % (indent, fname, fname, jgetoutputs, indent)
     if jplot != '':
         jplot = '%s%s.prototype.plot = function %s() {\n%s%s}\n' % (indent, fname, fname, jplot, indent)
-    jset = '%s%s.prototype.set = function %s() {\n%s%s%sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, SET_BLOCK, jset, indent2, blocktype, indent)
+    jset = '%s%s.prototype.set = function %s() {\n%s%sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, jset, indent2, blocktype, indent)
 
     INDENT_LEVEL -= 1
     p[0] = 'function %s() {\n%s%s%s%s%s%s%s%s}' % (fname, jdefine, jdetails, jget, jset, jgetinputs, jgetorigin, jgetoutputs, jplot)
@@ -652,8 +651,10 @@ def p_modelexpression_expression(p):
 
 def p_getvalueassignment_getvalue_arguments(p):
     'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET getvaluearguments CLOSEBRACKET EOL'
-    p[0] = '%*s%s = %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5])
-    global SET_BLOCK, OPTIONS_BLOCK
+    global OPTIONS_BLOCK
+    var = 'ok'
+    add_local_var(var)
+    p[0] = '%*svar %s = true;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var)
     lterm = p[1]
     if lterm[0] == '[':
         lterm = lterm[1:-1]
@@ -673,7 +674,7 @@ def p_getvalueassignment_getvalue_arguments(p):
                 parsecall = '%s(arguments[%d][\"%s\"])' % (parsefunction, 0, basevar)
             else:
                 parsecall = 'arguments[%d][\"%s\"]' % (0, basevar)
-            SET_BLOCK += "%*s%s = %s\n" % (2 * INDENT_SIZE, ' ', var, parsecall)
+            p[0] += "%*s%s = %s;\n" % (INDENT_LEVEL * INDENT_SIZE, ' ', var, parsecall)
             if idx < len(LABELS):
                 if vartype == MATRIX_TYPE:
                     showvar = var + '.toString().replace(/,/g," ")'

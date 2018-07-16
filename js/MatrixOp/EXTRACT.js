@@ -37,16 +37,16 @@ function EXTRACT() {
         return options;
     }
     EXTRACT.prototype.set = function EXTRACT() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.a = inverse(arguments[0]["a"])
-        this.b = inverse(arguments[0]["b"])
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.a,this.b,this.exprs] = scicos_getvalue("Set EXTRACT Block",["Datatype (1=real double  2=Complex)","Lines to extract","Columns to extract"],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.a = inverse(arguments[0]["a"]);
+            this.b = inverse(arguments[0]["b"]);
+            this.exprs = arguments[0]["exprs"];
             this.a = this.a.slice();
             this.b = this.b.slice();
             if (!ok) {

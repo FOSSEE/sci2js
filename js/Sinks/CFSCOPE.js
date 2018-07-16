@@ -39,19 +39,19 @@ function CFSCOPE() {
         return options;
     }
     CFSCOPE.prototype.set = function CFSCOPE() {
-        this.clrs = inverse(arguments[0]["clrs"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.wpos = inverse(arguments[0]["wpos"])
-        this.wdim = inverse(arguments[0]["wdim"])
-        this.ymin = parseFloat(arguments[0]["ymin"])
-        this.ymax = parseFloat(arguments[0]["ymax"])
-        this.per = parseFloat(arguments[0]["per"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.wu = arguments[0]["wu"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.wu,this.exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Links to view"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",-1),this.exprs);
+            var ok = true;
+            this.clrs = inverse(arguments[0]["clrs"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.wpos = inverse(arguments[0]["wpos"]);
+            this.wdim = inverse(arguments[0]["wdim"]);
+            this.ymin = parseFloat(arguments[0]["ymin"]);
+            this.ymax = parseFloat(arguments[0]["ymax"]);
+            this.per = parseFloat(arguments[0]["per"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.wu = arguments[0]["wu"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

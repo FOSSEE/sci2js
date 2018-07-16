@@ -36,15 +36,15 @@ function MATSING() {
         return options;
     }
     MATSING.prototype.set = function MATSING() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.decomptyp = arguments[0]["decomptyp"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATSVD block parameters",["Datatype(1=real double  2=Complex)","decomposition type (1=singular values  2=sing values+matrix U & V)"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.decomptyp = arguments[0]["decomptyp"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }

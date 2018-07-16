@@ -34,13 +34,13 @@ function CMATVIEW() {
         return options;
     }
     CMATVIEW.prototype.set = function CMATVIEW() {
-        this.colormap = parseFloat(arguments[0]["colormap"])
-        this.cmin = parseFloat(arguments[0]["cmin"])
-        this.cmax = parseFloat(arguments[0]["cmax"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.colormap,this.cmin,this.cmax,this.exprs] = scicos_getvalue("Set Scope parameters",["ColorMap","Minimum level range","Maximum level range"],list("vec",-1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.colormap = parseFloat(arguments[0]["colormap"]);
+            this.cmin = parseFloat(arguments[0]["cmin"]);
+            this.cmax = parseFloat(arguments[0]["cmax"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

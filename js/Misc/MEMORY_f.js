@@ -28,12 +28,12 @@ function MEMORY_f() {
         return options;
     }
     MEMORY_f.prototype.set = function MEMORY_f() {
-        this.a = arguments[0]["a"]
-        this.inh = parseFloat(arguments[0]["inh"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.a,this.inh,this.exprs] = scicos_getvalue("Set memory block parameters",["initial condition","Inherit (1: no, 0: yes)"],list("vec",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.a = arguments[0]["a"];
+            this.inh = parseFloat(arguments[0]["inh"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

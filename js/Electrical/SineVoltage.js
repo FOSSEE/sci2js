@@ -40,15 +40,15 @@ function SineVoltage() {
         return options;
     }
     SineVoltage.prototype.set = function SineVoltage() {
-        this.V = parseFloat(arguments[0]["V"])
-        this.ph = parseFloat(arguments[0]["ph"])
-        this.frq = parseFloat(arguments[0]["frq"])
-        this.offset = parseFloat(arguments[0]["offset"])
-        this.start = parseFloat(arguments[0]["start"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.V,this.ph,this.frq,this.offset,this.start,this.exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","phase (rad)","Frequency (Hz)","Voltageoffset (V)","Timeoffset (s)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.V = parseFloat(arguments[0]["V"]);
+            this.ph = parseFloat(arguments[0]["ph"]);
+            this.frq = parseFloat(arguments[0]["frq"]);
+            this.offset = parseFloat(arguments[0]["offset"]);
+            this.start = parseFloat(arguments[0]["start"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

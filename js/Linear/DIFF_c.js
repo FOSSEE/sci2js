@@ -25,13 +25,13 @@ function DIFF_c() {
         return options;
     }
     DIFF_c.prototype.set = function DIFF_c() {
-        this.x0 = inverse(arguments[0]["x0"])
-        this.xd0 = inverse(arguments[0]["xd0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
             var ask_again = false;
-            [ok,this.x0,this.xd0,this.exprs] = scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.x0 = inverse(arguments[0]["x0"]);
+            this.xd0 = inverse(arguments[0]["xd0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -28,16 +28,16 @@ function RELATIONALOP() {
         return options;
     }
     RELATIONALOP.prototype.set = function RELATIONALOP() {
-        this.rule = parseFloat(arguments[0]["rule"])
-        this.zcr = parseFloat(arguments[0]["zcr"])
-        this.Datatype = arguments[0]["Datatype"]
-        this.exprs = inverse(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,1)==2) {
             this.exprs = [[this.exprs],[sci2exp(1)]];
         }
         while (true) {
-            [ok,this.rule,this.zcr,this.Datatype,this.exprs] = scicos_getvalue("Set parameters",["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)","Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.rule = parseFloat(arguments[0]["rule"]);
+            this.zcr = parseFloat(arguments[0]["zcr"]);
+            this.Datatype = arguments[0]["Datatype"];
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

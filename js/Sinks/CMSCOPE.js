@@ -47,21 +47,21 @@ function CMSCOPE() {
         return options;
     }
     CMSCOPE.prototype.set = function CMSCOPE() {
-        this.in1 = inverse(arguments[0]["in1"])
-        this.clrs = inverse(arguments[0]["clrs"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.wpos = inverse(arguments[0]["wpos"])
-        this.wdim = inverse(arguments[0]["wdim"])
-        this.ymin = inverse(arguments[0]["ymin"])
-        this.ymax = inverse(arguments[0]["ymax"])
-        this.per = inverse(arguments[0]["per"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.heritance = arguments[0]["heritance"]
-        this.nom = arguments[0]["nom"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.in1,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,this.exprs] = scicos_getvalue("Set Scope parameters",["Input ports sizes","Drawing colors (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin vector","Ymax vector","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec",1,"vec",1,"str",1),this.exprs);
+            var ok = true;
+            this.in1 = inverse(arguments[0]["in1"]);
+            this.clrs = inverse(arguments[0]["clrs"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.wpos = inverse(arguments[0]["wpos"]);
+            this.wdim = inverse(arguments[0]["wdim"]);
+            this.ymin = inverse(arguments[0]["ymin"]);
+            this.ymax = inverse(arguments[0]["ymax"]);
+            this.per = inverse(arguments[0]["per"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.heritance = arguments[0]["heritance"];
+            this.nom = arguments[0]["nom"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -26,15 +26,15 @@ function REGISTER() {
         return options;
     }
     REGISTER.prototype.set = function REGISTER() {
-        this.z0 = parseFloat(arguments[0]["z0"])
-        this.it = arguments[0]["it"]
-        this.exprs = inverse(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,1)==1) {
             this.exprs = [[this.exprs],[sci2exp(1)]];
         }
         while (true) {
-            [ok,this.z0,this.it,this.exprs] = scicos_getvalue("Set delay parameters",["Register initial condition","Datatype (1=double 3=int32 ...)"],list("vec",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.z0 = parseFloat(arguments[0]["z0"]);
+            this.it = arguments[0]["it"];
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

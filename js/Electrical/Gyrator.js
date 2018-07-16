@@ -60,13 +60,13 @@ function Gyrator() {
         return options;
     }
     Gyrator.prototype.set = function Gyrator() {
-        this.G1 = arguments[0]["G1"]
-        this.G2 = arguments[0]["G2"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         this.exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,this.G1,this.G2,this.exprs] = scicos_getvalue([["Set Gyrator block parameters:"],[""],["G1: Gyration conductance"],["G2: Gyration conductance"]],["G1","G2"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.G1 = arguments[0]["G1"];
+            this.G2 = arguments[0]["G2"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

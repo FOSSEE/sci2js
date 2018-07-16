@@ -35,14 +35,14 @@ function MATLU() {
         return options;
     }
     MATLU.prototype.set = function MATLU() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.lab] = scicos_getvalue("Set MATLU block parameters",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }

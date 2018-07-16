@@ -36,15 +36,15 @@ function MATSUM() {
         return options;
     }
     MATSUM.prototype.set = function MATSUM() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.decomptyp = arguments[0]["decomptyp"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATSUM block parameters",["Datatype(1=real double  2=Complex)","Sum along (0=all 1=lines  2=Columns)"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.decomptyp = arguments[0]["decomptyp"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }

@@ -33,12 +33,12 @@ function GOTOMO() {
         return options;
     }
     GOTOMO.prototype.set = function GOTOMO() {
-        this.tag = arguments[0]["tag"]
-        this.tagvis = parseFloat(arguments[0]["tagvis"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tag,this.tagvis,this.exprs] = scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.tag = arguments[0]["tag"];
+            this.tagvis = parseFloat(arguments[0]["tagvis"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

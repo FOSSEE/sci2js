@@ -54,11 +54,6 @@ function PULSE_SC() {
         return options;
     }
     PULSE_SC.prototype.set = function PULSE_SC() {
-        scicos_context.E = arguments[0]["scicos_context.E"]
-        scicos_context.W = arguments[0]["scicos_context.W"]
-        scicos_context.F = arguments[0]["scicos_context.F"]
-        scicos_context.A = arguments[0]["scicos_context.A"]
-        this.exprs = arguments[0]["exprs"]
         var y = this.needcompile;
         var typ = list();
         this.exprs = this.graphics.exprs;
@@ -69,7 +64,12 @@ function PULSE_SC() {
         var scicos_context = struct();
         var ok = false;
         while (!ok) {
-            [ok,scicos_context.E,scicos_context.W,scicos_context.F,scicos_context.A,this.exprs] = scicos_getvalue(Btitre,Bitems,Ss,this.exprs);
+            var ok = true;
+            scicos_context.E = arguments[0]["scicos_context.E"];
+            scicos_context.W = arguments[0]["scicos_context.W"];
+            scicos_context.F = arguments[0]["scicos_context.F"];
+            scicos_context.A = arguments[0]["scicos_context.A"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 return;
             }

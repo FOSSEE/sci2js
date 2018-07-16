@@ -31,11 +31,11 @@ function ConstantVoltage() {
         return options;
     }
     ConstantVoltage.prototype.set = function ConstantVoltage() {
-        this.V = parseFloat(arguments[0]["V"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.V,this.exprs] = scicos_getvalue("Set ConstantVoltage block parameter","V (volt)",list("vec",1),this.exprs);
+            var ok = true;
+            this.V = parseFloat(arguments[0]["V"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

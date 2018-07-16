@@ -28,12 +28,12 @@ function SELECT_f() {
         return options;
     }
     SELECT_f.prototype.set = function SELECT_f() {
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.z0 = parseFloat(arguments[0]["z0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nin,this.z0,this.exprs] = scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.z0 = parseFloat(arguments[0]["z0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

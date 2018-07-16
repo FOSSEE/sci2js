@@ -28,13 +28,13 @@ function GENSIN_f() {
         return options;
     }
     GENSIN_f.prototype.set = function GENSIN_f() {
-        this.M = arguments[0]["M"]
-        this.F = arguments[0]["F"]
-        this.P = arguments[0]["P"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.M,this.F,this.P,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","GENSIN_f")],[" "],["Sine wave generator"],[" "]],["Magnitude","Frequency (rad/s)","Phase (rad)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.M = arguments[0]["M"];
+            this.F = arguments[0]["F"];
+            this.P = arguments[0]["P"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

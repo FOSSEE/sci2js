@@ -31,10 +31,6 @@ function ESELECT_f() {
         return options;
     }
     ESELECT_f.prototype.set = function ESELECT_f() {
-        this.out = parseFloat(arguments[0]["out"])
-        this.inh = parseFloat(arguments[0]["inh"])
-        this.nmod = parseFloat(arguments[0]["nmod"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==1) {
             this.exprs[2-1] = string(1);
@@ -43,7 +39,11 @@ function ESELECT_f() {
             this.exprs[3-1] = string(0);
         }
         while (true) {
-            [ok,this.out,this.inh,this.nmod,this.exprs] = scicos_getvalue("Set ESELECT block parameters",["number of output event ports","Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.out = parseFloat(arguments[0]["out"]);
+            this.inh = parseFloat(arguments[0]["inh"]);
+            this.nmod = parseFloat(arguments[0]["nmod"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

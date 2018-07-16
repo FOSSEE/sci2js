@@ -28,15 +28,15 @@ function DOLLAR() {
         return options;
     }
     DOLLAR.prototype.set = function DOLLAR() {
-        this.a = arguments[0]["a"]
-        this.inh = parseFloat(arguments[0]["inh"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")<2) {
             this.exprs[2-1] = "0";
         }
         while (true) {
-            [ok,this.a,this.inh,this.exprs] = scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("mat",[-1,-2],"vec",-1),this.exprs);
+            var ok = true;
+            this.a = arguments[0]["a"];
+            this.inh = parseFloat(arguments[0]["inh"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

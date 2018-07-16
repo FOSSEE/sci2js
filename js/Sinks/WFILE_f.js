@@ -33,11 +33,6 @@ function WFILE_f() {
         return options;
     }
     WFILE_f.prototype.set = function WFILE_f() {
-        this.in1 = parseFloat(arguments[0]["in1"])
-        this.fname1 = parseFloat(arguments[0]["fname1"])
-        this.frmt1 = parseFloat(arguments[0]["frmt1"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.exprs = arguments[0]["exprs"]
         warnobsolete("WRITEC_f","6.0.0");
         var warnMessage = msprintf(_("Feature %s is obsolete."),"WFILE_f");
         var warnAdvise = msprintf(_("Please use %s instead."),"WRITEC_f");
@@ -48,7 +43,12 @@ function WFILE_f() {
         var fname = this.exprs[2-1];
         var frmt = this.exprs[3-1];
         while (true) {
-            [ok,this.in1,this.fname1,this.frmt1,this.N,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WFILE_f")],[" "],["Write to output file"],[" "],["Write is done on:"],["&nbsp; - A binary file if no format given"],["&nbsp; - A formatted text file if a  format (Fortran type) is given"]],["Input Size","Output File Name","Output Format","Buffer Size"],list("vec",1,"str",1,"str",1,"vec",1),this.exprs);
+            var ok = true;
+            this.in1 = parseFloat(arguments[0]["in1"]);
+            this.fname1 = parseFloat(arguments[0]["fname1"]);
+            this.frmt1 = parseFloat(arguments[0]["frmt1"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

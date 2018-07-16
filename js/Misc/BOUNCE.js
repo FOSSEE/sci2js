@@ -56,23 +56,23 @@ function BOUNCE() {
         return options;
     }
     BOUNCE.prototype.set = function BOUNCE() {
-        this.rpar1 = parseFloat(arguments[0]["rpar1"])
-        this.rpar2 = parseFloat(arguments[0]["rpar2"])
-        this.walls = inverse(arguments[0]["walls"])
-        this.xt = inverse(arguments[0]["xt"])
-        this.xd = inverse(arguments[0]["xd"])
-        this.y = inverse(arguments[0]["y"])
-        this.yd = inverse(arguments[0]["yd"])
-        this.g = parseFloat(arguments[0]["g"])
-        this.C = parseFloat(arguments[0]["C"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")<9) {
             this.exprs[8-1] = "9.81";
             this.exprs[9-1] = "0";
         }
         while (true) {
-            [ok,this.rpar1,this.rpar2,this.walls,this.xt,this.xd,this.y,this.yd,this.g,this.C,this.exprs] = scicos_getvalue(["Set Bounce Block"],["Mass","Radius","[xmin,xmax,ymin,ymax]","xpos","xdpos","ypos","ydpos","g (gravity)","C (aerodynamic coeff"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.rpar1 = parseFloat(arguments[0]["rpar1"]);
+            this.rpar2 = parseFloat(arguments[0]["rpar2"]);
+            this.walls = inverse(arguments[0]["walls"]);
+            this.xt = inverse(arguments[0]["xt"]);
+            this.xd = inverse(arguments[0]["xd"]);
+            this.y = inverse(arguments[0]["y"]);
+            this.yd = inverse(arguments[0]["yd"]);
+            this.g = parseFloat(arguments[0]["g"]);
+            this.C = parseFloat(arguments[0]["C"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -29,9 +29,6 @@ function IFTHEL_f() {
         return options;
     }
     IFTHEL_f.prototype.set = function IFTHEL_f() {
-        this.inh = inverse(arguments[0]["inh"])
-        this.nmod = parseFloat(arguments[0]["nmod"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         if (this.exprs==[]) {
             this.exprs = string(1);
@@ -40,7 +37,10 @@ function IFTHEL_f() {
             this.exprs[2-1] = string(1);
         }
         while (true) {
-            [ok,this.inh,this.nmod,this.exprs] = scicos_getvalue("Set parameters",["Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.inh = inverse(arguments[0]["inh"]);
+            this.nmod = parseFloat(arguments[0]["nmod"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -37,13 +37,13 @@ function SELECT_m() {
         return options;
     }
     SELECT_m.prototype.set = function SELECT_m() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.z0 = parseFloat(arguments[0]["z0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.typ,this.nin,this.z0,this.exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ..)","number of inputs","initial connected input"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.z0 = parseFloat(arguments[0]["z0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

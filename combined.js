@@ -22,11 +22,11 @@ function CLKFROM() {
         return options;
     }
     CLKFROM.prototype.set = function CLKFROM() {
-        this.tag = arguments[0]["tag"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tag,this.exprs] = scicos_getvalue("Set block parameters","Tag",list("str",-1),this.exprs);
+            var ok = true;
+            this.tag = arguments[0]["tag"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -73,12 +73,12 @@ function CLKGOTO() {
         return options;
     }
     CLKGOTO.prototype.set = function CLKGOTO() {
-        this.tag = arguments[0]["tag"]
-        this.tagvis = parseFloat(arguments[0]["tagvis"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tag,this.tagvis,this.exprs] = scicos_getvalue("Set block parameters",["Tag","Tag Visibility (1=Local 2=Scoped 3=Global)"],list("str",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.tag = arguments[0]["tag"];
+            this.tagvis = parseFloat(arguments[0]["tagvis"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -137,11 +137,11 @@ function CLKGotoTagVisibility() {
         return options;
     }
     CLKGotoTagVisibility.prototype.set = function CLKGotoTagVisibility() {
-        this.tag = arguments[0]["tag"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tag,this.exprs] = scicos_getvalue("Set parameters",["GotoTag"],list("str",-1),this.exprs);
+            var ok = true;
+            this.tag = arguments[0]["tag"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -188,11 +188,11 @@ function DEMUX() {
         return options;
     }
     DEMUX.prototype.set = function DEMUX() {
-        this.out = parseFloat(arguments[0]["out"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.out,this.exprs] = scicos_getvalue("Set DEMUX block parameters",["number of output ports or vector of sizes"],list("intvec",-1),this.exprs);
+            var ok = true;
+            this.out = parseFloat(arguments[0]["out"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -263,11 +263,11 @@ function DEMUX_f() {
         return options;
     }
     DEMUX_f.prototype.set = function DEMUX_f() {
-        this.out = parseFloat(arguments[0]["out"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.out,this.exprs] = scicos_getvalue("Set DEMUX block parameters",["number of output ports or vector of sizes"],list("vec",-1),this.exprs);
+            var ok = true;
+            this.out = parseFloat(arguments[0]["out"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -344,10 +344,6 @@ function ESELECT_f() {
         return options;
     }
     ESELECT_f.prototype.set = function ESELECT_f() {
-        this.out = parseFloat(arguments[0]["out"])
-        this.inh = parseFloat(arguments[0]["inh"])
-        this.nmod = parseFloat(arguments[0]["nmod"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==1) {
             this.exprs[2-1] = string(1);
@@ -356,7 +352,11 @@ function ESELECT_f() {
             this.exprs[3-1] = string(0);
         }
         while (true) {
-            [ok,this.out,this.inh,this.nmod,this.exprs] = scicos_getvalue("Set ESELECT block parameters",["number of output event ports","Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.out = parseFloat(arguments[0]["out"]);
+            this.inh = parseFloat(arguments[0]["inh"]);
+            this.nmod = parseFloat(arguments[0]["nmod"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -417,11 +417,11 @@ function EXTRACTOR() {
         return options;
     }
     EXTRACTOR.prototype.set = function EXTRACTOR() {
-        this.ind = parseFloat(arguments[0]["ind"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.ind,this.exprs] = scicos_getvalue("Set block parameters",["indices to extract"],list("vec",-1),this.exprs);
+            var ok = true;
+            this.ind = parseFloat(arguments[0]["ind"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -473,11 +473,11 @@ function FROM() {
         return options;
     }
     FROM.prototype.set = function FROM() {
-        this.tag = arguments[0]["tag"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tag,this.exprs] = scicos_getvalue("Set parameters",["Tag"],list("str",-1),this.exprs);
+            var ok = true;
+            this.tag = arguments[0]["tag"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -531,11 +531,11 @@ function FROMMO() {
         return options;
     }
     FROMMO.prototype.set = function FROMMO() {
-        this.tag = arguments[0]["tag"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tag,this.exprs] = scicos_getvalue("Set parameters",["Tag"],list("str",-1),this.exprs);
+            var ok = true;
+            this.tag = arguments[0]["tag"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -587,12 +587,12 @@ function GOTO() {
         return options;
     }
     GOTO.prototype.set = function GOTO() {
-        this.tag = arguments[0]["tag"]
-        this.tagvis = parseFloat(arguments[0]["tagvis"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tag,this.tagvis,this.exprs] = scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.tag = arguments[0]["tag"];
+            this.tagvis = parseFloat(arguments[0]["tagvis"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -653,12 +653,12 @@ function GOTOMO() {
         return options;
     }
     GOTOMO.prototype.set = function GOTOMO() {
-        this.tag = arguments[0]["tag"]
-        this.tagvis = parseFloat(arguments[0]["tagvis"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tag,this.tagvis,this.exprs] = scicos_getvalue("Set parameters",["Tag","Tag Visibility(1=Local 2=scoped 3= global)"],list("str",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.tag = arguments[0]["tag"];
+            this.tagvis = parseFloat(arguments[0]["tagvis"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -715,11 +715,11 @@ function GotoTagVisibility() {
         return options;
     }
     GotoTagVisibility.prototype.set = function GotoTagVisibility() {
-        this.tag = arguments[0]["tag"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tag,this.exprs] = scicos_getvalue("Set parameters",["GotoTag"],list("str",-1),this.exprs);
+            var ok = true;
+            this.tag = arguments[0]["tag"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -770,11 +770,11 @@ function GotoTagVisibilityMO() {
         return options;
     }
     GotoTagVisibilityMO.prototype.set = function GotoTagVisibilityMO() {
-        this.tag = arguments[0]["tag"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tag,this.exprs] = scicos_getvalue("Set parameters",["GotoTag"],list("str",-1),this.exprs);
+            var ok = true;
+            this.tag = arguments[0]["tag"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -824,12 +824,12 @@ function ISELECT_f() {
         return options;
     }
     ISELECT_f.prototype.set = function ISELECT_f() {
-        this.nout = parseFloat(arguments[0]["nout"])
-        this.z0 = parseFloat(arguments[0]["z0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nout,this.z0,this.exprs] = scicos_getvalue("Set parameters",["number of outputs","initial connected output"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nout = parseFloat(arguments[0]["nout"]);
+            this.z0 = parseFloat(arguments[0]["z0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -891,13 +891,13 @@ function ISELECT_m() {
         return options;
     }
     ISELECT_m.prototype.set = function ISELECT_m() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.nout = parseFloat(arguments[0]["nout"])
-        this.z0 = parseFloat(arguments[0]["z0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.typ,this.nout,this.z0,this.exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ...)","number of outputs","initial connected output"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.nout = parseFloat(arguments[0]["nout"]);
+            this.z0 = parseFloat(arguments[0]["z0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -954,11 +954,11 @@ function MUX() {
         return options;
     }
     MUX.prototype.set = function MUX() {
-        this.in1 = parseFloat(arguments[0]["in1"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.in1,this.exprs] = scicos_getvalue("Set MUX block parameters","number of input ports or vector of sizes",list("intvec",-1),this.exprs);
+            var ok = true;
+            this.in1 = parseFloat(arguments[0]["in1"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1027,11 +1027,11 @@ function MUX_f() {
         return options;
     }
     MUX_f.prototype.set = function MUX_f() {
-        this.in1 = parseFloat(arguments[0]["in1"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.in1,this.exprs] = scicos_getvalue("Set MUX block parameters","number of input ports or vector of sizes",list("vec",-1),this.exprs);
+            var ok = true;
+            this.in1 = parseFloat(arguments[0]["in1"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1105,13 +1105,13 @@ function M_SWITCH() {
         return options;
     }
     M_SWITCH.prototype.set = function M_SWITCH() {
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.base = parseFloat(arguments[0]["base"])
-        this.rule = arguments[0]["rule"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nin,this.base,this.rule,this.exprs] = scicos_getvalue("Set parameters",["number of inputs","zero base indexing (0), otherwise 1","rounding rule: int (0), round (1), ceil (2), floor (3)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.base = parseFloat(arguments[0]["base"]);
+            this.rule = arguments[0]["rule"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1177,11 +1177,11 @@ function NRMSOM_f() {
         return options;
     }
     NRMSOM_f.prototype.set = function NRMSOM_f() {
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nin,this.exprs] = scicos_getvalue("Set parameters",["number of inputs"],list("vec",1),this.exprs);
+            var ok = true;
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1230,13 +1230,13 @@ function RELAY_f() {
         return options;
     }
     RELAY_f.prototype.set = function RELAY_f() {
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.z0 = arguments[0]["z0"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var ipar = this.model.ipar;
         while (true) {
-            [ok,this.nin,this.z0,this.exprs] = scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.z0 = arguments[0]["z0"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1284,11 +1284,11 @@ function SCALAR2VECTOR() {
         return options;
     }
     SCALAR2VECTOR.prototype.set = function SCALAR2VECTOR() {
-        this.nout = parseFloat(arguments[0]["nout"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nout,this.exprs] = scicos_getvalue("Set block parameters",["size of output (-1: if don\'t know)"],list("vec",1),this.exprs);
+            var ok = true;
+            this.nout = parseFloat(arguments[0]["nout"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1343,12 +1343,12 @@ function SELECT_f() {
         return options;
     }
     SELECT_f.prototype.set = function SELECT_f() {
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.z0 = parseFloat(arguments[0]["z0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nin,this.z0,this.exprs] = scicos_getvalue("Set parameters",["number of inputs","initial connected input"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.z0 = parseFloat(arguments[0]["z0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1410,13 +1410,13 @@ function SELECT_m() {
         return options;
     }
     SELECT_m.prototype.set = function SELECT_m() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.z0 = parseFloat(arguments[0]["z0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.typ,this.nin,this.z0,this.exprs] = scicos_getvalue("Set parameters",["Datatype(1= real double  2=Complex 3=int32 ..)","number of inputs","initial connected input"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.z0 = parseFloat(arguments[0]["z0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1528,13 +1528,13 @@ function SWITCH2() {
         return options;
     }
     SWITCH2.prototype.set = function SWITCH2() {
-        this.rule = parseFloat(arguments[0]["rule"])
-        this.thra = arguments[0]["thra"]
-        this.nzz = parseFloat(arguments[0]["nzz"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.rule,this.thra,this.nzz,this.exprs] = scicos_getvalue("Set parameters",["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.rule = parseFloat(arguments[0]["rule"]);
+            this.thra = arguments[0]["thra"];
+            this.nzz = parseFloat(arguments[0]["nzz"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1600,14 +1600,14 @@ function SWITCH2_m() {
         return options;
     }
     SWITCH2_m.prototype.set = function SWITCH2_m() {
-        this.ot = arguments[0]["ot"]
-        this.rule = parseFloat(arguments[0]["rule"])
-        this.thra = arguments[0]["thra"]
-        this.nzz = parseFloat(arguments[0]["nzz"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.ot,this.rule,this.thra,this.nzz,this.exprs] = scicos_getvalue("Set parameters",["Datatype (1=real double  2=complex 3=int32 ...)","pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.ot = arguments[0]["ot"];
+            this.rule = parseFloat(arguments[0]["rule"]);
+            this.thra = arguments[0]["thra"];
+            this.nzz = parseFloat(arguments[0]["nzz"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1682,13 +1682,13 @@ function SWITCH_f() {
         return options;
     }
     SWITCH_f.prototype.set = function SWITCH_f() {
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.z0 = arguments[0]["z0"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var ipar = this.model.ipar;
         while (true) {
-            [ok,this.nin,this.z0,this.exprs] = scicos_getvalue("Set switch parameters",["number of inputs","connected input"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.z0 = arguments[0]["z0"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1875,12 +1875,12 @@ function Capacitor() {
         return options;
     }
     Capacitor.prototype.set = function Capacitor() {
-        this.C = parseFloat(arguments[0]["C"])
-        this.v = parseFloat(arguments[0]["v"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.C,this.v,this.exprs] = scicos_getvalue("Set Capacitor block parameter",["C (F)","Initial Voltage"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.C = parseFloat(arguments[0]["C"]);
+            this.v = parseFloat(arguments[0]["v"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1927,11 +1927,11 @@ function ConstantVoltage() {
         return options;
     }
     ConstantVoltage.prototype.set = function ConstantVoltage() {
-        this.V = parseFloat(arguments[0]["V"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.V,this.exprs] = scicos_getvalue("Set ConstantVoltage block parameter","V (volt)",list("vec",1),this.exprs);
+            var ok = true;
+            this.V = parseFloat(arguments[0]["V"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2018,14 +2018,14 @@ function Diode() {
         return options;
     }
     Diode.prototype.set = function Diode() {
-        this.Ids = parseFloat(arguments[0]["Ids"])
-        this.Vt = parseFloat(arguments[0]["Vt"])
-        this.Maxexp = parseFloat(arguments[0]["Maxexp"])
-        this.R = parseFloat(arguments[0]["R"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Ids,this.Vt,this.Maxexp,this.R,this.exprs] = scicos_getvalue("Set Diode block parameter",["Saturation cuurent (A)","Voltage equivalent to temperature (Volt)","Max exponent for linear continuation","R (ohm)"],list("vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.Ids = parseFloat(arguments[0]["Ids"]);
+            this.Vt = parseFloat(arguments[0]["Vt"]);
+            this.Maxexp = parseFloat(arguments[0]["Maxexp"]);
+            this.R = parseFloat(arguments[0]["R"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2133,13 +2133,13 @@ function Gyrator() {
         return options;
     }
     Gyrator.prototype.set = function Gyrator() {
-        this.G1 = arguments[0]["G1"]
-        this.G2 = arguments[0]["G2"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         this.exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,this.G1,this.G2,this.exprs] = scicos_getvalue([["Set Gyrator block parameters:"],[""],["G1: Gyration conductance"],["G2: Gyration conductance"]],["G1","G2"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.G1 = arguments[0]["G1"];
+            this.G2 = arguments[0]["G2"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2211,12 +2211,12 @@ function IdealTransformer() {
         return options;
     }
     IdealTransformer.prototype.set = function IdealTransformer() {
-        this.N = arguments[0]["N"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         this.exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,this.N,this.exprs] = scicos_getvalue([["Set Transformer block parameters:"],[""],["N:"+" Turn ratio (N1/N2)"]],["N"],list("vec",1),this.exprs);
+            var ok = true;
+            this.N = arguments[0]["N"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2260,11 +2260,11 @@ function Inductor() {
         return options;
     }
     Inductor.prototype.set = function Inductor() {
-        this.L = parseFloat(arguments[0]["L"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.L,this.exprs] = scicos_getvalue("Set Inductor block parameter","L (H)",list("vec",1),this.exprs);
+            var ok = true;
+            this.L = parseFloat(arguments[0]["L"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2355,19 +2355,19 @@ function NMOS() {
         return options;
     }
     NMOS.prototype.set = function NMOS() {
-        this.W = parseFloat(arguments[0]["W"])
-        this.L = parseFloat(arguments[0]["L"])
-        this.Beta = parseFloat(arguments[0]["Beta"])
-        this.Vt = parseFloat(arguments[0]["Vt"])
-        this.K2 = parseFloat(arguments[0]["K2"])
-        this.K5 = parseFloat(arguments[0]["K5"])
-        this.dW = parseFloat(arguments[0]["dW"])
-        this.dL = parseFloat(arguments[0]["dL"])
-        this.RDS = parseFloat(arguments[0]["RDS"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS,this.exprs] = scicos_getvalue("Set NMOS Transistor block parameters",["Width [m]","Length [m]","Transconductance parameter [A/(V*V)]","Zero bias threshold voltage [V]","Bulk threshold parameter","Reduction of pinch-off region","Narrowing of channel [m]","Shortening of channel [m]","Drain-Source-Resistance [Ohm]"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.W = parseFloat(arguments[0]["W"]);
+            this.L = parseFloat(arguments[0]["L"]);
+            this.Beta = parseFloat(arguments[0]["Beta"]);
+            this.Vt = parseFloat(arguments[0]["Vt"]);
+            this.K2 = parseFloat(arguments[0]["K2"]);
+            this.K5 = parseFloat(arguments[0]["K5"]);
+            this.dW = parseFloat(arguments[0]["dW"]);
+            this.dL = parseFloat(arguments[0]["dL"]);
+            this.RDS = parseFloat(arguments[0]["RDS"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2457,28 +2457,28 @@ function NPN() {
         return options;
     }
     NPN.prototype.set = function NPN() {
-        this.Bf = arguments[0]["Bf"]
-        this.Br = arguments[0]["Br"]
-        this.Is = arguments[0]["Is"]
-        this.Vak = arguments[0]["Vak"]
-        this.Tauf = arguments[0]["Tauf"]
-        this.Taur = arguments[0]["Taur"]
-        this.Ccs = arguments[0]["Ccs"]
-        this.Cje = arguments[0]["Cje"]
-        this.Cjc = arguments[0]["Cjc"]
-        this.Phie = arguments[0]["Phie"]
-        this.Me = arguments[0]["Me"]
-        this.Phic = arguments[0]["Phic"]
-        this.Mc = arguments[0]["Mc"]
-        this.Gbc = arguments[0]["Gbc"]
-        this.Gbe = arguments[0]["Gbe"]
-        this.Vt = arguments[0]["Vt"]
-        this.EMinMax = arguments[0]["EMinMax"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         this.exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,this.Bf,this.Br,this.Is,this.Vak,this.Tauf,this.Taur,this.Ccs,this.Cje,this.Cjc,this.Phie,this.Me,this.Phic,this.Mc,this.Gbc,this.Gbe,this.Vt,this.EMinMax,this.exprs] = scicos_getvalue([["Set NPN block parameters:"],[""]],["Bf  : Forward beta","Br  : Reverse beta","Is  : Transport saturation current","Vak : Early voltage (inverse), 1/Volt","Tauf: Ideal forward transit time","Taur: Ideal reverse transit time","Ccs : Collector-substrat(ground) cap.","Cje : Base-emitter zero bias depletion cap.","Cjc : Base-coll. zero bias depletion cap.","Phie: Base-emitter diffusion voltage","Me  : Base-emitter gradation exponent","Phic: Base-collector diffusion voltage","Mc  : Base-collector gradation exponent","Gbc : Base-collector conductance","Gbe : Base-emitter conductance","Vt  : Voltage equivalent of temperature","EMinmax: if x > EMinMax, the exp(x) is linearized"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.Bf = arguments[0]["Bf"];
+            this.Br = arguments[0]["Br"];
+            this.Is = arguments[0]["Is"];
+            this.Vak = arguments[0]["Vak"];
+            this.Tauf = arguments[0]["Tauf"];
+            this.Taur = arguments[0]["Taur"];
+            this.Ccs = arguments[0]["Ccs"];
+            this.Cje = arguments[0]["Cje"];
+            this.Cjc = arguments[0]["Cjc"];
+            this.Phie = arguments[0]["Phie"];
+            this.Me = arguments[0]["Me"];
+            this.Phic = arguments[0]["Phic"];
+            this.Mc = arguments[0]["Mc"];
+            this.Gbc = arguments[0]["Gbc"];
+            this.Gbe = arguments[0]["Gbe"];
+            this.Vt = arguments[0]["Vt"];
+            this.EMinMax = arguments[0]["EMinMax"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2526,13 +2526,13 @@ function OpAmp() {
         return options;
     }
     OpAmp.prototype.set = function OpAmp() {
-        this.OLGain = arguments[0]["OLGain"]
-        this.SatH = arguments[0]["SatH"]
-        this.SatL = arguments[0]["SatL"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (false) {
-            [ok,this.OLGain,this.SatH,this.SatL,this.exprs] = scicos_getvalue("Set the Operational Amplifier parameters",["Open Loop Gain","Positive saturation voltage","Negative saturation voltage"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.OLGain = arguments[0]["OLGain"];
+            this.SatH = arguments[0]["SatH"];
+            this.SatL = arguments[0]["SatL"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2594,19 +2594,19 @@ function PMOS() {
         return options;
     }
     PMOS.prototype.set = function PMOS() {
-        this.W = parseFloat(arguments[0]["W"])
-        this.L = parseFloat(arguments[0]["L"])
-        this.Beta = parseFloat(arguments[0]["Beta"])
-        this.Vt = parseFloat(arguments[0]["Vt"])
-        this.K2 = parseFloat(arguments[0]["K2"])
-        this.K5 = parseFloat(arguments[0]["K5"])
-        this.dW = parseFloat(arguments[0]["dW"])
-        this.dL = parseFloat(arguments[0]["dL"])
-        this.RDS = parseFloat(arguments[0]["RDS"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS,this.exprs] = scicos_getvalue("Set PMOS Transistor parameters",["Width [m]","Length [m]","Transconductance parameter [A/(V*V)]","Zero bias threshold voltage [V]","Bulk threshold parameter","Reduction of pinch-off region","Narrowing of channel [m]","Shortening of channel [m]","Drain-Source-Resistance [Ohm]"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.W = parseFloat(arguments[0]["W"]);
+            this.L = parseFloat(arguments[0]["L"]);
+            this.Beta = parseFloat(arguments[0]["Beta"]);
+            this.Vt = parseFloat(arguments[0]["Vt"]);
+            this.K2 = parseFloat(arguments[0]["K2"]);
+            this.K5 = parseFloat(arguments[0]["K5"]);
+            this.dW = parseFloat(arguments[0]["dW"]);
+            this.dL = parseFloat(arguments[0]["dL"]);
+            this.RDS = parseFloat(arguments[0]["RDS"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2696,28 +2696,28 @@ function PNP() {
         return options;
     }
     PNP.prototype.set = function PNP() {
-        this.Bf = arguments[0]["Bf"]
-        this.Br = arguments[0]["Br"]
-        this.Is = arguments[0]["Is"]
-        this.Vak = arguments[0]["Vak"]
-        this.Tauf = arguments[0]["Tauf"]
-        this.Taur = arguments[0]["Taur"]
-        this.Ccs = arguments[0]["Ccs"]
-        this.Cje = arguments[0]["Cje"]
-        this.Cjc = arguments[0]["Cjc"]
-        this.Phie = arguments[0]["Phie"]
-        this.Me = arguments[0]["Me"]
-        this.Phic = arguments[0]["Phic"]
-        this.Mc = arguments[0]["Mc"]
-        this.Gbc = arguments[0]["Gbc"]
-        this.Gbe = arguments[0]["Gbe"]
-        this.Vt = arguments[0]["Vt"]
-        this.EMinMax = arguments[0]["EMinMax"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         this.exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,this.Bf,this.Br,this.Is,this.Vak,this.Tauf,this.Taur,this.Ccs,this.Cje,this.Cjc,this.Phie,this.Me,this.Phic,this.Mc,this.Gbc,this.Gbe,this.Vt,this.EMinMax,this.exprs] = scicos_getvalue([["Set PNP block parameters:"],[""]],["Bf  : Forward beta","Br  : Reverse beta","Is  : Transport saturation current","Vak : Early voltage (inverse), 1/Volt","Tauf: Ideal forward transit time","Taur: Ideal reverse transit time","Ccs : Collector-substrat(ground) cap.","Cje : Base-emitter zero bias depletion cap.","Cjc : Base-coll. zero bias depletion cap.","Phie: Base-emitter diffusion voltage","Me  : Base-emitter gradation exponent","Phic: Base-collector diffusion voltage","Mc  : Base-collector gradation exponent","Gbc : Base-collector conductance","Gbe : Base-emitter conductance","Vt  : Voltage equivalent of temperature","EMinMax: if x > EMinMax, the exp(x) function is linearized"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.Bf = arguments[0]["Bf"];
+            this.Br = arguments[0]["Br"];
+            this.Is = arguments[0]["Is"];
+            this.Vak = arguments[0]["Vak"];
+            this.Tauf = arguments[0]["Tauf"];
+            this.Taur = arguments[0]["Taur"];
+            this.Ccs = arguments[0]["Ccs"];
+            this.Cje = arguments[0]["Cje"];
+            this.Cjc = arguments[0]["Cjc"];
+            this.Phie = arguments[0]["Phie"];
+            this.Me = arguments[0]["Me"];
+            this.Phic = arguments[0]["Phic"];
+            this.Mc = arguments[0]["Mc"];
+            this.Gbc = arguments[0]["Gbc"];
+            this.Gbe = arguments[0]["Gbe"];
+            this.Vt = arguments[0]["Vt"];
+            this.EMinMax = arguments[0]["EMinMax"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2794,11 +2794,11 @@ function Resistor() {
         return options;
     }
     Resistor.prototype.set = function Resistor() {
-        this.R = parseFloat(arguments[0]["R"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.R,this.exprs] = scicos_getvalue("Set Resistor block parameter","R (ohm)",list("vec",1),this.exprs);
+            var ok = true;
+            this.R = parseFloat(arguments[0]["R"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2854,15 +2854,15 @@ function SineVoltage() {
         return options;
     }
     SineVoltage.prototype.set = function SineVoltage() {
-        this.V = parseFloat(arguments[0]["V"])
-        this.ph = parseFloat(arguments[0]["ph"])
-        this.frq = parseFloat(arguments[0]["frq"])
-        this.offset = parseFloat(arguments[0]["offset"])
-        this.start = parseFloat(arguments[0]["start"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.V,this.ph,this.frq,this.offset,this.start,this.exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","phase (rad)","Frequency (Hz)","Voltageoffset (V)","Timeoffset (s)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.V = parseFloat(arguments[0]["V"]);
+            this.ph = parseFloat(arguments[0]["ph"]);
+            this.frq = parseFloat(arguments[0]["frq"]);
+            this.offset = parseFloat(arguments[0]["offset"]);
+            this.start = parseFloat(arguments[0]["start"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2914,12 +2914,12 @@ function Switch() {
         return options;
     }
     Switch.prototype.set = function Switch() {
-        this.Ron = parseFloat(arguments[0]["Ron"])
-        this.Roff = parseFloat(arguments[0]["Roff"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Ron,this.Roff,this.exprs] = scicos_getvalue("Set non-ideal electrical switch parameters",["Resistance in On state (Ohm)","Resistance in Off state (Ohm)"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.Ron = parseFloat(arguments[0]["Ron"]);
+            this.Roff = parseFloat(arguments[0]["Roff"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2967,11 +2967,11 @@ function VVsourceAC() {
         return options;
     }
     VVsourceAC.prototype.set = function VVsourceAC() {
-        this.FR = parseFloat(arguments[0]["FR"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.FR,this.exprs] = scicos_getvalue("Set voltage source parameter",["Frequency (Hz)"],list("vec",-1),this.exprs);
+            var ok = true;
+            this.FR = parseFloat(arguments[0]["FR"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3087,12 +3087,12 @@ function VsourceAC() {
         return options;
     }
     VsourceAC.prototype.set = function VsourceAC() {
-        this.VA = parseFloat(arguments[0]["VA"])
-        this.FR = parseFloat(arguments[0]["FR"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.VA,this.FR,this.exprs] = scicos_getvalue("Set voltage source parameter",["Amplitude (Volt)","Frequency (Hz)"],list("vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.VA = parseFloat(arguments[0]["VA"]);
+            this.FR = parseFloat(arguments[0]["FR"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3316,11 +3316,11 @@ function END_c() {
         return options;
     }
     END_c.prototype.set = function END_c() {
-        this.tf = parseFloat(arguments[0]["tf"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tf,this.exprs] = scicos_getvalue("Set final simulation time",["Final simulation time"],list("vec",1),this.exprs);
+            var ok = true;
+            this.tf = parseFloat(arguments[0]["tf"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3364,12 +3364,12 @@ function EVTDLY_c() {
         return options;
     }
     EVTDLY_c.prototype.set = function EVTDLY_c() {
-        this.dt = parseFloat(arguments[0]["dt"])
-        this.ff = parseFloat(arguments[0]["ff"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.dt,this.ff,this.exprs] = scicos_getvalue([["Set Event Delay block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       to disable any output event."]],["Delay","Date of initial output event"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.dt = parseFloat(arguments[0]["dt"]);
+            this.ff = parseFloat(arguments[0]["ff"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3418,12 +3418,12 @@ function EVTDLY_f() {
         return options;
     }
     EVTDLY_f.prototype.set = function EVTDLY_f() {
-        this.dt = parseFloat(arguments[0]["dt"])
-        this.ff = parseFloat(arguments[0]["ff"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.dt,this.ff,this.exprs] = scicos_getvalue([["Set Event Delay  block parameters"],["Delay  is the delay between an input event "],["       and the generated output event"],["Block may initially generate an output event before "],["       any input event. \"Date of initial output event\""],["       gives the date of this event. Set a negative value"],["       if no initial event required"]],["Delay","Date of initial output event"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.dt = parseFloat(arguments[0]["dt"]);
+            this.ff = parseFloat(arguments[0]["ff"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3468,11 +3468,11 @@ function EVTGEN_f() {
         return options;
     }
     EVTGEN_f.prototype.set = function EVTGEN_f() {
-        this.tt = parseFloat(arguments[0]["tt"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tt,this.exprs] = scicos_getvalue("Set Event time",["Event Time"],list("vec",1),this.exprs);
+            var ok = true;
+            this.tt = parseFloat(arguments[0]["tt"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3513,11 +3513,11 @@ function EVTVARDLY() {
         return options;
     }
     EVTVARDLY.prototype.set = function EVTVARDLY() {
-        this.fir = arguments[0]["fir"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.fir,this.exprs] = scicos_getvalue("Set parameter of variable event delay","Initial event firing time (<0 if absent)",list("vec",1),this.exprs);
+            var ok = true;
+            this.fir = arguments[0]["fir"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3556,11 +3556,11 @@ function HALT_f() {
         return options;
     }
     HALT_f.prototype.set = function HALT_f() {
-        this.n = parseFloat(arguments[0]["n"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.n,this.exprs] = scicos_getvalue("Set Halt block parameters",["State on halt"],list("vec",1),this.exprs);
+            var ok = true;
+            this.n = parseFloat(arguments[0]["n"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3606,9 +3606,6 @@ function IFTHEL_f() {
         return options;
     }
     IFTHEL_f.prototype.set = function IFTHEL_f() {
-        this.inh = inverse(arguments[0]["inh"])
-        this.nmod = parseFloat(arguments[0]["nmod"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         if (this.exprs==[]) {
             this.exprs = string(1);
@@ -3617,7 +3614,10 @@ function IFTHEL_f() {
             this.exprs[2-1] = string(1);
         }
         while (true) {
-            [ok,this.inh,this.nmod,this.exprs] = scicos_getvalue("Set parameters",["Inherit (1: no, 0: yes)","zero-crossing (0: no, 1: yes)"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.inh = inverse(arguments[0]["inh"]);
+            this.nmod = parseFloat(arguments[0]["nmod"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3773,11 +3773,11 @@ function MFCLCK_f() {
         return options;
     }
     MFCLCK_f.prototype.set = function MFCLCK_f() {
-        this.dt = parseFloat(arguments[0]["dt"])
-        this.nn = parseFloat(arguments[0]["nn"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
-        [ok,this.dt,this.nn,this.exprs] = scicos_getvalue("Set Multifrequency clock parameters",["basic period (1/f)","multiply by (n)"],list("vec",1,"vec",1),this.exprs);
+        var ok = true;
+        this.dt = parseFloat(arguments[0]["dt"]);
+        this.nn = parseFloat(arguments[0]["nn"]);
+        this.exprs = arguments[0]["exprs"];
         if (ok) {
             this.model.ipar = new ScilabDouble([this.nn]);
             this.model.rpar = new ScilabDouble([this.dt]);
@@ -3819,12 +3819,12 @@ function M_freq() {
         return options;
     }
     M_freq.prototype.set = function M_freq() {
-        this.frequ = inverse(arguments[0]["frequ"])
-        this.offset = inverse(arguments[0]["offset"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.frequ,this.offset,this.exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.frequ = inverse(arguments[0]["frequ"]);
+            this.offset = inverse(arguments[0]["offset"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4021,9 +4021,6 @@ function freq_div() {
         return options;
     }
     freq_div.prototype.set = function freq_div() {
-        %ph = parseFloat(arguments[0]["%ph"])
-        %df = parseFloat(arguments[0]["%df"])
-        this.exprs = inverse(arguments[0]["exprs"])
             if (typeof(o)=="Block"&&o.gui=="Modulo_Count") {
                 var path = i;
                 break;
@@ -4041,7 +4038,10 @@ function freq_div() {
         this.exprs = this.graphics.exprs;
         this.model = xx.model;
         while (true) {
-            [ok,%ph,%df,this.exprs] = scicos_getvalue("Set frequency division block parameters",["Phase (0 to division factor -1)","Division factor"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            %ph = parseFloat(arguments[0]["%ph"]);
+            %df = parseFloat(arguments[0]["%df"]);
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -4159,19 +4159,19 @@ function Bache() {
         return options;
     }
     Bache.prototype.set = function Bache() {
-        this.Patm = parseFloat(arguments[0]["Patm"])
-        this.A = parseFloat(arguments[0]["A"])
-        this.ze1 = parseFloat(arguments[0]["ze1"])
-        this.ze2 = parseFloat(arguments[0]["ze2"])
-        this.zs1 = parseFloat(arguments[0]["zs1"])
-        this.zs2 = parseFloat(arguments[0]["zs2"])
-        this.z0 = parseFloat(arguments[0]["z0"])
-        this.T0 = parseFloat(arguments[0]["T0"])
-        this.p_rho = parseFloat(arguments[0]["p_rho"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Patm,this.A,this.ze1,this.ze2,this.zs1,this.zs2,this.z0,this.T0,this.p_rho,this.exprs] = scicos_getvalue("Parametres de la bache",["Pression dans le ciel de la bache : Patm (Pa)","Section de la bache : A (m2)","Altitude du piquage d entrée 1: ze1 (m)","Altitude du piquage d entrée 2: ze2 (m)","Altitude du piquage de sortie 1: zs1 (m)","Altitude du piquage de sortie 2: zs2 (m)","Altitude initiale du fluide : z0 (m)","Température initiale du fluide : T0 (K)","Si >0, masse volumique imposée du fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.Patm = parseFloat(arguments[0]["Patm"]);
+            this.A = parseFloat(arguments[0]["A"]);
+            this.ze1 = parseFloat(arguments[0]["ze1"]);
+            this.ze2 = parseFloat(arguments[0]["ze2"]);
+            this.zs1 = parseFloat(arguments[0]["zs1"]);
+            this.zs2 = parseFloat(arguments[0]["zs2"]);
+            this.z0 = parseFloat(arguments[0]["z0"]);
+            this.T0 = parseFloat(arguments[0]["T0"]);
+            this.p_rho = parseFloat(arguments[0]["p_rho"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4245,12 +4245,12 @@ function Flowmeter() {
         return options;
     }
     Flowmeter.prototype.set = function Flowmeter() {
-        this.Qini = arguments[0]["Qini"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         this.exprs = this.x.graphics.exprs;
         while (false) {
-            [ok,this.Qini,this.exprs] = scicos_getvalue([["Set Flowmeter block parameters:"],[""],["Qini: "]],"Qini",list("vec",1),this.exprs);
+            var ok = true;
+            this.Qini = arguments[0]["Qini"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4307,16 +4307,16 @@ function PerteDP() {
         return options;
     }
     PerteDP.prototype.set = function PerteDP() {
-        this.L = parseFloat(arguments[0]["L"])
-        this.D = parseFloat(arguments[0]["D"])
-        this.lambda = parseFloat(arguments[0]["lambda"])
-        this.z1 = parseFloat(arguments[0]["z1"])
-        this.z2 = parseFloat(arguments[0]["z2"])
-        this.p_rho = parseFloat(arguments[0]["p_rho"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.L,this.D,this.lambda,this.z1,this.z2,this.p_rho,this.exprs] = scicos_getvalue("Parametres du tuyau",["Longueur du tube : L (m)","Diamètre interne du tube : D (m)","Coefficient de perte de charge-frottement(S.U) : lambda","Altitude entrée tuyauterie : z1 (m)","Altitude sortie tuyauterie : z2 (m)","Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.L = parseFloat(arguments[0]["L"]);
+            this.D = parseFloat(arguments[0]["D"]);
+            this.lambda = parseFloat(arguments[0]["lambda"]);
+            this.z1 = parseFloat(arguments[0]["z1"]);
+            this.z2 = parseFloat(arguments[0]["z2"]);
+            this.p_rho = parseFloat(arguments[0]["p_rho"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4367,14 +4367,14 @@ function PuitsP() {
         return options;
     }
     PuitsP.prototype.set = function PuitsP() {
-        this.P0 = parseFloat(arguments[0]["P0"])
-        this.T0 = parseFloat(arguments[0]["T0"])
-        this.H0 = parseFloat(arguments[0]["H0"])
-        this.option_temperature = parseFloat(arguments[0]["option_temperature"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.P0,this.T0,this.H0,this.option_temperature,this.exprs] = scicos_getvalue("Paramètres du puits",["Pression de la source : P0 (Pa)","Temperature de la source : T0 (K)","Enthalpie spécifique de la source : H0 (J/kg)","1:température fixée - 2:enthalpie fixée : option_temperature"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.P0 = parseFloat(arguments[0]["P0"]);
+            this.T0 = parseFloat(arguments[0]["T0"]);
+            this.H0 = parseFloat(arguments[0]["H0"]);
+            this.option_temperature = parseFloat(arguments[0]["option_temperature"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4427,14 +4427,14 @@ function SourceP() {
         return options;
     }
     SourceP.prototype.set = function SourceP() {
-        this.P0 = parseFloat(arguments[0]["P0"])
-        this.T0 = parseFloat(arguments[0]["T0"])
-        this.H0 = parseFloat(arguments[0]["H0"])
-        this.option_temperature = parseFloat(arguments[0]["option_temperature"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.P0,this.T0,this.H0,this.option_temperature,this.exprs] = scicos_getvalue("Paramètres du puits",["Pression de la source : P0 (Pa)","Temperature de la source : T0 (K)","Enthalpie spécifique de la source : H0 (J/kg)","1:température fixée - 2:enthalpie fixée : option_temperature"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.P0 = parseFloat(arguments[0]["P0"]);
+            this.T0 = parseFloat(arguments[0]["T0"]);
+            this.H0 = parseFloat(arguments[0]["H0"]);
+            this.option_temperature = parseFloat(arguments[0]["option_temperature"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4486,12 +4486,12 @@ function VanneReglante() {
         return options;
     }
     VanneReglante.prototype.set = function VanneReglante() {
-        this.Cvmax = parseFloat(arguments[0]["Cvmax"])
-        this.p_rho = parseFloat(arguments[0]["p_rho"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Cvmax,this.p_rho,this.exprs] = scicos_getvalue("Paramètres de la vanne reglante",["Cvmax","p_rho"],list("vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.Cvmax = parseFloat(arguments[0]["Cvmax"]);
+            this.p_rho = parseFloat(arguments[0]["p_rho"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4535,12 +4535,12 @@ function BITCLEAR() {
         return options;
     }
     BITCLEAR.prototype.set = function BITCLEAR() {
-        this.Datatype = arguments[0]["Datatype"]
-        this.bit = parseFloat(arguments[0]["bit"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Datatype,this.bit,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","BITCLEAR")],[" "],["Clear a bit"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Index of Bit (0 is least significant)"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.Datatype = arguments[0]["Datatype"];
+            this.bit = parseFloat(arguments[0]["bit"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4632,12 +4632,12 @@ function BITSET() {
         return options;
     }
     BITSET.prototype.set = function BITSET() {
-        this.Datatype = arguments[0]["Datatype"]
-        this.bit = parseFloat(arguments[0]["bit"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Datatype,this.bit,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","BITSET")],[" "],["Set a bit"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Index of Bit (0 is least significant)"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.Datatype = arguments[0]["Datatype"];
+            this.bit = parseFloat(arguments[0]["bit"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4730,13 +4730,13 @@ function CONVERT() {
         return options;
     }
     CONVERT.prototype.set = function CONVERT() {
-        this.it = parseFloat(arguments[0]["it"])
-        this.ot = parseFloat(arguments[0]["ot"])
-        this.np = arguments[0]["np"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.it,this.ot,this.np,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONVERT")],[" "],["Type conversion"],[" "]],["Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.it = parseFloat(arguments[0]["it"]);
+            this.ot = parseFloat(arguments[0]["ot"]);
+            this.np = arguments[0]["np"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -5270,14 +5270,14 @@ function EXTRACTBITS() {
         return options;
     }
     EXTRACTBITS.prototype.set = function EXTRACTBITS() {
-        this.Datatype = arguments[0]["Datatype"]
-        this.rule = parseFloat(arguments[0]["rule"])
-        this.bit = parseFloat(arguments[0]["bit"])
-        this.scal = arguments[0]["scal"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Datatype,this.rule,this.bit,this.scal,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","EXTRACTBITS")],[" "],["Bits Extraction"],[" "],["&nbsp;- Bits to Extract:"],["&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"],["&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"],["&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"],["&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"],["&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"],["&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"],["&nbsp;&nbsp;&nbsp;&nbsp;If \'Bits to Extract\' is set to \'Range of bits\': [Start, End]"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Bits to extract","Number of Bits or Index of Bit","Treat Bit Field as an Integer (0:No, 1:Yes)"],list("vec",1,"vec",1,"vec",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.Datatype = arguments[0]["Datatype"];
+            this.rule = parseFloat(arguments[0]["rule"]);
+            this.bit = parseFloat(arguments[0]["bit"]);
+            this.scal = arguments[0]["scal"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -5513,12 +5513,12 @@ function INTMUL() {
         return options;
     }
     INTMUL.prototype.set = function INTMUL() {
-        this.Datatype = arguments[0]["Datatype"]
-        this.np = arguments[0]["np"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Datatype,this.np,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","INTMUL")],[" "],["Integer matrix multiplication"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.Datatype = arguments[0]["Datatype"];
+            this.np = arguments[0]["np"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -5657,8 +5657,6 @@ function JKFLIPFLOP() {
         return options;
     }
     JKFLIPFLOP.prototype.set = function JKFLIPFLOP() {
-        this.init = parseFloat(arguments[0]["init"])
-        this.exprs0 = arguments[0]["exprs0"]
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
                 var path = i;
                 break;
@@ -5669,7 +5667,9 @@ function JKFLIPFLOP() {
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
         while (true) {
-            [ok,this.init,this.exprs0] = scicos_getvalue([[msprintf("Set %s block parameters","JKFLIPFLOP")],[" "],["JK flip-flop"],[" "],["The \'Initial Value\' must be 0 or 1 of type int8"],["&nbsp;- Negative values are considered as int8(0)"],["&nbsp;- Positive values are considered as int8(1)"],[" "]],"Initial Value",list("vec",1),this.exprs);
+            var ok = true;
+            this.init = parseFloat(arguments[0]["init"]);
+            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }
@@ -5728,12 +5728,12 @@ function LOGIC() {
         return options;
     }
     LOGIC.prototype.set = function LOGIC() {
-        this.mat = inverse(arguments[0]["mat"])
-        this.herit = arguments[0]["herit"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.mat,this.herit,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","LOGIC")],[" "],["Combinatorial logic"],[" "],["&nbsp; Rows of the matrix are the output values"],["&nbsp; Number of rows must be a power of two."],["&nbsp; Number of columns gives the number of outputs."],[" "]],["Truth Table (matrix of outputs)","Accepts Inherited Events (0:No, 1:Yes)"],list("mat",[-1,-2],"vec",1),this.exprs);
+            var ok = true;
+            this.mat = inverse(arguments[0]["mat"]);
+            this.herit = arguments[0]["herit"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -5806,13 +5806,13 @@ function SHIFT() {
         return options;
     }
     SHIFT.prototype.set = function SHIFT() {
-        this.Datatype = arguments[0]["Datatype"]
-        this.nb = arguments[0]["nb"]
-        this.np = arguments[0]["np"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Datatype,this.nb,this.np,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","SHIFT")],[" "],["Shift/Rotates bits"]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Number of Bits to Shift Left (Negative number to shift right)","Shift Type (0:Arithmetic, 1:Circular)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.Datatype = arguments[0]["Datatype"];
+            this.nb = arguments[0]["nb"];
+            this.np = arguments[0]["np"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -5949,8 +5949,6 @@ function SRFLIPFLOP() {
         return options;
     }
     SRFLIPFLOP.prototype.set = function SRFLIPFLOP() {
-        this.init = parseFloat(arguments[0]["init"])
-        this.exprs0 = arguments[0]["exprs0"]
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
                 var path = i;
                 break;
@@ -5961,7 +5959,9 @@ function SRFLIPFLOP() {
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
         while (true) {
-            [ok,this.init,this.exprs0] = scicos_getvalue([[msprintf("Set %s block parameters","SRFLIPFLOP")],[" "],["SR flip-flop"],[" "],["The \'Initial Value\' must be 0 or 1 of type int8"],["&nbsp;- Negative values are considered as int8(0)"],["&nbsp;- Positive values are considered as int8(1)"],[" "]],"Initial Value",list("vec",1),this.exprs);
+            var ok = true;
+            this.init = parseFloat(arguments[0]["init"]);
+            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }
@@ -6012,11 +6012,11 @@ function BIGSOM_f() {
         return options;
     }
     BIGSOM_f.prototype.set = function BIGSOM_f() {
-        this.sgn = inverse(arguments[0]["sgn"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.sgn,this.exprs] = scicos_getvalue("Set sum block parameters","Inputs ports signs/gain",list("vec",-1),this.exprs);
+            var ok = true;
+            this.sgn = inverse(arguments[0]["sgn"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6094,9 +6094,6 @@ function CLR() {
         return options;
     }
     CLR.prototype.set = function CLR() {
-        this.num = arguments[0]["num"]
-        this.den = arguments[0]["den"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var x0 = this.model.state;
         var rpar = this.model.rpar;
@@ -6106,7 +6103,10 @@ function CLR() {
         var PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.s = %s;
         while (true) {
-            [ok,this.num,this.den,this.exprs] = scicos_getvalue("Set continuous SISO transfer parameters",["Numerator (s)","Denominator (s)"],list("pol",1,"pol",1),this.exprs);
+            var ok = true;
+            this.num = arguments[0]["num"];
+            this.den = arguments[0]["den"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6181,9 +6181,6 @@ function CLR_f() {
         return options;
     }
     CLR_f.prototype.set = function CLR_f() {
-        this.num = arguments[0]["num"]
-        this.den = arguments[0]["den"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var x0 = this.model.state;
         var rpar = this.model.rpar;
@@ -6193,7 +6190,10 @@ function CLR_f() {
         var PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.s = %s;
         while (true) {
-            [ok,this.num,this.den,this.exprs] = scicos_getvalue("Set continuous SISO transfer parameters",["Numerator (s)","Denominator (s)"],list("pol",1,"pol",1),this.exprs);
+            var ok = true;
+            this.num = arguments[0]["num"];
+            this.den = arguments[0]["den"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6273,18 +6273,18 @@ function CLSS() {
         return options;
     }
     CLSS.prototype.set = function CLSS() {
-        this.A = parseFloat(arguments[0]["A"])
-        this.B = parseFloat(arguments[0]["B"])
-        this.C = parseFloat(arguments[0]["C"])
-        this.D = parseFloat(arguments[0]["D"])
-        this.x0 = parseFloat(arguments[0]["x0"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
         while (true) {
-            [ok,this.A,this.B,this.C,this.D,this.x0,this.exprs] = scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),this.exprs);
+            var ok = true;
+            this.A = parseFloat(arguments[0]["A"]);
+            this.B = parseFloat(arguments[0]["B"]);
+            this.C = parseFloat(arguments[0]["C"]);
+            this.D = parseFloat(arguments[0]["D"]);
+            this.x0 = parseFloat(arguments[0]["x0"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -6379,18 +6379,18 @@ function CLSS_f() {
         return options;
     }
     CLSS_f.prototype.set = function CLSS_f() {
-        this.A = parseFloat(arguments[0]["A"])
-        this.B = parseFloat(arguments[0]["B"])
-        this.C = parseFloat(arguments[0]["C"])
-        this.D = parseFloat(arguments[0]["D"])
-        this.x0 = parseFloat(arguments[0]["x0"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
         while (true) {
-            [ok,this.A,this.B,this.C,this.D,this.x0,this.exprs] = scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),this.exprs);
+            var ok = true;
+            this.A = parseFloat(arguments[0]["A"]);
+            this.B = parseFloat(arguments[0]["B"]);
+            this.C = parseFloat(arguments[0]["C"]);
+            this.D = parseFloat(arguments[0]["D"]);
+            this.x0 = parseFloat(arguments[0]["x0"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -6473,17 +6473,17 @@ function DELAYV_f() {
         return options;
     }
     DELAYV_f.prototype.set = function DELAYV_f() {
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.zz0 = inverse(arguments[0]["zz0"])
-        this.T = parseFloat(arguments[0]["T"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         this.nin = this.model.in[1-1];
         var z0 = this.model.dstate;
         this.zz0 = z0.slice(1-1,$-1);
         var told = z0[$-1];
         while (true) {
-            [ok,this.nin,this.zz0,this.T,this.exprs] = scicos_getvalue("Set delay parameters",["Number of inputs","Register initial condition","Max delay"],list("vec",1,"vec",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.zz0 = inverse(arguments[0]["zz0"]);
+            this.T = parseFloat(arguments[0]["T"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6591,9 +6591,6 @@ function DELAY_f() {
         return options;
     }
     DELAY_f.prototype.set = function DELAY_f() {
-        this.dt = arguments[0]["dt"]
-        this.z0 = arguments[0]["z0"]
-        this.exprs = inverse(arguments[0]["exprs"])
         var ppath = list(0,0);
             if (typeof(o)=="Block"&&o.gui=="REGISTER_f") {
                 ppath[1-1] = i;
@@ -6612,7 +6609,10 @@ function DELAY_f() {
         var evtdly_exprs = evtdly.graphics.exprs;
         this.exprs = [[evtdly_exprs[1-1]],[register_exprs]];
         while (true) {
-            [ok,this.dt,this.z0,this.exprs] = scicos_getvalue([["This block implements as a discretized delay"],["it is consist of a shift register and a clock"],["value of the delay is given by;","the discretization time step multiplied by the"],["number-1 of state of the register"]],["Discretization time step","Register initial state"],list("vec",1,"vec",-1),this.exprs);
+            var ok = true;
+            this.dt = arguments[0]["dt"];
+            this.z0 = arguments[0]["z0"];
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -6702,13 +6702,13 @@ function DIFF_c() {
         return options;
     }
     DIFF_c.prototype.set = function DIFF_c() {
-        this.x0 = inverse(arguments[0]["x0"])
-        this.xd0 = inverse(arguments[0]["xd0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
             var ask_again = false;
-            [ok,this.x0,this.xd0,this.exprs] = scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.x0 = inverse(arguments[0]["x0"]);
+            this.xd0 = inverse(arguments[0]["xd0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6771,16 +6771,16 @@ function DLR() {
         return options;
     }
     DLR.prototype.set = function DLR() {
-        this.num = arguments[0]["num"]
-        this.den = arguments[0]["den"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var x0 = this.model.dstate;
         var ns = prod(size(x0));
         var PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.z = %z;
         while (true) {
-            [ok,this.num,this.den,this.exprs] = scicos_getvalue("Set discrete SISO transfer parameters",["Numerator (z)","Denominator (z)"],list("pol",1,"pol",1),this.exprs);
+            var ok = true;
+            this.num = arguments[0]["num"];
+            this.den = arguments[0]["den"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6857,16 +6857,16 @@ function DLR_f() {
         return options;
     }
     DLR_f.prototype.set = function DLR_f() {
-        this.num = arguments[0]["num"]
-        this.den = arguments[0]["den"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var x0 = this.model.dstate;
         var ns = prod(size(x0));
         var PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.z = %z;
         while (true) {
-            [ok,this.num,this.den,this.exprs] = scicos_getvalue("Set discrete SISO transfer parameters",["Numerator (z)","Denominator (z)"],list("pol",1,"pol",1),this.exprs);
+            var ok = true;
+            this.num = arguments[0]["num"];
+            this.den = arguments[0]["den"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6946,18 +6946,18 @@ function DLSS() {
         return options;
     }
     DLSS.prototype.set = function DLSS() {
-        this.A = parseFloat(arguments[0]["A"])
-        this.B = parseFloat(arguments[0]["B"])
-        this.C = parseFloat(arguments[0]["C"])
-        this.D = parseFloat(arguments[0]["D"])
-        this.x0 = parseFloat(arguments[0]["x0"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
         while (true) {
-            [ok,this.A,this.B,this.C,this.D,this.x0,this.exprs] = scicos_getvalue("Set discrete linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),this.exprs);
+            var ok = true;
+            this.A = parseFloat(arguments[0]["A"]);
+            this.B = parseFloat(arguments[0]["B"]);
+            this.C = parseFloat(arguments[0]["C"]);
+            this.D = parseFloat(arguments[0]["D"]);
+            this.x0 = parseFloat(arguments[0]["x0"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -7051,18 +7051,18 @@ function DLSS_f() {
         return options;
     }
     DLSS_f.prototype.set = function DLSS_f() {
-        this.A = parseFloat(arguments[0]["A"])
-        this.B = parseFloat(arguments[0]["B"])
-        this.C = parseFloat(arguments[0]["C"])
-        this.D = parseFloat(arguments[0]["D"])
-        this.x0 = parseFloat(arguments[0]["x0"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
         while (true) {
-            [ok,this.A,this.B,this.C,this.D,this.x0,this.exprs] = scicos_getvalue("Set discrete linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),this.exprs);
+            var ok = true;
+            this.A = parseFloat(arguments[0]["A"]);
+            this.B = parseFloat(arguments[0]["B"]);
+            this.C = parseFloat(arguments[0]["C"]);
+            this.D = parseFloat(arguments[0]["D"]);
+            this.x0 = parseFloat(arguments[0]["x0"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -7140,15 +7140,15 @@ function DOLLAR() {
         return options;
     }
     DOLLAR.prototype.set = function DOLLAR() {
-        this.a = arguments[0]["a"]
-        this.inh = parseFloat(arguments[0]["inh"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")<2) {
             this.exprs[2-1] = "0";
         }
         while (true) {
-            [ok,this.a,this.inh,this.exprs] = scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("mat",[-1,-2],"vec",-1),this.exprs);
+            var ok = true;
+            this.a = arguments[0]["a"];
+            this.inh = parseFloat(arguments[0]["inh"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7241,15 +7241,15 @@ function DOLLAR_f() {
         return options;
     }
     DOLLAR_f.prototype.set = function DOLLAR_f() {
-        this.a = arguments[0]["a"]
-        this.inh = parseFloat(arguments[0]["inh"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")<2) {
             this.exprs[2-1] = "0";
         }
         while (true) {
-            [ok,this.a,this.inh,this.exprs] = scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.a = arguments[0]["a"];
+            this.inh = parseFloat(arguments[0]["inh"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7307,15 +7307,15 @@ function DOLLAR_m() {
         return options;
     }
     DOLLAR_m.prototype.set = function DOLLAR_m() {
-        this.a = arguments[0]["a"]
-        this.inh = parseFloat(arguments[0]["inh"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")<2) {
             this.exprs[2-1] = "0";
         }
         while (true) {
-            [ok,this.a,this.inh,this.exprs] = scicos_getvalue("Set 1/z block parameters",["initial condition","Inherit (no:0, yes:1)"],list("mat",[-1,-2],"vec",-1),this.exprs);
+            var ok = true;
+            this.a = arguments[0]["a"];
+            this.inh = parseFloat(arguments[0]["inh"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7411,15 +7411,15 @@ function GAINBLK() {
         return options;
     }
     GAINBLK.prototype.set = function GAINBLK() {
-        this.gain = parseFloat(arguments[0]["gain"])
-        this.over = arguments[0]["over"]
-        this.exprs = inverse(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==1) {
             this.exprs = [[this.exprs],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.gain,this.over,this.exprs] = scicos_getvalue("Set gain block parameters",["Gain","Do On Overflow(0=Nothing 1=Saturate 2=Error)"],list("mat",[-1,-1],"vec",1),this.exprs);
+            var ok = true;
+            this.gain = parseFloat(arguments[0]["gain"]);
+            this.over = arguments[0]["over"];
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -7569,11 +7569,11 @@ function GAINBLK_f() {
         return options;
     }
     GAINBLK_f.prototype.set = function GAINBLK_f() {
-        this.gain = parseFloat(arguments[0]["gain"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.gain,this.exprs] = scicos_getvalue("Set gain block parameters",["Gain"],list("mat",[-1,-1]),this.exprs[1-1]);
+            var ok = true;
+            this.gain = parseFloat(arguments[0]["gain"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7627,11 +7627,11 @@ function GAIN_f() {
         return options;
     }
     GAIN_f.prototype.set = function GAIN_f() {
-        this.gain = parseFloat(arguments[0]["gain"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.gain,this.exprs] = scicos_getvalue("Set gain block parameters",["Gain"],list("mat",[-1,-1]),this.exprs[1-1]);
+            var ok = true;
+            this.gain = parseFloat(arguments[0]["gain"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7691,15 +7691,15 @@ function INTEGRAL() {
         return options;
     }
     INTEGRAL.prototype.set = function INTEGRAL() {
-        this.x0 = inverse(arguments[0]["x0"])
-        this.reinit = parseFloat(arguments[0]["reinit"])
-        this.satur = parseFloat(arguments[0]["satur"])
-        this.maxp = parseFloat(arguments[0]["maxp"])
-        this.lowp = arguments[0]["lowp"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,this.exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("vec",-1,"vec",1,"vec",1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.x0 = inverse(arguments[0]["x0"]);
+            this.reinit = parseFloat(arguments[0]["reinit"]);
+            this.satur = parseFloat(arguments[0]["satur"]);
+            this.maxp = parseFloat(arguments[0]["maxp"]);
+            this.lowp = arguments[0]["lowp"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7779,11 +7779,11 @@ function INTEGRAL_f() {
         return options;
     }
     INTEGRAL_f.prototype.set = function INTEGRAL_f() {
-        this.x0 = parseFloat(arguments[0]["x0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.x0,this.exprs] = scicos_getvalue("Set continuous linear system parameters","Initial state",list("vec",1),this.exprs);
+            var ok = true;
+            this.x0 = parseFloat(arguments[0]["x0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7832,15 +7832,15 @@ function INTEGRAL_m() {
         return options;
     }
     INTEGRAL_m.prototype.set = function INTEGRAL_m() {
-        this.x0 = arguments[0]["x0"]
-        this.reinit = parseFloat(arguments[0]["reinit"])
-        this.satur = parseFloat(arguments[0]["satur"])
-        this.maxp = parseFloat(arguments[0]["maxp"])
-        this.lowp = parseFloat(arguments[0]["lowp"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,this.exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("mat",[-1,-1],"vec",1,"vec",1,"mat",[-1,-1],"mat",[-1,-1]),this.exprs);
+            var ok = true;
+            this.x0 = arguments[0]["x0"];
+            this.reinit = parseFloat(arguments[0]["reinit"]);
+            this.satur = parseFloat(arguments[0]["satur"]);
+            this.maxp = parseFloat(arguments[0]["maxp"]);
+            this.lowp = parseFloat(arguments[0]["lowp"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7990,10 +7990,6 @@ function PID() {
         return options;
     }
     PID.prototype.set = function PID() {
-        this.p = arguments[0]["p"]
-        this.i = arguments[0]["i"]
-        this.d = arguments[0]["d"]
-        this.exprs0 = arguments[0]["exprs0"]
         var ppath = list(0,0,0);
             if (typeof(o)=="Link") {
                 if (from.gui=="GAINBLK") {
@@ -8029,7 +8025,11 @@ function PID() {
         var d_old = xx3.model.rpar;
         var y = 0;
         while (true) {
-            [ok,this.p,this.i,this.d,this.exprs0] = scicos_getvalue("Set PID parameters",["Proportional","Integral","Derivation"],list("vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.p = arguments[0]["p"];
+            this.i = arguments[0]["i"];
+            this.d = arguments[0]["d"];
+            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }
@@ -8083,15 +8083,15 @@ function REGISTER() {
         return options;
     }
     REGISTER.prototype.set = function REGISTER() {
-        this.z0 = parseFloat(arguments[0]["z0"])
-        this.it = arguments[0]["it"]
-        this.exprs = inverse(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,1)==1) {
             this.exprs = [[this.exprs],[sci2exp(1)]];
         }
         while (true) {
-            [ok,this.z0,this.it,this.exprs] = scicos_getvalue("Set delay parameters",["Register initial condition","Datatype (1=double 3=int32 ...)"],list("vec",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.z0 = parseFloat(arguments[0]["z0"]);
+            this.it = arguments[0]["it"];
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -8173,11 +8173,11 @@ function REGISTER_f() {
         return options;
     }
     REGISTER_f.prototype.set = function REGISTER_f() {
-        this.z0 = parseFloat(arguments[0]["z0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.z0,this.exprs] = scicos_getvalue("Set delay parameters","Register initial condition",list("vec",-1),this.exprs);
+            var ok = true;
+            this.z0 = parseFloat(arguments[0]["z0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -8253,12 +8253,12 @@ function SAMPHOLD_m() {
         return options;
     }
     SAMPHOLD_m.prototype.set = function SAMPHOLD_m() {
-        this.it = arguments[0]["it"]
-        this.exprs = arguments[0]["exprs"]
         this.x.model.firing = [];
         var label = this.graphics.exprs;
         while (true) {
-            [ok,this.it,this.exprs] = scicos_getvalue("Set parameters Block",["Datatype(1=real double 2=Complex 3=int32 ...)"],list("vec",1),label);
+            var ok = true;
+            this.it = arguments[0]["it"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -8382,10 +8382,6 @@ function SUMMATION() {
         return options;
     }
     SUMMATION.prototype.set = function SUMMATION() {
-        this.Datatype = arguments[0]["Datatype"]
-        this.sgn = inverse(arguments[0]["sgn"])
-        this.satur = arguments[0]["satur"]
-        this.exprs = inverse(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,1)==1) {
             this.exprs = [[sci2exp(1)],[this.exprs],[sci2exp(0)]];
@@ -8393,7 +8389,11 @@ function SUMMATION() {
             this.exprs = [[this.exprs],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.Datatype,this.sgn,this.satur,this.exprs] = scicos_getvalue("Set sum block parameters",["Datatype (1=real double  2=complex 3=int32 ...)","Number of inputs or sign vector (of +1, -1)","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.Datatype = arguments[0]["Datatype"];
+            this.sgn = inverse(arguments[0]["sgn"]);
+            this.satur = arguments[0]["satur"];
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -8567,18 +8567,18 @@ function TCLSS() {
         return options;
     }
     TCLSS.prototype.set = function TCLSS() {
-        this.A = parseFloat(arguments[0]["A"])
-        this.B = parseFloat(arguments[0]["B"])
-        this.C = parseFloat(arguments[0]["C"])
-        this.D = parseFloat(arguments[0]["D"])
-        this.x0 = parseFloat(arguments[0]["x0"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
         while (true) {
-            [ok,this.A,this.B,this.C,this.D,this.x0,this.exprs] = scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),this.exprs);
+            var ok = true;
+            this.A = parseFloat(arguments[0]["A"]);
+            this.B = parseFloat(arguments[0]["B"]);
+            this.C = parseFloat(arguments[0]["C"]);
+            this.D = parseFloat(arguments[0]["D"]);
+            this.x0 = parseFloat(arguments[0]["x0"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -8670,18 +8670,18 @@ function TCLSS_f() {
         return options;
     }
     TCLSS_f.prototype.set = function TCLSS_f() {
-        this.A = parseFloat(arguments[0]["A"])
-        this.B = parseFloat(arguments[0]["B"])
-        this.C = parseFloat(arguments[0]["C"])
-        this.D = parseFloat(arguments[0]["D"])
-        this.x0 = parseFloat(arguments[0]["x0"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
         while (true) {
-            [ok,this.A,this.B,this.C,this.D,this.x0,this.exprs] = scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),this.exprs);
+            var ok = true;
+            this.A = parseFloat(arguments[0]["A"]);
+            this.B = parseFloat(arguments[0]["B"]);
+            this.C = parseFloat(arguments[0]["C"]);
+            this.D = parseFloat(arguments[0]["D"]);
+            this.x0 = parseFloat(arguments[0]["x0"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -8766,14 +8766,14 @@ function TIME_DELAY() {
         return options;
     }
     TIME_DELAY.prototype.set = function TIME_DELAY() {
-        this.T = parseFloat(arguments[0]["T"])
-        this.init = parseFloat(arguments[0]["init"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var nin = this.model.in[1-1];
         while (true) {
-            [ok,this.T,this.init,this.N,this.exprs] = scicos_getvalue("Set delay parameters",["Delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.T = parseFloat(arguments[0]["T"]);
+            this.init = parseFloat(arguments[0]["init"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -8836,14 +8836,14 @@ function VARIABLE_DELAY() {
         return options;
     }
     VARIABLE_DELAY.prototype.set = function VARIABLE_DELAY() {
-        this.T = parseFloat(arguments[0]["T"])
-        this.init = parseFloat(arguments[0]["init"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var nin = this.model.in[1-1];
         while (true) {
-            [ok,this.T,this.init,this.N,this.exprs] = scicos_getvalue("Set delay parameters",["Max delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.T = parseFloat(arguments[0]["T"]);
+            this.init = parseFloat(arguments[0]["init"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -8911,15 +8911,15 @@ function CUMSUM() {
         return options;
     }
     CUMSUM.prototype.set = function CUMSUM() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.decomptyp = arguments[0]["decomptyp"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set CUMSUM block parameters",["Datatype(1=real double  2=Complex)","Sum along (0=the first non singleton dimension  1=Rows  2=Columns)"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.decomptyp = arguments[0]["decomptyp"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -9014,16 +9014,16 @@ function EXTRACT() {
         return options;
     }
     EXTRACT.prototype.set = function EXTRACT() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.a = inverse(arguments[0]["a"])
-        this.b = inverse(arguments[0]["b"])
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.a,this.b,this.exprs] = scicos_getvalue("Set EXTRACT Block",["Datatype (1=real double  2=Complex)","Lines to extract","Columns to extract"],list("vec",1,"mat",[1,-1],"mat",[1,-1]),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.a = inverse(arguments[0]["a"]);
+            this.b = inverse(arguments[0]["b"]);
+            this.exprs = arguments[0]["exprs"];
             this.a = this.a.slice();
             this.b = this.b.slice();
             if (!ok) {
@@ -9115,15 +9115,15 @@ function EXTTRI() {
         return options;
     }
     EXTTRI.prototype.set = function EXTTRI() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.decomptyp = arguments[0]["decomptyp"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set EXTTRI block parameters",["Datatype(1=real double  2=Complex)","extraction type (1=lower  2=upper  3=diagonal)"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.decomptyp = arguments[0]["decomptyp"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -9213,14 +9213,14 @@ function MATBKSL() {
         return options;
     }
     MATBKSL.prototype.set = function MATBKSL() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.exprs] = scicos_getvalue("Set MATBKSL Block",["Datatype (1=real double  2=Complex)"],list("vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -9290,14 +9290,14 @@ function MATCATH() {
         return options;
     }
     MATCATH.prototype.set = function MATCATH() {
-        this.nin = arguments[0]["nin"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")>1) {
             var label = "size(evstr("+label[2-1]+"),\'*\')";
         }
         while (true) {
-            [ok,this.nin,this.lab] = scicos_getvalue("Set MATCATH block parameters",["Number of input"],list("vec",1),label);
+            var ok = true;
+            this.nin = arguments[0]["nin"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -9358,14 +9358,14 @@ function MATCATV() {
         return options;
     }
     MATCATV.prototype.set = function MATCATV() {
-        this.nin = arguments[0]["nin"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")>1) {
             var label = "size(evstr("+label[2-1]+"),\'*\')";
         }
         while (true) {
-            [ok,this.nin,this.lab] = scicos_getvalue("Set MATCATV block parameters",["Number od inputs"],list("vec",1),label);
+            var ok = true;
+            this.nin = arguments[0]["nin"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -9425,14 +9425,14 @@ function MATDET() {
         return options;
     }
     MATDET.prototype.set = function MATDET() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.exprs] = scicos_getvalue("Set MATDET Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -9502,14 +9502,14 @@ function MATDIAG() {
         return options;
     }
     MATDIAG.prototype.set = function MATDIAG() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.exprs] = scicos_getvalue("Set MATDIAG Block",["Datatype (1=real double  2=Complex)"],list("vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -9579,14 +9579,14 @@ function MATDIV() {
         return options;
     }
     MATDIV.prototype.set = function MATDIV() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.exprs] = scicos_getvalue("Set MATDIV Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -9657,15 +9657,15 @@ function MATEIG() {
         return options;
     }
     MATEIG.prototype.set = function MATEIG() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.decomptyp = arguments[0]["decomptyp"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATEIG block parameters",["Datatype(1=real double  2=Complex)","decomposition type (1=eig values  2=eig values+eig vectors"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.decomptyp = arguments[0]["decomptyp"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -9756,14 +9756,14 @@ function MATEXPM() {
         return options;
     }
     MATEXPM.prototype.set = function MATEXPM() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.exprs] = scicos_getvalue("Set EXPM Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -9833,14 +9833,14 @@ function MATINV() {
         return options;
     }
     MATINV.prototype.set = function MATINV() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.exprs] = scicos_getvalue("Set MATINV Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -9910,14 +9910,14 @@ function MATLU() {
         return options;
     }
     MATLU.prototype.set = function MATLU() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.lab] = scicos_getvalue("Set MATLU block parameters",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -9988,14 +9988,14 @@ function MATMAGPHI() {
         return options;
     }
     MATMAGPHI.prototype.set = function MATMAGPHI() {
-        this.decomptyp = arguments[0]["decomptyp"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.decomptyp,this.lab] = scicos_getvalue("Set MATMAGPHI block parameters",["decomposition type (1=Complex2MAG&PHI 2=MAG&PHI2Complex)"],list("vec",1),label);
+            var ok = true;
+            this.decomptyp = arguments[0]["decomptyp"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -10060,10 +10060,6 @@ function MATMUL() {
         return options;
     }
     MATMUL.prototype.set = function MATMUL() {
-        this.dtype = arguments[0]["dtype"]
-        this.rule = parseFloat(arguments[0]["rule"])
-        this.np = parseFloat(arguments[0]["np"])
-        this.exprs = arguments[0]["exprs"]
         this.graphics = this.x.graphics;
         var label = this.graphics.exprs;
         this.model = this.x.model;
@@ -10077,7 +10073,11 @@ function MATMUL() {
             label[3-1] = sci2exp(1);
         }
         while (true) {
-            [ok,this.dtype,this.rule,this.np,this.exprs] = scicos_getvalue([["Set MATMUL parameter"],["For the Multipication rule:"],["    1= Matrix by Matrix"],["    2= Matrix by Matrix element wise "],["    3= Matrix by Scalar"],["In the third case the second input will be the scalar"]],["Datatype(1=real double 2=Complex 3=int32 ...)","Multiplication rule","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",1,"vec",1),label);
+            var ok = true;
+            this.dtype = arguments[0]["dtype"];
+            this.rule = parseFloat(arguments[0]["rule"]);
+            this.np = parseFloat(arguments[0]["np"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -10234,14 +10234,14 @@ function MATPINV() {
         return options;
     }
     MATPINV.prototype.set = function MATPINV() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.exprs] = scicos_getvalue("Set MATPINV Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -10313,16 +10313,16 @@ function MATRESH() {
         return options;
     }
     MATRESH.prototype.set = function MATRESH() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.l1 = arguments[0]["l1"]
-        this.out = arguments[0]["out"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.l1,this.out,this.lab] = scicos_getvalue("Set MATRESH block parameters",["Datatype(1=real double  2=Complex)","input size","output size desired"],list("vec",-1,"vec",-1,"vec",-1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.l1 = arguments[0]["l1"];
+            this.out = arguments[0]["out"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -10418,15 +10418,15 @@ function MATSING() {
         return options;
     }
     MATSING.prototype.set = function MATSING() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.decomptyp = arguments[0]["decomptyp"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATSVD block parameters",["Datatype(1=real double  2=Complex)","decomposition type (1=singular values  2=sing values+matrix U & V)"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.decomptyp = arguments[0]["decomptyp"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -10521,15 +10521,15 @@ function MATSUM() {
         return options;
     }
     MATSUM.prototype.set = function MATSUM() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.decomptyp = arguments[0]["decomptyp"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.decomptyp,this.lab] = scicos_getvalue("Set MATSUM block parameters",["Datatype(1=real double  2=Complex)","Sum along (0=all 1=lines  2=Columns)"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.decomptyp = arguments[0]["decomptyp"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -10613,15 +10613,15 @@ function MATTRAN() {
         return options;
     }
     MATTRAN.prototype.set = function MATTRAN() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.rule = arguments[0]["rule"]
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==1) {
             label[2-1] = sci2exp(1);
         }
         while (true) {
-            [ok,this.typ,this.rule,this.exprs] = scicos_getvalue("Set MATTRAN Block",["Datatype(1=real double 2=Complex)","rule (1=.\' 2=\')"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.rule = arguments[0]["rule"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -10734,14 +10734,14 @@ function MATZREIM() {
         return options;
     }
     MATZREIM.prototype.set = function MATZREIM() {
-        this.decomptyp = arguments[0]["decomptyp"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.decomptyp,this.lab] = scicos_getvalue("Set MATZREIM block parameters",["decomposition type (1=Complex2Real&Imag 2=Real&Imag2Complex)"],list("vec",1),label);
+            var ok = true;
+            this.decomptyp = arguments[0]["decomptyp"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -10816,15 +10816,15 @@ function RICC() {
         return options;
     }
     RICC.prototype.set = function RICC() {
-        this.tpe = arguments[0]["tpe"]
-        this.mod = arguments[0]["mod"]
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.tpe,this.mod,this.exprs] = scicos_getvalue("Set RICC Block",["Type (1=Cont  2=Disc)","Model(1=Schr  2=sign(cont) inv(disc))"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.tpe = arguments[0]["tpe"];
+            this.mod = arguments[0]["mod"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -10884,15 +10884,15 @@ function ROOTCOEF() {
         return options;
     }
     ROOTCOEF.prototype.set = function ROOTCOEF() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.inp = arguments[0]["inp"]
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.inp,this.exprs] = scicos_getvalue("Set ROOTCOEF Block",["Datatype(1=real double  2=Complex)","input row size"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.inp = arguments[0]["inp"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -10952,11 +10952,11 @@ function SQRT() {
         return options;
     }
     SQRT.prototype.set = function SQRT() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         while (true) {
-            [ok,this.typ,this.exprs] = scicos_getvalue("Set SQRT Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -11029,19 +11029,19 @@ function SUBMAT() {
         return options;
     }
     SUBMAT.prototype.set = function SUBMAT() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.a = arguments[0]["a"]
-        this.b = arguments[0]["b"]
-        this.c = arguments[0]["c"]
-        this.d = arguments[0]["d"]
-        this.inp = arguments[0]["inp"]
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==5) {
             label[6-1] = sci2exp([1,1]);
         }
         while (true) {
-            [ok,this.typ,this.a,this.b,this.c,this.d,this.inp,this.exprs] = scicos_getvalue("Set SUBMAT Block",["Datatype (1=real double  2=Complex)","Starting Row Index","Ending Row Index","Starting Column Index","Ending Column Index","Input Dimensions"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.a = arguments[0]["a"];
+            this.b = arguments[0]["b"];
+            this.c = arguments[0]["c"];
+            this.d = arguments[0]["d"];
+            this.inp = arguments[0]["inp"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -11265,14 +11265,14 @@ function BACKLASH() {
         return options;
     }
     BACKLASH.prototype.set = function BACKLASH() {
-        this.ini = arguments[0]["ini"]
-        this.gap = arguments[0]["gap"]
-        this.zcr = arguments[0]["zcr"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var rpar = this.model.rpar;
         while (true) {
-            [ok,this.ini,this.gap,this.zcr,this.exprs] = scicos_getvalue("Set backlash parameters",["initial output","gap","use zero-crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.ini = arguments[0]["ini"];
+            this.gap = arguments[0]["gap"];
+            this.zcr = arguments[0]["zcr"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -11352,23 +11352,23 @@ function BOUNCE() {
         return options;
     }
     BOUNCE.prototype.set = function BOUNCE() {
-        this.rpar1 = parseFloat(arguments[0]["rpar1"])
-        this.rpar2 = parseFloat(arguments[0]["rpar2"])
-        this.walls = inverse(arguments[0]["walls"])
-        this.xt = inverse(arguments[0]["xt"])
-        this.xd = inverse(arguments[0]["xd"])
-        this.y = inverse(arguments[0]["y"])
-        this.yd = inverse(arguments[0]["yd"])
-        this.g = parseFloat(arguments[0]["g"])
-        this.C = parseFloat(arguments[0]["C"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")<9) {
             this.exprs[8-1] = "9.81";
             this.exprs[9-1] = "0";
         }
         while (true) {
-            [ok,this.rpar1,this.rpar2,this.walls,this.xt,this.xd,this.y,this.yd,this.g,this.C,this.exprs] = scicos_getvalue(["Set Bounce Block"],["Mass","Radius","[xmin,xmax,ymin,ymax]","xpos","xdpos","ypos","ydpos","g (gravity)","C (aerodynamic coeff"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.rpar1 = parseFloat(arguments[0]["rpar1"]);
+            this.rpar2 = parseFloat(arguments[0]["rpar2"]);
+            this.walls = inverse(arguments[0]["walls"]);
+            this.xt = inverse(arguments[0]["xt"]);
+            this.xd = inverse(arguments[0]["xd"]);
+            this.y = inverse(arguments[0]["y"]);
+            this.yd = inverse(arguments[0]["yd"]);
+            this.g = parseFloat(arguments[0]["g"]);
+            this.C = parseFloat(arguments[0]["C"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -11480,19 +11480,19 @@ function BOUNCEXY() {
         return options;
     }
     BOUNCEXY.prototype.set = function BOUNCEXY() {
-        this.clrs = inverse(arguments[0]["clrs"])
-        this.siz = inverse(arguments[0]["siz"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.imode = parseFloat(arguments[0]["imode"])
-        this.xmin = parseFloat(arguments[0]["xmin"])
-        this.xmax = parseFloat(arguments[0]["xmax"])
-        this.ymin = parseFloat(arguments[0]["ymin"])
-        this.ymax = parseFloat(arguments[0]["ymax"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
         while (true) {
-            [ok,this.clrs,this.siz,this.win,this.imode,this.xmin,this.xmax,this.ymin,this.ymax,this.exprs] = scicos_getvalue("Set Scope parameters",["colors","radii","window number (-1 for automatic)","animation mode (0,1)","Xmin","Xmax","Ymin","Ymax"],list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.clrs = inverse(arguments[0]["clrs"]);
+            this.siz = inverse(arguments[0]["siz"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.imode = parseFloat(arguments[0]["imode"]);
+            this.xmin = parseFloat(arguments[0]["xmin"]);
+            this.xmax = parseFloat(arguments[0]["xmax"]);
+            this.ymin = parseFloat(arguments[0]["ymin"]);
+            this.ymax = parseFloat(arguments[0]["ymax"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -11578,18 +11578,18 @@ function BPLATFORM() {
         return options;
     }
     BPLATFORM.prototype.set = function BPLATFORM() {
-        this.plen = parseFloat(arguments[0]["plen"])
-        this.csiz = parseFloat(arguments[0]["csiz"])
-        this.phi = parseFloat(arguments[0]["phi"])
-        this.xmin = parseFloat(arguments[0]["xmin"])
-        this.xmax = parseFloat(arguments[0]["xmax"])
-        this.ymin = parseFloat(arguments[0]["ymin"])
-        this.ymax = parseFloat(arguments[0]["ymax"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
         while (true) {
-            [ok,this.plen,this.csiz,this.phi,this.xmin,this.xmax,this.ymin,this.ymax,this.exprs] = scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.plen = parseFloat(arguments[0]["plen"]);
+            this.csiz = parseFloat(arguments[0]["csiz"]);
+            this.phi = parseFloat(arguments[0]["phi"]);
+            this.xmin = parseFloat(arguments[0]["xmin"]);
+            this.xmax = parseFloat(arguments[0]["xmax"]);
+            this.ymin = parseFloat(arguments[0]["ymin"]);
+            this.ymax = parseFloat(arguments[0]["ymax"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -11677,24 +11677,24 @@ function CBLOCK() {
         return options;
     }
     CBLOCK.prototype.set = function CBLOCK() {
-        this.function_name = arguments[0]["function_name"]
-        this.impli = arguments[0]["impli"]
-        this.i = parseFloat(arguments[0]["i"])
-        this.o = parseFloat(arguments[0]["o"])
-        this.ci = parseFloat(arguments[0]["ci"])
-        this.co = parseFloat(arguments[0]["co"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.ng = parseFloat(arguments[0]["ng"])
-        this.z = inverse(arguments[0]["z"])
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.ipar = inverse(arguments[0]["ipar"])
-        this.auto0 = arguments[0]["auto0"]
-        this.depu = parseBoolean(arguments[0]["depu"])
-        this.dept = parseBoolean(arguments[0]["dept"])
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         while (true) {
-            [ok,this.function_name,this.impli,this.i,this.o,this.ci,this.co,this.xx,this.ng,this.z,this.rpar,this.ipar,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block2 block parameters",["simulation function","is block implicit? (y,n)","input ports sizes","output ports sizes","input event ports sizes","output events ports sizes","initial continuous state","number of zero crossing surfaces","initial discrete state","Real parameters vector","Integer parameters vector","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label[1-1]);
+            var ok = true;
+            this.function_name = arguments[0]["function_name"];
+            this.impli = arguments[0]["impli"];
+            this.i = parseFloat(arguments[0]["i"]);
+            this.o = parseFloat(arguments[0]["o"]);
+            this.ci = parseFloat(arguments[0]["ci"]);
+            this.co = parseFloat(arguments[0]["co"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.ng = parseFloat(arguments[0]["ng"]);
+            this.z = inverse(arguments[0]["z"]);
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.ipar = inverse(arguments[0]["ipar"]);
+            this.auto0 = arguments[0]["auto0"];
+            this.depu = parseBoolean(arguments[0]["depu"]);
+            this.dept = parseBoolean(arguments[0]["dept"]);
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -11832,29 +11832,29 @@ function CBLOCK4() {
         return options;
     }
     CBLOCK4.prototype.set = function CBLOCK4() {
-        this.function_name = arguments[0]["function_name"]
-        this.impli = arguments[0]["impli"]
-        this.in1 = arguments[0]["in1"]
-        this.it = arguments[0]["it"]
-        this.out = arguments[0]["out"]
-        this.ot = arguments[0]["ot"]
-        this.ci = parseFloat(arguments[0]["ci"])
-        this.co = parseFloat(arguments[0]["co"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.z = inverse(arguments[0]["z"])
-        this.oz = arguments[0]["oz"]
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.ipar = parseFloat(arguments[0]["ipar"])
-        this.opar = arguments[0]["opar"]
-        this.nmode = arguments[0]["nmode"]
-        this.nzcr = arguments[0]["nzcr"]
-        this.auto0 = arguments[0]["auto0"]
-        this.depu = parseBoolean(arguments[0]["depu"])
-        this.dept = parseBoolean(arguments[0]["dept"])
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         while (true) {
-            [ok,this.function_name,this.impli,this.in1,this.it,this.out,this.ot,this.ci,this.co,this.xx,this.z,this.oz,this.rpar,this.ipar,this.opar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set C-Block4 block parameters",["Simulation function","Is block implicit? (y,n)","Input ports sizes","Input ports type","Output port sizes","Output ports type","Input event ports sizes","Output events ports sizes","Initial continuous state","Initial discrete state","Initial object state","Real parameters vector","Integer parameters vector","Object parameters list","Number of modes","Number of zero crossings","Initial firing vector (<0 for no firing)","Direct feedthrough (y or n)","Time dependence (y or n)"],list("str",1,"str",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label[1-1]);
+            var ok = true;
+            this.function_name = arguments[0]["function_name"];
+            this.impli = arguments[0]["impli"];
+            this.in1 = arguments[0]["in1"];
+            this.it = arguments[0]["it"];
+            this.out = arguments[0]["out"];
+            this.ot = arguments[0]["ot"];
+            this.ci = parseFloat(arguments[0]["ci"]);
+            this.co = parseFloat(arguments[0]["co"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.z = inverse(arguments[0]["z"]);
+            this.oz = arguments[0]["oz"];
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.ipar = parseFloat(arguments[0]["ipar"]);
+            this.opar = arguments[0]["opar"];
+            this.nmode = arguments[0]["nmode"];
+            this.nzcr = arguments[0]["nzcr"];
+            this.auto0 = arguments[0]["auto0"];
+            this.depu = parseBoolean(arguments[0]["depu"]);
+            this.dept = parseBoolean(arguments[0]["dept"]);
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -11975,14 +11975,14 @@ function CONSTRAINT2_c() {
         return options;
     }
     CONSTRAINT2_c.prototype.set = function CONSTRAINT2_c() {
-        this.x0 = inverse(arguments[0]["x0"])
-        this.xd0 = inverse(arguments[0]["xd0"])
-        this.id = inverse(arguments[0]["id"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
             var ask_again = false;
-            [ok,this.x0,this.xd0,this.id,this.exprs] = scicos_getvalue("Set Constraint block parameters",["Initial guess values of states x","Initial guess values of derivative x\'","Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0"],list("vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.x0 = inverse(arguments[0]["x0"]);
+            this.xd0 = inverse(arguments[0]["xd0"]);
+            this.id = inverse(arguments[0]["id"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -12052,11 +12052,11 @@ function CONSTRAINT_c() {
         return options;
     }
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
-        this.x0 = inverse(arguments[0]["x0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.x0,this.exprs] = scicos_getvalue("Set solver block parameters","Initial guess values",list("vec",-1),this.exprs);
+            var ok = true;
+            this.x0 = inverse(arguments[0]["x0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -12116,13 +12116,13 @@ function DEADBAND() {
         return options;
     }
     DEADBAND.prototype.set = function DEADBAND() {
-        this.maxp = parseFloat(arguments[0]["maxp"])
-        this.minp = parseFloat(arguments[0]["minp"])
-        this.zeroc = arguments[0]["zeroc"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.maxp,this.minp,this.zeroc,this.exprs] = scicos_getvalue("Set Deadband parameters",["End of dead band","Start of dead band","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.maxp = parseFloat(arguments[0]["maxp"]);
+            this.minp = parseFloat(arguments[0]["minp"]);
+            this.zeroc = arguments[0]["zeroc"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -12248,12 +12248,12 @@ function DIFF_f() {
         return options;
     }
     DIFF_f.prototype.set = function DIFF_f() {
-        this.x0 = inverse(arguments[0]["x0"])
-        this.xd0 = arguments[0]["xd0"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.x0,this.xd0,this.exprs] = scicos_getvalue("Set continuous linear system parameters",["Initial state","Initial Derivative"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.x0 = inverse(arguments[0]["x0"]);
+            this.xd0 = arguments[0]["xd0"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -12350,11 +12350,11 @@ function EDGETRIGGER() {
         return options;
     }
     EDGETRIGGER.prototype.set = function EDGETRIGGER() {
-        this.edge = parseFloat(arguments[0]["edge"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.edge,this.exprs] = scicos_getvalue("Set edge trigger block parameters",["rising (1), falling (-1), both (0)"],list("vec",1),this.exprs);
+            var ok = true;
+            this.edge = parseFloat(arguments[0]["edge"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -12744,15 +12744,15 @@ function HYSTHERESIS() {
         return options;
     }
     HYSTHERESIS.prototype.set = function HYSTHERESIS() {
-        this.high_lim = arguments[0]["high_lim"]
-        this.low_lim = arguments[0]["low_lim"]
-        this.out_high = arguments[0]["out_high"]
-        this.out_low = arguments[0]["out_low"]
-        this.nzz = parseFloat(arguments[0]["nzz"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.high_lim,this.low_lim,this.out_high,this.out_low,this.nzz,this.exprs] = scicos_getvalue("Set parameters",["switch on at","switch off at","output when on","output when off","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.high_lim = arguments[0]["high_lim"];
+            this.low_lim = arguments[0]["low_lim"];
+            this.out_high = arguments[0]["out_high"];
+            this.out_low = arguments[0]["out_low"];
+            this.nzz = parseFloat(arguments[0]["nzz"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -12833,17 +12833,17 @@ function LOGICAL_OP() {
         return options;
     }
     LOGICAL_OP.prototype.set = function LOGICAL_OP() {
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.rule = parseFloat(arguments[0]["rule"])
-        this.Datatype = arguments[0]["Datatype"]
-        this.tp = parseFloat(arguments[0]["tp"])
-        this.exprs = inverse(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,1)==2) {
             this.exprs = [[this.exprs],[sci2exp(1)],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.nin,this.rule,this.Datatype,this.tp,this.exprs] = scicos_getvalue("Set parameters",["number of inputs","Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)","Datatype (1=double 3=int32 ...)","Bitwise Rule(0=No 1=yes)"],list("vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.rule = parseFloat(arguments[0]["rule"]);
+            this.Datatype = arguments[0]["Datatype"];
+            this.tp = parseFloat(arguments[0]["tp"]);
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -12982,14 +12982,6 @@ function MBLOCK() {
         return options;
     }
     MBLOCK.prototype.set = function MBLOCK() {
-        this.Tin = arguments[0]["Tin"]
-        this.Tintype = arguments[0]["Tintype"]
-        this.Tout = arguments[0]["Tout"]
-        this.Touttype = arguments[0]["Touttype"]
-        this.Tparam = arguments[0]["Tparam"]
-        this.pprop = inverse(arguments[0]["pprop"])
-        this.Tfunam = arguments[0]["Tfunam"]
-        this.lab_1 = arguments[0]["lab_1"]
         this.exprs = this.graphics.exprs;
         if (this.type[this.exprs-1]==15) {
             var paramv = list();
@@ -13003,7 +12995,15 @@ function MBLOCK() {
         this.lab_1 = list(this.exprs.in,this.exprs.intype,this.exprs.out,this.exprs.outtype,this.exprs.param,this.exprs.pprop,this.exprs.nameF);
         var lab_2 = this.exprs.paramv;
         while (true) {
-            [ok,this.Tin,this.Tintype,this.Tout,this.Touttype,this.Tparam,this.pprop,this.Tfunam,this.lab_1] = scicos_getvalue("Set Modelica generic block parameters",["Input variables:       ","Input variables types: ","Output variables:      ","Output variables types:","Parameters in Modelica:","Parameters properties: ","Function name:         "],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),this.lab_1);
+            var ok = true;
+            this.Tin = arguments[0]["Tin"];
+            this.Tintype = arguments[0]["Tintype"];
+            this.Tout = arguments[0]["Tout"];
+            this.Touttype = arguments[0]["Touttype"];
+            this.Tparam = arguments[0]["Tparam"];
+            this.pprop = inverse(arguments[0]["pprop"]);
+            this.Tfunam = arguments[0]["Tfunam"];
+            this.lab_1 = arguments[0]["lab_1"];
             if (!ok) {
                 break;
             }
@@ -13261,12 +13261,12 @@ function MEMORY_f() {
         return options;
     }
     MEMORY_f.prototype.set = function MEMORY_f() {
-        this.a = arguments[0]["a"]
-        this.inh = parseFloat(arguments[0]["inh"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.a,this.inh,this.exprs] = scicos_getvalue("Set memory block parameters",["initial condition","Inherit (1: no, 0: yes)"],list("vec",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.a = arguments[0]["a"];
+            this.inh = parseFloat(arguments[0]["inh"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -13656,18 +13656,18 @@ function PENDULUM_ANIM() {
         return options;
     }
     PENDULUM_ANIM.prototype.set = function PENDULUM_ANIM() {
-        this.plen = parseFloat(arguments[0]["plen"])
-        this.csiz = parseFloat(arguments[0]["csiz"])
-        this.phi = parseFloat(arguments[0]["phi"])
-        this.xmin = parseFloat(arguments[0]["xmin"])
-        this.xmax = parseFloat(arguments[0]["xmax"])
-        this.ymin = parseFloat(arguments[0]["ymin"])
-        this.ymax = parseFloat(arguments[0]["ymax"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
         while (true) {
-            [ok,this.plen,this.csiz,this.phi,this.xmin,this.xmax,this.ymin,this.ymax,this.exprs] = scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.plen = parseFloat(arguments[0]["plen"]);
+            this.csiz = parseFloat(arguments[0]["csiz"]);
+            this.phi = parseFloat(arguments[0]["phi"]);
+            this.xmin = parseFloat(arguments[0]["xmin"]);
+            this.xmax = parseFloat(arguments[0]["xmax"]);
+            this.ymin = parseFloat(arguments[0]["ymin"]);
+            this.ymax = parseFloat(arguments[0]["ymax"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -13727,12 +13727,12 @@ function RATELIMITER() {
         return options;
     }
     RATELIMITER.prototype.set = function RATELIMITER() {
-        this.maxp = parseFloat(arguments[0]["maxp"])
-        this.minp = parseFloat(arguments[0]["minp"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.maxp,this.minp,this.exprs] = scicos_getvalue("Set rate limiter parameters",["max slope","min slope"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.maxp = parseFloat(arguments[0]["maxp"]);
+            this.minp = parseFloat(arguments[0]["minp"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -13780,16 +13780,16 @@ function RELATIONALOP() {
         return options;
     }
     RELATIONALOP.prototype.set = function RELATIONALOP() {
-        this.rule = parseFloat(arguments[0]["rule"])
-        this.zcr = parseFloat(arguments[0]["zcr"])
-        this.Datatype = arguments[0]["Datatype"]
-        this.exprs = inverse(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,1)==2) {
             this.exprs = [[this.exprs],[sci2exp(1)]];
         }
         while (true) {
-            [ok,this.rule,this.zcr,this.Datatype,this.exprs] = scicos_getvalue("Set parameters",["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)","Use zero crossing (no: 0), (yes: 1)","Datatype (1=double 3=int32 ...)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.rule = parseFloat(arguments[0]["rule"]);
+            this.zcr = parseFloat(arguments[0]["zcr"]);
+            this.Datatype = arguments[0]["Datatype"];
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -13945,17 +13945,17 @@ function TEXT_f() {
         return options;
     }
     TEXT_f.prototype.set = function TEXT_f() {
-        this.txt = arguments[0]["txt"]
-        this.font = parseFloat(arguments[0]["font"])
-        this.siz = parseFloat(arguments[0]["siz"])
-        this.exprs = inverse(arguments[0]["exprs"])
         var orig = this.graphics.orig;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==1) {
             this.exprs = [[this.exprs],["3"],["1"]];
         }
         while (true) {
-            [ok,this.txt,this.font,this.siz,this.exprs] = scicos_getvalue("Set Text block parameters",["Text","Font number","Font size"],list("str",-1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.txt = arguments[0]["txt"];
+            this.font = parseFloat(arguments[0]["font"]);
+            this.siz = parseFloat(arguments[0]["siz"]);
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -14036,14 +14036,14 @@ function c_block() {
         return options;
     }
     c_block.prototype.set = function c_block() {
-        this.i = parseFloat(arguments[0]["i"])
-        this.o = parseFloat(arguments[0]["o"])
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.funam = arguments[0]["funam"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         while (true) {
-            [ok,this.i,this.o,this.rpar,this.funam,this.lab] = scicos_getvalue("Set C_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
+            var ok = true;
+            this.i = parseFloat(arguments[0]["i"]);
+            this.o = parseFloat(arguments[0]["o"]);
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.funam = arguments[0]["funam"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -14118,14 +14118,14 @@ function fortran_block() {
         return options;
     }
     fortran_block.prototype.set = function fortran_block() {
-        this.i = parseFloat(arguments[0]["i"])
-        this.o = parseFloat(arguments[0]["o"])
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.funam = arguments[0]["funam"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         while (true) {
-            [ok,this.i,this.o,this.rpar,this.funam,this.lab] = scicos_getvalue("Set fortran_block parameters",["input ports sizes","output port sizes","System parameters vector","function name"],list("vec",-1,"vec",-1,"vec",-1,"str",-1),label[1-1]);
+            var ok = true;
+            this.i = parseFloat(arguments[0]["i"]);
+            this.o = parseFloat(arguments[0]["o"]);
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.funam = arguments[0]["funam"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -14248,26 +14248,26 @@ function generic_block() {
         return options;
     }
     generic_block.prototype.set = function generic_block() {
-        this.function_name = arguments[0]["function_name"]
-        this.funtyp = parseFloat(arguments[0]["funtyp"])
-        this.i = parseFloat(arguments[0]["i"])
-        this.o = parseFloat(arguments[0]["o"])
-        this.ci = parseFloat(arguments[0]["ci"])
-        this.co = parseFloat(arguments[0]["co"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.z = inverse(arguments[0]["z"])
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.ipar = parseFloat(arguments[0]["ipar"])
-        this.auto0 = arguments[0]["auto0"]
-        this.depu = parseBoolean(arguments[0]["depu"])
-        this.dept = parseBoolean(arguments[0]["dept"])
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.function_name,this.funtyp,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.ipar,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set GENERIC block parameters",["simulation function","function type (0,1,2,..)","input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","Real parameters vector","Integer parameters vector","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)","str",1,"str",1),label);
+            var ok = true;
+            this.function_name = arguments[0]["function_name"];
+            this.funtyp = parseFloat(arguments[0]["funtyp"]);
+            this.i = parseFloat(arguments[0]["i"]);
+            this.o = parseFloat(arguments[0]["o"]);
+            this.ci = parseFloat(arguments[0]["ci"]);
+            this.co = parseFloat(arguments[0]["co"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.z = inverse(arguments[0]["z"]);
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.ipar = parseFloat(arguments[0]["ipar"]);
+            this.auto0 = arguments[0]["auto0"];
+            this.depu = parseBoolean(arguments[0]["depu"]);
+            this.dept = parseBoolean(arguments[0]["dept"]);
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -14377,28 +14377,28 @@ function generic_block2() {
         return options;
     }
     generic_block2.prototype.set = function generic_block2() {
-        this.function_name = arguments[0]["function_name"]
-        this.funtyp = parseFloat(arguments[0]["funtyp"])
-        this.i = parseFloat(arguments[0]["i"])
-        this.o = parseFloat(arguments[0]["o"])
-        this.ci = parseFloat(arguments[0]["ci"])
-        this.co = parseFloat(arguments[0]["co"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.z = inverse(arguments[0]["z"])
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.ipar = parseFloat(arguments[0]["ipar"])
-        this.nmode = arguments[0]["nmode"]
-        this.nzcr = arguments[0]["nzcr"]
-        this.auto0 = arguments[0]["auto0"]
-        this.depu = parseBoolean(arguments[0]["depu"])
-        this.dept = parseBoolean(arguments[0]["dept"])
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.function_name,this.funtyp,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.ipar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set GENERIC block parameters",["simulation function","function type (0,1,2,..)","input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","Real parameters vector","Integer parameters vector","number of modes","number of zero_crossings","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec","sum(%6)","str",1,"str",1),label);
+            var ok = true;
+            this.function_name = arguments[0]["function_name"];
+            this.funtyp = parseFloat(arguments[0]["funtyp"]);
+            this.i = parseFloat(arguments[0]["i"]);
+            this.o = parseFloat(arguments[0]["o"]);
+            this.ci = parseFloat(arguments[0]["ci"]);
+            this.co = parseFloat(arguments[0]["co"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.z = inverse(arguments[0]["z"]);
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.ipar = parseFloat(arguments[0]["ipar"]);
+            this.nmode = arguments[0]["nmode"];
+            this.nzcr = arguments[0]["nzcr"];
+            this.auto0 = arguments[0]["auto0"];
+            this.depu = parseBoolean(arguments[0]["depu"]);
+            this.dept = parseBoolean(arguments[0]["dept"]);
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -14510,32 +14510,32 @@ function generic_block3() {
         return options;
     }
     generic_block3.prototype.set = function generic_block3() {
-        this.function_name = arguments[0]["function_name"]
-        this.funtyp = parseFloat(arguments[0]["funtyp"])
-        this.in1 = arguments[0]["in1"]
-        this.it = arguments[0]["it"]
-        this.out = arguments[0]["out"]
-        this.ot = arguments[0]["ot"]
-        this.ci = parseFloat(arguments[0]["ci"])
-        this.co = parseFloat(arguments[0]["co"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.z = inverse(arguments[0]["z"])
-        this.oz = arguments[0]["oz"]
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.ipar = parseFloat(arguments[0]["ipar"])
-        this.opar = arguments[0]["opar"]
-        this.nmode = arguments[0]["nmode"]
-        this.nzcr = arguments[0]["nzcr"]
-        this.auto0 = arguments[0]["auto0"]
-        this.depu = parseBoolean(arguments[0]["depu"])
-        this.dept = parseBoolean(arguments[0]["dept"])
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.function_name,this.funtyp,this.in1,this.it,this.out,this.ot,this.ci,this.co,this.xx,this.z,this.oz,this.rpar,this.ipar,this.opar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set GENERIC block parameters",["Simulation function","Function type (0,1,2,..)","Input ports sizes","Input ports type","Output port sizes","Output ports type","Input event ports sizes","Output events ports sizes","Initial continuous state","Initial discrete state","Initial object state","Real parameters vector","Integer parameters vector","Object parameters list","Number of modes","Number of zero crossings","Initial firing vector (<0 for no firing)","Direct feedthrough (y or n)","Time dependence (y or n)"],list("str",1,"vec",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label);
+            var ok = true;
+            this.function_name = arguments[0]["function_name"];
+            this.funtyp = parseFloat(arguments[0]["funtyp"]);
+            this.in1 = arguments[0]["in1"];
+            this.it = arguments[0]["it"];
+            this.out = arguments[0]["out"];
+            this.ot = arguments[0]["ot"];
+            this.ci = parseFloat(arguments[0]["ci"]);
+            this.co = parseFloat(arguments[0]["co"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.z = inverse(arguments[0]["z"]);
+            this.oz = arguments[0]["oz"];
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.ipar = parseFloat(arguments[0]["ipar"]);
+            this.opar = arguments[0]["opar"];
+            this.nmode = arguments[0]["nmode"];
+            this.nzcr = arguments[0]["nzcr"];
+            this.auto0 = arguments[0]["auto0"];
+            this.depu = parseBoolean(arguments[0]["depu"]);
+            this.dept = parseBoolean(arguments[0]["dept"]);
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -14657,23 +14657,23 @@ function scifunc_block() {
         return options;
     }
     scifunc_block.prototype.set = function scifunc_block() {
-        this.i = parseFloat(arguments[0]["i"])
-        this.o = parseFloat(arguments[0]["o"])
-        this.ci = parseFloat(arguments[0]["ci"])
-        this.co = parseFloat(arguments[0]["co"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.z = inverse(arguments[0]["z"])
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.auto0 = arguments[0]["auto0"]
-        this.deptime = arguments[0]["deptime"]
-        this.lab = arguments[0]["lab"]
         var needcompile = 0;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs[1-1],"*")==8) {
             this.exprs[1-1][9-1] = "0";
         }
         while (true) {
-            [ok,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.auto0,this.deptime,this.lab] = scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],["input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","System parameters vector","initial firing vector (<0 for no firing)","is block always active (0:no, 1:yes)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%4)","vec",1),this.exprs[1-1]);
+            var ok = true;
+            this.i = parseFloat(arguments[0]["i"]);
+            this.o = parseFloat(arguments[0]["o"]);
+            this.ci = parseFloat(arguments[0]["ci"]);
+            this.co = parseFloat(arguments[0]["co"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.z = inverse(arguments[0]["z"]);
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.auto0 = arguments[0]["auto0"];
+            this.deptime = arguments[0]["deptime"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -14782,20 +14782,20 @@ function scifunc_block_m() {
         return options;
     }
     scifunc_block_m.prototype.set = function scifunc_block_m() {
-        this.i = arguments[0]["i"]
-        this.o = arguments[0]["o"]
-        this.ci = parseFloat(arguments[0]["ci"])
-        this.co = parseFloat(arguments[0]["co"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.z = inverse(arguments[0]["z"])
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.auto0 = arguments[0]["auto0"]
-        this.deptime = arguments[0]["deptime"]
-        this.lab = arguments[0]["lab"]
         var needcompile = 0;
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.auto0,this.deptime,this.lab] = scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],["input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","System parameters vector","initial firing vector (<0 for no firing)","is block always active (0:no, 1:yes)"],list("mat",[-1,2],"mat",[-2,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),this.exprs[1-1]);
+            var ok = true;
+            this.i = arguments[0]["i"];
+            this.o = arguments[0]["o"];
+            this.ci = parseFloat(arguments[0]["ci"]);
+            this.co = parseFloat(arguments[0]["co"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.z = inverse(arguments[0]["z"]);
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.auto0 = arguments[0]["auto0"];
+            this.deptime = arguments[0]["deptime"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -14902,11 +14902,11 @@ function ABS_VALUE() {
         return options;
     }
     ABS_VALUE.prototype.set = function ABS_VALUE() {
-        this.zcr = arguments[0]["zcr"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.zcr,this.exprs] = scicos_getvalue("Set block parameters",["use zero_crossing (1: yes) (0:no)"],list("vec",1),this.exprs);
+            var ok = true;
+            this.zcr = arguments[0]["zcr"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -14993,16 +14993,16 @@ function DLRADAPT_f() {
         return options;
     }
     DLRADAPT_f.prototype.set = function DLRADAPT_f() {
-        this.p = inverse(arguments[0]["p"])
-        this.rn = inverse(arguments[0]["rn"])
-        this.rd = inverse(arguments[0]["rd"])
-        this.g = inverse(arguments[0]["g"])
-        this.last_u = inverse(arguments[0]["last_u"])
-        this.last_y = inverse(arguments[0]["last_y"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.p,this.rn,this.rd,this.g,this.last_u,this.last_y,this.exprs] = scicos_getvalue("Set block parameters",["Vector of p mesh points","Numerator roots (one line for each mesh)","Denominator roots (one line for each mesh)","Vector of gain at mesh points","past inputs (Num degree values)","past outputs (Den degree values)"],list("vec",-1,"mat",[-1,-1],"mat",["size(%1,\'*\')","-1"],"vec","size(%1,\'*\')","vec","size(%2,2)","vec","size(%3,2)"),this.exprs);
+            var ok = true;
+            this.p = inverse(arguments[0]["p"]);
+            this.rn = inverse(arguments[0]["rn"]);
+            this.rd = inverse(arguments[0]["rd"]);
+            this.g = inverse(arguments[0]["g"]);
+            this.last_u = inverse(arguments[0]["last_u"]);
+            this.last_y = inverse(arguments[0]["last_y"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -15055,14 +15055,14 @@ function EXPBLK_f() {
         return options;
     }
     EXPBLK_f.prototype.set = function EXPBLK_f() {
-        this.a = parseFloat(arguments[0]["a"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }
         while (true) {
-            [ok,this.a,this.exprs] = scicos_getvalue("Set a^u  block parameters","a (>0)",list("vec",1),this.exprs);
+            var ok = true;
+            this.a = parseFloat(arguments[0]["a"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -15109,14 +15109,14 @@ function EXPBLK_m() {
         return options;
     }
     EXPBLK_m.prototype.set = function EXPBLK_m() {
-        this.a = parseFloat(arguments[0]["a"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }
         while (true) {
-            [ok,this.a,this.exprs] = scicos_getvalue("Set a^u  block parameters","a (>0)",list("vec",1),this.exprs);
+            var ok = true;
+            this.a = parseFloat(arguments[0]["a"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -15191,13 +15191,13 @@ function INTRP2BLK_f() {
         return options;
     }
     INTRP2BLK_f.prototype.set = function INTRP2BLK_f() {
-        this.a = inverse(arguments[0]["a"])
-        this.b = inverse(arguments[0]["b"])
-        this.c = inverse(arguments[0]["c"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.a,this.b,this.c,this.exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord.","Z values"],list("vec",-1,"vec",-1,"mat",[-1,-1]),this.exprs);
+            var ok = true;
+            this.a = inverse(arguments[0]["a"]);
+            this.b = inverse(arguments[0]["b"]);
+            this.c = inverse(arguments[0]["c"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -15247,12 +15247,12 @@ function INTRPLBLK_f() {
         return options;
     }
     INTRPLBLK_f.prototype.set = function INTRPLBLK_f() {
-        this.a = inverse(arguments[0]["a"])
-        this.b = inverse(arguments[0]["b"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.a,this.b,this.exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord."],list("vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.a = inverse(arguments[0]["a"]);
+            this.b = inverse(arguments[0]["b"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -15353,14 +15353,14 @@ function LOGBLK_f() {
         return options;
     }
     LOGBLK_f.prototype.set = function LOGBLK_f() {
-        this.a = parseFloat(arguments[0]["a"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }
         while (true) {
-            [ok,this.a,this.exprs] = scicos_getvalue("Set log block parameters","Basis (>1)",list("vec",1),this.exprs);
+            var ok = true;
+            this.a = parseFloat(arguments[0]["a"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -15416,18 +15416,18 @@ function LOOKUP2D() {
         return options;
     }
     LOOKUP2D.prototype.set = function LOOKUP2D() {
-        this.xx = inverse(arguments[0]["xx"])
-        this.yy = inverse(arguments[0]["yy"])
-        this.zz = inverse(arguments[0]["zz"])
-        this.Method = parseFloat(arguments[0]["Method"])
-        this.graf = arguments[0]["graf"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
         while (true) {
             var Ask_again = false;
-            [ok,this.xx,this.yy,this.zz,this.Method,this.graf,this.exprs] = scicos_getvalue("2D Lookup table parameters",["Row index input values","Column index input values","Table data","Lookup method(1..5)","Launch graphic window(y/n)?"],list("vec",-1,"vec",-1,"mat",[-1,-1],"vec",1,"str",1),this.exprs);
+            var ok = true;
+            this.xx = inverse(arguments[0]["xx"]);
+            this.yy = inverse(arguments[0]["yy"]);
+            this.zz = inverse(arguments[0]["zz"]);
+            this.Method = parseFloat(arguments[0]["Method"]);
+            this.graf = arguments[0]["graf"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -15541,18 +15541,18 @@ function LOOKUP_c() {
         return options;
     }
     LOOKUP_c.prototype.set = function LOOKUP_c() {
-        this.Method = parseFloat(arguments[0]["Method"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.yy = inverse(arguments[0]["yy"])
-        this.extrapo = parseFloat(arguments[0]["extrapo"])
-        this.graf = arguments[0]["graf"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
         while (true) {
             var Ask_again = false;
-            [ok,this.Method,this.xx,this.yy,this.extrapo,this.graf,this.exprs] = scicos_getvalue("Lookup table parameters",["Spline Interpolation method (0..9)","x","y","Extrapolate method (0,1)","Launch graphic window(y/n)?"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"str",1),this.exprs);
+            var ok = true;
+            this.Method = parseFloat(arguments[0]["Method"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.yy = inverse(arguments[0]["yy"]);
+            this.extrapo = parseFloat(arguments[0]["extrapo"]);
+            this.graf = arguments[0]["graf"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -15763,13 +15763,13 @@ function MAXMIN() {
         return options;
     }
     MAXMIN.prototype.set = function MAXMIN() {
-        this.mm = parseFloat(arguments[0]["mm"])
-        this.nin = arguments[0]["nin"]
-        this.zcr = parseFloat(arguments[0]["zcr"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.mm,this.nin,this.zcr,this.exprs] = scicos_getvalue("Set Max/Min block parameters",["Min (1) or Max (2) ","Number of input vectors (1 or 2)","zero-crossing (1: yes, 0;no)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.mm = parseFloat(arguments[0]["mm"]);
+            this.nin = arguments[0]["nin"];
+            this.zcr = parseFloat(arguments[0]["zcr"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -15901,14 +15901,14 @@ function POWBLK_f() {
         return options;
     }
     POWBLK_f.prototype.set = function POWBLK_f() {
-        this.a = parseFloat(arguments[0]["a"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }
         while (true) {
-            [ok,this.a,this.exprs] = scicos_getvalue("Set u^a block parameters","to the power of",list("vec",1),this.exprs);
+            var ok = true;
+            this.a = parseFloat(arguments[0]["a"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -15953,11 +15953,11 @@ function PRODUCT() {
         return options;
     }
     PRODUCT.prototype.set = function PRODUCT() {
-        this.sgn = inverse(arguments[0]["sgn"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.sgn,this.exprs] = scicos_getvalue([["         Set multiplication block parameters"],["(multiplication is set with + 1, division with -1)"],[""]],"Number of inputs or sign vector",list("vec",-1),this.exprs);
+            var ok = true;
+            this.sgn = inverse(arguments[0]["sgn"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16054,12 +16054,12 @@ function QUANT_f() {
         return options;
     }
     QUANT_f.prototype.set = function QUANT_f() {
-        this.pas = parseFloat(arguments[0]["pas"])
-        this.meth = parseFloat(arguments[0]["meth"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.pas,this.meth,this.exprs] = scicos_getvalue("Set parameters",["Step","Quantization Type (1-4)"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.pas = parseFloat(arguments[0]["pas"]);
+            this.meth = parseFloat(arguments[0]["meth"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16120,13 +16120,13 @@ function SATURATION() {
         return options;
     }
     SATURATION.prototype.set = function SATURATION() {
-        this.maxp = parseFloat(arguments[0]["maxp"])
-        this.minp = parseFloat(arguments[0]["minp"])
-        this.zeroc = arguments[0]["zeroc"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.maxp,this.minp,this.zeroc,this.exprs] = scicos_getvalue("Set Saturation parameters",["Upper limit","Lower limit","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.maxp = parseFloat(arguments[0]["maxp"]);
+            this.minp = parseFloat(arguments[0]["minp"]);
+            this.zeroc = arguments[0]["zeroc"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16183,13 +16183,13 @@ function SAT_f() {
         return options;
     }
     SAT_f.prototype.set = function SAT_f() {
-        this.minp = parseFloat(arguments[0]["minp"])
-        this.maxp = parseFloat(arguments[0]["maxp"])
-        this.pente = arguments[0]["pente"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.minp,this.maxp,this.pente,this.exprs] = scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.minp = parseFloat(arguments[0]["minp"]);
+            this.maxp = parseFloat(arguments[0]["maxp"]);
+            this.pente = arguments[0]["pente"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16237,11 +16237,11 @@ function SIGNUM() {
         return options;
     }
     SIGNUM.prototype.set = function SIGNUM() {
-        this.zcr = arguments[0]["zcr"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.zcr,this.exprs] = scicos_getvalue("Set block parameters",["use zero_crossing (1: yes) (0:no)"],list("vec",1),this.exprs);
+            var ok = true;
+            this.zcr = arguments[0]["zcr"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16339,13 +16339,13 @@ function TrigFun() {
         return options;
     }
     TrigFun.prototype.set = function TrigFun() {
-        this.fun = arguments[0]["fun"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var PREVAR_FF = [["sin"],["cos"],["tan"],["asin"],["acos"],["atan"],["sinh"],["cosh"],["tanh"],["asinh"],["acosh"],["atanh"]];
         var PREVAR_GG = [["Choose among "+strcat(PREVAR_FF.slice(1-1,4),", ")],[strcat(PREVAR_FF.slice(5-1,$),", ")]];
         while (true) {
-            [ok,this.fun,this.exprs] = scicos_getvalue(PREVAR_GG,"Function",list("str",1),this.exprs);
+            var ok = true;
+            this.fun = arguments[0]["fun"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16387,9 +16387,6 @@ function PDE() {
         return options;
     }
     PDE.prototype.set = function PDE() {
-        this.okk = parseBoolean(arguments[0]["okk"])
-        this.rdnom = arguments[0]["rdnom"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         var params_pde = label[1-1];
         while (true) {
@@ -16474,7 +16471,10 @@ function PDE() {
             this.rdnom = "PDE";
             var ok1 = true;
             while (true) {
-                [this.okk,this.rdnom,this.lab] = scicos_getvalue("PLEASE, GIVE US THE BLOCK\'s NAME. ","New block\'s name :",list("str",1),label[3-1]);
+                var ok = true;
+                this.okk = parseBoolean(arguments[0]["okk"]);
+                this.rdnom = arguments[0]["rdnom"];
+                this.lab = arguments[0]["lab"];
                 if (this.okk==false) {
                     var ok1 = false;
                     return;
@@ -16615,17 +16615,17 @@ function AFFICH_m() {
         return options;
     }
     AFFICH_m.prototype.set = function AFFICH_m() {
-        this.in1 = inverse(arguments[0]["in1"])
-        this.font = parseFloat(arguments[0]["font"])
-        this.fontsize = parseFloat(arguments[0]["fontsize"])
-        this.colr = parseFloat(arguments[0]["colr"])
-        this.nt = parseFloat(arguments[0]["nt"])
-        this.nd = parseFloat(arguments[0]["nd"])
-        this.herit = arguments[0]["herit"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.in1,this.font,this.fontsize,this.colr,this.nt,this.nd,this.herit,this.exprs] = scicos_getvalue("Set  parameters",["Input Size","Font number","Font size","Color","Total number of digits","Number of rational part digits","Block inherits (1) or not (0)"],list("mat",[1,2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.in1 = inverse(arguments[0]["in1"]);
+            this.font = parseFloat(arguments[0]["font"]);
+            this.fontsize = parseFloat(arguments[0]["fontsize"]);
+            this.colr = parseFloat(arguments[0]["colr"]);
+            this.nt = parseFloat(arguments[0]["nt"]);
+            this.nd = parseFloat(arguments[0]["nd"]);
+            this.herit = arguments[0]["herit"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16712,15 +16712,15 @@ function BARXY() {
         return options;
     }
     BARXY.prototype.set = function BARXY() {
-        this.xmin = parseFloat(arguments[0]["xmin"])
-        this.xmax = parseFloat(arguments[0]["xmax"])
-        this.ymin = parseFloat(arguments[0]["ymin"])
-        this.ymax = parseFloat(arguments[0]["ymax"])
-        this.thickness = arguments[0]["thickness"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.xmin,this.xmax,this.ymin,this.ymax,this.thickness,this.exprs] = scicos_getvalue("Set Scope parameters",["Xmin","Xmax","Ymin","Ymax","Segs Thickness"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.xmin = parseFloat(arguments[0]["xmin"]);
+            this.xmax = parseFloat(arguments[0]["xmax"]);
+            this.ymin = parseFloat(arguments[0]["ymin"]);
+            this.ymax = parseFloat(arguments[0]["ymax"]);
+            this.thickness = arguments[0]["thickness"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16801,21 +16801,21 @@ function CANIMXY() {
         return options;
     }
     CANIMXY.prototype.set = function CANIMXY() {
-        this.nbr_curves = parseFloat(arguments[0]["nbr_curves"])
-        this.clrs = parseFloat(arguments[0]["clrs"])
-        this.siz = parseFloat(arguments[0]["siz"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.wpos = inverse(arguments[0]["wpos"])
-        this.wdim = inverse(arguments[0]["wdim"])
-        this.xmin = parseFloat(arguments[0]["xmin"])
-        this.xmax = parseFloat(arguments[0]["xmax"])
-        this.ymin = parseFloat(arguments[0]["ymin"])
-        this.ymax = parseFloat(arguments[0]["ymax"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.xmin,this.xmax,this.ymin,this.ymax,this.N,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of Curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin","Xmax","Ymin","Ymax","Buffer size"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nbr_curves = parseFloat(arguments[0]["nbr_curves"]);
+            this.clrs = parseFloat(arguments[0]["clrs"]);
+            this.siz = parseFloat(arguments[0]["siz"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.wpos = inverse(arguments[0]["wpos"]);
+            this.wdim = inverse(arguments[0]["wdim"]);
+            this.xmin = parseFloat(arguments[0]["xmin"]);
+            this.xmax = parseFloat(arguments[0]["xmax"]);
+            this.ymin = parseFloat(arguments[0]["ymin"]);
+            this.ymax = parseFloat(arguments[0]["ymax"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16930,21 +16930,21 @@ function CANIMXY3D() {
         return options;
     }
     CANIMXY3D.prototype.set = function CANIMXY3D() {
-        this.nbr_curves = parseFloat(arguments[0]["nbr_curves"])
-        this.clrs = inverse(arguments[0]["clrs"])
-        this.siz = inverse(arguments[0]["siz"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.wpos = inverse(arguments[0]["wpos"])
-        this.wdim = inverse(arguments[0]["wdim"])
-        this.vec_x = inverse(arguments[0]["vec_x"])
-        this.vec_y = inverse(arguments[0]["vec_y"])
-        this.vec_z = inverse(arguments[0]["vec_z"])
-        this.param3ds = inverse(arguments[0]["param3ds"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.nbr_curves = parseFloat(arguments[0]["nbr_curves"]);
+            this.clrs = inverse(arguments[0]["clrs"]);
+            this.siz = inverse(arguments[0]["siz"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.wpos = inverse(arguments[0]["wpos"]);
+            this.wdim = inverse(arguments[0]["wdim"]);
+            this.vec_x = inverse(arguments[0]["vec_x"]);
+            this.vec_y = inverse(arguments[0]["vec_y"]);
+            this.vec_z = inverse(arguments[0]["vec_z"]);
+            this.param3ds = inverse(arguments[0]["param3ds"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17062,16 +17062,16 @@ function CEVENTSCOPE() {
         return options;
     }
     CEVENTSCOPE.prototype.set = function CEVENTSCOPE() {
-        this.nclock = parseFloat(arguments[0]["nclock"])
-        this.clrs = inverse(arguments[0]["clrs"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.wpos = inverse(arguments[0]["wpos"])
-        this.wdim = inverse(arguments[0]["wdim"])
-        this.per = parseFloat(arguments[0]["per"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nclock,this.clrs,this.win,this.wpos,this.wdim,this.per,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of event inputs","colors c (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Refresh period"],list("vec",1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.nclock = parseFloat(arguments[0]["nclock"]);
+            this.clrs = inverse(arguments[0]["clrs"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.wpos = inverse(arguments[0]["wpos"]);
+            this.wdim = inverse(arguments[0]["wdim"]);
+            this.per = parseFloat(arguments[0]["per"]);
+            this.exprs = arguments[0]["exprs"];
             this.nclock = int(this.nclock);
             this.clrs = int(this.clrs);
             this.win = int(this.win);
@@ -17172,19 +17172,19 @@ function CFSCOPE() {
         return options;
     }
     CFSCOPE.prototype.set = function CFSCOPE() {
-        this.clrs = inverse(arguments[0]["clrs"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.wpos = inverse(arguments[0]["wpos"])
-        this.wdim = inverse(arguments[0]["wdim"])
-        this.ymin = parseFloat(arguments[0]["ymin"])
-        this.ymax = parseFloat(arguments[0]["ymax"])
-        this.per = parseFloat(arguments[0]["per"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.wu = arguments[0]["wu"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.wu,this.exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Links to view"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",-1),this.exprs);
+            var ok = true;
+            this.clrs = inverse(arguments[0]["clrs"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.wpos = inverse(arguments[0]["wpos"]);
+            this.wdim = inverse(arguments[0]["wdim"]);
+            this.ymin = parseFloat(arguments[0]["ymin"]);
+            this.ymax = parseFloat(arguments[0]["ymax"]);
+            this.per = parseFloat(arguments[0]["per"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.wu = arguments[0]["wu"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17272,11 +17272,11 @@ function CLKOUTV_f() {
         return options;
     }
     CLKOUTV_f.prototype.set = function CLKOUTV_f() {
-        this.prt = arguments[0]["prt"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.prt,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CLKOUTV_f")],[" "],["Event output port"]],"Port number",list("vec",1),this.exprs);
+            var ok = true;
+            this.prt = arguments[0]["prt"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17372,12 +17372,12 @@ function CLKOUT_f() {
         return options;
     }
     CLKOUT_f.prototype.set = function CLKOUT_f() {
-        this.prt = parseFloat(arguments[0]["prt"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         this.exprs = this.exprs[1-1];
         while (true) {
-            [ok,this.prt,this.exprs] = scicos_getvalue("Set Event Output block parameters","Port number",list("vec",1),this.exprs);
+            var ok = true;
+            this.prt = parseFloat(arguments[0]["prt"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -17437,15 +17437,15 @@ function CMAT3D() {
         return options;
     }
     CMAT3D.prototype.set = function CMAT3D() {
-        this.vec_x = arguments[0]["vec_x"]
-        this.vec_y = arguments[0]["vec_y"]
-        this.colormap = parseFloat(arguments[0]["colormap"])
-        this.cmin = parseFloat(arguments[0]["cmin"])
-        this.cmax = parseFloat(arguments[0]["cmax"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.vec_x,this.vec_y,this.colormap,this.cmin,this.cmax,this.exprs] = scicos_getvalue("Set Scope parameters",["Bounds Vector X (-1 for standard)","Bounds Vector Y (-1 for standard)","ColorMap","Zmin","Zmax"],list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.vec_x = arguments[0]["vec_x"];
+            this.vec_y = arguments[0]["vec_y"];
+            this.colormap = parseFloat(arguments[0]["colormap"]);
+            this.cmin = parseFloat(arguments[0]["cmin"]);
+            this.cmax = parseFloat(arguments[0]["cmax"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17513,13 +17513,13 @@ function CMATVIEW() {
         return options;
     }
     CMATVIEW.prototype.set = function CMATVIEW() {
-        this.colormap = parseFloat(arguments[0]["colormap"])
-        this.cmin = parseFloat(arguments[0]["cmin"])
-        this.cmax = parseFloat(arguments[0]["cmax"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.colormap,this.cmin,this.cmax,this.exprs] = scicos_getvalue("Set Scope parameters",["ColorMap","Minimum level range","Maximum level range"],list("vec",-1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.colormap = parseFloat(arguments[0]["colormap"]);
+            this.cmin = parseFloat(arguments[0]["cmin"]);
+            this.cmax = parseFloat(arguments[0]["cmax"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17598,21 +17598,21 @@ function CMSCOPE() {
         return options;
     }
     CMSCOPE.prototype.set = function CMSCOPE() {
-        this.in1 = inverse(arguments[0]["in1"])
-        this.clrs = inverse(arguments[0]["clrs"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.wpos = inverse(arguments[0]["wpos"])
-        this.wdim = inverse(arguments[0]["wdim"])
-        this.ymin = inverse(arguments[0]["ymin"])
-        this.ymax = inverse(arguments[0]["ymax"])
-        this.per = inverse(arguments[0]["per"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.heritance = arguments[0]["heritance"]
-        this.nom = arguments[0]["nom"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.in1,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,this.exprs] = scicos_getvalue("Set Scope parameters",["Input ports sizes","Drawing colors (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin vector","Ymax vector","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec","size(%1,\'*\')","vec",1,"vec",1,"str",1),this.exprs);
+            var ok = true;
+            this.in1 = inverse(arguments[0]["in1"]);
+            this.clrs = inverse(arguments[0]["clrs"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.wpos = inverse(arguments[0]["wpos"]);
+            this.wdim = inverse(arguments[0]["wdim"]);
+            this.ymin = inverse(arguments[0]["ymin"]);
+            this.ymax = inverse(arguments[0]["ymax"]);
+            this.per = inverse(arguments[0]["per"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.heritance = arguments[0]["heritance"];
+            this.nom = arguments[0]["nom"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17748,20 +17748,20 @@ function CSCOPE() {
         return options;
     }
     CSCOPE.prototype.set = function CSCOPE() {
-        this.clrs = inverse(arguments[0]["clrs"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.wpos = inverse(arguments[0]["wpos"])
-        this.wdim = inverse(arguments[0]["wdim"])
-        this.ymin = parseFloat(arguments[0]["ymin"])
-        this.ymax = parseFloat(arguments[0]["ymax"])
-        this.per = parseFloat(arguments[0]["per"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.heritance = arguments[0]["heritance"]
-        this.nom = arguments[0]["nom"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.clrs,this.win,this.wpos,this.wdim,this.ymin,this.ymax,this.per,this.N,this.heritance,this.nom,this.exprs] = scicos_getvalue("Set Scope parameters",["Color (>0) or mark (<0) vector (8 entries)","Output window number (-1 for automatic)","Output window position","Output window sizes","Ymin","Ymax","Refresh period","Buffer size","Accept herited events 0/1","Name of Scope (label&Id)"],list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"str",1),this.exprs);
+            var ok = true;
+            this.clrs = inverse(arguments[0]["clrs"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.wpos = inverse(arguments[0]["wpos"]);
+            this.wdim = inverse(arguments[0]["wdim"]);
+            this.ymin = parseFloat(arguments[0]["ymin"]);
+            this.ymax = parseFloat(arguments[0]["ymax"]);
+            this.per = parseFloat(arguments[0]["per"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.heritance = arguments[0]["heritance"];
+            this.nom = arguments[0]["nom"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17875,21 +17875,21 @@ function CSCOPXY() {
         return options;
     }
     CSCOPXY.prototype.set = function CSCOPXY() {
-        this.nbr_curves = parseFloat(arguments[0]["nbr_curves"])
-        this.clrs = parseFloat(arguments[0]["clrs"])
-        this.siz = parseFloat(arguments[0]["siz"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.wpos = inverse(arguments[0]["wpos"])
-        this.wdim = inverse(arguments[0]["wdim"])
-        this.xmin = parseFloat(arguments[0]["xmin"])
-        this.xmax = parseFloat(arguments[0]["xmax"])
-        this.ymin = parseFloat(arguments[0]["ymin"])
-        this.ymax = parseFloat(arguments[0]["ymax"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.xmin,this.xmax,this.ymin,this.ymax,this.N,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of Curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin","Xmax","Ymin","Ymax","Buffer size"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nbr_curves = parseFloat(arguments[0]["nbr_curves"]);
+            this.clrs = parseFloat(arguments[0]["clrs"]);
+            this.siz = parseFloat(arguments[0]["siz"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.wpos = inverse(arguments[0]["wpos"]);
+            this.wdim = inverse(arguments[0]["wdim"]);
+            this.xmin = parseFloat(arguments[0]["xmin"]);
+            this.xmax = parseFloat(arguments[0]["xmax"]);
+            this.ymin = parseFloat(arguments[0]["ymin"]);
+            this.ymax = parseFloat(arguments[0]["ymax"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18003,21 +18003,21 @@ function CSCOPXY3D() {
         return options;
     }
     CSCOPXY3D.prototype.set = function CSCOPXY3D() {
-        this.nbr_curves = parseFloat(arguments[0]["nbr_curves"])
-        this.clrs = inverse(arguments[0]["clrs"])
-        this.siz = inverse(arguments[0]["siz"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.wpos = inverse(arguments[0]["wpos"])
-        this.wdim = inverse(arguments[0]["wdim"])
-        this.vec_x = inverse(arguments[0]["vec_x"])
-        this.vec_y = inverse(arguments[0]["vec_y"])
-        this.vec_z = inverse(arguments[0]["vec_z"])
-        this.param3ds = inverse(arguments[0]["param3ds"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","Line or Mark Size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",2,"vec",2,"vec",2,"vec",2,"vec",1),this.exprs);
+            var ok = true;
+            this.nbr_curves = parseFloat(arguments[0]["nbr_curves"]);
+            this.clrs = inverse(arguments[0]["clrs"]);
+            this.siz = inverse(arguments[0]["siz"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.wpos = inverse(arguments[0]["wpos"]);
+            this.wdim = inverse(arguments[0]["wdim"]);
+            this.vec_x = inverse(arguments[0]["vec_x"]);
+            this.vec_y = inverse(arguments[0]["vec_y"]);
+            this.vec_z = inverse(arguments[0]["vec_z"]);
+            this.param3ds = inverse(arguments[0]["param3ds"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18125,14 +18125,14 @@ function OUTIMPL_f() {
         return options;
     }
     OUTIMPL_f.prototype.set = function OUTIMPL_f() {
-        this.prt = parseFloat(arguments[0]["prt"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[1-1];
         }
         while (true) {
-            [ok,this.prt,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","OUTIMPL_f")],[" "],["Implicit output port"]],"Port number",list("vec",1),this.exprs);
+            var ok = true;
+            this.prt = parseFloat(arguments[0]["prt"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -18181,14 +18181,14 @@ function OUT_f() {
         return options;
     }
     OUT_f.prototype.set = function OUT_f() {
-        this.prt = parseFloat(arguments[0]["prt"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[1-1];
         }
         while (true) {
-            [ok,this.prt,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","OUT_f")],[" "],["Regular output port"]],"Port number",list("vec",1),this.exprs);
+            var ok = true;
+            this.prt = parseFloat(arguments[0]["prt"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -18243,13 +18243,13 @@ function TOWS_c() {
         return options;
     }
     TOWS_c.prototype.set = function TOWS_c() {
-        this.nz = parseFloat(arguments[0]["nz"])
-        this.varnam = arguments[0]["varnam"]
-        this.herit = parseFloat(arguments[0]["herit"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nz,this.varnam,this.herit,this.exprs] = scicos_getvalue("Set Xcos buffer block",["Size of buffer","Scilab variable name","Inherit (no:0, yes:1)"],list("vec",1,"str",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nz = parseFloat(arguments[0]["nz"]);
+            this.varnam = arguments[0]["varnam"];
+            this.herit = parseFloat(arguments[0]["herit"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18346,11 +18346,6 @@ function WFILE_f() {
         return options;
     }
     WFILE_f.prototype.set = function WFILE_f() {
-        this.in1 = parseFloat(arguments[0]["in1"])
-        this.fname1 = parseFloat(arguments[0]["fname1"])
-        this.frmt1 = parseFloat(arguments[0]["frmt1"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.exprs = arguments[0]["exprs"]
         warnobsolete("WRITEC_f","6.0.0");
         var warnMessage = msprintf(_("Feature %s is obsolete."),"WFILE_f");
         var warnAdvise = msprintf(_("Please use %s instead."),"WRITEC_f");
@@ -18361,7 +18356,12 @@ function WFILE_f() {
         var fname = this.exprs[2-1];
         var frmt = this.exprs[3-1];
         while (true) {
-            [ok,this.in1,this.fname1,this.frmt1,this.N,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WFILE_f")],[" "],["Write to output file"],[" "],["Write is done on:"],["&nbsp; - A binary file if no format given"],["&nbsp; - A formatted text file if a  format (Fortran type) is given"]],["Input Size","Output File Name","Output Format","Buffer Size"],list("vec",1,"str",1,"str",1,"vec",1),this.exprs);
+            var ok = true;
+            this.in1 = parseFloat(arguments[0]["in1"]);
+            this.fname1 = parseFloat(arguments[0]["fname1"]);
+            this.frmt1 = parseFloat(arguments[0]["frmt1"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18449,15 +18449,15 @@ function WRITEAU_f() {
         return options;
     }
     WRITEAU_f.prototype.set = function WRITEAU_f() {
-        this.N = parseFloat(arguments[0]["N"])
-        this.swap = parseFloat(arguments[0]["swap"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var ipar = this.model.ipar;
         var dstate = this.model.dstate;
         var lunit = dstate[2-1];
         while (true) {
-            [ok,this.N,this.swap,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WRITEAU_f")],[" "],["Write \'.au\' sound file on audio device"]],["Buffer Size","Swap Mode (0:No, 1:Yes)"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.N = parseFloat(arguments[0]["N"]);
+            this.swap = parseFloat(arguments[0]["swap"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18529,12 +18529,6 @@ function WRITEC_f() {
         return options;
     }
     WRITEC_f.prototype.set = function WRITEC_f() {
-        this.in1 = parseFloat(arguments[0]["in1"])
-        this.fname1 = parseFloat(arguments[0]["fname1"])
-        this.frmt1 = arguments[0]["frmt1"]
-        this.N = parseFloat(arguments[0]["N"])
-        this.swap = parseFloat(arguments[0]["swap"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var ipar = this.model.ipar;
         var dstate = this.model.dstate;
@@ -18542,7 +18536,13 @@ function WRITEC_f() {
         var fname = this.exprs[2-1];
         var frmt = this.exprs[3-1];
         while (true) {
-            [ok,this.in1,this.fname1,this.frmt1,this.N,this.swap,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WRITEC_f")],[" "],["Write to C binary file"]],["Input Size","Output File Name","Output Format","Buffer Size","Swap Mode (0:No, 1:Yes)"],list("vec",1,"str",1,"str",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.in1 = parseFloat(arguments[0]["in1"]);
+            this.fname1 = parseFloat(arguments[0]["fname1"]);
+            this.frmt1 = arguments[0]["frmt1"];
+            this.N = parseFloat(arguments[0]["N"]);
+            this.swap = parseFloat(arguments[0]["swap"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18624,12 +18624,12 @@ function CLKINV_f() {
         return options;
     }
     CLKINV_f.prototype.set = function CLKINV_f() {
-        this.prt = parseFloat(arguments[0]["prt"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         this.exprs = this.exprs[1-1];
         while (true) {
-            [ok,this.prt,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CLKINV_f")],[" "],["Event input port"],[" "]],"Port Number",list("vec",1),this.exprs);
+            var ok = true;
+            this.prt = parseFloat(arguments[0]["prt"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             this.prt = int(this.prt);
             if (!ok) {
                 break;
@@ -18673,12 +18673,12 @@ function CLKIN_f() {
         return options;
     }
     CLKIN_f.prototype.set = function CLKIN_f() {
-        this.prt = parseFloat(arguments[0]["prt"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         this.exprs = this.exprs[1-1];
         while (true) {
-            [ok,this.prt,this.exprs] = scicos_getvalue("Set Event Input block parameters","Port number",list("vec",1),this.exprs);
+            var ok = true;
+            this.prt = parseFloat(arguments[0]["prt"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             this.prt = int(this.prt);
             if (!ok) {
                 break;
@@ -18753,9 +18753,6 @@ function CLOCK_c() {
         return options;
     }
     CLOCK_c.prototype.set = function CLOCK_c() {
-        this.dt = arguments[0]["dt"]
-        this.t0 = arguments[0]["t0"]
-        this.exprs0 = arguments[0]["exprs0"]
             if (typeof(o)=="Block"&&o.gui=="EVTDLY_c") {
                 var path = i;
                 break;
@@ -18768,7 +18765,10 @@ function CLOCK_c() {
         var dt_old = this.model.rpar[1-1];
         var model_n = this.model;
         while (true) {
-            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue([[msprintf("Set %s block parameters","CLOCK_c")],[" "],["Event clock generator"],[" "],["&nbsp; Do not start if \'Initialisation Time\' is negative"],[" "]],["Period","Initialisation Time"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.dt = arguments[0]["dt"];
+            this.t0 = arguments[0]["t0"];
+            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }
@@ -18852,9 +18852,6 @@ function CLOCK_f() {
         return options;
     }
     CLOCK_f.prototype.set = function CLOCK_f() {
-        this.dt = arguments[0]["dt"]
-        this.t0 = arguments[0]["t0"]
-        this.exprs0 = arguments[0]["exprs0"]
             if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
                 var path = i;
                 break;
@@ -18867,7 +18864,10 @@ function CLOCK_f() {
         var dt_old = this.model.rpar;
         var model_n = this.model;
         while (true) {
-            [ok,this.dt,this.t0,this.exprs0] = scicos_getvalue("Set Clock  block parameters",["Period","Init time"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.dt = arguments[0]["dt"];
+            this.t0 = arguments[0]["t0"];
+            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }
@@ -18921,11 +18921,11 @@ function CONST() {
         return options;
     }
     CONST.prototype.set = function CONST() {
-        this.C = parseFloat(arguments[0]["C"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.C,this.exprs] = scicos_getvalue(["Set Contant Block"],"Constant",list("vec",-1),this.exprs);
+            var ok = true;
+            this.C = parseFloat(arguments[0]["C"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18972,11 +18972,11 @@ function CONST_f() {
         return options;
     }
     CONST_f.prototype.set = function CONST_f() {
-        this.C = parseFloat(arguments[0]["C"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.C,this.exprs] = scicos_getvalue(["Set Contant Block"],"Constant",list("vec",-1),this.exprs);
+            var ok = true;
+            this.C = parseFloat(arguments[0]["C"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -19023,11 +19023,11 @@ function CONST_m() {
         return options;
     }
     CONST_m.prototype.set = function CONST_m() {
-        this.C = inverse(arguments[0]["C"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.C,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONST_m")],[" "],["Constant value generator"],[" "]],"Constant Value",list("vec",-1),this.exprs);
+            var ok = true;
+            this.C = inverse(arguments[0]["C"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -19114,18 +19114,18 @@ function CURVE_c() {
         return options;
     }
     CURVE_c.prototype.set = function CURVE_c() {
-        this.Method = parseFloat(arguments[0]["Method"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.yy = inverse(arguments[0]["yy"])
-        this.PeriodicOption = arguments[0]["PeriodicOption"]
-        this.graf = arguments[0]["graf"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
         while (true) {
             var Ask_again = false;
-            [ok,this.Method,this.xx,this.yy,this.PeriodicOption,this.graf,this.exprs] = scicos_getvalue("Spline data",["Spline Method (0..7)","x","y","Periodic signal(y/n)?","Launch graphic window(y/n)?"],list("vec",1,"vec",-1,"vec",-1,"str",1,"str",1),this.exprs);
+            var ok = true;
+            this.Method = parseFloat(arguments[0]["Method"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.yy = inverse(arguments[0]["yy"]);
+            this.PeriodicOption = arguments[0]["PeriodicOption"];
+            this.graf = arguments[0]["graf"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -19344,13 +19344,13 @@ function Counter() {
         return options;
     }
     Counter.prototype.set = function Counter() {
-        this.minim = parseFloat(arguments[0]["minim"])
-        this.maxim = parseFloat(arguments[0]["maxim"])
-        this.rule = parseFloat(arguments[0]["rule"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.minim,this.maxim,this.rule,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Counter")],[" "],["Integer counter generator"],[" "]],["Minimum","Maximum","Rule (1:Increment, 2:Decrement)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.minim = parseFloat(arguments[0]["minim"]);
+            this.maxim = parseFloat(arguments[0]["maxim"]);
+            this.rule = parseFloat(arguments[0]["rule"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -19495,14 +19495,14 @@ function FROMWS_c() {
         return options;
     }
     FROMWS_c.prototype.set = function FROMWS_c() {
-        this.varnam = arguments[0]["varnam"]
-        this.Method = parseFloat(arguments[0]["Method"])
-        this.ZC = parseFloat(arguments[0]["ZC"])
-        this.OutEnd = parseFloat(arguments[0]["OutEnd"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.varnam,this.Method,this.ZC,this.OutEnd,this.exprs] = scicos_getvalue("Set From_Workspace block parameters",["Variable name","Interpolation Method","Enable zero crossing(0:No, 1:Yes)?","Output at end(0:Zero, 1:Hold, 2:Repeat)"],list("str",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.varnam = arguments[0]["varnam"];
+            this.Method = parseFloat(arguments[0]["Method"]);
+            this.ZC = parseFloat(arguments[0]["ZC"]);
+            this.OutEnd = parseFloat(arguments[0]["OutEnd"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -19571,13 +19571,13 @@ function GENSIN_f() {
         return options;
     }
     GENSIN_f.prototype.set = function GENSIN_f() {
-        this.M = arguments[0]["M"]
-        this.F = arguments[0]["F"]
-        this.P = arguments[0]["P"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.M,this.F,this.P,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","GENSIN_f")],[" "],["Sine wave generator"],[" "]],["Magnitude","Frequency (rad/s)","Phase (rad)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.M = arguments[0]["M"];
+            this.F = arguments[0]["F"];
+            this.P = arguments[0]["P"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -19630,14 +19630,14 @@ function GENSQR_f() {
         return options;
     }
     GENSQR_f.prototype.set = function GENSQR_f() {
-        this.Amplitude = parseFloat(arguments[0]["Amplitude"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }
         while (true) {
-            [ok,this.Amplitude,this.exprs] = scicos_getvalue(["Set Square generator block parameters"],["Amplitude"],list("vec",1),this.exprs);
+            var ok = true;
+            this.Amplitude = parseFloat(arguments[0]["Amplitude"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -19713,11 +19713,6 @@ function GEN_SQR() {
         return options;
     }
     GEN_SQR.prototype.set = function GEN_SQR() {
-        scicos_context.Amin = arguments[0]["scicos_context.Amin"]
-        scicos_context.Amax = arguments[0]["scicos_context.Amax"]
-        scicos_context.rule = arguments[0]["scicos_context.rule"]
-        scicos_context.F = arguments[0]["scicos_context.F"]
-        this.exprs = arguments[0]["exprs"]
         var y = this.needcompile;
         var typ = list();
         this.exprs = this.graphics.exprs;
@@ -19728,7 +19723,12 @@ function GEN_SQR() {
         var scicos_context = struct();
         var ok = false;
         while (!ok) {
-            [ok,scicos_context.Amin,scicos_context.Amax,scicos_context.rule,scicos_context.F,this.exprs] = scicos_getvalue(Btitre,Bitems,Ss,this.exprs);
+            var ok = true;
+            scicos_context.Amin = arguments[0]["scicos_context.Amin"];
+            scicos_context.Amax = arguments[0]["scicos_context.Amax"];
+            scicos_context.rule = arguments[0]["scicos_context.rule"];
+            scicos_context.F = arguments[0]["scicos_context.F"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 return;
             }
@@ -19819,14 +19819,14 @@ function INIMPL_f() {
         return options;
     }
     INIMPL_f.prototype.set = function INIMPL_f() {
-        this.prt = parseFloat(arguments[0]["prt"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[1-1];
         }
         while (true) {
-            [ok,this.prt,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","INIMPL_f")],[" "],["Implicit input port"],[" "]],"Port Number",list("vec",1),this.exprs);
+            var ok = true;
+            this.prt = parseFloat(arguments[0]["prt"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -19946,12 +19946,12 @@ function Modulo_Count() {
         return options;
     }
     Modulo_Count.prototype.set = function Modulo_Count() {
-        this.ini_c = parseFloat(arguments[0]["ini_c"])
-        this.base = parseFloat(arguments[0]["base"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.ini_c,this.base,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","Modulo_Count")],[" "],["Modulo counter (0 to N counter)"],[" "]],["Initial State (zero or positive number)","Upper Limit (positive number)"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.ini_c = parseFloat(arguments[0]["ini_c"]);
+            this.base = parseFloat(arguments[0]["base"]);
+            this.exprs = arguments[0]["exprs"];
             this.ini_c = int(this.ini_c);
             this.base = int(this.base);
             if (!ok) {
@@ -20029,11 +20029,6 @@ function PULSE_SC() {
         return options;
     }
     PULSE_SC.prototype.set = function PULSE_SC() {
-        scicos_context.E = arguments[0]["scicos_context.E"]
-        scicos_context.W = arguments[0]["scicos_context.W"]
-        scicos_context.F = arguments[0]["scicos_context.F"]
-        scicos_context.A = arguments[0]["scicos_context.A"]
-        this.exprs = arguments[0]["exprs"]
         var y = this.needcompile;
         var typ = list();
         this.exprs = this.graphics.exprs;
@@ -20044,7 +20039,12 @@ function PULSE_SC() {
         var scicos_context = struct();
         var ok = false;
         while (!ok) {
-            [ok,scicos_context.E,scicos_context.W,scicos_context.F,scicos_context.A,this.exprs] = scicos_getvalue(Btitre,Bitems,Ss,this.exprs);
+            var ok = true;
+            scicos_context.E = arguments[0]["scicos_context.E"];
+            scicos_context.W = arguments[0]["scicos_context.W"];
+            scicos_context.F = arguments[0]["scicos_context.F"];
+            scicos_context.A = arguments[0]["scicos_context.A"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 return;
             }
@@ -20108,13 +20108,13 @@ function RAMP() {
         return options;
     }
     RAMP.prototype.set = function RAMP() {
-        this.slope = parseFloat(arguments[0]["slope"])
-        this.stt = parseFloat(arguments[0]["stt"])
-        this.iout = parseFloat(arguments[0]["iout"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.slope,this.stt,this.iout,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","RAMP")],[" "],["Ramp function"],[" "]],["Slope","Start Time","Initial Value"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.slope = parseFloat(arguments[0]["slope"]);
+            this.stt = parseFloat(arguments[0]["stt"]);
+            this.iout = parseFloat(arguments[0]["iout"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -20166,11 +20166,6 @@ function RAND_f() {
         return options;
     }
     RAND_f.prototype.set = function RAND_f() {
-        this.flag = parseFloat(arguments[0]["flag"])
-        this.a = parseFloat(arguments[0]["a"])
-        this.b = parseFloat(arguments[0]["b"])
-        this.seed_c = arguments[0]["seed_c"]
-        this.exprs = inverse(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==5) {
             this.exprs = this.exprs.slice(1-1,3);
@@ -20179,7 +20174,12 @@ function RAND_f() {
             this.exprs = [[this.exprs],[string(this.model.dstate[1-1])]];
         }
         while (true) {
-            [ok,this.flag,this.a,this.b,this.seed_c,this.exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be vector with equal sizes"],["seed is the seed of random number generator (integer<2**31)"]],["flag","A","B","seed"],list("vec",1,"vec",-1,"vec","size(%2,\'*\')","vec",1),this.exprs);
+            var ok = true;
+            this.flag = parseFloat(arguments[0]["flag"]);
+            this.a = parseFloat(arguments[0]["a"]);
+            this.b = parseFloat(arguments[0]["b"]);
+            this.seed_c = arguments[0]["seed_c"];
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -20245,18 +20245,18 @@ function RAND_m() {
         return options;
     }
     RAND_m.prototype.set = function RAND_m() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.flag = parseFloat(arguments[0]["flag"])
-        this.a = parseFloat(arguments[0]["a"])
-        this.b = parseFloat(arguments[0]["b"])
-        this.seed_c = arguments[0]["seed_c"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==14) {
             this.exprs[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.flag,this.a,this.b,this.seed_c,this.exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be matrix with equal sizes"]],["Datatype(1=real double  2=complex)","flag","A","B","SEED"],list("vec",1,"vec",1,"mat",[-1,-2],"mat","[-1 -2]","mat",[1,2]),this.exprs);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.flag = parseFloat(arguments[0]["flag"]);
+            this.a = parseFloat(arguments[0]["a"]);
+            this.b = parseFloat(arguments[0]["b"]);
+            this.seed_c = arguments[0]["seed_c"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -20336,10 +20336,6 @@ function READAU_f() {
         return options;
     }
     READAU_f.prototype.set = function READAU_f() {
-        this.fname1 = parseFloat(arguments[0]["fname1"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.swap = parseFloat(arguments[0]["swap"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var out = this.model.out;
         var dstate = this.model.dstate;
@@ -20349,7 +20345,11 @@ function READAU_f() {
         var lunit = dstate[3-1];
         var fname = this.exprs[1-1];
         while (true) {
-            [ok,this.fname1,this.N,this.swap,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","READAU_f")],[" "],["(Read Audio File)"],[" "],["Read is done on a binary \'.au\' file"]],["Input File Name","Buffer size","Swap Mode (0:No, 1:Yes)"],list("str",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.fname1 = parseFloat(arguments[0]["fname1"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.swap = parseFloat(arguments[0]["swap"]);
+            this.exprs = arguments[0]["exprs"];
             var tmask1 = [];
             var outmask = 1;
             var frmt1 = "uc";
@@ -20441,15 +20441,6 @@ function READC_f() {
         return options;
     }
     READC_f.prototype.set = function READC_f() {
-        this.tmask1 = parseFloat(arguments[0]["tmask1"])
-        this.outmask = parseFloat(arguments[0]["outmask"])
-        this.fname1 = parseFloat(arguments[0]["fname1"])
-        this.frmt1 = arguments[0]["frmt1"]
-        this.M = parseFloat(arguments[0]["M"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.offset = parseFloat(arguments[0]["offset"])
-        this.swap = parseFloat(arguments[0]["swap"])
-        this.exprs = arguments[0]["exprs"]
         this.model = this.x.model;
         this.exprs = this.graphics.exprs;
         var out = this.model.out;
@@ -20461,7 +20452,16 @@ function READC_f() {
         var fname = this.exprs[3-1];
         var frmt = this.exprs[4-1];
         while (true) {
-            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.M,this.N,this.offset,this.swap,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","READC_f")],[" "],["Read from C binary file"]],["Time Record Selection","Outputs Record Selection","Input File Name","Input Format","Record Size","Buffer Size","Initial Record Index","Swap Mode (0:No, 1:Yes)"],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.tmask1 = parseFloat(arguments[0]["tmask1"]);
+            this.outmask = parseFloat(arguments[0]["outmask"]);
+            this.fname1 = parseFloat(arguments[0]["fname1"]);
+            this.frmt1 = arguments[0]["frmt1"];
+            this.M = parseFloat(arguments[0]["M"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.offset = parseFloat(arguments[0]["offset"]);
+            this.swap = parseFloat(arguments[0]["swap"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -20575,12 +20575,6 @@ function RFILE_f() {
         return options;
     }
     RFILE_f.prototype.set = function RFILE_f() {
-        this.tmask1 = parseFloat(arguments[0]["tmask1"])
-        this.outmask = parseFloat(arguments[0]["outmask"])
-        this.fname1 = parseFloat(arguments[0]["fname1"])
-        this.frmt1 = parseFloat(arguments[0]["frmt1"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
         var ipar = this.model.ipar;
@@ -20595,7 +20589,13 @@ function RFILE_f() {
             this.exprs[6-1] = [];
         }
         while (true) {
-            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.N,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","RFILE_f")],[" "],["Read from an input file"],[" "],["Read is done on:"],["&nbsp; - A binary file if no format given"],["&nbsp; - A formatted text file if a  format (fortran type) is given"]],["Time Record Selection","Outputs Record Selection","Input File Name","Input Format","Buffer Size"],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1),this.exprs);
+            var ok = true;
+            this.tmask1 = parseFloat(arguments[0]["tmask1"]);
+            this.outmask = parseFloat(arguments[0]["outmask"]);
+            this.fname1 = parseFloat(arguments[0]["fname1"]);
+            this.frmt1 = parseFloat(arguments[0]["frmt1"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -20716,13 +20716,13 @@ function STEP() {
         return options;
     }
     STEP.prototype.set = function STEP() {
-        this.temps = arguments[0]["temps"]
-        this.in1 = arguments[0]["in1"]
-        this.fi = arguments[0]["fi"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.temps,this.in1,this.fi,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","STEP_FUNCTION")],[" "],["Step Function"],[" "]],["Step Time","Initial Value","Final Value"],list("vec",1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.temps = arguments[0]["temps"];
+            this.in1 = arguments[0]["in1"];
+            this.fi = arguments[0]["fi"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -20911,12 +20911,12 @@ function SampleCLK() {
         return options;
     }
     SampleCLK.prototype.set = function SampleCLK() {
-        this.frequ = arguments[0]["frequ"]
-        this.offset = arguments[0]["offset"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.frequ,this.offset,this.exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.frequ = arguments[0]["frequ"];
+            this.offset = arguments[0]["offset"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -21092,12 +21092,12 @@ function TKSCALE() {
         return options;
     }
     TKSCALE.prototype.set = function TKSCALE() {
-        this.a = parseFloat(arguments[0]["a"])
-        this.b = parseFloat(arguments[0]["b"])
-        this.f = parseFloat(arguments[0]["f"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
-        [ok,this.a,this.b,this.f,this.exprs] = scicos_getvalue("Set scale block parameters",["Min value","Max value","Normalization"],list("vec",1,"vec",1,"vec",1),this.exprs);
+        var ok = true;
+        this.a = parseFloat(arguments[0]["a"]);
+        this.b = parseFloat(arguments[0]["b"]);
+        this.f = parseFloat(arguments[0]["f"]);
+        this.exprs = arguments[0]["exprs"];
         if (ok) {
             this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.model.rpar = new ScilabDouble([this.a],[this.b],[this.f]);
@@ -21138,16 +21138,16 @@ function GENERAL_f() {
         return options;
     }
     GENERAL_f.prototype.set = function GENERAL_f() {
-        this.in1 = parseFloat(arguments[0]["in1"])
-        this.out = parseFloat(arguments[0]["out"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var rpar = this.model.rpar;
         this.in1 = this.model.in;
         this.out = this.model.evtout;
         var nin = sum(this.in1);
         var nout = sum(this.out);
-        [ok,this.in1,this.out,this.exprs] = scicos_getvalue("Set General Zero-Crossing parameters",["Input size","Number of event output"],list("vec",1,"vec",1),this.exprs);
+        var ok = true;
+        this.in1 = parseFloat(arguments[0]["in1"]);
+        this.out = parseFloat(arguments[0]["out"]);
+        this.exprs = arguments[0]["exprs"];
         if (ok) {
             var tmpvar0 = check_io(this.model,this.graphics,this.in1,[],[],ones(this.out,1));
             this.model = tmpvar0[0];
@@ -21264,11 +21264,11 @@ function ZCROSS_f() {
         return options;
     }
     ZCROSS_f.prototype.set = function ZCROSS_f() {
-        this.in1 = parseFloat(arguments[0]["in1"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.in1,this.exprs] = scicos_getvalue([["Set Zero-Crossing parameters"],["All surfaces must cross together"]],"Input size",list("vec",1),this.exprs);
+            var ok = true;
+            this.in1 = parseFloat(arguments[0]["in1"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

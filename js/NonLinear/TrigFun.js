@@ -21,13 +21,13 @@ function TrigFun() {
         return options;
     }
     TrigFun.prototype.set = function TrigFun() {
-        this.fun = arguments[0]["fun"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var PREVAR_FF = [["sin"],["cos"],["tan"],["asin"],["acos"],["atan"],["sinh"],["cosh"],["tanh"],["asinh"],["acosh"],["atanh"]];
         var PREVAR_GG = [["Choose among "+strcat(PREVAR_FF.slice(1-1,4),", ")],[strcat(PREVAR_FF.slice(5-1,$),", ")]];
         while (true) {
-            [ok,this.fun,this.exprs] = scicos_getvalue(PREVAR_GG,"Function",list("str",1),this.exprs);
+            var ok = true;
+            this.fun = arguments[0]["fun"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

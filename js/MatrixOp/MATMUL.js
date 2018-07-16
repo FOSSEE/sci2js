@@ -26,10 +26,6 @@ function MATMUL() {
         return options;
     }
     MATMUL.prototype.set = function MATMUL() {
-        this.dtype = arguments[0]["dtype"]
-        this.rule = parseFloat(arguments[0]["rule"])
-        this.np = parseFloat(arguments[0]["np"])
-        this.exprs = arguments[0]["exprs"]
         this.graphics = this.x.graphics;
         var label = this.graphics.exprs;
         this.model = this.x.model;
@@ -43,7 +39,11 @@ function MATMUL() {
             label[3-1] = sci2exp(1);
         }
         while (true) {
-            [ok,this.dtype,this.rule,this.np,this.exprs] = scicos_getvalue([["Set MATMUL parameter"],["For the Multipication rule:"],["    1= Matrix by Matrix"],["    2= Matrix by Matrix element wise "],["    3= Matrix by Scalar"],["In the third case the second input will be the scalar"]],["Datatype(1=real double 2=Complex 3=int32 ...)","Multiplication rule","Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",1,"vec",1),label);
+            var ok = true;
+            this.dtype = arguments[0]["dtype"];
+            this.rule = parseFloat(arguments[0]["rule"]);
+            this.np = parseFloat(arguments[0]["np"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

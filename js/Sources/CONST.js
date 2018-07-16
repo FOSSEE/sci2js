@@ -23,11 +23,11 @@ function CONST() {
         return options;
     }
     CONST.prototype.set = function CONST() {
-        this.C = parseFloat(arguments[0]["C"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.C,this.exprs] = scicos_getvalue(["Set Contant Block"],"Constant",list("vec",-1),this.exprs);
+            var ok = true;
+            this.C = parseFloat(arguments[0]["C"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

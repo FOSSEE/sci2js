@@ -31,16 +31,16 @@ function DLR_f() {
         return options;
     }
     DLR_f.prototype.set = function DLR_f() {
-        this.num = arguments[0]["num"]
-        this.den = arguments[0]["den"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var x0 = this.model.dstate;
         var ns = prod(size(x0));
         var PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.z = %z;
         while (true) {
-            [ok,this.num,this.den,this.exprs] = scicos_getvalue("Set discrete SISO transfer parameters",["Numerator (z)","Denominator (z)"],list("pol",1,"pol",1),this.exprs);
+            var ok = true;
+            this.num = arguments[0]["num"];
+            this.den = arguments[0]["den"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

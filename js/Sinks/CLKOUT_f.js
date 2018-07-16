@@ -22,12 +22,12 @@ function CLKOUT_f() {
         return options;
     }
     CLKOUT_f.prototype.set = function CLKOUT_f() {
-        this.prt = parseFloat(arguments[0]["prt"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         this.exprs = this.exprs[1-1];
         while (true) {
-            [ok,this.prt,this.exprs] = scicos_getvalue("Set Event Output block parameters","Port number",list("vec",1),this.exprs);
+            var ok = true;
+            this.prt = parseFloat(arguments[0]["prt"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

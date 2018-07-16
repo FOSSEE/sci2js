@@ -52,19 +52,19 @@ function Bache() {
         return options;
     }
     Bache.prototype.set = function Bache() {
-        this.Patm = parseFloat(arguments[0]["Patm"])
-        this.A = parseFloat(arguments[0]["A"])
-        this.ze1 = parseFloat(arguments[0]["ze1"])
-        this.ze2 = parseFloat(arguments[0]["ze2"])
-        this.zs1 = parseFloat(arguments[0]["zs1"])
-        this.zs2 = parseFloat(arguments[0]["zs2"])
-        this.z0 = parseFloat(arguments[0]["z0"])
-        this.T0 = parseFloat(arguments[0]["T0"])
-        this.p_rho = parseFloat(arguments[0]["p_rho"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Patm,this.A,this.ze1,this.ze2,this.zs1,this.zs2,this.z0,this.T0,this.p_rho,this.exprs] = scicos_getvalue("Parametres de la bache",["Pression dans le ciel de la bache : Patm (Pa)","Section de la bache : A (m2)","Altitude du piquage d entrée 1: ze1 (m)","Altitude du piquage d entrée 2: ze2 (m)","Altitude du piquage de sortie 1: zs1 (m)","Altitude du piquage de sortie 2: zs2 (m)","Altitude initiale du fluide : z0 (m)","Température initiale du fluide : T0 (K)","Si >0, masse volumique imposée du fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.Patm = parseFloat(arguments[0]["Patm"]);
+            this.A = parseFloat(arguments[0]["A"]);
+            this.ze1 = parseFloat(arguments[0]["ze1"]);
+            this.ze2 = parseFloat(arguments[0]["ze2"]);
+            this.zs1 = parseFloat(arguments[0]["zs1"]);
+            this.zs2 = parseFloat(arguments[0]["zs2"]);
+            this.z0 = parseFloat(arguments[0]["z0"]);
+            this.T0 = parseFloat(arguments[0]["T0"]);
+            this.p_rho = parseFloat(arguments[0]["p_rho"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

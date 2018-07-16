@@ -36,15 +36,15 @@ function ROOTCOEF() {
         return options;
     }
     ROOTCOEF.prototype.set = function ROOTCOEF() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.inp = arguments[0]["inp"]
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.inp,this.exprs] = scicos_getvalue("Set ROOTCOEF Block",["Datatype(1=real double  2=Complex)","input row size"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.inp = arguments[0]["inp"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

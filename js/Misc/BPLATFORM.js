@@ -37,18 +37,18 @@ function BPLATFORM() {
         return options;
     }
     BPLATFORM.prototype.set = function BPLATFORM() {
-        this.plen = parseFloat(arguments[0]["plen"])
-        this.csiz = parseFloat(arguments[0]["csiz"])
-        this.phi = parseFloat(arguments[0]["phi"])
-        this.xmin = parseFloat(arguments[0]["xmin"])
-        this.xmax = parseFloat(arguments[0]["xmax"])
-        this.ymin = parseFloat(arguments[0]["ymin"])
-        this.ymax = parseFloat(arguments[0]["ymax"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
         while (true) {
-            [ok,this.plen,this.csiz,this.phi,this.xmin,this.xmax,this.ymin,this.ymax,this.exprs] = scicos_getvalue("Set Scope parameters",["pendulum length","cart size (square side)","slope","Xmin","Xmax","Ymin","Ymax"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.plen = parseFloat(arguments[0]["plen"]);
+            this.csiz = parseFloat(arguments[0]["csiz"]);
+            this.phi = parseFloat(arguments[0]["phi"]);
+            this.xmin = parseFloat(arguments[0]["xmin"]);
+            this.xmax = parseFloat(arguments[0]["xmax"]);
+            this.ymin = parseFloat(arguments[0]["ymin"]);
+            this.ymax = parseFloat(arguments[0]["ymax"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

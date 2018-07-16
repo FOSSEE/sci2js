@@ -26,11 +26,11 @@ function ZCROSS_f() {
         return options;
     }
     ZCROSS_f.prototype.set = function ZCROSS_f() {
-        this.in1 = parseFloat(arguments[0]["in1"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.in1,this.exprs] = scicos_getvalue([["Set Zero-Crossing parameters"],["All surfaces must cross together"]],"Input size",list("vec",1),this.exprs);
+            var ok = true;
+            this.in1 = parseFloat(arguments[0]["in1"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

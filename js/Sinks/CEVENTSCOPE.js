@@ -34,16 +34,16 @@ function CEVENTSCOPE() {
         return options;
     }
     CEVENTSCOPE.prototype.set = function CEVENTSCOPE() {
-        this.nclock = parseFloat(arguments[0]["nclock"])
-        this.clrs = inverse(arguments[0]["clrs"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.wpos = inverse(arguments[0]["wpos"])
-        this.wdim = inverse(arguments[0]["wdim"])
-        this.per = parseFloat(arguments[0]["per"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nclock,this.clrs,this.win,this.wpos,this.wdim,this.per,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of event inputs","colors c (>0) or mark (<0)","Output window number (-1 for automatic)","Output window position","Output window sizes","Refresh period"],list("vec",1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.nclock = parseFloat(arguments[0]["nclock"]);
+            this.clrs = inverse(arguments[0]["clrs"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.wpos = inverse(arguments[0]["wpos"]);
+            this.wdim = inverse(arguments[0]["wdim"]);
+            this.per = parseFloat(arguments[0]["per"]);
+            this.exprs = arguments[0]["exprs"];
             this.nclock = int(this.nclock);
             this.clrs = int(this.clrs);
             this.win = int(this.win);

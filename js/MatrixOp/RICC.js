@@ -36,15 +36,15 @@ function RICC() {
         return options;
     }
     RICC.prototype.set = function RICC() {
-        this.tpe = arguments[0]["tpe"]
-        this.mod = arguments[0]["mod"]
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.tpe,this.mod,this.exprs] = scicos_getvalue("Set RICC Block",["Type (1=Cont  2=Disc)","Model(1=Schr  2=sign(cont) inv(disc))"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.tpe = arguments[0]["tpe"];
+            this.mod = arguments[0]["mod"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

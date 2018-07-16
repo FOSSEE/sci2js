@@ -26,11 +26,11 @@ function CONST_m() {
         return options;
     }
     CONST_m.prototype.set = function CONST_m() {
-        this.C = inverse(arguments[0]["C"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.C,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONST_m")],[" "],["Constant value generator"],[" "]],"Constant Value",list("vec",-1),this.exprs);
+            var ok = true;
+            this.C = inverse(arguments[0]["C"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

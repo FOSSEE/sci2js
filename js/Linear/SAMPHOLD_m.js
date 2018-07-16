@@ -27,12 +27,12 @@ function SAMPHOLD_m() {
         return options;
     }
     SAMPHOLD_m.prototype.set = function SAMPHOLD_m() {
-        this.it = arguments[0]["it"]
-        this.exprs = arguments[0]["exprs"]
         this.x.model.firing = [];
         var label = this.graphics.exprs;
         while (true) {
-            [ok,this.it,this.exprs] = scicos_getvalue("Set parameters Block",["Datatype(1=real double 2=Complex 3=int32 ...)"],list("vec",1),label);
+            var ok = true;
+            this.it = arguments[0]["it"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

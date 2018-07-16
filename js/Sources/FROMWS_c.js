@@ -34,14 +34,14 @@ function FROMWS_c() {
         return options;
     }
     FROMWS_c.prototype.set = function FROMWS_c() {
-        this.varnam = arguments[0]["varnam"]
-        this.Method = parseFloat(arguments[0]["Method"])
-        this.ZC = parseFloat(arguments[0]["ZC"])
-        this.OutEnd = parseFloat(arguments[0]["OutEnd"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.varnam,this.Method,this.ZC,this.OutEnd,this.exprs] = scicos_getvalue("Set From_Workspace block parameters",["Variable name","Interpolation Method","Enable zero crossing(0:No, 1:Yes)?","Output at end(0:Zero, 1:Hold, 2:Repeat)"],list("str",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.varnam = arguments[0]["varnam"];
+            this.Method = parseFloat(arguments[0]["Method"]);
+            this.ZC = parseFloat(arguments[0]["ZC"]);
+            this.OutEnd = parseFloat(arguments[0]["OutEnd"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

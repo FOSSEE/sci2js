@@ -32,15 +32,15 @@ function WRITEAU_f() {
         return options;
     }
     WRITEAU_f.prototype.set = function WRITEAU_f() {
-        this.N = parseFloat(arguments[0]["N"])
-        this.swap = parseFloat(arguments[0]["swap"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var ipar = this.model.ipar;
         var dstate = this.model.dstate;
         var lunit = dstate[2-1];
         while (true) {
-            [ok,this.N,this.swap,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","WRITEAU_f")],[" "],["Write \'.au\' sound file on audio device"]],["Buffer Size","Swap Mode (0:No, 1:Yes)"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.N = parseFloat(arguments[0]["N"]);
+            this.swap = parseFloat(arguments[0]["swap"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

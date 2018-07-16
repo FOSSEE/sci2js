@@ -29,16 +29,16 @@ function GENERAL_f() {
         return options;
     }
     GENERAL_f.prototype.set = function GENERAL_f() {
-        this.in1 = parseFloat(arguments[0]["in1"])
-        this.out = parseFloat(arguments[0]["out"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var rpar = this.model.rpar;
         this.in1 = this.model.in;
         this.out = this.model.evtout;
         var nin = sum(this.in1);
         var nout = sum(this.out);
-        [ok,this.in1,this.out,this.exprs] = scicos_getvalue("Set General Zero-Crossing parameters",["Input size","Number of event output"],list("vec",1,"vec",1),this.exprs);
+        var ok = true;
+        this.in1 = parseFloat(arguments[0]["in1"]);
+        this.out = parseFloat(arguments[0]["out"]);
+        this.exprs = arguments[0]["exprs"];
         if (ok) {
             var tmpvar0 = check_io(this.model,this.graphics,this.in1,[],[],ones(this.out,1));
             this.model = tmpvar0[0];

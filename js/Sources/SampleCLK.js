@@ -23,12 +23,12 @@ function SampleCLK() {
         return options;
     }
     SampleCLK.prototype.set = function SampleCLK() {
-        this.frequ = arguments[0]["frequ"]
-        this.offset = arguments[0]["offset"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.frequ,this.offset,this.exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.frequ = arguments[0]["frequ"];
+            this.offset = arguments[0]["offset"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

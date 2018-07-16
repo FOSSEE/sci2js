@@ -31,15 +31,15 @@ function GAINBLK() {
         return options;
     }
     GAINBLK.prototype.set = function GAINBLK() {
-        this.gain = parseFloat(arguments[0]["gain"])
-        this.over = arguments[0]["over"]
-        this.exprs = inverse(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==1) {
             this.exprs = [[this.exprs],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.gain,this.over,this.exprs] = scicos_getvalue("Set gain block parameters",["Gain","Do On Overflow(0=Nothing 1=Saturate 2=Error)"],list("mat",[-1,-1],"vec",1),this.exprs);
+            var ok = true;
+            this.gain = parseFloat(arguments[0]["gain"]);
+            this.over = arguments[0]["over"];
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

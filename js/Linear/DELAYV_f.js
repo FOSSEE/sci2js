@@ -33,17 +33,17 @@ function DELAYV_f() {
         return options;
     }
     DELAYV_f.prototype.set = function DELAYV_f() {
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.zz0 = inverse(arguments[0]["zz0"])
-        this.T = parseFloat(arguments[0]["T"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         this.nin = this.model.in[1-1];
         var z0 = this.model.dstate;
         this.zz0 = z0.slice(1-1,$-1);
         var told = z0[$-1];
         while (true) {
-            [ok,this.nin,this.zz0,this.T,this.exprs] = scicos_getvalue("Set delay parameters",["Number of inputs","Register initial condition","Max delay"],list("vec",1,"vec",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.zz0 = inverse(arguments[0]["zz0"]);
+            this.T = parseFloat(arguments[0]["T"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

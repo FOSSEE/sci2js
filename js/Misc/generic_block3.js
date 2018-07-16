@@ -45,32 +45,32 @@ function generic_block3() {
         return options;
     }
     generic_block3.prototype.set = function generic_block3() {
-        this.function_name = arguments[0]["function_name"]
-        this.funtyp = parseFloat(arguments[0]["funtyp"])
-        this.in1 = arguments[0]["in1"]
-        this.it = arguments[0]["it"]
-        this.out = arguments[0]["out"]
-        this.ot = arguments[0]["ot"]
-        this.ci = parseFloat(arguments[0]["ci"])
-        this.co = parseFloat(arguments[0]["co"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.z = inverse(arguments[0]["z"])
-        this.oz = arguments[0]["oz"]
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.ipar = parseFloat(arguments[0]["ipar"])
-        this.opar = arguments[0]["opar"]
-        this.nmode = arguments[0]["nmode"]
-        this.nzcr = arguments[0]["nzcr"]
-        this.auto0 = arguments[0]["auto0"]
-        this.depu = parseBoolean(arguments[0]["depu"])
-        this.dept = parseBoolean(arguments[0]["dept"])
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.function_name,this.funtyp,this.in1,this.it,this.out,this.ot,this.ci,this.co,this.xx,this.z,this.oz,this.rpar,this.ipar,this.opar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set GENERIC block parameters",["Simulation function","Function type (0,1,2,..)","Input ports sizes","Input ports type","Output port sizes","Output ports type","Input event ports sizes","Output events ports sizes","Initial continuous state","Initial discrete state","Initial object state","Real parameters vector","Integer parameters vector","Object parameters list","Number of modes","Number of zero crossings","Initial firing vector (<0 for no firing)","Direct feedthrough (y or n)","Time dependence (y or n)"],list("str",1,"vec",1,"mat",[-1,2],"vec",-1,"mat",[-1,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)","str",1,"str",1),label);
+            var ok = true;
+            this.function_name = arguments[0]["function_name"];
+            this.funtyp = parseFloat(arguments[0]["funtyp"]);
+            this.in1 = arguments[0]["in1"];
+            this.it = arguments[0]["it"];
+            this.out = arguments[0]["out"];
+            this.ot = arguments[0]["ot"];
+            this.ci = parseFloat(arguments[0]["ci"]);
+            this.co = parseFloat(arguments[0]["co"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.z = inverse(arguments[0]["z"]);
+            this.oz = arguments[0]["oz"];
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.ipar = parseFloat(arguments[0]["ipar"]);
+            this.opar = arguments[0]["opar"];
+            this.nmode = arguments[0]["nmode"];
+            this.nzcr = arguments[0]["nzcr"];
+            this.auto0 = arguments[0]["auto0"];
+            this.depu = parseBoolean(arguments[0]["depu"]);
+            this.dept = parseBoolean(arguments[0]["dept"]);
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }

@@ -38,14 +38,14 @@ function Diode() {
         return options;
     }
     Diode.prototype.set = function Diode() {
-        this.Ids = parseFloat(arguments[0]["Ids"])
-        this.Vt = parseFloat(arguments[0]["Vt"])
-        this.Maxexp = parseFloat(arguments[0]["Maxexp"])
-        this.R = parseFloat(arguments[0]["R"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Ids,this.Vt,this.Maxexp,this.R,this.exprs] = scicos_getvalue("Set Diode block parameter",["Saturation cuurent (A)","Voltage equivalent to temperature (Volt)","Max exponent for linear continuation","R (ohm)"],list("vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.Ids = parseFloat(arguments[0]["Ids"]);
+            this.Vt = parseFloat(arguments[0]["Vt"]);
+            this.Maxexp = parseFloat(arguments[0]["Maxexp"]);
+            this.R = parseFloat(arguments[0]["R"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -35,18 +35,18 @@ function CLSS_f() {
         return options;
     }
     CLSS_f.prototype.set = function CLSS_f() {
-        this.A = parseFloat(arguments[0]["A"])
-        this.B = parseFloat(arguments[0]["B"])
-        this.C = parseFloat(arguments[0]["C"])
-        this.D = parseFloat(arguments[0]["D"])
-        this.x0 = parseFloat(arguments[0]["x0"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==7) {
             this.exprs = this.exprs[[1:4,7]-1];
         }
         while (true) {
-            [ok,this.A,this.B,this.C,this.D,this.x0,this.exprs] = scicos_getvalue("Set continuous linear system parameters",["A matrix","B matrix","C matrix","D matrix","Initial state"],list("mat",[-1,-1],"mat",["size(%1,2)","-1"],"mat",["-1","size(%1,2)"],"mat",[-1,-1],"vec","size(%1,2)"),this.exprs);
+            var ok = true;
+            this.A = parseFloat(arguments[0]["A"]);
+            this.B = parseFloat(arguments[0]["B"]);
+            this.C = parseFloat(arguments[0]["C"]);
+            this.D = parseFloat(arguments[0]["D"]);
+            this.x0 = parseFloat(arguments[0]["x0"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

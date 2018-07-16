@@ -32,13 +32,13 @@ function SHIFT() {
         return options;
     }
     SHIFT.prototype.set = function SHIFT() {
-        this.Datatype = arguments[0]["Datatype"]
-        this.nb = arguments[0]["nb"]
-        this.np = arguments[0]["np"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Datatype,this.nb,this.np,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","SHIFT")],[" "],["Shift/Rotates bits"]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Number of Bits to Shift Left (Negative number to shift right)","Shift Type (0:Arithmetic, 1:Circular)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.Datatype = arguments[0]["Datatype"];
+            this.nb = arguments[0]["nb"];
+            this.np = arguments[0]["np"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

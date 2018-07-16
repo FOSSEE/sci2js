@@ -24,11 +24,11 @@ function REGISTER_f() {
         return options;
     }
     REGISTER_f.prototype.set = function REGISTER_f() {
-        this.z0 = parseFloat(arguments[0]["z0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.z0,this.exprs] = scicos_getvalue("Set delay parameters","Register initial condition",list("vec",-1),this.exprs);
+            var ok = true;
+            this.z0 = parseFloat(arguments[0]["z0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

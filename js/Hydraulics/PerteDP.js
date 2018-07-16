@@ -44,16 +44,16 @@ function PerteDP() {
         return options;
     }
     PerteDP.prototype.set = function PerteDP() {
-        this.L = parseFloat(arguments[0]["L"])
-        this.D = parseFloat(arguments[0]["D"])
-        this.lambda = parseFloat(arguments[0]["lambda"])
-        this.z1 = parseFloat(arguments[0]["z1"])
-        this.z2 = parseFloat(arguments[0]["z2"])
-        this.p_rho = parseFloat(arguments[0]["p_rho"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.L,this.D,this.lambda,this.z1,this.z2,this.p_rho,this.exprs] = scicos_getvalue("Parametres du tuyau",["Longueur du tube : L (m)","Diamètre interne du tube : D (m)","Coefficient de perte de charge-frottement(S.U) : lambda","Altitude entrée tuyauterie : z1 (m)","Altitude sortie tuyauterie : z2 (m)","Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.L = parseFloat(arguments[0]["L"]);
+            this.D = parseFloat(arguments[0]["D"]);
+            this.lambda = parseFloat(arguments[0]["lambda"]);
+            this.z1 = parseFloat(arguments[0]["z1"]);
+            this.z2 = parseFloat(arguments[0]["z2"]);
+            this.p_rho = parseFloat(arguments[0]["p_rho"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

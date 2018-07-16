@@ -33,11 +33,6 @@ function RAND_f() {
         return options;
     }
     RAND_f.prototype.set = function RAND_f() {
-        this.flag = parseFloat(arguments[0]["flag"])
-        this.a = parseFloat(arguments[0]["a"])
-        this.b = parseFloat(arguments[0]["b"])
-        this.seed_c = arguments[0]["seed_c"]
-        this.exprs = inverse(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==5) {
             this.exprs = this.exprs.slice(1-1,3);
@@ -46,7 +41,12 @@ function RAND_f() {
             this.exprs = [[this.exprs],[string(this.model.dstate[1-1])]];
         }
         while (true) {
-            [ok,this.flag,this.a,this.b,this.seed_c,this.exprs] = scicos_getvalue([["Set Random generator block parameters"],["flag = 0 : Uniform distribution A is min and A+B max"],["flag = 1 : Normal distribution A is mean and B deviation"],[" "],["A and B must be vector with equal sizes"],["seed is the seed of random number generator (integer<2**31)"]],["flag","A","B","seed"],list("vec",1,"vec",-1,"vec","size(%2,\'*\')","vec",1),this.exprs);
+            var ok = true;
+            this.flag = parseFloat(arguments[0]["flag"]);
+            this.a = parseFloat(arguments[0]["a"]);
+            this.b = parseFloat(arguments[0]["b"]);
+            this.seed_c = arguments[0]["seed_c"];
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

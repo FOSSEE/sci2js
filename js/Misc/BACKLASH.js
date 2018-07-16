@@ -26,14 +26,14 @@ function BACKLASH() {
         return options;
     }
     BACKLASH.prototype.set = function BACKLASH() {
-        this.ini = arguments[0]["ini"]
-        this.gap = arguments[0]["gap"]
-        this.zcr = arguments[0]["zcr"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var rpar = this.model.rpar;
         while (true) {
-            [ok,this.ini,this.gap,this.zcr,this.exprs] = scicos_getvalue("Set backlash parameters",["initial output","gap","use zero-crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.ini = arguments[0]["ini"];
+            this.gap = arguments[0]["gap"];
+            this.zcr = arguments[0]["zcr"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

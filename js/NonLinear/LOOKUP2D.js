@@ -35,18 +35,18 @@ function LOOKUP2D() {
         return options;
     }
     LOOKUP2D.prototype.set = function LOOKUP2D() {
-        this.xx = inverse(arguments[0]["xx"])
-        this.yy = inverse(arguments[0]["yy"])
-        this.zz = inverse(arguments[0]["zz"])
-        this.Method = parseFloat(arguments[0]["Method"])
-        this.graf = arguments[0]["graf"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
         while (true) {
             var Ask_again = false;
-            [ok,this.xx,this.yy,this.zz,this.Method,this.graf,this.exprs] = scicos_getvalue("2D Lookup table parameters",["Row index input values","Column index input values","Table data","Lookup method(1..5)","Launch graphic window(y/n)?"],list("vec",-1,"vec",-1,"mat",[-1,-1],"vec",1,"str",1),this.exprs);
+            var ok = true;
+            this.xx = inverse(arguments[0]["xx"]);
+            this.yy = inverse(arguments[0]["yy"]);
+            this.zz = inverse(arguments[0]["zz"]);
+            this.Method = parseFloat(arguments[0]["Method"]);
+            this.graf = arguments[0]["graf"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -28,13 +28,13 @@ function M_SWITCH() {
         return options;
     }
     M_SWITCH.prototype.set = function M_SWITCH() {
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.base = parseFloat(arguments[0]["base"])
-        this.rule = arguments[0]["rule"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nin,this.base,this.rule,this.exprs] = scicos_getvalue("Set parameters",["number of inputs","zero base indexing (0), otherwise 1","rounding rule: int (0), round (1), ceil (2), floor (3)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.base = parseFloat(arguments[0]["base"]);
+            this.rule = arguments[0]["rule"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

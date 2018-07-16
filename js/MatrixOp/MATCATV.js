@@ -36,14 +36,14 @@ function MATCATV() {
         return options;
     }
     MATCATV.prototype.set = function MATCATV() {
-        this.nin = arguments[0]["nin"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")>1) {
             var label = "size(evstr("+label[2-1]+"),\'*\')";
         }
         while (true) {
-            [ok,this.nin,this.lab] = scicos_getvalue("Set MATCATV block parameters",["Number od inputs"],list("vec",1),label);
+            var ok = true;
+            this.nin = arguments[0]["nin"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }

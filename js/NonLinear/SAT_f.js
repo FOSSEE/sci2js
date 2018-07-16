@@ -30,13 +30,13 @@ function SAT_f() {
         return options;
     }
     SAT_f.prototype.set = function SAT_f() {
-        this.minp = parseFloat(arguments[0]["minp"])
-        this.maxp = parseFloat(arguments[0]["maxp"])
-        this.pente = arguments[0]["pente"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.minp,this.maxp,this.pente,this.exprs] = scicos_getvalue("Set Saturation parameters",["Min","Max","Slope"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.minp = parseFloat(arguments[0]["minp"]);
+            this.maxp = parseFloat(arguments[0]["maxp"]);
+            this.pente = arguments[0]["pente"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

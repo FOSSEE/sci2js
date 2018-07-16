@@ -24,11 +24,11 @@ function EVTVARDLY() {
         return options;
     }
     EVTVARDLY.prototype.set = function EVTVARDLY() {
-        this.fir = arguments[0]["fir"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.fir,this.exprs] = scicos_getvalue("Set parameter of variable event delay","Initial event firing time (<0 if absent)",list("vec",1),this.exprs);
+            var ok = true;
+            this.fir = arguments[0]["fir"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

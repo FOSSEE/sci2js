@@ -25,11 +25,11 @@ function SQRT() {
         return options;
     }
     SQRT.prototype.set = function SQRT() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         while (true) {
-            [ok,this.typ,this.exprs] = scicos_getvalue("Set SQRT Block",["Datatype(1=real double  2=Complex)"],list("vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

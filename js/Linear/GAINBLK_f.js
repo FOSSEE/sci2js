@@ -26,11 +26,11 @@ function GAINBLK_f() {
         return options;
     }
     GAINBLK_f.prototype.set = function GAINBLK_f() {
-        this.gain = parseFloat(arguments[0]["gain"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.gain,this.exprs] = scicos_getvalue("Set gain block parameters",["Gain"],list("mat",[-1,-1]),this.exprs[1-1]);
+            var ok = true;
+            this.gain = parseFloat(arguments[0]["gain"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

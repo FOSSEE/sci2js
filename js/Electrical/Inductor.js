@@ -31,11 +31,11 @@ function Inductor() {
         return options;
     }
     Inductor.prototype.set = function Inductor() {
-        this.L = parseFloat(arguments[0]["L"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.L,this.exprs] = scicos_getvalue("Set Inductor block parameter","L (H)",list("vec",1),this.exprs);
+            var ok = true;
+            this.L = parseFloat(arguments[0]["L"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

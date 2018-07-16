@@ -39,12 +39,6 @@ function RFILE_f() {
         return options;
     }
     RFILE_f.prototype.set = function RFILE_f() {
-        this.tmask1 = parseFloat(arguments[0]["tmask1"])
-        this.outmask = parseFloat(arguments[0]["outmask"])
-        this.fname1 = parseFloat(arguments[0]["fname1"])
-        this.frmt1 = parseFloat(arguments[0]["frmt1"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
         var ipar = this.model.ipar;
@@ -59,7 +53,13 @@ function RFILE_f() {
             this.exprs[6-1] = [];
         }
         while (true) {
-            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.N,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","RFILE_f")],[" "],["Read from an input file"],[" "],["Read is done on:"],["&nbsp; - A binary file if no format given"],["&nbsp; - A formatted text file if a  format (fortran type) is given"]],["Time Record Selection","Outputs Record Selection","Input File Name","Input Format","Buffer Size"],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1),this.exprs);
+            var ok = true;
+            this.tmask1 = parseFloat(arguments[0]["tmask1"]);
+            this.outmask = parseFloat(arguments[0]["outmask"]);
+            this.fname1 = parseFloat(arguments[0]["fname1"]);
+            this.frmt1 = parseFloat(arguments[0]["frmt1"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

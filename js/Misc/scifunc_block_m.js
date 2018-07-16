@@ -52,20 +52,20 @@ function scifunc_block_m() {
         return options;
     }
     scifunc_block_m.prototype.set = function scifunc_block_m() {
-        this.i = arguments[0]["i"]
-        this.o = arguments[0]["o"]
-        this.ci = parseFloat(arguments[0]["ci"])
-        this.co = parseFloat(arguments[0]["co"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.z = inverse(arguments[0]["z"])
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.auto0 = arguments[0]["auto0"]
-        this.deptime = arguments[0]["deptime"]
-        this.lab = arguments[0]["lab"]
         var needcompile = 0;
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.auto0,this.deptime,this.lab] = scicos_getvalue([["Set scifunc_block parameters"],["only regular blocks supported"]],["input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","System parameters vector","initial firing vector (<0 for no firing)","is block always active (0:no, 1:yes)"],list("mat",[-1,2],"mat",[-2,2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),this.exprs[1-1]);
+            var ok = true;
+            this.i = arguments[0]["i"];
+            this.o = arguments[0]["o"];
+            this.ci = parseFloat(arguments[0]["ci"]);
+            this.co = parseFloat(arguments[0]["co"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.z = inverse(arguments[0]["z"]);
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.auto0 = arguments[0]["auto0"];
+            this.deptime = arguments[0]["deptime"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }

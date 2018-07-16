@@ -75,28 +75,28 @@ function PNP() {
         return options;
     }
     PNP.prototype.set = function PNP() {
-        this.Bf = arguments[0]["Bf"]
-        this.Br = arguments[0]["Br"]
-        this.Is = arguments[0]["Is"]
-        this.Vak = arguments[0]["Vak"]
-        this.Tauf = arguments[0]["Tauf"]
-        this.Taur = arguments[0]["Taur"]
-        this.Ccs = arguments[0]["Ccs"]
-        this.Cje = arguments[0]["Cje"]
-        this.Cjc = arguments[0]["Cjc"]
-        this.Phie = arguments[0]["Phie"]
-        this.Me = arguments[0]["Me"]
-        this.Phic = arguments[0]["Phic"]
-        this.Mc = arguments[0]["Mc"]
-        this.Gbc = arguments[0]["Gbc"]
-        this.Gbe = arguments[0]["Gbe"]
-        this.Vt = arguments[0]["Vt"]
-        this.EMinMax = arguments[0]["EMinMax"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         this.exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,this.Bf,this.Br,this.Is,this.Vak,this.Tauf,this.Taur,this.Ccs,this.Cje,this.Cjc,this.Phie,this.Me,this.Phic,this.Mc,this.Gbc,this.Gbe,this.Vt,this.EMinMax,this.exprs] = scicos_getvalue([["Set PNP block parameters:"],[""]],["Bf  : Forward beta","Br  : Reverse beta","Is  : Transport saturation current","Vak : Early voltage (inverse), 1/Volt","Tauf: Ideal forward transit time","Taur: Ideal reverse transit time","Ccs : Collector-substrat(ground) cap.","Cje : Base-emitter zero bias depletion cap.","Cjc : Base-coll. zero bias depletion cap.","Phie: Base-emitter diffusion voltage","Me  : Base-emitter gradation exponent","Phic: Base-collector diffusion voltage","Mc  : Base-collector gradation exponent","Gbc : Base-collector conductance","Gbe : Base-emitter conductance","Vt  : Voltage equivalent of temperature","EMinMax: if x > EMinMax, the exp(x) function is linearized"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.Bf = arguments[0]["Bf"];
+            this.Br = arguments[0]["Br"];
+            this.Is = arguments[0]["Is"];
+            this.Vak = arguments[0]["Vak"];
+            this.Tauf = arguments[0]["Tauf"];
+            this.Taur = arguments[0]["Taur"];
+            this.Ccs = arguments[0]["Ccs"];
+            this.Cje = arguments[0]["Cje"];
+            this.Cjc = arguments[0]["Cjc"];
+            this.Phie = arguments[0]["Phie"];
+            this.Me = arguments[0]["Me"];
+            this.Phic = arguments[0]["Phic"];
+            this.Mc = arguments[0]["Mc"];
+            this.Gbc = arguments[0]["Gbc"];
+            this.Gbe = arguments[0]["Gbe"];
+            this.Vt = arguments[0]["Vt"];
+            this.EMinMax = arguments[0]["EMinMax"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

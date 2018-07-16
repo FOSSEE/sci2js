@@ -29,13 +29,13 @@ function INTRP2BLK_f() {
         return options;
     }
     INTRP2BLK_f.prototype.set = function INTRP2BLK_f() {
-        this.a = inverse(arguments[0]["a"])
-        this.b = inverse(arguments[0]["b"])
-        this.c = inverse(arguments[0]["c"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.a,this.b,this.c,this.exprs] = scicos_getvalue("Set Interpolation block parameters",["X coord.","Y coord.","Z values"],list("vec",-1,"vec",-1,"mat",[-1,-1]),this.exprs);
+            var ok = true;
+            this.a = inverse(arguments[0]["a"]);
+            this.b = inverse(arguments[0]["b"]);
+            this.c = inverse(arguments[0]["c"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

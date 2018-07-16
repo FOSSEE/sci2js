@@ -29,17 +29,17 @@ function LOGICAL_OP() {
         return options;
     }
     LOGICAL_OP.prototype.set = function LOGICAL_OP() {
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.rule = parseFloat(arguments[0]["rule"])
-        this.Datatype = arguments[0]["Datatype"]
-        this.tp = parseFloat(arguments[0]["tp"])
-        this.exprs = inverse(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,1)==2) {
             this.exprs = [[this.exprs],[sci2exp(1)],[sci2exp(0)]];
         }
         while (true) {
-            [ok,this.nin,this.rule,this.Datatype,this.tp,this.exprs] = scicos_getvalue("Set parameters",["number of inputs","Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)","Datatype (1=double 3=int32 ...)","Bitwise Rule(0=No 1=yes)"],list("vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.rule = parseFloat(arguments[0]["rule"]);
+            this.Datatype = arguments[0]["Datatype"];
+            this.tp = parseFloat(arguments[0]["tp"]);
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

@@ -24,11 +24,11 @@ function EXTRACTOR() {
         return options;
     }
     EXTRACTOR.prototype.set = function EXTRACTOR() {
-        this.ind = parseFloat(arguments[0]["ind"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.ind,this.exprs] = scicos_getvalue("Set block parameters",["indices to extract"],list("vec",-1),this.exprs);
+            var ok = true;
+            this.ind = parseFloat(arguments[0]["ind"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

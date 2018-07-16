@@ -29,11 +29,11 @@ function MFCLCK_f() {
         return options;
     }
     MFCLCK_f.prototype.set = function MFCLCK_f() {
-        this.dt = parseFloat(arguments[0]["dt"])
-        this.nn = parseFloat(arguments[0]["nn"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
-        [ok,this.dt,this.nn,this.exprs] = scicos_getvalue("Set Multifrequency clock parameters",["basic period (1/f)","multiply by (n)"],list("vec",1,"vec",1),this.exprs);
+        var ok = true;
+        this.dt = parseFloat(arguments[0]["dt"]);
+        this.nn = parseFloat(arguments[0]["nn"]);
+        this.exprs = arguments[0]["exprs"];
         if (ok) {
             this.model.ipar = new ScilabDouble([this.nn]);
             this.model.rpar = new ScilabDouble([this.dt]);

@@ -28,12 +28,12 @@ function ISELECT_f() {
         return options;
     }
     ISELECT_f.prototype.set = function ISELECT_f() {
-        this.nout = parseFloat(arguments[0]["nout"])
-        this.z0 = parseFloat(arguments[0]["z0"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nout,this.z0,this.exprs] = scicos_getvalue("Set parameters",["number of outputs","initial connected output"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nout = parseFloat(arguments[0]["nout"]);
+            this.z0 = parseFloat(arguments[0]["z0"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

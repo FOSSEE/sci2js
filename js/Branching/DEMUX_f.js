@@ -25,11 +25,11 @@ function DEMUX_f() {
         return options;
     }
     DEMUX_f.prototype.set = function DEMUX_f() {
-        this.out = parseFloat(arguments[0]["out"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.out,this.exprs] = scicos_getvalue("Set DEMUX block parameters",["number of output ports or vector of sizes"],list("vec",-1),this.exprs);
+            var ok = true;
+            this.out = parseFloat(arguments[0]["out"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

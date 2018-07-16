@@ -32,13 +32,13 @@ function SWITCH2() {
         return options;
     }
     SWITCH2.prototype.set = function SWITCH2() {
-        this.rule = parseFloat(arguments[0]["rule"])
-        this.thra = arguments[0]["thra"]
-        this.nzz = parseFloat(arguments[0]["nzz"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.rule,this.thra,this.nzz,this.exprs] = scicos_getvalue("Set parameters",["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.rule = parseFloat(arguments[0]["rule"]);
+            this.thra = arguments[0]["thra"];
+            this.nzz = parseFloat(arguments[0]["nzz"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

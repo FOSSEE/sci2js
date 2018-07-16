@@ -34,12 +34,12 @@ function Capacitor() {
         return options;
     }
     Capacitor.prototype.set = function Capacitor() {
-        this.C = parseFloat(arguments[0]["C"])
-        this.v = parseFloat(arguments[0]["v"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.C,this.v,this.exprs] = scicos_getvalue("Set Capacitor block parameter",["C (F)","Initial Voltage"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.C = parseFloat(arguments[0]["C"]);
+            this.v = parseFloat(arguments[0]["v"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

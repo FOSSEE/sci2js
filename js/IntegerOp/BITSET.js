@@ -28,12 +28,12 @@ function BITSET() {
         return options;
     }
     BITSET.prototype.set = function BITSET() {
-        this.Datatype = arguments[0]["Datatype"]
-        this.bit = parseFloat(arguments[0]["bit"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Datatype,this.bit,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","BITSET")],[" "],["Set a bit"],[" "]],[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),"Index of Bit (0 is least significant)"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.Datatype = arguments[0]["Datatype"];
+            this.bit = parseFloat(arguments[0]["bit"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

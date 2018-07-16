@@ -24,15 +24,15 @@ function MATTRAN() {
         return options;
     }
     MATTRAN.prototype.set = function MATTRAN() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.rule = arguments[0]["rule"]
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==1) {
             label[2-1] = sci2exp(1);
         }
         while (true) {
-            [ok,this.typ,this.rule,this.exprs] = scicos_getvalue("Set MATTRAN Block",["Datatype(1=real double 2=Complex)","rule (1=.\' 2=\')"],list("vec",1,"vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.rule = arguments[0]["rule"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

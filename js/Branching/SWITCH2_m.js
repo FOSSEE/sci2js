@@ -36,14 +36,14 @@ function SWITCH2_m() {
         return options;
     }
     SWITCH2_m.prototype.set = function SWITCH2_m() {
-        this.ot = arguments[0]["ot"]
-        this.rule = parseFloat(arguments[0]["rule"])
-        this.thra = arguments[0]["thra"]
-        this.nzz = parseFloat(arguments[0]["nzz"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.ot,this.rule,this.thra,this.nzz,this.exprs] = scicos_getvalue("Set parameters",["Datatype (1=real double  2=complex 3=int32 ...)","pass first input if: u2>=a (0), u2>a (1), u2~=a (2)","threshold a","use zero crossing: yes (1), no (0)"],list("vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.ot = arguments[0]["ot"];
+            this.rule = parseFloat(arguments[0]["rule"]);
+            this.thra = arguments[0]["thra"];
+            this.nzz = parseFloat(arguments[0]["nzz"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

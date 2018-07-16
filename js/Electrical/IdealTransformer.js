@@ -59,12 +59,12 @@ function IdealTransformer() {
         return options;
     }
     IdealTransformer.prototype.set = function IdealTransformer() {
-        this.N = arguments[0]["N"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         this.exprs = this.x.graphics.exprs;
         while (true) {
-            [ok,this.N,this.exprs] = scicos_getvalue([["Set Transformer block parameters:"],[""],["N:"+" Turn ratio (N1/N2)"]],["N"],list("vec",1),this.exprs);
+            var ok = true;
+            this.N = arguments[0]["N"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -27,17 +27,17 @@ function TEXT_f() {
         return options;
     }
     TEXT_f.prototype.set = function TEXT_f() {
-        this.txt = arguments[0]["txt"]
-        this.font = parseFloat(arguments[0]["font"])
-        this.siz = parseFloat(arguments[0]["siz"])
-        this.exprs = inverse(arguments[0]["exprs"])
         var orig = this.graphics.orig;
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==1) {
             this.exprs = [[this.exprs],["3"],["1"]];
         }
         while (true) {
-            [ok,this.txt,this.font,this.siz,this.exprs] = scicos_getvalue("Set Text block parameters",["Text","Font number","Font size"],list("str",-1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.txt = arguments[0]["txt"];
+            this.font = parseFloat(arguments[0]["font"]);
+            this.siz = parseFloat(arguments[0]["siz"]);
+            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

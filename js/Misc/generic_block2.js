@@ -45,28 +45,28 @@ function generic_block2() {
         return options;
     }
     generic_block2.prototype.set = function generic_block2() {
-        this.function_name = arguments[0]["function_name"]
-        this.funtyp = parseFloat(arguments[0]["funtyp"])
-        this.i = parseFloat(arguments[0]["i"])
-        this.o = parseFloat(arguments[0]["o"])
-        this.ci = parseFloat(arguments[0]["ci"])
-        this.co = parseFloat(arguments[0]["co"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.z = inverse(arguments[0]["z"])
-        this.rpar = inverse(arguments[0]["rpar"])
-        this.ipar = parseFloat(arguments[0]["ipar"])
-        this.nmode = arguments[0]["nmode"]
-        this.nzcr = arguments[0]["nzcr"]
-        this.auto0 = arguments[0]["auto0"]
-        this.depu = parseBoolean(arguments[0]["depu"])
-        this.dept = parseBoolean(arguments[0]["dept"])
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.function_name,this.funtyp,this.i,this.o,this.ci,this.co,this.xx,this.z,this.rpar,this.ipar,this.nmode,this.nzcr,this.auto0,this.depu,this.dept,this.lab] = scicos_getvalue("Set GENERIC block parameters",["simulation function","function type (0,1,2,..)","input ports sizes","output port sizes","input event ports sizes","output events ports sizes","initial continuous state","initial discrete state","Real parameters vector","Integer parameters vector","number of modes","number of zero_crossings","initial firing vector (<0 for no firing)","direct feedthrough (y or n)","time dependence (y or n)"],list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec","sum(%6)","str",1,"str",1),label);
+            var ok = true;
+            this.function_name = arguments[0]["function_name"];
+            this.funtyp = parseFloat(arguments[0]["funtyp"]);
+            this.i = parseFloat(arguments[0]["i"]);
+            this.o = parseFloat(arguments[0]["o"]);
+            this.ci = parseFloat(arguments[0]["ci"]);
+            this.co = parseFloat(arguments[0]["co"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.z = inverse(arguments[0]["z"]);
+            this.rpar = inverse(arguments[0]["rpar"]);
+            this.ipar = parseFloat(arguments[0]["ipar"]);
+            this.nmode = arguments[0]["nmode"];
+            this.nzcr = arguments[0]["nzcr"];
+            this.auto0 = arguments[0]["auto0"];
+            this.depu = parseBoolean(arguments[0]["depu"]);
+            this.dept = parseBoolean(arguments[0]["dept"]);
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }

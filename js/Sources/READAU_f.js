@@ -37,10 +37,6 @@ function READAU_f() {
         return options;
     }
     READAU_f.prototype.set = function READAU_f() {
-        this.fname1 = parseFloat(arguments[0]["fname1"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.swap = parseFloat(arguments[0]["swap"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var out = this.model.out;
         var dstate = this.model.dstate;
@@ -50,7 +46,11 @@ function READAU_f() {
         var lunit = dstate[3-1];
         var fname = this.exprs[1-1];
         while (true) {
-            [ok,this.fname1,this.N,this.swap,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","READAU_f")],[" "],["(Read Audio File)"],[" "],["Read is done on a binary \'.au\' file"]],["Input File Name","Buffer size","Swap Mode (0:No, 1:Yes)"],list("str",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.fname1 = parseFloat(arguments[0]["fname1"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.swap = parseFloat(arguments[0]["swap"]);
+            this.exprs = arguments[0]["exprs"];
             var tmask1 = [];
             var outmask = 1;
             var frmt1 = "uc";

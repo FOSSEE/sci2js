@@ -26,11 +26,11 @@ function EDGETRIGGER() {
         return options;
     }
     EDGETRIGGER.prototype.set = function EDGETRIGGER() {
-        this.edge = parseFloat(arguments[0]["edge"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.edge,this.exprs] = scicos_getvalue("Set edge trigger block parameters",["rising (1), falling (-1), both (0)"],list("vec",1),this.exprs);
+            var ok = true;
+            this.edge = parseFloat(arguments[0]["edge"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

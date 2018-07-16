@@ -48,21 +48,21 @@ function CANIMXY3D() {
         return options;
     }
     CANIMXY3D.prototype.set = function CANIMXY3D() {
-        this.nbr_curves = parseFloat(arguments[0]["nbr_curves"])
-        this.clrs = inverse(arguments[0]["clrs"])
-        this.siz = inverse(arguments[0]["siz"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.wpos = inverse(arguments[0]["wpos"])
-        this.wdim = inverse(arguments[0]["wdim"])
-        this.vec_x = inverse(arguments[0]["vec_x"])
-        this.vec_y = inverse(arguments[0]["vec_y"])
-        this.vec_z = inverse(arguments[0]["vec_z"])
-        this.param3ds = inverse(arguments[0]["param3ds"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.vec_x,this.vec_y,this.vec_z,this.param3ds,this.N,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin and Xmax","Ymin and Ymax","Zmin and Zmax","Alpha and Theta","Buffer size"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),this.exprs);
+            var ok = true;
+            this.nbr_curves = parseFloat(arguments[0]["nbr_curves"]);
+            this.clrs = inverse(arguments[0]["clrs"]);
+            this.siz = inverse(arguments[0]["siz"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.wpos = inverse(arguments[0]["wpos"]);
+            this.wdim = inverse(arguments[0]["wdim"]);
+            this.vec_x = inverse(arguments[0]["vec_x"]);
+            this.vec_y = inverse(arguments[0]["vec_y"]);
+            this.vec_z = inverse(arguments[0]["vec_z"]);
+            this.param3ds = inverse(arguments[0]["param3ds"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

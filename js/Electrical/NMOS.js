@@ -47,19 +47,19 @@ function NMOS() {
         return options;
     }
     NMOS.prototype.set = function NMOS() {
-        this.W = parseFloat(arguments[0]["W"])
-        this.L = parseFloat(arguments[0]["L"])
-        this.Beta = parseFloat(arguments[0]["Beta"])
-        this.Vt = parseFloat(arguments[0]["Vt"])
-        this.K2 = parseFloat(arguments[0]["K2"])
-        this.K5 = parseFloat(arguments[0]["K5"])
-        this.dW = parseFloat(arguments[0]["dW"])
-        this.dL = parseFloat(arguments[0]["dL"])
-        this.RDS = parseFloat(arguments[0]["RDS"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.W,this.L,this.Beta,this.Vt,this.K2,this.K5,this.dW,this.dL,this.RDS,this.exprs] = scicos_getvalue("Set NMOS Transistor block parameters",["Width [m]","Length [m]","Transconductance parameter [A/(V*V)]","Zero bias threshold voltage [V]","Bulk threshold parameter","Reduction of pinch-off region","Narrowing of channel [m]","Shortening of channel [m]","Drain-Source-Resistance [Ohm]"],list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.W = parseFloat(arguments[0]["W"]);
+            this.L = parseFloat(arguments[0]["L"]);
+            this.Beta = parseFloat(arguments[0]["Beta"]);
+            this.Vt = parseFloat(arguments[0]["Vt"]);
+            this.K2 = parseFloat(arguments[0]["K2"]);
+            this.K5 = parseFloat(arguments[0]["K5"]);
+            this.dW = parseFloat(arguments[0]["dW"]);
+            this.dL = parseFloat(arguments[0]["dL"]);
+            this.RDS = parseFloat(arguments[0]["RDS"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

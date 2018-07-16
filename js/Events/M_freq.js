@@ -26,12 +26,12 @@ function M_freq() {
         return options;
     }
     M_freq.prototype.set = function M_freq() {
-        this.frequ = inverse(arguments[0]["frequ"])
-        this.offset = inverse(arguments[0]["offset"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.frequ,this.offset,this.exprs] = scicos_getvalue("Set block parameters",["Sample time","Offset"],list("vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.frequ = inverse(arguments[0]["frequ"]);
+            this.offset = inverse(arguments[0]["offset"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

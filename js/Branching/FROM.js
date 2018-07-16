@@ -29,11 +29,11 @@ function FROM() {
         return options;
     }
     FROM.prototype.set = function FROM() {
-        this.tag = arguments[0]["tag"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tag,this.exprs] = scicos_getvalue("Set parameters",["Tag"],list("str",-1),this.exprs);
+            var ok = true;
+            this.tag = arguments[0]["tag"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

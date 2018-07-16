@@ -25,11 +25,11 @@ function ABS_VALUE() {
         return options;
     }
     ABS_VALUE.prototype.set = function ABS_VALUE() {
-        this.zcr = arguments[0]["zcr"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.zcr,this.exprs] = scicos_getvalue("Set block parameters",["use zero_crossing (1: yes) (0:no)"],list("vec",1),this.exprs);
+            var ok = true;
+            this.zcr = arguments[0]["zcr"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

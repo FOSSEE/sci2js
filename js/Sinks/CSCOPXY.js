@@ -47,21 +47,21 @@ function CSCOPXY() {
         return options;
     }
     CSCOPXY.prototype.set = function CSCOPXY() {
-        this.nbr_curves = parseFloat(arguments[0]["nbr_curves"])
-        this.clrs = parseFloat(arguments[0]["clrs"])
-        this.siz = parseFloat(arguments[0]["siz"])
-        this.win = parseFloat(arguments[0]["win"])
-        this.wpos = inverse(arguments[0]["wpos"])
-        this.wdim = inverse(arguments[0]["wdim"])
-        this.xmin = parseFloat(arguments[0]["xmin"])
-        this.xmax = parseFloat(arguments[0]["xmax"])
-        this.ymin = parseFloat(arguments[0]["ymin"])
-        this.ymax = parseFloat(arguments[0]["ymax"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nbr_curves,this.clrs,this.siz,this.win,this.wpos,this.wdim,this.xmin,this.xmax,this.ymin,this.ymax,this.N,this.exprs] = scicos_getvalue("Set Scope parameters",["Number of Curves","color (>0) or mark (<0)","line or mark size","Output window number (-1 for automatic)","Output window position","Output window sizes","Xmin","Xmax","Ymin","Ymax","Buffer size"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.nbr_curves = parseFloat(arguments[0]["nbr_curves"]);
+            this.clrs = parseFloat(arguments[0]["clrs"]);
+            this.siz = parseFloat(arguments[0]["siz"]);
+            this.win = parseFloat(arguments[0]["win"]);
+            this.wpos = inverse(arguments[0]["wpos"]);
+            this.wdim = inverse(arguments[0]["wdim"]);
+            this.xmin = parseFloat(arguments[0]["xmin"]);
+            this.xmax = parseFloat(arguments[0]["xmax"]);
+            this.ymin = parseFloat(arguments[0]["ymin"]);
+            this.ymax = parseFloat(arguments[0]["ymax"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

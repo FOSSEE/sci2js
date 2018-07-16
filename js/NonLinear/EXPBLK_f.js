@@ -24,14 +24,14 @@ function EXPBLK_f() {
         return options;
     }
     EXPBLK_f.prototype.set = function EXPBLK_f() {
-        this.a = parseFloat(arguments[0]["a"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[2-1];
         }
         while (true) {
-            [ok,this.a,this.exprs] = scicos_getvalue("Set a^u  block parameters","a (>0)",list("vec",1),this.exprs);
+            var ok = true;
+            this.a = parseFloat(arguments[0]["a"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

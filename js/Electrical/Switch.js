@@ -36,12 +36,12 @@ function Switch() {
         return options;
     }
     Switch.prototype.set = function Switch() {
-        this.Ron = parseFloat(arguments[0]["Ron"])
-        this.Roff = parseFloat(arguments[0]["Roff"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.Ron,this.Roff,this.exprs] = scicos_getvalue("Set non-ideal electrical switch parameters",["Resistance in On state (Ohm)","Resistance in Off state (Ohm)"],list("vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.Ron = parseFloat(arguments[0]["Ron"]);
+            this.Roff = parseFloat(arguments[0]["Roff"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

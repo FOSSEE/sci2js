@@ -30,13 +30,13 @@ function SATURATION() {
         return options;
     }
     SATURATION.prototype.set = function SATURATION() {
-        this.maxp = parseFloat(arguments[0]["maxp"])
-        this.minp = parseFloat(arguments[0]["minp"])
-        this.zeroc = arguments[0]["zeroc"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.maxp,this.minp,this.zeroc,this.exprs] = scicos_getvalue("Set Saturation parameters",["Upper limit","Lower limit","zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.maxp = parseFloat(arguments[0]["maxp"]);
+            this.minp = parseFloat(arguments[0]["minp"]);
+            this.zeroc = arguments[0]["zeroc"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -23,11 +23,11 @@ function BIGSOM_f() {
         return options;
     }
     BIGSOM_f.prototype.set = function BIGSOM_f() {
-        this.sgn = inverse(arguments[0]["sgn"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.sgn,this.exprs] = scicos_getvalue("Set sum block parameters","Inputs ports signs/gain",list("vec",-1),this.exprs);
+            var ok = true;
+            this.sgn = inverse(arguments[0]["sgn"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -30,9 +30,6 @@ function CLR() {
         return options;
     }
     CLR.prototype.set = function CLR() {
-        this.num = arguments[0]["num"]
-        this.den = arguments[0]["den"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var x0 = this.model.state;
         var rpar = this.model.rpar;
@@ -42,7 +39,10 @@ function CLR() {
         var PREVAR_scicos_context = PREVAR_scicos_context;
         PREVAR_scicos_context.s = %s;
         while (true) {
-            [ok,this.num,this.den,this.exprs] = scicos_getvalue("Set continuous SISO transfer parameters",["Numerator (s)","Denominator (s)"],list("pol",1,"pol",1),this.exprs);
+            var ok = true;
+            this.num = arguments[0]["num"];
+            this.den = arguments[0]["den"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

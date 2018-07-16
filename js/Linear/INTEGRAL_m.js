@@ -33,15 +33,15 @@ function INTEGRAL_m() {
         return options;
     }
     INTEGRAL_m.prototype.set = function INTEGRAL_m() {
-        this.x0 = arguments[0]["x0"]
-        this.reinit = parseFloat(arguments[0]["reinit"])
-        this.satur = parseFloat(arguments[0]["satur"])
-        this.maxp = parseFloat(arguments[0]["maxp"])
-        this.lowp = parseFloat(arguments[0]["lowp"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.x0,this.reinit,this.satur,this.maxp,this.lowp,this.exprs] = scicos_getvalue("Set Integral block parameters",["Initial Condition","With re-intialization (1:yes, 0:no)","With saturation (1:yes, 0:no)","Upper limit","Lower limit"],list("mat",[-1,-1],"vec",1,"vec",1,"mat",[-1,-1],"mat",[-1,-1]),this.exprs);
+            var ok = true;
+            this.x0 = arguments[0]["x0"];
+            this.reinit = parseFloat(arguments[0]["reinit"]);
+            this.satur = parseFloat(arguments[0]["satur"]);
+            this.maxp = parseFloat(arguments[0]["maxp"]);
+            this.lowp = parseFloat(arguments[0]["lowp"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

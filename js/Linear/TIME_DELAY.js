@@ -30,14 +30,14 @@ function TIME_DELAY() {
         return options;
     }
     TIME_DELAY.prototype.set = function TIME_DELAY() {
-        this.T = parseFloat(arguments[0]["T"])
-        this.init = parseFloat(arguments[0]["init"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var nin = this.model.in[1-1];
         while (true) {
-            [ok,this.T,this.init,this.N,this.exprs] = scicos_getvalue("Set delay parameters",["Delay","initial input","Buffer size"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.T = parseFloat(arguments[0]["T"]);
+            this.init = parseFloat(arguments[0]["init"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

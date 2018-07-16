@@ -37,16 +37,16 @@ function MATRESH() {
         return options;
     }
     MATRESH.prototype.set = function MATRESH() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.l1 = arguments[0]["l1"]
-        this.out = arguments[0]["out"]
-        this.lab = arguments[0]["lab"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.l1,this.out,this.lab] = scicos_getvalue("Set MATRESH block parameters",["Datatype(1=real double  2=Complex)","input size","output size desired"],list("vec",-1,"vec",-1,"vec",-1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.l1 = arguments[0]["l1"];
+            this.out = arguments[0]["out"];
+            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }

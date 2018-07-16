@@ -48,14 +48,6 @@ function MBLOCK() {
         return options;
     }
     MBLOCK.prototype.set = function MBLOCK() {
-        this.Tin = arguments[0]["Tin"]
-        this.Tintype = arguments[0]["Tintype"]
-        this.Tout = arguments[0]["Tout"]
-        this.Touttype = arguments[0]["Touttype"]
-        this.Tparam = arguments[0]["Tparam"]
-        this.pprop = inverse(arguments[0]["pprop"])
-        this.Tfunam = arguments[0]["Tfunam"]
-        this.lab_1 = arguments[0]["lab_1"]
         this.exprs = this.graphics.exprs;
         if (this.type[this.exprs-1]==15) {
             var paramv = list();
@@ -69,7 +61,15 @@ function MBLOCK() {
         this.lab_1 = list(this.exprs.in,this.exprs.intype,this.exprs.out,this.exprs.outtype,this.exprs.param,this.exprs.pprop,this.exprs.nameF);
         var lab_2 = this.exprs.paramv;
         while (true) {
-            [ok,this.Tin,this.Tintype,this.Tout,this.Touttype,this.Tparam,this.pprop,this.Tfunam,this.lab_1] = scicos_getvalue("Set Modelica generic block parameters",["Input variables:       ","Input variables types: ","Output variables:      ","Output variables types:","Parameters in Modelica:","Parameters properties: ","Function name:         "],list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,"vec",-1,"str",-1),this.lab_1);
+            var ok = true;
+            this.Tin = arguments[0]["Tin"];
+            this.Tintype = arguments[0]["Tintype"];
+            this.Tout = arguments[0]["Tout"];
+            this.Touttype = arguments[0]["Touttype"];
+            this.Tparam = arguments[0]["Tparam"];
+            this.pprop = inverse(arguments[0]["pprop"]);
+            this.Tfunam = arguments[0]["Tfunam"];
+            this.lab_1 = arguments[0]["lab_1"];
             if (!ok) {
                 break;
             }

@@ -31,12 +31,12 @@ function LOGIC() {
         return options;
     }
     LOGIC.prototype.set = function LOGIC() {
-        this.mat = inverse(arguments[0]["mat"])
-        this.herit = arguments[0]["herit"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.mat,this.herit,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","LOGIC")],[" "],["Combinatorial logic"],[" "],["&nbsp; Rows of the matrix are the output values"],["&nbsp; Number of rows must be a power of two."],["&nbsp; Number of columns gives the number of outputs."],[" "]],["Truth Table (matrix of outputs)","Accepts Inherited Events (0:No, 1:Yes)"],list("mat",[-1,-2],"vec",1),this.exprs);
+            var ok = true;
+            this.mat = inverse(arguments[0]["mat"]);
+            this.herit = arguments[0]["herit"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

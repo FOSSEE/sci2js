@@ -40,18 +40,18 @@ function LOOKUP_c() {
         return options;
     }
     LOOKUP_c.prototype.set = function LOOKUP_c() {
-        this.Method = parseFloat(arguments[0]["Method"])
-        this.xx = inverse(arguments[0]["xx"])
-        this.yy = inverse(arguments[0]["yy"])
-        this.extrapo = parseFloat(arguments[0]["extrapo"])
-        this.graf = arguments[0]["graf"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
         while (true) {
             var Ask_again = false;
-            [ok,this.Method,this.xx,this.yy,this.extrapo,this.graf,this.exprs] = scicos_getvalue("Lookup table parameters",["Spline Interpolation method (0..9)","x","y","Extrapolate method (0,1)","Launch graphic window(y/n)?"],list("vec",1,"vec",-1,"vec",-1,"vec",1,"str",1),this.exprs);
+            var ok = true;
+            this.Method = parseFloat(arguments[0]["Method"]);
+            this.xx = inverse(arguments[0]["xx"]);
+            this.yy = inverse(arguments[0]["yy"]);
+            this.extrapo = parseFloat(arguments[0]["extrapo"]);
+            this.graf = arguments[0]["graf"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

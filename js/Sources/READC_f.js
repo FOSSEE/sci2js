@@ -46,15 +46,6 @@ function READC_f() {
         return options;
     }
     READC_f.prototype.set = function READC_f() {
-        this.tmask1 = parseFloat(arguments[0]["tmask1"])
-        this.outmask = parseFloat(arguments[0]["outmask"])
-        this.fname1 = parseFloat(arguments[0]["fname1"])
-        this.frmt1 = arguments[0]["frmt1"]
-        this.M = parseFloat(arguments[0]["M"])
-        this.N = parseFloat(arguments[0]["N"])
-        this.offset = parseFloat(arguments[0]["offset"])
-        this.swap = parseFloat(arguments[0]["swap"])
-        this.exprs = arguments[0]["exprs"]
         this.model = this.x.model;
         this.exprs = this.graphics.exprs;
         var out = this.model.out;
@@ -66,7 +57,16 @@ function READC_f() {
         var fname = this.exprs[3-1];
         var frmt = this.exprs[4-1];
         while (true) {
-            [ok,this.tmask1,this.outmask,this.fname1,this.frmt1,this.M,this.N,this.offset,this.swap,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","READC_f")],[" "],["Read from C binary file"]],["Time Record Selection","Outputs Record Selection","Input File Name","Input Format","Record Size","Buffer Size","Initial Record Index","Swap Mode (0:No, 1:Yes)"],list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.tmask1 = parseFloat(arguments[0]["tmask1"]);
+            this.outmask = parseFloat(arguments[0]["outmask"]);
+            this.fname1 = parseFloat(arguments[0]["fname1"]);
+            this.frmt1 = arguments[0]["frmt1"];
+            this.M = parseFloat(arguments[0]["M"]);
+            this.N = parseFloat(arguments[0]["N"]);
+            this.offset = parseFloat(arguments[0]["offset"]);
+            this.swap = parseFloat(arguments[0]["swap"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -26,13 +26,13 @@ function MAXMIN() {
         return options;
     }
     MAXMIN.prototype.set = function MAXMIN() {
-        this.mm = parseFloat(arguments[0]["mm"])
-        this.nin = arguments[0]["nin"]
-        this.zcr = parseFloat(arguments[0]["zcr"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.mm,this.nin,this.zcr,this.exprs] = scicos_getvalue("Set Max/Min block parameters",["Min (1) or Max (2) ","Number of input vectors (1 or 2)","zero-crossing (1: yes, 0;no)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.mm = parseFloat(arguments[0]["mm"]);
+            this.nin = arguments[0]["nin"];
+            this.zcr = parseFloat(arguments[0]["zcr"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

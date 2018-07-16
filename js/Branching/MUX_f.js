@@ -23,11 +23,11 @@ function MUX_f() {
         return options;
     }
     MUX_f.prototype.set = function MUX_f() {
-        this.in1 = parseFloat(arguments[0]["in1"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.in1,this.exprs] = scicos_getvalue("Set MUX block parameters","number of input ports or vector of sizes",list("vec",-1),this.exprs);
+            var ok = true;
+            this.in1 = parseFloat(arguments[0]["in1"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

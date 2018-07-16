@@ -28,14 +28,14 @@ function INIMPL_f() {
         return options;
     }
     INIMPL_f.prototype.set = function INIMPL_f() {
-        this.prt = parseFloat(arguments[0]["prt"])
-        this.exprs = parseFloat(arguments[0]["exprs"])
         this.exprs = this.graphics.exprs;
         if (size(this.exprs,"*")==2) {
             this.exprs = this.exprs[1-1];
         }
         while (true) {
-            [ok,this.prt,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","INIMPL_f")],[" "],["Implicit input port"],[" "]],"Port Number",list("vec",1),this.exprs);
+            var ok = true;
+            this.prt = parseFloat(arguments[0]["prt"]);
+            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

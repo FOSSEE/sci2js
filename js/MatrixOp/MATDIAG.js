@@ -35,14 +35,14 @@ function MATDIAG() {
         return options;
     }
     MATDIAG.prototype.set = function MATDIAG() {
-        this.typ = inverse(arguments[0]["typ"])
-        this.exprs = arguments[0]["exprs"]
         var label = this.graphics.exprs;
         if (size(label,"*")==14) {
             label[9-1] = [];
         }
         while (true) {
-            [ok,this.typ,this.exprs] = scicos_getvalue("Set MATDIAG Block",["Datatype (1=real double  2=Complex)"],list("vec",1),label);
+            var ok = true;
+            this.typ = inverse(arguments[0]["typ"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

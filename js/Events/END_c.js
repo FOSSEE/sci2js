@@ -24,11 +24,11 @@ function END_c() {
         return options;
     }
     END_c.prototype.set = function END_c() {
-        this.tf = parseFloat(arguments[0]["tf"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.tf,this.exprs] = scicos_getvalue("Set final simulation time",["Final simulation time"],list("vec",1),this.exprs);
+            var ok = true;
+            this.tf = parseFloat(arguments[0]["tf"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

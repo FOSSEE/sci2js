@@ -29,14 +29,14 @@ function CONSTRAINT2_c() {
         return options;
     }
     CONSTRAINT2_c.prototype.set = function CONSTRAINT2_c() {
-        this.x0 = inverse(arguments[0]["x0"])
-        this.xd0 = inverse(arguments[0]["xd0"])
-        this.id = inverse(arguments[0]["id"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
             var ask_again = false;
-            [ok,this.x0,this.xd0,this.id,this.exprs] = scicos_getvalue("Set Constraint block parameters",["Initial guess values of states x","Initial guess values of derivative x\'","Id(i)=1: if x\'(i) is present in the feedback, else Id(i)=0"],list("vec",-1,"vec",-1,"vec",-1),this.exprs);
+            var ok = true;
+            this.x0 = inverse(arguments[0]["x0"]);
+            this.xd0 = inverse(arguments[0]["xd0"]);
+            this.id = inverse(arguments[0]["id"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

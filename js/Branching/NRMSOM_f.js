@@ -24,11 +24,11 @@ function NRMSOM_f() {
         return options;
     }
     NRMSOM_f.prototype.set = function NRMSOM_f() {
-        this.nin = parseFloat(arguments[0]["nin"])
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.nin,this.exprs] = scicos_getvalue("Set parameters",["number of inputs"],list("vec",1),this.exprs);
+            var ok = true;
+            this.nin = parseFloat(arguments[0]["nin"]);
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

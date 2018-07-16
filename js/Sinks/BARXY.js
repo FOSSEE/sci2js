@@ -35,15 +35,15 @@ function BARXY() {
         return options;
     }
     BARXY.prototype.set = function BARXY() {
-        this.xmin = parseFloat(arguments[0]["xmin"])
-        this.xmax = parseFloat(arguments[0]["xmax"])
-        this.ymin = parseFloat(arguments[0]["ymin"])
-        this.ymax = parseFloat(arguments[0]["ymax"])
-        this.thickness = arguments[0]["thickness"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.xmin,this.xmax,this.ymin,this.ymax,this.thickness,this.exprs] = scicos_getvalue("Set Scope parameters",["Xmin","Xmax","Ymin","Ymax","Segs Thickness"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.xmin = parseFloat(arguments[0]["xmin"]);
+            this.xmax = parseFloat(arguments[0]["xmax"]);
+            this.ymin = parseFloat(arguments[0]["ymin"]);
+            this.ymax = parseFloat(arguments[0]["ymax"]);
+            this.thickness = arguments[0]["thickness"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

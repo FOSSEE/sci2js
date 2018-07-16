@@ -39,17 +39,17 @@ function AFFICH_m() {
         return options;
     }
     AFFICH_m.prototype.set = function AFFICH_m() {
-        this.in1 = inverse(arguments[0]["in1"])
-        this.font = parseFloat(arguments[0]["font"])
-        this.fontsize = parseFloat(arguments[0]["fontsize"])
-        this.colr = parseFloat(arguments[0]["colr"])
-        this.nt = parseFloat(arguments[0]["nt"])
-        this.nd = parseFloat(arguments[0]["nd"])
-        this.herit = arguments[0]["herit"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.in1,this.font,this.fontsize,this.colr,this.nt,this.nd,this.herit,this.exprs] = scicos_getvalue("Set  parameters",["Input Size","Font number","Font size","Color","Total number of digits","Number of rational part digits","Block inherits (1) or not (0)"],list("mat",[1,2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.in1 = inverse(arguments[0]["in1"]);
+            this.font = parseFloat(arguments[0]["font"]);
+            this.fontsize = parseFloat(arguments[0]["fontsize"]);
+            this.colr = parseFloat(arguments[0]["colr"]);
+            this.nt = parseFloat(arguments[0]["nt"]);
+            this.nd = parseFloat(arguments[0]["nd"]);
+            this.herit = arguments[0]["herit"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

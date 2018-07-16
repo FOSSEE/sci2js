@@ -31,13 +31,13 @@ function CONVERT() {
         return options;
     }
     CONVERT.prototype.set = function CONVERT() {
-        this.it = parseFloat(arguments[0]["it"])
-        this.ot = parseFloat(arguments[0]["ot"])
-        this.np = arguments[0]["np"]
-        this.exprs = arguments[0]["exprs"]
         this.exprs = this.graphics.exprs;
         while (true) {
-            [ok,this.it,this.ot,this.np,this.exprs] = scicos_getvalue([[msprintf("Set %s block parameters","CONVERT")],[" "],["Type conversion"],[" "]],["Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)","Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"],list("vec",1,"vec",1,"vec",1),this.exprs);
+            var ok = true;
+            this.it = parseFloat(arguments[0]["it"]);
+            this.ot = parseFloat(arguments[0]["ot"]);
+            this.np = arguments[0]["np"];
+            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
