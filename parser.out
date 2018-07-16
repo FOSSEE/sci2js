@@ -205,9 +205,9 @@ Rule 199   lterm -> lterm OPENBRACKET expression COMMA expression CLOSEBRACKET
 Rule 200   lterm -> lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
 Rule 201   lterm -> OPENSQBRACKET ltermarraylist CLOSESQBRACKET
 Rule 202   lterm -> lterm DOT VAR
-Rule 203   lterm -> lterm DOT GRAPHICS
-Rule 204   lterm -> lterm DOT MODEL
-Rule 205   lterm -> lterm DOT IN
+Rule 203   lterm -> lterm DOT IN
+Rule 204   lterm -> lterm DOT GRAPHICS
+Rule 205   lterm -> lterm DOT MODEL
 Rule 206   lterm -> VAR
 Rule 207   lterm -> IN
 Rule 208   lterm -> PREVAR
@@ -247,9 +247,9 @@ Rule 241   expression -> expression ADDITION PREVAR_COMPLEX MULTIPLICATION expre
 Rule 242   term -> PREVAR_FLOAT
 Rule 243   term -> termvar
 Rule 244   termvar -> termvar DOT VAR
-Rule 245   termvar -> termvar DOT GRAPHICS
-Rule 246   termvar -> termvar DOT MODEL
-Rule 247   termvar -> termvar DOT IN
+Rule 245   termvar -> termvar DOT IN
+Rule 246   termvar -> termvar DOT GRAPHICS
+Rule 247   termvar -> termvar DOT MODEL
 Rule 248   termvar -> VAR
 Rule 249   termvar -> GRAPHICS
 Rule 250   termvar -> MODEL
@@ -284,9 +284,9 @@ FOR                  : 67 68 69 70 71 72
 FUNCTION             : 5 6 7 8 9
 FUNCTIONNAME         : 6 8 9 130 190 191 231 234
 GETTEXT              : 121 127 233
-GRAPHICS             : 99 106 144 159 162 203 245 249
+GRAPHICS             : 99 106 144 159 162 204 246 249
 IF                   : 92 93
-IN                   : 103 147 164 165 170 171 205 207 247 251
+IN                   : 103 147 164 165 170 171 203 207 245 251
 JOB                  : 5 6 74
 JOB_DEFINE           : 77 78
 JOB_GETINPUTS        : 79 80
@@ -297,7 +297,7 @@ JOB_SET              : 87 88
 LASTINDEX            : 236
 LIST                 : 108 109 131 232 235
 LOGICAL              : 186
-MODEL                : 100 107 145 160 163 204 246 250
+MODEL                : 100 107 145 160 163 205 247 250
 MULTIPLICATION       : 182 240 241
 NOT                  : 188
 NUMBER               : 252
@@ -444,9 +444,9 @@ state 3
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -510,9 +510,9 @@ state 4
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -600,9 +600,9 @@ state 6
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -666,9 +666,9 @@ state 7
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -774,9 +774,9 @@ state 11
     (199) lterm -> lterm . OPENBRACKET expression COMMA expression CLOSEBRACKET
     (200) lterm -> lterm . OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (202) lterm -> lterm . DOT VAR
-    (203) lterm -> lterm . DOT GRAPHICS
-    (204) lterm -> lterm . DOT MODEL
-    (205) lterm -> lterm . DOT IN
+    (203) lterm -> lterm . DOT IN
+    (204) lterm -> lterm . DOT GRAPHICS
+    (205) lterm -> lterm . DOT MODEL
 
     ASSIGNMENT      shift and go to state 52
     OPENBRACKET     shift and go to state 51
@@ -974,9 +974,9 @@ state 21
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -1101,9 +1101,9 @@ state 22
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -1127,9 +1127,9 @@ state 22
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -1453,9 +1453,9 @@ state 37
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -1478,9 +1478,9 @@ state 37
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -1537,9 +1537,9 @@ state 38
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -1665,9 +1665,9 @@ state 39
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -1690,9 +1690,9 @@ state 39
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -1750,9 +1750,9 @@ state 40
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -1864,9 +1864,9 @@ state 42
     (199) lterm -> lterm . OPENBRACKET expression COMMA expression CLOSEBRACKET
     (200) lterm -> lterm . OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (202) lterm -> lterm . DOT VAR
-    (203) lterm -> lterm . DOT GRAPHICS
-    (204) lterm -> lterm . DOT MODEL
-    (205) lterm -> lterm . DOT IN
+    (203) lterm -> lterm . DOT IN
+    (204) lterm -> lterm . DOT GRAPHICS
+    (205) lterm -> lterm . DOT MODEL
 
     ASSIGNMENT      shift and go to state 121
     OPENBRACKET     shift and go to state 51
@@ -1961,9 +1961,9 @@ state 45
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -2141,9 +2141,9 @@ state 48
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -2222,9 +2222,9 @@ state 49
     (199) lterm -> lterm . OPENBRACKET expression COMMA expression CLOSEBRACKET
     (200) lterm -> lterm . OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (202) lterm -> lterm . DOT VAR
-    (203) lterm -> lterm . DOT GRAPHICS
-    (204) lterm -> lterm . DOT MODEL
-    (205) lterm -> lterm . DOT IN
+    (203) lterm -> lterm . DOT IN
+    (204) lterm -> lterm . DOT GRAPHICS
+    (205) lterm -> lterm . DOT MODEL
 
     ASSIGNMENT      shift and go to state 125
     OPENBRACKET     shift and go to state 51
@@ -2282,9 +2282,9 @@ state 50
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -2413,9 +2413,9 @@ state 51
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -2438,9 +2438,9 @@ state 51
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -2459,14 +2459,14 @@ state 52
 state 53
 
     (202) lterm -> lterm DOT . VAR
-    (203) lterm -> lterm DOT . GRAPHICS
-    (204) lterm -> lterm DOT . MODEL
-    (205) lterm -> lterm DOT . IN
+    (203) lterm -> lterm DOT . IN
+    (204) lterm -> lterm DOT . GRAPHICS
+    (205) lterm -> lterm DOT . MODEL
 
     VAR             shift and go to state 132
-    GRAPHICS        shift and go to state 130
+    IN              shift and go to state 130
+    GRAPHICS        shift and go to state 131
     MODEL           shift and go to state 133
-    IN              shift and go to state 131
 
 
 state 54
@@ -2704,9 +2704,9 @@ state 67
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -2848,9 +2848,9 @@ state 70
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -2873,9 +2873,9 @@ state 70
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -2933,9 +2933,9 @@ state 71
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -3097,9 +3097,9 @@ state 74
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -3122,9 +3122,9 @@ state 74
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -3201,9 +3201,9 @@ state 76
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -3226,9 +3226,9 @@ state 76
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -3301,9 +3301,9 @@ state 78
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -3422,9 +3422,9 @@ state 79
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -3495,25 +3495,25 @@ state 79
 
 state 80
 
-    (251) termvar -> IN .
+    (249) termvar -> GRAPHICS .
 
-    OPENBRACKET     reduce using rule 251 (termvar -> IN .)
-    DOT             reduce using rule 251 (termvar -> IN .)
-    TRANSPOSE       reduce using rule 251 (termvar -> IN .)
-    MULTIPLICATION  reduce using rule 251 (termvar -> IN .)
-    ADDITION        reduce using rule 251 (termvar -> IN .)
-    COMPARISON      reduce using rule 251 (termvar -> IN .)
-    LOGICAL         reduce using rule 251 (termvar -> IN .)
-    COLON           reduce using rule 251 (termvar -> IN .)
-    EOL             reduce using rule 251 (termvar -> IN .)
-    THEN            reduce using rule 251 (termvar -> IN .)
-    DO              reduce using rule 251 (termvar -> IN .)
-    CLOSEBRACKET    reduce using rule 251 (termvar -> IN .)
-    COMMA           reduce using rule 251 (termvar -> IN .)
-    CLOSEOPENBRACKET reduce using rule 251 (termvar -> IN .)
-    CLOSESQBRACKET  reduce using rule 251 (termvar -> IN .)
-    SPACE           reduce using rule 251 (termvar -> IN .)
-    SEMICOLON       reduce using rule 251 (termvar -> IN .)
+    OPENBRACKET     reduce using rule 249 (termvar -> GRAPHICS .)
+    DOT             reduce using rule 249 (termvar -> GRAPHICS .)
+    TRANSPOSE       reduce using rule 249 (termvar -> GRAPHICS .)
+    MULTIPLICATION  reduce using rule 249 (termvar -> GRAPHICS .)
+    ADDITION        reduce using rule 249 (termvar -> GRAPHICS .)
+    COMPARISON      reduce using rule 249 (termvar -> GRAPHICS .)
+    LOGICAL         reduce using rule 249 (termvar -> GRAPHICS .)
+    COLON           reduce using rule 249 (termvar -> GRAPHICS .)
+    EOL             reduce using rule 249 (termvar -> GRAPHICS .)
+    THEN            reduce using rule 249 (termvar -> GRAPHICS .)
+    DO              reduce using rule 249 (termvar -> GRAPHICS .)
+    CLOSEBRACKET    reduce using rule 249 (termvar -> GRAPHICS .)
+    COMMA           reduce using rule 249 (termvar -> GRAPHICS .)
+    CLOSEOPENBRACKET reduce using rule 249 (termvar -> GRAPHICS .)
+    CLOSESQBRACKET  reduce using rule 249 (termvar -> GRAPHICS .)
+    SPACE           reduce using rule 249 (termvar -> GRAPHICS .)
+    SEMICOLON       reduce using rule 249 (termvar -> GRAPHICS .)
 
 
 state 81
@@ -3703,9 +3703,9 @@ state 89
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -3728,9 +3728,9 @@ state 89
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -3756,9 +3756,9 @@ state 90
     (225) termvar -> termvar . OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> termvar . OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> termvar . DOT VAR
-    (245) termvar -> termvar . DOT GRAPHICS
-    (246) termvar -> termvar . DOT MODEL
-    (247) termvar -> termvar . DOT IN
+    (245) termvar -> termvar . DOT IN
+    (246) termvar -> termvar . DOT GRAPHICS
+    (247) termvar -> termvar . DOT MODEL
 
     CLOSEBRACKET    reduce using rule 243 (term -> termvar .)
     TRANSPOSE       reduce using rule 243 (term -> termvar .)
@@ -3838,25 +3838,25 @@ state 94
 
 state 95
 
-    (249) termvar -> GRAPHICS .
+    (251) termvar -> IN .
 
-    OPENBRACKET     reduce using rule 249 (termvar -> GRAPHICS .)
-    DOT             reduce using rule 249 (termvar -> GRAPHICS .)
-    TRANSPOSE       reduce using rule 249 (termvar -> GRAPHICS .)
-    MULTIPLICATION  reduce using rule 249 (termvar -> GRAPHICS .)
-    ADDITION        reduce using rule 249 (termvar -> GRAPHICS .)
-    COMPARISON      reduce using rule 249 (termvar -> GRAPHICS .)
-    LOGICAL         reduce using rule 249 (termvar -> GRAPHICS .)
-    COLON           reduce using rule 249 (termvar -> GRAPHICS .)
-    EOL             reduce using rule 249 (termvar -> GRAPHICS .)
-    THEN            reduce using rule 249 (termvar -> GRAPHICS .)
-    DO              reduce using rule 249 (termvar -> GRAPHICS .)
-    CLOSEBRACKET    reduce using rule 249 (termvar -> GRAPHICS .)
-    COMMA           reduce using rule 249 (termvar -> GRAPHICS .)
-    CLOSEOPENBRACKET reduce using rule 249 (termvar -> GRAPHICS .)
-    CLOSESQBRACKET  reduce using rule 249 (termvar -> GRAPHICS .)
-    SPACE           reduce using rule 249 (termvar -> GRAPHICS .)
-    SEMICOLON       reduce using rule 249 (termvar -> GRAPHICS .)
+    OPENBRACKET     reduce using rule 251 (termvar -> IN .)
+    DOT             reduce using rule 251 (termvar -> IN .)
+    TRANSPOSE       reduce using rule 251 (termvar -> IN .)
+    MULTIPLICATION  reduce using rule 251 (termvar -> IN .)
+    ADDITION        reduce using rule 251 (termvar -> IN .)
+    COMPARISON      reduce using rule 251 (termvar -> IN .)
+    LOGICAL         reduce using rule 251 (termvar -> IN .)
+    COLON           reduce using rule 251 (termvar -> IN .)
+    EOL             reduce using rule 251 (termvar -> IN .)
+    THEN            reduce using rule 251 (termvar -> IN .)
+    DO              reduce using rule 251 (termvar -> IN .)
+    CLOSEBRACKET    reduce using rule 251 (termvar -> IN .)
+    COMMA           reduce using rule 251 (termvar -> IN .)
+    CLOSEOPENBRACKET reduce using rule 251 (termvar -> IN .)
+    CLOSESQBRACKET  reduce using rule 251 (termvar -> IN .)
+    SPACE           reduce using rule 251 (termvar -> IN .)
+    SEMICOLON       reduce using rule 251 (termvar -> IN .)
 
 
 state 96
@@ -3950,9 +3950,9 @@ state 97
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -3976,9 +3976,9 @@ state 97
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     termarrayarraylist             shift and go to state 165
     term                           shift and go to state 94
@@ -4063,9 +4063,9 @@ state 99
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -4088,9 +4088,9 @@ state 99
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -4194,9 +4194,9 @@ state 102
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -4219,9 +4219,9 @@ state 102
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -4353,9 +4353,9 @@ state 105
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -4381,7 +4381,7 @@ state 105
     NUMBER          shift and go to state 81
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
 
     list                           shift and go to state 181
@@ -4514,9 +4514,9 @@ state 110
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -4648,9 +4648,9 @@ state 112
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -4786,9 +4786,9 @@ state 114
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -4811,9 +4811,9 @@ state 114
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -4971,9 +4971,9 @@ state 120
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -5105,9 +5105,9 @@ state 121
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -5135,9 +5135,9 @@ state 121
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     listcall                       shift and go to state 217
@@ -5224,9 +5224,9 @@ state 123
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -5345,9 +5345,9 @@ state 124
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -5479,20 +5479,20 @@ state 129
 
 state 130
 
-    (203) lterm -> lterm DOT GRAPHICS .
+    (203) lterm -> lterm DOT IN .
 
-    ASSIGNMENT      reduce using rule 203 (lterm -> lterm DOT GRAPHICS .)
-    OPENBRACKET     reduce using rule 203 (lterm -> lterm DOT GRAPHICS .)
-    DOT             reduce using rule 203 (lterm -> lterm DOT GRAPHICS .)
+    ASSIGNMENT      reduce using rule 203 (lterm -> lterm DOT IN .)
+    OPENBRACKET     reduce using rule 203 (lterm -> lterm DOT IN .)
+    DOT             reduce using rule 203 (lterm -> lterm DOT IN .)
 
 
 state 131
 
-    (205) lterm -> lterm DOT IN .
+    (204) lterm -> lterm DOT GRAPHICS .
 
-    ASSIGNMENT      reduce using rule 205 (lterm -> lterm DOT IN .)
-    OPENBRACKET     reduce using rule 205 (lterm -> lterm DOT IN .)
-    DOT             reduce using rule 205 (lterm -> lterm DOT IN .)
+    ASSIGNMENT      reduce using rule 204 (lterm -> lterm DOT GRAPHICS .)
+    OPENBRACKET     reduce using rule 204 (lterm -> lterm DOT GRAPHICS .)
+    DOT             reduce using rule 204 (lterm -> lterm DOT GRAPHICS .)
 
 
 state 132
@@ -5506,11 +5506,11 @@ state 132
 
 state 133
 
-    (204) lterm -> lterm DOT MODEL .
+    (205) lterm -> lterm DOT MODEL .
 
-    ASSIGNMENT      reduce using rule 204 (lterm -> lterm DOT MODEL .)
-    OPENBRACKET     reduce using rule 204 (lterm -> lterm DOT MODEL .)
-    DOT             reduce using rule 204 (lterm -> lterm DOT MODEL .)
+    ASSIGNMENT      reduce using rule 205 (lterm -> lterm DOT MODEL .)
+    OPENBRACKET     reduce using rule 205 (lterm -> lterm DOT MODEL .)
+    DOT             reduce using rule 205 (lterm -> lterm DOT MODEL .)
 
 
 state 134
@@ -5637,9 +5637,9 @@ state 139
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -5787,9 +5787,9 @@ state 141
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -5985,9 +5985,9 @@ state 145
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -6244,9 +6244,9 @@ state 153
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -6367,9 +6367,9 @@ state 154
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -6494,9 +6494,9 @@ state 155
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -6519,9 +6519,9 @@ state 155
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -6584,9 +6584,9 @@ state 156
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -6609,9 +6609,9 @@ state 156
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -6692,9 +6692,9 @@ state 157
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -6720,7 +6720,7 @@ state 157
     NUMBER          shift and go to state 81
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
 
     list                           shift and go to state 247
@@ -6823,9 +6823,9 @@ state 159
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -6849,9 +6849,9 @@ state 159
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -6860,14 +6860,14 @@ state 159
 state 160
 
     (244) termvar -> termvar DOT . VAR
-    (245) termvar -> termvar DOT . GRAPHICS
-    (246) termvar -> termvar DOT . MODEL
-    (247) termvar -> termvar DOT . IN
+    (245) termvar -> termvar DOT . IN
+    (246) termvar -> termvar DOT . GRAPHICS
+    (247) termvar -> termvar DOT . MODEL
 
     VAR             shift and go to state 254
-    GRAPHICS        shift and go to state 252
+    IN              shift and go to state 252
+    GRAPHICS        shift and go to state 253
     MODEL           shift and go to state 255
-    IN              shift and go to state 253
 
 
 state 161
@@ -6934,9 +6934,9 @@ state 162
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -6959,9 +6959,9 @@ state 162
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -7173,9 +7173,9 @@ state 169
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -7199,9 +7199,9 @@ state 169
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     listcall                       shift and go to state 264
@@ -7266,9 +7266,9 @@ state 170
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -7292,9 +7292,9 @@ state 170
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -7377,9 +7377,9 @@ state 172
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -7402,9 +7402,9 @@ state 172
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -7473,9 +7473,9 @@ state 174
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -7498,9 +7498,9 @@ state 174
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -7562,9 +7562,9 @@ state 175
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -7587,9 +7587,9 @@ state 175
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -7758,9 +7758,9 @@ state 183
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -7783,9 +7783,9 @@ state 183
     NUMBER          shift and go to state 81
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -7842,9 +7842,9 @@ state 184
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -8102,9 +8102,9 @@ state 198
     (199) lterm -> lterm . OPENBRACKET expression COMMA expression CLOSEBRACKET
     (200) lterm -> lterm . OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (202) lterm -> lterm . DOT VAR
-    (203) lterm -> lterm . DOT GRAPHICS
-    (204) lterm -> lterm . DOT MODEL
-    (205) lterm -> lterm . DOT IN
+    (203) lterm -> lterm . DOT IN
+    (204) lterm -> lterm . DOT GRAPHICS
+    (205) lterm -> lterm . DOT MODEL
 
     ASSIGNMENT      shift and go to state 291
     OPENBRACKET     shift and go to state 51
@@ -8170,9 +8170,9 @@ state 200
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -8345,9 +8345,9 @@ state 204
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -8459,9 +8459,9 @@ state 205
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -8721,9 +8721,9 @@ state 215
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -8936,9 +8936,9 @@ state 226
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -8962,9 +8962,9 @@ state 226
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -9026,9 +9026,9 @@ state 227
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -9051,9 +9051,9 @@ state 227
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -9117,9 +9117,9 @@ state 228
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -9142,9 +9142,9 @@ state 228
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -9225,9 +9225,9 @@ state 229
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -9253,7 +9253,7 @@ state 229
     NUMBER          shift and go to state 81
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
 
     list                           shift and go to state 314
@@ -9336,9 +9336,9 @@ state 230
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -9363,7 +9363,7 @@ state 230
     NUMBER          shift and go to state 81
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
 
     list                           shift and go to state 315
@@ -9468,9 +9468,9 @@ state 234
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -9656,9 +9656,9 @@ state 238
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -9681,9 +9681,9 @@ state 238
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -9748,9 +9748,9 @@ state 239
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -9774,9 +9774,9 @@ state 239
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     modelexpression                shift and go to state 318
@@ -9873,9 +9873,9 @@ state 243
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -10106,9 +10106,9 @@ state 249
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -10131,9 +10131,9 @@ state 249
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -10198,9 +10198,9 @@ state 250
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -10225,9 +10225,9 @@ state 250
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -10270,48 +10270,48 @@ state 251
 
 state 252
 
-    (245) termvar -> termvar DOT GRAPHICS .
+    (245) termvar -> termvar DOT IN .
 
-    OPENBRACKET     reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    DOT             reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    TRANSPOSE       reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    MULTIPLICATION  reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    ADDITION        reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    COMPARISON      reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    LOGICAL         reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    COLON           reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    EOL             reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    THEN            reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    DO              reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    CLOSEBRACKET    reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    COMMA           reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    CLOSEOPENBRACKET reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    CLOSESQBRACKET  reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    SPACE           reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
-    SEMICOLON       reduce using rule 245 (termvar -> termvar DOT GRAPHICS .)
+    OPENBRACKET     reduce using rule 245 (termvar -> termvar DOT IN .)
+    DOT             reduce using rule 245 (termvar -> termvar DOT IN .)
+    TRANSPOSE       reduce using rule 245 (termvar -> termvar DOT IN .)
+    MULTIPLICATION  reduce using rule 245 (termvar -> termvar DOT IN .)
+    ADDITION        reduce using rule 245 (termvar -> termvar DOT IN .)
+    COMPARISON      reduce using rule 245 (termvar -> termvar DOT IN .)
+    LOGICAL         reduce using rule 245 (termvar -> termvar DOT IN .)
+    COLON           reduce using rule 245 (termvar -> termvar DOT IN .)
+    EOL             reduce using rule 245 (termvar -> termvar DOT IN .)
+    THEN            reduce using rule 245 (termvar -> termvar DOT IN .)
+    DO              reduce using rule 245 (termvar -> termvar DOT IN .)
+    CLOSEBRACKET    reduce using rule 245 (termvar -> termvar DOT IN .)
+    COMMA           reduce using rule 245 (termvar -> termvar DOT IN .)
+    CLOSEOPENBRACKET reduce using rule 245 (termvar -> termvar DOT IN .)
+    CLOSESQBRACKET  reduce using rule 245 (termvar -> termvar DOT IN .)
+    SPACE           reduce using rule 245 (termvar -> termvar DOT IN .)
+    SEMICOLON       reduce using rule 245 (termvar -> termvar DOT IN .)
 
 
 state 253
 
-    (247) termvar -> termvar DOT IN .
+    (246) termvar -> termvar DOT GRAPHICS .
 
-    OPENBRACKET     reduce using rule 247 (termvar -> termvar DOT IN .)
-    DOT             reduce using rule 247 (termvar -> termvar DOT IN .)
-    TRANSPOSE       reduce using rule 247 (termvar -> termvar DOT IN .)
-    MULTIPLICATION  reduce using rule 247 (termvar -> termvar DOT IN .)
-    ADDITION        reduce using rule 247 (termvar -> termvar DOT IN .)
-    COMPARISON      reduce using rule 247 (termvar -> termvar DOT IN .)
-    LOGICAL         reduce using rule 247 (termvar -> termvar DOT IN .)
-    COLON           reduce using rule 247 (termvar -> termvar DOT IN .)
-    EOL             reduce using rule 247 (termvar -> termvar DOT IN .)
-    THEN            reduce using rule 247 (termvar -> termvar DOT IN .)
-    DO              reduce using rule 247 (termvar -> termvar DOT IN .)
-    CLOSEBRACKET    reduce using rule 247 (termvar -> termvar DOT IN .)
-    COMMA           reduce using rule 247 (termvar -> termvar DOT IN .)
-    CLOSEOPENBRACKET reduce using rule 247 (termvar -> termvar DOT IN .)
-    CLOSESQBRACKET  reduce using rule 247 (termvar -> termvar DOT IN .)
-    SPACE           reduce using rule 247 (termvar -> termvar DOT IN .)
-    SEMICOLON       reduce using rule 247 (termvar -> termvar DOT IN .)
+    OPENBRACKET     reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    DOT             reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    TRANSPOSE       reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    MULTIPLICATION  reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    ADDITION        reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    COMPARISON      reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    LOGICAL         reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    COLON           reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    EOL             reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    THEN            reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    DO              reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    CLOSEBRACKET    reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    COMMA           reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    CLOSEOPENBRACKET reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    CLOSESQBRACKET  reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    SPACE           reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
+    SEMICOLON       reduce using rule 246 (termvar -> termvar DOT GRAPHICS .)
 
 
 state 254
@@ -10339,25 +10339,25 @@ state 254
 
 state 255
 
-    (246) termvar -> termvar DOT MODEL .
+    (247) termvar -> termvar DOT MODEL .
 
-    OPENBRACKET     reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    DOT             reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    TRANSPOSE       reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    MULTIPLICATION  reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    ADDITION        reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    COMPARISON      reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    LOGICAL         reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    COLON           reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    EOL             reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    THEN            reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    DO              reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    CLOSEBRACKET    reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    COMMA           reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    CLOSEOPENBRACKET reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    CLOSESQBRACKET  reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    SPACE           reduce using rule 246 (termvar -> termvar DOT MODEL .)
-    SEMICOLON       reduce using rule 246 (termvar -> termvar DOT MODEL .)
+    OPENBRACKET     reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    DOT             reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    TRANSPOSE       reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    MULTIPLICATION  reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    ADDITION        reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    COMPARISON      reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    LOGICAL         reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    COLON           reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    EOL             reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    THEN            reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    DO              reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    CLOSEBRACKET    reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    COMMA           reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    CLOSEOPENBRACKET reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    CLOSESQBRACKET  reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    SPACE           reduce using rule 247 (termvar -> termvar DOT MODEL .)
+    SEMICOLON       reduce using rule 247 (termvar -> termvar DOT MODEL .)
 
 
 state 256
@@ -10444,9 +10444,9 @@ state 257
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -10471,9 +10471,9 @@ state 257
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -10537,9 +10537,9 @@ state 258
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -10563,9 +10563,9 @@ state 258
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -10628,9 +10628,9 @@ state 259
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -10654,9 +10654,9 @@ state 259
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -10744,9 +10744,9 @@ state 261
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -10770,9 +10770,9 @@ state 261
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -10857,9 +10857,9 @@ state 263
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -10882,9 +10882,9 @@ state 263
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -11163,9 +11163,9 @@ state 271
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -11191,7 +11191,7 @@ state 271
     NUMBER          shift and go to state 81
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
 
     list                           shift and go to state 347
@@ -11259,9 +11259,9 @@ state 272
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -11285,9 +11285,9 @@ state 272
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     listcall                       shift and go to state 349
@@ -11353,9 +11353,9 @@ state 273
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -11379,9 +11379,9 @@ state 273
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     listcall                       shift and go to state 351
@@ -11462,9 +11462,9 @@ state 275
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -11806,9 +11806,9 @@ state 291
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -11835,9 +11835,9 @@ state 291
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     listcall                       shift and go to state 217
@@ -11914,9 +11914,9 @@ state 293
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -12025,9 +12025,9 @@ state 294
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -12168,9 +12168,9 @@ state 296
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -12194,9 +12194,9 @@ state 296
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     modelexpression                shift and go to state 368
@@ -12324,9 +12324,9 @@ state 300
     (200) lterm -> . lterm OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (201) lterm -> . OPENSQBRACKET ltermarraylist CLOSESQBRACKET
     (202) lterm -> . lterm DOT VAR
-    (203) lterm -> . lterm DOT GRAPHICS
-    (204) lterm -> . lterm DOT MODEL
-    (205) lterm -> . lterm DOT IN
+    (203) lterm -> . lterm DOT IN
+    (204) lterm -> . lterm DOT GRAPHICS
+    (205) lterm -> . lterm DOT MODEL
     (206) lterm -> . VAR
     (207) lterm -> . IN
     (208) lterm -> . PREVAR
@@ -12451,9 +12451,9 @@ state 301
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -12476,9 +12476,9 @@ state 301
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -12571,9 +12571,9 @@ state 303
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -12596,9 +12596,9 @@ state 303
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     getvaluearguments              shift and go to state 371
     term                           shift and go to state 94
@@ -12670,9 +12670,9 @@ state 305
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -12695,9 +12695,9 @@ state 305
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     standarddefinearg1             shift and go to state 375
@@ -13062,9 +13062,9 @@ state 324
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -13087,9 +13087,9 @@ state 324
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -13219,9 +13219,9 @@ state 328
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -13245,9 +13245,9 @@ state 328
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -13359,9 +13359,9 @@ state 331
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -13385,9 +13385,9 @@ state 331
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -13452,9 +13452,9 @@ state 332
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -13478,9 +13478,9 @@ state 332
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -13543,9 +13543,9 @@ state 333
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -13569,9 +13569,9 @@ state 333
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -13655,9 +13655,9 @@ state 335
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -13680,9 +13680,9 @@ state 335
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -13907,9 +13907,9 @@ state 344
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -13932,9 +13932,9 @@ state 344
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -13997,9 +13997,9 @@ state 345
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -14023,9 +14023,9 @@ state 345
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -14088,9 +14088,9 @@ state 346
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -14113,9 +14113,9 @@ state 346
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -14419,9 +14419,9 @@ state 361
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -14444,9 +14444,9 @@ state 361
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -14832,9 +14832,9 @@ state 383
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -14857,9 +14857,9 @@ state 383
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -14967,9 +14967,9 @@ state 388
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -14992,9 +14992,9 @@ state 388
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -15092,9 +15092,9 @@ state 390
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -15119,9 +15119,9 @@ state 390
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     listcall                       shift and go to state 427
@@ -15415,9 +15415,9 @@ state 403
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -15440,9 +15440,9 @@ state 403
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -15504,9 +15504,9 @@ state 404
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -15529,9 +15529,9 @@ state 404
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -15713,9 +15713,9 @@ state 409
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -15739,9 +15739,9 @@ state 409
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     listcall                       shift and go to state 443
@@ -15807,9 +15807,9 @@ state 410
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -15833,9 +15833,9 @@ state 410
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     listcall                       shift and go to state 445
@@ -15901,9 +15901,9 @@ state 411
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -15927,9 +15927,9 @@ state 411
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     listcall                       shift and go to state 447
@@ -15995,9 +15995,9 @@ state 412
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -16021,9 +16021,9 @@ state 412
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     listcall                       shift and go to state 449
@@ -16225,9 +16225,9 @@ state 420
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -16250,9 +16250,9 @@ state 420
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     standarddefinearg2             shift and go to state 461
@@ -16488,9 +16488,9 @@ state 432
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -16513,9 +16513,9 @@ state 432
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -16648,9 +16648,9 @@ state 436
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -16674,9 +16674,9 @@ state 436
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -16785,9 +16785,9 @@ state 439
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -16810,9 +16810,9 @@ state 439
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -17098,9 +17098,9 @@ state 453
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -17123,9 +17123,9 @@ state 453
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -17337,9 +17337,9 @@ state 465
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -17362,9 +17362,9 @@ state 465
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -17445,9 +17445,9 @@ state 468
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -17471,9 +17471,9 @@ state 468
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     listcall                       shift and go to state 486
@@ -17737,9 +17737,9 @@ state 482
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -17762,9 +17762,9 @@ state 482
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     standarddefinearg3             shift and go to state 507
@@ -17963,9 +17963,9 @@ state 491
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -17988,9 +17988,9 @@ state 491
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -18076,9 +18076,9 @@ state 493
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -18101,9 +18101,9 @@ state 493
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90
@@ -18220,9 +18220,9 @@ state 497
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -18247,7 +18247,7 @@ state 497
     NUMBER          shift and go to state 81
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
 
     list                           shift and go to state 516
@@ -18600,9 +18600,9 @@ state 523
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -18625,9 +18625,9 @@ state 523
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     getvaluelist                   shift and go to state 532
     term                           shift and go to state 94
@@ -18694,9 +18694,9 @@ state 524
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -18720,9 +18720,9 @@ state 524
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     listcall                       shift and go to state 534
@@ -18790,9 +18790,9 @@ state 525
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -18816,9 +18816,9 @@ state 525
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     listcall                       shift and go to state 537
@@ -19119,9 +19119,9 @@ state 543
     (225) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression CLOSEBRACKET
     (226) termvar -> . termvar OPENBRACKET expression CLOSEOPENBRACKET expression CLOSEOPENBRACKET expression COLON expression CLOSEBRACKET
     (244) termvar -> . termvar DOT VAR
-    (245) termvar -> . termvar DOT GRAPHICS
-    (246) termvar -> . termvar DOT MODEL
-    (247) termvar -> . termvar DOT IN
+    (245) termvar -> . termvar DOT IN
+    (246) termvar -> . termvar DOT GRAPHICS
+    (247) termvar -> . termvar DOT MODEL
     (248) termvar -> . VAR
     (249) termvar -> . GRAPHICS
     (250) termvar -> . MODEL
@@ -19144,9 +19144,9 @@ state 543
     QSTRING         shift and go to state 101
     DQSTRING        shift and go to state 98
     VAR             shift and go to state 96
-    GRAPHICS        shift and go to state 95
+    GRAPHICS        shift and go to state 80
     MODEL           shift and go to state 86
-    IN              shift and go to state 80
+    IN              shift and go to state 95
 
     term                           shift and go to state 94
     termvar                        shift and go to state 90

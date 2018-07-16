@@ -559,11 +559,8 @@ def p_modelvar_modelvar_var(p):
     p[0] = '%s.%s' % (p[1], p[3])
 
 def p_modelvar_var(p):
-    'modelvar : VAR'
-    p[0] = '%s' % (p[1])
-
-def p_modelvar_in(p):
-    'modelvar : IN'
+    '''modelvar : VAR
+                | IN'''
     p[0] = '%s' % (p[1])
 
 def p_modelvar_modelvar_expression(p):
@@ -1053,12 +1050,9 @@ def p_lterm_ltermarraylist(p):
 
 def p_lterm_lterm_dot_var(p):
     '''lterm : lterm DOT VAR
+             | lterm DOT IN
              | lterm DOT GRAPHICS
              | lterm DOT MODEL'''
-    p[0] = '%s.%s' % (p[1], p[3])
-
-def p_lterm_lterm_dot_in(p):
-    'lterm : lterm DOT IN'
     p[0] = '%s.%s' % (p[1], p[3])
 
 def p_lterm_var(p):
@@ -1272,24 +1266,9 @@ def p_term_termvar(p):
 # A.B
 def p_termvar_termvar_dot_var(p):
     '''termvar : termvar DOT VAR
+               | termvar DOT IN
                | termvar DOT GRAPHICS
                | termvar DOT MODEL'''
-    var = p[1][0]
-    if var[:5] == 'this.':
-        basevar = var[5:]
-    else:
-        basevar = var
-    add_object_var(basevar)
-    var = '%s.%s' % (var, p[3])
-    if var[:5] == 'this.':
-        basevar = var[5:]
-    else:
-        basevar = var
-    vartype = VAR_TYPES[basevar] if basevar in VAR_TYPES else None
-    p[0] = (var, vartype)
-
-def p_termvar_termvar_dot_in(p):
-    'termvar : termvar DOT IN'
     var = p[1][0]
     if var[:5] == 'this.':
         basevar = var[5:]
