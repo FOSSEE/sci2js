@@ -581,50 +581,25 @@ def p_assignment_model_modelvar_assignment_modelexpression(p):
     value = p[5][0]
     vartype = p[5][1]
     add_var_vartype(var, vartype)
-    if vartype == MATRIX_TYPE:
-        vartype = DOUBLE_TYPE
-        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
-        if vartype != '':
-            if value[0] == '[':
-                value = value[1:-1]
-            p[0] = '%*s%s = new %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
-        else:
-            p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
-    elif vartype == VECTOR_BOOLEAN_TYPE:
-        vartype = BOOLEAN_TYPE
-        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
-        if vartype != '':
-            p[0] = '%*s%s = new %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
-        else:
-            p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
-    elif vartype == VECTOR_STRING_TYPE:
-        vartype = STRING_TYPE
-        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
-        if vartype != '':
-            p[0] = '%*s%s = new %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
-        else:
-            p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
-    elif vartype == VECTOR_TYPE:
-        vartype = DOUBLE_TYPE
-        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
-        if vartype != '':
-            p[0] = '%*s%s = new %s(%s);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
-        else:
-            p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
-    else:
-        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
-        if vartype != '':
-            p[0] = '%*s%s = new %s([%s]);\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, vartype, value)
-        else:
-            p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
+    p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
 
 def p_modelexpression_list_modelexpressionlist(p):
     'modelexpression : LIST OPENBRACKET modelexpressionlist CLOSEBRACKET'
-    p[0] = ('%s(%s)' % (p[1], p[3]), LIST_TYPE)
+    value = '%s(%s)' % (p[1], p[3])
+    vartype = LIST_TYPE
+    vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
+    if vartype != '':
+        value = 'new %s([%s])' % (vartype, value)
+    p[0] = ('%s' % (value), LIST_TYPE)
 
 def p_modelexpression_list(p):
     'modelexpression : LIST OPENBRACKET CLOSEBRACKET'
-    p[0] = ('%s()' % (p[1]), LIST_TYPE)
+    value = '%s()' % (p[1])
+    vartype = LIST_TYPE
+    vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
+    if vartype != '':
+        value = 'new %s([%s])' % (vartype, value)
+    p[0] = ('%s' % (value), LIST_TYPE)
 
 def p_modelexpressionlist_expression(p):
     '''modelexpressionlist : expression
@@ -648,7 +623,35 @@ def p_modelexpressionlist_modelexpression_list_expression(p):
 
 def p_modelexpression_expression(p):
     'modelexpression : expression'
-    p[0] = p[1]
+    value = p[1][0]
+    vartype = p[1][1]
+    if vartype == MATRIX_TYPE:
+        vartype = DOUBLE_TYPE
+        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
+        if vartype != '':
+            if value[0] == '[':
+                value = value[1:-1]
+            value = 'new %s(%s)' % (vartype, value)
+    elif vartype == VECTOR_BOOLEAN_TYPE:
+        vartype = BOOLEAN_TYPE
+        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
+        if vartype != '':
+            value = 'new %s(%s)' % (vartype, value)
+    elif vartype == VECTOR_STRING_TYPE:
+        vartype = STRING_TYPE
+        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
+        if vartype != '':
+            value = 'new %s(%s)' % (vartype, value)
+    elif vartype == VECTOR_TYPE:
+        vartype = DOUBLE_TYPE
+        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
+        if vartype != '':
+            value = 'new %s(%s)' % (vartype, value)
+    else:
+        vartype = MODEL_MAP.get(vartype, 'ScilabDouble')
+        if vartype != '':
+            value = 'new %s([%s])' % (vartype, value)
+    p[0] = ('%s' % (value), p[1][1])
 
 def p_getvalueassignment_getvalue_arguments(p):
     'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET getvaluearguments CLOSEBRACKET EOL'
