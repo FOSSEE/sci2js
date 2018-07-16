@@ -18,7 +18,7 @@ function PuitsP() {
         this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.exprs = [[string(this.P0)],[string(this.T0)],[string(this.H0)],[string(this.option_temperature)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PuitsP\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2.5,2]),this.model,this.exprs,list(this.gr_i,0));
+        this.x = new standard_define(new ScilabDouble([2.5,2]),this.model,new ScilabDouble(this.exprs),list(this.gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         return new BasicBlock(this.x);
     }

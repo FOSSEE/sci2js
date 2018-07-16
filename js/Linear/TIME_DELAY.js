@@ -15,7 +15,7 @@ function TIME_DELAY() {
         this.model.dep_ut = new ScilabBoolean([false,true]);
         this.exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TIME_DELAY\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3.5,2]),this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3.5,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
         return new BasicBlock(this.x);
     }
     TIME_DELAY.prototype.details = function TIME_DELAY() {

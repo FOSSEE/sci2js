@@ -14,7 +14,7 @@ function INTEGRAL() {
         this.model.dep_ut = new ScilabBoolean([false,true]);
         this.exprs = string([[0],[0],[0],[this.maxp],[minp]]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTEGRAL\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([this.exprs]),this.gr_i);
         this.x.graphics.id = "1/s";
         return new BasicBlock(this.x);
     }

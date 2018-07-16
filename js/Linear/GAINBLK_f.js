@@ -13,7 +13,7 @@ function GAINBLK_f() {
         this.model.dep_ut = new ScilabBoolean([true,false]);
         this.exprs = [strcat(sci2exp(this.gain))];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GAINBLK_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
         return new BasicBlock(this.x);
     }
     GAINBLK_f.prototype.details = function GAINBLK_f() {

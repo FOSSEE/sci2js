@@ -9,7 +9,7 @@ function SampleCLK() {
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
         this.exprs = [[sci2exp(1)],[sci2exp(0)]];
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs," ");
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs)," ");
         return new BasicBlock(this.x);
     }
     SampleCLK.prototype.details = function SampleCLK() {

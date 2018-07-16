@@ -15,7 +15,7 @@ function BARXY() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([this.xmin],[this.xmax],[this.ymin],[this.ymax]);
         this.model.ipar = new ScilabDouble([1]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,[],[]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble([]),[]);
         this.x.graphics.in_implicit = ["E","E"];
         this.x.graphics.out_implicit = [];
         this.x.graphics.exprs = [["-15"],["15"],["-15"],["15"],["1"]];

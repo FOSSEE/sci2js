@@ -20,7 +20,7 @@ function Diode() {
         this.model.equations = new ScilabDouble([mo]);
         this.exprs = string([[this.Ids],[this.Vt],[this.Maxexp],[this.R]]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Diode\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,1]),this.model,this.exprs,list(this.gr_i,0));
+        this.x = new standard_define(new ScilabDouble([2,1]),this.model,new ScilabString([this.exprs]),list(this.gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);

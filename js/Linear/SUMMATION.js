@@ -13,7 +13,7 @@ function SUMMATION() {
         this.model.dep_ut = new ScilabBoolean([true,false]);
         this.exprs = sci2exp(this.sgn);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUMMATION\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,3]),this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,3]),this.model,new ScilabString([this.exprs]),this.gr_i);
         return new Summation(this.x);
     }
     SUMMATION.prototype.details = function SUMMATION() {

@@ -10,7 +10,7 @@ function SAMPHOLD() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SAMPHOLD\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model," ",this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([" "]),this.gr_i);
         return new BasicBlock(this.x);
     }
     SAMPHOLD.prototype.details = function SAMPHOLD() {

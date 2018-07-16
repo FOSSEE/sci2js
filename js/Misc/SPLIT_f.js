@@ -7,7 +7,7 @@ function SPLIT_f() {
         this.model.out = new ScilabDouble([-1],[-1],[-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.x = new standard_define(new ScilabDouble([1,1]),this.model,[],[]);
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabDouble([]),[]);
         return new BasicBlock(this.x);
     }
     SPLIT_f.prototype.details = function SPLIT_f() {

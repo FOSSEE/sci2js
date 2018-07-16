@@ -767,7 +767,7 @@ def p_standarddefinearg2_expression(p):
     p[0] = '%s' % (value)
 
 def p_standarddefinearg3_expression(p):
-    'standarddefinearg3 : expression'
+    'standarddefinearg3 : modelexpression'
     value = p[1][0]
     p[0] = '%s' % (value)
 

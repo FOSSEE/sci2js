@@ -22,7 +22,7 @@ function MATPINV() {
         this.model.dep_ut = new ScilabBoolean([true,false]);
         var label = [sci2exp(1)];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATPINV\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,label,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString(label),this.gr_i);
         return new BasicBlock(this.x);
     }
     MATPINV.prototype.details = function MATPINV() {

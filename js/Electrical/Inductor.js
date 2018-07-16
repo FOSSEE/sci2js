@@ -17,7 +17,7 @@ function Inductor() {
         this.model.equations = new ScilabDouble([mo]);
         this.exprs = string(this.L);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Inductor\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,0.9]),this.model,this.exprs,list(this.gr_i,0));
+        this.x = new standard_define(new ScilabDouble([2,0.9]),this.model,new ScilabString([this.exprs]),list(this.gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);

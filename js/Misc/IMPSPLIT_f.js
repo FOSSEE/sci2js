@@ -10,7 +10,7 @@ function IMPSPLIT_f() {
         this.model.equations = new ScilabDouble([mo]);
         this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
-        this.x = new standard_define(new ScilabDouble([1,1]),this.model,[],[]);
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabDouble([]),[]);
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I","I"];
         return new BasicBlock(this.x);

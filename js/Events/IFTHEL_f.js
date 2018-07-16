@@ -15,7 +15,7 @@ function IFTHEL_f() {
         this.model.nzcross = new ScilabDouble([1]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IFTHEL_f\",sz(1),sz(2));"]);
         this.exprs = [[string(this.model.in)],[string(this.model.nmode)]];
-        this.x = new standard_define(new ScilabDouble([3,3]),this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3,3]),this.model,new ScilabDouble(this.exprs),this.gr_i);
         return new BasicBlock(this.x);
     }
     IFTHEL_f.prototype.details = function IFTHEL_f() {

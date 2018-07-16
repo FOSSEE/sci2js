@@ -104,7 +104,7 @@ function freq_div() {
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"freq_div\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,[],this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble([]),this.gr_i);
         return new BasicBlock(this.x);
     }
     freq_div.prototype.details = function freq_div() {

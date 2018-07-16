@@ -140,7 +140,7 @@ Rule 134   getvaluearg4 -> listcall
 Rule 135   standarddefineassignment -> lterm ASSIGNMENT STANDARD_DEFINE OPENBRACKET standarddefinearg1 COMMA standarddefinearg2 COMMA standarddefinearg3 COMMA standarddefinearg4 CLOSEBRACKET EOL
 Rule 136   standarddefinearg1 -> expression
 Rule 137   standarddefinearg2 -> expression
-Rule 138   standarddefinearg3 -> expression
+Rule 138   standarddefinearg3 -> modelexpression
 Rule 139   standarddefinearg4 -> expression
 Rule 140   standarddefinearg4 -> listcall
 Rule 141   ltermarraylist -> ltermarraylist COMMA ltermarraylistterm
@@ -341,7 +341,7 @@ elseifstatementblock : 54 55 57
 elsestatement        : 59 60
 elsestatementblock   : 53 55 63
 endstatementblock    : 33 34 50 52 53 54 55 61 62 63
-expression           : 67 67 67 68 68 68 69 69 70 70 73 75 76 89 90 91 92 93 94 95 97 99 100 104 105 105 110 112 114 117 133 136 137 138 139 152 153 154 155 155 156 158 159 160 164 166 168 170 172 173 174 181 182 182 183 183 184 184 185 186 186 187 188 192 195 195 196 197 197 197 197 198 199 199 200 200 209 209 210 210 210 211 211 211 211 212 212 213 214 216 217 218 219 219 220 220 222 222 223 223 223 224 225 225 225 226 226 226 226 227 227 227 228 228 229 229 230 233 240 240 241 241
+expression           : 67 67 67 68 68 68 69 69 70 70 73 75 76 89 90 91 92 93 94 95 97 99 100 104 105 105 110 112 114 117 133 136 137 139 152 153 154 155 155 156 158 159 160 164 166 168 170 172 173 174 181 182 182 183 183 184 184 185 186 186 187 188 192 195 195 196 197 197 197 197 198 199 199 200 200 209 209 210 210 210 211 211 211 211 212 212 213 214 216 217 218 219 219 220 220 222 222 223 223 223 224 225 225 225 226 226 226 226 227 227 227 228 228 229 229 230 233 240 240 241 241
 forstatement         : 51
 forstatementblock    : 50
 forstatementblocks   : 26 27
@@ -370,7 +370,7 @@ listcall             : 98 111 113 134 140 157 161 162 163 165 167 169 171 185
 lterm                : 5 6 7 8 9 37 97 98 115 135 192 195 196 197 198 199 200 202 203 204 205
 ltermarraylist       : 141 201
 ltermarraylistterm   : 141 142
-modelexpression      : 106 107
+modelexpression      : 106 107 138
 modelexpressionlist  : 108 112 113
 modelvar             : 101 104 105 106 107
 resumestatementblocks : 31 32
@@ -12942,6 +12942,7 @@ state 320
     (223) term -> expression . COLON expression COLON expression
 
     EOL             reduce using rule 114 (modelexpression -> expression .)
+    COMMA           reduce using rule 114 (modelexpression -> expression .)
     TRANSPOSE       shift and go to state 171
     MULTIPLICATION  shift and go to state 175
     ADDITION        shift and go to state 170
@@ -16375,6 +16376,7 @@ state 428
     (109) modelexpression -> LIST OPENBRACKET CLOSEBRACKET .
 
     EOL             reduce using rule 109 (modelexpression -> LIST OPENBRACKET CLOSEBRACKET .)
+    COMMA           reduce using rule 109 (modelexpression -> LIST OPENBRACKET CLOSEBRACKET .)
 
 
 state 429
@@ -17384,6 +17386,7 @@ state 467
     (108) modelexpression -> LIST OPENBRACKET modelexpressionlist CLOSEBRACKET .
 
     EOL             reduce using rule 108 (modelexpression -> LIST OPENBRACKET modelexpressionlist CLOSEBRACKET .)
+    COMMA           reduce using rule 108 (modelexpression -> LIST OPENBRACKET modelexpressionlist CLOSEBRACKET .)
 
 
 state 468
@@ -17683,7 +17686,10 @@ state 481
 state 482
 
     (135) standarddefineassignment -> lterm ASSIGNMENT STANDARD_DEFINE OPENBRACKET standarddefinearg1 COMMA standarddefinearg2 COMMA . standarddefinearg3 COMMA standarddefinearg4 CLOSEBRACKET EOL
-    (138) standarddefinearg3 -> . expression
+    (138) standarddefinearg3 -> . modelexpression
+    (108) modelexpression -> . LIST OPENBRACKET modelexpressionlist CLOSEBRACKET
+    (109) modelexpression -> . LIST OPENBRACKET CLOSEBRACKET
+    (114) modelexpression -> . expression
     (174) expression -> . OPENBRACKET expression CLOSEBRACKET
     (175) expression -> . OPENSQBRACKET termarrayarraylist CLOSESQBRACKET
     (176) expression -> . OPENSQBRACKET termarrayarraylist SEMICOLON CLOSESQBRACKET
@@ -17745,6 +17751,7 @@ state 482
     (250) termvar -> . MODEL
     (251) termvar -> . IN
 
+    LIST            shift and go to state 319
     OPENBRACKET     shift and go to state 89
     OPENSQBRACKET   shift and go to state 97
     ADDITION        shift and go to state 99
@@ -17767,9 +17774,10 @@ state 482
     IN              shift and go to state 95
 
     term                           shift and go to state 94
-    standarddefinearg3             shift and go to state 507
+    modelexpression                shift and go to state 507
+    standarddefinearg3             shift and go to state 508
     termvar                        shift and go to state 90
-    expression                     shift and go to state 508
+    expression                     shift and go to state 320
 
 state 483
 
@@ -18344,31 +18352,16 @@ state 506
 
 state 507
 
-    (135) standarddefineassignment -> lterm ASSIGNMENT STANDARD_DEFINE OPENBRACKET standarddefinearg1 COMMA standarddefinearg2 COMMA standarddefinearg3 . COMMA standarddefinearg4 CLOSEBRACKET EOL
+    (138) standarddefinearg3 -> modelexpression .
 
-    COMMA           shift and go to state 525
+    COMMA           reduce using rule 138 (standarddefinearg3 -> modelexpression .)
 
 
 state 508
 
-    (138) standarddefinearg3 -> expression .
-    (181) expression -> expression . TRANSPOSE
-    (182) expression -> expression . MULTIPLICATION expression
-    (183) expression -> expression . ADDITION expression
-    (184) expression -> expression . COMPARISON expression
-    (185) expression -> expression . COMPARISON listcall
-    (186) expression -> expression . LOGICAL expression
-    (240) expression -> expression . ADDITION expression MULTIPLICATION PREVAR_COMPLEX
-    (241) expression -> expression . ADDITION PREVAR_COMPLEX MULTIPLICATION expression
-    (223) term -> expression . COLON expression COLON expression
+    (135) standarddefineassignment -> lterm ASSIGNMENT STANDARD_DEFINE OPENBRACKET standarddefinearg1 COMMA standarddefinearg2 COMMA standarddefinearg3 . COMMA standarddefinearg4 CLOSEBRACKET EOL
 
-    COMMA           reduce using rule 138 (standarddefinearg3 -> expression .)
-    TRANSPOSE       shift and go to state 171
-    MULTIPLICATION  shift and go to state 175
-    ADDITION        shift and go to state 170
-    COMPARISON      shift and go to state 169
-    LOGICAL         shift and go to state 172
-    COLON           shift and go to state 174
+    COMMA           shift and go to state 525
 
 
 state 509

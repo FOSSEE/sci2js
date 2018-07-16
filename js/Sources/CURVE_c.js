@@ -20,7 +20,7 @@ function CURVE_c() {
         this.model.firing = new ScilabDouble([0]);
         this.exprs = [[sci2exp(this.Method)],[sci2exp(this.xx)],[sci2exp(this.yy)],[this.PeriodicOption],[Graf]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CURVE_c\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
         return new BasicBlock(this.x);
     }
     CURVE_c.prototype.details = function CURVE_c() {

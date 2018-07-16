@@ -13,7 +13,7 @@ function EVTDLY_c() {
         this.model.dep_ut = new ScilabBoolean([false,false]);
         this.exprs = [[string(this.dt)],[sci2exp(this.ff)]];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EVTDLY_c\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
         return new BasicBlock(this.x);
     }
     EVTDLY_c.prototype.details = function EVTDLY_c() {

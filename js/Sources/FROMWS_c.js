@@ -18,7 +18,7 @@ function FROMWS_c() {
         this.model.dep_ut = new ScilabBoolean([false,true]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROMWS_c\",sz(1),sz(2));"]);
         this.exprs = [[string(this.varnam)],[string(this.Method)],[string(this.ZC)],[string(this.OutEnd)]];
-        this.x = new standard_define(new ScilabDouble([3.5,2]),this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3.5,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
         return new BasicBlock(this.x);
     }
     FROMWS_c.prototype.details = function FROMWS_c() {

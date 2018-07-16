@@ -16,7 +16,7 @@ function ESELECT_f() {
         this.model.nzcross = new ScilabDouble([0]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ESELECT_f\",sz(1),sz(2));"]);
         this.exprs = [[string(this.out)],[string(1)],[string(this.model.nmode)]];
-        this.x = new standard_define(new ScilabDouble([4,2]),this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([4,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
         return new BasicBlock(this.x);
     }
     ESELECT_f.prototype.details = function ESELECT_f() {

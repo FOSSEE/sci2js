@@ -10,7 +10,7 @@ function CLKOUTV_f() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
         this.exprs = string(this.prt);
-        this.x = new standard_define(new ScilabDouble([1,1]),this.model,this.exprs," ");
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([this.exprs])," ");
         return new EventOutBlock(this.x);
     }
     CLKOUTV_f.prototype.details = function CLKOUTV_f() {

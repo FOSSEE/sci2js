@@ -9,7 +9,7 @@ function SUM_f() {
         this.model.dep_ut = new ScilabBoolean([true,false]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUM_f\",sz(1),sz(2));"]);
         this.exprs = [];
-        this.x = new standard_define(new ScilabDouble([1,1]),this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabDouble(this.exprs),this.gr_i);
         return new BasicBlock(this.x);
     }
     SUM_f.prototype.details = function SUM_f() {

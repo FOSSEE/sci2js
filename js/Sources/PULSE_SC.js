@@ -42,7 +42,7 @@ function PULSE_SC() {
         var A = 1;
         this.exprs = [sci2exp(E),sci2exp(W),sci2exp(F),sci2exp(A)];
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PULSE_SC\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,this.exprs,this.gr_i);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabString(this.exprs),this.gr_i);
         return new BasicBlock(this.x);
     }
     PULSE_SC.prototype.details = function PULSE_SC() {

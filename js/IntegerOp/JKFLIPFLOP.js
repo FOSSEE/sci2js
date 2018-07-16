@@ -45,7 +45,7 @@ function JKFLIPFLOP() {
         this.model.dep_ut = new ScilabBoolean([true,false]);
         this.model.rpar = new ScilabDouble([scs_m]);
         this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"JKFLIPFLOP\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,3]),this.model,[],this.gr_i);
+        this.x = new standard_define(new ScilabDouble([2,3]),this.model,new ScilabDouble([]),this.gr_i);
         return new BasicBlock(this.x);
     }
     JKFLIPFLOP.prototype.details = function JKFLIPFLOP() {
