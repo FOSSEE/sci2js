@@ -18,9 +18,7 @@ function NEGTOPOS_f() {
         return this.x;
     }
     NEGTOPOS_f.prototype.get = function NEGTOPOS_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     NEGTOPOS_f.prototype.set = function NEGTOPOS_f() {
         this.x.model.firing = -1;

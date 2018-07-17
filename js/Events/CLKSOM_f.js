@@ -16,9 +16,7 @@ function CLKSOM_f() {
         return this.x;
     }
     CLKSOM_f.prototype.get = function CLKSOM_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLKSOM_f.prototype.set = function CLKSOM_f() {
         return new BasicBlock(this.x);

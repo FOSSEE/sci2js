@@ -17,9 +17,7 @@ function CLKOUT_f() {
         return this.x;
     }
     CLKOUT_f.prototype.get = function CLKOUT_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLKOUT_f.prototype.set = function CLKOUT_f() {
         this.exprs = this.graphics.exprs;

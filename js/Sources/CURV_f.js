@@ -23,9 +23,7 @@ function CURV_f() {
         return this.x;
     }
     CURV_f.prototype.get = function CURV_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CURV_f.prototype.set = function CURV_f() {
         var rpar = this.model.rpar;

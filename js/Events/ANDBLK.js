@@ -71,9 +71,7 @@ function ANDBLK() {
         return this.x;
     }
     ANDBLK.prototype.get = function ANDBLK() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     ANDBLK.prototype.set = function ANDBLK() {
         return new BasicBlock(this.x);

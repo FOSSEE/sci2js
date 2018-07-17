@@ -17,9 +17,7 @@ function CLKOUTV_f() {
         return this.x;
     }
     CLKOUTV_f.prototype.get = function CLKOUTV_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLKOUTV_f.prototype.set = function CLKOUTV_f() {
         this.exprs = this.graphics.exprs;

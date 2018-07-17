@@ -19,9 +19,7 @@ function LOGBLK_f() {
         return this.x;
     }
     LOGBLK_f.prototype.get = function LOGBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     LOGBLK_f.prototype.set = function LOGBLK_f() {
         this.exprs = this.graphics.exprs;

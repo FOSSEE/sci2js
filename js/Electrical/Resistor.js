@@ -26,9 +26,7 @@ function Resistor() {
         return this.x;
     }
     Resistor.prototype.get = function Resistor() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     Resistor.prototype.set = function Resistor() {
         this.exprs = this.graphics.exprs;

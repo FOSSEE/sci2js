@@ -52,9 +52,7 @@ function JKFLIPFLOP() {
         return this.x;
     }
     JKFLIPFLOP.prototype.get = function JKFLIPFLOP() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     JKFLIPFLOP.prototype.set = function JKFLIPFLOP() {
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {

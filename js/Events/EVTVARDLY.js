@@ -19,9 +19,7 @@ function EVTVARDLY() {
         return this.x;
     }
     EVTVARDLY.prototype.get = function EVTVARDLY() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     EVTVARDLY.prototype.set = function EVTVARDLY() {
         this.exprs = this.graphics.exprs;

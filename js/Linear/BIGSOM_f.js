@@ -18,9 +18,7 @@ function BIGSOM_f() {
         return this.x;
     }
     BIGSOM_f.prototype.get = function BIGSOM_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     BIGSOM_f.prototype.set = function BIGSOM_f() {
         this.exprs = this.graphics.exprs;

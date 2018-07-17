@@ -29,9 +29,7 @@ function MATZCONJ() {
         return this.x;
     }
     MATZCONJ.prototype.get = function MATZCONJ() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MATZCONJ.prototype.set = function MATZCONJ() {
         return new BasicBlock(this.x);

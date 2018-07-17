@@ -53,9 +53,7 @@ function CVS() {
         return this.x;
     }
     CVS.prototype.get = function CVS() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CVS.prototype.set = function CVS() {
         this.exprs = this.graphics.exprs;

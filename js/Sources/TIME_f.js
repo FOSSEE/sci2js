@@ -14,9 +14,7 @@ function TIME_f() {
         return this.x;
     }
     TIME_f.prototype.get = function TIME_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     TIME_f.prototype.set = function TIME_f() {
         return new BasicBlock(this.x);

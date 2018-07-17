@@ -14,9 +14,7 @@ function SPLIT_f() {
         return this.x;
     }
     SPLIT_f.prototype.get = function SPLIT_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SPLIT_f.prototype.set = function SPLIT_f() {
         return new BasicBlock(this.x);

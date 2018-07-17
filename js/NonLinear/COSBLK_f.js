@@ -16,9 +16,7 @@ function COSBLK_f() {
         return this.x;
     }
     COSBLK_f.prototype.get = function COSBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     COSBLK_f.prototype.set = function COSBLK_f() {
         return new BasicBlock(this.x);

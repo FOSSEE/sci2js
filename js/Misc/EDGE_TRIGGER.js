@@ -85,9 +85,7 @@ function EDGE_TRIGGER() {
         return this.x;
     }
     EDGE_TRIGGER.prototype.get = function EDGE_TRIGGER() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     EDGE_TRIGGER.prototype.set = function EDGE_TRIGGER() {
             if (typeof(o)=="Block"&&o.gui=="EDGETRIGGER") {

@@ -17,9 +17,7 @@ function CLKIN_f() {
         return this.x;
     }
     CLKIN_f.prototype.get = function CLKIN_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLKIN_f.prototype.set = function CLKIN_f() {
         this.exprs = this.graphics.exprs;

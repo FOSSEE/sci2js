@@ -23,9 +23,7 @@ function VariableResistor() {
         return this.x;
     }
     VariableResistor.prototype.get = function VariableResistor() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     VariableResistor.prototype.set = function VariableResistor() {
         return new BasicBlock(this.x);

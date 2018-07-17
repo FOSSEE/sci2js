@@ -19,9 +19,7 @@ function Sigbuilder() {
         return this.x;
     }
     Sigbuilder.prototype.get = function Sigbuilder() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     Sigbuilder.prototype.set = function Sigbuilder() {
         var ppath = list(0);

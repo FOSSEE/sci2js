@@ -18,9 +18,7 @@ function MUX_f() {
         return this.x;
     }
     MUX_f.prototype.get = function MUX_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MUX_f.prototype.set = function MUX_f() {
         this.exprs = this.graphics.exprs;

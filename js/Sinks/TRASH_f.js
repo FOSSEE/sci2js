@@ -17,9 +17,7 @@ function TRASH_f() {
         return this.x;
     }
     TRASH_f.prototype.get = function TRASH_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     TRASH_f.prototype.set = function TRASH_f() {
         return new BasicBlock(this.x);

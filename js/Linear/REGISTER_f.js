@@ -19,9 +19,7 @@ function REGISTER_f() {
         return this.x;
     }
     REGISTER_f.prototype.get = function REGISTER_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     REGISTER_f.prototype.set = function REGISTER_f() {
         this.exprs = this.graphics.exprs;

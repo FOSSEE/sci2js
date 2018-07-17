@@ -13,9 +13,7 @@ function DEBUG() {
         return this.x;
     }
     DEBUG.prototype.get = function DEBUG() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     DEBUG.prototype.set = function DEBUG() {
         this.exprs = this.graphics.exprs;

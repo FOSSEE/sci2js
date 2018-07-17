@@ -21,9 +21,7 @@ function ZCROSS_f() {
         return this.x;
     }
     ZCROSS_f.prototype.get = function ZCROSS_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     ZCROSS_f.prototype.set = function ZCROSS_f() {
         this.exprs = this.graphics.exprs;

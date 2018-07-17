@@ -13,9 +13,7 @@ function ENDBLK() {
         return this.x;
     }
     ENDBLK.prototype.get = function ENDBLK() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     ENDBLK.prototype.set = function ENDBLK() {
             if (typeof(o)=="Block"&&o.gui=="END_c") {

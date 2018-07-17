@@ -15,9 +15,7 @@ function ABSBLK_f() {
         return this.x;
     }
     ABSBLK_f.prototype.get = function ABSBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     ABSBLK_f.prototype.set = function ABSBLK_f() {
         return new BasicBlock(this.x);

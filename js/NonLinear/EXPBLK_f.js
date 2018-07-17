@@ -19,9 +19,7 @@ function EXPBLK_f() {
         return this.x;
     }
     EXPBLK_f.prototype.get = function EXPBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     EXPBLK_f.prototype.set = function EXPBLK_f() {
         this.exprs = this.graphics.exprs;

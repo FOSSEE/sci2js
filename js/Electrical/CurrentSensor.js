@@ -23,9 +23,7 @@ function CurrentSensor() {
         return this.x;
     }
     CurrentSensor.prototype.get = function CurrentSensor() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CurrentSensor.prototype.set = function CurrentSensor() {
         return new BasicBlock(this.x);

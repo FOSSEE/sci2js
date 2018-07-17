@@ -53,9 +53,7 @@ function CCS() {
         return this.x;
     }
     CCS.prototype.get = function CCS() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CCS.prototype.set = function CCS() {
         this.exprs = this.graphics.exprs;

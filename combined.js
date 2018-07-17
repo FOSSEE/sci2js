@@ -17,9 +17,7 @@ function CLKFROM() {
         return this.x;
     }
     CLKFROM.prototype.get = function CLKFROM() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLKFROM.prototype.set = function CLKFROM() {
         this.exprs = this.graphics.exprs;
@@ -949,9 +947,7 @@ function MUX() {
         return this.x;
     }
     MUX.prototype.get = function MUX() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MUX.prototype.set = function MUX() {
         this.exprs = this.graphics.exprs;
@@ -1022,9 +1018,7 @@ function MUX_f() {
         return this.x;
     }
     MUX_f.prototype.get = function MUX_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MUX_f.prototype.set = function MUX_f() {
         this.exprs = this.graphics.exprs;
@@ -1476,9 +1470,7 @@ function SELF_SWITCH() {
         return this.x;
     }
     SELF_SWITCH.prototype.get = function SELF_SWITCH() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SELF_SWITCH.prototype.set = function SELF_SWITCH() {
         this.stateOpen = this.x.model.opar[1-1];
@@ -1766,9 +1758,7 @@ function CCS() {
         return this.x;
     }
     CCS.prototype.get = function CCS() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CCS.prototype.set = function CCS() {
         this.exprs = this.graphics.exprs;
@@ -1830,9 +1820,7 @@ function CVS() {
         return this.x;
     }
     CVS.prototype.get = function CVS() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CVS.prototype.set = function CVS() {
         this.exprs = this.graphics.exprs;
@@ -1922,9 +1910,7 @@ function ConstantVoltage() {
         return this.x;
     }
     ConstantVoltage.prototype.get = function ConstantVoltage() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     ConstantVoltage.prototype.set = function ConstantVoltage() {
         this.exprs = this.graphics.exprs;
@@ -1970,9 +1956,7 @@ function CurrentSensor() {
         return this.x;
     }
     CurrentSensor.prototype.get = function CurrentSensor() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CurrentSensor.prototype.set = function CurrentSensor() {
         return new BasicBlock(this.x);
@@ -2063,9 +2047,7 @@ function Ground() {
         return this.x;
     }
     Ground.prototype.get = function Ground() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     Ground.prototype.set = function Ground() {
         return new GroundBlock(this.x);
@@ -2255,9 +2237,7 @@ function Inductor() {
         return this.x;
     }
     Inductor.prototype.get = function Inductor() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     Inductor.prototype.set = function Inductor() {
         this.exprs = this.graphics.exprs;
@@ -2298,9 +2278,7 @@ function MOTOR() {
         return this.x;
     }
     MOTOR.prototype.get = function MOTOR() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MOTOR.prototype.set = function MOTOR() {
         return new BasicBlock(this.x);
@@ -2753,9 +2731,7 @@ function PotentialSensor() {
         return this.x;
     }
     PotentialSensor.prototype.get = function PotentialSensor() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     PotentialSensor.prototype.set = function PotentialSensor() {
         return new BasicBlock(this.x);
@@ -2789,9 +2765,7 @@ function Resistor() {
         return this.x;
     }
     Resistor.prototype.get = function Resistor() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     Resistor.prototype.set = function Resistor() {
         this.exprs = this.graphics.exprs;
@@ -3010,9 +2984,7 @@ function VariableResistor() {
         return this.x;
     }
     VariableResistor.prototype.get = function VariableResistor() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     VariableResistor.prototype.set = function VariableResistor() {
         return new BasicBlock(this.x);
@@ -3043,9 +3015,7 @@ function VoltageSensor() {
         return this.x;
     }
     VoltageSensor.prototype.get = function VoltageSensor() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     VoltageSensor.prototype.set = function VoltageSensor() {
         return new VoltageSensorBlock(this.x);
@@ -3179,9 +3149,7 @@ function ANDBLK() {
         return this.x;
     }
     ANDBLK.prototype.get = function ANDBLK() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     ANDBLK.prototype.set = function ANDBLK() {
         return new BasicBlock(this.x);
@@ -3205,9 +3173,7 @@ function ANDLOG_f() {
         return this.x;
     }
     ANDLOG_f.prototype.get = function ANDLOG_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     ANDLOG_f.prototype.set = function ANDLOG_f() {
         return new BasicBlock(this.x);
@@ -3231,9 +3197,7 @@ function CLKSOMV_f() {
         return this.x;
     }
     CLKSOMV_f.prototype.get = function CLKSOMV_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLKSOMV_f.prototype.set = function CLKSOMV_f() {
         return new BasicBlock(this.x);
@@ -3257,9 +3221,7 @@ function CLKSOM_f() {
         return this.x;
     }
     CLKSOM_f.prototype.get = function CLKSOM_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLKSOM_f.prototype.set = function CLKSOM_f() {
         return new BasicBlock(this.x);
@@ -3282,9 +3244,7 @@ function CLKSPLIT_f() {
         return this.x;
     }
     CLKSPLIT_f.prototype.get = function CLKSPLIT_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLKSPLIT_f.prototype.set = function CLKSPLIT_f() {
         return new BasicBlock(this.x);
@@ -3508,9 +3468,7 @@ function EVTVARDLY() {
         return this.x;
     }
     EVTVARDLY.prototype.get = function EVTVARDLY() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     EVTVARDLY.prototype.set = function EVTVARDLY() {
         this.exprs = this.graphics.exprs;
@@ -3721,9 +3679,7 @@ function MCLOCK_f() {
         return this.x;
     }
     MCLOCK_f.prototype.get = function MCLOCK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MCLOCK_f.prototype.set = function MCLOCK_f() {
             if (typeof(o)=="Block"&&o.gui=="MFCLCK_f") {
@@ -3893,9 +3849,7 @@ function VirtualCLK0() {
         return this.x;
     }
     VirtualCLK0.prototype.get = function VirtualCLK0() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     VirtualCLK0.prototype.set = function VirtualCLK0() {
         return new BasicBlock(this.x);
@@ -4240,9 +4194,7 @@ function Flowmeter() {
         return this.x;
     }
     Flowmeter.prototype.get = function Flowmeter() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     Flowmeter.prototype.set = function Flowmeter() {
         this.exprs = this.graphics.exprs;
@@ -5178,9 +5130,7 @@ function DFLIPFLOP() {
         return this.x;
     }
     DFLIPFLOP.prototype.get = function DFLIPFLOP() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     DFLIPFLOP.prototype.set = function DFLIPFLOP() {
         return new BasicBlock(this.x);
@@ -5229,9 +5179,7 @@ function DLATCH() {
         return this.x;
     }
     DLATCH.prototype.get = function DLATCH() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     DLATCH.prototype.set = function DLATCH() {
         return new BasicBlock(this.x);
@@ -5652,9 +5600,7 @@ function JKFLIPFLOP() {
         return this.x;
     }
     JKFLIPFLOP.prototype.get = function JKFLIPFLOP() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     JKFLIPFLOP.prototype.set = function JKFLIPFLOP() {
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
@@ -5944,9 +5890,7 @@ function SRFLIPFLOP() {
         return this.x;
     }
     SRFLIPFLOP.prototype.get = function SRFLIPFLOP() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SRFLIPFLOP.prototype.set = function SRFLIPFLOP() {
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
@@ -6007,9 +5951,7 @@ function BIGSOM_f() {
         return this.x;
     }
     BIGSOM_f.prototype.get = function BIGSOM_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     BIGSOM_f.prototype.set = function BIGSOM_f() {
         this.exprs = this.graphics.exprs;
@@ -6054,9 +5996,7 @@ function CLINDUMMY_f() {
         return this.x;
     }
     CLINDUMMY_f.prototype.get = function CLINDUMMY_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLINDUMMY_f.prototype.set = function CLINDUMMY_f() {
         return new BasicBlock(this.x);
@@ -6667,9 +6607,7 @@ function DERIV() {
         return this.x;
     }
     DERIV.prototype.get = function DERIV() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     DERIV.prototype.set = function DERIV() {
         return new BasicBlock(this.x);
@@ -7774,9 +7712,7 @@ function INTEGRAL_f() {
         return this.x;
     }
     INTEGRAL_f.prototype.get = function INTEGRAL_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     INTEGRAL_f.prototype.set = function INTEGRAL_f() {
         this.exprs = this.graphics.exprs;
@@ -8168,9 +8104,7 @@ function REGISTER_f() {
         return this.x;
     }
     REGISTER_f.prototype.get = function REGISTER_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     REGISTER_f.prototype.set = function REGISTER_f() {
         this.exprs = this.graphics.exprs;
@@ -8215,9 +8149,7 @@ function SAMPHOLD() {
         return this.x;
     }
     SAMPHOLD.prototype.get = function SAMPHOLD() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SAMPHOLD.prototype.set = function SAMPHOLD() {
         this.x.model.firing = [];
@@ -8300,9 +8232,7 @@ function SAMPLEHOLD_f() {
         return this.x;
     }
     SAMPLEHOLD_f.prototype.get = function SAMPLEHOLD_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SAMPLEHOLD_f.prototype.set = function SAMPLEHOLD_f() {
         this.x.model.firing = [];
@@ -8329,9 +8259,7 @@ function SOM_f() {
         return this.x;
     }
     SOM_f.prototype.get = function SOM_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SOM_f.prototype.set = function SOM_f() {
         this.exprs = this.graphics.exprs;
@@ -8520,9 +8448,7 @@ function SUM_f() {
         return this.x;
     }
     SUM_f.prototype.get = function SUM_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SUM_f.prototype.set = function SUM_f() {
         return new BasicBlock(this.x);
@@ -10689,9 +10615,7 @@ function MATZCONJ() {
         return this.x;
     }
     MATZCONJ.prototype.get = function MATZCONJ() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MATZCONJ.prototype.set = function MATZCONJ() {
         return new BasicBlock(this.x);
@@ -11128,9 +11052,7 @@ function AUTOMAT() {
         return this.x;
     }
     AUTOMAT.prototype.get = function AUTOMAT() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     AUTOMAT.prototype.set = function AUTOMAT() {
         this.exprs = this.graphics.exprs;
@@ -12047,9 +11969,7 @@ function CONSTRAINT_c() {
         return this.x;
     }
     CONSTRAINT_c.prototype.get = function CONSTRAINT_c() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
         this.exprs = this.graphics.exprs;
@@ -12162,9 +12082,7 @@ function DEBUG() {
         return this.x;
     }
     DEBUG.prototype.get = function DEBUG() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     DEBUG.prototype.set = function DEBUG() {
         this.exprs = this.graphics.exprs;
@@ -12210,9 +12128,7 @@ function DEBUG_SCICOS() {
         return this.x;
     }
     DEBUG_SCICOS.prototype.get = function DEBUG_SCICOS() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     DEBUG_SCICOS.prototype.set = function DEBUG_SCICOS() {
         this.x = tmpvar0[0];
@@ -12276,9 +12192,7 @@ function DSUPER() {
         return this.x;
     }
     DSUPER.prototype.get = function DSUPER() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     DSUPER.prototype.set = function DSUPER() {
         var y = this.needcompile;
@@ -12454,9 +12368,7 @@ function EDGE_TRIGGER() {
         return this.x;
     }
     EDGE_TRIGGER.prototype.get = function EDGE_TRIGGER() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     EDGE_TRIGGER.prototype.set = function EDGE_TRIGGER() {
             if (typeof(o)=="Block"&&o.gui=="EDGETRIGGER") {
@@ -12539,9 +12451,7 @@ function ENDBLK() {
         return this.x;
     }
     ENDBLK.prototype.get = function ENDBLK() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     ENDBLK.prototype.set = function ENDBLK() {
             if (typeof(o)=="Block"&&o.gui=="END_c") {
@@ -12701,9 +12611,7 @@ function Extract_Activation() {
         return this.x;
     }
     Extract_Activation.prototype.get = function Extract_Activation() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     Extract_Activation.prototype.set = function Extract_Activation() {
         return new BasicBlock(this.x);
@@ -12794,9 +12702,7 @@ function IMPSPLIT_f() {
         return this.x;
     }
     IMPSPLIT_f.prototype.get = function IMPSPLIT_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     IMPSPLIT_f.prototype.set = function IMPSPLIT_f() {
         return new BasicBlock(this.x);
@@ -13336,9 +13242,7 @@ function MPBLOCK() {
         return this.x;
     }
     MPBLOCK.prototype.get = function MPBLOCK() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MPBLOCK.prototype.set = function MPBLOCK() {
         this.exprs = this.graphics.exprs;
@@ -13602,9 +13506,7 @@ function PAL_f() {
         return this.x;
     }
     PAL_f.prototype.get = function PAL_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     PAL_f.prototype.set = function PAL_f() {
         this.x = tmpvar0[0];
@@ -13872,9 +13774,7 @@ function SPLIT_f() {
         return this.x;
     }
     SPLIT_f.prototype.get = function SPLIT_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SPLIT_f.prototype.set = function SPLIT_f() {
         return new BasicBlock(this.x);
@@ -13908,9 +13808,7 @@ function SUPER_f() {
         return this.x;
     }
     SUPER_f.prototype.get = function SUPER_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SUPER_f.prototype.set = function SUPER_f() {
         return new SuperBlock(this.x);
@@ -14183,9 +14081,7 @@ function func_block() {
         return this.x;
     }
     func_block.prototype.get = function func_block() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     func_block.prototype.set = function func_block() {
         this.exprs = this.graphics.exprs;
@@ -14867,9 +14763,7 @@ function ABSBLK_f() {
         return this.x;
     }
     ABSBLK_f.prototype.get = function ABSBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     ABSBLK_f.prototype.set = function ABSBLK_f() {
         return new BasicBlock(this.x);
@@ -14945,9 +14839,7 @@ function COSBLK_f() {
         return this.x;
     }
     COSBLK_f.prototype.get = function COSBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     COSBLK_f.prototype.set = function COSBLK_f() {
         return new BasicBlock(this.x);
@@ -15050,9 +14942,7 @@ function EXPBLK_f() {
         return this.x;
     }
     EXPBLK_f.prototype.get = function EXPBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     EXPBLK_f.prototype.set = function EXPBLK_f() {
         this.exprs = this.graphics.exprs;
@@ -15104,9 +14994,7 @@ function EXPBLK_m() {
         return this.x;
     }
     EXPBLK_m.prototype.get = function EXPBLK_m() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     EXPBLK_m.prototype.set = function EXPBLK_m() {
         this.exprs = this.graphics.exprs;
@@ -15152,9 +15040,7 @@ function FSV_f() {
         return this.x;
     }
     FSV_f.prototype.get = function FSV_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     FSV_f.prototype.set = function FSV_f() {
         return new BasicBlock(this.x);
@@ -15292,9 +15178,7 @@ function INVBLK() {
         return this.x;
     }
     INVBLK.prototype.get = function INVBLK() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     INVBLK.prototype.set = function INVBLK() {
         return new BasicBlock(this.x);
@@ -15319,9 +15203,7 @@ function INVBLK_f() {
         return this.x;
     }
     INVBLK_f.prototype.get = function INVBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     INVBLK_f.prototype.set = function INVBLK_f() {
         return new BasicBlock(this.x);
@@ -15348,9 +15230,7 @@ function LOGBLK_f() {
         return this.x;
     }
     LOGBLK_f.prototype.get = function LOGBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     LOGBLK_f.prototype.set = function LOGBLK_f() {
         this.exprs = this.graphics.exprs;
@@ -15696,9 +15576,7 @@ function LOOKUP_f() {
         return this.x;
     }
     LOOKUP_f.prototype.get = function LOOKUP_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     LOOKUP_f.prototype.set = function LOOKUP_f() {
         this.exprs = this.graphics.exprs;
@@ -15839,9 +15717,7 @@ function MAX_f() {
         return this.x;
     }
     MAX_f.prototype.get = function MAX_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MAX_f.prototype.set = function MAX_f() {
         return new BasicBlock(this.x);
@@ -15867,9 +15743,7 @@ function MIN_f() {
         return this.x;
     }
     MIN_f.prototype.get = function MIN_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MIN_f.prototype.set = function MIN_f() {
         return new BasicBlock(this.x);
@@ -15896,9 +15770,7 @@ function POWBLK_f() {
         return this.x;
     }
     POWBLK_f.prototype.get = function POWBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     POWBLK_f.prototype.set = function POWBLK_f() {
         this.exprs = this.graphics.exprs;
@@ -15948,9 +15820,7 @@ function PRODUCT() {
         return this.x;
     }
     PRODUCT.prototype.get = function PRODUCT() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     PRODUCT.prototype.set = function PRODUCT() {
         this.exprs = this.graphics.exprs;
@@ -16017,9 +15887,7 @@ function PROD_f() {
         return this.x;
     }
     PROD_f.prototype.get = function PROD_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     PROD_f.prototype.set = function PROD_f() {
         return new BasicBlock(this.x);
@@ -16280,9 +16148,7 @@ function SINBLK_f() {
         return this.x;
     }
     SINBLK_f.prototype.get = function SINBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SINBLK_f.prototype.set = function SINBLK_f() {
         return new BasicBlock(this.x);
@@ -16307,9 +16173,7 @@ function TANBLK_f() {
         return this.x;
     }
     TANBLK_f.prototype.get = function TANBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     TANBLK_f.prototype.set = function TANBLK_f() {
         this.x.model.firing = [];
@@ -16334,9 +16198,7 @@ function TrigFun() {
         return this.x;
     }
     TrigFun.prototype.get = function TrigFun() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     TrigFun.prototype.set = function TrigFun() {
         this.exprs = this.graphics.exprs;
@@ -16382,9 +16244,7 @@ function PDE() {
         return this.x;
     }
     PDE.prototype.get = function PDE() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     PDE.prototype.set = function PDE() {
         var label = this.graphics.exprs;
@@ -17267,9 +17127,7 @@ function CLKOUTV_f() {
         return this.x;
     }
     CLKOUTV_f.prototype.get = function CLKOUTV_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLKOUTV_f.prototype.set = function CLKOUTV_f() {
         this.exprs = this.graphics.exprs;
@@ -17367,9 +17225,7 @@ function CLKOUT_f() {
         return this.x;
     }
     CLKOUT_f.prototype.get = function CLKOUT_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLKOUT_f.prototype.set = function CLKOUT_f() {
         this.exprs = this.graphics.exprs;
@@ -18120,9 +17976,7 @@ function OUTIMPL_f() {
         return this.x;
     }
     OUTIMPL_f.prototype.get = function OUTIMPL_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     OUTIMPL_f.prototype.set = function OUTIMPL_f() {
         this.exprs = this.graphics.exprs;
@@ -18176,9 +18030,7 @@ function OUT_f() {
         return this.x;
     }
     OUT_f.prototype.get = function OUT_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     OUT_f.prototype.set = function OUT_f() {
         this.exprs = this.graphics.exprs;
@@ -18303,9 +18155,7 @@ function TRASH_f() {
         return this.x;
     }
     TRASH_f.prototype.get = function TRASH_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     TRASH_f.prototype.set = function TRASH_f() {
         return new BasicBlock(this.x);
@@ -18619,9 +18469,7 @@ function CLKINV_f() {
         return this.x;
     }
     CLKINV_f.prototype.get = function CLKINV_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLKINV_f.prototype.set = function CLKINV_f() {
         this.exprs = this.graphics.exprs;
@@ -18668,9 +18516,7 @@ function CLKIN_f() {
         return this.x;
     }
     CLKIN_f.prototype.get = function CLKIN_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLKIN_f.prototype.set = function CLKIN_f() {
         this.exprs = this.graphics.exprs;
@@ -18916,9 +18762,7 @@ function CONST() {
         return this.x;
     }
     CONST.prototype.get = function CONST() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CONST.prototype.set = function CONST() {
         this.exprs = this.graphics.exprs;
@@ -18967,9 +18811,7 @@ function CONST_f() {
         return this.x;
     }
     CONST_f.prototype.get = function CONST_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CONST_f.prototype.set = function CONST_f() {
         this.exprs = this.graphics.exprs;
@@ -19018,9 +18860,7 @@ function CONST_m() {
         return this.x;
     }
     CONST_m.prototype.get = function CONST_m() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CONST_m.prototype.set = function CONST_m() {
         this.exprs = this.graphics.exprs;
@@ -19267,9 +19107,7 @@ function CURV_f() {
         return this.x;
     }
     CURV_f.prototype.get = function CURV_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CURV_f.prototype.set = function CURV_f() {
         var rpar = this.model.rpar;
@@ -19389,9 +19227,7 @@ function FROMWSB() {
         return this.x;
     }
     FROMWSB.prototype.get = function FROMWSB() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     FROMWSB.prototype.set = function FROMWSB() {
             if (typeof(o)=="Block"&&o.gui=="FROMWS_c") {
@@ -19708,9 +19544,7 @@ function GEN_SQR() {
         return this.x;
     }
     GEN_SQR.prototype.get = function GEN_SQR() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     GEN_SQR.prototype.set = function GEN_SQR() {
         var y = this.needcompile;
@@ -19781,9 +19615,7 @@ function Ground_g() {
         return this.x;
     }
     Ground_g.prototype.get = function Ground_g() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     Ground_g.prototype.set = function Ground_g() {
         return new BasicBlock(this.x);
@@ -19814,9 +19646,7 @@ function INIMPL_f() {
         return this.x;
     }
     INIMPL_f.prototype.get = function INIMPL_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     INIMPL_f.prototype.set = function INIMPL_f() {
         this.exprs = this.graphics.exprs;
@@ -19869,9 +19699,7 @@ function IN_f() {
         return this.x;
     }
     IN_f.prototype.get = function IN_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     IN_f.prototype.set = function IN_f() {
         this.exprs = this.graphics.exprs;
@@ -20024,9 +19852,7 @@ function PULSE_SC() {
         return this.x;
     }
     PULSE_SC.prototype.get = function PULSE_SC() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     PULSE_SC.prototype.set = function PULSE_SC() {
         var y = this.needcompile;
@@ -20676,9 +20502,7 @@ function SAWTOOTH_f() {
         return this.x;
     }
     SAWTOOTH_f.prototype.get = function SAWTOOTH_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SAWTOOTH_f.prototype.set = function SAWTOOTH_f() {
         return new BasicBlock(this.x);
@@ -20820,9 +20644,7 @@ function STEP_FUNCTION() {
         return this.x;
     }
     STEP_FUNCTION.prototype.get = function STEP_FUNCTION() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     STEP_FUNCTION.prototype.set = function STEP_FUNCTION() {
             if (typeof(o)=="Block"&&o.gui=="STEP") {
@@ -20967,9 +20789,7 @@ function Sigbuilder() {
         return this.x;
     }
     Sigbuilder.prototype.get = function Sigbuilder() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     Sigbuilder.prototype.set = function Sigbuilder() {
         var ppath = list(0);
@@ -21054,9 +20874,7 @@ function TIME_f() {
         return this.x;
     }
     TIME_f.prototype.get = function TIME_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     TIME_f.prototype.set = function TIME_f() {
         return new BasicBlock(this.x);
@@ -21197,9 +21015,7 @@ function NEGTOPOS_f() {
         return this.x;
     }
     NEGTOPOS_f.prototype.get = function NEGTOPOS_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     NEGTOPOS_f.prototype.set = function NEGTOPOS_f() {
         this.x.model.firing = -1;
@@ -21227,9 +21043,7 @@ function POSTONEG_f() {
         return this.x;
     }
     POSTONEG_f.prototype.get = function POSTONEG_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     POSTONEG_f.prototype.set = function POSTONEG_f() {
         this.x.model.firing = [-1];
@@ -21259,9 +21073,7 @@ function ZCROSS_f() {
         return this.x;
     }
     ZCROSS_f.prototype.get = function ZCROSS_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     ZCROSS_f.prototype.set = function ZCROSS_f() {
         this.exprs = this.graphics.exprs;

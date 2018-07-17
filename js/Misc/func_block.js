@@ -16,9 +16,7 @@ function func_block() {
         return this.x;
     }
     func_block.prototype.get = function func_block() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     func_block.prototype.set = function func_block() {
         this.exprs = this.graphics.exprs;

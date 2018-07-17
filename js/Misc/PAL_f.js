@@ -19,9 +19,7 @@ function PAL_f() {
         return this.x;
     }
     PAL_f.prototype.get = function PAL_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     PAL_f.prototype.set = function PAL_f() {
         this.x = tmpvar0[0];

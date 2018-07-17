@@ -8,9 +8,7 @@ function DEBUG_SCICOS() {
         return this.x;
     }
     DEBUG_SCICOS.prototype.get = function DEBUG_SCICOS() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     DEBUG_SCICOS.prototype.set = function DEBUG_SCICOS() {
         this.x = tmpvar0[0];

@@ -18,9 +18,7 @@ function MIN_f() {
         return this.x;
     }
     MIN_f.prototype.get = function MIN_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MIN_f.prototype.set = function MIN_f() {
         return new BasicBlock(this.x);

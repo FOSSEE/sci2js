@@ -18,9 +18,7 @@ function MAX_f() {
         return this.x;
     }
     MAX_f.prototype.get = function MAX_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MAX_f.prototype.set = function MAX_f() {
         return new BasicBlock(this.x);

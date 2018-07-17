@@ -15,9 +15,7 @@ function CLKSPLIT_f() {
         return this.x;
     }
     CLKSPLIT_f.prototype.get = function CLKSPLIT_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLKSPLIT_f.prototype.set = function CLKSPLIT_f() {
         return new BasicBlock(this.x);

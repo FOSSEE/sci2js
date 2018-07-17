@@ -23,9 +23,7 @@ function PotentialSensor() {
         return this.x;
     }
     PotentialSensor.prototype.get = function PotentialSensor() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     PotentialSensor.prototype.set = function PotentialSensor() {
         return new BasicBlock(this.x);

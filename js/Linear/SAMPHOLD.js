@@ -17,9 +17,7 @@ function SAMPHOLD() {
         return this.x;
     }
     SAMPHOLD.prototype.get = function SAMPHOLD() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SAMPHOLD.prototype.set = function SAMPHOLD() {
         this.x.model.firing = [];

@@ -16,9 +16,7 @@ function SUM_f() {
         return this.x;
     }
     SUM_f.prototype.get = function SUM_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SUM_f.prototype.set = function SUM_f() {
         return new BasicBlock(this.x);

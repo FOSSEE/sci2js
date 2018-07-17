@@ -49,9 +49,7 @@ function PULSE_SC() {
         return this.x;
     }
     PULSE_SC.prototype.get = function PULSE_SC() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     PULSE_SC.prototype.set = function PULSE_SC() {
         var y = this.needcompile;

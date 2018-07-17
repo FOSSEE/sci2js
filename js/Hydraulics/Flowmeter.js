@@ -53,9 +53,7 @@ function Flowmeter() {
         return this.x;
     }
     Flowmeter.prototype.get = function Flowmeter() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     Flowmeter.prototype.set = function Flowmeter() {
         this.exprs = this.graphics.exprs;

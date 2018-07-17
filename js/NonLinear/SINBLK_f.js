@@ -16,9 +16,7 @@ function SINBLK_f() {
         return this.x;
     }
     SINBLK_f.prototype.get = function SINBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SINBLK_f.prototype.set = function SINBLK_f() {
         return new BasicBlock(this.x);

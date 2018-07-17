@@ -23,9 +23,7 @@ function VoltageSensor() {
         return this.x;
     }
     VoltageSensor.prototype.get = function VoltageSensor() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     VoltageSensor.prototype.set = function VoltageSensor() {
         return new VoltageSensorBlock(this.x);

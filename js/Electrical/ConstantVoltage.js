@@ -26,9 +26,7 @@ function ConstantVoltage() {
         return this.x;
     }
     ConstantVoltage.prototype.get = function ConstantVoltage() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     ConstantVoltage.prototype.set = function ConstantVoltage() {
         this.exprs = this.graphics.exprs;

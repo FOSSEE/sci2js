@@ -19,9 +19,7 @@ function POSTONEG_f() {
         return this.x;
     }
     POSTONEG_f.prototype.get = function POSTONEG_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     POSTONEG_f.prototype.set = function POSTONEG_f() {
         this.x.model.firing = [-1];

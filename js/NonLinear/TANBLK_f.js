@@ -17,9 +17,7 @@ function TANBLK_f() {
         return this.x;
     }
     TANBLK_f.prototype.get = function TANBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     TANBLK_f.prototype.set = function TANBLK_f() {
         this.x.model.firing = [];

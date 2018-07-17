@@ -96,9 +96,7 @@ function DFLIPFLOP() {
         return this.x;
     }
     DFLIPFLOP.prototype.get = function DFLIPFLOP() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     DFLIPFLOP.prototype.set = function DFLIPFLOP() {
         return new BasicBlock(this.x);

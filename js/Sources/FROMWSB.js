@@ -15,9 +15,7 @@ function FROMWSB() {
         return this.x;
     }
     FROMWSB.prototype.get = function FROMWSB() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     FROMWSB.prototype.set = function FROMWSB() {
             if (typeof(o)=="Block"&&o.gui=="FROMWS_c") {

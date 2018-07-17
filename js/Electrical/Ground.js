@@ -22,9 +22,7 @@ function Ground() {
         return this.x;
     }
     Ground.prototype.get = function Ground() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     Ground.prototype.set = function Ground() {
         return new GroundBlock(this.x);

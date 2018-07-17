@@ -31,9 +31,7 @@ function AUTOMAT() {
         return this.x;
     }
     AUTOMAT.prototype.get = function AUTOMAT() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     AUTOMAT.prototype.set = function AUTOMAT() {
         this.exprs = this.graphics.exprs;

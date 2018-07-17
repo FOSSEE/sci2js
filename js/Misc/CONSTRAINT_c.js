@@ -19,9 +19,7 @@ function CONSTRAINT_c() {
         return this.x;
     }
     CONSTRAINT_c.prototype.get = function CONSTRAINT_c() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
         this.exprs = this.graphics.exprs;

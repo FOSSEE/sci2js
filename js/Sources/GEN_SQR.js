@@ -54,9 +54,7 @@ function GEN_SQR() {
         return this.x;
     }
     GEN_SQR.prototype.get = function GEN_SQR() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     GEN_SQR.prototype.set = function GEN_SQR() {
         var y = this.needcompile;

@@ -55,9 +55,7 @@ function STEP_FUNCTION() {
         return this.x;
     }
     STEP_FUNCTION.prototype.get = function STEP_FUNCTION() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     STEP_FUNCTION.prototype.set = function STEP_FUNCTION() {
             if (typeof(o)=="Block"&&o.gui=="STEP") {

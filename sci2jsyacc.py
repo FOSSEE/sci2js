@@ -99,7 +99,10 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     blocktype = getblocktype(fname)
 
     jdefine = JOB_BLOCKS['"define"']
-    jget = '%svar options = {\n%s%s}\n%sreturn options;\n' % (indent2, OPTIONS_BLOCK, indent2, indent2)
+    if OPTIONS_BLOCK != '':
+        jget = '%svar options = {\n%s%s}\n%sreturn options;\n' % (indent2, OPTIONS_BLOCK, indent2, indent2)
+    else:
+        jget = '%salert("parameters cannot be modified");\n' % (indent2)
     jgetinputs = JOB_BLOCKS['"getinputs"']
     jgetorigin = JOB_BLOCKS['"getorigin"']
     jgetoutputs = JOB_BLOCKS['"getoutputs"']

@@ -23,9 +23,7 @@ function INIMPL_f() {
         return this.x;
     }
     INIMPL_f.prototype.get = function INIMPL_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     INIMPL_f.prototype.set = function INIMPL_f() {
         this.exprs = this.graphics.exprs;

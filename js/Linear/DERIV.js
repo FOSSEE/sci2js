@@ -16,9 +16,7 @@ function DERIV() {
         return this.x;
     }
     DERIV.prototype.get = function DERIV() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     DERIV.prototype.set = function DERIV() {
         return new BasicBlock(this.x);

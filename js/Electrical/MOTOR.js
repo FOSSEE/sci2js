@@ -18,9 +18,7 @@ function MOTOR() {
         return this.x;
     }
     MOTOR.prototype.get = function MOTOR() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MOTOR.prototype.set = function MOTOR() {
         return new BasicBlock(this.x);

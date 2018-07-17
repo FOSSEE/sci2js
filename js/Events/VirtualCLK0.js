@@ -17,9 +17,7 @@ function VirtualCLK0() {
         return this.x;
     }
     VirtualCLK0.prototype.get = function VirtualCLK0() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     VirtualCLK0.prototype.set = function VirtualCLK0() {
         return new BasicBlock(this.x);

@@ -41,9 +41,7 @@ function DLATCH() {
         return this.x;
     }
     DLATCH.prototype.get = function DLATCH() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     DLATCH.prototype.set = function DLATCH() {
         return new BasicBlock(this.x);

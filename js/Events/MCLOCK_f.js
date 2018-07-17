@@ -73,9 +73,7 @@ function MCLOCK_f() {
         return this.x;
     }
     MCLOCK_f.prototype.get = function MCLOCK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MCLOCK_f.prototype.set = function MCLOCK_f() {
             if (typeof(o)=="Block"&&o.gui=="MFCLCK_f") {

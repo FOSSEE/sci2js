@@ -17,9 +17,7 @@ function INVBLK_f() {
         return this.x;
     }
     INVBLK_f.prototype.get = function INVBLK_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     INVBLK_f.prototype.set = function INVBLK_f() {
         return new BasicBlock(this.x);

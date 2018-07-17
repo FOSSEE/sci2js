@@ -16,9 +16,7 @@ function CLINDUMMY_f() {
         return this.x;
     }
     CLINDUMMY_f.prototype.get = function CLINDUMMY_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     CLINDUMMY_f.prototype.set = function CLINDUMMY_f() {
         return new BasicBlock(this.x);

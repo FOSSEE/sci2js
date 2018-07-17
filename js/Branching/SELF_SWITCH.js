@@ -26,9 +26,7 @@ function SELF_SWITCH() {
         return this.x;
     }
     SELF_SWITCH.prototype.get = function SELF_SWITCH() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SELF_SWITCH.prototype.set = function SELF_SWITCH() {
         this.stateOpen = this.x.model.opar[1-1];

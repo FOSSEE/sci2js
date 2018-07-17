@@ -7,9 +7,7 @@ function DSUPER() {
         return this.x;
     }
     DSUPER.prototype.get = function DSUPER() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     DSUPER.prototype.set = function DSUPER() {
         var y = this.needcompile;

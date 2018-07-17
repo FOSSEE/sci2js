@@ -18,9 +18,7 @@ function PDE() {
         return this.x;
     }
     PDE.prototype.get = function PDE() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     PDE.prototype.set = function PDE() {
         var label = this.graphics.exprs;

@@ -17,9 +17,7 @@ function SAWTOOTH_f() {
         return this.x;
     }
     SAWTOOTH_f.prototype.get = function SAWTOOTH_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SAWTOOTH_f.prototype.set = function SAWTOOTH_f() {
         return new BasicBlock(this.x);

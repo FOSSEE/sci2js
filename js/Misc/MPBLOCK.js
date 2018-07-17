@@ -36,9 +36,7 @@ function MPBLOCK() {
         return this.x;
     }
     MPBLOCK.prototype.get = function MPBLOCK() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     MPBLOCK.prototype.set = function MPBLOCK() {
         this.exprs = this.graphics.exprs;

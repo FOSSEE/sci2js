@@ -18,9 +18,7 @@ function PRODUCT() {
         return this.x;
     }
     PRODUCT.prototype.get = function PRODUCT() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     PRODUCT.prototype.set = function PRODUCT() {
         this.exprs = this.graphics.exprs;

@@ -26,9 +26,7 @@ function SUPER_f() {
         return this.x;
     }
     SUPER_f.prototype.get = function SUPER_f() {
-        var options = {
-        }
-        return options;
+        alert("parameters cannot be modified");
     }
     SUPER_f.prototype.set = function SUPER_f() {
         return new SuperBlock(this.x);
