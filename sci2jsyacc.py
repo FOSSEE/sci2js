@@ -1003,6 +1003,16 @@ def p_function_function(p):
     'function : FUNCTIONNAME OPENBRACKET CLOSEBRACKET'
     p[0] = '%*s%s()' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1][0])
 
+# message(x,y)
+def p_message_parameter_parameter(p):
+    'function : MESSAGE OPENBRACKET expression COMMA expression CLOSEBRACKET'
+    p[0] = '%*s%s(%s,%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3][0], p[5][0])
+
+# message(x)
+def p_message_parameter(p):
+    'function : MESSAGE OPENBRACKET expression CLOSEBRACKET'
+    p[0] = '%*s%s(%s)' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3][0])
+
 def p_resumestatementblocks_resume(p):
     'resumestatementblocks : lterm ASSIGNMENT RESUME OPENBRACKET expression CLOSEBRACKET EOL'
     p[0] = '%*s%s = %s(%s)\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3], p[5][0])
