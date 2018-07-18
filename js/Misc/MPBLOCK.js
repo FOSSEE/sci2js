@@ -234,7 +234,7 @@ function MPBLOCK() {
                 mo.model = nameF;
                 mo.inputs = this.in1;
                 mo.outputs = this.out;
-                if (pprop!=[]) {
+                if (pprop.length!=0) {
                     if (max(pprop)>0) {
                         mo.parameters = list(transpose(param),paramv,transpose(pprop));
                     } else {

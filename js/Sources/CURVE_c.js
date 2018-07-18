@@ -88,7 +88,7 @@ function CURVE_c() {
                 if (this.graf=="y"||this.graf=="Y") {
                     var ipar = [[N],[mtd],[PO]];
                     var rpar = [];
-                    if ((winsid()==[])) {
+                    if ((winsid().length==0)) {
                         this.curwin = 0;
                     } else {
                         this.curwin = max(winsid())+1;
@@ -148,7 +148,7 @@ function CURVE_c() {
             }
             if ((SaveExit)) {
                 var xp = find(orpar.slice(1-1,oipar[1-1])>=0);
-                if ((xp!=[])) {
+                if ((xp.length!=0)) {
                     this.model.firing = new ScilabDouble([orpar[xp[1-1]-1]]);
                 } else {
                     this.model.firing = new ScilabDouble([-1]);

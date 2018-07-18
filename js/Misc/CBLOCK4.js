@@ -87,7 +87,7 @@ function CBLOCK4() {
             } else {
                 var funtyp = 2004;
             }
-            if ([[this.ci],[this.co]]!=[]) {
+            if ([[this.ci],[this.co]].length!=0) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
                     throw "user error";

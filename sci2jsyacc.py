@@ -962,7 +962,12 @@ def p_expression_expression_comparison_expression(p):
     operator = p[2]
     if operator == '<>' or operator == '~=':
         operator = '!='
-    p[0] = ('%s%s%s' % (p[1][0], operator, p[3][0]), BOOLEAN_TYPE)
+    if p[3][0] == '[]':
+        p[0] = ('%s.length%s0' % (p[1][0], operator), BOOLEAN_TYPE)
+    elif p[1][0] == '[]':
+        p[0] = ('0%s%s.length' % (operator, p[3][0]), BOOLEAN_TYPE)
+    else:
+        p[0] = ('%s%s%s' % (p[1][0], operator, p[3][0]), BOOLEAN_TYPE)
 
 def p_expression_expression_logical_expression(p):
     'expression : expression LOGICAL expression'

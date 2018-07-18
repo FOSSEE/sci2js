@@ -127,7 +127,7 @@ function PDE() {
                 var ind4 = strindex(a4,"x");
                 var ind1 = strindex(a1,"x");
                 var ind2 = strindex(a2,"x");
-                if ((ind4!=[]||ind1!=[]||ind2!=[])) {
+                if ((ind4.length!=0||ind1.length!=0||ind2.length!=0)) {
                     if ((signe==1)) {
                         var delta = 1;
                     } else if ((signe==2)) {
@@ -141,7 +141,7 @@ function PDE() {
                 } else {
                     var delta = evstr(a4)^2-4*evstr(a1)*evstr(a2);
                 }
-                if ((delta==[])) {
+                if ((delta.length==0)) {
                     var delta = 0;
                 }
                 var type_meth = arbre_decision(delta);
@@ -155,22 +155,22 @@ function PDE() {
             if (((CLa_type==1)&&(DF_type==0||DF_type==1))||((CLb_type==1)&&(DF_type==0||DF_type==2))) {
                 var Nbr = Nbr+1;
             }
-            if ((mesures==[])) {
+            if ((mesures.length==0)) {
                 var out = Nbr_maillage;
             } else {
                 var out = [[Nbr_maillage],[size(mesures,"*")]];
             }
             if ((flag_type==1)) {
                 this.model.sim = list(new ScilabDouble([this.rdnom]), new ScilabDouble([2004]));
-                if ((find(oper==1)!=[])) {
+                if ((find(oper==1).length!=0)) {
                     this.model.state = new ScilabDouble([zeros(2*Nbr_maillage,1)]);
                 } else {
                     this.model.state = new ScilabDouble([zeros(Nbr_maillage,1)]);
                 }
             } else if ((flag_type==2)) {
                 this.model.sim = list(new ScilabDouble([this.rdnom]), new ScilabDouble([12004]));
-                if ((find(oper==1)!=[])) {
-                    if ((type_meth==3&&(find(oper==2)!=[]||find(oper==4)!=[]))) {
+                if ((find(oper==1).length!=0)) {
+                    if ((type_meth==3&&(find(oper==2).length!=0||find(oper==4).length!=0))) {
                         this.model.state = new ScilabDouble([zeros(6*Nbr_maillage,1)]);
                     } else if ((type_meth==1)) {
                         this.model.state = new ScilabDouble([zeros(4*Nbr,1)]);
@@ -178,7 +178,7 @@ function PDE() {
                         this.model.state = new ScilabDouble([zeros(4*Nbr_maillage,1)]);
                     }
                 } else {
-                    if ((type_meth==3&&(find(oper==2)!=[]||find(oper==4)!=[]))) {
+                    if ((type_meth==3&&(find(oper==2).length!=0||find(oper==4).length!=0))) {
                         this.model.state = new ScilabDouble([zeros(4*Nbr_maillage,1)]);
                     } else if ((type_meth==1)) {
                         this.model.state = new ScilabDouble([zeros(2*Nbr,1)]);

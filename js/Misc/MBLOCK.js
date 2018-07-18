@@ -233,7 +233,7 @@ function MBLOCK() {
                 }
             }
             if (ok) {
-                if (extF==".mo"&&fileinfo(this.funam)!=[]) {
+                if (extF==".mo"&&fileinfo(this.funam).length!=0) {
                     var tt = mgetl(this.funam);
                 } else {
                     var tt = this.exprs.funtxt;

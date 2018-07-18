@@ -67,7 +67,7 @@ function RFILE_f() {
             var nout = size(this.outmask,"*");
             if (prod(size(this.tmask1))>1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Time Record Selection",strcat(string(this.tmask1.slice())," ")),"Empty matrix or scalar expected.");
-            } else if (this.tmask1!=[]&&this.tmask1<1) {
+            } else if (this.tmask1.length!=0&&this.tmask1<1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d","Time Record Selection",this.tmask1),"Strictly positive integer expected.");
             } else if (lunit>0&&min(length(frmt),1)!=min(length(this.frmt1),1)) {
                 block_parameter_error(["Simulation running !!! You cannot switch <br />between formatted and unformatted"],"End current simulation first.");
@@ -86,7 +86,7 @@ function RFILE_f() {
             } else if (min(this.outmask)<1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s","Outputs Record Selection",strcat(string(this.outmask.slice())," ")),"Strictly positive indexes expected.");
             } else {
-                if (this.tmask1==[]) {
+                if (this.tmask1.length==0) {
                     var ievt = 0;
                     var cout = [];
                     this.tmask1 = 0;

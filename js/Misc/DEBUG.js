@@ -22,7 +22,7 @@ function DEBUG() {
         while (1==1) {
             var tmpvar0 = dialog([["Enter scilab instructions for debugging."],[" Inputs are block and flag, output is block"]],textmp);
             var txt = tmpvar0[0];
-            if (txt!=[]) {
+            if (txt.length!=0) {
                 var tt = ["block=debug_scicos(block,flag)"];
                 if (execstr("deff(tt,txt)","errcatch")==0) {
                     var warnMode = warning("query");

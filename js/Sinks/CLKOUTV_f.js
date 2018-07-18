@@ -82,7 +82,7 @@ function CLKOUTV_f() {
         xfpoly(in1.slice()[1-1]+ones(4,1)*(orig[1-1]+sz[1-1]/2),in1.slice()[2-1]+ones(4,1)*(orig[2-1]+sz[2-1]),1);
         xset("thickness",thick);
         xset("pattern",pat);
-        if (ident!=[]&&ident!="") {
+        if (ident.length!=0&&ident!="") {
             var font = xget("font");
             xset("font",this.options.ID[1-1][1-1],this.options.ID[1-1][2-1]);
             var rectangle = xstringl(orig[1-1],orig[2-1],ident);

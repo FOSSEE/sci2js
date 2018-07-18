@@ -45,7 +45,7 @@ function LOGIC() {
             if ((u1!=nin)) {
                 block_parameter_error(msprintf("Wrong size for \'%s\' parameter: %d.","Truth Table",size(this.mat,1)),"Number of rows must be a power of two.");
                 var ok = false;
-            } else if ((find(this.mat.slice()!=0&&this.mat.slice()!=1)!=[])) {
+            } else if ((find(this.mat.slice()!=0&&this.mat.slice()!=1).length!=0)) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Truth Table"),msprintf("Elements must be in the interval %s.","[0, 1]"));
                 var ok = false;
             } else if (this.herit<0||this.herit>1) {

@@ -32,7 +32,7 @@ function CONST_m() {
                 break;
             }
             var nout = size(this.C);
-            if (find(nout==0)!=[]) {
+            if (find(nout==0).length!=0) {
                 block_parameter_error(msprintf("Wrong size for \'%s\' parameter","Constant Value"),"Constant value must have at least one element.");
             } else {
                 this.model.sim = list(new ScilabString(["cstblk4_m"]), new ScilabDouble([4]));

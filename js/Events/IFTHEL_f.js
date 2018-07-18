@@ -30,7 +30,7 @@ function IFTHEL_f() {
     }
     IFTHEL_f.prototype.set = function IFTHEL_f() {
         this.exprs = this.graphics.exprs;
-        if (this.exprs==[]) {
+        if (this.exprs.length==0) {
             this.exprs = string(1);
         }
         if (size(this.exprs,"*")==1) {

@@ -19,7 +19,7 @@ function DSUPER() {
         var exprs0 = this.graphics.exprs[2-1][1-1];
         var btitre = this.graphics.exprs[2-1][2-1][1-1];
         var bitems = this.graphics.exprs[2-1][2-1].slice(2-1,$);
-        if (exprs0==[]) {
+        if (exprs0.length==0) {
             return;
         }
         var tmpvar0 = script2var(context,PREVAR_scicos_context);

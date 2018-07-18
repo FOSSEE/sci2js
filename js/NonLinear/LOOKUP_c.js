@@ -160,7 +160,7 @@ function LOOKUP_c() {
             }
             if ((SaveExit)) {
                 var xp = find(orpar.slice(1-1,oipar[1-1])>=0);
-                if ((xp!=[])) {
+                if ((xp.length!=0)) {
                     this.model.firing = new ScilabDouble([orpar[xp[1-1]-1]]);
                 } else {
                     this.model.firing = new ScilabDouble([-1]);

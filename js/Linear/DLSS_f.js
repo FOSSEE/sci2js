@@ -70,7 +70,7 @@ function DLSS_f() {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
                     var rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
-                    if (this.D!=[]) {
+                    if (this.D.length!=0) {
                         if (norm(this.D,1)!=0) {
                             var mmm = [true,false];
                         } else {

@@ -28,7 +28,7 @@ function TrigFun() {
             if (!ok) {
                 break;
             }
-            if (find(PREVAR_FF==this.fun)==[]) {
+            if (find(PREVAR_FF==this.fun).length==0) {
                 message("Sorry but "+this.fun+" is not in the list!");
                 throw "user error";
             } else {

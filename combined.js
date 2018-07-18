@@ -3544,7 +3544,7 @@ function IFTHEL_f() {
     }
     IFTHEL_f.prototype.set = function IFTHEL_f() {
         this.exprs = this.graphics.exprs;
-        if (this.exprs==[]) {
+        if (this.exprs.length==0) {
             this.exprs = string(1);
         }
         if (size(this.exprs,"*")==1) {
@@ -5655,7 +5655,7 @@ function LOGIC() {
             if ((u1!=nin)) {
                 block_parameter_error(msprintf("Wrong size for \'%s\' parameter: %d.","Truth Table",size(this.mat,1)),"Number of rows must be a power of two.");
                 var ok = false;
-            } else if ((find(this.mat.slice()!=0&&this.mat.slice()!=1)!=[])) {
+            } else if ((find(this.mat.slice()!=0&&this.mat.slice()!=1).length!=0)) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Truth Table"),msprintf("Elements must be in the interval %s.","[0, 1]"));
                 var ok = false;
             } else if (this.herit<0||this.herit>1) {
@@ -6223,7 +6223,7 @@ function CLSS() {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
                     var rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
-                    if (this.D!=[]) {
+                    if (this.D.length!=0) {
                         if (norm(this.D,1)!=0) {
                             var mmm = [true,true];
                         } else {
@@ -6319,7 +6319,7 @@ function CLSS_f() {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
                     var rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
-                    if (this.D!=[]) {
+                    if (this.D.length!=0) {
                         if (norm(this.D,1)!=0) {
                             var mmm = [true,true];
                         } else {
@@ -6895,7 +6895,7 @@ function DLSS() {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
                     var rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
-                    if (this.D!=[]) {
+                    if (this.D.length!=0) {
                         if (norm(this.D,1)!=0) {
                             var mmm = [true,false];
                         } else {
@@ -6990,7 +6990,7 @@ function DLSS_f() {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
                     var rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
-                    if (this.D!=[]) {
+                    if (this.D.length!=0) {
                         if (norm(this.D,1)!=0) {
                             var mmm = [true,false];
                         } else {
@@ -7324,7 +7324,7 @@ function GAINBLK() {
             if (!ok) {
                 break;
             }
-            if (this.gain==[]) {
+            if (this.gain.length==0) {
                 message("Gain must have at least one element");
                 throw "user error";
             } else {
@@ -7483,7 +7483,7 @@ function GAINBLK_f() {
             if (!ok) {
                 break;
             }
-            if (this.gain==[]) {
+            if (this.gain.length==0) {
                 message("Gain must have at least one element");
                 throw "user error";
             } else {
@@ -7541,7 +7541,7 @@ function GAIN_f() {
             if (!ok) {
                 break;
             }
-            if (this.gain==[]) {
+            if (this.gain.length==0) {
                 message("Gain must have at least one element");
                 throw "user error";
             } else {
@@ -8510,7 +8510,7 @@ function TCLSS() {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
                     var rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
-                    if (this.D!=[]) {
+                    if (this.D.length!=0) {
                         if (norm(this.D,1)!=0) {
                             var mmm = [true,true];
                         } else {
@@ -8524,7 +8524,7 @@ function TCLSS() {
                     }
                     this.model.state = new ScilabDouble(this.x0.slice());
                     this.model.rpar = new ScilabDouble(rpar);
-                    if (this.D!=[]) {
+                    if (this.D.length!=0) {
                         this.model.sim = list(new ScilabString(["tcslti4"]), new ScilabDouble([4]));
                     } else {
                         this.model.sim = list(new ScilabString(["tcsltj4"]), new ScilabDouble([4]));
@@ -8613,7 +8613,7 @@ function TCLSS_f() {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
                     var rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
-                    if (this.D!=[]) {
+                    if (this.D.length!=0) {
                         if (norm(this.D,1)!=0) {
                             var mmm = [true,true];
                         } else {
@@ -8627,7 +8627,7 @@ function TCLSS_f() {
                     }
                     this.model.state = new ScilabDouble(this.x0.slice());
                     this.model.rpar = new ScilabDouble(rpar);
-                    if (this.D!=[]) {
+                    if (this.D.length!=0) {
                         this.model.sim = list(new ScilabString(["tcslti"]), new ScilabDouble([1]));
                     } else {
                         this.model.sim = list(new ScilabString(["tcsltj"]), new ScilabDouble([1]));
@@ -9986,7 +9986,7 @@ function MATMUL() {
         this.graphics = this.x.graphics;
         var label = this.graphics.exprs;
         this.model = this.x.model;
-        if (this.model.ipar==[]) {
+        if (this.model.ipar.length==0) {
             this.model.ipar = new ScilabDouble([1]);
         }
         if (size(label,"*")==1) {
@@ -11655,7 +11655,7 @@ function CBLOCK() {
             } else {
                 var funtyp = 2004;
             }
-            if ([[this.ci],[this.co]]!=[]) {
+            if ([[this.ci],[this.co]].length!=0) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
                     throw "user error";
@@ -11813,7 +11813,7 @@ function CBLOCK4() {
             } else {
                 var funtyp = 2004;
             }
-            if ([[this.ci],[this.co]]!=[]) {
+            if ([[this.ci],[this.co]].length!=0) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
                     throw "user error";
@@ -12108,7 +12108,7 @@ function DEBUG() {
         while (1==1) {
             var tmpvar0 = dialog([["Enter scilab instructions for debugging."],[" Inputs are block and flag, output is block"]],textmp);
             var txt = tmpvar0[0];
-            if (txt!=[]) {
+            if (txt.length!=0) {
                 var tt = ["block=debug_scicos(block,flag)"];
                 if (execstr("deff(tt,txt)","errcatch")==0) {
                     var warnMode = warning("query");
@@ -12221,7 +12221,7 @@ function DSUPER() {
         var exprs0 = this.graphics.exprs[2-1][1-1];
         var btitre = this.graphics.exprs[2-1][2-1][1-1];
         var bitems = this.graphics.exprs[2-1][2-1].slice(2-1,$);
-        if (exprs0==[]) {
+        if (exprs0.length==0) {
             return;
         }
         var tmpvar0 = script2var(context,PREVAR_scicos_context);
@@ -13093,7 +13093,7 @@ function MBLOCK() {
                 }
             }
             if (ok) {
-                if (extF==".mo"&&fileinfo(this.funam)!=[]) {
+                if (extF==".mo"&&fileinfo(this.funam).length!=0) {
                     var tt = mgetl(this.funam);
                 } else {
                     var tt = this.exprs.funtxt;
@@ -13459,7 +13459,7 @@ function MPBLOCK() {
                 mo.model = nameF;
                 mo.inputs = this.in1;
                 mo.outputs = this.out;
-                if (pprop!=[]) {
+                if (pprop.length!=0) {
                     if (max(pprop)>0) {
                         mo.parameters = list(transpose(param),paramv,transpose(pprop));
                     } else {
@@ -14204,7 +14204,7 @@ function generic_block() {
                 throw "user error";
                 var ok = false;
             }
-            if ([[this.ci],[this.co]]!=[]) {
+            if ([[this.ci],[this.co]].length!=0) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
                     throw "user error";
@@ -14337,7 +14337,7 @@ function generic_block2() {
                 throw "user error";
                 var ok = false;
             }
-            if ([[this.ci],[this.co]]!=[]) {
+            if ([[this.ci],[this.co]].length!=0) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
                     throw "user error";
@@ -14474,7 +14474,7 @@ function generic_block3() {
                 throw "user error";
                 var ok = false;
             }
-            if ([[this.ci],[this.co]]!=[]) {
+            if ([[this.ci],[this.co]].length!=0) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
                     throw "user error";
@@ -15571,7 +15571,7 @@ function LOOKUP_c() {
             }
             if ((SaveExit)) {
                 var xp = find(orpar.slice(1-1,oipar[1-1])>=0);
-                if ((xp!=[])) {
+                if ((xp.length!=0)) {
                     this.model.firing = new ScilabDouble([orpar[xp[1-1]-1]]);
                 } else {
                     this.model.firing = new ScilabDouble([-1]);
@@ -16240,7 +16240,7 @@ function TrigFun() {
             if (!ok) {
                 break;
             }
-            if (find(PREVAR_FF==this.fun)==[]) {
+            if (find(PREVAR_FF==this.fun).length==0) {
                 message("Sorry but "+this.fun+" is not in the list!");
                 throw "user error";
             } else {
@@ -16383,7 +16383,7 @@ function PDE() {
                 var ind4 = strindex(a4,"x");
                 var ind1 = strindex(a1,"x");
                 var ind2 = strindex(a2,"x");
-                if ((ind4!=[]||ind1!=[]||ind2!=[])) {
+                if ((ind4.length!=0||ind1.length!=0||ind2.length!=0)) {
                     if ((signe==1)) {
                         var delta = 1;
                     } else if ((signe==2)) {
@@ -16397,7 +16397,7 @@ function PDE() {
                 } else {
                     var delta = evstr(a4)^2-4*evstr(a1)*evstr(a2);
                 }
-                if ((delta==[])) {
+                if ((delta.length==0)) {
                     var delta = 0;
                 }
                 var type_meth = arbre_decision(delta);
@@ -16411,22 +16411,22 @@ function PDE() {
             if (((CLa_type==1)&&(DF_type==0||DF_type==1))||((CLb_type==1)&&(DF_type==0||DF_type==2))) {
                 var Nbr = Nbr+1;
             }
-            if ((mesures==[])) {
+            if ((mesures.length==0)) {
                 var out = Nbr_maillage;
             } else {
                 var out = [[Nbr_maillage],[size(mesures,"*")]];
             }
             if ((flag_type==1)) {
                 this.model.sim = list(new ScilabDouble([this.rdnom]), new ScilabDouble([2004]));
-                if ((find(oper==1)!=[])) {
+                if ((find(oper==1).length!=0)) {
                     this.model.state = new ScilabDouble([zeros(2*Nbr_maillage,1)]);
                 } else {
                     this.model.state = new ScilabDouble([zeros(Nbr_maillage,1)]);
                 }
             } else if ((flag_type==2)) {
                 this.model.sim = list(new ScilabDouble([this.rdnom]), new ScilabDouble([12004]));
-                if ((find(oper==1)!=[])) {
-                    if ((type_meth==3&&(find(oper==2)!=[]||find(oper==4)!=[]))) {
+                if ((find(oper==1).length!=0)) {
+                    if ((type_meth==3&&(find(oper==2).length!=0||find(oper==4).length!=0))) {
                         this.model.state = new ScilabDouble([zeros(6*Nbr_maillage,1)]);
                     } else if ((type_meth==1)) {
                         this.model.state = new ScilabDouble([zeros(4*Nbr,1)]);
@@ -16434,7 +16434,7 @@ function PDE() {
                         this.model.state = new ScilabDouble([zeros(4*Nbr_maillage,1)]);
                     }
                 } else {
-                    if ((type_meth==3&&(find(oper==2)!=[]||find(oper==4)!=[]))) {
+                    if ((type_meth==3&&(find(oper==2).length!=0||find(oper==4).length!=0))) {
                         this.model.state = new ScilabDouble([zeros(4*Nbr_maillage,1)]);
                     } else if ((type_meth==1)) {
                         this.model.state = new ScilabDouble([zeros(2*Nbr,1)]);
@@ -16752,10 +16752,10 @@ function CANIMXY() {
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
-                if (this.wpos==[]) {
+                if (this.wpos.length==0) {
                     this.wpos = [[-1],[-1]];
                 }
-                if (this.wdim==[]) {
+                if (this.wdim.length==0) {
                     this.wdim = [[-1],[-1]];
                 }
                 var rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
@@ -16897,10 +16897,10 @@ function CANIMXY3D() {
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
-                if (this.wpos==[]) {
+                if (this.wpos.length==0) {
                     this.wpos = [[-1],[-1]];
                 }
-                if (this.wdim==[]) {
+                if (this.wdim.length==0) {
                     this.wdim = [[-1],[-1]];
                 }
                 var rpar = [[this.vec_x.slice()],[this.vec_y.slice()],[this.vec_z.slice()],[this.param3ds.slice()]];
@@ -17003,10 +17003,10 @@ function CEVENTSCOPE() {
                 throw "user error";
             }
             if (ok) {
-                if (this.wpos==[]) {
+                if (this.wpos.length==0) {
                     this.wpos = [[-1],[-1]];
                 }
-                if (this.wdim==[]) {
+                if (this.wdim.length==0) {
                     this.wdim = [[-1],[-1]];
                 }
                 var rpar = this.per;
@@ -17112,10 +17112,10 @@ function CFSCOPE() {
                 throw "user error";
             }
             if (ok) {
-                if (this.wpos==[]) {
+                if (this.wpos.length==0) {
                     this.wpos = [[-1],[-1]];
                 }
-                if (this.wdim==[]) {
+                if (this.wdim.length==0) {
                     this.wdim = [[-1],[-1]];
                 }
                 var rpar = [[0],[this.ymin],[this.ymax],[this.per]];
@@ -17223,7 +17223,7 @@ function CLKOUTV_f() {
         xfpoly(in1.slice()[1-1]+ones(4,1)*(orig[1-1]+sz[1-1]/2),in1.slice()[2-1]+ones(4,1)*(orig[2-1]+sz[2-1]),1);
         xset("thickness",thick);
         xset("pattern",pat);
-        if (ident!=[]&&ident!="") {
+        if (ident.length!=0&&ident!="") {
             var font = xget("font");
             xset("font",this.options.ID[1-1][1-1],this.options.ID[1-1][2-1]);
             var rectangle = xstringl(orig[1-1],orig[2-1],ident);
@@ -17562,10 +17562,10 @@ function CMSCOPE() {
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                if (this.wpos==[]) {
+                if (this.wpos.length==0) {
                     this.wpos = [[-1],[-1]];
                 }
-                if (this.wdim==[]) {
+                if (this.wdim.length==0) {
                     this.wdim = [[-1],[-1]];
                 }
                 if (ok) {
@@ -17690,10 +17690,10 @@ function CSCOPE() {
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                if (this.wpos==[]) {
+                if (this.wpos.length==0) {
                     this.wpos = [[-1],[-1]];
                 }
-                if (this.wdim==[]) {
+                if (this.wdim.length==0) {
                     this.wdim = [[-1],[-1]];
                 }
                 var rpar = [[0],[this.ymin],[this.ymax],[this.per]];
@@ -17821,10 +17821,10 @@ function CSCOPXY() {
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
-                if (this.wpos==[]) {
+                if (this.wpos.length==0) {
                     this.wpos = [[-1],[-1]];
                 }
-                if (this.wdim==[]) {
+                if (this.wdim.length==0) {
                     this.wdim = [[-1],[-1]];
                 }
                 var rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
@@ -17958,10 +17958,10 @@ function CSCOPXY3D() {
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
-                if (this.wpos==[]) {
+                if (this.wpos.length==0) {
                     this.wpos = [[-1],[-1]];
                 }
-                if (this.wdim==[]) {
+                if (this.wdim.length==0) {
                     this.wdim = [[-1],[-1]];
                 }
                 var rpar = [[this.vec_x.slice()],[this.vec_y.slice()],[this.vec_z.slice()],[this.param3ds.slice()]];
@@ -18898,7 +18898,7 @@ function CONST_m() {
                 break;
             }
             var nout = size(this.C);
-            if (find(nout==0)!=[]) {
+            if (find(nout==0).length!=0) {
                 block_parameter_error(msprintf("Wrong size for \'%s\' parameter","Constant Value"),"Constant value must have at least one element.");
             } else {
                 this.model.sim = list(new ScilabString(["cstblk4_m"]), new ScilabDouble([4]));
@@ -19031,7 +19031,7 @@ function CURVE_c() {
                 if (this.graf=="y"||this.graf=="Y") {
                     var ipar = [[N],[mtd],[PO]];
                     var rpar = [];
-                    if ((winsid()==[])) {
+                    if ((winsid().length==0)) {
                         this.curwin = 0;
                     } else {
                         this.curwin = max(winsid())+1;
@@ -19091,7 +19091,7 @@ function CURVE_c() {
             }
             if ((SaveExit)) {
                 var xp = find(orpar.slice(1-1,oipar[1-1])>=0);
-                if ((xp!=[])) {
+                if ((xp.length!=0)) {
                     this.model.firing = new ScilabDouble([orpar[xp[1-1]-1]]);
                 } else {
                     this.model.firing = new ScilabDouble([-1]);
@@ -19918,7 +19918,7 @@ function PULSE_SC() {
                     break;
                 }
             } else {
-                if ((lasterror()!=[])) {
+                if ((lasterror().length!=0)) {
                     messagebox(lasterror());
                 }
                 var ok = false;
@@ -20333,7 +20333,7 @@ function READC_f() {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Input File Name"),"You must provide a file name.");
             } else if (this.M<1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Record Size",this.M),"Strictly positive integer expected.");
-            } else if (this.tmask1!=[]&&(this.tmask1<1||this.tmask1>this.M)) {
+            } else if (this.tmask1.length!=0&&(this.tmask1<1||this.tmask1>this.M)) {
                 block_parameter_error(msprintf("Wrong value for  \'%s\' parameter: %d.","Time Record Selection",this.tmask1),msprintf("Must be in the interval %s.","[1, Record Size = "+string(this.M)+"]"));
             } else if (nout==0) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Outputs Record Selection",nout),"Strictly positive integer expected.");
@@ -20348,7 +20348,7 @@ function READC_f() {
             } else if (this.offset<1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Initial Record Index",this.offset),"Strictly positive integer expected.");
             } else {
-                if (this.tmask1==[]) {
+                if (this.tmask1.length==0) {
                     var ievt = 0;
                     this.tmask1 = 0;
                     var outpt = [];
@@ -20453,7 +20453,7 @@ function RFILE_f() {
             var nout = size(this.outmask,"*");
             if (prod(size(this.tmask1))>1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s.","Time Record Selection",strcat(string(this.tmask1.slice())," ")),"Empty matrix or scalar expected.");
-            } else if (this.tmask1!=[]&&this.tmask1<1) {
+            } else if (this.tmask1.length!=0&&this.tmask1<1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d","Time Record Selection",this.tmask1),"Strictly positive integer expected.");
             } else if (lunit>0&&min(length(frmt),1)!=min(length(this.frmt1),1)) {
                 block_parameter_error(["Simulation running !!! You cannot switch <br />between formatted and unformatted"],"End current simulation first.");
@@ -20472,7 +20472,7 @@ function RFILE_f() {
             } else if (min(this.outmask)<1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %s","Outputs Record Selection",strcat(string(this.outmask.slice())," ")),"Strictly positive indexes expected.");
             } else {
-                if (this.tmask1==[]) {
+                if (this.tmask1.length==0) {
                     var ievt = 0;
                     var cout = [];
                     this.tmask1 = 0;
@@ -21002,7 +21002,7 @@ function GENERAL_f() {
                 }
                 var n = size(rp,2)/2;
                 var result = x_mdialog("routing matrix",string(1,nout1),string(1,2^(2*nin1)),string(rp.slice().slice()));
-                if (result!=[]) {
+                if (result.length!=0) {
                     rp.slice(1-1,nout1).slice(1-1,2*n) = evstr(result);
                     this.model.nzcross = new ScilabDouble([this.in1]);
                     this.model.rpar = new ScilabDouble(rp.slice());

@@ -29,7 +29,7 @@ function MATMUL() {
         this.graphics = this.x.graphics;
         var label = this.graphics.exprs;
         this.model = this.x.model;
-        if (this.model.ipar==[]) {
+        if (this.model.ipar.length==0) {
             this.model.ipar = new ScilabDouble([1]);
         }
         if (size(label,"*")==1) {

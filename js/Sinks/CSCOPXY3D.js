@@ -116,10 +116,10 @@ function CSCOPXY3D() {
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
-                if (this.wpos==[]) {
+                if (this.wpos.length==0) {
                     this.wpos = [[-1],[-1]];
                 }
-                if (this.wdim==[]) {
+                if (this.wdim.length==0) {
                     this.wdim = [[-1],[-1]];
                 }
                 var rpar = [[this.vec_x.slice()],[this.vec_y.slice()],[this.vec_z.slice()],[this.param3ds.slice()]];

@@ -73,7 +73,7 @@ function TCLSS() {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
                     var rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
-                    if (this.D!=[]) {
+                    if (this.D.length!=0) {
                         if (norm(this.D,1)!=0) {
                             var mmm = [true,true];
                         } else {
@@ -87,7 +87,7 @@ function TCLSS() {
                     }
                     this.model.state = new ScilabDouble(this.x0.slice());
                     this.model.rpar = new ScilabDouble(rpar);
-                    if (this.D!=[]) {
+                    if (this.D.length!=0) {
                         this.model.sim = list(new ScilabString(["tcslti4"]), new ScilabDouble([4]));
                     } else {
                         this.model.sim = list(new ScilabString(["tcsltj4"]), new ScilabDouble([4]));

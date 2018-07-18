@@ -33,7 +33,7 @@ function GAINBLK_f() {
             if (!ok) {
                 break;
             }
-            if (this.gain==[]) {
+            if (this.gain.length==0) {
                 message("Gain must have at least one element");
                 throw "user error";
             } else {

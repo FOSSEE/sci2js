@@ -87,7 +87,7 @@ function READC_f() {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter.","Input File Name"),"You must provide a file name.");
             } else if (this.M<1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Record Size",this.M),"Strictly positive integer expected.");
-            } else if (this.tmask1!=[]&&(this.tmask1<1||this.tmask1>this.M)) {
+            } else if (this.tmask1.length!=0&&(this.tmask1<1||this.tmask1>this.M)) {
                 block_parameter_error(msprintf("Wrong value for  \'%s\' parameter: %d.","Time Record Selection",this.tmask1),msprintf("Must be in the interval %s.","[1, Record Size = "+string(this.M)+"]"));
             } else if (nout==0) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Outputs Record Selection",nout),"Strictly positive integer expected.");
@@ -102,7 +102,7 @@ function READC_f() {
             } else if (this.offset<1) {
                 block_parameter_error(msprintf("Wrong value for \'%s\' parameter: %d.","Initial Record Index",this.offset),"Strictly positive integer expected.");
             } else {
-                if (this.tmask1==[]) {
+                if (this.tmask1.length==0) {
                     var ievt = 0;
                     this.tmask1 = 0;
                     var outpt = [];

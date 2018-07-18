@@ -88,7 +88,7 @@ function PULSE_SC() {
                     break;
                 }
             } else {
-                if ((lasterror()!=[])) {
+                if ((lasterror().length!=0)) {
                     messagebox(lasterror());
                 }
                 var ok = false;

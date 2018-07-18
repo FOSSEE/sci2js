@@ -53,7 +53,7 @@ function GENERAL_f() {
                 }
                 var n = size(rp,2)/2;
                 var result = x_mdialog("routing matrix",string(1,nout1),string(1,2^(2*nin1)),string(rp.slice().slice()));
-                if (result!=[]) {
+                if (result.length!=0) {
                     rp.slice(1-1,nout1).slice(1-1,2*n) = evstr(result);
                     this.model.nzcross = new ScilabDouble([this.in1]);
                     this.model.rpar = new ScilabDouble(rp.slice());

@@ -98,10 +98,10 @@ function CSCOPE() {
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                if (this.wpos==[]) {
+                if (this.wpos.length==0) {
                     this.wpos = [[-1],[-1]];
                 }
-                if (this.wdim==[]) {
+                if (this.wdim.length==0) {
                     this.wdim = [[-1],[-1]];
                 }
                 var rpar = [[0],[this.ymin],[this.ymax],[this.per]];
