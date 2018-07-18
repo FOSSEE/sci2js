@@ -96,7 +96,6 @@ function NPN() {
             this.Gbe = arguments[0]["Gbe"];
             this.Vt = arguments[0]["Vt"];
             this.EMinMax = arguments[0]["EMinMax"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

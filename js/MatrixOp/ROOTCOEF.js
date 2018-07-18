@@ -44,7 +44,6 @@ function ROOTCOEF() {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
             this.inp = arguments[0]["inp"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -59,7 +59,6 @@ function NMOS() {
             this.dW = parseFloat(arguments[0]["dW"]);
             this.dL = parseFloat(arguments[0]["dL"]);
             this.RDS = parseFloat(arguments[0]["RDS"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

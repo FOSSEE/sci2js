@@ -32,7 +32,6 @@ function RATELIMITER() {
             var ok = true;
             this.maxp = parseFloat(arguments[0]["maxp"]);
             this.minp = parseFloat(arguments[0]["minp"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

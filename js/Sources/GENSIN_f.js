@@ -34,7 +34,6 @@ function GENSIN_f() {
             this.M = arguments[0]["M"];
             this.F = arguments[0]["F"];
             this.P = arguments[0]["P"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

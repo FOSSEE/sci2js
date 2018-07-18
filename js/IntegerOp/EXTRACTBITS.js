@@ -38,7 +38,6 @@ function EXTRACTBITS() {
             this.rule = parseFloat(arguments[0]["rule"]);
             this.bit = parseFloat(arguments[0]["bit"]);
             this.scal = arguments[0]["scal"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -29,7 +29,6 @@ function DEMUX() {
         while (true) {
             var ok = true;
             this.out = parseFloat(arguments[0]["out"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -42,7 +42,6 @@ function PuitsP() {
             this.T0 = parseFloat(arguments[0]["T0"]);
             this.H0 = parseFloat(arguments[0]["H0"]);
             this.option_temperature = parseFloat(arguments[0]["option_temperature"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

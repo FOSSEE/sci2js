@@ -51,7 +51,6 @@ function CFSCOPE() {
             this.per = parseFloat(arguments[0]["per"]);
             this.N = parseFloat(arguments[0]["N"]);
             this.wu = arguments[0]["wu"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

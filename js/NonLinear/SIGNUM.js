@@ -29,7 +29,6 @@ function SIGNUM() {
         while (true) {
             var ok = true;
             this.zcr = arguments[0]["zcr"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

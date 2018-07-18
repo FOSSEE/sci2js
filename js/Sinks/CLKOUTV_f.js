@@ -24,7 +24,6 @@ function CLKOUTV_f() {
         while (true) {
             var ok = true;
             this.prt = arguments[0]["prt"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -25,7 +25,6 @@ function CONST() {
         while (true) {
             var ok = true;
             this.C = parseFloat(arguments[0]["C"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

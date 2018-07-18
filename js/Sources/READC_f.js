@@ -66,7 +66,6 @@ function READC_f() {
             this.N = parseFloat(arguments[0]["N"]);
             this.offset = parseFloat(arguments[0]["offset"]);
             this.swap = parseFloat(arguments[0]["swap"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

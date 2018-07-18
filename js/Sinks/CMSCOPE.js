@@ -61,7 +61,6 @@ function CMSCOPE() {
             this.N = parseFloat(arguments[0]["N"]);
             this.heritance = arguments[0]["heritance"];
             this.nom = arguments[0]["nom"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

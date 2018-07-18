@@ -25,7 +25,6 @@ function TrigFun() {
         while (true) {
             var ok = true;
             this.fun = arguments[0]["fun"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

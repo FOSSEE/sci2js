@@ -43,7 +43,6 @@ function CEVENTSCOPE() {
             this.wpos = inverse(arguments[0]["wpos"]);
             this.wdim = inverse(arguments[0]["wdim"]);
             this.per = parseFloat(arguments[0]["per"]);
-            this.exprs = arguments[0]["exprs"];
             this.nclock = int(this.nclock);
             this.clrs = int(this.clrs);
             this.win = int(this.win);

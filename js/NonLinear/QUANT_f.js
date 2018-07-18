@@ -32,7 +32,6 @@ function QUANT_f() {
             var ok = true;
             this.pas = parseFloat(arguments[0]["pas"]);
             this.meth = parseFloat(arguments[0]["meth"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

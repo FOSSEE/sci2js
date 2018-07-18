@@ -24,7 +24,6 @@ function CLKFROM() {
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -76,7 +75,6 @@ function CLKGOTO() {
             var ok = true;
             this.tag = arguments[0]["tag"];
             this.tagvis = parseFloat(arguments[0]["tagvis"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -139,7 +137,6 @@ function CLKGotoTagVisibility() {
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -190,7 +187,6 @@ function DEMUX() {
         while (true) {
             var ok = true;
             this.out = parseFloat(arguments[0]["out"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -265,7 +261,6 @@ function DEMUX_f() {
         while (true) {
             var ok = true;
             this.out = parseFloat(arguments[0]["out"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -354,7 +349,6 @@ function ESELECT_f() {
             this.out = parseFloat(arguments[0]["out"]);
             this.inh = parseFloat(arguments[0]["inh"]);
             this.nmod = parseFloat(arguments[0]["nmod"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -419,7 +413,6 @@ function EXTRACTOR() {
         while (true) {
             var ok = true;
             this.ind = parseFloat(arguments[0]["ind"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -475,7 +468,6 @@ function FROM() {
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -533,7 +525,6 @@ function FROMMO() {
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -590,7 +581,6 @@ function GOTO() {
             var ok = true;
             this.tag = arguments[0]["tag"];
             this.tagvis = parseFloat(arguments[0]["tagvis"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -656,7 +646,6 @@ function GOTOMO() {
             var ok = true;
             this.tag = arguments[0]["tag"];
             this.tagvis = parseFloat(arguments[0]["tagvis"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -717,7 +706,6 @@ function GotoTagVisibility() {
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -772,7 +760,6 @@ function GotoTagVisibilityMO() {
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -827,7 +814,6 @@ function ISELECT_f() {
             var ok = true;
             this.nout = parseFloat(arguments[0]["nout"]);
             this.z0 = parseFloat(arguments[0]["z0"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -895,7 +881,6 @@ function ISELECT_m() {
             this.typ = inverse(arguments[0]["typ"]);
             this.nout = parseFloat(arguments[0]["nout"]);
             this.z0 = parseFloat(arguments[0]["z0"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -954,7 +939,6 @@ function MUX() {
         while (true) {
             var ok = true;
             this.in1 = parseFloat(arguments[0]["in1"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1025,7 +1009,6 @@ function MUX_f() {
         while (true) {
             var ok = true;
             this.in1 = parseFloat(arguments[0]["in1"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1105,7 +1088,6 @@ function M_SWITCH() {
             this.nin = parseFloat(arguments[0]["nin"]);
             this.base = parseFloat(arguments[0]["base"]);
             this.rule = arguments[0]["rule"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1175,7 +1157,6 @@ function NRMSOM_f() {
         while (true) {
             var ok = true;
             this.nin = parseFloat(arguments[0]["nin"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1230,7 +1211,6 @@ function RELAY_f() {
             var ok = true;
             this.nin = parseFloat(arguments[0]["nin"]);
             this.z0 = arguments[0]["z0"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1282,7 +1262,6 @@ function SCALAR2VECTOR() {
         while (true) {
             var ok = true;
             this.nout = parseFloat(arguments[0]["nout"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1342,7 +1321,6 @@ function SELECT_f() {
             var ok = true;
             this.nin = parseFloat(arguments[0]["nin"]);
             this.z0 = parseFloat(arguments[0]["z0"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1410,7 +1388,6 @@ function SELECT_m() {
             this.typ = inverse(arguments[0]["typ"]);
             this.nin = parseFloat(arguments[0]["nin"]);
             this.z0 = parseFloat(arguments[0]["z0"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1526,7 +1503,6 @@ function SWITCH2() {
             this.rule = parseFloat(arguments[0]["rule"]);
             this.thra = arguments[0]["thra"];
             this.nzz = parseFloat(arguments[0]["nzz"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1599,7 +1575,6 @@ function SWITCH2_m() {
             this.rule = parseFloat(arguments[0]["rule"]);
             this.thra = arguments[0]["thra"];
             this.nzz = parseFloat(arguments[0]["nzz"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1680,7 +1655,6 @@ function SWITCH_f() {
             var ok = true;
             this.nin = parseFloat(arguments[0]["nin"]);
             this.z0 = arguments[0]["z0"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1868,7 +1842,6 @@ function Capacitor() {
             var ok = true;
             this.C = parseFloat(arguments[0]["C"]);
             this.v = parseFloat(arguments[0]["v"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -1917,7 +1890,6 @@ function ConstantVoltage() {
         while (true) {
             var ok = true;
             this.V = parseFloat(arguments[0]["V"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2009,7 +1981,6 @@ function Diode() {
             this.Vt = parseFloat(arguments[0]["Vt"]);
             this.Maxexp = parseFloat(arguments[0]["Maxexp"]);
             this.R = parseFloat(arguments[0]["R"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2121,7 +2092,6 @@ function Gyrator() {
             var ok = true;
             this.G1 = arguments[0]["G1"];
             this.G2 = arguments[0]["G2"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2198,7 +2168,6 @@ function IdealTransformer() {
         while (true) {
             var ok = true;
             this.N = arguments[0]["N"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2244,7 +2213,6 @@ function Inductor() {
         while (true) {
             var ok = true;
             this.L = parseFloat(arguments[0]["L"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2345,7 +2313,6 @@ function NMOS() {
             this.dW = parseFloat(arguments[0]["dW"]);
             this.dL = parseFloat(arguments[0]["dL"]);
             this.RDS = parseFloat(arguments[0]["RDS"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2456,7 +2423,6 @@ function NPN() {
             this.Gbe = arguments[0]["Gbe"];
             this.Vt = arguments[0]["Vt"];
             this.EMinMax = arguments[0]["EMinMax"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2510,7 +2476,6 @@ function OpAmp() {
             this.OLGain = arguments[0]["OLGain"];
             this.SatH = arguments[0]["SatH"];
             this.SatL = arguments[0]["SatL"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2584,7 +2549,6 @@ function PMOS() {
             this.dW = parseFloat(arguments[0]["dW"]);
             this.dL = parseFloat(arguments[0]["dL"]);
             this.RDS = parseFloat(arguments[0]["RDS"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2695,7 +2659,6 @@ function PNP() {
             this.Gbe = arguments[0]["Gbe"];
             this.Vt = arguments[0]["Vt"];
             this.EMinMax = arguments[0]["EMinMax"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2772,7 +2735,6 @@ function Resistor() {
         while (true) {
             var ok = true;
             this.R = parseFloat(arguments[0]["R"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2836,7 +2798,6 @@ function SineVoltage() {
             this.frq = parseFloat(arguments[0]["frq"]);
             this.offset = parseFloat(arguments[0]["offset"]);
             this.start = parseFloat(arguments[0]["start"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2893,7 +2854,6 @@ function Switch() {
             var ok = true;
             this.Ron = parseFloat(arguments[0]["Ron"]);
             this.Roff = parseFloat(arguments[0]["Roff"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -2945,7 +2905,6 @@ function VVsourceAC() {
         while (true) {
             var ok = true;
             this.FR = parseFloat(arguments[0]["FR"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3062,7 +3021,6 @@ function VsourceAC() {
             var ok = true;
             this.VA = parseFloat(arguments[0]["VA"]);
             this.FR = parseFloat(arguments[0]["FR"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3280,7 +3238,6 @@ function END_c() {
         while (true) {
             var ok = true;
             this.tf = parseFloat(arguments[0]["tf"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3329,7 +3286,6 @@ function EVTDLY_c() {
             var ok = true;
             this.dt = parseFloat(arguments[0]["dt"]);
             this.ff = parseFloat(arguments[0]["ff"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3383,7 +3339,6 @@ function EVTDLY_f() {
             var ok = true;
             this.dt = parseFloat(arguments[0]["dt"]);
             this.ff = parseFloat(arguments[0]["ff"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3432,7 +3387,6 @@ function EVTGEN_f() {
         while (true) {
             var ok = true;
             this.tt = parseFloat(arguments[0]["tt"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3475,7 +3429,6 @@ function EVTVARDLY() {
         while (true) {
             var ok = true;
             this.fir = arguments[0]["fir"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3518,7 +3471,6 @@ function HALT_f() {
         while (true) {
             var ok = true;
             this.n = parseFloat(arguments[0]["n"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3575,7 +3527,6 @@ function IFTHEL_f() {
             var ok = true;
             this.inh = inverse(arguments[0]["inh"]);
             this.nmod = parseFloat(arguments[0]["nmod"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3733,7 +3684,6 @@ function MFCLCK_f() {
         var ok = true;
         this.dt = parseFloat(arguments[0]["dt"]);
         this.nn = parseFloat(arguments[0]["nn"]);
-        this.exprs = arguments[0]["exprs"];
         if (ok) {
             this.model.ipar = new ScilabDouble([this.nn]);
             this.model.rpar = new ScilabDouble([this.dt]);
@@ -3780,7 +3730,6 @@ function M_freq() {
             var ok = true;
             this.frequ = inverse(arguments[0]["frequ"]);
             this.offset = inverse(arguments[0]["offset"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -3995,7 +3944,6 @@ function freq_div() {
             var ok = true;
             %ph = parseFloat(arguments[0]["%ph"]);
             %df = parseFloat(arguments[0]["%df"]);
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -4125,7 +4073,6 @@ function Bache() {
             this.z0 = parseFloat(arguments[0]["z0"]);
             this.T0 = parseFloat(arguments[0]["T0"]);
             this.p_rho = parseFloat(arguments[0]["p_rho"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4202,7 +4149,6 @@ function Flowmeter() {
         while (false) {
             var ok = true;
             this.Qini = arguments[0]["Qini"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4268,7 +4214,6 @@ function PerteDP() {
             this.z1 = parseFloat(arguments[0]["z1"]);
             this.z2 = parseFloat(arguments[0]["z2"]);
             this.p_rho = parseFloat(arguments[0]["p_rho"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4326,7 +4271,6 @@ function PuitsP() {
             this.T0 = parseFloat(arguments[0]["T0"]);
             this.H0 = parseFloat(arguments[0]["H0"]);
             this.option_temperature = parseFloat(arguments[0]["option_temperature"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4386,7 +4330,6 @@ function SourceP() {
             this.T0 = parseFloat(arguments[0]["T0"]);
             this.H0 = parseFloat(arguments[0]["H0"]);
             this.option_temperature = parseFloat(arguments[0]["option_temperature"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4443,7 +4386,6 @@ function VanneReglante() {
             var ok = true;
             this.Cvmax = parseFloat(arguments[0]["Cvmax"]);
             this.p_rho = parseFloat(arguments[0]["p_rho"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4492,7 +4434,6 @@ function BITCLEAR() {
             var ok = true;
             this.Datatype = arguments[0]["Datatype"];
             this.bit = parseFloat(arguments[0]["bit"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4589,7 +4530,6 @@ function BITSET() {
             var ok = true;
             this.Datatype = arguments[0]["Datatype"];
             this.bit = parseFloat(arguments[0]["bit"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -4688,7 +4628,6 @@ function CONVERT() {
             this.it = parseFloat(arguments[0]["it"]);
             this.ot = parseFloat(arguments[0]["ot"]);
             this.np = arguments[0]["np"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -5225,7 +5164,6 @@ function EXTRACTBITS() {
             this.rule = parseFloat(arguments[0]["rule"]);
             this.bit = parseFloat(arguments[0]["bit"]);
             this.scal = arguments[0]["scal"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -5466,7 +5404,6 @@ function INTMUL() {
             var ok = true;
             this.Datatype = arguments[0]["Datatype"];
             this.np = arguments[0]["np"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -5679,7 +5616,6 @@ function LOGIC() {
             var ok = true;
             this.mat = inverse(arguments[0]["mat"]);
             this.herit = arguments[0]["herit"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -5758,7 +5694,6 @@ function SHIFT() {
             this.Datatype = arguments[0]["Datatype"];
             this.nb = arguments[0]["nb"];
             this.np = arguments[0]["np"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -5958,7 +5893,6 @@ function BIGSOM_f() {
         while (true) {
             var ok = true;
             this.sgn = inverse(arguments[0]["sgn"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6046,7 +5980,6 @@ function CLR() {
             var ok = true;
             this.num = arguments[0]["num"];
             this.den = arguments[0]["den"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6133,7 +6066,6 @@ function CLR_f() {
             var ok = true;
             this.num = arguments[0]["num"];
             this.den = arguments[0]["den"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6224,7 +6156,6 @@ function CLSS() {
             this.C = parseFloat(arguments[0]["C"]);
             this.D = parseFloat(arguments[0]["D"]);
             this.x0 = parseFloat(arguments[0]["x0"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -6330,7 +6261,6 @@ function CLSS_f() {
             this.C = parseFloat(arguments[0]["C"]);
             this.D = parseFloat(arguments[0]["D"]);
             this.x0 = parseFloat(arguments[0]["x0"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -6423,7 +6353,6 @@ function DELAYV_f() {
             this.nin = parseFloat(arguments[0]["nin"]);
             this.zz0 = inverse(arguments[0]["zz0"]);
             this.T = parseFloat(arguments[0]["T"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6552,7 +6481,6 @@ function DELAY_f() {
             var ok = true;
             this.dt = arguments[0]["dt"];
             this.z0 = arguments[0]["z0"];
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -6646,7 +6574,6 @@ function DIFF_c() {
             var ok = true;
             this.x0 = inverse(arguments[0]["x0"]);
             this.xd0 = inverse(arguments[0]["xd0"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6718,7 +6645,6 @@ function DLR() {
             var ok = true;
             this.num = arguments[0]["num"];
             this.den = arguments[0]["den"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6804,7 +6730,6 @@ function DLR_f() {
             var ok = true;
             this.num = arguments[0]["num"];
             this.den = arguments[0]["den"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -6895,7 +6820,6 @@ function DLSS() {
             this.C = parseFloat(arguments[0]["C"]);
             this.D = parseFloat(arguments[0]["D"]);
             this.x0 = parseFloat(arguments[0]["x0"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -7000,7 +6924,6 @@ function DLSS_f() {
             this.C = parseFloat(arguments[0]["C"]);
             this.D = parseFloat(arguments[0]["D"]);
             this.x0 = parseFloat(arguments[0]["x0"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -7086,7 +7009,6 @@ function DOLLAR() {
             var ok = true;
             this.a = arguments[0]["a"];
             this.inh = parseFloat(arguments[0]["inh"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7187,7 +7109,6 @@ function DOLLAR_f() {
             var ok = true;
             this.a = arguments[0]["a"];
             this.inh = parseFloat(arguments[0]["inh"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7253,7 +7174,6 @@ function DOLLAR_m() {
             var ok = true;
             this.a = arguments[0]["a"];
             this.inh = parseFloat(arguments[0]["inh"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7357,7 +7277,6 @@ function GAINBLK() {
             var ok = true;
             this.gain = parseFloat(arguments[0]["gain"]);
             this.over = arguments[0]["over"];
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -7511,7 +7430,6 @@ function GAINBLK_f() {
         while (true) {
             var ok = true;
             this.gain = parseFloat(arguments[0]["gain"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7569,7 +7487,6 @@ function GAIN_f() {
         while (true) {
             var ok = true;
             this.gain = parseFloat(arguments[0]["gain"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7637,7 +7554,6 @@ function INTEGRAL() {
             this.satur = parseFloat(arguments[0]["satur"]);
             this.maxp = parseFloat(arguments[0]["maxp"]);
             this.lowp = arguments[0]["lowp"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7719,7 +7635,6 @@ function INTEGRAL_f() {
         while (true) {
             var ok = true;
             this.x0 = parseFloat(arguments[0]["x0"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -7776,7 +7691,6 @@ function INTEGRAL_m() {
             this.satur = parseFloat(arguments[0]["satur"]);
             this.maxp = parseFloat(arguments[0]["maxp"]);
             this.lowp = parseFloat(arguments[0]["lowp"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -8027,7 +7941,6 @@ function REGISTER() {
             var ok = true;
             this.z0 = parseFloat(arguments[0]["z0"]);
             this.it = arguments[0]["it"];
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -8111,7 +8024,6 @@ function REGISTER_f() {
         while (true) {
             var ok = true;
             this.z0 = parseFloat(arguments[0]["z0"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -8190,7 +8102,6 @@ function SAMPHOLD_m() {
         while (true) {
             var ok = true;
             this.it = arguments[0]["it"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -8321,7 +8232,6 @@ function SUMMATION() {
             this.Datatype = arguments[0]["Datatype"];
             this.sgn = inverse(arguments[0]["sgn"]);
             this.satur = arguments[0]["satur"];
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -8504,7 +8414,6 @@ function TCLSS() {
             this.C = parseFloat(arguments[0]["C"]);
             this.D = parseFloat(arguments[0]["D"]);
             this.x0 = parseFloat(arguments[0]["x0"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -8607,7 +8516,6 @@ function TCLSS_f() {
             this.C = parseFloat(arguments[0]["C"]);
             this.D = parseFloat(arguments[0]["D"]);
             this.x0 = parseFloat(arguments[0]["x0"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -8699,7 +8607,6 @@ function TIME_DELAY() {
             this.T = parseFloat(arguments[0]["T"]);
             this.init = parseFloat(arguments[0]["init"]);
             this.N = parseFloat(arguments[0]["N"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -8769,7 +8676,6 @@ function VARIABLE_DELAY() {
             this.T = parseFloat(arguments[0]["T"]);
             this.init = parseFloat(arguments[0]["init"]);
             this.N = parseFloat(arguments[0]["N"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -8949,7 +8855,6 @@ function EXTRACT() {
             this.typ = inverse(arguments[0]["typ"]);
             this.a = inverse(arguments[0]["a"]);
             this.b = inverse(arguments[0]["b"]);
-            this.exprs = arguments[0]["exprs"];
             this.a = this.a.slice();
             this.b = this.b.slice();
             if (!ok) {
@@ -9146,7 +9051,6 @@ function MATBKSL() {
         while (true) {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -9358,7 +9262,6 @@ function MATDET() {
         while (true) {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -9435,7 +9338,6 @@ function MATDIAG() {
         while (true) {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -9512,7 +9414,6 @@ function MATDIV() {
         while (true) {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -9689,7 +9590,6 @@ function MATEXPM() {
         while (true) {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -9766,7 +9666,6 @@ function MATINV() {
         while (true) {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -10003,7 +9902,6 @@ function MATMUL() {
             this.dtype = arguments[0]["dtype"];
             this.rule = parseFloat(arguments[0]["rule"]);
             this.np = parseFloat(arguments[0]["np"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -10167,7 +10065,6 @@ function MATPINV() {
         while (true) {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -10547,7 +10444,6 @@ function MATTRAN() {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
             this.rule = arguments[0]["rule"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -10748,7 +10644,6 @@ function RICC() {
             var ok = true;
             this.tpe = arguments[0]["tpe"];
             this.mod = arguments[0]["mod"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -10816,7 +10711,6 @@ function ROOTCOEF() {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
             this.inp = arguments[0]["inp"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -10880,7 +10774,6 @@ function SQRT() {
         while (true) {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -10965,7 +10858,6 @@ function SUBMAT() {
             this.c = arguments[0]["c"];
             this.d = arguments[0]["d"];
             this.inp = arguments[0]["inp"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -11194,7 +11086,6 @@ function BACKLASH() {
             this.ini = arguments[0]["ini"];
             this.gap = arguments[0]["gap"];
             this.zcr = arguments[0]["zcr"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -11290,7 +11181,6 @@ function BOUNCE() {
             this.yd = inverse(arguments[0]["yd"]);
             this.g = parseFloat(arguments[0]["g"]);
             this.C = parseFloat(arguments[0]["C"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -11414,7 +11304,6 @@ function BOUNCEXY() {
             this.xmax = parseFloat(arguments[0]["xmax"]);
             this.ymin = parseFloat(arguments[0]["ymin"]);
             this.ymax = parseFloat(arguments[0]["ymax"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -11511,7 +11400,6 @@ function BPLATFORM() {
             this.xmax = parseFloat(arguments[0]["xmax"]);
             this.ymin = parseFloat(arguments[0]["ymin"]);
             this.ymax = parseFloat(arguments[0]["ymax"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -11904,7 +11792,6 @@ function CONSTRAINT2_c() {
             this.x0 = inverse(arguments[0]["x0"]);
             this.xd0 = inverse(arguments[0]["xd0"]);
             this.id = inverse(arguments[0]["id"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -11976,7 +11863,6 @@ function CONSTRAINT_c() {
         while (true) {
             var ok = true;
             this.x0 = inverse(arguments[0]["x0"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -12042,7 +11928,6 @@ function DEADBAND() {
             this.maxp = parseFloat(arguments[0]["maxp"]);
             this.minp = parseFloat(arguments[0]["minp"]);
             this.zeroc = arguments[0]["zeroc"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -12169,7 +12054,6 @@ function DIFF_f() {
             var ok = true;
             this.x0 = inverse(arguments[0]["x0"]);
             this.xd0 = arguments[0]["xd0"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -12268,7 +12152,6 @@ function EDGETRIGGER() {
         while (true) {
             var ok = true;
             this.edge = parseFloat(arguments[0]["edge"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -12660,7 +12543,6 @@ function HYSTHERESIS() {
             this.out_high = arguments[0]["out_high"];
             this.out_low = arguments[0]["out_low"];
             this.nzz = parseFloat(arguments[0]["nzz"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -12749,7 +12631,6 @@ function LOGICAL_OP() {
             this.rule = parseFloat(arguments[0]["rule"]);
             this.Datatype = arguments[0]["Datatype"];
             this.tp = parseFloat(arguments[0]["tp"]);
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -13172,7 +13053,6 @@ function MEMORY_f() {
             var ok = true;
             this.a = arguments[0]["a"];
             this.inh = parseFloat(arguments[0]["inh"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -13569,7 +13449,6 @@ function PENDULUM_ANIM() {
             this.xmax = parseFloat(arguments[0]["xmax"]);
             this.ymin = parseFloat(arguments[0]["ymin"]);
             this.ymax = parseFloat(arguments[0]["ymax"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -13634,7 +13513,6 @@ function RATELIMITER() {
             var ok = true;
             this.maxp = parseFloat(arguments[0]["maxp"]);
             this.minp = parseFloat(arguments[0]["minp"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -13691,7 +13569,6 @@ function RELATIONALOP() {
             this.rule = parseFloat(arguments[0]["rule"]);
             this.zcr = parseFloat(arguments[0]["zcr"]);
             this.Datatype = arguments[0]["Datatype"];
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -13853,7 +13730,6 @@ function TEXT_f() {
             this.txt = arguments[0]["txt"];
             this.font = parseFloat(arguments[0]["font"]);
             this.siz = parseFloat(arguments[0]["siz"]);
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -14800,7 +14676,6 @@ function ABS_VALUE() {
         while (true) {
             var ok = true;
             this.zcr = arguments[0]["zcr"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -14894,7 +14769,6 @@ function DLRADAPT_f() {
             this.g = inverse(arguments[0]["g"]);
             this.last_u = inverse(arguments[0]["last_u"]);
             this.last_y = inverse(arguments[0]["last_y"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -14952,7 +14826,6 @@ function EXPBLK_f() {
         while (true) {
             var ok = true;
             this.a = parseFloat(arguments[0]["a"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -15004,7 +14877,6 @@ function EXPBLK_m() {
         while (true) {
             var ok = true;
             this.a = parseFloat(arguments[0]["a"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -15083,7 +14955,6 @@ function INTRP2BLK_f() {
             this.a = inverse(arguments[0]["a"]);
             this.b = inverse(arguments[0]["b"]);
             this.c = inverse(arguments[0]["c"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -15138,7 +15009,6 @@ function INTRPLBLK_f() {
             var ok = true;
             this.a = inverse(arguments[0]["a"]);
             this.b = inverse(arguments[0]["b"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -15240,7 +15110,6 @@ function LOGBLK_f() {
         while (true) {
             var ok = true;
             this.a = parseFloat(arguments[0]["a"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -15307,7 +15176,6 @@ function LOOKUP2D() {
             this.zz = inverse(arguments[0]["zz"]);
             this.Method = parseFloat(arguments[0]["Method"]);
             this.graf = arguments[0]["graf"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -15432,7 +15300,6 @@ function LOOKUP_c() {
             this.yy = inverse(arguments[0]["yy"]);
             this.extrapo = parseFloat(arguments[0]["extrapo"]);
             this.graf = arguments[0]["graf"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -15647,7 +15514,6 @@ function MAXMIN() {
             this.mm = parseFloat(arguments[0]["mm"]);
             this.nin = arguments[0]["nin"];
             this.zcr = parseFloat(arguments[0]["zcr"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -15780,7 +15646,6 @@ function POWBLK_f() {
         while (true) {
             var ok = true;
             this.a = parseFloat(arguments[0]["a"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -15827,7 +15692,6 @@ function PRODUCT() {
         while (true) {
             var ok = true;
             this.sgn = inverse(arguments[0]["sgn"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -15927,7 +15791,6 @@ function QUANT_f() {
             var ok = true;
             this.pas = parseFloat(arguments[0]["pas"]);
             this.meth = parseFloat(arguments[0]["meth"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -15994,7 +15857,6 @@ function SATURATION() {
             this.maxp = parseFloat(arguments[0]["maxp"]);
             this.minp = parseFloat(arguments[0]["minp"]);
             this.zeroc = arguments[0]["zeroc"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16057,7 +15919,6 @@ function SAT_f() {
             this.minp = parseFloat(arguments[0]["minp"]);
             this.maxp = parseFloat(arguments[0]["maxp"]);
             this.pente = arguments[0]["pente"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16109,7 +15970,6 @@ function SIGNUM() {
         while (true) {
             var ok = true;
             this.zcr = arguments[0]["zcr"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16207,7 +16067,6 @@ function TrigFun() {
         while (true) {
             var ok = true;
             this.fun = arguments[0]["fun"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16485,7 +16344,6 @@ function AFFICH_m() {
             this.nt = parseFloat(arguments[0]["nt"]);
             this.nd = parseFloat(arguments[0]["nd"]);
             this.herit = arguments[0]["herit"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16580,7 +16438,6 @@ function BARXY() {
             this.ymin = parseFloat(arguments[0]["ymin"]);
             this.ymax = parseFloat(arguments[0]["ymax"]);
             this.thickness = arguments[0]["thickness"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16675,7 +16532,6 @@ function CANIMXY() {
             this.ymin = parseFloat(arguments[0]["ymin"]);
             this.ymax = parseFloat(arguments[0]["ymax"]);
             this.N = parseFloat(arguments[0]["N"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16804,7 +16660,6 @@ function CANIMXY3D() {
             this.vec_z = inverse(arguments[0]["vec_z"]);
             this.param3ds = inverse(arguments[0]["param3ds"]);
             this.N = parseFloat(arguments[0]["N"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -16931,7 +16786,6 @@ function CEVENTSCOPE() {
             this.wpos = inverse(arguments[0]["wpos"]);
             this.wdim = inverse(arguments[0]["wdim"]);
             this.per = parseFloat(arguments[0]["per"]);
-            this.exprs = arguments[0]["exprs"];
             this.nclock = int(this.nclock);
             this.clrs = int(this.clrs);
             this.win = int(this.win);
@@ -17044,7 +16898,6 @@ function CFSCOPE() {
             this.per = parseFloat(arguments[0]["per"]);
             this.N = parseFloat(arguments[0]["N"]);
             this.wu = arguments[0]["wu"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17134,7 +16987,6 @@ function CLKOUTV_f() {
         while (true) {
             var ok = true;
             this.prt = arguments[0]["prt"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17233,7 +17085,6 @@ function CLKOUT_f() {
         while (true) {
             var ok = true;
             this.prt = parseFloat(arguments[0]["prt"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -17301,7 +17152,6 @@ function CMAT3D() {
             this.colormap = parseFloat(arguments[0]["colormap"]);
             this.cmin = parseFloat(arguments[0]["cmin"]);
             this.cmax = parseFloat(arguments[0]["cmax"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17375,7 +17225,6 @@ function CMATVIEW() {
             this.colormap = parseFloat(arguments[0]["colormap"]);
             this.cmin = parseFloat(arguments[0]["cmin"]);
             this.cmax = parseFloat(arguments[0]["cmax"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17468,7 +17317,6 @@ function CMSCOPE() {
             this.N = parseFloat(arguments[0]["N"]);
             this.heritance = arguments[0]["heritance"];
             this.nom = arguments[0]["nom"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17617,7 +17465,6 @@ function CSCOPE() {
             this.N = parseFloat(arguments[0]["N"]);
             this.heritance = arguments[0]["heritance"];
             this.nom = arguments[0]["nom"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17745,7 +17592,6 @@ function CSCOPXY() {
             this.ymin = parseFloat(arguments[0]["ymin"]);
             this.ymax = parseFloat(arguments[0]["ymax"]);
             this.N = parseFloat(arguments[0]["N"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17873,7 +17719,6 @@ function CSCOPXY3D() {
             this.vec_z = inverse(arguments[0]["vec_z"]);
             this.param3ds = inverse(arguments[0]["param3ds"]);
             this.N = parseFloat(arguments[0]["N"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -17986,7 +17831,6 @@ function OUTIMPL_f() {
         while (true) {
             var ok = true;
             this.prt = parseFloat(arguments[0]["prt"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -18040,7 +17884,6 @@ function OUT_f() {
         while (true) {
             var ok = true;
             this.prt = parseFloat(arguments[0]["prt"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -18101,7 +17944,6 @@ function TOWS_c() {
             this.nz = parseFloat(arguments[0]["nz"]);
             this.varnam = arguments[0]["varnam"];
             this.herit = parseFloat(arguments[0]["herit"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18211,7 +18053,6 @@ function WFILE_f() {
             this.fname1 = parseFloat(arguments[0]["fname1"]);
             this.frmt1 = parseFloat(arguments[0]["frmt1"]);
             this.N = parseFloat(arguments[0]["N"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18307,7 +18148,6 @@ function WRITEAU_f() {
             var ok = true;
             this.N = parseFloat(arguments[0]["N"]);
             this.swap = parseFloat(arguments[0]["swap"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18392,7 +18232,6 @@ function WRITEC_f() {
             this.frmt1 = arguments[0]["frmt1"];
             this.N = parseFloat(arguments[0]["N"]);
             this.swap = parseFloat(arguments[0]["swap"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18477,7 +18316,6 @@ function CLKINV_f() {
         while (true) {
             var ok = true;
             this.prt = parseFloat(arguments[0]["prt"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             this.prt = int(this.prt);
             if (!ok) {
                 break;
@@ -18524,7 +18362,6 @@ function CLKIN_f() {
         while (true) {
             var ok = true;
             this.prt = parseFloat(arguments[0]["prt"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             this.prt = int(this.prt);
             if (!ok) {
                 break;
@@ -18769,7 +18606,6 @@ function CONST() {
         while (true) {
             var ok = true;
             this.C = parseFloat(arguments[0]["C"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18818,7 +18654,6 @@ function CONST_f() {
         while (true) {
             var ok = true;
             this.C = parseFloat(arguments[0]["C"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18867,7 +18702,6 @@ function CONST_m() {
         while (true) {
             var ok = true;
             this.C = inverse(arguments[0]["C"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -18965,7 +18799,6 @@ function CURVE_c() {
             this.yy = inverse(arguments[0]["yy"]);
             this.PeriodicOption = arguments[0]["PeriodicOption"];
             this.graf = arguments[0]["graf"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -19188,7 +19021,6 @@ function Counter() {
             this.minim = parseFloat(arguments[0]["minim"]);
             this.maxim = parseFloat(arguments[0]["maxim"]);
             this.rule = parseFloat(arguments[0]["rule"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -19338,7 +19170,6 @@ function FROMWS_c() {
             this.Method = parseFloat(arguments[0]["Method"]);
             this.ZC = parseFloat(arguments[0]["ZC"]);
             this.OutEnd = parseFloat(arguments[0]["OutEnd"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -19413,7 +19244,6 @@ function GENSIN_f() {
             this.M = arguments[0]["M"];
             this.F = arguments[0]["F"];
             this.P = arguments[0]["P"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -19473,7 +19303,6 @@ function GENSQR_f() {
         while (true) {
             var ok = true;
             this.Amplitude = parseFloat(arguments[0]["Amplitude"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -19562,7 +19391,6 @@ function GEN_SQR() {
             scicos_context.Amax = arguments[0]["scicos_context.Amax"];
             scicos_context.rule = arguments[0]["scicos_context.rule"];
             scicos_context.F = arguments[0]["scicos_context.F"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 return;
             }
@@ -19656,7 +19484,6 @@ function INIMPL_f() {
         while (true) {
             var ok = true;
             this.prt = parseFloat(arguments[0]["prt"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -19779,7 +19606,6 @@ function Modulo_Count() {
             var ok = true;
             this.ini_c = parseFloat(arguments[0]["ini_c"]);
             this.base = parseFloat(arguments[0]["base"]);
-            this.exprs = arguments[0]["exprs"];
             this.ini_c = int(this.ini_c);
             this.base = int(this.base);
             if (!ok) {
@@ -19870,7 +19696,6 @@ function PULSE_SC() {
             scicos_context.W = arguments[0]["scicos_context.W"];
             scicos_context.F = arguments[0]["scicos_context.F"];
             scicos_context.A = arguments[0]["scicos_context.A"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 return;
             }
@@ -19940,7 +19765,6 @@ function RAMP() {
             this.slope = parseFloat(arguments[0]["slope"]);
             this.stt = parseFloat(arguments[0]["stt"]);
             this.iout = parseFloat(arguments[0]["iout"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -20005,7 +19829,6 @@ function RAND_f() {
             this.a = parseFloat(arguments[0]["a"]);
             this.b = parseFloat(arguments[0]["b"]);
             this.seed_c = arguments[0]["seed_c"];
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }
@@ -20082,7 +19905,6 @@ function RAND_m() {
             this.a = parseFloat(arguments[0]["a"]);
             this.b = parseFloat(arguments[0]["b"]);
             this.seed_c = arguments[0]["seed_c"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -20175,7 +19997,6 @@ function READAU_f() {
             this.fname1 = parseFloat(arguments[0]["fname1"]);
             this.N = parseFloat(arguments[0]["N"]);
             this.swap = parseFloat(arguments[0]["swap"]);
-            this.exprs = arguments[0]["exprs"];
             var tmask1 = [];
             var outmask = 1;
             var frmt1 = "uc";
@@ -20287,7 +20108,6 @@ function READC_f() {
             this.N = parseFloat(arguments[0]["N"]);
             this.offset = parseFloat(arguments[0]["offset"]);
             this.swap = parseFloat(arguments[0]["swap"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -20421,7 +20241,6 @@ function RFILE_f() {
             this.fname1 = parseFloat(arguments[0]["fname1"]);
             this.frmt1 = parseFloat(arguments[0]["frmt1"]);
             this.N = parseFloat(arguments[0]["N"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -20546,7 +20365,6 @@ function STEP() {
             this.temps = arguments[0]["temps"];
             this.in1 = arguments[0]["in1"];
             this.fi = arguments[0]["fi"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -20738,7 +20556,6 @@ function SampleCLK() {
             var ok = true;
             this.frequ = arguments[0]["frequ"];
             this.offset = arguments[0]["offset"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
@@ -20915,7 +20732,6 @@ function TKSCALE() {
         this.a = parseFloat(arguments[0]["a"]);
         this.b = parseFloat(arguments[0]["b"]);
         this.f = parseFloat(arguments[0]["f"]);
-        this.exprs = arguments[0]["exprs"];
         if (ok) {
             this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.model.rpar = new ScilabDouble([this.a],[this.b],[this.f]);
@@ -20965,7 +20781,6 @@ function GENERAL_f() {
         var ok = true;
         this.in1 = parseFloat(arguments[0]["in1"]);
         this.out = parseFloat(arguments[0]["out"]);
-        this.exprs = arguments[0]["exprs"];
         if (ok) {
             var tmpvar0 = check_io(this.model,this.graphics,this.in1,[],[],ones(this.out,1));
             this.model = tmpvar0[0];
@@ -21080,7 +20895,6 @@ function ZCROSS_f() {
         while (true) {
             var ok = true;
             this.in1 = parseFloat(arguments[0]["in1"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -34,7 +34,6 @@ function M_SWITCH() {
             this.nin = parseFloat(arguments[0]["nin"]);
             this.base = parseFloat(arguments[0]["base"]);
             this.rule = arguments[0]["rule"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

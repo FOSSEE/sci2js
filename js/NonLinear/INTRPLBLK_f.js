@@ -31,7 +31,6 @@ function INTRPLBLK_f() {
             var ok = true;
             this.a = inverse(arguments[0]["a"]);
             this.b = inverse(arguments[0]["b"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

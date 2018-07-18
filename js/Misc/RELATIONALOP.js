@@ -37,7 +37,6 @@ function RELATIONALOP() {
             this.rule = parseFloat(arguments[0]["rule"]);
             this.zcr = parseFloat(arguments[0]["zcr"]);
             this.Datatype = arguments[0]["Datatype"];
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

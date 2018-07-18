@@ -25,7 +25,6 @@ function INTEGRAL_f() {
         while (true) {
             var ok = true;
             this.x0 = parseFloat(arguments[0]["x0"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

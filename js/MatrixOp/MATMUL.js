@@ -43,7 +43,6 @@ function MATMUL() {
             this.dtype = arguments[0]["dtype"];
             this.rule = parseFloat(arguments[0]["rule"]);
             this.np = parseFloat(arguments[0]["np"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -26,7 +26,6 @@ function REGISTER_f() {
         while (true) {
             var ok = true;
             this.z0 = parseFloat(arguments[0]["z0"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

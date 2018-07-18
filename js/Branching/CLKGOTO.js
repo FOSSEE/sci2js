@@ -30,7 +30,6 @@ function CLKGOTO() {
             var ok = true;
             this.tag = arguments[0]["tag"];
             this.tagvis = parseFloat(arguments[0]["tagvis"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

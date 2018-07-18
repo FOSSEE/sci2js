@@ -64,7 +64,6 @@ function BOUNCEXY() {
             this.xmax = parseFloat(arguments[0]["xmax"]);
             this.ymin = parseFloat(arguments[0]["ymin"]);
             this.ymax = parseFloat(arguments[0]["ymax"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

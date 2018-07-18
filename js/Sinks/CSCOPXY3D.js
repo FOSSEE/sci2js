@@ -61,7 +61,6 @@ function CSCOPXY3D() {
             this.vec_z = inverse(arguments[0]["vec_z"]);
             this.param3ds = inverse(arguments[0]["param3ds"]);
             this.N = parseFloat(arguments[0]["N"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

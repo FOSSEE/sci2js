@@ -29,7 +29,6 @@ function EXPBLK_f() {
         while (true) {
             var ok = true;
             this.a = parseFloat(arguments[0]["a"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

@@ -52,7 +52,6 @@ function SUBMAT() {
             this.c = arguments[0]["c"];
             this.d = arguments[0]["d"];
             this.inp = arguments[0]["inp"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

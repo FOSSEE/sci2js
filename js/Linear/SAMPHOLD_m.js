@@ -32,7 +32,6 @@ function SAMPHOLD_m() {
         while (true) {
             var ok = true;
             this.it = arguments[0]["it"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

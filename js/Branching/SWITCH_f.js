@@ -34,7 +34,6 @@ function SWITCH_f() {
             var ok = true;
             this.nin = parseFloat(arguments[0]["nin"]);
             this.z0 = arguments[0]["z0"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

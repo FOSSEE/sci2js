@@ -62,7 +62,6 @@ function CANIMXY() {
             this.ymin = parseFloat(arguments[0]["ymin"]);
             this.ymax = parseFloat(arguments[0]["ymax"]);
             this.N = parseFloat(arguments[0]["N"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -45,7 +45,6 @@ function Diode() {
             this.Vt = parseFloat(arguments[0]["Vt"]);
             this.Maxexp = parseFloat(arguments[0]["Maxexp"]);
             this.R = parseFloat(arguments[0]["R"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

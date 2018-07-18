@@ -39,7 +39,6 @@ function Capacitor() {
             var ok = true;
             this.C = parseFloat(arguments[0]["C"]);
             this.v = parseFloat(arguments[0]["v"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

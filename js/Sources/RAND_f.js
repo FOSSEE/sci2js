@@ -46,7 +46,6 @@ function RAND_f() {
             this.a = parseFloat(arguments[0]["a"]);
             this.b = parseFloat(arguments[0]["b"]);
             this.seed_c = arguments[0]["seed_c"];
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

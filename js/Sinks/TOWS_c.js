@@ -41,7 +41,6 @@ function TOWS_c() {
             this.nz = parseFloat(arguments[0]["nz"]);
             this.varnam = arguments[0]["varnam"];
             this.herit = parseFloat(arguments[0]["herit"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

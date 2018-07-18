@@ -48,7 +48,6 @@ function SineVoltage() {
             this.frq = parseFloat(arguments[0]["frq"]);
             this.offset = parseFloat(arguments[0]["offset"]);
             this.start = parseFloat(arguments[0]["start"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

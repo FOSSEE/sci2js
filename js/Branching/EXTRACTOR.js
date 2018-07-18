@@ -28,7 +28,6 @@ function EXTRACTOR() {
         while (true) {
             var ok = true;
             this.ind = parseFloat(arguments[0]["ind"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

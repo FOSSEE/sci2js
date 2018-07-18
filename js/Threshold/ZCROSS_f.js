@@ -28,7 +28,6 @@ function ZCROSS_f() {
         while (true) {
             var ok = true;
             this.in1 = parseFloat(arguments[0]["in1"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -37,7 +37,6 @@ function TEXT_f() {
             this.txt = arguments[0]["txt"];
             this.font = parseFloat(arguments[0]["font"]);
             this.siz = parseFloat(arguments[0]["siz"]);
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

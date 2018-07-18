@@ -26,7 +26,6 @@ function CLKINV_f() {
         while (true) {
             var ok = true;
             this.prt = parseFloat(arguments[0]["prt"]);
-            this.exprs = parseFloat(arguments[0]["exprs"]);
             this.prt = int(this.prt);
             if (!ok) {
                 break;

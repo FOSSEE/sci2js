@@ -36,7 +36,6 @@ function SATURATION() {
             this.maxp = parseFloat(arguments[0]["maxp"]);
             this.minp = parseFloat(arguments[0]["minp"]);
             this.zeroc = arguments[0]["zeroc"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

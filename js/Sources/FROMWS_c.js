@@ -41,7 +41,6 @@ function FROMWS_c() {
             this.Method = parseFloat(arguments[0]["Method"]);
             this.ZC = parseFloat(arguments[0]["ZC"]);
             this.OutEnd = parseFloat(arguments[0]["OutEnd"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

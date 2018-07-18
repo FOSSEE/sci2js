@@ -28,7 +28,6 @@ function NRMSOM_f() {
         while (true) {
             var ok = true;
             this.nin = parseFloat(arguments[0]["nin"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -46,7 +46,6 @@ function LOOKUP2D() {
             this.zz = inverse(arguments[0]["zz"]);
             this.Method = parseFloat(arguments[0]["Method"]);
             this.graf = arguments[0]["graf"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

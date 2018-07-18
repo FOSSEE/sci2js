@@ -53,7 +53,6 @@ function PerteDP() {
             this.z1 = parseFloat(arguments[0]["z1"]);
             this.z2 = parseFloat(arguments[0]["z2"]);
             this.p_rho = parseFloat(arguments[0]["p_rho"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -32,7 +32,6 @@ function EVTDLY_c() {
             var ok = true;
             this.dt = parseFloat(arguments[0]["dt"]);
             this.ff = parseFloat(arguments[0]["ff"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

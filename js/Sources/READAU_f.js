@@ -50,7 +50,6 @@ function READAU_f() {
             this.fname1 = parseFloat(arguments[0]["fname1"]);
             this.N = parseFloat(arguments[0]["N"]);
             this.swap = parseFloat(arguments[0]["swap"]);
-            this.exprs = arguments[0]["exprs"];
             var tmask1 = [];
             var outmask = 1;
             var frmt1 = "uc";

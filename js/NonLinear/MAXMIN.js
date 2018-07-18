@@ -32,7 +32,6 @@ function MAXMIN() {
             this.mm = parseFloat(arguments[0]["mm"]);
             this.nin = arguments[0]["nin"];
             this.zcr = parseFloat(arguments[0]["zcr"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

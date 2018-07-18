@@ -38,7 +38,6 @@ function GENERAL_f() {
         var ok = true;
         this.in1 = parseFloat(arguments[0]["in1"]);
         this.out = parseFloat(arguments[0]["out"]);
-        this.exprs = arguments[0]["exprs"];
         if (ok) {
             var tmpvar0 = check_io(this.model,this.graphics,this.in1,[],[],ones(this.out,1));
             this.model = tmpvar0[0];

@@ -49,7 +49,6 @@ function AFFICH_m() {
             this.nt = parseFloat(arguments[0]["nt"]);
             this.nd = parseFloat(arguments[0]["nd"]);
             this.herit = arguments[0]["herit"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

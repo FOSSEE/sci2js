@@ -37,7 +37,6 @@ function VVsourceAC() {
         while (true) {
             var ok = true;
             this.FR = parseFloat(arguments[0]["FR"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

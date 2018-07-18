@@ -34,7 +34,6 @@ function REGISTER() {
             var ok = true;
             this.z0 = parseFloat(arguments[0]["z0"]);
             this.it = arguments[0]["it"];
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

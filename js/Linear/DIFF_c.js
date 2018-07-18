@@ -31,7 +31,6 @@ function DIFF_c() {
             var ok = true;
             this.x0 = inverse(arguments[0]["x0"]);
             this.xd0 = inverse(arguments[0]["xd0"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -37,7 +37,6 @@ function RAMP() {
             this.slope = parseFloat(arguments[0]["slope"]);
             this.stt = parseFloat(arguments[0]["stt"]);
             this.iout = parseFloat(arguments[0]["iout"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

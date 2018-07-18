@@ -97,7 +97,6 @@ function DELAY_f() {
             var ok = true;
             this.dt = arguments[0]["dt"];
             this.z0 = arguments[0]["z0"];
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

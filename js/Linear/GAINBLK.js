@@ -39,7 +39,6 @@ function GAINBLK() {
             var ok = true;
             this.gain = parseFloat(arguments[0]["gain"]);
             this.over = arguments[0]["over"];
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

@@ -30,7 +30,6 @@ function GAIN_f() {
         while (true) {
             var ok = true;
             this.gain = parseFloat(arguments[0]["gain"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

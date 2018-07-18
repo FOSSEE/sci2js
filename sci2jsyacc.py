@@ -664,12 +664,12 @@ def p_getvalueassignment_getvalue_arguments(p):
         ltermvars = lterm.split(',')
         idx = 0
         for var in ltermvars:
-            if var in ('ok', 'exprs'):
-                continue
             if var[:5] == 'this.':
                 basevar = var[5:]
             else:
                 basevar = var
+            if basevar in ('ok', 'exprs'):
+                continue
             add_global_var(var, force=True)
             vartype = VAR_TYPES.get(basevar, STRING_TYPE)
             parsefunction = PARSE_MAP.get(vartype, '')

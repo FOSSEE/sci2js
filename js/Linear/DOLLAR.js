@@ -36,7 +36,6 @@ function DOLLAR() {
             var ok = true;
             this.a = arguments[0]["a"];
             this.inh = parseFloat(arguments[0]["inh"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

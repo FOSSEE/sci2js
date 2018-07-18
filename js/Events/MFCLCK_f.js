@@ -33,7 +33,6 @@ function MFCLCK_f() {
         var ok = true;
         this.dt = parseFloat(arguments[0]["dt"]);
         this.nn = parseFloat(arguments[0]["nn"]);
-        this.exprs = arguments[0]["exprs"];
         if (ok) {
             this.model.ipar = new ScilabDouble([this.nn]);
             this.model.rpar = new ScilabDouble([this.dt]);

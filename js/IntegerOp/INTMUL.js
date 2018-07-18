@@ -35,7 +35,6 @@ function INTMUL() {
             var ok = true;
             this.Datatype = arguments[0]["Datatype"];
             this.np = arguments[0]["np"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

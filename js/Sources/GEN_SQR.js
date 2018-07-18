@@ -72,7 +72,6 @@ function GEN_SQR() {
             scicos_context.Amax = arguments[0]["scicos_context.Amax"];
             scicos_context.rule = arguments[0]["scicos_context.rule"];
             scicos_context.F = arguments[0]["scicos_context.F"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 return;
             }

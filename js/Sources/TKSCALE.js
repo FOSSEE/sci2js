@@ -33,7 +33,6 @@ function TKSCALE() {
         this.a = parseFloat(arguments[0]["a"]);
         this.b = parseFloat(arguments[0]["b"]);
         this.f = parseFloat(arguments[0]["f"]);
-        this.exprs = arguments[0]["exprs"];
         if (ok) {
             this.graphics.exprs = new ScilabDouble([this.exprs]);
             this.model.rpar = new ScilabDouble([this.a],[this.b],[this.f]);

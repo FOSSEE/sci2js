@@ -36,7 +36,6 @@ function FROMMO() {
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

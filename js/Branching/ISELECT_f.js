@@ -33,7 +33,6 @@ function ISELECT_f() {
             var ok = true;
             this.nout = parseFloat(arguments[0]["nout"]);
             this.z0 = parseFloat(arguments[0]["z0"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

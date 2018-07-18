@@ -43,7 +43,6 @@ function ESELECT_f() {
             this.out = parseFloat(arguments[0]["out"]);
             this.inh = parseFloat(arguments[0]["inh"]);
             this.nmod = parseFloat(arguments[0]["nmod"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -36,7 +36,6 @@ function CONSTRAINT2_c() {
             this.x0 = inverse(arguments[0]["x0"]);
             this.xd0 = inverse(arguments[0]["xd0"]);
             this.id = inverse(arguments[0]["id"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

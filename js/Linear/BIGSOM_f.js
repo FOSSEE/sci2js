@@ -25,7 +25,6 @@ function BIGSOM_f() {
         while (true) {
             var ok = true;
             this.sgn = inverse(arguments[0]["sgn"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

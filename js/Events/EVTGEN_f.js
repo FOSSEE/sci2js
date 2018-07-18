@@ -27,7 +27,6 @@ function EVTGEN_f() {
         while (true) {
             var ok = true;
             this.tt = parseFloat(arguments[0]["tt"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

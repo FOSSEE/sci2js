@@ -33,7 +33,6 @@ function BACKLASH() {
             this.ini = arguments[0]["ini"];
             this.gap = arguments[0]["gap"];
             this.zcr = arguments[0]["zcr"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

@@ -42,7 +42,6 @@ function CLR_f() {
             var ok = true;
             this.num = arguments[0]["num"];
             this.den = arguments[0]["den"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

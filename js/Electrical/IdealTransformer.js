@@ -64,7 +64,6 @@ function IdealTransformer() {
         while (true) {
             var ok = true;
             this.N = arguments[0]["N"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

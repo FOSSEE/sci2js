@@ -32,7 +32,6 @@ function MATTRAN() {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
             this.rule = arguments[0]["rule"];
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }

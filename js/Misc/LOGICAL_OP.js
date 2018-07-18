@@ -39,7 +39,6 @@ function LOGICAL_OP() {
             this.rule = parseFloat(arguments[0]["rule"]);
             this.Datatype = arguments[0]["Datatype"];
             this.tp = parseFloat(arguments[0]["tp"]);
-            this.exprs = inverse(arguments[0]["exprs"]);
             if (!ok) {
                 break;
             }

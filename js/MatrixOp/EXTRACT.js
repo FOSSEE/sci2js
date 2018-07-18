@@ -46,7 +46,6 @@ function EXTRACT() {
             this.typ = inverse(arguments[0]["typ"]);
             this.a = inverse(arguments[0]["a"]);
             this.b = inverse(arguments[0]["b"]);
-            this.exprs = arguments[0]["exprs"];
             this.a = this.a.slice();
             this.b = this.b.slice();
             if (!ok) {

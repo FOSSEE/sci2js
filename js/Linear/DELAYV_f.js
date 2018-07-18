@@ -43,7 +43,6 @@ function DELAYV_f() {
             this.nin = parseFloat(arguments[0]["nin"]);
             this.zz0 = inverse(arguments[0]["zz0"]);
             this.T = parseFloat(arguments[0]["T"]);
-            this.exprs = arguments[0]["exprs"];
             if (!ok) {
                 break;
             }
