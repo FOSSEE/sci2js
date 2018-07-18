@@ -18,6 +18,7 @@ import ply.lex as lex
 BRACKET_STACK = [' ']
 
 SYNTAX_TOKENS = {
+    '_': 'GETTEXT',
     'break': 'BREAK',
     'case': 'CASE',
     'catch': 'CATCH',
@@ -336,7 +337,7 @@ tokens = [
     'SPACE',
     'TRANSPOSE',
     'VAR',
-] + list(SYNTAX_TOKENS.values()) + list(set(PREDEFINED_VARIABLES.values())) + list(OBJECTS.values()) + list(JOBTYPES.values())
+] + list(set(SYNTAX_TOKENS.values())) + list(set(PREDEFINED_VARIABLES.values())) + list(OBJECTS.values()) + list(JOBTYPES.values())
 
 states = (
     ('qstring', 'exclusive'),

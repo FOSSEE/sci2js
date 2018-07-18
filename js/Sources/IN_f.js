@@ -30,7 +30,7 @@ function IN_f() {
             this.exprs = [[this.exprs[1-1]],["[-1 -2]"],["-1"]];
         }
         while (true) {
-            var tmpvar0 = getvalue(_("Set Input block parameters"),[[_("Port number")],[_("Outport size ([-1 -2] for inherit)")],[_("Outport Type (-1 for inherit)")]],list("vec",1,"vec",-1,"vec",1),this.exprs);
+            var tmpvar0 = getvalue("Set Input block parameters",[["Port number"],["Outport size ([-1 -2] for inherit)"],["Outport Type (-1 for inherit)"]],list("vec",1,"vec",-1,"vec",1),this.exprs);
             var ok = tmpvar0[0];
             var prt = tmpvar0[1];
             var otsz = tmpvar0[2];
@@ -41,11 +41,11 @@ function IN_f() {
             }
             var prt = int(prt);
             if (prt<=0) {
-                message(_("Port number must be a positive integer"));
+                message("Port number must be a positive integer");
             } else if (!isequal(size(otsz,"*"),2)) {
-                message(_("Outport Size must be a 2 elements vector"));
+                message("Outport Size must be a 2 elements vector");
             } else if (((ot<1||ot>9)&&(ot!=-1))) {
-                message(_("Outport type must be a number between 1 and 9, or -1 for inheritance."));
+                message("Outport type must be a number between 1 and 9, or -1 for inheritance.");
             } else {
                 if (this.model.ipar!=prt) {
                     var needcompile = 4;

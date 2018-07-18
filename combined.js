@@ -6181,7 +6181,7 @@ function CLSS() {
                 }
             }
             if (ms!=ns||!okD) {
-                message(_("Matrix A is not square or D has wrong dimension"));
+                message("Matrix A is not square or D has wrong dimension");
             } else {
                 var tmpvar1 = check_io(this.model,this.graphics,in1,out,[],[]);
                 this.model = tmpvar1[0];
@@ -6845,7 +6845,7 @@ function DLSS() {
                 }
             }
             if (ms!=ns||!okD) {
-                message(_("Matrix A is not square or D has wrong dimension"));
+                message("Matrix A is not square or D has wrong dimension");
             } else {
                 var tmpvar1 = check_io(this.model,this.graphics,in1,out,1,[]);
                 this.model = tmpvar1[0];
@@ -18039,8 +18039,8 @@ function WFILE_f() {
     }
     WFILE_f.prototype.set = function WFILE_f() {
         warnobsolete("WRITEC_f","6.0.0");
-        var warnMessage = msprintf(_("Feature %s is obsolete."),"WFILE_f");
-        var warnAdvise = msprintf(_("Please use %s instead."),"WRITEC_f");
+        var warnMessage = msprintf("Feature %s is obsolete.","WFILE_f");
+        var warnAdvise = msprintf("Please use %s instead.","WRITEC_f");
         var warnXcosMessage = msprintf("%s %s",warnMessage,warnAdvise);
         this.exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
@@ -19537,7 +19537,7 @@ function IN_f() {
             this.exprs = [[this.exprs[1-1]],["[-1 -2]"],["-1"]];
         }
         while (true) {
-            var tmpvar0 = getvalue(_("Set Input block parameters"),[[_("Port number")],[_("Outport size ([-1 -2] for inherit)")],[_("Outport Type (-1 for inherit)")]],list("vec",1,"vec",-1,"vec",1),this.exprs);
+            var tmpvar0 = getvalue("Set Input block parameters",[["Port number"],["Outport size ([-1 -2] for inherit)"],["Outport Type (-1 for inherit)"]],list("vec",1,"vec",-1,"vec",1),this.exprs);
             var ok = tmpvar0[0];
             var prt = tmpvar0[1];
             var otsz = tmpvar0[2];
@@ -19548,11 +19548,11 @@ function IN_f() {
             }
             var prt = int(prt);
             if (prt<=0) {
-                message(_("Port number must be a positive integer"));
+                message("Port number must be a positive integer");
             } else if (!isequal(size(otsz,"*"),2)) {
-                message(_("Outport Size must be a 2 elements vector"));
+                message("Outport Size must be a 2 elements vector");
             } else if (((ot<1||ot>9)&&(ot!=-1))) {
-                message(_("Outport type must be a number between 1 and 9, or -1 for inheritance."));
+                message("Outport type must be a number between 1 and 9, or -1 for inheritance.");
             } else {
                 if (this.model.ipar!=prt) {
                     var needcompile = 4;

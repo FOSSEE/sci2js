@@ -71,7 +71,7 @@ function CLSS() {
                 }
             }
             if (ms!=ns||!okD) {
-                message(_("Matrix A is not square or D has wrong dimension"));
+                message("Matrix A is not square or D has wrong dimension");
             } else {
                 var tmpvar1 = check_io(this.model,this.graphics,in1,out,[],[]);
                 this.model = tmpvar1[0];

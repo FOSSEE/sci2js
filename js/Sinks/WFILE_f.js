@@ -34,8 +34,8 @@ function WFILE_f() {
     }
     WFILE_f.prototype.set = function WFILE_f() {
         warnobsolete("WRITEC_f","6.0.0");
-        var warnMessage = msprintf(_("Feature %s is obsolete."),"WFILE_f");
-        var warnAdvise = msprintf(_("Please use %s instead."),"WRITEC_f");
+        var warnMessage = msprintf("Feature %s is obsolete.","WFILE_f");
+        var warnAdvise = msprintf("Please use %s instead.","WRITEC_f");
         var warnXcosMessage = msprintf("%s %s",warnMessage,warnAdvise);
         this.exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
