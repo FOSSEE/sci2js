@@ -37,6 +37,7 @@ function QUANT_f() {
             }
             if (this.meth<1||this.meth>4) {
                 message("Quantization Type must be from 1 to 4");
+                throw "user error";
             } else {
                 var rpar = this.pas;
                 this.model.rpar = new ScilabDouble([rpar]);

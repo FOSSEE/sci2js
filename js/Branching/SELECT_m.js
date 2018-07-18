@@ -48,8 +48,10 @@ function SELECT_m() {
             }
             if (this.z0>this.nin||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
+                throw "user error";
             } else if (((this.typ<1)||(this.typ>8))&&(this.typ!=-1)) {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             } else {
                 var it = this.typ*ones(1,this.nin);

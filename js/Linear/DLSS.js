@@ -71,6 +71,7 @@ function DLSS() {
             }
             if (ms!=ns||!okD) {
                 message("Matrix A is not square or D has wrong dimension");
+                throw "user error";
             } else {
                 var tmpvar1 = check_io(this.model,this.graphics,in1,out,1,[]);
                 this.model = tmpvar1[0];

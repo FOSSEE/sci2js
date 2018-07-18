@@ -31,6 +31,7 @@ function CONST_f() {
             var nout = size(this.C,"*");
             if (nout==0) {
                 message("C must have at least one element");
+                throw "user error";
             } else {
                 this.model.rpar = new ScilabDouble(this.C.slice());
                 this.model.out = new ScilabDouble([nout]);

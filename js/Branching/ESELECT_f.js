@@ -57,6 +57,7 @@ function ESELECT_f() {
             this.out = int(this.out);
             if (this.out<2) {
                 message("Block must have at least two output ports");
+                throw "user error";
             } else {
                 var tmpvar0 = check_io(this.model,this.graphics,1,[],this.inh,[ones(this.out,1)]);
                 this.model = tmpvar0[0];

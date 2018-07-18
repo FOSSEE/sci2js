@@ -41,6 +41,7 @@ function DEADBAND() {
             }
             if (this.maxp<=this.minp) {
                 message("Upper limit must be > Lower limit");
+                throw "user error";
             } else {
                 var rpar = [[this.maxp],[this.minp]];
                 this.model.rpar = new ScilabDouble(rpar);

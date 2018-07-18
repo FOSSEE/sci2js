@@ -65,26 +65,32 @@ function SUBMAT() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             if ((this.a<=0)||(this.b<=0)||(this.c<=0)||(this.d<=0)) {
                 message("invalid index");
+                throw "user error";
                 var ok = false;
             }
             if (this.b<this.a) {
                 message("ending row must be greater than starting row");
+                throw "user error";
                 var ok = false;
             }
             if (this.d<this.c) {
                 message("ending column must be greater than starting column");
+                throw "user error";
                 var ok = false;
             }
             if (this.b>this.inp[1-1]) {
                 message("index of ending row is out of range");
+                throw "user error";
                 var ok = false;
             }
             if (this.d>this.inp[2-1]) {
                 message("index of ending column is out of range");
+                throw "user error";
                 var ok = false;
             }
             this.model.ipar = new ScilabDouble([this.a],[this.b],[this.c],[this.d]);

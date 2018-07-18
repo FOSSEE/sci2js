@@ -42,10 +42,13 @@ function IN_f() {
             var prt = int(prt);
             if (prt<=0) {
                 message("Port number must be a positive integer");
+                throw "user error";
             } else if (!isequal(size(otsz,"*"),2)) {
                 message("Outport Size must be a 2 elements vector");
+                throw "user error";
             } else if (((ot<1||ot>9)&&(ot!=-1))) {
                 message("Outport type must be a number between 1 and 9, or -1 for inheritance.");
+                throw "user error";
             } else {
                 if (this.model.ipar!=prt) {
                     var needcompile = 4;

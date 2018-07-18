@@ -47,15 +47,19 @@ function LOGICAL_OP() {
             this.tp = int(this.tp);
             if (this.nin<1) {
                 message("Number of inputs must be >=1 ");
+                throw "user error";
                 var ok = false;
             } else if ((this.rule<0)||(this.rule>5)) {
                 message("Incorrect operator "+string(this.rule)+" ; must be 0 to 5.");
+                throw "user error";
                 var ok = false;
             } else if ((this.rule==5)&&(this.nin>1)) {
                 message("Only one input allowed for NOT operation");
+                throw "user error";
                 this.nin = 1;
             } else if (((this.Datatype==1)&&(this.tp!=0))) {
                 message("Bitwise Rule is only activated when Data type is integer");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -80,6 +84,7 @@ function LOGICAL_OP() {
                         this.model.sim = list(new ScilabString(["logicalop_ui8"]), new ScilabDouble([4]));
                     } else {
                         message("Datatype is not supported");
+                        throw "user error";
                         var ok = false;
                     }
                     this.model.ipar = new ScilabDouble([this.rule],[this.tp]);

@@ -35,6 +35,7 @@ function CLKGOTO() {
             }
             if (((this.tagvis<1)||(this.tagvis>3))) {
                 message("Tag Visibility must be between 1 and 3");
+                throw "user error";
                 var ok = false;
             }
             this.tagvis = int(this.tagvis);

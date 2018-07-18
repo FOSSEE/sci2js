@@ -59,6 +59,7 @@ function RAND_m() {
             }
             if (this.flag!=0&&this.flag!=1) {
                 message("flag must be equal to 1 or 0");
+                throw "user error";
             } else {
                 var out = size(this.a);
                 if (this.typ==1) {
@@ -73,6 +74,7 @@ function RAND_m() {
                     this.model.dstate = new ScilabDouble([this.seed_c.slice()],[0*[[real(this.a.slice())],[imag(this.a.slice())]]]);
                 } else {
                     message("Datatype is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 if (ok) {

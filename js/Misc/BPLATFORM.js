@@ -66,6 +66,7 @@ function BPLATFORM() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 var rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
                 this.model.rpar = new ScilabDouble(rpar);

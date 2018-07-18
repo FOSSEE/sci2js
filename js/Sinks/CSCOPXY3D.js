@@ -133,6 +133,7 @@ function CSCOPXY3D() {
                 break;
             } else {
                 message(mess);
+                throw "user error";
             }
         }
         return new BasicBlock(this.x);

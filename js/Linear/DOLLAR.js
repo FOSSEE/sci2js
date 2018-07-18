@@ -80,6 +80,7 @@ function DOLLAR() {
                 var ot = 8;
             } else {
                 message("type is not recognized");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

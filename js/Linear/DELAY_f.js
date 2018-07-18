@@ -111,6 +111,7 @@ function DELAY_f() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 evtdly.graphics.exprs[1-1] = this.exprs[1-1];
                 if (evtdly.model.rpar!=this.dt) {

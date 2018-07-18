@@ -40,6 +40,7 @@ function DIFF_c() {
             var Nxd = size(this.xd0,"*");
             if ((N!=Nxd)) {
                 message("Incompatible sizes: states and their derivatives should have the same size ");
+                throw "user error";
                 var ask_again = true;
             }
             if ((N<=0&&!ask_again)) {

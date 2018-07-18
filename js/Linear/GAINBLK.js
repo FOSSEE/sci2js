@@ -44,6 +44,7 @@ function GAINBLK() {
             }
             if (this.gain==[]) {
                 message("Gain must have at least one element");
+                throw "user error";
             } else {
                 if (typeof(this.gain)=="constant") {
                     if (isreal(this.gain)) {
@@ -54,6 +55,7 @@ function GAINBLK() {
                         this.model.opar = list();
                     } else {
                         message("type is not supported");
+                        throw "user error";
                         var ok = false;
                     }
                 } else {
@@ -78,6 +80,7 @@ function GAINBLK() {
                             this.model.sim = list(new ScilabString(["gainblk_ui8n"]), new ScilabDouble([4]));
                         } else {
                             message("type is not supported.");
+                            throw "user error";
                             var ok = false;
                         }
                     } else if ((this.over==1)) {
@@ -101,6 +104,7 @@ function GAINBLK() {
                             this.model.sim = list(new ScilabString(["gainblk_ui8s"]), new ScilabDouble([4]));
                         } else {
                             message("type is not supported.");
+                            throw "user error";
                             var ok = false;
                         }
                     } else if ((this.over==2)) {
@@ -124,10 +128,12 @@ function GAINBLK() {
                             this.model.sim = list(new ScilabString(["gainblk_ui8e"]), new ScilabDouble([4]));
                         } else {
                             message("type is not an integer.");
+                            throw "user error";
                             var ok = false;
                         }
                     } else {
                         message("Do on Overflow must be 0,1,2");
+                        throw "user error";
                         var ok = false;
                     }
                     this.model.rpar = new ScilabDouble([]);

@@ -46,12 +46,14 @@ function TOWS_c() {
             }
             if ((this.nz<=0)) {
                 message("Size of buffer must be positive");
+                throw "user error";
                 var ok = false;
             }
             var r = false;
             var ierr = execstr("r = validvar(varnam)","errcatch");
             if (!r||ierr!=0||length(this.varnam)>19) {
                 message([["Invalid variable name."],["Please choose another variable name."]]);
+                throw "user error";
                 var ok = false;
             }
             execstr("if type("+this.varnam+") <> 17 | or(fieldnames("+this.varnam+") <> [\"values\"; \"time\"]) then"+" message([\"Protected variable name.\"; \"Please choose another variable name.\"]);"+" ok = %f;"+" end","errcatch");

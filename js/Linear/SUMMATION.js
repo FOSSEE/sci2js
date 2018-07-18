@@ -45,11 +45,13 @@ function SUMMATION() {
             this.sgn = this.sgn.slice();
             if ((this.satur!=0&&this.satur!=1&&this.satur!=2)) {
                 message("Do on overflow must be 0,1,2");
+                throw "user error";
                 var ok = false;
             }
             if (size(this.sgn,1)==1) {
                 if (this.sgn<1) {
                     message("Number of inputs must be > 0");
+                    throw "user error";
                     var ok = false;
                 } else if (this.sgn==1) {
                     var in1 = -1;
@@ -67,6 +69,7 @@ function SUMMATION() {
             } else {
                 if (!and(abs(this.sgn)==1)) {
                     message("Signs can only be +1 or -1");
+                    throw "user error";
                     var ok = false;
                 } else {
                     var in1 = -ones(size(this.sgn,1),1);
@@ -83,6 +86,7 @@ function SUMMATION() {
                 this.model.sim = list(new ScilabString(["summation_z"]), new ScilabDouble([4]));
             } else if (((this.Datatype<1)||(this.Datatype>8))) {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             } else {
                 if (this.satur==0) {

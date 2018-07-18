@@ -46,6 +46,7 @@ function HYSTHERESIS() {
             }
             if (this.low_lim>this.high_lim) {
                 message("switch on value must be larger than switch off value");
+                throw "user error";
             } else {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.rpar = new ScilabDouble(transpose([this.high_lim,this.low_lim,this.out_high,this.out_low]));

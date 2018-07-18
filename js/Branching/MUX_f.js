@@ -31,6 +31,7 @@ function MUX_f() {
             if (size(this.in1,"*")==1) {
                 if (this.in1<2||this.in1>8) {
                     message("Block must have at least two input ports and at most eight");
+                    throw "user error";
                     var ok = false;
                 } else {
                     var tmpvar0 = check_io(this.model,this.graphics,-transpose([1:this.in1]),0,[],[]);
@@ -41,6 +42,7 @@ function MUX_f() {
             } else {
                 if (size(this.in1,"*")<2||size(this.in1,"*")>8||or(this.in1==0)) {
                     message([["Block must have at least two input ports"],["and at most eight, and size 0 is not allowed. "]]);
+                    throw "user error";
                     var ok = false;
                 } else {
                     if (min(this.in1)<0) {

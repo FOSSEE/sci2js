@@ -56,6 +56,7 @@ function MATLU() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

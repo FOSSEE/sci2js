@@ -46,6 +46,7 @@ function RELATIONALOP() {
             }
             if ((this.rule<0)||(this.rule>5)) {
                 message("Incorrect operator "+string(this.rule)+" ; must be 0 to 5.");
+                throw "user error";
                 var ok = false;
             }
             if ((this.Datatype==1)) {
@@ -64,6 +65,7 @@ function RELATIONALOP() {
                 this.model.sim = list(new ScilabString(["relational_op_ui8"]), new ScilabDouble([4]));
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

@@ -31,6 +31,7 @@ function REGISTER_f() {
             }
             if (prod(size(this.z0))<1) {
                 message("Register length must be at least 1");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

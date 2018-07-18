@@ -33,10 +33,12 @@ function SampleCLK() {
             }
             if (this.frequ<0) {
                 message("Frequency must be a positif number");
+                throw "user error";
                 var ok = false;
             }
             if (abs(this.offset)>this.frequ) {
                 message("The |Offset| must be less than the Frequency");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

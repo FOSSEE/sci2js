@@ -47,6 +47,7 @@ function CLR() {
             }
             if (degree(this.num)>degree(this.den)) {
                 message("Transfer function must be proper or strictly proper.");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

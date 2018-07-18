@@ -32,6 +32,7 @@ function PRODUCT() {
             if (size(this.sgn,1)==1) {
                 if (this.sgn<1) {
                     message("Number of inputs must be > 0");
+                    throw "user error";
                     var ok = false;
                 } else if (this.sgn==1) {
                     var in1 = -1;
@@ -45,6 +46,7 @@ function PRODUCT() {
             } else {
                 if (!and(abs(this.sgn)==1)) {
                     message("Signs can only be +1 or -1");
+                    throw "user error";
                     var ok = false;
                 } else {
                     var in1 = -ones(size(this.sgn,1),1);

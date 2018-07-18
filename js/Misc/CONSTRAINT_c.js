@@ -33,6 +33,7 @@ function CONSTRAINT_c() {
             var N = size(this.x0,"*");
             if (N<=0) {
                 message("number of states (constraints) must be > 0 ");
+                throw "user error";
             } else {
                 var tmpvar0 = check_io(this.model,this.graphics,N,N,[],[]);
                 this.model = tmpvar0[0];

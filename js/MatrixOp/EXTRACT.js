@@ -61,23 +61,27 @@ function EXTRACT() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var ma = size(this.a,1);
             var mb = size(this.b,1);
             if ((ma==0||mb==0)) {
                 message("empty field");
+                throw "user error";
                 var ok = false;
             }
             for (i=1;i<=ma;i+=1) {
                 if ((this.a[i-1]<=0)) {
                     message("invalid index");
+                    throw "user error";
                     var ok = false;
                 }
             }
             for (j=1;j<=mb;j+=1) {
                 if ((this.b[j-1]<=0)) {
                     message("invalid index");
+                    throw "user error";
                     var ok = false;
                 }
             }

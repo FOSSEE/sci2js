@@ -50,6 +50,7 @@ function CMATVIEW() {
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (ok) {
                 var size_c = size(this.colormap.slice(),1);

@@ -59,12 +59,15 @@ function INTEGRAL() {
                 }
                 if ((size(this.x0,1)!=size(this.maxp,1)||size(this.x0,1)!=size(this.lowp,1))) {
                     message("x0 and Upper limit and Lower limit must have same size");
+                    throw "user error";
                     var ok = false;
                 } else if (or(this.maxp<=this.lowp)) {
                     message("Upper limits must be > Lower limits");
+                    throw "user error";
                     var ok = false;
                 } else if (or(this.x0>this.maxp)||or(this.x0<this.lowp)) {
                     message("Initial condition x0 should be inside the limits");
+                    throw "user error";
                     var ok = false;
                 } else {
                     var rpar = [[this.maxp],[this.lowp]];

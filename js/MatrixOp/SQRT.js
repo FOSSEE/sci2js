@@ -38,6 +38,7 @@ function SQRT() {
                 var function_name = "matz_sqrt";
             } else {
                 message("type is not supported");
+                throw "user error";
                 var ok = false;
             }
             var it = this.typ;

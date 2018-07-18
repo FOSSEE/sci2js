@@ -34,6 +34,7 @@ function EXPBLK_f() {
             }
             if (or(this.a<=0)) {
                 message("a^u : a must be positive");
+                throw "user error";
             } else {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.rpar = new ScilabDouble([this.a]);

@@ -35,6 +35,7 @@ function GAINBLK_f() {
             }
             if (this.gain==[]) {
                 message("Gain must have at least one element");
+                throw "user error";
             } else {
                 var tmpvar0 = size(this.gain);
                 var out = tmpvar0[0];

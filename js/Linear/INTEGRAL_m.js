@@ -63,12 +63,15 @@ function INTEGRAL_m() {
                     }
                     if ((size(this.x0)!=size(this.maxp)||size(this.x0)!=size(this.lowp))) {
                         message("x0 and Upper limit and Lower limit must have same size");
+                        throw "user error";
                         var ok = false;
                     } else if (or(this.maxp<=this.lowp)) {
                         message("Upper limits must be > Lower limits");
+                        throw "user error";
                         var ok = false;
                     } else if (or(this.x0>this.maxp)||or(this.x0<this.lowp)) {
                         message("Initial condition x0 should be inside the limits");
+                        throw "user error";
                         var ok = false;
                     } else {
                         var rpar = [[real(this.maxp.slice())],[real(this.lowp.slice())]];
@@ -84,12 +87,15 @@ function INTEGRAL_m() {
                     }
                     if ((size(this.x0)!=size(this.maxp)||size(this.x0)!=size(this.lowp))) {
                         message("x0 and Upper limit and Lower limit must have same size");
+                        throw "user error";
                         var ok = false;
                     } else if (or(real(this.maxp)<=real(this.lowp))||or(imag(this.maxp)<=imag(this.lowp))) {
                         message("Upper limits must be > Lower limits");
+                        throw "user error";
                         var ok = false;
                     } else if (or(real(this.x0)>real(this.maxp))||or(real(this.x0)<real(this.lowp))||or(imag(this.x0)>imag(this.maxp))||or(imag(this.x0)<imag(this.lowp))) {
                         message("Initial condition x0 should be inside the limits");
+                        throw "user error";
                         var ok = false;
                     } else {
                         var rpar = [[real(this.maxp.slice())],[real(this.lowp.slice())],[imag(this.maxp.slice())],[imag(this.lowp.slice())]];
@@ -116,6 +122,7 @@ function INTEGRAL_m() {
                     var ot = 2;
                 } else {
                     message("Datatype is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 if (ok) {

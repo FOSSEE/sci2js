@@ -31,6 +31,7 @@ function CLKIN_f() {
             }
             if (this.prt<=0) {
                 message("Port number must be a positive integer");
+                throw "user error";
             } else {
                 this.model.ipar = new ScilabDouble([this.prt]);
                 this.model.evtout = new ScilabDouble([1]);

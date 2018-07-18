@@ -71,6 +71,7 @@ function AFFICH_m() {
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (!or(this.herit==[0,1])) {
                 var mess = [[mess],["Accept inherited values are 0 and 1"],[" "]];
@@ -78,6 +79,7 @@ function AFFICH_m() {
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (ok) {
                 var tmpvar0 = set_io(this.model,this.graphics,list(this.in1,1),list(),ones(1-this.herit,1),[]);

@@ -38,12 +38,15 @@ function M_freq() {
             this.frequ = this.frequ.slice();
             if ((size(this.frequ,"*"))!=(size(this.offset,"*"))) {
                 message("offset and frequency must have the same size");
+                throw "user error";
                 var ok = false;
             } else if (or(this.frequ<0)) {
                 message("Frequency must be a positif number");
+                throw "user error";
                 var ok = false;
             } else if (or(abs(this.offset)>this.frequ)) {
                 message("The |Offset| must be less than the Frequency");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

@@ -61,6 +61,7 @@ function MATSUM() {
                     var out = [1,-2];
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 1;
@@ -77,12 +78,14 @@ function MATSUM() {
                     var out = [1,-2];
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 2;
                 var ot = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.model.in,this.model.in2];

@@ -37,6 +37,7 @@ function RATELIMITER() {
             }
             if (this.maxp<=this.minp||this.maxp<=0||this.minp>=0) {
                 message("We must have max_slope> 0 > min_slope.");
+                throw "user error";
             } else {
                 var rpar = [[this.maxp],[this.minp]];
                 this.model.rpar = new ScilabDouble(rpar);

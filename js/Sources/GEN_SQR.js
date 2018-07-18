@@ -94,6 +94,7 @@ function GEN_SQR() {
                 }
             } else {
                 message(lasterror());
+                throw "user error";
                 var ok = false;
             }
         }

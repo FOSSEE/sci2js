@@ -100,6 +100,7 @@ function CANIMXY() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 var in1 = this.nbr_curves*ones(2,1);
                 var in2 = ones(2,1);

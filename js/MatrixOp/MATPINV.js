@@ -55,6 +55,7 @@ function MATPINV() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.model.in,this.model.in2];

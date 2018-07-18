@@ -34,6 +34,7 @@ function ZCROSS_f() {
             this.in1 = int(this.in1);
             if (this.in1<=0) {
                 message("Block must have at least one input");
+                throw "user error";
             } else {
                 var kk = 0;
                 for (jj=1;jj<=this.in1;jj+=1) {

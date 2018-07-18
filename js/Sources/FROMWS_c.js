@@ -46,20 +46,24 @@ function FROMWS_c() {
             }
             if (!(this.Method==0||this.Method==1||this.Method==2||this.Method==3)) {
                 message("Interpolation method should be chosen in [0,1,2,3]");
+                throw "user error";
                 var ok = false;
             }
             if (!(this.ZC==0||this.ZC==1)) {
                 message("Zero crossing should be either 0 or 1");
+                throw "user error";
                 var ok = false;
             }
             if (!(this.OutEnd==0||this.OutEnd==1||this.OutEnd==2)) {
                 message("Output at end option should be either 0 or 1");
+                throw "user error";
                 var ok = false;
             }
             var r = false;
             var ierr = execstr("r=validvar(varnam)","errcatch");
             if (!r) {
                 message([["Invalid variable name."],["Please choose another variable name."]]);
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

@@ -49,10 +49,12 @@ function MATMUL() {
             this.rule = int(this.rule);
             if ((this.dtype<1||this.dtype>8)) {
                 message("type is not supported");
+                throw "user error";
                 var ok = false;
             }
             if ((this.rule<1||this.rule>3)) {
                 message("Multiplication rule must be only 1,2 or 3");
+                throw "user error";
                 var ok = false;
             }
             if ((this.dtype==1||this.dtype==2)) {

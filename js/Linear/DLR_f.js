@@ -45,6 +45,7 @@ function DLR_f() {
             }
             if (degree(this.num)>degree(this.den)) {
                 message("Transfer must be proper");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

@@ -36,8 +36,10 @@ function INTRPLBLK_f() {
             }
             if (size(this.a,"*")!=size(this.b,"*")) {
                 message("X and Y must have the same size");
+                throw "user error";
             } else if (min(this.a.slice(2-1,$)-this.a.slice(1-1,$-1))<=0) {
                 message("X must be strictly increasing");
+                throw "user error";
             } else {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);

@@ -116,6 +116,7 @@ function CANIMXY3D() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 var in1 = this.nbr_curves*ones(3,1);
                 var in2 = ones(3,1);

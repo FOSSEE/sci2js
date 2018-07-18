@@ -38,6 +38,7 @@ function ISELECT_f() {
             }
             if (this.z0>this.nout||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
+                throw "user error";
             } else {
                 var tmpvar0 = check_io(this.model,this.graphics,-1,-ones(this.nout,1),ones(this.nout,1),[]);
                 this.model = tmpvar0[0];

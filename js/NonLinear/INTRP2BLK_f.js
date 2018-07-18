@@ -40,8 +40,10 @@ function INTRP2BLK_f() {
             }
             if (size(this.a,"*")!=size(this.c,"c")||size(this.b,"*")!=size(this.c,"r")) {
                 message("incompatible dimension");
+                throw "user error";
             } else if (min(this.a.slice(2-1,$)-this.a.slice(1-1,$-1))<=0||min(this.b.slice(2-1,$)-this.b.slice(1-1,$-1))<=0) {
                 message("X and Y must be strictly increasing");
+                throw "user error";
             } else {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);

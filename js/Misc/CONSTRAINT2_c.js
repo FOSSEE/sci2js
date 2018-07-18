@@ -47,6 +47,7 @@ function CONSTRAINT2_c() {
             var Nid = size(this.id,"*");
             if ((N!=Nxd)||(N!=Nid)) {
                 message("incompatible sizes, states, their derivatives, and ID should be the same size ");
+                throw "user error";
                 var ask_again = true;
             }
             if ((N<=0&&!ask_again)) {

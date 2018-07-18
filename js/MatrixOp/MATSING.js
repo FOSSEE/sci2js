@@ -62,6 +62,7 @@ function MATSING() {
                     var ot = [1,1,1];
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 1;
@@ -78,11 +79,13 @@ function MATSING() {
                     var ot = [2,1,2];
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var funtyp = 4;

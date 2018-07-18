@@ -34,6 +34,7 @@ function LOGBLK_f() {
             }
             if (this.a<=1) {
                 message("Basis must be larger than 1");
+                throw "user error";
             } else {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);

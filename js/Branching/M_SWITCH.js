@@ -41,10 +41,13 @@ function M_SWITCH() {
             this.base = int(this.base);
             if (this.nin<1) {
                 message("Number of inputs must be >=1 ");
+                throw "user error";
             } else if (!((this.base==1)||(this.base==0))) {
                 message("base indexing must be 1 or 0");
+                throw "user error";
             } else if (!((this.rule==1)||(this.rule==0)||(this.rule==2)||(this.rule==3))) {
                 message("incorrect rounding rule");
+                throw "user error";
             } else {
                 if (this.nin==1) {
                     var in1 = [[1,1],[-1,1]];

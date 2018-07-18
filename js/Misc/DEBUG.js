@@ -36,6 +36,7 @@ function DEBUG() {
                     break;
                 } else {
                     message([["Error in the instructions"],[lasterror()]]);
+                    throw "user error";
                 }
             } else {
                 var ok = false;

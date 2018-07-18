@@ -41,8 +41,10 @@ function SAT_f() {
             }
             if (this.maxp<=0) {
                 message("Max must be strictly positive");
+                throw "user error";
             } else if (this.pente<=0) {
                 message("Slope must be strictly positive");
+                throw "user error";
             } else {
                 var rpar = [[this.minp/this.pente],[this.maxp/this.pente],[this.pente]];
                 this.model.rpar = new ScilabDouble(rpar);

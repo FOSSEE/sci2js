@@ -42,10 +42,12 @@ function TEXT_f() {
             }
             if (this.font<=0||this.font>6) {
                 message("Font number must be greater than 0 and less than 7");
+                throw "user error";
                 var ok = false;
             }
             if (this.siz<0) {
                 message("Font size must be positive");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

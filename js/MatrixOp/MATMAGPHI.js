@@ -61,6 +61,7 @@ function MATMAGPHI() {
                 var ot = 2;
             } else {
                 message("decomposition type is not supported");
+                throw "user error";
                 var ok = false;
             }
             var funtyp = 4;

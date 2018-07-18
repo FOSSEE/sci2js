@@ -56,8 +56,10 @@ function DLRADAPT_f() {
             var n = tmpvar0[1];
             if (m>=n) {
                 message("Transfer must be strictly proper");
+                throw "user error";
             } else if (size(this.rn,1)!=0&&size(this.rn,1)!=size(this.p,"*")) {
                 message("Numerator roots matrix row size\'s is incorrect");
+                throw "user error";
             } else {
                 var rpar = [[this.p.slice()],[real(this.rn.slice())],[imag(this.rn.slice())],[real(this.rd.slice())],[imag(this.rd.slice())],[this.g.slice()]];
                 var ipar = [[m],[n],[npt]];

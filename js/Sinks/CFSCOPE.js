@@ -85,6 +85,7 @@ function CFSCOPE() {
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (ok) {
                 if (this.wpos==[]) {

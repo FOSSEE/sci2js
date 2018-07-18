@@ -48,10 +48,12 @@ function DELAYV_f() {
             }
             if (size(this.zz0,"*")<2) {
                 message("Register length must be at least 2");
+                throw "user error";
                 var ok = false;
             }
             if (this.T<=0) {
                 message("Delay must be positive");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

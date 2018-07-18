@@ -30,6 +30,7 @@ function TrigFun() {
             }
             if (find(PREVAR_FF==this.fun)==[]) {
                 message("Sorry but "+this.fun+" is not in the list!");
+                throw "user error";
             } else {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 execstr("model.sim=list(\'"+this.fun+"_blk\',4)");

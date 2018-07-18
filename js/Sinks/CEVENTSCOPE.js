@@ -81,6 +81,7 @@ function CEVENTSCOPE() {
                 var ok = tmpvar0[2];
             } else {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (ok) {
                 if (this.wpos==[]) {

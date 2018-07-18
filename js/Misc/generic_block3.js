@@ -85,20 +85,24 @@ function generic_block3() {
             this.funtyp = this.funtyp;
             if (this.funtyp<0) {
                 message("function type cannot be negative");
+                throw "user error";
                 var ok = false;
             }
             if ([[this.ci],[this.co]]!=[]) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
+                    throw "user error";
                     var ok = false;
                 }
             }
             if (this.type[this.opar-1]!=15) {
                 message("object parameter must be a list");
+                throw "user error";
                 var ok = false;
             }
             if (this.type[this.oz-1]!=15) {
                 message("discrete object state must be a list");
+                throw "user error";
                 var ok = false;
             }
             this.depu = stripblanks(this.depu);

@@ -33,6 +33,7 @@ function SCALAR2VECTOR() {
             this.nout = int(this.nout);
             if ((this.nout!=-1&&(this.nout<=0))) {
                 message("size of output must be -1 or >0");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

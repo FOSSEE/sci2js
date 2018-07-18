@@ -35,6 +35,7 @@ function DEMUX() {
             if (size(this.out,"*")==1) {
                 if (this.out<2||this.out>31) {
                     message("Block must have at least 2 and at most 31 output ports");
+                    throw "user error";
                     var ok = false;
                 } else {
                     var tmpvar0 = check_io(this.model,this.graphics,0,-transpose([1:this.out]),[],[]);
@@ -45,6 +46,7 @@ function DEMUX() {
             } else {
                 if (size(this.out,"*")<2||or(this.out==0)||size(this.out,"*")>31) {
                     message([["Block must have at least 2 and at most 31 output ports"],["size 0 is not allowed"]]);
+                    throw "user error";
                     var ok = false;
                 } else {
                     if (min(this.out)<0) {

@@ -39,6 +39,7 @@ function REGISTER() {
             }
             if (prod(size(this.z0))<1) {
                 message("Register length must be at least 1");
+                throw "user error";
                 var ok = false;
             }
             if (this.it==1) {
@@ -67,6 +68,7 @@ function REGISTER() {
                     this.z0 = uint8(this.z0);
                 } else {
                     message("Datatype is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 this.model.odstate = list(new ScilabDouble([this.z0]));

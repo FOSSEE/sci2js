@@ -51,6 +51,7 @@ function RAND_f() {
             }
             if (this.flag!=0&&this.flag!=1) {
                 message("flag must be equal to 1 or 0");
+                throw "user error";
             } else {
                 var nout = size(this.a,"*");
                 this.graphics.exprs = new ScilabDouble(this.exprs);

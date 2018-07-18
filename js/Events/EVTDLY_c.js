@@ -37,6 +37,7 @@ function EVTDLY_c() {
             }
             if (this.dt<=0) {
                 message("Delay must be positive");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

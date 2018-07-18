@@ -43,6 +43,7 @@ function MAXMIN() {
             }
             if (this.nin!=1&&this.nin!=2) {
                 message("Wrong number of inputs, only 1 and 2 allowed");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

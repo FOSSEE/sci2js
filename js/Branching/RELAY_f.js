@@ -40,6 +40,7 @@ function RELAY_f() {
             }
             if (this.z0>this.nin||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
+                throw "user error";
             } else {
                 var tmpvar0 = check_io(this.model,this.graphics,-ones(this.nin,1),-1,ones(this.nin,1),[]);
                 this.model = tmpvar0[0];

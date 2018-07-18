@@ -74,6 +74,7 @@ function CLOCK_f() {
             }
             if (this.dt<=0) {
                 message("period must be positive");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

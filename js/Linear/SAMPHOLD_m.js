@@ -37,6 +37,7 @@ function SAMPHOLD_m() {
             }
             if (((this.it<1)||(this.it>8))) {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

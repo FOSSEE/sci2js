@@ -61,6 +61,7 @@ function DLSS_f() {
             var ns = tmpvar0[1];
             if (ms!=ns) {
                 message("A matrix must be square");
+                throw "user error";
             } else {
                 var tmpvar1 = check_io(this.model,this.graphics,in1,out,1,[]);
                 this.model = tmpvar1[0];

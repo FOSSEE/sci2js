@@ -60,6 +60,7 @@ function CMAT3D() {
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (ok) {
                 var size_x = size(this.vec_x,"*");

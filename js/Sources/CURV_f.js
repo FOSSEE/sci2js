@@ -49,6 +49,7 @@ function CURV_f() {
             var n = size(xx,"*");
             if (or(xx.slice(2-1,n)-xx.slice(1-1,n-1)<0)) {
                 message("You have not defined a function");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

@@ -61,6 +61,7 @@ function BARXY() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 this.model.rpar = new ScilabDouble([this.xmin],[this.xmax],[this.ymin],[this.ymax]);
                 this.model.ipar = new ScilabDouble([this.thickness]);

@@ -42,10 +42,12 @@ function VARIABLE_DELAY() {
             }
             if (this.N<2) {
                 message("Buffer must be larger than 2");
+                throw "user error";
                 var ok = false;
             }
             if (this.T<=0) {
                 message("Delay must be positive");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

@@ -36,6 +36,7 @@ function SOM_f() {
         var str = [["This sum block is obsolete","parameters cannot be modified. Please replace it with new sum block"],["and gain blocks in the linear palette"," ","Input ports are located at up, side and  down positions.","Current gains are:"]];
         var str = [[str],[(part(labs.slice(),1,7)+this.exprs.slice())]];
         message(str);
+        throw "user error";
         return new BasicBlock(this.x);
     }
 }

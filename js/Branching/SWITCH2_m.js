@@ -65,6 +65,7 @@ function SWITCH2_m() {
             }
             if (((this.ot<1)||(this.ot>8))&&(this.ot!=-1)) {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {

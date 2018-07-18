@@ -91,9 +91,11 @@ function BOUNCE() {
             }
             if (n!=size(this.y,"*")||n!=size(this.rpar1,"*")||n!=size(this.rpar2,"*")||n!=size(this.xd,"*")||n!=size(this.yd,"*")) {
                 message("All vectors must have equal size");
+                throw "user error";
                 var ok = false;
             } else if (!(min([[this.rpar1],[this.rpar2]])>0)) {
                 message("Mass and radius must be >0");
+                throw "user error";
                 var ok = false;
             }
             if (!ok) {

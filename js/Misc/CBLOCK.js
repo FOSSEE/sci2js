@@ -99,6 +99,7 @@ function CBLOCK() {
             if ([[this.ci],[this.co]]!=[]) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
+                    throw "user error";
                     var ok = false;
                 }
             }

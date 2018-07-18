@@ -86,6 +86,7 @@ function BOUNCEXY() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 var rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
                 var ipar = [[this.win],[this.imode],[this.clrs.slice()]];

@@ -89,6 +89,7 @@ function CSCOPE() {
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (ok) {
                 var tmpvar0 = set_io(this.model,this.graphics,list([-1,1],1),list(),ones(1-this.heritance,1),[]);

@@ -80,6 +80,7 @@ function CLKGOTO() {
             }
             if (((this.tagvis<1)||(this.tagvis>3))) {
                 message("Tag Visibility must be between 1 and 3");
+                throw "user error";
                 var ok = false;
             }
             this.tagvis = int(this.tagvis);
@@ -193,6 +194,7 @@ function DEMUX() {
             if (size(this.out,"*")==1) {
                 if (this.out<2||this.out>31) {
                     message("Block must have at least 2 and at most 31 output ports");
+                    throw "user error";
                     var ok = false;
                 } else {
                     var tmpvar0 = check_io(this.model,this.graphics,0,-transpose([1:this.out]),[],[]);
@@ -203,6 +205,7 @@ function DEMUX() {
             } else {
                 if (size(this.out,"*")<2||or(this.out==0)||size(this.out,"*")>31) {
                     message([["Block must have at least 2 and at most 31 output ports"],["size 0 is not allowed"]]);
+                    throw "user error";
                     var ok = false;
                 } else {
                     if (min(this.out)<0) {
@@ -267,6 +270,7 @@ function DEMUX_f() {
             if (size(this.out,"*")==1) {
                 if (this.out<2||this.out>8) {
                     message("Block must have at least 2 and at most 8 output ports");
+                    throw "user error";
                     var ok = false;
                 } else {
                     var tmpvar0 = check_io(this.model,this.graphics,0,-transpose([1:this.out]),[],[]);
@@ -277,6 +281,7 @@ function DEMUX_f() {
             } else {
                 if (size(this.out,"*")<2||size(this.out,"*")>8||or(this.out==0)) {
                     message([["Block must have at least 2 and at most 8 output ports"],["and size 0 is not allowed"]]);
+                    throw "user error";
                     var ok = false;
                 } else {
                     if (min(this.out)<0) {
@@ -363,6 +368,7 @@ function ESELECT_f() {
             this.out = int(this.out);
             if (this.out<2) {
                 message("Block must have at least two output ports");
+                throw "user error";
             } else {
                 var tmpvar0 = check_io(this.model,this.graphics,1,[],this.inh,[ones(this.out,1)]);
                 this.model = tmpvar0[0];
@@ -587,6 +593,7 @@ function GOTO() {
             this.tagvis = int(this.tagvis);
             if (((this.tagvis<1)||(this.tagvis>3))) {
                 message("Tag Visibility must be between 1 and 3");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -652,6 +659,7 @@ function GOTOMO() {
             this.tagvis = int(this.tagvis);
             if (((this.tagvis<1)||(this.tagvis>3))) {
                 message("Tag Visibility must be between 1 and 3");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -819,6 +827,7 @@ function ISELECT_f() {
             }
             if (this.z0>this.nout||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
+                throw "user error";
             } else {
                 var tmpvar0 = check_io(this.model,this.graphics,-1,-ones(this.nout,1),ones(this.nout,1),[]);
                 this.model = tmpvar0[0];
@@ -886,8 +895,10 @@ function ISELECT_m() {
             }
             if (this.z0>this.nout||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
+                throw "user error";
             } else if (((this.typ<1)||(this.typ>8))) {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             } else {
                 var it = this.typ;
@@ -945,6 +956,7 @@ function MUX() {
             if (size(this.in1,"*")==1) {
                 if (this.in1<2||this.in1>31) {
                     message("Block must have at least two input ports and at most 31");
+                    throw "user error";
                     var ok = false;
                 } else {
                     var tmpvar0 = check_io(this.model,this.graphics,-transpose([1:this.in1]),0,[],[]);
@@ -955,6 +967,7 @@ function MUX() {
             } else {
                 if (size(this.in1,"*")<2||or(this.in1==0)||size(this.in1,"*")>31) {
                     message([["Block must have at least two input ports"],["and at most 31. Size 0 is not allowed. "]]);
+                    throw "user error";
                     var ok = false;
                 } else {
                     if (min(this.in1)<0) {
@@ -1015,6 +1028,7 @@ function MUX_f() {
             if (size(this.in1,"*")==1) {
                 if (this.in1<2||this.in1>8) {
                     message("Block must have at least two input ports and at most eight");
+                    throw "user error";
                     var ok = false;
                 } else {
                     var tmpvar0 = check_io(this.model,this.graphics,-transpose([1:this.in1]),0,[],[]);
@@ -1025,6 +1039,7 @@ function MUX_f() {
             } else {
                 if (size(this.in1,"*")<2||size(this.in1,"*")>8||or(this.in1==0)) {
                     message([["Block must have at least two input ports"],["and at most eight, and size 0 is not allowed. "]]);
+                    throw "user error";
                     var ok = false;
                 } else {
                     if (min(this.in1)<0) {
@@ -1095,10 +1110,13 @@ function M_SWITCH() {
             this.base = int(this.base);
             if (this.nin<1) {
                 message("Number of inputs must be >=1 ");
+                throw "user error";
             } else if (!((this.base==1)||(this.base==0))) {
                 message("base indexing must be 1 or 0");
+                throw "user error";
             } else if (!((this.rule==1)||(this.rule==0)||(this.rule==2)||(this.rule==3))) {
                 message("incorrect rounding rule");
+                throw "user error";
             } else {
                 if (this.nin==1) {
                     var in1 = [[1,1],[-1,1]];
@@ -1216,6 +1234,7 @@ function RELAY_f() {
             }
             if (this.z0>this.nin||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
+                throw "user error";
             } else {
                 var tmpvar0 = check_io(this.model,this.graphics,-ones(this.nin,1),-1,ones(this.nin,1),[]);
                 this.model = tmpvar0[0];
@@ -1268,6 +1287,7 @@ function SCALAR2VECTOR() {
             this.nout = int(this.nout);
             if ((this.nout!=-1&&(this.nout<=0))) {
                 message("size of output must be -1 or >0");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -1326,6 +1346,7 @@ function SELECT_f() {
             }
             if (this.z0>this.nin||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
+                throw "user error";
             } else {
                 var tmpvar0 = check_io(this.model,this.graphics,-ones(this.nin,1),-1,ones(this.nin,1),[]);
                 this.model = tmpvar0[0];
@@ -1393,8 +1414,10 @@ function SELECT_m() {
             }
             if (this.z0>this.nin||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
+                throw "user error";
             } else if (((this.typ<1)||(this.typ>8))&&(this.typ!=-1)) {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             } else {
                 var it = this.typ*ones(1,this.nin);
@@ -1597,6 +1620,7 @@ function SWITCH2_m() {
             }
             if (((this.ot<1)||(this.ot>8))&&(this.ot!=-1)) {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -1660,6 +1684,7 @@ function SWITCH_f() {
             }
             if (this.z0>this.nin||this.z0<=0) {
                 message("initial connected input is not a valid input port number");
+                throw "user error";
             } else {
                 var tmpvar0 = check_io(this.model,this.graphics,-ones(this.nin,1),-1,[],[]);
                 this.model = tmpvar0[0];
@@ -3291,6 +3316,7 @@ function EVTDLY_c() {
             }
             if (this.dt<=0) {
                 message("Delay must be positive");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -3344,6 +3370,7 @@ function EVTDLY_f() {
             }
             if (this.dt<=0) {
                 message("Delay must be positive");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -3737,12 +3764,15 @@ function M_freq() {
             this.frequ = this.frequ.slice();
             if ((size(this.frequ,"*"))!=(size(this.offset,"*"))) {
                 message("offset and frequency must have the same size");
+                throw "user error";
                 var ok = false;
             } else if (or(this.frequ<0)) {
                 message("Frequency must be a positif number");
+                throw "user error";
                 var ok = false;
             } else if (or(abs(this.offset)>this.frequ)) {
                 message("The |Offset| must be less than the Frequency");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -5985,6 +6015,7 @@ function CLR() {
             }
             if (degree(this.num)>degree(this.den)) {
                 message("Transfer function must be proper or strictly proper.");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -6071,6 +6102,7 @@ function CLR_f() {
             }
             if (degree(this.num)>degree(this.den)) {
                 message("Transfer must be proper or strictly proper");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -6182,6 +6214,7 @@ function CLSS() {
             }
             if (ms!=ns||!okD) {
                 message("Matrix A is not square or D has wrong dimension");
+                throw "user error";
             } else {
                 var tmpvar1 = check_io(this.model,this.graphics,in1,out,[],[]);
                 this.model = tmpvar1[0];
@@ -6277,6 +6310,7 @@ function CLSS_f() {
             var ns = tmpvar0[1];
             if (ms!=ns) {
                 message("A matrix must be square");
+                throw "user error";
             } else {
                 var tmpvar1 = check_io(this.model,this.graphics,in1,out,[],[]);
                 this.model = tmpvar1[0];
@@ -6358,10 +6392,12 @@ function DELAYV_f() {
             }
             if (size(this.zz0,"*")<2) {
                 message("Register length must be at least 2");
+                throw "user error";
                 var ok = false;
             }
             if (this.T<=0) {
                 message("Delay must be positive");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -6495,6 +6531,7 @@ function DELAY_f() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 evtdly.graphics.exprs[1-1] = this.exprs[1-1];
                 if (evtdly.model.rpar!=this.dt) {
@@ -6583,6 +6620,7 @@ function DIFF_c() {
             var Nxd = size(this.xd0,"*");
             if ((N!=Nxd)) {
                 message("Incompatible sizes: states and their derivatives should have the same size ");
+                throw "user error";
                 var ask_again = true;
             }
             if ((N<=0&&!ask_again)) {
@@ -6650,6 +6688,7 @@ function DLR() {
             }
             if (degree(this.num)>degree(this.den)) {
                 message("Transfer function must be proper");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -6735,6 +6774,7 @@ function DLR_f() {
             }
             if (degree(this.num)>degree(this.den)) {
                 message("Transfer must be proper");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -6846,6 +6886,7 @@ function DLSS() {
             }
             if (ms!=ns||!okD) {
                 message("Matrix A is not square or D has wrong dimension");
+                throw "user error";
             } else {
                 var tmpvar1 = check_io(this.model,this.graphics,in1,out,1,[]);
                 this.model = tmpvar1[0];
@@ -6940,6 +6981,7 @@ function DLSS_f() {
             var ns = tmpvar0[1];
             if (ms!=ns) {
                 message("A matrix must be square");
+                throw "user error";
             } else {
                 var tmpvar1 = check_io(this.model,this.graphics,in1,out,1,[]);
                 this.model = tmpvar1[0];
@@ -7053,6 +7095,7 @@ function DOLLAR() {
                 var ot = 8;
             } else {
                 message("type is not recognized");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -7218,6 +7261,7 @@ function DOLLAR_m() {
                 var ot = 8;
             } else {
                 message("type is not recognized");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -7282,6 +7326,7 @@ function GAINBLK() {
             }
             if (this.gain==[]) {
                 message("Gain must have at least one element");
+                throw "user error";
             } else {
                 if (typeof(this.gain)=="constant") {
                     if (isreal(this.gain)) {
@@ -7292,6 +7337,7 @@ function GAINBLK() {
                         this.model.opar = list();
                     } else {
                         message("type is not supported");
+                        throw "user error";
                         var ok = false;
                     }
                 } else {
@@ -7316,6 +7362,7 @@ function GAINBLK() {
                             this.model.sim = list(new ScilabString(["gainblk_ui8n"]), new ScilabDouble([4]));
                         } else {
                             message("type is not supported.");
+                            throw "user error";
                             var ok = false;
                         }
                     } else if ((this.over==1)) {
@@ -7339,6 +7386,7 @@ function GAINBLK() {
                             this.model.sim = list(new ScilabString(["gainblk_ui8s"]), new ScilabDouble([4]));
                         } else {
                             message("type is not supported.");
+                            throw "user error";
                             var ok = false;
                         }
                     } else if ((this.over==2)) {
@@ -7362,10 +7410,12 @@ function GAINBLK() {
                             this.model.sim = list(new ScilabString(["gainblk_ui8e"]), new ScilabDouble([4]));
                         } else {
                             message("type is not an integer.");
+                            throw "user error";
                             var ok = false;
                         }
                     } else {
                         message("Do on Overflow must be 0,1,2");
+                        throw "user error";
                         var ok = false;
                     }
                     this.model.rpar = new ScilabDouble([]);
@@ -7435,6 +7485,7 @@ function GAINBLK_f() {
             }
             if (this.gain==[]) {
                 message("Gain must have at least one element");
+                throw "user error";
             } else {
                 var tmpvar0 = size(this.gain);
                 var out = tmpvar0[0];
@@ -7492,6 +7543,7 @@ function GAIN_f() {
             }
             if (this.gain==[]) {
                 message("Gain must have at least one element");
+                throw "user error";
             } else {
                 var tmpvar0 = size(this.gain);
                 var out = tmpvar0[0];
@@ -7573,12 +7625,15 @@ function INTEGRAL() {
                 }
                 if ((size(this.x0,1)!=size(this.maxp,1)||size(this.x0,1)!=size(this.lowp,1))) {
                     message("x0 and Upper limit and Lower limit must have same size");
+                    throw "user error";
                     var ok = false;
                 } else if (or(this.maxp<=this.lowp)) {
                     message("Upper limits must be > Lower limits");
+                    throw "user error";
                     var ok = false;
                 } else if (or(this.x0>this.maxp)||or(this.x0<this.lowp)) {
                     message("Initial condition x0 should be inside the limits");
+                    throw "user error";
                     var ok = false;
                 } else {
                     var rpar = [[this.maxp],[this.lowp]];
@@ -7713,12 +7768,15 @@ function INTEGRAL_m() {
                     }
                     if ((size(this.x0)!=size(this.maxp)||size(this.x0)!=size(this.lowp))) {
                         message("x0 and Upper limit and Lower limit must have same size");
+                        throw "user error";
                         var ok = false;
                     } else if (or(this.maxp<=this.lowp)) {
                         message("Upper limits must be > Lower limits");
+                        throw "user error";
                         var ok = false;
                     } else if (or(this.x0>this.maxp)||or(this.x0<this.lowp)) {
                         message("Initial condition x0 should be inside the limits");
+                        throw "user error";
                         var ok = false;
                     } else {
                         var rpar = [[real(this.maxp.slice())],[real(this.lowp.slice())]];
@@ -7734,12 +7792,15 @@ function INTEGRAL_m() {
                     }
                     if ((size(this.x0)!=size(this.maxp)||size(this.x0)!=size(this.lowp))) {
                         message("x0 and Upper limit and Lower limit must have same size");
+                        throw "user error";
                         var ok = false;
                     } else if (or(real(this.maxp)<=real(this.lowp))||or(imag(this.maxp)<=imag(this.lowp))) {
                         message("Upper limits must be > Lower limits");
+                        throw "user error";
                         var ok = false;
                     } else if (or(real(this.x0)>real(this.maxp))||or(real(this.x0)<real(this.lowp))||or(imag(this.x0)>imag(this.maxp))||or(imag(this.x0)<imag(this.lowp))) {
                         message("Initial condition x0 should be inside the limits");
+                        throw "user error";
                         var ok = false;
                     } else {
                         var rpar = [[real(this.maxp.slice())],[real(this.lowp.slice())],[imag(this.maxp.slice())],[imag(this.lowp.slice())]];
@@ -7766,6 +7827,7 @@ function INTEGRAL_m() {
                     var ot = 2;
                 } else {
                     message("Datatype is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 if (ok) {
@@ -7946,6 +8008,7 @@ function REGISTER() {
             }
             if (prod(size(this.z0))<1) {
                 message("Register length must be at least 1");
+                throw "user error";
                 var ok = false;
             }
             if (this.it==1) {
@@ -7974,6 +8037,7 @@ function REGISTER() {
                     this.z0 = uint8(this.z0);
                 } else {
                     message("Datatype is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 this.model.odstate = list(new ScilabDouble([this.z0]));
@@ -8029,6 +8093,7 @@ function REGISTER_f() {
             }
             if (prod(size(this.z0))<1) {
                 message("Register length must be at least 1");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -8107,6 +8172,7 @@ function SAMPHOLD_m() {
             }
             if (((this.it<1)||(this.it>8))) {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -8188,6 +8254,7 @@ function SOM_f() {
         var str = [["This sum block is obsolete","parameters cannot be modified. Please replace it with new sum block"],["and gain blocks in the linear palette"," ","Input ports are located at up, side and  down positions.","Current gains are:"]];
         var str = [[str],[(part(labs.slice(),1,7)+this.exprs.slice())]];
         message(str);
+        throw "user error";
         return new BasicBlock(this.x);
     }
 }
@@ -8238,11 +8305,13 @@ function SUMMATION() {
             this.sgn = this.sgn.slice();
             if ((this.satur!=0&&this.satur!=1&&this.satur!=2)) {
                 message("Do on overflow must be 0,1,2");
+                throw "user error";
                 var ok = false;
             }
             if (size(this.sgn,1)==1) {
                 if (this.sgn<1) {
                     message("Number of inputs must be > 0");
+                    throw "user error";
                     var ok = false;
                 } else if (this.sgn==1) {
                     var in1 = -1;
@@ -8260,6 +8329,7 @@ function SUMMATION() {
             } else {
                 if (!and(abs(this.sgn)==1)) {
                     message("Signs can only be +1 or -1");
+                    throw "user error";
                     var ok = false;
                 } else {
                     var in1 = -ones(size(this.sgn,1),1);
@@ -8276,6 +8346,7 @@ function SUMMATION() {
                 this.model.sim = list(new ScilabString(["summation_z"]), new ScilabDouble([4]));
             } else if (((this.Datatype<1)||(this.Datatype>8))) {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             } else {
                 if (this.satur==0) {
@@ -8430,6 +8501,7 @@ function TCLSS() {
             var ns = tmpvar0[1];
             if (ms!=ns) {
                 message("A matrix must be square");
+                throw "user error";
             } else {
                 var tmpvar1 = check_io(this.model,this.graphics,[[in1],[ms]],out,1,[]);
                 this.model = tmpvar1[0];
@@ -8532,6 +8604,7 @@ function TCLSS_f() {
             var ns = tmpvar0[1];
             if (ms!=ns) {
                 message("A matrix must be square");
+                throw "user error";
             } else {
                 var tmpvar1 = check_io(this.model,this.graphics,[[in1],[ms]],out,1,[]);
                 this.model = tmpvar1[0];
@@ -8612,10 +8685,12 @@ function TIME_DELAY() {
             }
             if (this.N<2) {
                 message("Buffer must be larger than 2");
+                throw "user error";
                 var ok = false;
             }
             if (this.T<=0) {
                 message("Delay must be positive");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -8681,10 +8756,12 @@ function VARIABLE_DELAY() {
             }
             if (this.N<2) {
                 message("Buffer must be larger than 2");
+                throw "user error";
                 var ok = false;
             }
             if (this.T<=0) {
                 message("Delay must be positive");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -8768,6 +8845,7 @@ function CUMSUM() {
                     var out = [1,-2];
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 1;
@@ -8781,12 +8859,14 @@ function CUMSUM() {
                     var function_name = "cumsumz_c";
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 2;
                 var ot = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.model.in,this.model.in2];
@@ -8870,23 +8950,27 @@ function EXTRACT() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var ma = size(this.a,1);
             var mb = size(this.b,1);
             if ((ma==0||mb==0)) {
                 message("empty field");
+                throw "user error";
                 var ok = false;
             }
             for (i=1;i<=ma;i+=1) {
                 if ((this.a[i-1]<=0)) {
                     message("invalid index");
+                    throw "user error";
                     var ok = false;
                 }
             }
             for (j=1;j<=mb;j+=1) {
                 if ((this.b[j-1]<=0)) {
                     message("invalid index");
+                    throw "user error";
                     var ok = false;
                 }
             }
@@ -8968,6 +9052,7 @@ function EXTTRI() {
                     var function_name = "extdiag";
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 1;
@@ -8981,12 +9066,14 @@ function EXTTRI() {
                     var function_name = "extdiagz";
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 2;
                 var ot = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.model.in,this.model.in2];
@@ -9064,6 +9151,7 @@ function MATBKSL() {
                 var it = [2,2];
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.model.in,this.model.in2];
@@ -9275,6 +9363,7 @@ function MATDET() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.model.in,this.model.in2];
@@ -9351,6 +9440,7 @@ function MATDIAG() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.model.in,this.model.in2];
@@ -9427,6 +9517,7 @@ function MATDIV() {
                 var it = [2,2];
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.model.in,this.model.in2];
@@ -9508,6 +9599,7 @@ function MATEIG() {
                     var ot = [2,2];
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 1;
@@ -9522,11 +9614,13 @@ function MATEIG() {
                     var ot = [2,2];
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [-1,-1];
@@ -9603,6 +9697,7 @@ function MATEXPM() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.model.in,this.model.in2];
@@ -9679,6 +9774,7 @@ function MATINV() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.model.in,this.model.in2];
@@ -9756,6 +9852,7 @@ function MATLU() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -9839,6 +9936,7 @@ function MATMAGPHI() {
                 var ot = 2;
             } else {
                 message("decomposition type is not supported");
+                throw "user error";
                 var ok = false;
             }
             var funtyp = 4;
@@ -9908,10 +10006,12 @@ function MATMUL() {
             this.rule = int(this.rule);
             if ((this.dtype<1||this.dtype>8)) {
                 message("type is not supported");
+                throw "user error";
                 var ok = false;
             }
             if ((this.rule<1||this.rule>3)) {
                 message("Multiplication rule must be only 1,2 or 3");
+                throw "user error";
                 var ok = false;
             }
             if ((this.dtype==1||this.dtype==2)) {
@@ -10078,6 +10178,7 @@ function MATPINV() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.model.in,this.model.in2];
@@ -10153,23 +10254,28 @@ function MATRESH() {
             var nin = size(this.l1);
             if (nout==0) {
                 message("output must have at least one element");
+                throw "user error";
                 var ok = false;
             }
             if (nin==0) {
                 message("input must have at least one element");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
                 if (((this.out[1-1]>(this.l1[1-1]*this.l1[2-1])))) {
                     message("the first dimension of the output is too big");
+                    throw "user error";
                     var ok = false;
                 }
                 if (((this.out[2-1]>(this.l1[1-1]*this.l1[2-1])))) {
                     message("the second dimension of the output is too big");
+                    throw "user error";
                     var ok = false;
                 }
                 if ((((this.out[2-1]*this.out[1-1])>(this.l1[1-1]*this.l1[2-1])))) {
                     message("the dimensions of the output are too big");
+                    throw "user error";
                     var ok = false;
                 }
             }
@@ -10183,6 +10289,7 @@ function MATRESH() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -10267,6 +10374,7 @@ function MATSING() {
                     var ot = [1,1,1];
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 1;
@@ -10283,11 +10391,13 @@ function MATSING() {
                     var ot = [2,1,2];
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var funtyp = 4;
@@ -10369,6 +10479,7 @@ function MATSUM() {
                     var out = [1,-2];
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 1;
@@ -10385,12 +10496,14 @@ function MATSUM() {
                     var out = [1,-2];
                 } else {
                     message("decomposition type is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 var it = 2;
                 var ot = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.model.in,this.model.in2];
@@ -10461,6 +10574,7 @@ function MATTRAN() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.model.in,this.model.in2];
@@ -10580,6 +10694,7 @@ function MATZREIM() {
                 var ot = 2;
             } else {
                 message("decomposition type is not supported");
+                throw "user error";
                 var ok = false;
             }
             var funtyp = 4;
@@ -10724,6 +10839,7 @@ function ROOTCOEF() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             var in1 = [this.inp,this.model.in2];
@@ -10783,6 +10899,7 @@ function SQRT() {
                 var function_name = "matz_sqrt";
             } else {
                 message("type is not supported");
+                throw "user error";
                 var ok = false;
             }
             var it = this.typ;
@@ -10871,26 +10988,32 @@ function SUBMAT() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             if ((this.a<=0)||(this.b<=0)||(this.c<=0)||(this.d<=0)) {
                 message("invalid index");
+                throw "user error";
                 var ok = false;
             }
             if (this.b<this.a) {
                 message("ending row must be greater than starting row");
+                throw "user error";
                 var ok = false;
             }
             if (this.d<this.c) {
                 message("ending column must be greater than starting column");
+                throw "user error";
                 var ok = false;
             }
             if (this.b>this.inp[1-1]) {
                 message("index of ending row is out of range");
+                throw "user error";
                 var ok = false;
             }
             if (this.d>this.inp[2-1]) {
                 message("index of ending column is out of range");
+                throw "user error";
                 var ok = false;
             }
             this.model.ipar = new ScilabDouble([this.a],[this.b],[this.c],[this.d]);
@@ -11200,9 +11323,11 @@ function BOUNCE() {
             }
             if (n!=size(this.y,"*")||n!=size(this.rpar1,"*")||n!=size(this.rpar2,"*")||n!=size(this.xd,"*")||n!=size(this.yd,"*")) {
                 message("All vectors must have equal size");
+                throw "user error";
                 var ok = false;
             } else if (!(min([[this.rpar1],[this.rpar2]])>0)) {
                 message("Mass and radius must be >0");
+                throw "user error";
                 var ok = false;
             }
             if (!ok) {
@@ -11326,6 +11451,7 @@ function BOUNCEXY() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 var rpar = [[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
                 var ipar = [[this.win],[this.imode],[this.clrs.slice()]];
@@ -11418,6 +11544,7 @@ function BPLATFORM() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 var rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
                 this.model.rpar = new ScilabDouble(rpar);
@@ -11531,6 +11658,7 @@ function CBLOCK() {
             if ([[this.ci],[this.co]]!=[]) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
+                    throw "user error";
                     var ok = false;
                 }
             }
@@ -11688,6 +11816,7 @@ function CBLOCK4() {
             if ([[this.ci],[this.co]]!=[]) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
+                    throw "user error";
                     var ok = false;
                 }
             }
@@ -11803,6 +11932,7 @@ function CONSTRAINT2_c() {
             var Nid = size(this.id,"*");
             if ((N!=Nxd)||(N!=Nid)) {
                 message("incompatible sizes, states, their derivatives, and ID should be the same size ");
+                throw "user error";
                 var ask_again = true;
             }
             if ((N<=0&&!ask_again)) {
@@ -11870,6 +12000,7 @@ function CONSTRAINT_c() {
             var N = size(this.x0,"*");
             if (N<=0) {
                 message("number of states (constraints) must be > 0 ");
+                throw "user error";
             } else {
                 var tmpvar0 = check_io(this.model,this.graphics,N,N,[],[]);
                 this.model = tmpvar0[0];
@@ -11933,6 +12064,7 @@ function DEADBAND() {
             }
             if (this.maxp<=this.minp) {
                 message("Upper limit must be > Lower limit");
+                throw "user error";
             } else {
                 var rpar = [[this.maxp],[this.minp]];
                 this.model.rpar = new ScilabDouble(rpar);
@@ -11990,6 +12122,7 @@ function DEBUG() {
                     break;
                 } else {
                     message([["Error in the instructions"],[lasterror()]]);
+                    throw "user error";
                 }
             } else {
                 var ok = false;
@@ -12548,6 +12681,7 @@ function HYSTHERESIS() {
             }
             if (this.low_lim>this.high_lim) {
                 message("switch on value must be larger than switch off value");
+                throw "user error";
             } else {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.rpar = new ScilabDouble(transpose([this.high_lim,this.low_lim,this.out_high,this.out_low]));
@@ -12639,15 +12773,19 @@ function LOGICAL_OP() {
             this.tp = int(this.tp);
             if (this.nin<1) {
                 message("Number of inputs must be >=1 ");
+                throw "user error";
                 var ok = false;
             } else if ((this.rule<0)||(this.rule>5)) {
                 message("Incorrect operator "+string(this.rule)+" ; must be 0 to 5.");
+                throw "user error";
                 var ok = false;
             } else if ((this.rule==5)&&(this.nin>1)) {
                 message("Only one input allowed for NOT operation");
+                throw "user error";
                 this.nin = 1;
             } else if (((this.Datatype==1)&&(this.tp!=0))) {
                 message("Bitwise Rule is only activated when Data type is integer");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -12672,6 +12810,7 @@ function LOGICAL_OP() {
                         this.model.sim = list(new ScilabString(["logicalop_ui8"]), new ScilabDouble([4]));
                     } else {
                         message("Datatype is not supported");
+                        throw "user error";
                         var ok = false;
                     }
                     this.model.ipar = new ScilabDouble([this.rule],[this.tp]);
@@ -13467,6 +13606,7 @@ function PENDULUM_ANIM() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 var rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
                 this.model.rpar = new ScilabDouble(rpar);
@@ -13518,6 +13658,7 @@ function RATELIMITER() {
             }
             if (this.maxp<=this.minp||this.maxp<=0||this.minp>=0) {
                 message("We must have max_slope> 0 > min_slope.");
+                throw "user error";
             } else {
                 var rpar = [[this.maxp],[this.minp]];
                 this.model.rpar = new ScilabDouble(rpar);
@@ -13578,6 +13719,7 @@ function RELATIONALOP() {
             }
             if ((this.rule<0)||(this.rule>5)) {
                 message("Incorrect operator "+string(this.rule)+" ; must be 0 to 5.");
+                throw "user error";
                 var ok = false;
             }
             if ((this.Datatype==1)) {
@@ -13596,6 +13738,7 @@ function RELATIONALOP() {
                 this.model.sim = list(new ScilabString(["relational_op_ui8"]), new ScilabDouble([4]));
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -13735,10 +13878,12 @@ function TEXT_f() {
             }
             if (this.font<=0||this.font>6) {
                 message("Font number must be greater than 0 and less than 7");
+                throw "user error";
                 var ok = false;
             }
             if (this.siz<0) {
                 message("Font size must be positive");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -14056,11 +14201,13 @@ function generic_block() {
             this.funtyp = int(this.funtyp);
             if (this.funtyp<0) {
                 message("function type cannot be negative");
+                throw "user error";
                 var ok = false;
             }
             if ([[this.ci],[this.co]]!=[]) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
+                    throw "user error";
                     var ok = false;
                 }
             }
@@ -14187,11 +14334,13 @@ function generic_block2() {
             this.funtyp = int(this.funtyp);
             if (this.funtyp<0) {
                 message("function type cannot be negative");
+                throw "user error";
                 var ok = false;
             }
             if ([[this.ci],[this.co]]!=[]) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
+                    throw "user error";
                     var ok = false;
                 }
             }
@@ -14322,20 +14471,24 @@ function generic_block3() {
             this.funtyp = this.funtyp;
             if (this.funtyp<0) {
                 message("function type cannot be negative");
+                throw "user error";
                 var ok = false;
             }
             if ([[this.ci],[this.co]]!=[]) {
                 if (max([[this.ci],[this.co]])>1) {
                     message("vector event links not supported");
+                    throw "user error";
                     var ok = false;
                 }
             }
             if (this.type[this.opar-1]!=15) {
                 message("object parameter must be a list");
+                throw "user error";
                 var ok = false;
             }
             if (this.type[this.oz-1]!=15) {
                 message("discrete object state must be a list");
+                throw "user error";
                 var ok = false;
             }
             this.depu = stripblanks(this.depu);
@@ -14778,8 +14931,10 @@ function DLRADAPT_f() {
             var n = tmpvar0[1];
             if (m>=n) {
                 message("Transfer must be strictly proper");
+                throw "user error";
             } else if (size(this.rn,1)!=0&&size(this.rn,1)!=size(this.p,"*")) {
                 message("Numerator roots matrix row size\'s is incorrect");
+                throw "user error";
             } else {
                 var rpar = [[this.p.slice()],[real(this.rn.slice())],[imag(this.rn.slice())],[real(this.rd.slice())],[imag(this.rd.slice())],[this.g.slice()]];
                 var ipar = [[m],[n],[npt]];
@@ -14831,6 +14986,7 @@ function EXPBLK_f() {
             }
             if (or(this.a<=0)) {
                 message("a^u : a must be positive");
+                throw "user error";
             } else {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.rpar = new ScilabDouble([this.a]);
@@ -14882,6 +15038,7 @@ function EXPBLK_m() {
             }
             if (or(this.a<=0)) {
                 message("a^u : a must be positive");
+                throw "user error";
             } else {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 this.model.rpar = new ScilabDouble([this.a]);
@@ -14960,8 +15117,10 @@ function INTRP2BLK_f() {
             }
             if (size(this.a,"*")!=size(this.c,"c")||size(this.b,"*")!=size(this.c,"r")) {
                 message("incompatible dimension");
+                throw "user error";
             } else if (min(this.a.slice(2-1,$)-this.a.slice(1-1,$-1))<=0||min(this.b.slice(2-1,$)-this.b.slice(1-1,$-1))<=0) {
                 message("X and Y must be strictly increasing");
+                throw "user error";
             } else {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
@@ -15014,8 +15173,10 @@ function INTRPLBLK_f() {
             }
             if (size(this.a,"*")!=size(this.b,"*")) {
                 message("X and Y must have the same size");
+                throw "user error";
             } else if (min(this.a.slice(2-1,$)-this.a.slice(1-1,$-1))<=0) {
                 message("X must be strictly increasing");
+                throw "user error";
             } else {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
@@ -15115,6 +15276,7 @@ function LOGBLK_f() {
             }
             if (this.a<=1) {
                 message("Basis must be larger than 1");
+                throw "user error";
             } else {
                 if (ok) {
                     this.graphics.exprs = new ScilabDouble([this.exprs]);
@@ -15468,6 +15630,7 @@ function LOOKUP_f() {
             var n = size(xx,"*");
             if (or(xx.slice(2-1,n)-xx.slice(1-1,n-1)<=0)) {
                 message("You have not defined a function");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -15525,6 +15688,7 @@ function MAXMIN() {
             }
             if (this.nin!=1&&this.nin!=2) {
                 message("Wrong number of inputs, only 1 and 2 allowed");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -15699,6 +15863,7 @@ function PRODUCT() {
             if (size(this.sgn,1)==1) {
                 if (this.sgn<1) {
                     message("Number of inputs must be > 0");
+                    throw "user error";
                     var ok = false;
                 } else if (this.sgn==1) {
                     var in1 = -1;
@@ -15712,6 +15877,7 @@ function PRODUCT() {
             } else {
                 if (!and(abs(this.sgn)==1)) {
                     message("Signs can only be +1 or -1");
+                    throw "user error";
                     var ok = false;
                 } else {
                     var in1 = -ones(size(this.sgn,1),1);
@@ -15796,6 +15962,7 @@ function QUANT_f() {
             }
             if (this.meth<1||this.meth>4) {
                 message("Quantization Type must be from 1 to 4");
+                throw "user error";
             } else {
                 var rpar = this.pas;
                 this.model.rpar = new ScilabDouble([rpar]);
@@ -15862,6 +16029,7 @@ function SATURATION() {
             }
             if (this.maxp<=this.minp) {
                 message("Upper limit must be > Lower limit");
+                throw "user error";
             } else {
                 var rpar = [[this.maxp],[this.minp]];
                 this.model.rpar = new ScilabDouble(rpar);
@@ -15924,8 +16092,10 @@ function SAT_f() {
             }
             if (this.maxp<=0) {
                 message("Max must be strictly positive");
+                throw "user error";
             } else if (this.pente<=0) {
                 message("Slope must be strictly positive");
+                throw "user error";
             } else {
                 var rpar = [[this.minp/this.pente],[this.maxp/this.pente],[this.pente]];
                 this.model.rpar = new ScilabDouble(rpar);
@@ -16072,6 +16242,7 @@ function TrigFun() {
             }
             if (find(PREVAR_FF==this.fun)==[]) {
                 message("Sorry but "+this.fun+" is not in the list!");
+                throw "user error";
             } else {
                 this.graphics.exprs = new ScilabDouble([this.exprs]);
                 execstr("model.sim=list(\'"+this.fun+"_blk\',4)");
@@ -16366,6 +16537,7 @@ function AFFICH_m() {
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (!or(this.herit==[0,1])) {
                 var mess = [[mess],["Accept inherited values are 0 and 1"],[" "]];
@@ -16373,6 +16545,7 @@ function AFFICH_m() {
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (ok) {
                 var tmpvar0 = set_io(this.model,this.graphics,list(this.in1,1),list(),ones(1-this.herit,1),[]);
@@ -16456,6 +16629,7 @@ function BARXY() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 this.model.rpar = new ScilabDouble([this.xmin],[this.xmax],[this.ymin],[this.ymax]);
                 this.model.ipar = new ScilabDouble([this.thickness]);
@@ -16570,6 +16744,7 @@ function CANIMXY() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 var in1 = this.nbr_curves*ones(2,1);
                 var in2 = ones(2,1);
@@ -16714,6 +16889,7 @@ function CANIMXY3D() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 var in1 = this.nbr_curves*ones(3,1);
                 var in2 = ones(3,1);
@@ -16824,6 +17000,7 @@ function CEVENTSCOPE() {
                 var ok = tmpvar0[2];
             } else {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (ok) {
                 if (this.wpos==[]) {
@@ -16932,6 +17109,7 @@ function CFSCOPE() {
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (ok) {
                 if (this.wpos==[]) {
@@ -17091,6 +17269,7 @@ function CLKOUT_f() {
             this.prt = int(this.prt);
             if (this.prt<=0) {
                 message("Port number must be a positive integer");
+                throw "user error";
             } else {
                 this.model.ipar = new ScilabDouble([this.prt]);
                 this.model.evtin = new ScilabDouble([1]);
@@ -17166,6 +17345,7 @@ function CMAT3D() {
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (ok) {
                 var size_x = size(this.vec_x,"*");
@@ -17235,6 +17415,7 @@ function CMATVIEW() {
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (ok) {
                 var size_c = size(this.colormap.slice(),1);
@@ -17369,6 +17550,7 @@ function CMSCOPE() {
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (ok) {
                 this.in1 = this.in1.slice();
@@ -17499,6 +17681,7 @@ function CSCOPE() {
             }
             if (!ok) {
                 message([["Some specified values are inconsistent:"],[" "],[mess]]);
+                throw "user error";
             }
             if (ok) {
                 var tmpvar0 = set_io(this.model,this.graphics,list([-1,1],1),list(),ones(1-this.heritance,1),[]);
@@ -17630,6 +17813,7 @@ function CSCOPXY() {
             }
             if (!ok) {
                 message(mess);
+                throw "user error";
             } else {
                 var in1 = this.nbr_curves*ones(2,1);
                 var in2 = ones(2,1);
@@ -17791,6 +17975,7 @@ function CSCOPXY3D() {
                 break;
             } else {
                 message(mess);
+                throw "user error";
             }
         }
         return new BasicBlock(this.x);
@@ -17949,12 +18134,14 @@ function TOWS_c() {
             }
             if ((this.nz<=0)) {
                 message("Size of buffer must be positive");
+                throw "user error";
                 var ok = false;
             }
             var r = false;
             var ierr = execstr("r = validvar(varnam)","errcatch");
             if (!r||ierr!=0||length(this.varnam)>19) {
                 message([["Invalid variable name."],["Please choose another variable name."]]);
+                throw "user error";
                 var ok = false;
             }
             execstr("if type("+this.varnam+") <> 17 | or(fieldnames("+this.varnam+") <> [\"values\"; \"time\"]) then"+" message([\"Protected variable name.\"; \"Please choose another variable name.\"]);"+" ok = %f;"+" end","errcatch");
@@ -18368,6 +18555,7 @@ function CLKIN_f() {
             }
             if (this.prt<=0) {
                 message("Port number must be a positive integer");
+                throw "user error";
             } else {
                 this.model.ipar = new ScilabDouble([this.prt]);
                 this.model.evtout = new ScilabDouble([1]);
@@ -18556,6 +18744,7 @@ function CLOCK_f() {
             }
             if (this.dt<=0) {
                 message("period must be positive");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -18613,8 +18802,10 @@ function CONST() {
             var nout = size(this.C,"*");
             if (nout==0) {
                 message("C must have at least one element");
+                throw "user error";
             } else if (and(sz>1)) {
                 message("C matrix is not supported, use CONST_m instead");
+                throw "user error";
             } else {
                 this.model.rpar = new ScilabDouble(this.C.slice());
                 this.model.out = new ScilabDouble([nout]);
@@ -18660,6 +18851,7 @@ function CONST_f() {
             var nout = size(this.C,"*");
             if (nout==0) {
                 message("C must have at least one element");
+                throw "user error";
             } else {
                 this.model.rpar = new ScilabDouble(this.C.slice());
                 this.model.out = new ScilabDouble([nout]);
@@ -18966,6 +19158,7 @@ function CURV_f() {
             var n = size(xx,"*");
             if (or(xx.slice(2-1,n)-xx.slice(1-1,n-1)<0)) {
                 message("You have not defined a function");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -19175,20 +19368,24 @@ function FROMWS_c() {
             }
             if (!(this.Method==0||this.Method==1||this.Method==2||this.Method==3)) {
                 message("Interpolation method should be chosen in [0,1,2,3]");
+                throw "user error";
                 var ok = false;
             }
             if (!(this.ZC==0||this.ZC==1)) {
                 message("Zero crossing should be either 0 or 1");
+                throw "user error";
                 var ok = false;
             }
             if (!(this.OutEnd==0||this.OutEnd==1||this.OutEnd==2)) {
                 message("Output at end option should be either 0 or 1");
+                throw "user error";
                 var ok = false;
             }
             var r = false;
             var ierr = execstr("r=validvar(varnam)","errcatch");
             if (!r) {
                 message([["Invalid variable name."],["Please choose another variable name."]]);
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -19413,6 +19610,7 @@ function GEN_SQR() {
                 }
             } else {
                 message(lasterror());
+                throw "user error";
                 var ok = false;
             }
         }
@@ -19549,10 +19747,13 @@ function IN_f() {
             var prt = int(prt);
             if (prt<=0) {
                 message("Port number must be a positive integer");
+                throw "user error";
             } else if (!isequal(size(otsz,"*"),2)) {
                 message("Outport Size must be a 2 elements vector");
+                throw "user error";
             } else if (((ot<1||ot>9)&&(ot!=-1))) {
                 message("Outport type must be a number between 1 and 9, or -1 for inheritance.");
+                throw "user error";
             } else {
                 if (this.model.ipar!=prt) {
                     var needcompile = 4;
@@ -19834,6 +20035,7 @@ function RAND_f() {
             }
             if (this.flag!=0&&this.flag!=1) {
                 message("flag must be equal to 1 or 0");
+                throw "user error";
             } else {
                 var nout = size(this.a,"*");
                 this.graphics.exprs = new ScilabDouble(this.exprs);
@@ -19910,6 +20112,7 @@ function RAND_m() {
             }
             if (this.flag!=0&&this.flag!=1) {
                 message("flag must be equal to 1 or 0");
+                throw "user error";
             } else {
                 var out = size(this.a);
                 if (this.typ==1) {
@@ -19924,6 +20127,7 @@ function RAND_m() {
                     this.model.dstate = new ScilabDouble([this.seed_c.slice()],[0*[[real(this.a.slice())],[imag(this.a.slice())]]]);
                 } else {
                     message("Datatype is not supported");
+                    throw "user error";
                     var ok = false;
                 }
                 if (ok) {
@@ -20561,10 +20765,12 @@ function SampleCLK() {
             }
             if (this.frequ<0) {
                 message("Frequency must be a positif number");
+                throw "user error";
                 var ok = false;
             }
             if (abs(this.offset)>this.frequ) {
                 message("The |Offset| must be less than the Frequency");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
@@ -20901,6 +21107,7 @@ function ZCROSS_f() {
             this.in1 = int(this.in1);
             if (this.in1<=0) {
                 message("Block must have at least one input");
+                throw "user error";
             } else {
                 var kk = 0;
                 for (jj=1;jj<=this.in1;jj+=1) {

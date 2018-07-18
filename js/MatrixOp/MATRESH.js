@@ -54,23 +54,28 @@ function MATRESH() {
             var nin = size(this.l1);
             if (nout==0) {
                 message("output must have at least one element");
+                throw "user error";
                 var ok = false;
             }
             if (nin==0) {
                 message("input must have at least one element");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
                 if (((this.out[1-1]>(this.l1[1-1]*this.l1[2-1])))) {
                     message("the first dimension of the output is too big");
+                    throw "user error";
                     var ok = false;
                 }
                 if (((this.out[2-1]>(this.l1[1-1]*this.l1[2-1])))) {
                     message("the second dimension of the output is too big");
+                    throw "user error";
                     var ok = false;
                 }
                 if ((((this.out[2-1]*this.out[1-1])>(this.l1[1-1]*this.l1[2-1])))) {
                     message("the dimensions of the output are too big");
+                    throw "user error";
                     var ok = false;
                 }
             }
@@ -84,6 +89,7 @@ function MATRESH() {
                 var it = 2;
             } else {
                 message("Datatype is not supported");
+                throw "user error";
                 var ok = false;
             }
             if (ok) {
