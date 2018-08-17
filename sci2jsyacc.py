@@ -1364,6 +1364,11 @@ def getblocktype(module):
     '''return a block type for a module'''
     return BLOCK_TYPE.get(module, 'BasicBlock')
 
+def printblocktypejs(module):
+    blocktype = getblocktype(module)
+    print('%s.prototype.importset = function %s() {\n    /* TODO */\n}' % (module, module))
+    print('%s.prototype.getContainer = function %s() { return new %s(this.x); }' % (module, module, blocktype))
+
 def add_local_var(var, force=False):
     '''If a variable is not global, add it to local list
 
@@ -1489,6 +1494,16 @@ def processfile(filename, picklefilename, passnumber):
         print(result)
 
 if __name__ == '__main__':
+    if len(sys.argv) > 10:
+        regex1 = re.compile(r'.*/')
+        regex2 = re.compile(r'\.js$')
+        for i in range(1, len(sys.argv)):
+            module = sys.argv[i]
+            module = regex1.sub('', module)
+            module = regex2.sub('', module)
+            printblocktypejs(module);
+        sys.exit(0)
+
     if len(sys.argv) <= 3:
         print('Usage:', sys.argv[0], 'filename.sci filename.pickle pass-number')
         sys.exit(1)

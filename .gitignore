@@ -4,3 +4,4 @@ parsetab.py
 *.lex
 *.pyc
 *.yacc
+/macros/*/*.js
