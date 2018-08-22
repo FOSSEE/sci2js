@@ -18,7 +18,10 @@ function PRODUCT() {
         return this.x;
     }
     PRODUCT.prototype.get = function PRODUCT() {
-        alert("parameters cannot be modified");
+        var options = {
+            sgn:["Number of inputs or sign vector",this.sgn.toString().replace(/,/g," ")],
+        }
+        return options;
     }
     PRODUCT.prototype.set = function PRODUCT() {
         this.exprs = this.graphics.exprs;

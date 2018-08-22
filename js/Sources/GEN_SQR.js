@@ -54,7 +54,10 @@ function GEN_SQR() {
         return this.x;
     }
     GEN_SQR.prototype.get = function GEN_SQR() {
-        alert("parameters cannot be modified");
+        var options = {
+            scicos_context.Amin:[Bitems,scicos_context.Amin],
+        }
+        return options;
     }
     GEN_SQR.prototype.set = function GEN_SQR() {
         var y = this.needcompile;

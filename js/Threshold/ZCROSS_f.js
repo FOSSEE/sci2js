@@ -21,7 +21,10 @@ function ZCROSS_f() {
         return this.x;
     }
     ZCROSS_f.prototype.get = function ZCROSS_f() {
-        alert("parameters cannot be modified");
+        var options = {
+            in1:["Input size",this.in1],
+        }
+        return options;
     }
     ZCROSS_f.prototype.set = function ZCROSS_f() {
         this.exprs = this.graphics.exprs;

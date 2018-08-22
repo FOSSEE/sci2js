@@ -19,7 +19,10 @@ function REGISTER_f() {
         return this.x;
     }
     REGISTER_f.prototype.get = function REGISTER_f() {
-        alert("parameters cannot be modified");
+        var options = {
+            z0:["Register initial condition",this.z0],
+        }
+        return options;
     }
     REGISTER_f.prototype.set = function REGISTER_f() {
         this.exprs = this.graphics.exprs;

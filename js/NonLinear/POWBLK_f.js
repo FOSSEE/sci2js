@@ -19,7 +19,10 @@ function POWBLK_f() {
         return this.x;
     }
     POWBLK_f.prototype.get = function POWBLK_f() {
-        alert("parameters cannot be modified");
+        var options = {
+            a:["to the power of",this.a],
+        }
+        return options;
     }
     POWBLK_f.prototype.set = function POWBLK_f() {
         this.exprs = this.graphics.exprs;

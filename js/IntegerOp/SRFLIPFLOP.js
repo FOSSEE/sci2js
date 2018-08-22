@@ -36,7 +36,10 @@ function SRFLIPFLOP() {
         return this.x;
     }
     SRFLIPFLOP.prototype.get = function SRFLIPFLOP() {
-        alert("parameters cannot be modified");
+        var options = {
+            init:["Initial Value",this.init],
+        }
+        return options;
     }
     SRFLIPFLOP.prototype.set = function SRFLIPFLOP() {
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {

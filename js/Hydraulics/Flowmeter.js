@@ -53,7 +53,10 @@ function Flowmeter() {
         return this.x;
     }
     Flowmeter.prototype.get = function Flowmeter() {
-        alert("parameters cannot be modified");
+        var options = {
+            Qini:["Qini",this.Qini],
+        }
+        return options;
     }
     Flowmeter.prototype.set = function Flowmeter() {
         this.exprs = this.graphics.exprs;

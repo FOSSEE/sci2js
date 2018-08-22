@@ -18,7 +18,10 @@ function CLKINV_f() {
         return this.x;
     }
     CLKINV_f.prototype.get = function CLKINV_f() {
-        alert("parameters cannot be modified");
+        var options = {
+            prt:["Port Number",this.prt],
+        }
+        return options;
     }
     CLKINV_f.prototype.set = function CLKINV_f() {
         this.exprs = this.graphics.exprs;

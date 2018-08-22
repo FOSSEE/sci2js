@@ -18,7 +18,10 @@ function BIGSOM_f() {
         return this.x;
     }
     BIGSOM_f.prototype.get = function BIGSOM_f() {
-        alert("parameters cannot be modified");
+        var options = {
+            sgn:["Inputs ports signs/gain",this.sgn.toString().replace(/,/g," ")],
+        }
+        return options;
     }
     BIGSOM_f.prototype.set = function BIGSOM_f() {
         this.exprs = this.graphics.exprs;

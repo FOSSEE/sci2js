@@ -17,7 +17,10 @@ function CLKFROM() {
         return this.x;
     }
     CLKFROM.prototype.get = function CLKFROM() {
-        alert("parameters cannot be modified");
+        var options = {
+            tag:["Tag",this.tag],
+        }
+        return options;
     }
     CLKFROM.prototype.set = function CLKFROM() {
         this.exprs = this.graphics.exprs;

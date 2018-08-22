@@ -23,7 +23,10 @@ function INIMPL_f() {
         return this.x;
     }
     INIMPL_f.prototype.get = function INIMPL_f() {
-        alert("parameters cannot be modified");
+        var options = {
+            prt:["Port Number",this.prt],
+        }
+        return options;
     }
     INIMPL_f.prototype.set = function INIMPL_f() {
         this.exprs = this.graphics.exprs;

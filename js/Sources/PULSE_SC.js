@@ -49,7 +49,10 @@ function PULSE_SC() {
         return this.x;
     }
     PULSE_SC.prototype.get = function PULSE_SC() {
-        alert("parameters cannot be modified");
+        var options = {
+            scicos_context.E:[Bitems,scicos_context.E],
+        }
+        return options;
     }
     PULSE_SC.prototype.set = function PULSE_SC() {
         var y = this.needcompile;

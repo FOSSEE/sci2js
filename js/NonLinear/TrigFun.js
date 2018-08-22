@@ -16,7 +16,10 @@ function TrigFun() {
         return this.x;
     }
     TrigFun.prototype.get = function TrigFun() {
-        alert("parameters cannot be modified");
+        var options = {
+            fun:["Function",this.fun],
+        }
+        return options;
     }
     TrigFun.prototype.set = function TrigFun() {
         this.exprs = this.graphics.exprs;

@@ -702,14 +702,18 @@ def p_getvaluearg2_list(p):
 def p_getvaluearg2_string(p):
     'getvaluearg2 : DQSTRING'
     p[0] = '%s' % (p[1])
+    LABELS.append(p[0])
 
 def p_getvaluearg2_gettext_string(p):
     'getvaluearg2 : GETTEXT OPENBRACKET DQSTRING CLOSEBRACKET'
     p[0] = '%s' % (p[3])
+    LABELS.append(p[0])
 
 def p_getvaluearg2_var(p):
     'getvaluearg2 : VAR'
+    # TODO: replace with value of that variable
     p[0] = '%s' % (p[1])
+    LABELS.append(p[0])
 
 def p_getvaluearg2arraylist_arraylist_arraylistitem(p):
     '''getvaluearg2arraylist : getvaluearg2arraylist SEMICOLON getvaluearg2arraylistitem
@@ -738,6 +742,7 @@ def p_getvaluearg2arraylistitem_string_string(p):
 
 def p_getvaluearg2arraylistitem_functionname_parameters(p):
     'getvaluearg2arraylistitem : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
+    # TODO: replace with value of that function
     p[0] = '%s(%s)' % (p[1][0], p[3])
     LABELS.append(p[0])
 

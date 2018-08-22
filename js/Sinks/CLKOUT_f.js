@@ -17,7 +17,10 @@ function CLKOUT_f() {
         return this.x;
     }
     CLKOUT_f.prototype.get = function CLKOUT_f() {
-        alert("parameters cannot be modified");
+        var options = {
+            prt:["Port number",this.prt],
+        }
+        return options;
     }
     CLKOUT_f.prototype.set = function CLKOUT_f() {
         this.exprs = this.graphics.exprs;

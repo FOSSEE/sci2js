@@ -18,7 +18,10 @@ function CONST() {
         return this.x;
     }
     CONST.prototype.get = function CONST() {
-        alert("parameters cannot be modified");
+        var options = {
+            C:["Constant",this.C],
+        }
+        return options;
     }
     CONST.prototype.set = function CONST() {
         this.exprs = this.graphics.exprs;

@@ -18,7 +18,10 @@ function PDE() {
         return this.x;
     }
     PDE.prototype.get = function PDE() {
-        alert("parameters cannot be modified");
+        var options = {
+                okk:["New block\'s name :",this.okk],
+        }
+        return options;
     }
     PDE.prototype.set = function PDE() {
         var label = this.graphics.exprs;

@@ -17,7 +17,10 @@ function CLKIN_f() {
         return this.x;
     }
     CLKIN_f.prototype.get = function CLKIN_f() {
-        alert("parameters cannot be modified");
+        var options = {
+            prt:["Port number",this.prt],
+        }
+        return options;
     }
     CLKIN_f.prototype.set = function CLKIN_f() {
         this.exprs = this.graphics.exprs;

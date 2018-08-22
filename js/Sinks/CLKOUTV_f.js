@@ -17,7 +17,10 @@ function CLKOUTV_f() {
         return this.x;
     }
     CLKOUTV_f.prototype.get = function CLKOUTV_f() {
-        alert("parameters cannot be modified");
+        var options = {
+            prt:["Port number",this.prt],
+        }
+        return options;
     }
     CLKOUTV_f.prototype.set = function CLKOUTV_f() {
         this.exprs = this.graphics.exprs;

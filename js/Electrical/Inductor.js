@@ -26,7 +26,10 @@ function Inductor() {
         return this.x;
     }
     Inductor.prototype.get = function Inductor() {
-        alert("parameters cannot be modified");
+        var options = {
+            L:["L (H)",this.L],
+        }
+        return options;
     }
     Inductor.prototype.set = function Inductor() {
         this.exprs = this.graphics.exprs;

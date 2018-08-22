@@ -18,7 +18,10 @@ function MUX() {
         return this.x;
     }
     MUX.prototype.get = function MUX() {
-        alert("parameters cannot be modified");
+        var options = {
+            in1:["number of input ports or vector of sizes",this.in1],
+        }
+        return options;
     }
     MUX.prototype.set = function MUX() {
         this.exprs = this.graphics.exprs;

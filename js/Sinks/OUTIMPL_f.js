@@ -23,7 +23,10 @@ function OUTIMPL_f() {
         return this.x;
     }
     OUTIMPL_f.prototype.get = function OUTIMPL_f() {
-        alert("parameters cannot be modified");
+        var options = {
+            prt:["Port number",this.prt],
+        }
+        return options;
     }
     OUTIMPL_f.prototype.set = function OUTIMPL_f() {
         this.exprs = this.graphics.exprs;

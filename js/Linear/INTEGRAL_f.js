@@ -18,7 +18,10 @@ function INTEGRAL_f() {
         return this.x;
     }
     INTEGRAL_f.prototype.get = function INTEGRAL_f() {
-        alert("parameters cannot be modified");
+        var options = {
+            x0:["Initial state",this.x0],
+        }
+        return options;
     }
     INTEGRAL_f.prototype.set = function INTEGRAL_f() {
         this.exprs = this.graphics.exprs;

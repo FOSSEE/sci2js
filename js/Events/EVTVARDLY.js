@@ -19,7 +19,10 @@ function EVTVARDLY() {
         return this.x;
     }
     EVTVARDLY.prototype.get = function EVTVARDLY() {
-        alert("parameters cannot be modified");
+        var options = {
+            fir:["Initial event firing time (<0 if absent)",this.fir],
+        }
+        return options;
     }
     EVTVARDLY.prototype.set = function EVTVARDLY() {
         this.exprs = this.graphics.exprs;

@@ -19,7 +19,10 @@ function CONSTRAINT_c() {
         return this.x;
     }
     CONSTRAINT_c.prototype.get = function CONSTRAINT_c() {
-        alert("parameters cannot be modified");
+        var options = {
+            x0:["Initial guess values",this.x0.toString().replace(/,/g," ")],
+        }
+        return options;
     }
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
         this.exprs = this.graphics.exprs;
