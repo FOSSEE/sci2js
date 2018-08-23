@@ -50,7 +50,7 @@ function PULSE_SC() {
     }
     PULSE_SC.prototype.get = function PULSE_SC() {
         var options = {
-            scicos_context.E:[Bitems,scicos_context.E],
+            scicos_context.E:[this.Bitems,this.scicos_context.E],
         }
         return options;
     }
@@ -60,16 +60,16 @@ function PULSE_SC() {
         this.exprs = this.graphics.exprs;
         var Btitre = "Set Pulse Generator parameters";
         var Exprs0 = [["E"],["W"],["F"],["A"]];
-        var Bitems = [["Phase delay (secs):"],["Pulse Width (% of period):"],["Period (secs):"],["Amplitude:"]];
+        this.Bitems = [["Phase delay (secs):"],["Pulse Width (% of period):"],["Period (secs):"],["Amplitude:"]];
         var Ss = list("pol",-1,"pol",-1,"pol",-1,"mat",[-1,-1]);
         var scicos_context = struct();
         var ok = false;
         while (!ok) {
             var ok = true;
-            scicos_context.E = arguments[0]["scicos_context.E"];
-            scicos_context.W = arguments[0]["scicos_context.W"];
-            scicos_context.F = arguments[0]["scicos_context.F"];
-            scicos_context.A = arguments[0]["scicos_context.A"];
+            this.scicos_context.E = arguments[0]["scicos_context.E"];
+            this.scicos_context.W = arguments[0]["scicos_context.W"];
+            this.scicos_context.F = arguments[0]["scicos_context.F"];
+            this.scicos_context.A = arguments[0]["scicos_context.A"];
             if (!ok) {
                 return;
             }

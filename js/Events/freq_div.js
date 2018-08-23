@@ -112,8 +112,8 @@ function freq_div() {
     }
     freq_div.prototype.get = function freq_div() {
         var options = {
-            %ph:["Phase (0 to division factor -1)",%ph],
-            %df:["Division factor",%df],
+            %ph:["Phase (0 to division factor -1)",this.%ph],
+            %df:["Division factor",this.%df],
         }
         return options;
     }
@@ -136,8 +136,8 @@ function freq_div() {
         this.model = xx.model;
         while (true) {
             var ok = true;
-            %ph = parseFloat(arguments[0]["%ph"]);
-            %df = parseFloat(arguments[0]["%df"]);
+            this.%ph = parseFloat(arguments[0]["%ph"]);
+            this.%df = parseFloat(arguments[0]["%df"]);
             if (!ok) {
                 break;
             }

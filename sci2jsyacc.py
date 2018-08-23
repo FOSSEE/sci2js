@@ -414,6 +414,7 @@ def p_forstatement_for_start_step_end(p):
         endop = '>='
         stepop = '-='
     add_local_var(var)
+    var = print_var(var)
     p[0] = '%*sfor (%s=%s;%s%s%s;%s%s%s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, lstart, var, endop, lend, var, stepop, lstep)
     INDENT_LEVEL += 1
 
@@ -428,6 +429,7 @@ def p_forstatement_for_start_end(p):
     endop = '<='
     stepop = '+='
     add_local_var(var)
+    var = print_var(var)
     p[0] = '%*sfor (%s=%s;%s%s%s;%s%s%s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, lstart, var, endop, lend, var, stepop, lstep)
     INDENT_LEVEL += 1
 
@@ -437,7 +439,7 @@ def p_forstatement_for_list(p):
     global INDENT_LEVEL
     var = p[2]
     add_local_var(var)
-    p[0] = '%*sfor (%s in %s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, p[4])
+    p[0] = '%*sfor (%s in %s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', print_var(var), p[4])
     INDENT_LEVEL += 1
 
 def p_selectstatement_select(p):
@@ -551,9 +553,9 @@ def p_lterm_assignment_expression(p):
 def p_model_assignment_expression(p):
     '''assignment : GRAPHICS ASSIGNMENT expression EOL
                   | MODEL ASSIGNMENT expression EOL'''
-    p[0] = '%*sthis.%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[1], p[3][0])
     var = p[1]
     add_global_var(var)
+    p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', print_var(var), p[3][0])
     add_var_vartype(var, p[3][1])
 
 def p_modelvar_modelvar_var(p):
@@ -657,7 +659,7 @@ def p_getvalueassignment_getvalue_arguments(p):
     global OPTIONS_BLOCK
     var = 'ok'
     add_local_var(var)
-    p[0] = '%*svar %s = true;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var)
+    p[0] = '%*svar %s = true;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', print_var(var))
     lterm = p[1]
     if lterm[0] == '[':
         lterm = lterm[1:-1]
@@ -670,7 +672,8 @@ def p_getvalueassignment_getvalue_arguments(p):
                 basevar = var
             if basevar in ('ok', 'exprs'):
                 continue
-            add_global_var(var, force=True)
+            add_global_var(basevar, force=True)
+            var = print_var(basevar)
             vartype = VAR_TYPES.get(basevar, STRING_TYPE)
             parsefunction = PARSE_MAP.get(vartype, '')
             if parsefunction != '':
@@ -712,8 +715,11 @@ def p_getvaluearg2_gettext_string(p):
 def p_getvaluearg2_var(p):
     'getvaluearg2 : VAR'
     # TODO: replace with value of that variable
-    p[0] = '%s' % (p[1])
-    LABELS.append(p[0])
+    var = p[1]
+    add_global_var(var, force=True)
+    var = print_var(var)
+    p[0] = '%s' % (var)
+    LABELS.append(var)
 
 def p_getvaluearg2arraylist_arraylist_arraylistitem(p):
     '''getvaluearg2arraylist : getvaluearg2arraylist SEMICOLON getvaluearg2arraylistitem

@@ -3969,8 +3969,8 @@ function freq_div() {
     }
     freq_div.prototype.get = function freq_div() {
         var options = {
-            %ph:["Phase (0 to division factor -1)",%ph],
-            %df:["Division factor",%df],
+            %ph:["Phase (0 to division factor -1)",this.%ph],
+            %df:["Division factor",this.%df],
         }
         return options;
     }
@@ -3993,8 +3993,8 @@ function freq_div() {
         this.model = xx.model;
         while (true) {
             var ok = true;
-            %ph = parseFloat(arguments[0]["%ph"]);
-            %df = parseFloat(arguments[0]["%df"]);
+            this.%ph = parseFloat(arguments[0]["%ph"]);
+            this.%df = parseFloat(arguments[0]["%df"]);
             if (!ok) {
                 break;
             }
@@ -19661,7 +19661,7 @@ function GEN_SQR() {
     }
     GEN_SQR.prototype.get = function GEN_SQR() {
         var options = {
-            scicos_context.Amin:[Bitems,scicos_context.Amin],
+            scicos_context.Amin:[this.Bitems,this.scicos_context.Amin],
         }
         return options;
     }
@@ -19671,16 +19671,16 @@ function GEN_SQR() {
         this.exprs = this.graphics.exprs;
         var Btitre = "Set GEN_SQR parameters";
         var Exprs0 = [["Amin"],["Amax"],["rule"],["F"]];
-        var Bitems = [["Minimum Value"],["Maximum Value"],["Initial Value( 1= Minimum Value 2= Maximum Value)"],["Period (sec)"]];
+        this.Bitems = [["Minimum Value"],["Maximum Value"],["Initial Value( 1= Minimum Value 2= Maximum Value)"],["Period (sec)"]];
         var Ss = list("mat",[-1,-1],"mat",[-1,-1],"pol",-1,"pol",-1);
         var scicos_context = struct();
         var ok = false;
         while (!ok) {
             var ok = true;
-            scicos_context.Amin = arguments[0]["scicos_context.Amin"];
-            scicos_context.Amax = arguments[0]["scicos_context.Amax"];
-            scicos_context.rule = arguments[0]["scicos_context.rule"];
-            scicos_context.F = arguments[0]["scicos_context.F"];
+            this.scicos_context.Amin = arguments[0]["scicos_context.Amin"];
+            this.scicos_context.Amax = arguments[0]["scicos_context.Amax"];
+            this.scicos_context.rule = arguments[0]["scicos_context.rule"];
+            this.scicos_context.F = arguments[0]["scicos_context.F"];
             if (!ok) {
                 return;
             }
@@ -19976,7 +19976,7 @@ function PULSE_SC() {
     }
     PULSE_SC.prototype.get = function PULSE_SC() {
         var options = {
-            scicos_context.E:[Bitems,scicos_context.E],
+            scicos_context.E:[this.Bitems,this.scicos_context.E],
         }
         return options;
     }
@@ -19986,16 +19986,16 @@ function PULSE_SC() {
         this.exprs = this.graphics.exprs;
         var Btitre = "Set Pulse Generator parameters";
         var Exprs0 = [["E"],["W"],["F"],["A"]];
-        var Bitems = [["Phase delay (secs):"],["Pulse Width (% of period):"],["Period (secs):"],["Amplitude:"]];
+        this.Bitems = [["Phase delay (secs):"],["Pulse Width (% of period):"],["Period (secs):"],["Amplitude:"]];
         var Ss = list("pol",-1,"pol",-1,"pol",-1,"mat",[-1,-1]);
         var scicos_context = struct();
         var ok = false;
         while (!ok) {
             var ok = true;
-            scicos_context.E = arguments[0]["scicos_context.E"];
-            scicos_context.W = arguments[0]["scicos_context.W"];
-            scicos_context.F = arguments[0]["scicos_context.F"];
-            scicos_context.A = arguments[0]["scicos_context.A"];
+            this.scicos_context.E = arguments[0]["scicos_context.E"];
+            this.scicos_context.W = arguments[0]["scicos_context.W"];
+            this.scicos_context.F = arguments[0]["scicos_context.F"];
+            this.scicos_context.A = arguments[0]["scicos_context.A"];
             if (!ok) {
                 return;
             }

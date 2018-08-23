@@ -55,7 +55,7 @@ function GEN_SQR() {
     }
     GEN_SQR.prototype.get = function GEN_SQR() {
         var options = {
-            scicos_context.Amin:[Bitems,scicos_context.Amin],
+            scicos_context.Amin:[this.Bitems,this.scicos_context.Amin],
         }
         return options;
     }
@@ -65,16 +65,16 @@ function GEN_SQR() {
         this.exprs = this.graphics.exprs;
         var Btitre = "Set GEN_SQR parameters";
         var Exprs0 = [["Amin"],["Amax"],["rule"],["F"]];
-        var Bitems = [["Minimum Value"],["Maximum Value"],["Initial Value( 1= Minimum Value 2= Maximum Value)"],["Period (sec)"]];
+        this.Bitems = [["Minimum Value"],["Maximum Value"],["Initial Value( 1= Minimum Value 2= Maximum Value)"],["Period (sec)"]];
         var Ss = list("mat",[-1,-1],"mat",[-1,-1],"pol",-1,"pol",-1);
         var scicos_context = struct();
         var ok = false;
         while (!ok) {
             var ok = true;
-            scicos_context.Amin = arguments[0]["scicos_context.Amin"];
-            scicos_context.Amax = arguments[0]["scicos_context.Amax"];
-            scicos_context.rule = arguments[0]["scicos_context.rule"];
-            scicos_context.F = arguments[0]["scicos_context.F"];
+            this.scicos_context.Amin = arguments[0]["scicos_context.Amin"];
+            this.scicos_context.Amax = arguments[0]["scicos_context.Amax"];
+            this.scicos_context.rule = arguments[0]["scicos_context.rule"];
+            this.scicos_context.F = arguments[0]["scicos_context.F"];
             if (!ok) {
                 return;
             }
