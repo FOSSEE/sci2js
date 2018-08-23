@@ -8,6 +8,8 @@ Usage: ./sci2jsyacc.py filename.sci filename.pickle pass-number > filename.js
 Example: ./sci2jsyacc.py macros/Sinks/CSCOPE.sci js/Sinks/CSCOPE.pickle 2 > js/Sinks/CSCOPE.js
 """
 
+# import {{{
+
 from __future__ import print_function
 
 import re
@@ -17,6 +19,10 @@ import ply.yacc as yacc
 
 from sci2jslex import tokens, JOBTYPES
 from sci2jslex import BOOLEAN_TYPE, DOUBLE_TYPE, LIST_TYPE, MATRIX_TYPE, NULL_TYPE, OBJECT_TYPE, STRING_TYPE, VECTOR_TYPE, VECTOR_BOOLEAN_TYPE, VECTOR_STRING_TYPE
+
+# }}}
+
+# globals {{{
 
 precedence = (
     ('left', 'COLON'),
@@ -73,7 +79,26 @@ LABELS = []
 INDENT_LEVEL = 2
 INDENT_SIZE = 4
 
-# define functionblocks
+BLOCK_TYPE = {
+    'AFFICH_m': 'AfficheBlock',
+    'BIGSOM_f': 'BigSom',
+    'CLKINV_f': 'EventInBlock',
+    'CLKOUTV_f': 'EventOutBlock',
+    'Ground': 'GroundBlock',
+    'IN_f': 'ExplicitInBlock',
+    'INIMPL_f': 'ImplicitInBlock',
+    'OUT_f': 'ExplicitOutBlock',
+    'OUTIMPL_f': 'ImplicitOutBlock',
+    'PRODUCT': 'Product',
+    'SUMMATION': 'Summation',
+    'SUPER_f': 'SuperBlock',
+    'TEXT_f': 'TextBlock',
+    'VoltageSensor': 'VoltageSensorBlock',
+}
+
+# }}}
+
+# define functionblocks {{{
 
 def p_functionblocks_functionblocks_functionblock(p):
     'functionblocks : functionblocks functionblock'
@@ -83,9 +108,9 @@ def p_functionblocks_jobfunctionblock(p):
     'functionblocks : EOL jobfunctionblock'
     p[0] = '%s' % (p[2])
 
-# end functionblocks
+# }}}
 
-# define functionblock
+# define functionblock {{{
 
 OPTIONS_BLOCK = ''
 
@@ -157,9 +182,9 @@ def p_functionstatement_function_functionname(p):
     'functionstatement : FUNCTION lterm ASSIGNMENT FUNCTIONNAME OPENBRACKET CLOSEBRACKET EOL'
     p[0] = ''
 
-# end define functionblock
+# }}}
 
-# define statementblock
+# define statementblock {{{
 
 def p_statementblock_statementblock_statement(p):
     'statementblock : statementblock statement'
@@ -177,9 +202,9 @@ def p_jobsetstatementblock_jobsetstatement(p):
     'jobsetstatementblock : jobsetstatement'
     p[0] = '%s' % (p[1])
 
-# end define statementblock
+# }}}
 
-# define statement
+# define statement {{{
 
 def p_statement_assignment(p):
     '''statement : assignment
@@ -270,9 +295,9 @@ def p_jobsetstatement_whilestatementblocks(p):
     'jobsetstatement : whilestatementblocks'
     p[0] = '%s' % (p[1])
 
-# end define statement
+# }}}
 
-# define case, for, if, elseif, else, try, while statement block
+# define case, for, if, elseif, else, try, while statement block {{{
 
 def p_endstatementblock_endstatement(p):
     'endstatementblock : END EOL'
@@ -382,9 +407,9 @@ def p_whilestatementblock_whilestatement(p):
     'whilestatementblock : whilestatement statementblock'
     p[0] = '%s%s' % (p[1], p[2])
 
-# end define case, for, if, elseif, else, try, while statement block
+# }}}
 
-# define for, select, case, while, if, elseif, else
+# define for, select, case, while, if, elseif, else {{{
 
 def p_trystatement_try(p):
     'trystatement : TRY EOL'
@@ -515,9 +540,9 @@ def p_elsestatement_else(p):
     p[0] = '%*s} else {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ')
     INDENT_LEVEL += 1
 
-# end define for, select, case, while, if, elseif, else
+# }}}
 
-# define assignment
+# define assignment {{{
 
 VARCOUNT = 0
 
@@ -792,9 +817,9 @@ def p_standarddefinearg4_expression(p):
     value = p[1][0]
     p[0] = '%s' % (value)
 
-# end define assignment
+# }}}
 
-# define ltermarraylist
+# define ltermarraylist {{{
 
 def p_ltermarraylist_ltermarraylist_comma_ltermarraylisterm(p):
     'ltermarraylist : ltermarraylist COMMA ltermarraylistterm'
@@ -828,9 +853,9 @@ def p_ltermarraylistterm_prevar(p):
     'ltermarraylistterm : PREVAR'
     p[0] = '%s' % (p[1])
 
-# end define ltermarraylist
+# }}}
 
-# define termarraylist
+# define termarraylist {{{
 
 def p_termarrayarraylist_termarrayarraylist_semicolon_termarraylist(p):
     'termarrayarraylist : termarrayarraylist SEMICOLON termarraylist'
@@ -861,9 +886,9 @@ def p_termarraylist_expression_colon_expression(p):
     'termarraylist : expression COLON expression'
     p[0] = ('%s:%s' % (p[1][0], p[3][0]), p[1][1])
 
-# end define termarraylist
+# }}}
 
-# define list
+# define list {{{
 
 def p_list_list_expression(p):
     '''list : list COMMA expression
@@ -907,9 +932,9 @@ def p_getvaluelist_expression(p):
     'getvaluelist : expression'
     p[0] = '%s' % (p[1][0])
 
-# end define list
+# }}}
 
-# define expression
+# define expression {{{
 
 # (2+3)
 def p_expression_expression(p):
@@ -1005,9 +1030,9 @@ def p_expression_term(p):
     'expression : term'
     p[0] = p[1]
 
-# end define expression
+# }}}
 
-# define function
+# define function {{{
 
 # A(2,3)
 def p_function_function_parameters(p):
@@ -1043,9 +1068,9 @@ def p_clearvar_clearvar_var(p):
     'clearvar : clearvar VAR'
     p[0] = '%s%*s%s={};\n' % (p[1], INDENT_LEVEL * INDENT_SIZE, ' ', p[2])
 
-# end define function
+# }}}
 
-# define lterm
+# define lterm {{{
 
 # B(2:$-1)
 def p_lterm_lterm_slice(p):
@@ -1104,9 +1129,9 @@ def p_lterm_prevar(p):
     'lterm : PREVAR'
     p[0] = '%s' % (p[1])
 
-# end define lterm
+# }}}
 
-# define term
+# define term {{{
 
 # B(2:$-1)
 def p_termvar_termvar_slice(p):
@@ -1349,27 +1374,12 @@ def p_term_string(p):
             | DQSTRING'''
     p[0] = ('%s' % (p[1]), STRING_TYPE)
 
-# end define term
+# }}}
+
+# functions {{{
 
 def p_error(p):
     print("Syntax error in input", p)
-
-BLOCK_TYPE = {
-    'AFFICH_m': 'AfficheBlock',
-    'BIGSOM_f': 'BigSom',
-    'CLKINV_f': 'EventInBlock',
-    'CLKOUTV_f': 'EventOutBlock',
-    'Ground': 'GroundBlock',
-    'IN_f': 'ExplicitInBlock',
-    'INIMPL_f': 'ImplicitInBlock',
-    'OUT_f': 'ExplicitOutBlock',
-    'OUTIMPL_f': 'ImplicitOutBlock',
-    'PRODUCT': 'Product',
-    'SUMMATION': 'Summation',
-    'SUPER_f': 'SuperBlock',
-    'TEXT_f': 'TextBlock',
-    'VoltageSensor': 'VoltageSensorBlock',
-}
 
 def getblocktype(module):
     '''return a block type for a module'''
@@ -1504,6 +1514,10 @@ def processfile(filename, picklefilename, passnumber):
         print('/* autogenerated from "', filename, '" */', sep='')
         print(result)
 
+# }}}
+
+# main {{{
+
 if __name__ == '__main__':
     if len(sys.argv) > 10:
         regex1 = re.compile(r'.*/')
@@ -1520,3 +1534,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     processfile(sys.argv[1], sys.argv[2], int(sys.argv[3]))
+
+# }}}
+
+# vim:fdm=marker:

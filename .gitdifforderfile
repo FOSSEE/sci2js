@@ -1,0 +1,11 @@
+*.py
+.git*
+index.html
+LICENSE
+Makefile
+README*
+macros/*/*.sci
+parser.out
+js/*/*.js
+combined.js
+js/*/*.pickle
