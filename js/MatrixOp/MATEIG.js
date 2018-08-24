@@ -100,4 +100,8 @@ function MATEIG() {
         }
         return new BasicBlock(this.x);
     }
+    MATEIG.prototype.get_popup_title = function MATEIG() {
+        var set_param_popup_title = "Set MATEIG block parameters";
+        return set_param_popup_title;
+    }
 }

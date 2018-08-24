@@ -164,4 +164,8 @@ function CBLOCK() {
         }
         return new BasicBlock(this.x);
     }
+    CBLOCK.prototype.get_popup_title = function CBLOCK() {
+        var set_param_popup_title = "Set C-Block2 block parameters";
+        return set_param_popup_title;
+    }
 }

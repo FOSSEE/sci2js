@@ -99,4 +99,8 @@ function AFFICH_m() {
         }
         return new AfficheBlock(this.x);
     }
+    AFFICH_m.prototype.get_popup_title = function AFFICH_m() {
+        var set_param_popup_title = "Set  parameters";
+        return set_param_popup_title;
+    }
 }

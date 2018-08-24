@@ -51,4 +51,8 @@ function Capacitor() {
         }
         return new BasicBlock(this.x);
     }
+    Capacitor.prototype.get_popup_title = function Capacitor() {
+        var set_param_popup_title = "Set Capacitor block parameter";
+        return set_param_popup_title;
+    }
 }

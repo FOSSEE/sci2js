@@ -72,4 +72,8 @@ function MUX() {
         }
         return new BasicBlock(this.x);
     }
+    MUX.prototype.get_popup_title = function MUX() {
+        var set_param_popup_title = "Set MUX block parameters";
+        return set_param_popup_title;
+    }
 }

@@ -175,4 +175,8 @@ function LOOKUP_c() {
         }
         return new BasicBlock(this.x);
     }
+    LOOKUP_c.prototype.get_popup_title = function LOOKUP_c() {
+        var set_param_popup_title = "Lookup table parameters";
+        return set_param_popup_title;
+    }
 }

@@ -47,4 +47,8 @@ function CLKINV_f() {
         }
         return new EventInBlock(this.x);
     }
+    CLKINV_f.prototype.get_popup_title = function CLKINV_f() {
+        var set_param_popup_title = msprintf("Set %s block parameters","CLKINV_f");
+        return set_param_popup_title;
+    }
 }

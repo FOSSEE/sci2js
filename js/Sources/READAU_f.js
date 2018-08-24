@@ -92,4 +92,8 @@ function READAU_f() {
         }
         return new BasicBlock(this.x);
     }
+    READAU_f.prototype.get_popup_title = function READAU_f() {
+        var set_param_popup_title = msprintf("Set %s block parameters","READAU_f");
+        return set_param_popup_title;
+    }
 }

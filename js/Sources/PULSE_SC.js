@@ -102,4 +102,8 @@ function PULSE_SC() {
         }
         return new BasicBlock(this.x);
     }
+    PULSE_SC.prototype.get_popup_title = function PULSE_SC() {
+        var set_param_popup_title = Btitre;
+        return set_param_popup_title;
+    }
 }

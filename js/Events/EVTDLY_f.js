@@ -51,4 +51,8 @@ function EVTDLY_f() {
         }
         return new BasicBlock(this.x);
     }
+    EVTDLY_f.prototype.get_popup_title = function EVTDLY_f() {
+        var set_param_popup_title = "Set Event Delay  block parameters";
+        return set_param_popup_title;
+    }
 }

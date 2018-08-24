@@ -73,4 +73,8 @@ function WRITEAU_f() {
         }
         return new BasicBlock(this.x);
     }
+    WRITEAU_f.prototype.get_popup_title = function WRITEAU_f() {
+        var set_param_popup_title = msprintf("Set %s block parameters","WRITEAU_f");
+        return set_param_popup_title;
+    }
 }

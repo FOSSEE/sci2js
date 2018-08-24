@@ -75,4 +75,8 @@ function ISELECT_m() {
         }
         return new BasicBlock(this.x);
     }
+    ISELECT_m.prototype.get_popup_title = function ISELECT_m() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

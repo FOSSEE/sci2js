@@ -130,4 +130,8 @@ function SHIFT() {
         }
         return new BasicBlock(this.x);
     }
+    SHIFT.prototype.get_popup_title = function SHIFT() {
+        var set_param_popup_title = msprintf("Set %s block parameters","SHIFT");
+        return set_param_popup_title;
+    }
 }

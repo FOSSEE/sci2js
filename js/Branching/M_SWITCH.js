@@ -75,4 +75,8 @@ function M_SWITCH() {
         }
         return new BasicBlock(this.x);
     }
+    M_SWITCH.prototype.get_popup_title = function M_SWITCH() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

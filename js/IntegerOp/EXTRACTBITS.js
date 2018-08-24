@@ -240,4 +240,8 @@ function EXTRACTBITS() {
         }
         return new BasicBlock(this.x);
     }
+    EXTRACTBITS.prototype.get_popup_title = function EXTRACTBITS() {
+        var set_param_popup_title = msprintf("Set %s block parameters","EXTRACTBITS");
+        return set_param_popup_title;
+    }
 }

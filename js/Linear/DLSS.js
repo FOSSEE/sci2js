@@ -102,4 +102,8 @@ function DLSS() {
         }
         return new BasicBlock(this.x);
     }
+    DLSS.prototype.get_popup_title = function DLSS() {
+        var set_param_popup_title = "Set discrete linear system parameters";
+        return set_param_popup_title;
+    }
 }

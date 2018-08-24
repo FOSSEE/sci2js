@@ -104,4 +104,8 @@ function RELATIONALOP() {
         }
         return new BasicBlock(this.x);
     }
+    RELATIONALOP.prototype.get_popup_title = function RELATIONALOP() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

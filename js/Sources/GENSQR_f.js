@@ -46,4 +46,8 @@ function GENSQR_f() {
         }
         return new BasicBlock(this.x);
     }
+    GENSQR_f.prototype.get_popup_title = function GENSQR_f() {
+        var set_param_popup_title = "Set Square generator block parameters";
+        return set_param_popup_title;
+    }
 }

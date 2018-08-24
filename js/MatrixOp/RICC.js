@@ -64,4 +64,8 @@ function RICC() {
         }
         return new BasicBlock(this.x);
     }
+    RICC.prototype.get_popup_title = function RICC() {
+        var set_param_popup_title = "Set RICC Block";
+        return set_param_popup_title;
+    }
 }

@@ -55,4 +55,8 @@ function GAINBLK_f() {
         }
         return new BasicBlock(this.x);
     }
+    GAINBLK_f.prototype.get_popup_title = function GAINBLK_f() {
+        var set_param_popup_title = "Set gain block parameters";
+        return set_param_popup_title;
+    }
 }

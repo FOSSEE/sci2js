@@ -48,4 +48,8 @@ function Resistor() {
         }
         return new BasicBlock(this.x);
     }
+    Resistor.prototype.get_popup_title = function Resistor() {
+        var set_param_popup_title = "Set Resistor block parameter";
+        return set_param_popup_title;
+    }
 }

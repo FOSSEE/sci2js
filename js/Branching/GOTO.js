@@ -60,4 +60,8 @@ function GOTO() {
         needcompile = resume(needcompile)
         return new BasicBlock(this.x);
     }
+    GOTO.prototype.get_popup_title = function GOTO() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

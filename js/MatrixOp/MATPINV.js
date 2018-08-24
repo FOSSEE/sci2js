@@ -74,4 +74,8 @@ function MATPINV() {
         }
         return new BasicBlock(this.x);
     }
+    MATPINV.prototype.get_popup_title = function MATPINV() {
+        var set_param_popup_title = "Set MATPINV Block";
+        return set_param_popup_title;
+    }
 }

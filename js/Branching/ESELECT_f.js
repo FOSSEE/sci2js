@@ -77,4 +77,8 @@ function ESELECT_f() {
         }
         return new BasicBlock(this.x);
     }
+    ESELECT_f.prototype.get_popup_title = function ESELECT_f() {
+        var set_param_popup_title = "Set ESELECT block parameters";
+        return set_param_popup_title;
+    }
 }

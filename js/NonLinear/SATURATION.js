@@ -60,4 +60,8 @@ function SATURATION() {
         }
         return new BasicBlock(this.x);
     }
+    SATURATION.prototype.get_popup_title = function SATURATION() {
+        var set_param_popup_title = "Set Saturation parameters";
+        return set_param_popup_title;
+    }
 }

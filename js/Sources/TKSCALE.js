@@ -41,4 +41,8 @@ function TKSCALE() {
         }
         return new BasicBlock(this.x);
     }
+    TKSCALE.prototype.get_popup_title = function TKSCALE() {
+        var set_param_popup_title = "Set scale block parameters";
+        return set_param_popup_title;
+    }
 }

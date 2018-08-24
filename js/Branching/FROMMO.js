@@ -54,4 +54,8 @@ function FROMMO() {
         needcompile = resume(needcompile)
         return new BasicBlock(this.x);
     }
+    FROMMO.prototype.get_popup_title = function FROMMO() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

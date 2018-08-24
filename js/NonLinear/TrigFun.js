@@ -44,4 +44,8 @@ function TrigFun() {
         }
         return new BasicBlock(this.x);
     }
+    TrigFun.prototype.get_popup_title = function TrigFun() {
+        var set_param_popup_title = PREVAR_GG;
+        return set_param_popup_title;
+    }
 }

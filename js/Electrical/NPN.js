@@ -105,4 +105,8 @@ function NPN() {
         }
         return new BasicBlock(this.x);
     }
+    NPN.prototype.get_popup_title = function NPN() {
+        var set_param_popup_title = "Set NPN block parameters:";
+        return set_param_popup_title;
+    }
 }

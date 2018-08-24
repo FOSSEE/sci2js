@@ -63,4 +63,8 @@ function MEMORY_f() {
         }
         return new BasicBlock(this.x);
     }
+    MEMORY_f.prototype.get_popup_title = function MEMORY_f() {
+        var set_param_popup_title = "Set memory block parameters";
+        return set_param_popup_title;
+    }
 }

@@ -52,4 +52,8 @@ function RAMP() {
         }
         return new BasicBlock(this.x);
     }
+    RAMP.prototype.get_popup_title = function RAMP() {
+        var set_param_popup_title = msprintf("Set %s block parameters","RAMP");
+        return set_param_popup_title;
+    }
 }

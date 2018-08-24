@@ -200,4 +200,8 @@ function freq_div() {
         var typ = newpar;
         return new BasicBlock(this.x);
     }
+    freq_div.prototype.get_popup_title = function freq_div() {
+        var set_param_popup_title = "Set frequency division block parameters";
+        return set_param_popup_title;
+    }
 }

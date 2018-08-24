@@ -68,4 +68,8 @@ function TIME_DELAY() {
         }
         return new BasicBlock(this.x);
     }
+    TIME_DELAY.prototype.get_popup_title = function TIME_DELAY() {
+        var set_param_popup_title = "Set delay parameters";
+        return set_param_popup_title;
+    }
 }

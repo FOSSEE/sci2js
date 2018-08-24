@@ -56,4 +56,8 @@ function OUTIMPL_f() {
         }
         return new ImplicitOutBlock(this.x);
     }
+    OUTIMPL_f.prototype.get_popup_title = function OUTIMPL_f() {
+        var set_param_popup_title = msprintf("Set %s block parameters","OUTIMPL_f");
+        return set_param_popup_title;
+    }
 }

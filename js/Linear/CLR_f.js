@@ -84,4 +84,8 @@ function CLR_f() {
         }
         return new BasicBlock(this.x);
     }
+    CLR_f.prototype.get_popup_title = function CLR_f() {
+        var set_param_popup_title = "Set continuous SISO transfer parameters";
+        return set_param_popup_title;
+    }
 }

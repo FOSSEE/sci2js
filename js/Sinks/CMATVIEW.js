@@ -69,4 +69,8 @@ function CMATVIEW() {
         }
         return new BasicBlock(this.x);
     }
+    CMATVIEW.prototype.get_popup_title = function CMATVIEW() {
+        var set_param_popup_title = "Set Scope parameters";
+        return set_param_popup_title;
+    }
 }

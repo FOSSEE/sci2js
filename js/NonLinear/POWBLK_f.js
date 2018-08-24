@@ -50,4 +50,8 @@ function POWBLK_f() {
         }
         return new BasicBlock(this.x);
     }
+    POWBLK_f.prototype.get_popup_title = function POWBLK_f() {
+        var set_param_popup_title = "Set u^a block parameters";
+        return set_param_popup_title;
+    }
 }

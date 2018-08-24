@@ -53,4 +53,8 @@ function BACKLASH() {
         }
         return new BasicBlock(this.x);
     }
+    BACKLASH.prototype.get_popup_title = function BACKLASH() {
+        var set_param_popup_title = "Set backlash parameters";
+        return set_param_popup_title;
+    }
 }

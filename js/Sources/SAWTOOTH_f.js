@@ -22,4 +22,8 @@ function SAWTOOTH_f() {
     SAWTOOTH_f.prototype.set = function SAWTOOTH_f() {
         return new BasicBlock(this.x);
     }
+    SAWTOOTH_f.prototype.get_popup_title = function SAWTOOTH_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

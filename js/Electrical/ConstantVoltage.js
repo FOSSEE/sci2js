@@ -48,4 +48,8 @@ function ConstantVoltage() {
         }
         return new BasicBlock(this.x);
     }
+    ConstantVoltage.prototype.get_popup_title = function ConstantVoltage() {
+        var set_param_popup_title = "Set ConstantVoltage block parameter";
+        return set_param_popup_title;
+    }
 }

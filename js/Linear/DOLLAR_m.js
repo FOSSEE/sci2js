@@ -98,4 +98,8 @@ function DOLLAR_m() {
         }
         return new BasicBlock(this.x);
     }
+    DOLLAR_m.prototype.get_popup_title = function DOLLAR_m() {
+        var set_param_popup_title = "Set 1/z block parameters";
+        return set_param_popup_title;
+    }
 }

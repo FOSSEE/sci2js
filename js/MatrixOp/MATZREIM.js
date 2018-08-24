@@ -79,4 +79,8 @@ function MATZREIM() {
         }
         return new BasicBlock(this.x);
     }
+    MATZREIM.prototype.get_popup_title = function MATZREIM() {
+        var set_param_popup_title = "Set MATZREIM block parameters";
+        return set_param_popup_title;
+    }
 }

@@ -105,4 +105,8 @@ function PNP() {
         }
         return new BasicBlock(this.x);
     }
+    PNP.prototype.get_popup_title = function PNP() {
+        var set_param_popup_title = "Set PNP block parameters:";
+        return set_param_popup_title;
+    }
 }

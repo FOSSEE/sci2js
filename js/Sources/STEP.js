@@ -75,4 +75,8 @@ function STEP() {
         }
         return new BasicBlock(this.x);
     }
+    STEP.prototype.get_popup_title = function STEP() {
+        var set_param_popup_title = msprintf("Set %s block parameters","STEP_FUNCTION");
+        return set_param_popup_title;
+    }
 }

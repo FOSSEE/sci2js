@@ -106,4 +106,8 @@ function GEN_SQR() {
         }
         return new BasicBlock(this.x);
     }
+    GEN_SQR.prototype.get_popup_title = function GEN_SQR() {
+        var set_param_popup_title = Btitre;
+        return set_param_popup_title;
+    }
 }

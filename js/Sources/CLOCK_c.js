@@ -96,4 +96,8 @@ function CLOCK_c() {
         var typ = newpar;
         return new BasicBlock(this.x);
     }
+    CLOCK_c.prototype.get_popup_title = function CLOCK_c() {
+        var set_param_popup_title = msprintf("Set %s block parameters","CLOCK_c");
+        return set_param_popup_title;
+    }
 }

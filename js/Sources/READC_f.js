@@ -137,4 +137,8 @@ function READC_f() {
         }
         return new BasicBlock(this.x);
     }
+    READC_f.prototype.get_popup_title = function READC_f() {
+        var set_param_popup_title = msprintf("Set %s block parameters","READC_f");
+        return set_param_popup_title;
+    }
 }

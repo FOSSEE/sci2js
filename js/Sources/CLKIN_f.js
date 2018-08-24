@@ -47,4 +47,8 @@ function CLKIN_f() {
         }
         return new BasicBlock(this.x);
     }
+    CLKIN_f.prototype.get_popup_title = function CLKIN_f() {
+        var set_param_popup_title = "Set Event Input block parameters";
+        return set_param_popup_title;
+    }
 }

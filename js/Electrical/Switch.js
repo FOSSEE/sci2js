@@ -52,4 +52,8 @@ function Switch() {
         }
         return new BasicBlock(this.x);
     }
+    Switch.prototype.get_popup_title = function Switch() {
+        var set_param_popup_title = "Set non-ideal electrical switch parameters";
+        return set_param_popup_title;
+    }
 }

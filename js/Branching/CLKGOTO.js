@@ -57,4 +57,8 @@ function CLKGOTO() {
         needcompile = resume(needcompile)
         return new BasicBlock(this.x);
     }
+    CLKGOTO.prototype.get_popup_title = function CLKGOTO() {
+        var set_param_popup_title = "Set block parameters";
+        return set_param_popup_title;
+    }
 }

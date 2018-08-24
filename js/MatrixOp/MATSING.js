@@ -103,4 +103,8 @@ function MATSING() {
         }
         return new BasicBlock(this.x);
     }
+    MATSING.prototype.get_popup_title = function MATSING() {
+        var set_param_popup_title = "Set MATSVD block parameters";
+        return set_param_popup_title;
+    }
 }

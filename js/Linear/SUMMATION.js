@@ -150,4 +150,8 @@ function SUMMATION() {
         }
         return new Summation(this.x);
     }
+    SUMMATION.prototype.get_popup_title = function SUMMATION() {
+        var set_param_popup_title = "Set sum block parameters";
+        return set_param_popup_title;
+    }
 }

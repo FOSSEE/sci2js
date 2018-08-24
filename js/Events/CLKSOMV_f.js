@@ -21,4 +21,8 @@ function CLKSOMV_f() {
     CLKSOMV_f.prototype.set = function CLKSOMV_f() {
         return new RoundBlock(this.x);
     }
+    CLKSOMV_f.prototype.get_popup_title = function CLKSOMV_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

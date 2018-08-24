@@ -55,4 +55,8 @@ function ZCROSS_f() {
         }
         return new BasicBlock(this.x);
     }
+    ZCROSS_f.prototype.get_popup_title = function ZCROSS_f() {
+        var set_param_popup_title = "Set Zero-Crossing parameters";
+        return set_param_popup_title;
+    }
 }

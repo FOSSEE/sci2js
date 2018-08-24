@@ -99,4 +99,8 @@ function EXTTRI() {
         }
         return new BasicBlock(this.x);
     }
+    EXTTRI.prototype.get_popup_title = function EXTTRI() {
+        var set_param_popup_title = "Set EXTTRI block parameters";
+        return set_param_popup_title;
+    }
 }

@@ -74,4 +74,8 @@ function MATDET() {
         }
         return new BasicBlock(this.x);
     }
+    MATDET.prototype.get_popup_title = function MATDET() {
+        var set_param_popup_title = "Set MATDET Block";
+        return set_param_popup_title;
+    }
 }

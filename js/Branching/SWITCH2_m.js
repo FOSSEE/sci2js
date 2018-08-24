@@ -87,4 +87,8 @@ function SWITCH2_m() {
         }
         return new BasicBlock(this.x);
     }
+    SWITCH2_m.prototype.get_popup_title = function SWITCH2_m() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

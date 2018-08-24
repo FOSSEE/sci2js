@@ -47,4 +47,8 @@ function REGISTER_f() {
         }
         return new BasicBlock(this.x);
     }
+    REGISTER_f.prototype.get_popup_title = function REGISTER_f() {
+        var set_param_popup_title = "Set delay parameters";
+        return set_param_popup_title;
+    }
 }

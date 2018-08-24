@@ -67,4 +67,8 @@ function IFTHEL_f() {
         }
         return new BasicBlock(this.x);
     }
+    IFTHEL_f.prototype.get_popup_title = function IFTHEL_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

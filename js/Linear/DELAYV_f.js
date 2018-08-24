@@ -73,4 +73,8 @@ function DELAYV_f() {
         }
         return new BasicBlock(this.x);
     }
+    DELAYV_f.prototype.get_popup_title = function DELAYV_f() {
+        var set_param_popup_title = "Set delay parameters";
+        return set_param_popup_title;
+    }
 }

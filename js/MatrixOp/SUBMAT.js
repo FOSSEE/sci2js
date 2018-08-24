@@ -110,4 +110,8 @@ function SUBMAT() {
         }
         return new BasicBlock(this.x);
     }
+    SUBMAT.prototype.get_popup_title = function SUBMAT() {
+        var set_param_popup_title = "Set SUBMAT Block";
+        return set_param_popup_title;
+    }
 }

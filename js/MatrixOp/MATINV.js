@@ -74,4 +74,8 @@ function MATINV() {
         }
         return new BasicBlock(this.x);
     }
+    MATINV.prototype.get_popup_title = function MATINV() {
+        var set_param_popup_title = "Set MATINV Block";
+        return set_param_popup_title;
+    }
 }

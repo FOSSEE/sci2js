@@ -40,4 +40,8 @@ function EVTGEN_f() {
         }
         return new BasicBlock(this.x);
     }
+    EVTGEN_f.prototype.get_popup_title = function EVTGEN_f() {
+        var set_param_popup_title = "Set Event time";
+        return set_param_popup_title;
+    }
 }

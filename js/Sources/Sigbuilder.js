@@ -87,4 +87,8 @@ function Sigbuilder() {
         var typ = newpar;
         return new BasicBlock(this.x);
     }
+    Sigbuilder.prototype.get_popup_title = function Sigbuilder() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

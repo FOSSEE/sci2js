@@ -76,4 +76,8 @@ function Bache() {
         }
         return new BasicBlock(this.x);
     }
+    Bache.prototype.get_popup_title = function Bache() {
+        var set_param_popup_title = "Parametres de la bache";
+        return set_param_popup_title;
+    }
 }

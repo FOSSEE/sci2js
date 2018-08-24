@@ -52,4 +52,8 @@ function EXPBLK_m() {
         }
         return new BasicBlock(this.x);
     }
+    EXPBLK_m.prototype.get_popup_title = function EXPBLK_m() {
+        var set_param_popup_title = "Set a^u  block parameters";
+        return set_param_popup_title;
+    }
 }

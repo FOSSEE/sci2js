@@ -68,4 +68,8 @@ function MATTRAN() {
         }
         return new BasicBlock(this.x);
     }
+    MATTRAN.prototype.get_popup_title = function MATTRAN() {
+        var set_param_popup_title = "Set MATTRAN Block";
+        return set_param_popup_title;
+    }
 }

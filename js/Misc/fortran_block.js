@@ -79,4 +79,8 @@ function fortran_block() {
         }
         return new BasicBlock(this.x);
     }
+    fortran_block.prototype.get_popup_title = function fortran_block() {
+        var set_param_popup_title = "Set fortran_block parameters";
+        return set_param_popup_title;
+    }
 }

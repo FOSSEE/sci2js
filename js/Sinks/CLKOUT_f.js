@@ -47,4 +47,8 @@ function CLKOUT_f() {
         }
         return new BasicBlock(this.x);
     }
+    CLKOUT_f.prototype.get_popup_title = function CLKOUT_f() {
+        var set_param_popup_title = "Set Event Output block parameters";
+        return set_param_popup_title;
+    }
 }

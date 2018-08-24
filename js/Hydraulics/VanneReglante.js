@@ -53,4 +53,8 @@ function VanneReglante() {
         }
         return new BasicBlock(this.x);
     }
+    VanneReglante.prototype.get_popup_title = function VanneReglante() {
+        var set_param_popup_title = "Paramètres de la vanne reglante";
+        return set_param_popup_title;
+    }
 }

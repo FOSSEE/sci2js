@@ -74,4 +74,8 @@ function MATDIV() {
         }
         return new BasicBlock(this.x);
     }
+    MATDIV.prototype.get_popup_title = function MATDIV() {
+        var set_param_popup_title = "Set MATDIV Block";
+        return set_param_popup_title;
+    }
 }

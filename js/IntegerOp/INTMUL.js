@@ -113,4 +113,8 @@ function INTMUL() {
         }
         return new BasicBlock(this.x);
     }
+    INTMUL.prototype.get_popup_title = function INTMUL() {
+        var set_param_popup_title = msprintf("Set %s block parameters","INTMUL");
+        return set_param_popup_title;
+    }
 }

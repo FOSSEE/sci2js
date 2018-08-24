@@ -114,4 +114,8 @@ function CFSCOPE() {
         }
         return new BasicBlock(this.x);
     }
+    CFSCOPE.prototype.get_popup_title = function CFSCOPE() {
+        var set_param_popup_title = "Set Scope parameters";
+        return set_param_popup_title;
+    }
 }

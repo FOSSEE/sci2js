@@ -22,4 +22,8 @@ function INVBLK_f() {
     INVBLK_f.prototype.set = function INVBLK_f() {
         return new BasicBlock(this.x);
     }
+    INVBLK_f.prototype.get_popup_title = function INVBLK_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

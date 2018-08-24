@@ -116,4 +116,8 @@ function LOOKUP2D() {
         }
         return new BasicBlock(this.x);
     }
+    LOOKUP2D.prototype.get_popup_title = function LOOKUP2D() {
+        var set_param_popup_title = "2D Lookup table parameters";
+        return set_param_popup_title;
+    }
 }

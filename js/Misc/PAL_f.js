@@ -31,4 +31,8 @@ function PAL_f() {
         %exit = resume(false)
         return new BasicBlock(this.x);
     }
+    PAL_f.prototype.get_popup_title = function PAL_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

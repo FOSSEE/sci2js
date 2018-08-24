@@ -72,4 +72,8 @@ function PRODUCT() {
         }
         return new Product(this.x);
     }
+    PRODUCT.prototype.get_popup_title = function PRODUCT() {
+        var set_param_popup_title = "         Set multiplication block parameters";
+        return set_param_popup_title;
+    }
 }

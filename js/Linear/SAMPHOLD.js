@@ -23,4 +23,8 @@ function SAMPHOLD() {
         this.x.model.firing = [];
         return new BasicBlock(this.x);
     }
+    SAMPHOLD.prototype.get_popup_title = function SAMPHOLD() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

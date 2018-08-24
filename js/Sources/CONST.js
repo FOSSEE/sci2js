@@ -50,4 +50,8 @@ function CONST() {
         }
         return new BasicBlock(this.x);
     }
+    CONST.prototype.get_popup_title = function CONST() {
+        var set_param_popup_title = "Set Contant Block";
+        return set_param_popup_title;
+    }
 }

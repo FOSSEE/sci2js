@@ -57,4 +57,8 @@ function Diode() {
         }
         return new BasicBlock(this.x);
     }
+    Diode.prototype.get_popup_title = function Diode() {
+        var set_param_popup_title = "Set Diode block parameter";
+        return set_param_popup_title;
+    }
 }

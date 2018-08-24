@@ -131,4 +131,8 @@ function LOGICAL_OP() {
         }
         return new BasicBlock(this.x);
     }
+    LOGICAL_OP.prototype.get_popup_title = function LOGICAL_OP() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

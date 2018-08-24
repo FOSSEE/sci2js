@@ -65,4 +65,8 @@ function PerteDP() {
         }
         return new BasicBlock(this.x);
     }
+    PerteDP.prototype.get_popup_title = function PerteDP() {
+        var set_param_popup_title = "Parametres du tuyau";
+        return set_param_popup_title;
+    }
 }

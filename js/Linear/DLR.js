@@ -83,4 +83,8 @@ function DLR() {
         this.x.model.firing = [];
         return new BasicBlock(this.x);
     }
+    DLR.prototype.get_popup_title = function DLR() {
+        var set_param_popup_title = "Set discrete SISO transfer parameters";
+        return set_param_popup_title;
+    }
 }

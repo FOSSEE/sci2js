@@ -104,4 +104,8 @@ function MATSUM() {
         }
         return new BasicBlock(this.x);
     }
+    MATSUM.prototype.get_popup_title = function MATSUM() {
+        var set_param_popup_title = "Set MATSUM block parameters";
+        return set_param_popup_title;
+    }
 }

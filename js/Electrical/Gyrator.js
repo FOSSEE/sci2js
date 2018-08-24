@@ -75,4 +75,8 @@ function Gyrator() {
         }
         return new BasicBlock(this.x);
     }
+    Gyrator.prototype.get_popup_title = function Gyrator() {
+        var set_param_popup_title = "Set Gyrator block parameters:";
+        return set_param_popup_title;
+    }
 }

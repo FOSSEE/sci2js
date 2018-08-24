@@ -163,4 +163,8 @@ function MATMUL() {
         }
         return new BasicBlock(this.x);
     }
+    MATMUL.prototype.get_popup_title = function MATMUL() {
+        var set_param_popup_title = "Set MATMUL parameter";
+        return set_param_popup_title;
+    }
 }

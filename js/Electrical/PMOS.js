@@ -70,4 +70,8 @@ function PMOS() {
         }
         return new BasicBlock(this.x);
     }
+    PMOS.prototype.get_popup_title = function PMOS() {
+        var set_param_popup_title = "Set PMOS Transistor parameters";
+        return set_param_popup_title;
+    }
 }

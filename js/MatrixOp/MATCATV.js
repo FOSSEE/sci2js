@@ -65,4 +65,8 @@ function MATCATV() {
         }
         return new BasicBlock(this.x);
     }
+    MATCATV.prototype.get_popup_title = function MATCATV() {
+        var set_param_popup_title = "Set MATCATV block parameters";
+        return set_param_popup_title;
+    }
 }

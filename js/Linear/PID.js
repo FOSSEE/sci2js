@@ -115,4 +115,8 @@ function PID() {
         var typ = newpar;
         return new BasicBlock(this.x);
     }
+    PID.prototype.get_popup_title = function PID() {
+        var set_param_popup_title = "Set PID parameters";
+        return set_param_popup_title;
+    }
 }

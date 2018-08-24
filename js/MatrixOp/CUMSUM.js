@@ -102,4 +102,8 @@ function CUMSUM() {
         }
         return new BasicBlock(this.x);
     }
+    CUMSUM.prototype.get_popup_title = function CUMSUM() {
+        var set_param_popup_title = "Set CUMSUM block parameters";
+        return set_param_popup_title;
+    }
 }

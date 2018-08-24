@@ -125,4 +125,8 @@ function CSCOPXY() {
         }
         return new BasicBlock(this.x);
     }
+    CSCOPXY.prototype.get_popup_title = function CSCOPXY() {
+        var set_param_popup_title = "Set Scope parameters";
+        return set_param_popup_title;
+    }
 }

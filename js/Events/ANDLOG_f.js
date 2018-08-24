@@ -21,4 +21,8 @@ function ANDLOG_f() {
     ANDLOG_f.prototype.set = function ANDLOG_f() {
         return new BasicBlock(this.x);
     }
+    ANDLOG_f.prototype.get_popup_title = function ANDLOG_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

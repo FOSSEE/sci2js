@@ -45,4 +45,8 @@ function MFCLCK_f() {
         }
         return new BasicBlock(this.x);
     }
+    MFCLCK_f.prototype.get_popup_title = function MFCLCK_f() {
+        var set_param_popup_title = "Set Multifrequency clock parameters";
+        return set_param_popup_title;
+    }
 }

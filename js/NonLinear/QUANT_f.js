@@ -60,4 +60,8 @@ function QUANT_f() {
         }
         return new BasicBlock(this.x);
     }
+    QUANT_f.prototype.get_popup_title = function QUANT_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

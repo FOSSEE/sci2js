@@ -48,4 +48,8 @@ function ABS_VALUE() {
         }
         return new BasicBlock(this.x);
     }
+    ABS_VALUE.prototype.get_popup_title = function ABS_VALUE() {
+        var set_param_popup_title = "Set block parameters";
+        return set_param_popup_title;
+    }
 }

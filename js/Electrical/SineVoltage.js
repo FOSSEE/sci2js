@@ -60,4 +60,8 @@ function SineVoltage() {
         }
         return new BasicBlock(this.x);
     }
+    SineVoltage.prototype.get_popup_title = function SineVoltage() {
+        var set_param_popup_title = "Set voltage source parameter";
+        return set_param_popup_title;
+    }
 }

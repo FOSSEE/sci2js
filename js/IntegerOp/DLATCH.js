@@ -46,4 +46,8 @@ function DLATCH() {
     DLATCH.prototype.set = function DLATCH() {
         return new BasicBlock(this.x);
     }
+    DLATCH.prototype.get_popup_title = function DLATCH() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

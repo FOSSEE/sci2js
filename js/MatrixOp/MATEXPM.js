@@ -74,4 +74,8 @@ function MATEXPM() {
         }
         return new BasicBlock(this.x);
     }
+    MATEXPM.prototype.get_popup_title = function MATEXPM() {
+        var set_param_popup_title = "Set EXPM Block";
+        return set_param_popup_title;
+    }
 }

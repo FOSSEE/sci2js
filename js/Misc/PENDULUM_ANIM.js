@@ -78,4 +78,8 @@ function PENDULUM_ANIM() {
         }
         return new BasicBlock(this.x);
     }
+    PENDULUM_ANIM.prototype.get_popup_title = function PENDULUM_ANIM() {
+        var set_param_popup_title = "Set Scope parameters";
+        return set_param_popup_title;
+    }
 }

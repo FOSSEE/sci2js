@@ -74,4 +74,8 @@ function TEXT_f() {
         }
         return new TextBlock(this.x);
     }
+    TEXT_f.prototype.get_popup_title = function TEXT_f() {
+        var set_param_popup_title = "Set Text block parameters";
+        return set_param_popup_title;
+    }
 }

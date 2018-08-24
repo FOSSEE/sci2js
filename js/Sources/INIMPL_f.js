@@ -56,4 +56,8 @@ function INIMPL_f() {
         }
         return new ImplicitInBlock(this.x);
     }
+    INIMPL_f.prototype.get_popup_title = function INIMPL_f() {
+        var set_param_popup_title = msprintf("Set %s block parameters","INIMPL_f");
+        return set_param_popup_title;
+    }
 }

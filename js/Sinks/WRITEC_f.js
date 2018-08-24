@@ -103,4 +103,8 @@ function WRITEC_f() {
         }
         return new BasicBlock(this.x);
     }
+    WRITEC_f.prototype.get_popup_title = function WRITEC_f() {
+        var set_param_popup_title = msprintf("Set %s block parameters","WRITEC_f");
+        return set_param_popup_title;
+    }
 }

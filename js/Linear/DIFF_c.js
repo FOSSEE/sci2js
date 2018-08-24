@@ -60,4 +60,8 @@ function DIFF_c() {
         this.x.model.firing = [];
         return new BasicBlock(this.x);
     }
+    DIFF_c.prototype.get_popup_title = function DIFF_c() {
+        var set_param_popup_title = "Set continuous linear system parameters";
+        return set_param_popup_title;
+    }
 }

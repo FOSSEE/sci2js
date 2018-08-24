@@ -82,4 +82,8 @@ function FROMWS_c() {
         }
         return new BasicBlock(this.x);
     }
+    FROMWS_c.prototype.get_popup_title = function FROMWS_c() {
+        var set_param_popup_title = "Set From_Workspace block parameters";
+        return set_param_popup_title;
+    }
 }

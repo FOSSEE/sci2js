@@ -51,4 +51,8 @@ function VsourceAC() {
         }
         return new BasicBlock(this.x);
     }
+    VsourceAC.prototype.get_popup_title = function VsourceAC() {
+        var set_param_popup_title = "Set voltage source parameter";
+        return set_param_popup_title;
+    }
 }

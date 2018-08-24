@@ -73,4 +73,8 @@ function DEMUX() {
         }
         return new BasicBlock(this.x);
     }
+    DEMUX.prototype.get_popup_title = function DEMUX() {
+        var set_param_popup_title = "Set DEMUX block parameters";
+        return set_param_popup_title;
+    }
 }

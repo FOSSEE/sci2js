@@ -133,4 +133,8 @@ function DELAY_f() {
         var typ = newpar;
         return new BasicBlock(this.x);
     }
+    DELAY_f.prototype.get_popup_title = function DELAY_f() {
+        var set_param_popup_title = "This block implements as a discretized delay";
+        return set_param_popup_title;
+    }
 }

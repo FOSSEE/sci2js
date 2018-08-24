@@ -76,4 +76,8 @@ function ROOTCOEF() {
         }
         return new BasicBlock(this.x);
     }
+    ROOTCOEF.prototype.get_popup_title = function ROOTCOEF() {
+        var set_param_popup_title = "Set ROOTCOEF Block";
+        return set_param_popup_title;
+    }
 }

@@ -60,4 +60,8 @@ function DEADBAND() {
         }
         return new BasicBlock(this.x);
     }
+    DEADBAND.prototype.get_popup_title = function DEADBAND() {
+        var set_param_popup_title = "Set Deadband parameters";
+        return set_param_popup_title;
+    }
 }

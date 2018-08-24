@@ -44,6 +44,10 @@ function CLKOUTV_f() {
         }
         return new EventOutBlock(this.x);
     }
+    CLKOUTV_f.prototype.get_popup_title = function CLKOUTV_f() {
+        var set_param_popup_title = msprintf("Set %s block parameters","CLKOUTV_f");
+        return set_param_popup_title;
+    }
     CLKOUTV_f.prototype.getinputs = function CLKOUTV_f() {
         this.x = orig[1-1]+sz[1-1]/2;
         var y = orig[2-1]+sz[2-1];

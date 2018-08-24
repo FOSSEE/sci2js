@@ -80,4 +80,8 @@ function ENDBLK() {
         var typ = newpar;
         return new BasicBlock(this.x);
     }
+    ENDBLK.prototype.get_popup_title = function ENDBLK() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

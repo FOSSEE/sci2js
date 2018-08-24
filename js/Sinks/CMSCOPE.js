@@ -152,4 +152,8 @@ function CMSCOPE() {
         }
         return new BasicBlock(this.x);
     }
+    CMSCOPE.prototype.get_popup_title = function CMSCOPE() {
+        var set_param_popup_title = "Set Scope parameters";
+        return set_param_popup_title;
+    }
 }

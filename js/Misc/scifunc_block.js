@@ -117,4 +117,8 @@ function scifunc_block() {
         needcompile = resume(needcompile)
         return new BasicBlock(this.x);
     }
+    scifunc_block.prototype.get_popup_title = function scifunc_block() {
+        var set_param_popup_title = "Set scifunc_block parameters";
+        return set_param_popup_title;
+    }
 }

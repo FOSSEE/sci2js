@@ -109,4 +109,8 @@ function MATRESH() {
         needcompile = resume(needcompile)
         return new BasicBlock(this.x);
     }
+    MATRESH.prototype.get_popup_title = function MATRESH() {
+        var set_param_popup_title = "Set MATRESH block parameters";
+        return set_param_popup_title;
+    }
 }

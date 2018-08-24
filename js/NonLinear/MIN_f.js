@@ -23,4 +23,8 @@ function MIN_f() {
     MIN_f.prototype.set = function MIN_f() {
         return new BasicBlock(this.x);
     }
+    MIN_f.prototype.get_popup_title = function MIN_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

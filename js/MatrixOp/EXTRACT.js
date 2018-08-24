@@ -102,4 +102,8 @@ function EXTRACT() {
         }
         return new BasicBlock(this.x);
     }
+    EXTRACT.prototype.get_popup_title = function EXTRACT() {
+        var set_param_popup_title = "Set EXTRACT Block";
+        return set_param_popup_title;
+    }
 }

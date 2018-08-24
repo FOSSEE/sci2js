@@ -81,4 +81,8 @@ function MAXMIN() {
         }
         return new BasicBlock(this.x);
     }
+    MAXMIN.prototype.get_popup_title = function MAXMIN() {
+        var set_param_popup_title = "Set Max/Min block parameters";
+        return set_param_popup_title;
+    }
 }

@@ -137,4 +137,8 @@ function AUTOMAT() {
         }
         return new BasicBlock(this.x);
     }
+    AUTOMAT.prototype.get_popup_title = function AUTOMAT() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

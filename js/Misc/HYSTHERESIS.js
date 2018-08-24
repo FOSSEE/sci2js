@@ -61,4 +61,8 @@ function HYSTHERESIS() {
         }
         return new BasicBlock(this.x);
     }
+    HYSTHERESIS.prototype.get_popup_title = function HYSTHERESIS() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

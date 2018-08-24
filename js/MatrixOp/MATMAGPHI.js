@@ -79,4 +79,8 @@ function MATMAGPHI() {
         }
         return new BasicBlock(this.x);
     }
+    MATMAGPHI.prototype.get_popup_title = function MATMAGPHI() {
+        var set_param_popup_title = "Set MATMAGPHI block parameters";
+        return set_param_popup_title;
+    }
 }

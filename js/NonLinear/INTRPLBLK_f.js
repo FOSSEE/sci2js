@@ -52,4 +52,8 @@ function INTRPLBLK_f() {
         }
         return new BasicBlock(this.x);
     }
+    INTRPLBLK_f.prototype.get_popup_title = function INTRPLBLK_f() {
+        var set_param_popup_title = "Set Interpolation block parameters";
+        return set_param_popup_title;
+    }
 }

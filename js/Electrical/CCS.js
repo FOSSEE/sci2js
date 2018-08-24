@@ -59,4 +59,8 @@ function CCS() {
         var exprs = this.graphics.exprs;
         return new BasicBlock(this.x);
     }
+    CCS.prototype.get_popup_title = function CCS() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

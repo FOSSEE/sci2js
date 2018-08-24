@@ -77,4 +77,8 @@ function CONST_m() {
         }
         return new BasicBlock(this.x);
     }
+    CONST_m.prototype.get_popup_title = function CONST_m() {
+        var set_param_popup_title = msprintf("Set %s block parameters","CONST_m");
+        return set_param_popup_title;
+    }
 }

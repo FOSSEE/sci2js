@@ -130,4 +130,8 @@ function BOUNCE() {
         }
         return new BasicBlock(this.x);
     }
+    BOUNCE.prototype.get_popup_title = function BOUNCE() {
+        var set_param_popup_title = "Set Bounce Block";
+        return set_param_popup_title;
+    }
 }

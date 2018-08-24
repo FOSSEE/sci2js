@@ -49,4 +49,8 @@ function RATELIMITER() {
         }
         return new BasicBlock(this.x);
     }
+    RATELIMITER.prototype.get_popup_title = function RATELIMITER() {
+        var set_param_popup_title = "Set rate limiter parameters";
+        return set_param_popup_title;
+    }
 }

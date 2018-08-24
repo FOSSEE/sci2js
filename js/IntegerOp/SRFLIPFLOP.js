@@ -79,4 +79,8 @@ function SRFLIPFLOP() {
         var typ = newpar;
         return new BasicBlock(this.x);
     }
+    SRFLIPFLOP.prototype.get_popup_title = function SRFLIPFLOP() {
+        var set_param_popup_title = msprintf("Set %s block parameters","SRFLIPFLOP");
+        return set_param_popup_title;
+    }
 }

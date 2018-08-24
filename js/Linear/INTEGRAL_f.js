@@ -40,4 +40,8 @@ function INTEGRAL_f() {
         this.x.model.firing = [];
         return new BasicBlock(this.x);
     }
+    INTEGRAL_f.prototype.get_popup_title = function INTEGRAL_f() {
+        var set_param_popup_title = "Set continuous linear system parameters";
+        return set_param_popup_title;
+    }
 }

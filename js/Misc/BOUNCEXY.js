@@ -110,4 +110,8 @@ function BOUNCEXY() {
         }
         return new BasicBlock(this.x);
     }
+    BOUNCEXY.prototype.get_popup_title = function BOUNCEXY() {
+        var set_param_popup_title = "Set Scope parameters";
+        return set_param_popup_title;
+    }
 }

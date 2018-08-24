@@ -23,4 +23,8 @@ function MAX_f() {
     MAX_f.prototype.set = function MAX_f() {
         return new BasicBlock(this.x);
     }
+    MAX_f.prototype.get_popup_title = function MAX_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

@@ -93,4 +93,8 @@ function BITCLEAR() {
         }
         return new BasicBlock(this.x);
     }
+    BITCLEAR.prototype.get_popup_title = function BITCLEAR() {
+        var set_param_popup_title = msprintf("Set %s block parameters","BITCLEAR");
+        return set_param_popup_title;
+    }
 }

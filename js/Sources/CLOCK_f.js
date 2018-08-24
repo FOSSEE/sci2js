@@ -97,4 +97,8 @@ function CLOCK_f() {
         var typ = newpar;
         return new BasicBlock(this.x);
     }
+    CLOCK_f.prototype.get_popup_title = function CLOCK_f() {
+        var set_param_popup_title = "Set Clock  block parameters";
+        return set_param_popup_title;
+    }
 }

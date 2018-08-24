@@ -44,4 +44,8 @@ function NRMSOM_f() {
         }
         return new BasicBlock(this.x);
     }
+    NRMSOM_f.prototype.get_popup_title = function NRMSOM_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

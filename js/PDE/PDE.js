@@ -210,4 +210,8 @@ function PDE() {
         }
         return new BasicBlock(this.x);
     }
+    PDE.prototype.get_popup_title = function PDE() {
+        var set_param_popup_title = "PLEASE, GIVE US THE BLOCK\'s NAME. ";
+        return set_param_popup_title;
+    }
 }

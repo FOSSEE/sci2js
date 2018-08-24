@@ -74,4 +74,8 @@ function DLRADAPT_f() {
         }
         return new BasicBlock(this.x);
     }
+    DLRADAPT_f.prototype.get_popup_title = function DLRADAPT_f() {
+        var set_param_popup_title = "Set block parameters";
+        return set_param_popup_title;
+    }
 }

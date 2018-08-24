@@ -57,4 +57,8 @@ function SAT_f() {
         }
         return new BasicBlock(this.x);
     }
+    SAT_f.prototype.get_popup_title = function SAT_f() {
+        var set_param_popup_title = "Set Saturation parameters";
+        return set_param_popup_title;
+    }
 }

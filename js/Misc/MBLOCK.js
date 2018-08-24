@@ -296,4 +296,8 @@ function MBLOCK() {
         }
         return new BasicBlock(this.x);
     }
+    MBLOCK.prototype.get_popup_title = function MBLOCK() {
+        var set_param_popup_title = "Set Modelica generic block parameters";
+        return set_param_popup_title;
+    }
 }

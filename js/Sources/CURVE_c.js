@@ -163,4 +163,8 @@ function CURVE_c() {
         }
         return new BasicBlock(this.x);
     }
+    CURVE_c.prototype.get_popup_title = function CURVE_c() {
+        var set_param_popup_title = "Spline data";
+        return set_param_popup_title;
+    }
 }

@@ -119,4 +119,8 @@ function RFILE_f() {
         }
         return new BasicBlock(this.x);
     }
+    RFILE_f.prototype.get_popup_title = function RFILE_f() {
+        var set_param_popup_title = msprintf("Set %s block parameters","RFILE_f");
+        return set_param_popup_title;
+    }
 }

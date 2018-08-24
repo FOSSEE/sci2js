@@ -16,4 +16,8 @@ function DEBUG_SCICOS() {
         var typ = tmpvar0[2];
         return new BasicBlock(this.x);
     }
+    DEBUG_SCICOS.prototype.get_popup_title = function DEBUG_SCICOS() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

@@ -51,4 +51,8 @@ function SCALAR2VECTOR() {
         }
         return new BasicBlock(this.x);
     }
+    SCALAR2VECTOR.prototype.get_popup_title = function SCALAR2VECTOR() {
+        var set_param_popup_title = "Set block parameters";
+        return set_param_popup_title;
+    }
 }

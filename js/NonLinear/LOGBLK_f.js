@@ -50,4 +50,8 @@ function LOGBLK_f() {
         }
         return new BasicBlock(this.x);
     }
+    LOGBLK_f.prototype.get_popup_title = function LOGBLK_f() {
+        var set_param_popup_title = "Set log block parameters";
+        return set_param_popup_title;
+    }
 }

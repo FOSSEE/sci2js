@@ -77,4 +77,8 @@ function CMAT3D() {
         }
         return new BasicBlock(this.x);
     }
+    CMAT3D.prototype.get_popup_title = function CMAT3D() {
+        var set_param_popup_title = "Set Scope parameters";
+        return set_param_popup_title;
+    }
 }

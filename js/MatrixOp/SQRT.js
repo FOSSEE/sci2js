@@ -59,4 +59,8 @@ function SQRT() {
         }
         return new BasicBlock(this.x);
     }
+    SQRT.prototype.get_popup_title = function SQRT() {
+        var set_param_popup_title = "Set SQRT Block";
+        return set_param_popup_title;
+    }
 }

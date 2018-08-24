@@ -95,4 +95,8 @@ function JKFLIPFLOP() {
         var typ = newpar;
         return new BasicBlock(this.x);
     }
+    JKFLIPFLOP.prototype.get_popup_title = function JKFLIPFLOP() {
+        var set_param_popup_title = msprintf("Set %s block parameters","JKFLIPFLOP");
+        return set_param_popup_title;
+    }
 }

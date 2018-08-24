@@ -49,4 +49,8 @@ function OUT_f() {
         }
         return new ExplicitOutBlock(this.x);
     }
+    OUT_f.prototype.get_popup_title = function OUT_f() {
+        var set_param_popup_title = msprintf("Set %s block parameters","OUT_f");
+        return set_param_popup_title;
+    }
 }

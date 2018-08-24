@@ -136,6 +136,7 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     jgetoutputs = JOB_BLOCKS['"getoutputs"']
     jplot = JOB_BLOCKS['"plot"']
     jset = JOB_BLOCKS['"set"']
+    jtitle = JOB_BLOCKS['"title"']
 
     jdefine = '%s%s.prototype.define = function %s() {\n%s%sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, jdefine, indent2, blocktype, indent)
     jdetails = '%s%s.prototype.details = function %s() {\n%sreturn this.x;\n%s}\n' % (indent, fname, fname, indent2, indent)
@@ -149,9 +150,10 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     if jplot != '':
         jplot = '%s%s.prototype.plot = function %s() {\n%s%s}\n' % (indent, fname, fname, jplot, indent)
     jset = '%s%s.prototype.set = function %s() {\n%s%sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, jset, indent2, blocktype, indent)
+    jtitle = '%s%s.prototype.get_popup_title = function %s() {\n%svar set_param_popup_title = %s;\n%sreturn set_param_popup_title;\n%s}\n' % (indent, fname, fname, indent2, jtitle, indent2, indent)
 
     INDENT_LEVEL -= 1
-    p[0] = 'function %s() {\n%s%s%s%s%s%s%s%s}' % (fname, jdefine, jdetails, jget, jset, jgetinputs, jgetorigin, jgetoutputs, jplot)
+    p[0] = 'function %s() {\n%s%s%s%s%s%s%s%s%s}' % (fname, jdefine, jdetails, jget, jset, jtitle, jgetinputs, jgetorigin, jgetoutputs, jplot)
 
 def p_functionblock_functionstatement_statementblock_endfunction(p):
     'functionblock : functionstatement statementblock ENDFUNCTION EOL'
@@ -479,6 +481,7 @@ def p_selectstatement_select(p):
 def p_selectjobstatement_select(p):
     'selectjobstatement : SELECT JOB EOL'
     JOB_BLOCKS['"get"'] = ''
+    JOB_BLOCKS['"title"'] = '"Set parameters"'
     for t in JOBTYPES:
         JOB_BLOCKS[t] = ''
     p[0] = ''
@@ -727,6 +730,10 @@ def p_getvaluearguments_arg1_arg2_arg3_arg4(p):
 def p_getvaluearg1_expression(p):
     'getvaluearg1 : expression'
     p[0] = '%s' % (p[1][0])
+    if p[1][1] in ( VECTOR_TYPE, VECTOR_BOOLEAN_TYPE, VECTOR_STRING_TYPE, MATRIX_TYPE ) and len(LAST_ARRAY) > 0:
+        JOB_BLOCKS['"title"'] = LAST_ARRAY[0]
+    else:
+        JOB_BLOCKS['"title"'] = p[1][0]
 
 def p_getvaluearg2_list(p):
     '''getvaluearg2 : OPENSQBRACKET getvaluearg2arraylist CLOSESQBRACKET
@@ -876,18 +883,14 @@ def p_ltermarraylistterm_prevar(p):
 def p_termarrayarraylist_termarrayarraylist_semicolon_termarraylist(p):
     'termarrayarraylist : termarrayarraylist SEMICOLON termarraylist'
     p[0] = ('%s,[%s]' % (p[1][0], p[3][0]), p[1][1])
-    LAST_ARRAY.append(p[3][0])
 
 def p_termarrayarraylist_termarraylist_semicolon_termarraylist(p):
     'termarrayarraylist : termarraylist SEMICOLON termarraylist'
     p[0] = ('[%s],[%s]' % (p[1][0], p[3][0]), p[1][1])
-    LAST_ARRAY.append(p[1][0])
-    LAST_ARRAY.append(p[3][0])
 
 def p_termarrayarraylist_termarraylist_semicolon(p):
     'termarrayarraylist : termarraylist SEMICOLON'
     p[0] = ('[%s]' % (p[1][0]), p[1][1])
-    LAST_ARRAY.append(p[1][0])
 
 def p_termarraylist_termarraylist_comma_expression(p):
     '''termarraylist : termarraylist COMMA expression
@@ -897,10 +900,12 @@ def p_termarraylist_termarraylist_comma_expression(p):
     else:
         vartype = DOUBLE_TYPE
     p[0] = ('%s,%s' % (p[1][0], p[3][0]), vartype)
+    LAST_ARRAY.append(p[3][0])
 
 def p_termarraylist_expression(p):
     'termarraylist : expression'
     p[0] = ('%s' % (p[1][0]), p[1][1])
+    LAST_ARRAY.append(p[1][0])
 
 def p_termarraylist_expression_colon_expression(p):
     'termarraylist : expression COLON expression'

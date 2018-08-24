@@ -48,4 +48,8 @@ function SIGNUM() {
         }
         return new BasicBlock(this.x);
     }
+    SIGNUM.prototype.get_popup_title = function SIGNUM() {
+        var set_param_popup_title = "Set block parameters";
+        return set_param_popup_title;
+    }
 }

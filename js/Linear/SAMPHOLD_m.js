@@ -54,4 +54,8 @@ function SAMPHOLD_m() {
         }
         return new BasicBlock(this.x);
     }
+    SAMPHOLD_m.prototype.get_popup_title = function SAMPHOLD_m() {
+        var set_param_popup_title = "Set parameters Block";
+        return set_param_popup_title;
+    }
 }

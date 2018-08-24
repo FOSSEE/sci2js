@@ -56,4 +56,8 @@ function SourceP() {
         }
         return new BasicBlock(this.x);
     }
+    SourceP.prototype.get_popup_title = function SourceP() {
+        var set_param_popup_title = "Paramètres du puits";
+        return set_param_popup_title;
+    }
 }

@@ -73,4 +73,8 @@ function LOGIC() {
         }
         return new BasicBlock(this.x);
     }
+    LOGIC.prototype.get_popup_title = function LOGIC() {
+        var set_param_popup_title = msprintf("Set %s block parameters","LOGIC");
+        return set_param_popup_title;
+    }
 }

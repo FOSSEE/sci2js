@@ -31,4 +31,8 @@ function SUPER_f() {
     SUPER_f.prototype.set = function SUPER_f() {
         return new SuperBlock(this.x);
     }
+    SUPER_f.prototype.get_popup_title = function SUPER_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

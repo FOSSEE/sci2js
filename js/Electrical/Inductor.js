@@ -48,4 +48,8 @@ function Inductor() {
         }
         return new BasicBlock(this.x);
     }
+    Inductor.prototype.get_popup_title = function Inductor() {
+        var set_param_popup_title = "Set Inductor block parameter";
+        return set_param_popup_title;
+    }
 }

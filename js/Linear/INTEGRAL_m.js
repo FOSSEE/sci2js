@@ -143,4 +143,8 @@ function INTEGRAL_m() {
         }
         return new BasicBlock(this.x);
     }
+    INTEGRAL_m.prototype.get_popup_title = function INTEGRAL_m() {
+        var set_param_popup_title = "Set Integral block parameters";
+        return set_param_popup_title;
+    }
 }

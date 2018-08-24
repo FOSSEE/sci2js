@@ -66,4 +66,8 @@ function RAND_f() {
         }
         return new BasicBlock(this.x);
     }
+    RAND_f.prototype.get_popup_title = function RAND_f() {
+        var set_param_popup_title = "Set Random generator block parameters";
+        return set_param_popup_title;
+    }
 }

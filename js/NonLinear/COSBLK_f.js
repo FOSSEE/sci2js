@@ -21,4 +21,8 @@ function COSBLK_f() {
     COSBLK_f.prototype.set = function COSBLK_f() {
         return new BasicBlock(this.x);
     }
+    COSBLK_f.prototype.get_popup_title = function COSBLK_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

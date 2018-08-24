@@ -82,4 +82,8 @@ function FROMWSB() {
         var typ = newpar;
         return new BasicBlock(this.x);
     }
+    FROMWSB.prototype.get_popup_title = function FROMWSB() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

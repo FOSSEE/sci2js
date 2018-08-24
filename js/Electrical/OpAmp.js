@@ -52,4 +52,8 @@ function OpAmp() {
         }
         return new BasicBlock(this.x);
     }
+    OpAmp.prototype.get_popup_title = function OpAmp() {
+        var set_param_popup_title = "Set the Operational Amplifier parameters";
+        return set_param_popup_title;
+    }
 }

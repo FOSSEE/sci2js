@@ -100,4 +100,8 @@ function WFILE_f() {
         }
         return new BasicBlock(this.x);
     }
+    WFILE_f.prototype.get_popup_title = function WFILE_f() {
+        var set_param_popup_title = msprintf("Set %s block parameters","WFILE_f");
+        return set_param_popup_title;
+    }
 }

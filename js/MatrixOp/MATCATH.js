@@ -64,4 +64,8 @@ function MATCATH() {
         }
         return new BasicBlock(this.x);
     }
+    MATCATH.prototype.get_popup_title = function MATCATH() {
+        var set_param_popup_title = "Set MATCATH block parameters";
+        return set_param_popup_title;
+    }
 }

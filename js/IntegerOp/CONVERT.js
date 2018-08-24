@@ -379,4 +379,8 @@ function CONVERT() {
         }
         return new BasicBlock(this.x);
     }
+    CONVERT.prototype.get_popup_title = function CONVERT() {
+        var set_param_popup_title = msprintf("Set %s block parameters","CONVERT");
+        return set_param_popup_title;
+    }
 }

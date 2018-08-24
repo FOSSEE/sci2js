@@ -41,4 +41,8 @@ function END_c() {
         }
         return new BasicBlock(this.x);
     }
+    END_c.prototype.get_popup_title = function END_c() {
+        var set_param_popup_title = "Set final simulation time";
+        return set_param_popup_title;
+    }
 }

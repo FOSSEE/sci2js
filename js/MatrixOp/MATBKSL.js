@@ -74,4 +74,8 @@ function MATBKSL() {
         }
         return new BasicBlock(this.x);
     }
+    MATBKSL.prototype.get_popup_title = function MATBKSL() {
+        var set_param_popup_title = "Set MATBKSL Block";
+        return set_param_popup_title;
+    }
 }

@@ -76,4 +76,8 @@ function ANDBLK() {
     ANDBLK.prototype.set = function ANDBLK() {
         return new BasicBlock(this.x);
     }
+    ANDBLK.prototype.get_popup_title = function ANDBLK() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

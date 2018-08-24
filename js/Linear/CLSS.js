@@ -103,4 +103,8 @@ function CLSS() {
         }
         return new BasicBlock(this.x);
     }
+    CLSS.prototype.get_popup_title = function CLSS() {
+        var set_param_popup_title = "Set continuous linear system parameters";
+        return set_param_popup_title;
+    }
 }

@@ -91,4 +91,8 @@ function BITSET() {
         }
         return new BasicBlock(this.x);
     }
+    BITSET.prototype.get_popup_title = function BITSET() {
+        var set_param_popup_title = msprintf("Set %s block parameters","BITSET");
+        return set_param_popup_title;
+    }
 }

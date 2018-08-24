@@ -66,4 +66,8 @@ function GENERAL_f() {
         }
         return new BasicBlock(this.x);
     }
+    GENERAL_f.prototype.get_popup_title = function GENERAL_f() {
+        var set_param_popup_title = "Set General Zero-Crossing parameters";
+        return set_param_popup_title;
+    }
 }

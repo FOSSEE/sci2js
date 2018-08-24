@@ -76,4 +76,8 @@ function TOWS_c() {
         }
         return new BasicBlock(this.x);
     }
+    TOWS_c.prototype.get_popup_title = function TOWS_c() {
+        var set_param_popup_title = "Set Xcos buffer block";
+        return set_param_popup_title;
+    }
 }

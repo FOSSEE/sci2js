@@ -46,4 +46,8 @@ function BIGSOM_f() {
         }
         return new BigSom(this.x);
     }
+    BIGSOM_f.prototype.get_popup_title = function BIGSOM_f() {
+        var set_param_popup_title = "Set sum block parameters";
+        return set_param_popup_title;
+    }
 }

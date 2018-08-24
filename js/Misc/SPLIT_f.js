@@ -19,4 +19,8 @@ function SPLIT_f() {
     SPLIT_f.prototype.set = function SPLIT_f() {
         return new BasicBlock(this.x);
     }
+    SPLIT_f.prototype.get_popup_title = function SPLIT_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

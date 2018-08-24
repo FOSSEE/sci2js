@@ -52,4 +52,8 @@ function Modulo_Count() {
         }
         return new BasicBlock(this.x);
     }
+    Modulo_Count.prototype.get_popup_title = function Modulo_Count() {
+        var set_param_popup_title = msprintf("Set %s block parameters","Modulo_Count");
+        return set_param_popup_title;
+    }
 }

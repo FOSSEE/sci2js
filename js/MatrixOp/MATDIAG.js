@@ -74,4 +74,8 @@ function MATDIAG() {
         }
         return new BasicBlock(this.x);
     }
+    MATDIAG.prototype.get_popup_title = function MATDIAG() {
+        var set_param_popup_title = "Set MATDIAG Block";
+        return set_param_popup_title;
+    }
 }

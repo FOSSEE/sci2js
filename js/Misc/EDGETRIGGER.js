@@ -41,4 +41,8 @@ function EDGETRIGGER() {
         }
         return new BasicBlock(this.x);
     }
+    EDGETRIGGER.prototype.get_popup_title = function EDGETRIGGER() {
+        var set_param_popup_title = "Set edge trigger block parameters";
+        return set_param_popup_title;
+    }
 }

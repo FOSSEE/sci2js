@@ -22,4 +22,8 @@ function TRASH_f() {
     TRASH_f.prototype.set = function TRASH_f() {
         return new BasicBlock(this.x);
     }
+    TRASH_f.prototype.get_popup_title = function TRASH_f() {
+        var set_param_popup_title = "Set parameters";
+        return set_param_popup_title;
+    }
 }

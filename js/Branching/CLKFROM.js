@@ -45,4 +45,8 @@ function CLKFROM() {
         needcompile = resume(needcompile)
         return new BasicBlock(this.x);
     }
+    CLKFROM.prototype.get_popup_title = function CLKFROM() {
+        var set_param_popup_title = "Set block parameters";
+        return set_param_popup_title;
+    }
 }

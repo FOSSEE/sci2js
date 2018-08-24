@@ -73,4 +73,8 @@ function Flowmeter() {
         }
         return new BasicBlock(this.x);
     }
+    Flowmeter.prototype.get_popup_title = function Flowmeter() {
+        var set_param_popup_title = "Set Flowmeter block parameters:";
+        return set_param_popup_title;
+    }
 }

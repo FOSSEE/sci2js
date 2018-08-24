@@ -76,4 +76,8 @@ function MATLU() {
         }
         return new BasicBlock(this.x);
     }
+    MATLU.prototype.get_popup_title = function MATLU() {
+        var set_param_popup_title = "Set MATLU block parameters";
+        return set_param_popup_title;
+    }
 }

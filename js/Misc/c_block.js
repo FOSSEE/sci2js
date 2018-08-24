@@ -88,4 +88,8 @@ function c_block() {
         }
         return new BasicBlock(this.x);
     }
+    c_block.prototype.get_popup_title = function c_block() {
+        var set_param_popup_title = "Set C_block parameters";
+        return set_param_popup_title;
+    }
 }
