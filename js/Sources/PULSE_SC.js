@@ -65,7 +65,7 @@ function PULSE_SC() {
         var Exprs0 = [["E"],["W"],["F"],["A"]];
         this.Bitems = [["Phase delay (secs):"],["Pulse Width (% of period):"],["Period (secs):"],["Amplitude:"]];
         var Ss = list("pol",-1,"pol",-1,"pol",-1,"mat",[-1,-1]);
-        var scicos_context = struct();
+        this.scicos_context = struct();
         var ok = false;
         while (!ok) {
             var ok = true;
@@ -76,7 +76,7 @@ function PULSE_SC() {
             if (!ok) {
                 return;
             }
-            var PREVAR_scicos_context = scicos_context;
+            var PREVAR_scicos_context = this.scicos_context;
             var sblock = this.x.model.rpar;
             var tmpvar0 = script2var(sblock.props.context,PREVAR_scicos_context);
             var PREVAR_scicos_context = tmpvar0[0];

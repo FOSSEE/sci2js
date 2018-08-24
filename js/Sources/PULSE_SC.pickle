@@ -6,7 +6,7 @@ S'needcompile'
 p2
 aS'Bitems'
 p3
-aS'scicos_context.W'
+aS'scicos_context'
 p4
 aS'graphics'
 p5
@@ -16,14 +16,8 @@ aS'x'
 p7
 aS'model'
 p8
-aS'scicos_context.A'
-p9
-aS'scicos_context.F'
-p10
-aS'scicos_context.E'
-p11
-atp12
-Rp13
+atp9
+Rp10
 .(dp0
 S'model.odstate'
 p1

@@ -139,8 +139,8 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     jset = JOB_BLOCKS['"set"']
     jtitle = JOB_BLOCKS['"title"']
 
-    jdefine = '%s%s.prototype.define = function %s() {\n%s%sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, jdefine, indent2, blocktype, indent)
-    jdetails = '%s%s.prototype.details = function %s() {\n%sreturn this.x;\n%s}\n' % (indent, fname, fname, indent2, indent)
+    jdefine = '%s%s.prototype.define = function %s() {\n%s%sreturn new %s(%s);\n%s}\n' % (indent, fname, fname, jdefine, indent2, blocktype, print_var('x'), indent)
+    jdetails = '%s%s.prototype.details = function %s() {\n%sreturn %s;\n%s}\n' % (indent, fname, fname, indent2, print_var('x'), indent)
     jget = '%s%s.prototype.get = function %s() {\n%s%s}\n' % (indent, fname, fname, jget, indent)
     if jgetinputs != '':
         jgetinputs = '%s%s.prototype.getinputs = function %s() {\n%s%s}\n' % (indent, fname, fname, jgetinputs, indent)
@@ -150,7 +150,7 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
         jgetoutputs = '%s%s.prototype.getoutputs = function %s() {\n%s%s}\n' % (indent, fname, fname, jgetoutputs, indent)
     if jplot != '':
         jplot = '%s%s.prototype.plot = function %s() {\n%s%s}\n' % (indent, fname, fname, jplot, indent)
-    jset = '%s%s.prototype.set = function %s() {\n%s%sreturn new %s(this.x);\n%s}\n' % (indent, fname, fname, jset, indent2, blocktype, indent)
+    jset = '%s%s.prototype.set = function %s() {\n%s%sreturn new %s(%s);\n%s}\n' % (indent, fname, fname, jset, indent2, blocktype, print_var('x'), indent)
     jtitle = '%s%s.prototype.get_popup_title = function %s() {\n%svar set_param_popup_title = %s;\n%sreturn set_param_popup_title;\n%s}\n' % (indent, fname, fname, indent2, jtitle, indent2, indent)
 
     INDENT_LEVEL -= 1
@@ -615,7 +615,7 @@ def p_modelvar_modelvar_expression_expression(p):
 def p_assignment_model_modelvar_assignment_modelexpression(p):
     '''assignment : GRAPHICS DOT modelvar ASSIGNMENT modelexpression EOL
                   | MODEL DOT modelvar ASSIGNMENT modelexpression EOL'''
-    var = 'this.%s.%s' % (p[1], p[3])
+    var = '%s.%s' % (print_var(p[1]), p[3])
     value = p[5][0]
     vartype = p[5][1]
     add_var_vartype(var, vartype)
@@ -711,7 +711,7 @@ def p_getvalueassignment_getvalue_arguments(p):
                 continue
             add_global_var(basevar, force=True)
             var = print_var(basevar)
-            vartype = VAR_TYPES.get(basevar, STRING_TYPE)
+            vartype = get_var_vartype(basevar, STRING_TYPE)
             parsefunction = PARSE_MAP.get(vartype, '')
             if parsefunction != '':
                 parsecall = '%s(arguments[%d][\"%s\"])' % (parsefunction, 0, basevar)
@@ -1413,17 +1413,9 @@ def p_termvar_termvar_dot_var(p):
                | termvar DOT GRAPHICS
                | termvar DOT MODEL'''
     var = p[1][0]
-    if var[:5] == 'this.':
-        basevar = var[5:]
-    else:
-        basevar = var
-    add_object_var(basevar)
+    add_object_var(var)
     var = '%s.%s' % (var, p[3])
-    if var[:5] == 'this.':
-        basevar = var[5:]
-    else:
-        basevar = var
-    vartype = VAR_TYPES[basevar] if basevar in VAR_TYPES else None
+    vartype = get_var_vartype(var)
     p[0] = (var, vartype)
 
 # A
@@ -1433,7 +1425,7 @@ def p_termvar_var(p):
                | MODEL'''
     var = p[1]
     add_global_var(var)
-    vartype = VAR_TYPES[var] if var in VAR_TYPES else None
+    vartype = get_var_vartype(var)
     p[0] = ('%s' % (print_var(var)), vartype)
 
 # in
@@ -1441,7 +1433,7 @@ def p_termvar_in(p):
     'termvar : IN'
     var = p[1] + '1'
     add_global_var(var)
-    vartype = VAR_TYPES[var] if var in VAR_TYPES else None
+    vartype = get_var_vartype(var)
     p[0] = ('%s' % (print_var(var)), vartype)
 
 # 5
@@ -1474,7 +1466,7 @@ def getblocktype(module):
 def printblocktypejs(module):
     blocktype = getblocktype(module)
     print('%s.prototype.importset = function %s() {\n    /* TODO */\n}' % (module, module))
-    print('%s.prototype.getContainer = function %s() { return new %s(this.x); }' % (module, module, blocktype))
+    print('%s.prototype.getContainer = function %s() { return new %s(%s); }' % (module, module, blocktype, print_var('x')))
 
 def add_local_var(var, force=False):
     '''If a variable is not global, add it to local list
@@ -1485,6 +1477,9 @@ def add_local_var(var, force=False):
     if var[:5] == 'this.':
         print('Syntax error: cannot add local variable:', var)
         return
+    l = var.find('.')
+    if l != -1:
+        var = var[:l]
     exists = var in GLOBAL_VARS
     if force and exists:
         GLOBAL_VARS.remove(var)
@@ -1500,6 +1495,9 @@ def add_global_var(var, force=False):
     If variable name begins with this., remove it'''
     if var[:5] == 'this.':
         var = var[5:]
+    l = var.find('.')
+    if l != -1:
+        var = var[:l]
     exists = var in LOCAL_VARS
     if force and exists:
         LOCAL_VARS.remove(var)
@@ -1509,7 +1507,9 @@ def add_global_var(var, force=False):
 
 def print_var(var):
     'If a variable is global, prepend this. to the variable name'
-    if var in GLOBAL_VARS:
+    l = var.find('.')
+    basevar = var[:l] if l != -1 else var
+    if basevar in GLOBAL_VARS:
         ret = 'this.%s' % (var)
     else:
         ret = '%s' % (var)
@@ -1519,6 +1519,11 @@ def add_var_vartype(var, vartype):
     if var[:5] == 'this.':
         var = var[5:]
     VAR_TYPES[var] = vartype
+
+def get_var_vartype(var, vartype=None):
+    if var[:5] == 'this.':
+        var = var[5:]
+    return VAR_TYPES[var] if var in VAR_TYPES else vartype
 
 def add_boolean_var(var):
     add_var_vartype(var, BOOLEAN_TYPE)
