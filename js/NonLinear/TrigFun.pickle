@@ -8,10 +8,12 @@ aS'x'
 p3
 aS'model'
 p4
-aS'graphics'
+aS'PREVAR_GG'
 p5
-atp6
-Rp7
+aS'graphics'
+p6
+atp7
+Rp8
 .(dp0
 S'model.sim'
 p1

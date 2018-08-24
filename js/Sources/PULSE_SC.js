@@ -61,7 +61,7 @@ function PULSE_SC() {
         var y = this.needcompile;
         var typ = list();
         var exprs = this.graphics.exprs;
-        var Btitre = "Set Pulse Generator parameters";
+        this.Btitre = "Set Pulse Generator parameters";
         var Exprs0 = [["E"],["W"],["F"],["A"]];
         this.Bitems = [["Phase delay (secs):"],["Pulse Width (% of period):"],["Period (secs):"],["Amplitude:"]];
         var Ss = list("pol",-1,"pol",-1,"pol",-1,"mat",[-1,-1]);
@@ -103,7 +103,7 @@ function PULSE_SC() {
         return new BasicBlock(this.x);
     }
     PULSE_SC.prototype.get_popup_title = function PULSE_SC() {
-        var set_param_popup_title = Btitre;
+        var set_param_popup_title = "Set Pulse Generator parameters";
         return set_param_popup_title;
     }
 }

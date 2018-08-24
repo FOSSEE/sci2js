@@ -66,7 +66,7 @@ function GEN_SQR() {
         var y = this.needcompile;
         var typ = list();
         var exprs = this.graphics.exprs;
-        var Btitre = "Set GEN_SQR parameters";
+        this.Btitre = "Set GEN_SQR parameters";
         var Exprs0 = [["Amin"],["Amax"],["rule"],["F"]];
         this.Bitems = [["Minimum Value"],["Maximum Value"],["Initial Value( 1= Minimum Value 2= Maximum Value)"],["Period (sec)"]];
         var Ss = list("mat",[-1,-1],"mat",[-1,-1],"pol",-1,"pol",-1);
@@ -107,7 +107,7 @@ function GEN_SQR() {
         return new BasicBlock(this.x);
     }
     GEN_SQR.prototype.get_popup_title = function GEN_SQR() {
-        var set_param_popup_title = Btitre;
+        var set_param_popup_title = "Set GEN_SQR parameters";
         return set_param_popup_title;
     }
 }

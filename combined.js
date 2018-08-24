@@ -17145,7 +17145,7 @@ function TrigFun() {
     TrigFun.prototype.set = function TrigFun() {
         var exprs = this.graphics.exprs;
         var PREVAR_FF = [["sin"],["cos"],["tan"],["asin"],["acos"],["atan"],["sinh"],["cosh"],["tanh"],["asinh"],["acosh"],["atanh"]];
-        var PREVAR_GG = [["Choose among "+strcat(PREVAR_FF.slice(1-1,4),", ")],[strcat(PREVAR_FF.slice(5-1,$),", ")]];
+        this.PREVAR_GG = [["Choose among "+strcat(PREVAR_FF.slice(1-1,4),", ")],[strcat(PREVAR_FF.slice(5-1,$),", ")]];
         while (true) {
             var ok = true;
             this.fun = arguments[0]["fun"];
@@ -17166,7 +17166,7 @@ function TrigFun() {
         return new BasicBlock(this.x);
     }
     TrigFun.prototype.get_popup_title = function TrigFun() {
-        var set_param_popup_title = PREVAR_GG;
+        var set_param_popup_title = "Choose among "+strcat(PREVAR_FF.slice(1-1,4),", ");
         return set_param_popup_title;
     }
 }
@@ -20672,7 +20672,7 @@ function GEN_SQR() {
         var y = this.needcompile;
         var typ = list();
         var exprs = this.graphics.exprs;
-        var Btitre = "Set GEN_SQR parameters";
+        this.Btitre = "Set GEN_SQR parameters";
         var Exprs0 = [["Amin"],["Amax"],["rule"],["F"]];
         this.Bitems = [["Minimum Value"],["Maximum Value"],["Initial Value( 1= Minimum Value 2= Maximum Value)"],["Period (sec)"]];
         var Ss = list("mat",[-1,-1],"mat",[-1,-1],"pol",-1,"pol",-1);
@@ -20713,7 +20713,7 @@ function GEN_SQR() {
         return new BasicBlock(this.x);
     }
     GEN_SQR.prototype.get_popup_title = function GEN_SQR() {
-        var set_param_popup_title = Btitre;
+        var set_param_popup_title = "Set GEN_SQR parameters";
         return set_param_popup_title;
     }
 }
@@ -21010,7 +21010,7 @@ function PULSE_SC() {
         var y = this.needcompile;
         var typ = list();
         var exprs = this.graphics.exprs;
-        var Btitre = "Set Pulse Generator parameters";
+        this.Btitre = "Set Pulse Generator parameters";
         var Exprs0 = [["E"],["W"],["F"],["A"]];
         this.Bitems = [["Phase delay (secs):"],["Pulse Width (% of period):"],["Period (secs):"],["Amplitude:"]];
         var Ss = list("pol",-1,"pol",-1,"pol",-1,"mat",[-1,-1]);
@@ -21052,7 +21052,7 @@ function PULSE_SC() {
         return new BasicBlock(this.x);
     }
     PULSE_SC.prototype.get_popup_title = function PULSE_SC() {
-        var set_param_popup_title = Btitre;
+        var set_param_popup_title = "Set Pulse Generator parameters";
         return set_param_popup_title;
     }
 }

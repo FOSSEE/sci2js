@@ -74,6 +74,7 @@ VAR_TYPES = {}
 VAR_DEFINITIONS = {}
 LAST_ARRAY = []
 
+TITLES = []
 LABELS = []
 
 INDENT_LEVEL = 2
@@ -582,6 +583,8 @@ def p_lterm_assignment_expression(p):
         add_var_vartype(var, p[3][1])
         if len(LAST_ARRAY) > 0:
             VAR_DEFINITIONS[var] = LAST_ARRAY
+        elif p[3][1] == STRING_TYPE:
+            VAR_DEFINITIONS[var] = [ p[3][0] ]
     LAST_ARRAY = []
 
 def p_model_assignment_expression(p):
@@ -726,14 +729,71 @@ def p_getvalueassignment_getvalue_arguments(p):
 def p_getvaluearguments_arg1_arg2_arg3_arg4(p):
     'getvaluearguments : getvaluearg1 COMMA getvaluearg2 COMMA getvaluearg3 COMMA getvaluearg4'
     p[0] = '%s,%s,%s,%s' % (p[1], p[3], p[5], p[7])
-
-def p_getvaluearg1_expression(p):
-    'getvaluearg1 : expression'
-    p[0] = '%s' % (p[1][0])
-    if p[1][1] in ( VECTOR_TYPE, VECTOR_BOOLEAN_TYPE, VECTOR_STRING_TYPE, MATRIX_TYPE ) and len(LAST_ARRAY) > 0:
-        JOB_BLOCKS['"title"'] = LAST_ARRAY[0]
+    if len(TITLES) > 0:
+        JOB_BLOCKS['"title"'] = TITLES[0]
     else:
-        JOB_BLOCKS['"title"'] = p[1][0]
+        JOB_BLOCKS['"title"'] = p[1]
+
+def p_getvaluearg1_list(p):
+    '''getvaluearg1 : OPENSQBRACKET getvaluearg1arraylist CLOSESQBRACKET
+                    | OPENSQBRACKET getvaluearg1arraylist SEMICOLON CLOSESQBRACKET'''
+    p[0] = '[%s]' % (p[2])
+
+def p_getvaluearg1_string(p):
+    'getvaluearg1 : DQSTRING'
+    p[0] = '%s' % (p[1])
+    TITLES.append(p[0])
+
+def p_getvaluearg1_gettext_string(p):
+    'getvaluearg1 : GETTEXT OPENBRACKET DQSTRING CLOSEBRACKET'
+    p[0] = '%s' % (p[3])
+    TITLES.append(p[0])
+
+def p_getvaluearg1_var(p):
+    'getvaluearg1 : VAR'
+    var = p[1]
+    add_global_var(var, force=True)
+    var = print_var(var)
+    if var in VAR_DEFINITIONS:
+        # replace variable with value of that variable
+        titles = VAR_DEFINITIONS[var]
+        for l in titles:
+            TITLES.append(l)
+        p[0] = '%s' % (titles[0])
+    else:
+        TITLES.append(var)
+        p[0] = '%s' % (var)
+
+def p_getvaluearg1arraylist_arraylist_arraylistitem(p):
+    '''getvaluearg1arraylist : getvaluearg1arraylist SEMICOLON getvaluearg1arraylistitem
+                             | getvaluearg1arraylist COMMA getvaluearg1arraylistitem
+                             | getvaluearg1arraylist SPACE getvaluearg1arraylistitem'''
+    p[0] = '%s,%s' % (p[1], p[3])
+
+def p_getvaluearg1arraylist_arraylistitem(p):
+    'getvaluearg1arraylist : getvaluearg1arraylistitem'
+    p[0] = '%s' % (p[1])
+
+def p_getvaluearg1arraylistitem_gettext_string(p):
+    'getvaluearg1arraylistitem : GETTEXT OPENBRACKET DQSTRING CLOSEBRACKET'
+    p[0] = '%s' % (p[3])
+    TITLES.append(p[0])
+
+def p_getvaluearg1arraylistitem_string(p):
+    'getvaluearg1arraylistitem : DQSTRING'
+    p[0] = '%s' % (p[1])
+    TITLES.append(p[0])
+
+def p_getvaluearg1arraylistitem_string_string(p):
+    'getvaluearg1arraylistitem : DQSTRING ADDITION DQSTRING'
+    p[0] = '%s%s' % (p[1][:-1], p[3][1:])
+    TITLES.append(p[0])
+
+def p_getvaluearg1arraylistitem_functionname_parameters(p):
+    'getvaluearg1arraylistitem : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
+    # TODO: replace with value of that function
+    p[0] = '%s(%s)' % (p[1][0], p[3])
+    TITLES.append(p[0])
 
 def p_getvaluearg2_list(p):
     '''getvaluearg2 : OPENSQBRACKET getvaluearg2arraylist CLOSESQBRACKET
@@ -765,9 +825,10 @@ def p_getvaluearg2_var(p):
         else:
             s += ','
         s = s[:-1] + ']'
+        p[0] = '%s' % (s)
     else:
-        p[0] = '%s' % (var)
         LABELS.append(var)
+        p[0] = '%s' % (var)
 
 def p_getvaluearg2arraylist_arraylist_arraylistitem(p):
     '''getvaluearg2arraylist : getvaluearg2arraylist SEMICOLON getvaluearg2arraylistitem
