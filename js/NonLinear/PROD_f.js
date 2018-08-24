@@ -8,7 +8,7 @@ function PROD_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
         this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabDouble([]),[]);
-        return new BasicBlock(this.x);
+        return new RoundBlock(this.x);
     }
     PROD_f.prototype.details = function PROD_f() {
         return this.x;
@@ -17,6 +17,6 @@ function PROD_f() {
         alert("parameters cannot be modified");
     }
     PROD_f.prototype.set = function PROD_f() {
-        return new BasicBlock(this.x);
+        return new RoundBlock(this.x);
     }
 }

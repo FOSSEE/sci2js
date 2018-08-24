@@ -10,7 +10,7 @@ function CLKSOMV_f() {
         this.model.dep_ut = new ScilabBoolean([false,false]);
         var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLKSOMV_f\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble([]),gr_i);
-        return new BasicBlock(this.x);
+        return new RoundBlock(this.x);
     }
     CLKSOMV_f.prototype.details = function CLKSOMV_f() {
         return this.x;
@@ -19,6 +19,6 @@ function CLKSOMV_f() {
         alert("parameters cannot be modified");
     }
     CLKSOMV_f.prototype.set = function CLKSOMV_f() {
-        return new BasicBlock(this.x);
+        return new RoundBlock(this.x);
     }
 }

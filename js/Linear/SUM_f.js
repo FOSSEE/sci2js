@@ -10,7 +10,7 @@ function SUM_f() {
         var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUM_f\",sz(1),sz(2));"]);
         var exprs = [];
         this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabDouble(exprs),gr_i);
-        return new BasicBlock(this.x);
+        return new RoundBlock(this.x);
     }
     SUM_f.prototype.details = function SUM_f() {
         return this.x;
@@ -19,6 +19,6 @@ function SUM_f() {
         alert("parameters cannot be modified");
     }
     SUM_f.prototype.set = function SUM_f() {
-        return new BasicBlock(this.x);
+        return new RoundBlock(this.x);
     }
 }
