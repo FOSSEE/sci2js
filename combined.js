@@ -19661,7 +19661,10 @@ function GEN_SQR() {
     }
     GEN_SQR.prototype.get = function GEN_SQR() {
         var options = {
-            scicos_context.Amin:[this.Bitems,this.scicos_context.Amin],
+            scicos_context.Amin:["Minimum Value",this.scicos_context.Amin],
+            scicos_context.Amax:["Maximum Value",this.scicos_context.Amax],
+            scicos_context.rule:["Initial Value( 1= Minimum Value 2= Maximum Value)",this.scicos_context.rule],
+            scicos_context.F:["Period (sec)",this.scicos_context.F],
         }
         return options;
     }
@@ -19976,7 +19979,10 @@ function PULSE_SC() {
     }
     PULSE_SC.prototype.get = function PULSE_SC() {
         var options = {
-            scicos_context.E:[this.Bitems,this.scicos_context.E],
+            scicos_context.E:["Phase delay (secs):",this.scicos_context.E],
+            scicos_context.W:["Pulse Width (% of period):",this.scicos_context.W],
+            scicos_context.F:["Period (secs):",this.scicos_context.F],
+            scicos_context.A:["Amplitude:",this.scicos_context.A],
         }
         return options;
     }

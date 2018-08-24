@@ -50,7 +50,10 @@ function PULSE_SC() {
     }
     PULSE_SC.prototype.get = function PULSE_SC() {
         var options = {
-            scicos_context.E:[this.Bitems,this.scicos_context.E],
+            scicos_context.E:["Phase delay (secs):",this.scicos_context.E],
+            scicos_context.W:["Pulse Width (% of period):",this.scicos_context.W],
+            scicos_context.F:["Period (secs):",this.scicos_context.F],
+            scicos_context.A:["Amplitude:",this.scicos_context.A],
         }
         return options;
     }

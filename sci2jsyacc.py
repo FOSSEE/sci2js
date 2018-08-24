@@ -73,6 +73,8 @@ GLOBAL_VARS = {
 }
 
 VAR_TYPES = {}
+VAR_DEFINITIONS = {}
+LAST_ARRAY = []
 
 LABELS = []
 
@@ -549,7 +551,7 @@ VARCOUNT = 0
 def p_lterm_assignment_expression(p):
     '''assignment : lterm ASSIGNMENT expression EOL
                   | lterm ASSIGNMENT listcall EOL'''
-    global VARCOUNT
+    global VARCOUNT, LAST_ARRAY
     var = p[1]
     if var[0] == '[':
         prefix = 'var '
@@ -574,6 +576,9 @@ def p_lterm_assignment_expression(p):
             prefix = 'var '
         p[0] = '%*s%s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, var, value)
         add_var_vartype(var, p[3][1])
+        if len(LAST_ARRAY) > 0:
+            VAR_DEFINITIONS[var] = LAST_ARRAY
+    LAST_ARRAY = []
 
 def p_model_assignment_expression(p):
     '''assignment : GRAPHICS ASSIGNMENT expression EOL
@@ -739,12 +744,22 @@ def p_getvaluearg2_gettext_string(p):
 
 def p_getvaluearg2_var(p):
     'getvaluearg2 : VAR'
-    # TODO: replace with value of that variable
     var = p[1]
     add_global_var(var, force=True)
     var = print_var(var)
-    p[0] = '%s' % (var)
-    LABELS.append(var)
+    if var in VAR_DEFINITIONS:
+        # replace variable with value of that variable
+        labels = VAR_DEFINITIONS[var]
+        s = '['
+        for l in labels:
+            s += l + ','
+            LABELS.append(l)
+        else:
+            s += ','
+        s = s[:-1] + ']'
+    else:
+        p[0] = '%s' % (var)
+        LABELS.append(var)
 
 def p_getvaluearg2arraylist_arraylist_arraylistitem(p):
     '''getvaluearg2arraylist : getvaluearg2arraylist SEMICOLON getvaluearg2arraylistitem
@@ -860,14 +875,18 @@ def p_ltermarraylistterm_prevar(p):
 def p_termarrayarraylist_termarrayarraylist_semicolon_termarraylist(p):
     'termarrayarraylist : termarrayarraylist SEMICOLON termarraylist'
     p[0] = ('%s,[%s]' % (p[1][0], p[3][0]), p[1][1])
+    LAST_ARRAY.append(p[3][0])
 
 def p_termarrayarraylist_termarraylist_semicolon_termarraylist(p):
     'termarrayarraylist : termarraylist SEMICOLON termarraylist'
     p[0] = ('[%s],[%s]' % (p[1][0], p[3][0]), p[1][1])
+    LAST_ARRAY.append(p[1][0])
+    LAST_ARRAY.append(p[3][0])
 
 def p_termarrayarraylist_termarraylist_semicolon(p):
     'termarrayarraylist : termarraylist SEMICOLON'
     p[0] = ('[%s]' % (p[1][0]), p[1][1])
+    LAST_ARRAY.append(p[1][0])
 
 def p_termarraylist_termarraylist_comma_expression(p):
     '''termarraylist : termarraylist COMMA expression

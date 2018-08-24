@@ -55,7 +55,10 @@ function GEN_SQR() {
     }
     GEN_SQR.prototype.get = function GEN_SQR() {
         var options = {
-            scicos_context.Amin:[this.Bitems,this.scicos_context.Amin],
+            scicos_context.Amin:["Minimum Value",this.scicos_context.Amin],
+            scicos_context.Amax:["Maximum Value",this.scicos_context.Amax],
+            scicos_context.rule:["Initial Value( 1= Minimum Value 2= Maximum Value)",this.scicos_context.rule],
+            scicos_context.F:["Period (sec)",this.scicos_context.F],
         }
         return options;
     }
