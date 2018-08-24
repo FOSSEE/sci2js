@@ -16,9 +16,9 @@ function BPLATFORM() {
         this.model.rpar = new ScilabDouble([this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = string(this.model.rpar);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BPLATFORM\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([this.exprs]),this.gr_i);
+        var exprs = string(this.model.rpar);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BPLATFORM\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([exprs]),gr_i);
         return new BasicBlock(this.x);
     }
     BPLATFORM.prototype.details = function BPLATFORM() {
@@ -37,7 +37,7 @@ function BPLATFORM() {
         return options;
     }
     BPLATFORM.prototype.set = function BPLATFORM() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
         while (true) {
             var ok = true;
@@ -70,7 +70,7 @@ function BPLATFORM() {
             } else {
                 var rpar = [[this.plen],[this.csiz],[this.phi],[this.xmin],[this.xmax],[this.ymin],[this.ymax]];
                 this.model.rpar = new ScilabDouble(rpar);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

@@ -7,9 +7,9 @@ function TrigFun() {
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = "sin";
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TrigFun\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([4,2]),this.model,new ScilabString([this.exprs]),this.gr_i);
+        var exprs = "sin";
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TrigFun\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([4,2]),this.model,new ScilabString([exprs]),gr_i);
         return new BasicBlock(this.x);
     }
     TrigFun.prototype.details = function TrigFun() {
@@ -22,7 +22,7 @@ function TrigFun() {
         return options;
     }
     TrigFun.prototype.set = function TrigFun() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         var PREVAR_FF = [["sin"],["cos"],["tan"],["asin"],["acos"],["atan"],["sinh"],["cosh"],["tanh"],["asinh"],["acosh"],["atanh"]];
         var PREVAR_GG = [["Choose among "+strcat(PREVAR_FF.slice(1-1,4),", ")],[strcat(PREVAR_FF.slice(5-1,$),", ")]];
         while (true) {
@@ -35,7 +35,7 @@ function TrigFun() {
                 message("Sorry but "+this.fun+" is not in the list!");
                 throw "user error";
             } else {
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 execstr("model.sim=list(\'"+this.fun+"_blk\',4)");
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;

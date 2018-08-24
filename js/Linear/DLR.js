@@ -6,7 +6,7 @@ function DLR() {
         var B = 1;
         var C = 1;
         var D = 0;
-        this.exprs = [["1"],["1+z"]];
+        var exprs = [["1"],["1+z"]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["dsslti4"]), new ScilabDouble([4]));
         this.model.in = new ScilabDouble([1]);
@@ -16,8 +16,8 @@ function DLR() {
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLR\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLR\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     DLR.prototype.details = function DLR() {
@@ -31,7 +31,7 @@ function DLR() {
         return options;
     }
     DLR.prototype.set = function DLR() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         var x0 = this.model.dstate;
         var ns = prod(size(x0));
         var PREVAR_scicos_context = PREVAR_scicos_context;
@@ -55,7 +55,7 @@ function DLR() {
                 var B = tmpvar0[1];
                 var C = tmpvar0[2];
                 var D = tmpvar0[3];
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 var tmpvar1 = size(A);
                 var ns1 = tmpvar1[0];
                 var ns1 = tmpvar1[1];

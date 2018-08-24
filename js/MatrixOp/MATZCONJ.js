@@ -21,8 +21,8 @@ function MATZCONJ() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
         var label = [];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATZCONJ\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(label),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATZCONJ\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(label),gr_i);
         return new BasicBlock(this.x);
     }
     MATZCONJ.prototype.details = function MATZCONJ() {

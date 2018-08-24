@@ -21,9 +21,9 @@ function LOOKUP_c() {
         this.model.evtin = new ScilabDouble([]);
         this.model.evtout = new ScilabDouble([]);
         this.model.firing = new ScilabDouble([0]);
-        this.exprs = [[sci2exp(this.Method)],[sci2exp(this.xx)],[sci2exp(this.yy)],[sci2exp(0)],[Graf]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP_c\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[sci2exp(this.Method)],[sci2exp(this.xx)],[sci2exp(this.yy)],[sci2exp(0)],[Graf]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP_c\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     LOOKUP_c.prototype.details = function LOOKUP_c() {
@@ -40,7 +40,7 @@ function LOOKUP_c() {
         return options;
     }
     LOOKUP_c.prototype.set = function LOOKUP_c() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
         while (true) {
@@ -94,7 +94,7 @@ function LOOKUP_c() {
                 var tmpvar2 = cleandata(this.xy);
                 this.xy = tmpvar2[0];
                 var N = size(this.xy,"r");
-                this.exprs[5-1] = "n";
+                exprs[5-1] = "n";
                 if (this.graf=="y"||this.graf=="Y") {
                     var ipar = [[N],[mtd],[PO],[this.extrapo]];
                     var rpar = [];
@@ -127,11 +127,11 @@ function LOOKUP_c() {
                         var DChange = true;
                     }
                     if (DChange) {
-                        this.exprs[2-1] = strcat(sci2exp(xy2.slice()[1-1]));
-                        this.exprs[3-1] = strcat(sci2exp(xy2.slice()[2-1]));
+                        exprs[2-1] = strcat(sci2exp(xy2.slice()[1-1]));
+                        exprs[3-1] = strcat(sci2exp(xy2.slice()[2-1]));
                     }
-                    this.exprs[1-1] = sci2exp(New_methhod);
-                    this.exprs[4-1] = sci2exp(oipar[4-1]);
+                    exprs[1-1] = sci2exp(New_methhod);
+                    exprs[4-1] = sci2exp(oipar[4-1]);
                     if (oipar[3-1]==1) {
                         var perop = "y";
                     } else {
@@ -153,7 +153,7 @@ function LOOKUP_c() {
                             var orpar = [[this.xy.slice()[1-1]],[this.xy.slice()[2-1]]];
                         }
                     }
-                    this.exprs[1-1] = sci2exp(mtd);
+                    exprs[1-1] = sci2exp(mtd);
                     var oipar = [[N],[mtd],[PO],[this.extrapo]];
                     var SaveExit = true;
                 }
@@ -167,7 +167,7 @@ function LOOKUP_c() {
                 }
                 this.model.rpar = new ScilabDouble(orpar);
                 this.model.ipar = new ScilabDouble(oipar);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.model = this.model;
                 this.x.graphics = this.graphics;
                 break;

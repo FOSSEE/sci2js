@@ -13,9 +13,9 @@ function VARIABLE_DELAY() {
         this.model.ipar = new ScilabDouble([this.N]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VARIABLE_DELAY\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(this.T)],[string(this.init)],[string(this.N)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VARIABLE_DELAY\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     VARIABLE_DELAY.prototype.details = function VARIABLE_DELAY() {
@@ -30,7 +30,7 @@ function VARIABLE_DELAY() {
         return options;
     }
     VARIABLE_DELAY.prototype.set = function VARIABLE_DELAY() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         var nin = this.model.in[1-1];
         while (true) {
             var ok = true;
@@ -57,7 +57,7 @@ function VARIABLE_DELAY() {
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.rpar = new ScilabDouble([this.T],[this.init]);
                 this.model.ipar = new ScilabDouble([this.N]);
                 this.x.graphics = this.graphics;

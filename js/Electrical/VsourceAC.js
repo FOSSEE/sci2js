@@ -16,9 +16,9 @@ function VsourceAC() {
         mo.outputs = "n";
         mo.parameters = list([["VA"],["f"]],list(this.VA,this.FR));
         this.model.equations = new ScilabDouble([mo]);
-        this.exprs = [[string(this.VA)],[string(this.FR)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VsourceAC\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),list(this.gr_i,0));
+        var exprs = [[string(this.VA)],[string(this.FR)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VsourceAC\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -34,7 +34,7 @@ function VsourceAC() {
         return options;
     }
     VsourceAC.prototype.set = function VsourceAC() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.VA = parseFloat(arguments[0]["VA"]);
@@ -44,7 +44,7 @@ function VsourceAC() {
             }
             this.model.rpar = new ScilabDouble([this.VA],[this.FR]);
             this.model.equations.parameters[2-1] = list(new ScilabDouble([this.VA]), new ScilabDouble([this.FR]));
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;

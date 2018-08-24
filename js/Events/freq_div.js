@@ -103,8 +103,8 @@ function freq_div() {
         this.model.evtin = new ScilabDouble([1]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = scs_m_1;
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"freq_div\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble([]),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"freq_div\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble([]),gr_i);
         return new BasicBlock(this.x);
     }
     freq_div.prototype.details = function freq_div() {
@@ -132,7 +132,7 @@ function freq_div() {
         spath[$+1-1] = path;
         var xxn = xx;
         this.graphics = xx.graphics;
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         this.model = xx.model;
         while (true) {
             var ok = true;
@@ -149,7 +149,7 @@ function freq_div() {
                 if (%ph>%df-1) {
                     %ph = %df-1;
                 }
-                this.graphics.exprs = new ScilabDouble(this.exprs);
+                this.graphics.exprs = new ScilabDouble(exprs);
                 this.model.ipar = new ScilabDouble([%df]);
                 this.model.dstate = new ScilabDouble([%ph]);
                 xxn.graphics = this.graphics;

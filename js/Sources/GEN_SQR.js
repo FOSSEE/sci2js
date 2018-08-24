@@ -45,9 +45,9 @@ function GEN_SQR() {
         var Amax = 1;
         var rule = 1;
         var F = 1;
-        this.exprs = [sci2exp(Amin),sci2exp(Amax),sci2exp(rule),sci2exp(F)];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GEN_SQR\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabString(this.exprs),this.gr_i);
+        var exprs = [sci2exp(Amin),sci2exp(Amax),sci2exp(rule),sci2exp(F)];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GEN_SQR\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabString(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     GEN_SQR.prototype.details = function GEN_SQR() {
@@ -65,7 +65,7 @@ function GEN_SQR() {
     GEN_SQR.prototype.set = function GEN_SQR() {
         var y = this.needcompile;
         var typ = list();
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         var Btitre = "Set GEN_SQR parameters";
         var Exprs0 = [["Amin"],["Amax"],["rule"],["F"]];
         this.Bitems = [["Minimum Value"],["Maximum Value"],["Initial Value( 1= Minimum Value 2= Maximum Value)"],["Period (sec)"]];
@@ -94,7 +94,7 @@ function GEN_SQR() {
                 var ok = tmpvar1[3];
                 if (ok) {
                     var y = max(2,this.needcompile,needcompile2);
-                    this.x.graphics.exprs = this.exprs;
+                    this.x.graphics.exprs = exprs;
                     this.x.model.rpar = sblock;
                     break;
                 }

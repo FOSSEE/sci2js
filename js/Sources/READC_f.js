@@ -24,9 +24,9 @@ function READC_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [["[]"],[sci2exp(this.outmask)],[fname],[frmt],[string(this.M)],[string(this.N)],[string(this.offset)],[string(this.swap)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"READC_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([4,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [["[]"],[sci2exp(this.outmask)],[fname],[frmt],[string(this.M)],[string(this.N)],[string(this.offset)],[string(this.swap)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"READC_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([4,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     READC_f.prototype.details = function READC_f() {
@@ -47,15 +47,15 @@ function READC_f() {
     }
     READC_f.prototype.set = function READC_f() {
         this.model = this.x.model;
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         var out = this.model.out;
         var dstate = this.model.dstate;
         var ipar = this.model.ipar;
         var imask = 9+ipar[1-1];
         var tmask = ipar[imask-1];
         var lunit = dstate[3-1];
-        var fname = this.exprs[3-1];
-        var frmt = this.exprs[4-1];
+        var fname = exprs[3-1];
+        var frmt = exprs[4-1];
         while (true) {
             var ok = true;
             this.tmask1 = parseFloat(arguments[0]["tmask1"]);
@@ -128,7 +128,7 @@ function READC_f() {
                     }
                     this.model.dstate = new ScilabDouble(dstate);
                     this.model.ipar = new ScilabDouble(ipar);
-                    this.graphics.exprs = new ScilabDouble([this.exprs]);
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;

@@ -10,9 +10,9 @@ function IN_f() {
         this.model.ipar = new ScilabDouble([prt]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = sci2exp(prt);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IN_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([this.exprs]),this.gr_i);
+        var exprs = sci2exp(prt);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IN_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([exprs]),gr_i);
         return new ExplicitInBlock(this.x);
     }
     IN_f.prototype.details = function IN_f() {
@@ -22,20 +22,20 @@ function IN_f() {
         alert("parameters cannot be modified");
     }
     IN_f.prototype.set = function IN_f() {
-        this.exprs = this.graphics.exprs;
-        if (size(this.exprs,"*")==2) {
-            this.exprs = this.exprs[1-1];
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==2) {
+            var exprs = exprs[1-1];
         }
-        if (size(this.exprs,"*")==1) {
-            this.exprs = [[this.exprs[1-1]],["[-1 -2]"],["-1"]];
+        if (size(exprs,"*")==1) {
+            var exprs = [[exprs[1-1]],["[-1 -2]"],["-1"]];
         }
         while (true) {
-            var tmpvar0 = getvalue("Set Input block parameters",[["Port number"],["Outport size ([-1 -2] for inherit)"],["Outport Type (-1 for inherit)"]],list("vec",1,"vec",-1,"vec",1),this.exprs);
+            var tmpvar0 = getvalue("Set Input block parameters",[["Port number"],["Outport size ([-1 -2] for inherit)"],["Outport Type (-1 for inherit)"]],list("vec",1,"vec",-1,"vec",1),exprs);
             var ok = tmpvar0[0];
             var prt = tmpvar0[1];
             var otsz = tmpvar0[2];
             var ot = tmpvar0[3];
-            this.exprs = tmpvar0[4];
+            var exprs = tmpvar0[4];
             if (!ok) {
                 break;
             }
@@ -59,7 +59,7 @@ function IN_f() {
                 this.model.out = new ScilabDouble([otsz[1-1]]);
                 this.model.out2 = new ScilabDouble([otsz[2-1]]);
                 this.model.outtyp = new ScilabDouble([ot]);
-                this.graphics.exprs = new ScilabDouble(this.exprs);
+                this.graphics.exprs = new ScilabDouble(exprs);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

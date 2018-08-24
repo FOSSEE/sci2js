@@ -18,9 +18,9 @@ function DLRADAPT_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[sci2exp(this.p)],[sci2exp(this.rn)],[sci2exp(this.rd,0)],[sci2exp(this.g)],[sci2exp(this.last_u)],[sci2exp(this.last_y)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLRADAPT_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[sci2exp(this.p)],[sci2exp(this.rn)],[sci2exp(this.rd,0)],[sci2exp(this.g)],[sci2exp(this.last_u)],[sci2exp(this.last_y)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLRADAPT_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     DLRADAPT_f.prototype.details = function DLRADAPT_f() {
@@ -38,7 +38,7 @@ function DLRADAPT_f() {
         return options;
     }
     DLRADAPT_f.prototype.set = function DLRADAPT_f() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.p = inverse(arguments[0]["p"]);
@@ -66,7 +66,7 @@ function DLRADAPT_f() {
                 this.model.dstate = new ScilabDouble([this.last_u.slice()],[this.last_y.slice()]);
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.ipar = new ScilabDouble(ipar);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

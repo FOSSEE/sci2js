@@ -11,9 +11,9 @@ function EVTDLY_c() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([this.ff]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [[string(this.dt)],[sci2exp(this.ff)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EVTDLY_c\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(this.dt)],[sci2exp(this.ff)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EVTDLY_c\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     EVTDLY_c.prototype.details = function EVTDLY_c() {
@@ -27,7 +27,7 @@ function EVTDLY_c() {
         return options;
     }
     EVTDLY_c.prototype.set = function EVTDLY_c() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.dt = parseFloat(arguments[0]["dt"]);
@@ -41,7 +41,7 @@ function EVTDLY_c() {
                 var ok = false;
             }
             if (ok) {
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.rpar = new ScilabDouble([this.dt],[this.ff]);
                 this.model.firing = new ScilabDouble([this.ff]);
                 this.x.graphics = this.graphics;

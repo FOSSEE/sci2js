@@ -21,8 +21,8 @@ function EXTRACT() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
         var label = [[sci2exp(1)],[sci2exp([1])],[sci2exp([1])]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXTRACT\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(label),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EXTRACT\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(label),gr_i);
         return new BasicBlock(this.x);
     }
     EXTRACT.prototype.details = function EXTRACT() {
@@ -90,7 +90,7 @@ function EXTRACT() {
             var out = [ma,mb];
             var funtyp = 4;
             if (ok) {
-                var label = this.exprs;
+                var label = exprs;
                 var tmpvar0 = set_io(this.model,this.graphics,list(in1,it),list(out,ot),[],[]);
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];

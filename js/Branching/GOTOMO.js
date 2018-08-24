@@ -16,9 +16,9 @@ function GOTOMO() {
         var mo = modelica();
         mo.model = "gotomo";
         mo.inputs = "p";
-        this.exprs = [["A"],[sci2exp(1)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GOTOMO\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,1]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [["A"],[sci2exp(1)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GOTOMO\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,1]),this.model,new ScilabDouble(exprs),gr_i);
         this.x.graphics.in_implicit = ["I"];
         return new BasicBlock(this.x);
     }
@@ -33,7 +33,7 @@ function GOTOMO() {
         return options;
     }
     GOTOMO.prototype.set = function GOTOMO() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
@@ -52,7 +52,7 @@ function GOTOMO() {
                     var needcompile = 4;
                     var y = needcompile;
                 }
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.opar = list(new ScilabDouble([this.tag]));
                 this.model.ipar = new ScilabDouble([this.tagvis]);
                 this.x.model = this.model;

@@ -8,9 +8,9 @@ function SCALAR2VECTOR() {
         this.model.in = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [string([this.nout])];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SCALAR2VECTOR\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabString(this.exprs),this.gr_i);
+        var exprs = [string([this.nout])];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SCALAR2VECTOR\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabString(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     SCALAR2VECTOR.prototype.details = function SCALAR2VECTOR() {
@@ -23,7 +23,7 @@ function SCALAR2VECTOR() {
         return options;
     }
     SCALAR2VECTOR.prototype.set = function SCALAR2VECTOR() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.nout = parseFloat(arguments[0]["nout"]);
@@ -43,7 +43,7 @@ function SCALAR2VECTOR() {
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

@@ -18,9 +18,9 @@ function AFFICH_m() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
         this.model.label = new ScilabString([""]);
-        this.exprs = [[sci2exp([this.model.in,this.model.in2])],[string(this.font)],[string(this.fontsize)],[string(this.colr)],[string(this.nt)],[string(this.nd)],[string(0)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"AFFICH_m\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[sci2exp([this.model.in,this.model.in2])],[string(this.font)],[string(this.fontsize)],[string(this.colr)],[string(this.nt)],[string(this.nd)],[string(0)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"AFFICH_m\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new AfficheBlock(this.x);
     }
     AFFICH_m.prototype.details = function AFFICH_m() {
@@ -39,7 +39,7 @@ function AFFICH_m() {
         return options;
     }
     AFFICH_m.prototype.set = function AFFICH_m() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.in1 = inverse(arguments[0]["in1"]);
@@ -91,7 +91,7 @@ function AFFICH_m() {
                 this.model.ipar = new ScilabDouble([this.font],[this.fontsize],[this.colr],[this.nt],[this.nd],[this.in1[1-1][1-1]]);
                 this.model.dstate = new ScilabDouble([-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]);
                 this.model.evtin = new ScilabDouble([ones(1-this.herit,1)]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

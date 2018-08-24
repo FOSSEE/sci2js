@@ -12,9 +12,9 @@ function ISELECT_f() {
         this.model.dstate = new ScilabDouble([this.z0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[string(this.nout)],[string(this.z0+1)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ISELECT_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(this.nout)],[string(this.z0+1)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ISELECT_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     ISELECT_f.prototype.details = function ISELECT_f() {
@@ -28,7 +28,7 @@ function ISELECT_f() {
         return options;
     }
     ISELECT_f.prototype.set = function ISELECT_f() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.nout = parseFloat(arguments[0]["nout"]);
@@ -45,7 +45,7 @@ function ISELECT_f() {
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble([this.exprs]);
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.model.dstate = new ScilabDouble([this.z0-1]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;

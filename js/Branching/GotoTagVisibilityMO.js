@@ -14,9 +14,9 @@ function GotoTagVisibilityMO() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = "A";
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GotoTagVisibilityMO\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([this.exprs]),this.gr_i);
+        var exprs = "A";
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GotoTagVisibilityMO\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([exprs]),gr_i);
         return new BasicBlock(this.x);
     }
     GotoTagVisibilityMO.prototype.details = function GotoTagVisibilityMO() {
@@ -29,7 +29,7 @@ function GotoTagVisibilityMO() {
         return options;
     }
     GotoTagVisibilityMO.prototype.set = function GotoTagVisibilityMO() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
@@ -41,7 +41,7 @@ function GotoTagVisibilityMO() {
                     var needcompile = 4;
                     var y = needcompile;
                 }
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.opar = list(new ScilabDouble([this.tag]));
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;

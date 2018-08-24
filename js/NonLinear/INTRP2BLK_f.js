@@ -12,9 +12,9 @@ function INTRP2BLK_f() {
         this.model.ipar = new ScilabDouble([2],[2]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))],[strcat(sci2exp(this.c,0))]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTRP2BLK_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[strcat(sci2exp(this.a))],[strcat(sci2exp(this.b))],[strcat(sci2exp(this.c,0))]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"INTRP2BLK_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     INTRP2BLK_f.prototype.details = function INTRP2BLK_f() {
@@ -29,7 +29,7 @@ function INTRP2BLK_f() {
         return options;
     }
     INTRP2BLK_f.prototype.set = function INTRP2BLK_f() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.a = inverse(arguments[0]["a"]);
@@ -46,7 +46,7 @@ function INTRP2BLK_f() {
                 throw "user error";
             } else {
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble([this.exprs]);
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.model.rpar = new ScilabDouble([this.a.slice()],[this.b.slice()],[this.c.slice()]);
                     this.model.ipar = new ScilabDouble([size(this.a,"*")],[size(this.b,"*")]);
                     this.x.graphics = this.graphics;

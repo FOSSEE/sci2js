@@ -9,9 +9,9 @@ function CLKINV_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = string(this.prt);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLKINV_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([this.exprs]),this.gr_i);
+        var exprs = string(this.prt);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLKINV_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([exprs]),gr_i);
         return new EventInBlock(this.x);
     }
     CLKINV_f.prototype.details = function CLKINV_f() {
@@ -24,8 +24,8 @@ function CLKINV_f() {
         return options;
     }
     CLKINV_f.prototype.set = function CLKINV_f() {
-        this.exprs = this.graphics.exprs;
-        this.exprs = this.exprs[1-1];
+        var exprs = this.graphics.exprs;
+        var exprs = exprs[1-1];
         while (true) {
             var ok = true;
             this.prt = parseFloat(arguments[0]["prt"]);
@@ -39,7 +39,7 @@ function CLKINV_f() {
                 this.model.ipar = new ScilabDouble([this.prt]);
                 this.model.evtout = new ScilabDouble([1]);
                 this.model.firing = new ScilabDouble([-1]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

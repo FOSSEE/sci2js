@@ -92,7 +92,7 @@ function DELAY_f() {
         var evtdly = this.x.model.rpar.objs[ppath[2-1]-1];
         var register_exprs = register.graphics.exprs;
         var evtdly_exprs = evtdly.graphics.exprs;
-        this.exprs = [[evtdly_exprs[1-1]],[register_exprs]];
+        var exprs = [[evtdly_exprs[1-1]],[register_exprs]];
         while (true) {
             var ok = true;
             this.dt = arguments[0]["dt"];
@@ -113,13 +113,13 @@ function DELAY_f() {
                 message(mess);
                 throw "user error";
             } else {
-                evtdly.graphics.exprs[1-1] = this.exprs[1-1];
+                evtdly.graphics.exprs[1-1] = exprs[1-1];
                 if (evtdly.model.rpar!=this.dt) {
                     evtdly.model.rpar = this.dt;
                     newpar[$+1-1] = ppath[2-1];
                 }
                 this.x.model.rpar.objs[ppath[2-1]-1] = evtdly;
-                register.graphics.exprs = this.exprs[2-1];
+                register.graphics.exprs = exprs[2-1];
                 if (or(register.model.dstate!=this.z0.slice())) {
                     register.model.dstate = this.z0.slice();
                     newpar[$+1-1] = ppath[1-1];

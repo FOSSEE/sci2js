@@ -15,9 +15,9 @@ function ConstantVoltage() {
         mo.outputs = "n";
         mo.parameters = list("V",list(this.V));
         this.model.equations = new ScilabDouble([mo]);
-        this.exprs = string(this.V);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ConstantVoltage\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([1.5,1.1]),this.model,new ScilabString([this.exprs]),list(this.gr_i,0));
+        var exprs = string(this.V);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ConstantVoltage\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([1.5,1.1]),this.model,new ScilabString([exprs]),list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -32,7 +32,7 @@ function ConstantVoltage() {
         return options;
     }
     ConstantVoltage.prototype.set = function ConstantVoltage() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.V = parseFloat(arguments[0]["V"]);
@@ -41,7 +41,7 @@ function ConstantVoltage() {
             }
             this.model.rpar = new ScilabDouble([this.V]);
             this.model.equations.parameters[2-1] = list(new ScilabDouble([this.V]));
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;

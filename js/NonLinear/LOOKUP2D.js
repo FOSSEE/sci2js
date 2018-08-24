@@ -16,9 +16,9 @@ function LOOKUP2D() {
         this.model.ipar = new ScilabDouble([Nx],[Ny],[this.Method]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = list(strcat(sci2exp(this.xx)),strcat(sci2exp(this.yy)),strcat(sci2exp(this.zz)),sci2exp(this.Method),Graf);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP2D\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2.5,2]),this.model,this.exprs,this.gr_i);
+        var exprs = list(strcat(sci2exp(this.xx)),strcat(sci2exp(this.yy)),strcat(sci2exp(this.zz)),sci2exp(this.Method),Graf);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOOKUP2D\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2.5,2]),this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     LOOKUP2D.prototype.details = function LOOKUP2D() {
@@ -35,7 +35,7 @@ function LOOKUP2D() {
         return options;
     }
     LOOKUP2D.prototype.set = function LOOKUP2D() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         var ok = false;
         var SaveExit = false;
         while (true) {
@@ -59,8 +59,8 @@ function LOOKUP2D() {
             if (this.graf!="y"&&this.graf!="Y") {
                 this.graf = "n";
             }
-            this.exprs[5-1] = "n";
-            this.exprs[4-1] = sci2exp(mtd);
+            exprs[5-1] = "n";
+            exprs[4-1] = sci2exp(mtd);
             var METHOD = getmethod(mtd);
             if (!Ask_again) {
                 this.xx = this.xx.slice();
@@ -108,7 +108,7 @@ function LOOKUP2D() {
                 }
                 this.model.rpar = new ScilabDouble([this.xx.slice()],[this.yy.slice()],[this.zz.slice()]);
                 this.model.ipar = new ScilabDouble([nx],[ny],[mtd]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.model = this.model;
                 this.x.graphics = this.graphics;
                 break;

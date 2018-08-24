@@ -9,8 +9,8 @@ function VirtualCLK0() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [];
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs)," ");
+        var exprs = [];
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs)," ");
         return new BasicBlock(this.x);
     }
     VirtualCLK0.prototype.details = function VirtualCLK0() {

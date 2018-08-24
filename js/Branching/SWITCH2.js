@@ -15,9 +15,9 @@ function SWITCH2() {
         this.model.nmode = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[string(ipar)],[string(rpar)],[string(this.nzz)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SWITCH2\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(ipar)],[string(rpar)],[string(this.nzz)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SWITCH2\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     SWITCH2.prototype.details = function SWITCH2() {
@@ -32,7 +32,7 @@ function SWITCH2() {
         return options;
     }
     SWITCH2.prototype.set = function SWITCH2() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.rule = parseFloat(arguments[0]["rule"]);
@@ -48,7 +48,7 @@ function SWITCH2() {
             if ((this.rule>2)) {
                 this.rule = 2;
             }
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.model.ipar = new ScilabDouble([this.rule]);
             this.model.rpar = new ScilabDouble([this.thra]);
             if (this.nzz!=0) {

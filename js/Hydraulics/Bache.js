@@ -27,9 +27,9 @@ function Bache() {
         this.model.equations = new ScilabDouble([mo]);
         this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
-        this.exprs = [[string(this.Patm)],[string(this.A)],[string(this.ze1)],[string(this.ze2)],[string(this.zs1)],[string(this.zs2)],[string(this.z0)],[string(this.T0)],[string(this.p_rho)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Bache\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),list(this.gr_i,0));
+        var exprs = [[string(this.Patm)],[string(this.A)],[string(this.ze1)],[string(this.ze2)],[string(this.zs1)],[string(this.zs2)],[string(this.z0)],[string(this.T0)],[string(this.p_rho)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Bache\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),list(gr_i,0));
         this.x.graphics.in_implicit = [["I"],["I"]];
         this.x.graphics.out_implicit = [["I"],["I"],["E"]];
         return new BasicBlock(this.x);
@@ -52,7 +52,7 @@ function Bache() {
         return options;
     }
     Bache.prototype.set = function Bache() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.Patm = parseFloat(arguments[0]["Patm"]);
@@ -69,7 +69,7 @@ function Bache() {
             }
             this.model.rpar = new ScilabDouble([this.Patm],[this.A],[this.ze1],[this.ze2],[this.zs1],[this.zs2],[this.z0],[this.T0],[this.p_rho]);
             this.model.equations.parameters[2-1] = list(new ScilabDouble([this.Patm]), new ScilabDouble([this.A]), new ScilabDouble([this.ze1]), new ScilabDouble([this.ze2]), new ScilabDouble([this.zs1]), new ScilabDouble([this.zs2]), new ScilabDouble([this.z0]), new ScilabDouble([this.T0]), new ScilabDouble([this.p_rho]));
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;

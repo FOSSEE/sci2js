@@ -9,9 +9,9 @@ function NRMSOM_f() {
         this.model.out = new ScilabDouble([-1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [string(this.nin)];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"NRMSOM_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([.2,2]),this.model,new ScilabString(this.exprs),this.gr_i);
+        var exprs = [string(this.nin)];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"NRMSOM_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([.2,2]),this.model,new ScilabString(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     NRMSOM_f.prototype.details = function NRMSOM_f() {
@@ -24,7 +24,7 @@ function NRMSOM_f() {
         return options;
     }
     NRMSOM_f.prototype.set = function NRMSOM_f() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.nin = parseFloat(arguments[0]["nin"]);
@@ -36,7 +36,7 @@ function NRMSOM_f() {
             this.graphics = tmpvar0[1];
             var ok = tmpvar0[2];
             if (ok) {
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

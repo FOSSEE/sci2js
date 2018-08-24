@@ -11,9 +11,9 @@ function Modulo_Count() {
         this.model.ipar = new ScilabDouble([this.base]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [[string(this.ini_c)],[string(this.base)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Modulo_Count\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(this.ini_c)],[string(this.base)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Modulo_Count\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     Modulo_Count.prototype.details = function Modulo_Count() {
@@ -27,7 +27,7 @@ function Modulo_Count() {
         return options;
     }
     Modulo_Count.prototype.set = function Modulo_Count() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.ini_c = parseFloat(arguments[0]["ini_c"]);
@@ -42,7 +42,7 @@ function Modulo_Count() {
             } else if (this.base<=0) {
                 block_parameter_error(msprintf("Wrong values for \'Upper Limit\' parameter: %d.",this.base),"Strictly positive integer expected.");
             } else {
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.ipar = new ScilabDouble([this.base]);
                 this.model.dstate = new ScilabDouble([this.ini_c]);
                 this.x.graphics = this.graphics;

@@ -9,9 +9,9 @@ function DIFF_f() {
         this.model.state = new ScilabDouble(this.x0);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,true]);
-        this.exprs = [[strcat(sci2exp(this.x0[1-1]))],[strcat(sci2exp(this.x0[2-1]))]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DIFF_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[strcat(sci2exp(this.x0[1-1]))],[strcat(sci2exp(this.x0[2-1]))]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DIFF_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     DIFF_f.prototype.details = function DIFF_f() {
@@ -25,7 +25,7 @@ function DIFF_f() {
         return options;
     }
     DIFF_f.prototype.set = function DIFF_f() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.x0 = inverse(arguments[0]["x0"]);
@@ -33,7 +33,7 @@ function DIFF_f() {
             if (!ok) {
                 break;
             }
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.model.state = new ScilabDouble([this.x0.slice()],[this.xd0.slice()]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;

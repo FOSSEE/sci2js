@@ -8,7 +8,7 @@ function AUTOMAT() {
         this.XP = [[1],[1]];
         var C1 = [2];
         var C2 = [1];
-        this.exprs = [[string(NMode)],[string(this.Minitial)],[string(NX)],[sci2exp(this.X0)],[sci2exp(this.XP)],[sci2exp(C1)],[sci2exp(C2)]];
+        var exprs = [[string(NMode)],[string(this.Minitial)],[string(NX)],[sci2exp(this.X0)],[sci2exp(this.XP)],[sci2exp(C1)],[sci2exp(C2)]];
         var ipar = [[NMode],[this.Minitial],[NX],[this.XP],[C1],[C2]];
         var rpar = [this.X0];
         this.model = scicos_model();
@@ -23,8 +23,8 @@ function AUTOMAT() {
         this.model.dep_ut = new ScilabBoolean([false,true]);
         this.model.ipar = new ScilabDouble(ipar);
         this.model.rpar = new ScilabDouble(rpar);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"AUTOMAT\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([4,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"AUTOMAT\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([4,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     AUTOMAT.prototype.details = function AUTOMAT() {
@@ -34,7 +34,7 @@ function AUTOMAT() {
         alert("parameters cannot be modified");
     }
     AUTOMAT.prototype.set = function AUTOMAT() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         var ipar = this.model.ipar;
         var NMode = ipar[1-1];
         var NX = ipar[3-1];
@@ -55,14 +55,14 @@ function AUTOMAT() {
             if (!this.ok) {
                 break;
             }
-            var NMode_old = size(this.exprs,"*")-5;
+            var NMode_old = size(exprs,"*")-5;
             var ModifEncore = false;
             if ((NMode_old>NMode)) {
-                this.exprs.slice(NMode+6-1,NMode_old+5) = [];
+                exprs.slice(NMode+6-1,NMode_old+5) = [];
                 var ModifEncore = true;
             }
             if ((NMode_old<NMode)) {
-                this.exprs.slice(NMode_old+6-1,NMode+5) = this.exprs[NMode_old+4-1];
+                exprs.slice(NMode_old+6-1,NMode+5) = exprs[NMode_old+4-1];
                 var ModifEncore = true;
             }
             if ((NX!=size(this.X0,"*"))) {
@@ -96,7 +96,7 @@ function AUTOMAT() {
                 var MaxModes = 1;
                 var nzcross = 0;
                 for (i=1;i<=NMode;i+=1) {
-                    var Ci = evstr(this.exprs[5+i-1]);
+                    var Ci = evstr(exprs[5+i-1]);
                     var ipar = [[ipar],[Ci]];
                     INP[i-1][1-1] = 2*NX+length(Ci);
                     if ((nzcross<length(Ci))) {
@@ -127,7 +127,7 @@ function AUTOMAT() {
                 this.model.nzcross = new ScilabDouble([nzcross]);
                 this.model.state = new ScilabDouble([ones(2*NX,1)]);
                 this.graphics.gr_i[1-1][1-1] = new ScilabString(["txt=[\'Automaton\';\'nM="+string(NMode)+",nX="+string(NX)+"\'];"]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.rpar = new ScilabDouble([rpar]);

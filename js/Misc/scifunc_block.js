@@ -24,9 +24,9 @@ function scifunc_block() {
         this.model.blocktype = new ScilabString([typ]);
         this.model.firing = new ScilabDouble(auto);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = list([[sci2exp(in1)],[sci2exp(out)],[sci2exp(clkin)],[sci2exp(clkout)],[strcat(sci2exp(x0))],[strcat(sci2exp(z0))],[strcat(sci2exp(this.rpar))],[sci2exp(auto)]],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"scifunc_block\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,this.exprs,this.gr_i);
+        var exprs = list([[sci2exp(in1)],[sci2exp(out)],[sci2exp(clkin)],[sci2exp(clkout)],[strcat(sci2exp(x0))],[strcat(sci2exp(z0))],[strcat(sci2exp(this.rpar))],[sci2exp(auto)]],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"scifunc_block\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     scifunc_block.prototype.details = function scifunc_block() {
@@ -48,9 +48,9 @@ function scifunc_block() {
     }
     scifunc_block.prototype.set = function scifunc_block() {
         var needcompile = 0;
-        this.exprs = this.graphics.exprs;
-        if (size(this.exprs[1-1],"*")==8) {
-            this.exprs[1-1][9-1] = "0";
+        var exprs = this.graphics.exprs;
+        if (size(exprs[1-1],"*")==8) {
+            exprs[1-1][9-1] = "0";
         }
         while (true) {
             var ok = true;
@@ -67,7 +67,7 @@ function scifunc_block() {
             if (!ok) {
                 break;
             }
-            this.exprs[1-1] = this.lab;
+            exprs[1-1] = this.lab;
             this.xx = this.xx.slice();
             this.z = this.z.slice();
             this.rpar = this.rpar.slice();
@@ -80,7 +80,7 @@ function scifunc_block() {
             var nci = size(this.ci,1);
             this.co = int(this.co.slice());
             var nco = size(this.co,1);
-            var tmpvar0 = genfunc1(this.exprs[2-1],this.i,this.o,nci,nco,size(this.xx,1),size(this.z,1),nrp,"c");
+            var tmpvar0 = genfunc1(exprs[2-1],this.i,this.o,nci,nco,size(this.xx,1),size(this.z,1),nrp,"c");
             var ok = tmpvar0[0];
             var tt = tmpvar0[1];
             var dep_ut = tmpvar0[2];
@@ -108,8 +108,8 @@ function scifunc_block() {
                 this.model.firing = new ScilabDouble([auto]);
                 this.model.dep_ut = new ScilabDouble([dep_ut]);
                 this.x.model = this.model;
-                this.exprs[2-1] = tt;
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                exprs[2-1] = tt;
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 break;
             }

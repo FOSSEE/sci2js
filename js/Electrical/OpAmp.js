@@ -16,9 +16,9 @@ function OpAmp() {
         this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.model.rpar = new ScilabDouble(Z);
-        this.exprs = string(Z);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OpAmp\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,5]),this.model,new ScilabString([this.exprs]),this.gr_i);
+        var exprs = string(Z);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OpAmp\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,5]),this.model,new ScilabString([exprs]),gr_i);
         this.x.graphics.in_implicit = [["I"],["I"]];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -35,7 +35,7 @@ function OpAmp() {
         return options;
     }
     OpAmp.prototype.set = function OpAmp() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (false) {
             var ok = true;
             this.OLGain = arguments[0]["OLGain"];
@@ -45,7 +45,7 @@ function OpAmp() {
                 break;
             }
             this.model.equations.parameters[2-1] = list(new ScilabDouble([this.OLGain]), new ScilabDouble([this.SatH]), new ScilabDouble([this.SatL]));
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;

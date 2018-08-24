@@ -65,8 +65,6 @@ JOB_BLOCKS = {}
 FUNCTION_VARS = set()
 LOCAL_VARS = set()
 GLOBAL_VARS = {
-    'exprs',
-    'gr_i',
     'graphics',
     'model',
     'x',
@@ -570,7 +568,7 @@ def p_lterm_assignment_expression(p):
     else:
         prefix = ''
         value = p[3][0]
-        if var == 'this.gr_i' and value == '[]':
+        if var == 'gr_i' and value == '[]':
             value = 'new ScilabString(["xstringb(orig(1),orig(2),\\"%s\\",sz(1),sz(2));"])' % (SCICOS_BLOCK_NAME)
         if var in LOCAL_VARS and '.' not in var:
             prefix = 'var '

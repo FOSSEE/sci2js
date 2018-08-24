@@ -4,9 +4,9 @@ function DEBUG() {
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["%debug_scicos"]), new ScilabDouble([99]));
         this.model.blocktype = new ScilabString(["d"]);
-        this.exprs = list("","xcos_debug_gui(flag,block);");
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DEBUG\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([8,2]),this.model,this.exprs,this.gr_i);
+        var exprs = list("","xcos_debug_gui(flag,block);");
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DEBUG\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([8,2]),this.model,exprs,gr_i);
         return new BasicBlock(this.x);
     }
     DEBUG.prototype.details = function DEBUG() {
@@ -16,8 +16,8 @@ function DEBUG() {
         alert("parameters cannot be modified");
     }
     DEBUG.prototype.set = function DEBUG() {
-        this.exprs = this.graphics.exprs;
-        var textmp = this.exprs[2-1];
+        var exprs = this.graphics.exprs;
+        var textmp = exprs[2-1];
         var ok = true;
         while (1==1) {
             var tmpvar0 = dialog([["Enter scilab instructions for debugging."],[" Inputs are block and flag, output is block"]],textmp);
@@ -29,7 +29,7 @@ function DEBUG() {
                     warning("off");
                     save(this.TMPDIR+"/debug_scicos",this.debug_scicos);
                     warning(warnMode);
-                    this.exprs[2-1] = txt;
+                    exprs[2-1] = txt;
                     if ((scicos_debug()!=2&&scicos_debug()!=3)) {
                         scicos_debug(2);
                     }
@@ -44,7 +44,7 @@ function DEBUG() {
             }
         }
         if (ok) {
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.x.graphics = this.graphics;
         }
         return new BasicBlock(this.x);

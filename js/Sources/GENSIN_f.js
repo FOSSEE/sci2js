@@ -11,9 +11,9 @@ function GENSIN_f() {
         this.model.rpar = new ScilabDouble([1],[1],[0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,true]);
-        this.exprs = [[string(rpar[1-1])],[string(rpar[2-1])],[string(rpar[3-1])]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENSIN_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(rpar[1-1])],[string(rpar[2-1])],[string(rpar[3-1])]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENSIN_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     GENSIN_f.prototype.details = function GENSIN_f() {
@@ -28,7 +28,7 @@ function GENSIN_f() {
         return options;
     }
     GENSIN_f.prototype.set = function GENSIN_f() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.M = arguments[0]["M"];
@@ -49,7 +49,7 @@ function GENSIN_f() {
                 this.model.rpar = new ScilabDouble([this.M],[this.F],[this.P]);
                 this.model.out2 = new ScilabDouble([1]);
                 this.model.outtyp = new ScilabDouble([1]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

@@ -14,9 +14,9 @@ function ESELECT_f() {
         this.model.dep_ut = new ScilabBoolean([true,false]);
         this.model.nmode = new ScilabDouble([0]);
         this.model.nzcross = new ScilabDouble([0]);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ESELECT_f\",sz(1),sz(2));"]);
-        this.exprs = [[string(this.out)],[string(1)],[string(this.model.nmode)]];
-        this.x = new standard_define(new ScilabDouble([4,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ESELECT_f\",sz(1),sz(2));"]);
+        var exprs = [[string(this.out)],[string(1)],[string(this.model.nmode)]];
+        this.x = new standard_define(new ScilabDouble([4,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     ESELECT_f.prototype.details = function ESELECT_f() {
@@ -31,12 +31,12 @@ function ESELECT_f() {
         return options;
     }
     ESELECT_f.prototype.set = function ESELECT_f() {
-        this.exprs = this.graphics.exprs;
-        if (size(this.exprs,"*")==1) {
-            this.exprs[2-1] = string(1);
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==1) {
+            exprs[2-1] = string(1);
         }
-        if (size(this.exprs,"*")==2) {
-            this.exprs[3-1] = string(0);
+        if (size(exprs,"*")==2) {
+            exprs[3-1] = string(0);
         }
         while (true) {
             var ok = true;
@@ -64,7 +64,7 @@ function ESELECT_f() {
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble([this.exprs]);
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.model.evtout = new ScilabDouble([ones(this.out,1)]);
                     this.model.firing = new ScilabDouble([-ones(this.out,1)]);
                     this.x.graphics = this.graphics;

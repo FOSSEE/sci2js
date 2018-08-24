@@ -8,8 +8,8 @@ function CLINDUMMY_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabBoolean([false,true]);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLINDUMMY_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble([]),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLINDUMMY_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble([]),gr_i);
         return new BasicBlock(this.x);
     }
     CLINDUMMY_f.prototype.details = function CLINDUMMY_f() {

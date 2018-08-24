@@ -10,9 +10,9 @@ function M_freq() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([0,-1,-1]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [[sci2exp([[1],[2]])],[sci2exp([[0],[0]])]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"M_freq\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[sci2exp([[1],[2]])],[sci2exp([[0],[0]])]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"M_freq\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     M_freq.prototype.details = function M_freq() {
@@ -26,7 +26,7 @@ function M_freq() {
         return options;
     }
     M_freq.prototype.set = function M_freq() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.frequ = inverse(arguments[0]["frequ"]);
@@ -74,7 +74,7 @@ function M_freq() {
                     this.graphics.sz = new ScilabDouble([50,40]);
                 }
                 this.model.firing = new ScilabDouble([fir]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

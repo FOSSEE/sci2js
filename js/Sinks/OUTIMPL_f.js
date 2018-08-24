@@ -13,9 +13,9 @@ function OUTIMPL_f() {
         mo.model = "PORT";
         mo.inputs = "n";
         this.model.equations = new ScilabDouble([mo]);
-        this.exprs = "1";
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OUTIMPL_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([this.exprs]),this.gr_i);
+        var exprs = "1";
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OUTIMPL_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([exprs]),gr_i);
         this.x.graphics.in_implicit = ["I"];
         return new ImplicitOutBlock(this.x);
     }
@@ -29,9 +29,9 @@ function OUTIMPL_f() {
         return options;
     }
     OUTIMPL_f.prototype.set = function OUTIMPL_f() {
-        this.exprs = this.graphics.exprs;
-        if (size(this.exprs,"*")==2) {
-            this.exprs = this.exprs[1-1];
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==2) {
+            var exprs = exprs[1-1];
         }
         while (true) {
             var ok = true;
@@ -48,7 +48,7 @@ function OUTIMPL_f() {
                     var y = needcompile;
                 }
                 this.model.ipar = new ScilabDouble([this.prt]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

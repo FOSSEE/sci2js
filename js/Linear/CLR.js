@@ -6,7 +6,7 @@ function CLR() {
         var B = 1;
         var C = 1;
         var D = 0;
-        this.exprs = [["1"],["1+s"]];
+        var exprs = [["1"],["1+s"]];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["csslti4"]), new ScilabDouble([4]));
         this.model.in = new ScilabDouble([1]);
@@ -15,8 +15,8 @@ function CLR() {
         this.model.rpar = new ScilabDouble([A.slice()],[B.slice()],[C.slice()],[D.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,true]);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLR\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CLR\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     CLR.prototype.details = function CLR() {
@@ -30,7 +30,7 @@ function CLR() {
         return options;
     }
     CLR.prototype.set = function CLR() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         var x0 = this.model.state;
         var rpar = this.model.rpar;
         var ns = prod(size(x0));
@@ -57,7 +57,7 @@ function CLR() {
                 var B = tmpvar0[1];
                 var C = tmpvar0[2];
                 var D = tmpvar0[3];
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 var tmpvar1 = size(A);
                 var ns1 = tmpvar1[0];
                 var ns1 = tmpvar1[1];

@@ -13,8 +13,8 @@ function PotentialSensor() {
         mo.inputs = "p";
         mo.outputs = ["v"];
         this.model.equations = new ScilabDouble([mo]);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PotentialSensor\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([""]),list(this.gr_i,0));
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PotentialSensor\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([""]),list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["E"];
         return new BasicBlock(this.x);

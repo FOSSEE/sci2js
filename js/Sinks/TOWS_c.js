@@ -18,9 +18,9 @@ function TOWS_c() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TOWS_c\",sz(1),sz(2));"]);
-        this.exprs = [[string(this.nz)],[string(this.varnam)],[string(this.herit)]];
-        this.x = new standard_define(new ScilabDouble([4,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"TOWS_c\",sz(1),sz(2));"]);
+        var exprs = [[string(this.nz)],[string(this.varnam)],[string(this.herit)]];
+        this.x = new standard_define(new ScilabDouble([4,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     TOWS_c.prototype.details = function TOWS_c() {
@@ -35,7 +35,7 @@ function TOWS_c() {
         return options;
     }
     TOWS_c.prototype.set = function TOWS_c() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.nz = parseFloat(arguments[0]["nz"]);
@@ -68,7 +68,7 @@ function TOWS_c() {
                     this.model.blocktype = new ScilabString(["d"]);
                 }
                 this.model.ipar = new ScilabDouble([this.nz],[length(this.varnam)],[transpose(this.ascii[this.varnam-1])]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

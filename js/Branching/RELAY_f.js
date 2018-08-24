@@ -13,9 +13,9 @@ function RELAY_f() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabBoolean([true,true]);
-        this.exprs = [[string(this.nin)],[string(i0+1)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RELAY_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(this.nin)],[string(i0+1)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RELAY_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     RELAY_f.prototype.details = function RELAY_f() {
@@ -29,7 +29,7 @@ function RELAY_f() {
         return options;
     }
     RELAY_f.prototype.set = function RELAY_f() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         var ipar = this.model.ipar;
         while (true) {
             var ok = true;
@@ -47,7 +47,7 @@ function RELAY_f() {
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble([this.exprs]);
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.model.dstate = new ScilabString([this.z0-1]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;

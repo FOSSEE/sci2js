@@ -14,9 +14,9 @@ function CEVENTSCOPE() {
         this.model.ipar = new ScilabDouble([this.win],[1],[this.clrs[this.nclock-1]],[this.wpos.slice()],[this.wdim.slice()]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [[sci2exp(this.nclock)],[strcat(sci2exp(this.clrs[this.nclock-1])," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.per)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CEVENTSCOPE\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[sci2exp(this.nclock)],[strcat(sci2exp(this.clrs[this.nclock-1])," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.per)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CEVENTSCOPE\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     CEVENTSCOPE.prototype.details = function CEVENTSCOPE() {
@@ -34,7 +34,7 @@ function CEVENTSCOPE() {
         return options;
     }
     CEVENTSCOPE.prototype.set = function CEVENTSCOPE() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.nclock = parseFloat(arguments[0]["nclock"]);
@@ -94,7 +94,7 @@ function CEVENTSCOPE() {
                 var ipar = [[this.win],[1],[this.clrs.slice()],[this.wpos.slice()],[this.wdim.slice()]];
                 this.model.rpar = new ScilabDouble([rpar]);
                 this.model.ipar = new ScilabDouble(ipar);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

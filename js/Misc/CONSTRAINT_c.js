@@ -10,9 +10,9 @@ function CONSTRAINT_c() {
         this.model.state = new ScilabDouble(this.x0);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,true]);
-        this.exprs = "0";
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CONSTRAINT_c\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabString([this.exprs]),this.gr_i);
+        var exprs = "0";
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CONSTRAINT_c\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabString([exprs]),gr_i);
         return new BasicBlock(this.x);
     }
     CONSTRAINT_c.prototype.details = function CONSTRAINT_c() {
@@ -25,7 +25,7 @@ function CONSTRAINT_c() {
         return options;
     }
     CONSTRAINT_c.prototype.set = function CONSTRAINT_c() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.x0 = inverse(arguments[0]["x0"]);
@@ -43,7 +43,7 @@ function CONSTRAINT_c() {
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble([this.exprs]);
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.model.state = new ScilabDouble([this.x0],[zeros(N,1)]);
                     this.model.out = new ScilabDouble([N]);
                     this.model.in = new ScilabDouble([N]);

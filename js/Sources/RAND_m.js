@@ -24,9 +24,9 @@ function RAND_m() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [[sci2exp(1)],[string(this.flag)],[sci2exp([this.a])],[sci2exp([this.b])],[sci2exp([this.model.dstate[1-1],int(rand()*(10^7-1))])]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RAND_m\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[sci2exp(1)],[string(this.flag)],[sci2exp([this.a])],[sci2exp([this.b])],[sci2exp([this.model.dstate[1-1],int(rand()*(10^7-1))])]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RAND_m\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     RAND_m.prototype.details = function RAND_m() {
@@ -43,9 +43,9 @@ function RAND_m() {
         return options;
     }
     RAND_m.prototype.set = function RAND_m() {
-        this.exprs = this.graphics.exprs;
-        if (size(this.exprs,"*")==14) {
-            this.exprs[9-1] = [];
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==14) {
+            exprs[9-1] = [];
         }
         while (true) {
             var ok = true;
@@ -84,7 +84,7 @@ function RAND_m() {
                     var ok = tmpvar0[2];
                     if (ok) {
                         this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([4]));
-                        this.graphics.exprs = new ScilabDouble([this.exprs]);
+                        this.graphics.exprs = new ScilabDouble([exprs]);
                         this.model.ipar = new ScilabDouble([this.flag]);
                         this.x.graphics = this.graphics;
                         this.x.model = this.model;

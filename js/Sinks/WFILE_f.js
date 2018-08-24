@@ -15,9 +15,9 @@ function WFILE_f() {
         this.model.ipar = new ScilabDouble([length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[sci2exp(this.in1)],[fname],[frmt],[string(this.N)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"WFILE_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[sci2exp(this.in1)],[fname],[frmt],[string(this.N)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"WFILE_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     WFILE_f.prototype.details = function WFILE_f() {
@@ -37,11 +37,11 @@ function WFILE_f() {
         var warnMessage = msprintf("Feature %s is obsolete.","WFILE_f");
         var warnAdvise = msprintf("Please use %s instead.","WRITEC_f");
         var warnXcosMessage = msprintf("%s %s",warnMessage,warnAdvise);
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
         var lunit = dstate[2-1];
-        var fname = this.exprs[2-1];
-        var frmt = this.exprs[3-1];
+        var fname = exprs[2-1];
+        var frmt = exprs[3-1];
         while (true) {
             var ok = true;
             this.in1 = parseFloat(arguments[0]["in1"]);
@@ -92,7 +92,7 @@ function WFILE_f() {
                 this.model.dstate = new ScilabDouble(dstate);
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.dep_ut = new ScilabBoolean([true,false]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

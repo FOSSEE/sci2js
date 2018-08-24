@@ -15,9 +15,9 @@ function Inductor() {
         mo.outputs = "n";
         mo.parameters = list("L",list(this.L));
         this.model.equations = new ScilabDouble([mo]);
-        this.exprs = string(this.L);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Inductor\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,0.9]),this.model,new ScilabString([this.exprs]),list(this.gr_i,0));
+        var exprs = string(this.L);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Inductor\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,0.9]),this.model,new ScilabString([exprs]),list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -32,7 +32,7 @@ function Inductor() {
         return options;
     }
     Inductor.prototype.set = function Inductor() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.L = parseFloat(arguments[0]["L"]);
@@ -41,7 +41,7 @@ function Inductor() {
             }
             this.model.rpar = new ScilabDouble([this.L]);
             this.model.equations.parameters[2-1] = list(new ScilabDouble([this.L]));
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;

@@ -13,9 +13,9 @@ function IFTHEL_f() {
         this.model.dep_ut = new ScilabBoolean([true,false]);
         this.model.nmode = new ScilabDouble([1]);
         this.model.nzcross = new ScilabDouble([1]);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IFTHEL_f\",sz(1),sz(2));"]);
-        this.exprs = [[string(this.model.in)],[string(this.model.nmode)]];
-        this.x = new standard_define(new ScilabDouble([3,3]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IFTHEL_f\",sz(1),sz(2));"]);
+        var exprs = [[string(this.model.in)],[string(this.model.nmode)]];
+        this.x = new standard_define(new ScilabDouble([3,3]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     IFTHEL_f.prototype.details = function IFTHEL_f() {
@@ -29,12 +29,12 @@ function IFTHEL_f() {
         return options;
     }
     IFTHEL_f.prototype.set = function IFTHEL_f() {
-        this.exprs = this.graphics.exprs;
-        if (this.exprs.length==0) {
-            this.exprs = string(1);
+        var exprs = this.graphics.exprs;
+        if (exprs.length==0) {
+            var exprs = string(1);
         }
-        if (size(this.exprs,"*")==1) {
-            this.exprs[2-1] = string(1);
+        if (size(exprs,"*")==1) {
+            exprs[2-1] = string(1);
         }
         while (true) {
             var ok = true;
@@ -55,7 +55,7 @@ function IFTHEL_f() {
             this.graphics = tmpvar0[1];
             var ok = tmpvar0[2];
             if (ok) {
-                this.graphics.exprs = new ScilabString([this.exprs]);
+                this.graphics.exprs = new ScilabString([exprs]);
                 this.model.evtin = new ScilabDouble(this.inh);
                 this.model.sim[2-1] = new ScilabDouble([-1]);
                 this.model.nmode = new ScilabDouble([this.nmod]);

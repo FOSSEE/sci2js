@@ -22,9 +22,9 @@ function CSCOPXY() {
         this.model.ipar = new ScilabDouble([this.win],[1],[this.N],[this.clrs],[this.siz],[1],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [[string(this.nbr_curves)],[sci2exp(this.clrs)],[sci2exp(this.siz)],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.xmin)],[string(this.xmax)],[string(this.ymin)],[string(this.ymax)],[string(this.N)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CSCOPXY\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(this.nbr_curves)],[sci2exp(this.clrs)],[sci2exp(this.siz)],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.xmin)],[string(this.xmax)],[string(this.ymin)],[string(this.ymax)],[string(this.N)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CSCOPXY\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     CSCOPXY.prototype.details = function CSCOPXY() {
@@ -47,7 +47,7 @@ function CSCOPXY() {
         return options;
     }
     CSCOPXY.prototype.set = function CSCOPXY() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.nbr_curves = parseFloat(arguments[0]["nbr_curves"]);
@@ -117,7 +117,7 @@ function CSCOPXY() {
                 var ipar = [[this.win],[1],[this.N],[this.clrs],[this.siz],[1],[this.wpos.slice()],[this.wdim.slice()],[this.nbr_curves]];
                 this.model.rpar = new ScilabDouble(rpar);
                 this.model.ipar = new ScilabDouble(ipar);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

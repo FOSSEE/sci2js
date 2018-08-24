@@ -16,9 +16,9 @@ function CFSCOPE() {
         this.model.ipar = new ScilabDouble([this.win],[1],[this.N],[this.clrs],[this.wpos],[this.wdim],[1],[1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.ymin)],[string(this.ymax)],[string(this.per)],[string(this.N)],[string([1])]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CFSCOPE\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp(this.wdim)],[string(this.ymin)],[string(this.ymax)],[string(this.per)],[string(this.N)],[string([1])]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CFSCOPE\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     CFSCOPE.prototype.details = function CFSCOPE() {
@@ -39,7 +39,7 @@ function CFSCOPE() {
         return options;
     }
     CFSCOPE.prototype.set = function CFSCOPE() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.clrs = inverse(arguments[0]["clrs"]);
@@ -106,7 +106,7 @@ function CFSCOPE() {
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.firing = new ScilabDouble([]);
                 this.model.dep_ut = new ScilabBoolean([true,false]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

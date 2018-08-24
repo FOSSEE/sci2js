@@ -20,9 +20,9 @@ function RFILE_f() {
         this.model.ipar = new ScilabDouble([length(fname)],[length(frmt)],[0],[this.N],[this._str2code[fname-1]],[this._str2code[frmt-1]],[tmask],[this.outmask]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [[sci2exp([])],[sci2exp(this.outmask)],[fname],[frmt],[string(this.N)],[sci2exp(out)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RFILE_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[sci2exp([])],[sci2exp(this.outmask)],[fname],[frmt],[string(this.N)],[sci2exp(out)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"RFILE_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     RFILE_f.prototype.details = function RFILE_f() {
@@ -39,7 +39,7 @@ function RFILE_f() {
         return options;
     }
     RFILE_f.prototype.set = function RFILE_f() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
         var ipar = this.model.ipar;
         var ievt = ipar[3-1];
@@ -47,10 +47,10 @@ function RFILE_f() {
         var imask = 5+ipar[1-1]+ipar[2-1];
         var tmask = ipar[imask-1];
         var lunit = dstate[3-1];
-        var fname = this.exprs[3-1];
-        var frmt = this.exprs[4-1];
-        if (size(this.exprs,"*")>5) {
-            this.exprs[6-1] = [];
+        var fname = exprs[3-1];
+        var frmt = exprs[4-1];
+        if (size(exprs,"*")>5) {
+            exprs[6-1] = [];
         }
         while (true) {
             var ok = true;
@@ -110,7 +110,7 @@ function RFILE_f() {
                     }
                     this.model.dstate = new ScilabDouble(dstate);
                     this.model.ipar = new ScilabDouble(ipar);
-                    this.graphics.exprs = new ScilabDouble([this.exprs]);
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;

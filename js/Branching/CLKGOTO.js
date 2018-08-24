@@ -9,8 +9,8 @@ function CLKGOTO() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [["A"],[sci2exp(1)]];
-        this.x = new standard_define(new ScilabDouble([2,1]),this.model,new ScilabDouble(this.exprs)," ");
+        var exprs = [["A"],[sci2exp(1)]];
+        this.x = new standard_define(new ScilabDouble([2,1]),this.model,new ScilabDouble(exprs)," ");
         this.x.graphics.id = "Goto";
         return new BasicBlock(this.x);
     }
@@ -25,7 +25,7 @@ function CLKGOTO() {
         return options;
     }
     CLKGOTO.prototype.set = function CLKGOTO() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
@@ -48,7 +48,7 @@ function CLKGOTO() {
                 this.model.ipar = new ScilabDouble([this.tagvis]);
                 this.model.evtin = new ScilabDouble([1]);
                 this.model.firing = new ScilabDouble([-1]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

@@ -11,9 +11,9 @@ function QUANT_f() {
         this.model.ipar = new ScilabDouble([this.meth]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[string(this.pas)],[string(this.meth)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"QUANT_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(this.pas)],[string(this.meth)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"QUANT_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     QUANT_f.prototype.details = function QUANT_f() {
@@ -27,7 +27,7 @@ function QUANT_f() {
         return options;
     }
     QUANT_f.prototype.set = function QUANT_f() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.pas = parseFloat(arguments[0]["pas"]);
@@ -52,7 +52,7 @@ function QUANT_f() {
                 case 4:
                     this.model.sim = new ScilabString(["qzcel"]);
                 }
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

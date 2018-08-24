@@ -13,8 +13,8 @@ function SAMPHOLD_m() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
         var label = [sci2exp(1)];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SAMPHOLD_m\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString(label),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SAMPHOLD_m\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString(label),gr_i);
         return new BasicBlock(this.x);
     }
     SAMPHOLD_m.prototype.details = function SAMPHOLD_m() {
@@ -47,7 +47,7 @@ function SAMPHOLD_m() {
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble([this.exprs]);
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     break;
                 }
             }

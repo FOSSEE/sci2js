@@ -13,9 +13,9 @@ function FROM() {
         this.model.opar = list(new ScilabString(["A"]));
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = ["A"];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROM\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,1]),this.model,new ScilabString(this.exprs),this.gr_i);
+        var exprs = ["A"];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROM\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,1]),this.model,new ScilabString(exprs),gr_i);
         this.x.graphics.id = "From";
         return new BasicBlock(this.x);
     }
@@ -29,7 +29,7 @@ function FROM() {
         return options;
     }
     FROM.prototype.set = function FROM() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
@@ -41,7 +41,7 @@ function FROM() {
                     var needcompile = 4;
                     var y = needcompile;
                 }
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.opar = list(new ScilabDouble([this.tag]));
                 this.x.model = this.model;
                 this.x.graphics = this.graphics;

@@ -44,8 +44,8 @@ function JKFLIPFLOP() {
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
         this.model.rpar = new ScilabDouble([scs_m]);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"JKFLIPFLOP\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,3]),this.model,new ScilabDouble([]),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"JKFLIPFLOP\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,3]),this.model,new ScilabDouble([]),gr_i);
         return new BasicBlock(this.x);
     }
     JKFLIPFLOP.prototype.details = function JKFLIPFLOP() {
@@ -64,7 +64,7 @@ function JKFLIPFLOP() {
             }
         }
         var newpar = list();
-        this.exprs = xx.graphics.exprs[1-1];
+        var exprs = xx.graphics.exprs[1-1];
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
         while (true) {

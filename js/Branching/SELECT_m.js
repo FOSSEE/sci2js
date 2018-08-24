@@ -20,9 +20,9 @@ function SELECT_m() {
         this.model.dstate = new ScilabDouble([this.z0]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[sci2exp(1)],[sci2exp(this.nin)],[sci2exp(this.z0)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SELECT_m\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[sci2exp(1)],[sci2exp(this.nin)],[sci2exp(this.z0)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SELECT_m\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     SELECT_m.prototype.details = function SELECT_m() {
@@ -37,7 +37,7 @@ function SELECT_m() {
         return options;
     }
     SELECT_m.prototype.set = function SELECT_m() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
@@ -64,7 +64,7 @@ function SELECT_m() {
                     this.graphics = tmpvar0[1];
                     var ok = tmpvar0[2];
                     if (ok) {
-                        this.graphics.exprs = new ScilabDouble([this.exprs]);
+                        this.graphics.exprs = new ScilabDouble([exprs]);
                         this.model.dstate = new ScilabDouble([this.z0]);
                         this.x.graphics = this.graphics;
                         this.x.model = this.model;

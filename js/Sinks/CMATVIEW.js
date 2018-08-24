@@ -17,9 +17,9 @@ function CMATVIEW() {
         this.model.rpar = new ScilabDouble([alpha_c],[beta_c],[this.colormap.slice()]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CMATVIEW\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string("jetcolormap(25)")],[string(this.cmin)],[string(this.cmax)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CMATVIEW\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     CMATVIEW.prototype.details = function CMATVIEW() {
@@ -34,7 +34,7 @@ function CMATVIEW() {
         return options;
     }
     CMATVIEW.prototype.set = function CMATVIEW() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.colormap = parseFloat(arguments[0]["colormap"]);
@@ -61,7 +61,7 @@ function CMATVIEW() {
                 var rpar = [[alpha_c],[beta_c],[this.colormap.slice()]];
                 this.model.ipar = new ScilabDouble(ipar);
                 this.model.rpar = new ScilabDouble(rpar);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

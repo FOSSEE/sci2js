@@ -11,9 +11,9 @@ function GENSQR_f() {
         this.model.dstate = new ScilabDouble([this.Amplitude]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = string(this.Amplitude);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENSQR_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabString([this.exprs]),this.gr_i);
+        var exprs = string(this.Amplitude);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GENSQR_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabString([exprs]),gr_i);
         return new BasicBlock(this.x);
     }
     GENSQR_f.prototype.details = function GENSQR_f() {
@@ -26,9 +26,9 @@ function GENSQR_f() {
         return options;
     }
     GENSQR_f.prototype.set = function GENSQR_f() {
-        this.exprs = this.graphics.exprs;
-        if (size(this.exprs,"*")==2) {
-            this.exprs = this.exprs[2-1];
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==2) {
+            var exprs = exprs[2-1];
         }
         while (true) {
             var ok = true;
@@ -36,7 +36,7 @@ function GENSQR_f() {
             if (!ok) {
                 break;
             }
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.model.dstate = new ScilabDouble([this.Amplitude]);
             this.model.out2 = new ScilabDouble([1]);
             this.model.outtyp = new ScilabDouble([1]);

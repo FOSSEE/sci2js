@@ -33,9 +33,9 @@ function BOUNCE() {
         this.model.nzcross = new ScilabDouble([n*(n-1)/2+4*n]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,true]);
-        this.exprs = [[strcat(sci2exp(this.rpar1))],[strcat(sci2exp(this.rpar2))],[strcat(sci2exp(this.walls))],[strcat(sci2exp(this.x))],[strcat(sci2exp(this.xd))],[strcat(sci2exp(this.y))],[strcat(sci2exp(this.yd))]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BOUNCE\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[strcat(sci2exp(this.rpar1))],[strcat(sci2exp(this.rpar2))],[strcat(sci2exp(this.walls))],[strcat(sci2exp(this.x))],[strcat(sci2exp(this.xd))],[strcat(sci2exp(this.y))],[strcat(sci2exp(this.yd))]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"BOUNCE\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     BOUNCE.prototype.details = function BOUNCE() {
@@ -56,10 +56,10 @@ function BOUNCE() {
         return options;
     }
     BOUNCE.prototype.set = function BOUNCE() {
-        this.exprs = this.graphics.exprs;
-        if (size(this.exprs,"*")<9) {
-            this.exprs[8-1] = "9.81";
-            this.exprs[9-1] = "0";
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")<9) {
+            exprs[8-1] = "9.81";
+            exprs[9-1] = "0";
         }
         while (true) {
             var ok = true;
@@ -122,7 +122,7 @@ function BOUNCE() {
                 var state = transpose(state);
                 this.model.state = new ScilabDouble(state.slice());
                 this.model.nzcross = new ScilabDouble([n*(n-1)/2+4*n]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

@@ -12,9 +12,9 @@ function ZCROSS_f() {
         this.model.blocktype = new ScilabString(["z"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = strcat(sci2exp(this.in1));
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ZCROSS_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble([this.exprs]),this.gr_i);
+        var exprs = strcat(sci2exp(this.in1));
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ZCROSS_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble([exprs]),gr_i);
         return new BasicBlock(this.x);
     }
     ZCROSS_f.prototype.details = function ZCROSS_f() {
@@ -27,7 +27,7 @@ function ZCROSS_f() {
         return options;
     }
     ZCROSS_f.prototype.set = function ZCROSS_f() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.in1 = parseFloat(arguments[0]["in1"]);
@@ -44,7 +44,7 @@ function ZCROSS_f() {
                     var kk = kk+2^(this.in1+jj-1);
                 }
                 this.model.rpar = new ScilabDouble([-ones(kk,1)],[zeros(2^(2*this.in1)-kk,1)]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.in = new ScilabDouble([this.in1]);
                 this.model.nzcross = new ScilabDouble([this.in1]);
                 this.model.firing = new ScilabDouble([-1]);

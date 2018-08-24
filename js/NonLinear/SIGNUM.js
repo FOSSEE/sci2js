@@ -10,9 +10,9 @@ function SIGNUM() {
         this.model.nmode = new ScilabDouble([nu]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [string([1])];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SIGNUM\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString(this.exprs),this.gr_i);
+        var exprs = [string([1])];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SIGNUM\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     SIGNUM.prototype.details = function SIGNUM() {
@@ -25,14 +25,14 @@ function SIGNUM() {
         return options;
     }
     SIGNUM.prototype.set = function SIGNUM() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.zcr = arguments[0]["zcr"];
             if (!ok) {
                 break;
             }
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             if (ok) {
                 if (this.zcr!=0) {
                     this.model.nmode = new ScilabDouble([-1]);

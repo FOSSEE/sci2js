@@ -13,9 +13,9 @@ function Counter() {
         this.model.ipar = new ScilabDouble([this.rule],[this.maxim],[this.minim]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [[string(this.minim)],[string(this.maxim)],[string(this.rule)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Counter\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(this.minim)],[string(this.maxim)],[string(this.rule)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Counter\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     Counter.prototype.details = function Counter() {
@@ -30,7 +30,7 @@ function Counter() {
         return options;
     }
     Counter.prototype.set = function Counter() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.minim = parseFloat(arguments[0]["minim"]);
@@ -46,7 +46,7 @@ function Counter() {
             } else if ((this.rule!=1&&this.rule!=2)) {
                 block_parameter_error(msprintf("Wrong value for \'Rule\' parameter: %d",this.rule),msprintf("Must be in the interval %s.","[1,2]"));
             } else {
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.dstate = new ScilabDouble([0]);
                 this.model.ipar = new ScilabDouble([this.rule],[this.maxim],[this.minim]);
                 this.x.graphics = this.graphics;

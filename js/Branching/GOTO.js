@@ -13,9 +13,9 @@ function GOTO() {
         this.model.opar = list(new ScilabString(["A"]));
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [["A"],[sci2exp(1)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GOTO\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,1]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [["A"],[sci2exp(1)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"GOTO\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,1]),this.model,new ScilabDouble(exprs),gr_i);
         this.x.graphics.id = "Goto";
         return new BasicBlock(this.x);
     }
@@ -30,7 +30,7 @@ function GOTO() {
         return options;
     }
     GOTO.prototype.set = function GOTO() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
@@ -49,7 +49,7 @@ function GOTO() {
                     var needcompile = 4;
                     var y = needcompile;
                 }
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.opar = list(new ScilabDouble([this.tag]));
                 this.model.ipar = new ScilabDouble([this.tagvis]);
                 this.x.model = this.model;

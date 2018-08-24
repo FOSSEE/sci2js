@@ -18,8 +18,8 @@ function SUPER_f() {
         this.model.rpar = new ScilabDouble([scs]);
         this.model.blocktype = new ScilabString(["h"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUPER_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble([]),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUPER_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble([]),gr_i);
         return new SuperBlock(this.x);
     }
     SUPER_f.prototype.details = function SUPER_f() {

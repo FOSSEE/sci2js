@@ -9,9 +9,9 @@ function SOM_f() {
         this.model.rpar = new ScilabDouble(sgn);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[sci2exp(1)],[sci2exp(sgn)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SOM_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[sci2exp(1)],[sci2exp(sgn)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SOM_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     SOM_f.prototype.details = function SOM_f() {
@@ -21,12 +21,12 @@ function SOM_f() {
         alert("parameters cannot be modified");
     }
     SOM_f.prototype.set = function SOM_f() {
-        this.exprs = this.graphics.exprs;
-        if (size(this.exprs,"*")==2) {
-            this.exprs = this.exprs[2-1];
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==2) {
+            var exprs = exprs[2-1];
         }
-        if (size(this.exprs,"*")!=3) {
-            this.exprs = string(this.model.rpar);
+        if (size(exprs,"*")!=3) {
+            var exprs = string(this.model.rpar);
         }
         if (this.graphics.flip) {
             var labs = ["down","left","up"];
@@ -34,7 +34,7 @@ function SOM_f() {
             var labs = ["down","right","up"];
         }
         var str = [["This sum block is obsolete","parameters cannot be modified. Please replace it with new sum block"],["and gain blocks in the linear palette"," ","Input ports are located at up, side and  down positions.","Current gains are:"]];
-        var str = [[str],[(part(labs.slice(),1,7)+this.exprs.slice())]];
+        var str = [[str],[(part(labs.slice(),1,7)+exprs.slice())]];
         message(str);
         throw "user error";
         return new BasicBlock(this.x);

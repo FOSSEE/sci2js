@@ -35,7 +35,7 @@ function BARXY() {
         return options;
     }
     BARXY.prototype.set = function BARXY() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.xmin = parseFloat(arguments[0]["xmin"]);
@@ -65,7 +65,7 @@ function BARXY() {
             } else {
                 this.model.rpar = new ScilabDouble([this.xmin],[this.xmax],[this.ymin],[this.ymax]);
                 this.model.ipar = new ScilabDouble([this.thickness]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

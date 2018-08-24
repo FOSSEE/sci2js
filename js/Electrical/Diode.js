@@ -18,9 +18,9 @@ function Diode() {
         mo.outputs = "n";
         mo.parameters = list(["Ids","Vt","Maxexp","R"],list(this.Ids,this.Vt,this.Maxexp,this.R));
         this.model.equations = new ScilabDouble([mo]);
-        this.exprs = string([[this.Ids],[this.Vt],[this.Maxexp],[this.R]]);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Diode\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,1]),this.model,new ScilabString([this.exprs]),list(this.gr_i,0));
+        var exprs = string([[this.Ids],[this.Vt],[this.Maxexp],[this.R]]);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Diode\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,1]),this.model,new ScilabString([exprs]),list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -38,7 +38,7 @@ function Diode() {
         return options;
     }
     Diode.prototype.set = function Diode() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.Ids = parseFloat(arguments[0]["Ids"]);
@@ -50,7 +50,7 @@ function Diode() {
             }
             this.model.rpar = new ScilabDouble([this.Ids],[this.Vt],[this.Maxexp],[this.R]);
             this.model.equations.parameters = list(new ScilabDouble([["Ids","Vt","Maxexp","R"]]),list(this.Ids,this.Vt,this.Maxexp,this.R));
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;

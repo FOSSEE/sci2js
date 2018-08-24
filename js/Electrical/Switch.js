@@ -18,9 +18,9 @@ function Switch() {
         this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
         this.model.rpar = new ScilabDouble([Z]);
-        this.exprs = string(Z);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Switch\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([this.exprs]),list(this.gr_i,0));
+        var exprs = string(Z);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Switch\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([exprs]),list(gr_i,0));
         this.x.graphics.in_implicit = [["I"],["E"]];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -36,7 +36,7 @@ function Switch() {
         return options;
     }
     Switch.prototype.set = function Switch() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.Ron = parseFloat(arguments[0]["Ron"]);
@@ -45,7 +45,7 @@ function Switch() {
                 break;
             }
             this.model.equations.parameters[2-1] = list(new ScilabDouble([this.Ron]), new ScilabDouble([this.Roff]));
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;

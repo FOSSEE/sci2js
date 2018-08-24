@@ -16,9 +16,9 @@ function FROMWS_c() {
         this.model.firing = new ScilabDouble([0]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([false,true]);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROMWS_c\",sz(1),sz(2));"]);
-        this.exprs = [[string(this.varnam)],[string(this.Method)],[string(this.ZC)],[string(this.OutEnd)]];
-        this.x = new standard_define(new ScilabDouble([3.5,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROMWS_c\",sz(1),sz(2));"]);
+        var exprs = [[string(this.varnam)],[string(this.Method)],[string(this.ZC)],[string(this.OutEnd)]];
+        this.x = new standard_define(new ScilabDouble([3.5,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     FROMWS_c.prototype.details = function FROMWS_c() {
@@ -34,7 +34,7 @@ function FROMWS_c() {
         return options;
     }
     FROMWS_c.prototype.set = function FROMWS_c() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.varnam = arguments[0]["varnam"];
@@ -73,7 +73,7 @@ function FROMWS_c() {
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble([this.exprs]);
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;
                     break;

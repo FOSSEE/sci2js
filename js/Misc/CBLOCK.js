@@ -28,8 +28,8 @@ function CBLOCK() {
         this.model.dep_ut = new ScilabBoolean([true,false]);
         this.model.nzcross = new ScilabDouble([this.ng]);
         var label = list(transpose([funam,"n",sci2exp(in1),sci2exp(out),sci2exp(clkin),sci2exp(clkout),sci2exp(x0),sci2exp(0),sci2exp(z0),sci2exp(this.rpar),sci2exp(this.ipar),sci2exp(auto),"y","n"]),[]);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CBLOCK\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([4,2]),this.model,label,this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CBLOCK\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([4,2]),this.model,label,gr_i);
         return new BasicBlock(this.x);
     }
     CBLOCK.prototype.details = function CBLOCK() {

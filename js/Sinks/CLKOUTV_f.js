@@ -9,8 +9,8 @@ function CLKOUTV_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = string(this.prt);
-        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([this.exprs])," ");
+        var exprs = string(this.prt);
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([exprs])," ");
         return new EventOutBlock(this.x);
     }
     CLKOUTV_f.prototype.details = function CLKOUTV_f() {
@@ -23,7 +23,7 @@ function CLKOUTV_f() {
         return options;
     }
     CLKOUTV_f.prototype.set = function CLKOUTV_f() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.prt = arguments[0]["prt"];
@@ -36,7 +36,7 @@ function CLKOUTV_f() {
             } else {
                 this.model.ipar = new ScilabDouble([this.prt]);
                 this.model.evtin = new ScilabDouble([1]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
@@ -69,8 +69,8 @@ function CLKOUTV_f() {
         var y = orig[2-1]+sz[2-1]*[[0],[1/3],[1],[1],[1/3]];
         var xo = orig[1-1];
         var yo = orig[2-1]+sz[2-1]/3;
-        if (this.type[this.gr_i-1]==15) {
-            var coli = this.gr_i[2-1];
+        if (this.type[gr_i-1]==15) {
+            var coli = gr_i[2-1];
             var pcoli = xget("pattern");
             xfpolys(this.x,y,coli);
             xset("pattern",coli);

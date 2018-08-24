@@ -15,9 +15,9 @@ function LOGIC() {
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = new ScilabBoolean([false]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[sci2exp(this.mat)],[sci2exp(0)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOGIC\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[sci2exp(this.mat)],[sci2exp(0)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOGIC\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     LOGIC.prototype.details = function LOGIC() {
@@ -31,7 +31,7 @@ function LOGIC() {
         return options;
     }
     LOGIC.prototype.set = function LOGIC() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.mat = inverse(arguments[0]["mat"]);
@@ -63,7 +63,7 @@ function LOGIC() {
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.mat = int8(this.mat);
                 this.model.opar = list(new ScilabDouble([this.mat]));
                 this.x.graphics = this.graphics;

@@ -9,8 +9,8 @@ function CLKIN_f() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = string(this.prt);
-        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([this.exprs])," ");
+        var exprs = string(this.prt);
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([exprs])," ");
         return new BasicBlock(this.x);
     }
     CLKIN_f.prototype.details = function CLKIN_f() {
@@ -23,8 +23,8 @@ function CLKIN_f() {
         return options;
     }
     CLKIN_f.prototype.set = function CLKIN_f() {
-        this.exprs = this.graphics.exprs;
-        this.exprs = this.exprs[1-1];
+        var exprs = this.graphics.exprs;
+        var exprs = exprs[1-1];
         while (true) {
             var ok = true;
             this.prt = parseFloat(arguments[0]["prt"]);
@@ -39,7 +39,7 @@ function CLKIN_f() {
                 this.model.ipar = new ScilabDouble([this.prt]);
                 this.model.evtout = new ScilabDouble([1]);
                 this.model.firing = new ScilabDouble([-1]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

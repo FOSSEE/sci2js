@@ -11,9 +11,9 @@ function EDGETRIGGER() {
         this.model.ipar = new ScilabDouble([sign(this.edge)]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [string(this.edge)];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EDGETRIGGER\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabString(this.exprs),this.gr_i);
+        var exprs = [string(this.edge)];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"EDGETRIGGER\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabString(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     EDGETRIGGER.prototype.details = function EDGETRIGGER() {
@@ -26,7 +26,7 @@ function EDGETRIGGER() {
         return options;
     }
     EDGETRIGGER.prototype.set = function EDGETRIGGER() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.edge = parseFloat(arguments[0]["edge"]);
@@ -34,7 +34,7 @@ function EDGETRIGGER() {
                 break;
             }
             this.model.ipar = new ScilabDouble([sign(this.edge)]);
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;

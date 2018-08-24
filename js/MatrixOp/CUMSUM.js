@@ -21,8 +21,8 @@ function CUMSUM() {
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
         var label = [[sci2exp(1)],[sci2exp(0)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CUMSUM\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(label),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CUMSUM\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(label),gr_i);
         return new BasicBlock(this.x);
     }
     CUMSUM.prototype.details = function CUMSUM() {

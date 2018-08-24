@@ -15,9 +15,9 @@ function SHIFT() {
         this.model.ipar = new ScilabDouble(sgn);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[sci2exp(3)],[sci2exp(0)],[sci2exp(0)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SHIFT\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[sci2exp(3)],[sci2exp(0)],[sci2exp(0)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SHIFT\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     SHIFT.prototype.details = function SHIFT() {
@@ -32,7 +32,7 @@ function SHIFT() {
         return options;
     }
     SHIFT.prototype.set = function SHIFT() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.Datatype = arguments[0]["Datatype"];
@@ -122,7 +122,7 @@ function SHIFT() {
             }
             if (ok) {
                 this.model.ipar = new ScilabDouble([this.nb]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

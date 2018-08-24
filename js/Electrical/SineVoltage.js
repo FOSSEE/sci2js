@@ -19,9 +19,9 @@ function SineVoltage() {
         mo.outputs = "n";
         mo.parameters = list([["V"],["phase"],["freqHz"],["offset"],["startTime"]],list(this.V,this.ph,this.frq,this.offset,this.start));
         this.model.equations = new ScilabDouble([mo]);
-        this.exprs = [[string(this.V)],[string(this.ph)],[string(this.frq)],[string(this.offset)],[string(this.start)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SineVoltage\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(this.V)],[string(this.ph)],[string(this.frq)],[string(this.offset)],[string(this.start)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SineVoltage\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -40,7 +40,7 @@ function SineVoltage() {
         return options;
     }
     SineVoltage.prototype.set = function SineVoltage() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.V = parseFloat(arguments[0]["V"]);
@@ -53,7 +53,7 @@ function SineVoltage() {
             }
             this.model.rpar = new ScilabDouble([this.V],[this.ph],[this.frq],[this.offset],[this.start]);
             this.model.equations.parameters[2-1] = list(new ScilabDouble([this.V]), new ScilabDouble([this.ph]), new ScilabDouble([this.frq]), new ScilabDouble([this.offset]), new ScilabDouble([this.start]));
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;

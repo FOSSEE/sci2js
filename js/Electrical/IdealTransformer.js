@@ -36,15 +36,15 @@ function IdealTransformer() {
         mo.outputs = MO;
         this.model.rpar = new ScilabDouble(PrametersValue);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
-        this.exprs = ["1"];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IdealTransformer\",sz(1),sz(2));"]);
+        var exprs = ["1"];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"IdealTransformer\",sz(1),sz(2));"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
         this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString(this.exprs),list(this.gr_i,0));
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString(exprs),list(gr_i,0));
         this.x.graphics.in_implicit = Typein;
         this.x.graphics.out_implicit = Typeout;
         return new BasicBlock(this.x);
@@ -59,8 +59,8 @@ function IdealTransformer() {
         return options;
     }
     IdealTransformer.prototype.set = function IdealTransformer() {
-        this.exprs = this.graphics.exprs;
-        this.exprs = this.x.graphics.exprs;
+        var exprs = this.graphics.exprs;
+        var exprs = this.x.graphics.exprs;
         while (true) {
             var ok = true;
             this.N = arguments[0]["N"];
@@ -68,7 +68,7 @@ function IdealTransformer() {
                 break;
             }
             this.x.model.equations.parameters[2-1] = list(this.N);
-            this.x.graphics.exprs = this.exprs;
+            this.x.graphics.exprs = exprs;
             break;
         }
         return new BasicBlock(this.x);

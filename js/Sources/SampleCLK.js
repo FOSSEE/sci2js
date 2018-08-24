@@ -8,8 +8,8 @@ function SampleCLK() {
         this.model.blocktype = new ScilabString(["d"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [[sci2exp(1)],[sci2exp(0)]];
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs)," ");
+        var exprs = [[sci2exp(1)],[sci2exp(0)]];
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs)," ");
         return new BasicBlock(this.x);
     }
     SampleCLK.prototype.details = function SampleCLK() {
@@ -23,7 +23,7 @@ function SampleCLK() {
         return options;
     }
     SampleCLK.prototype.set = function SampleCLK() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.frequ = arguments[0]["frequ"];
@@ -49,7 +49,7 @@ function SampleCLK() {
                 this.model.rpar = new ScilabDouble([this.frequ],[this.offset]);
                 this.model.evtout = new ScilabDouble([1]);
                 this.model.firing = new ScilabDouble([-1]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

@@ -36,15 +36,15 @@ function Gyrator() {
         mo.outputs = MO;
         this.model.rpar = new ScilabDouble(PrametersValue);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
-        this.exprs = [["1"],["1"]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Gyrator\",sz(1),sz(2));"]);
+        var exprs = [["1"],["1"]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Gyrator\",sz(1),sz(2));"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
         this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),list(this.gr_i,0));
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),list(gr_i,0));
         this.x.graphics.in_implicit = Typein;
         this.x.graphics.out_implicit = Typeout;
         return new BasicBlock(this.x);
@@ -60,8 +60,8 @@ function Gyrator() {
         return options;
     }
     Gyrator.prototype.set = function Gyrator() {
-        this.exprs = this.graphics.exprs;
-        this.exprs = this.x.graphics.exprs;
+        var exprs = this.graphics.exprs;
+        var exprs = this.x.graphics.exprs;
         while (true) {
             var ok = true;
             this.G1 = arguments[0]["G1"];
@@ -70,7 +70,7 @@ function Gyrator() {
                 break;
             }
             this.x.model.equations.parameters[2-1] = list(this.G1,this.G2);
-            this.x.graphics.exprs = this.exprs;
+            this.x.graphics.exprs = exprs;
             break;
         }
         return new BasicBlock(this.x);

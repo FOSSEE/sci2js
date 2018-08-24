@@ -13,9 +13,9 @@ function SATURATION() {
         this.model.rpar = new ScilabDouble(rpar);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[string(this.maxp)],[string(this.minp)],[string(this.model.nmode)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SATURATION\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(this.maxp)],[string(this.minp)],[string(this.model.nmode)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SATURATION\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     SATURATION.prototype.details = function SATURATION() {
@@ -30,7 +30,7 @@ function SATURATION() {
         return options;
     }
     SATURATION.prototype.set = function SATURATION() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.maxp = parseFloat(arguments[0]["maxp"]);
@@ -52,7 +52,7 @@ function SATURATION() {
                     this.model.nzcross = new ScilabDouble([0]);
                     this.model.nmode = new ScilabDouble([0]);
                 }
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

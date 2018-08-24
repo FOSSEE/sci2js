@@ -36,15 +36,15 @@ function CCS() {
         mo.outputs = MO;
         this.model.rpar = new ScilabDouble(PrametersValue);
         mo.parameters = list(ParametersName,PrametersValue,zeros(ParametersName));
-        this.exprs = [];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CCS\",sz(1),sz(2));"]);
+        var exprs = [];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CCS\",sz(1),sz(2));"]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,true]);
         mo.model = ModelName;
         this.model.equations = new ScilabDouble([mo]);
         this.model.in = new ScilabDouble([ones(size(MI,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(MO,"*"),1)]);
-        this.x = new standard_define(new ScilabDouble([2.1,3]),this.model,new ScilabDouble(this.exprs),list(this.gr_i,0));
+        this.x = new standard_define(new ScilabDouble([2.1,3]),this.model,new ScilabDouble(exprs),list(gr_i,0));
         this.x.graphics.in_implicit = Typein;
         this.x.graphics.out_implicit = Typeout;
         return new BasicBlock(this.x);
@@ -56,7 +56,7 @@ function CCS() {
         alert("parameters cannot be modified");
     }
     CCS.prototype.set = function CCS() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         return new BasicBlock(this.x);
     }
 }

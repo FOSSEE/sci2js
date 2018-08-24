@@ -11,9 +11,9 @@ function M_SWITCH() {
         this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[string(this.nin)],[string(ipar)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"M_SWITCH\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2.5,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(this.nin)],[string(ipar)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"M_SWITCH\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2.5,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     M_SWITCH.prototype.details = function M_SWITCH() {
@@ -28,7 +28,7 @@ function M_SWITCH() {
         return options;
     }
     M_SWITCH.prototype.set = function M_SWITCH() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.nin = parseFloat(arguments[0]["nin"]);
@@ -65,7 +65,7 @@ function M_SWITCH() {
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble([this.exprs]);
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     this.model.ipar = new ScilabDouble([this.base],[this.rule]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;

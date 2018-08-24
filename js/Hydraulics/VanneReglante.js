@@ -18,9 +18,9 @@ function VanneReglante() {
         this.model.equations = new ScilabDouble([mo]);
         this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"*"),1)]);
-        this.exprs = [[string(this.Cvmax)],[string(this.p_rho)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VanneReglante\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),list(this.gr_i,0));
+        var exprs = [[string(this.Cvmax)],[string(this.p_rho)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"VanneReglante\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),list(gr_i,0));
         this.x.graphics.in_implicit = [["I"],["E"]];
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
@@ -36,7 +36,7 @@ function VanneReglante() {
         return options;
     }
     VanneReglante.prototype.set = function VanneReglante() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.Cvmax = parseFloat(arguments[0]["Cvmax"]);
@@ -46,7 +46,7 @@ function VanneReglante() {
             }
             this.model.rpar = new ScilabDouble([this.Cvmax],[this.p_rho]);
             this.model.equations.parameters[2-1] = list(new ScilabDouble([this.Cvmax]), new ScilabDouble([this.p_rho]));
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;

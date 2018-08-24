@@ -16,9 +16,9 @@ function FROMMO() {
         var mo = modelica();
         mo.model = "frommo";
         mo.outputs = "n";
-        this.exprs = ["A"];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROMMO\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,1]),this.model,new ScilabString(this.exprs),this.gr_i);
+        var exprs = ["A"];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"FROMMO\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,1]),this.model,new ScilabString(exprs),gr_i);
         this.x.graphics.out_implicit = ["I"];
         return new BasicBlock(this.x);
     }
@@ -32,7 +32,7 @@ function FROMMO() {
         return options;
     }
     FROMMO.prototype.set = function FROMMO() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
@@ -44,7 +44,7 @@ function FROMMO() {
                     var needcompile = 4;
                     var y = needcompile;
                 }
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.opar = list(new ScilabDouble([this.tag]));
                 this.x.model = this.model;
                 this.x.graphics = this.graphics;

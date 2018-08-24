@@ -11,9 +11,9 @@ function Ground() {
         mo.model = "Ground";
         mo.inputs = "p";
         this.model.equations = new ScilabDouble([mo]);
-        this.exprs = "";
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Ground\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([this.exprs]),list(this.gr_i,0));
+        var exprs = "";
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"Ground\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([exprs]),list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         this.x.graphics.out_implicit = ["I"];
         return new GroundBlock(this.x);

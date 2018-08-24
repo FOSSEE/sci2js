@@ -11,9 +11,9 @@ function LOGICAL_OP() {
         this.model.ipar = new ScilabDouble(ipar);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[string(this.nin)],[string(ipar)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOGICAL_OP\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(this.nin)],[string(ipar)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"LOGICAL_OP\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     LOGICAL_OP.prototype.details = function LOGICAL_OP() {
@@ -29,9 +29,9 @@ function LOGICAL_OP() {
         return options;
     }
     LOGICAL_OP.prototype.set = function LOGICAL_OP() {
-        this.exprs = this.graphics.exprs;
-        if (size(this.exprs,1)==2) {
-            this.exprs = [[this.exprs],[sci2exp(1)],[sci2exp(0)]];
+        var exprs = this.graphics.exprs;
+        if (size(exprs,1)==2) {
+            var exprs = [[exprs],[sci2exp(1)],[sci2exp(0)]];
         }
         while (true) {
             var ok = true;
@@ -121,7 +121,7 @@ function LOGICAL_OP() {
                     } else if (this.rule==5) {
                         var label = "NOT";
                     }
-                    this.graphics.exprs = new ScilabDouble(this.exprs);
+                    this.graphics.exprs = new ScilabDouble(exprs);
                     this.graphics.style = new ScilabString(["blockWithLabel;displayedLabel="+label]);
                     this.x.graphics = this.graphics;
                     this.x.model = this.model;

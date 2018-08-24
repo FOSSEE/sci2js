@@ -9,9 +9,9 @@ function CONST_f() {
         this.model.rpar = new ScilabDouble([this.C]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = strcat(sci2exp(this.C));
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CONST_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble([this.exprs]),this.gr_i);
+        var exprs = strcat(sci2exp(this.C));
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CONST_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble([exprs]),gr_i);
         return new BasicBlock(this.x);
     }
     CONST_f.prototype.details = function CONST_f() {
@@ -24,7 +24,7 @@ function CONST_f() {
         return options;
     }
     CONST_f.prototype.set = function CONST_f() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.C = parseFloat(arguments[0]["C"]);
@@ -38,7 +38,7 @@ function CONST_f() {
             } else {
                 this.model.rpar = new ScilabDouble(this.C.slice());
                 this.model.out = new ScilabDouble([nout]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

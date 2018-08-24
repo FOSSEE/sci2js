@@ -9,9 +9,9 @@ function HALT_f() {
         this.model.ipar = new ScilabDouble([0]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = string(this.n);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"HALT_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([this.exprs]),this.gr_i);
+        var exprs = string(this.n);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"HALT_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([exprs]),gr_i);
         return new BasicBlock(this.x);
     }
     HALT_f.prototype.details = function HALT_f() {
@@ -24,7 +24,7 @@ function HALT_f() {
         return options;
     }
     HALT_f.prototype.set = function HALT_f() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.n = parseFloat(arguments[0]["n"]);
@@ -32,7 +32,7 @@ function HALT_f() {
                 break;
             }
             if (ok) {
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.ipar = new ScilabDouble([this.n]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;

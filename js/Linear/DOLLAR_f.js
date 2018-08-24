@@ -4,7 +4,7 @@ function DOLLAR_f() {
         var z = 0;
         this.inh = 0;
         var in1 = 1;
-        this.exprs = string([[z],[this.inh]]);
+        var exprs = string([[z],[this.inh]]);
         this.model = scicos_model();
         this.model.sim = new ScilabString(["dollar"]);
         this.model.in = new ScilabDouble([in1]);
@@ -13,8 +13,8 @@ function DOLLAR_f() {
         this.model.dstate = new ScilabDouble([z]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DOLLAR_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([this.exprs]),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DOLLAR_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabString([exprs]),gr_i);
         return new BasicBlock(this.x);
     }
     DOLLAR_f.prototype.details = function DOLLAR_f() {
@@ -28,9 +28,9 @@ function DOLLAR_f() {
         return options;
     }
     DOLLAR_f.prototype.set = function DOLLAR_f() {
-        this.exprs = this.graphics.exprs;
-        if (size(this.exprs,"*")<2) {
-            this.exprs[2-1] = "0";
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")<2) {
+            exprs[2-1] = "0";
         }
         while (true) {
             var ok = true;
@@ -51,7 +51,7 @@ function DOLLAR_f() {
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.dstate = new ScilabDouble([this.a]);
                 this.model.in = new ScilabDouble(in1);
                 this.model.out = new ScilabDouble(out);

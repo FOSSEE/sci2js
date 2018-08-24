@@ -15,9 +15,9 @@ function DLSS_f() {
         this.model.rpar = new ScilabDouble([this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]);
         this.model.blocktype = new ScilabString(["d"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLSS_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([4,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[strcat(sci2exp(this.A))],[strcat(sci2exp(this.B))],[strcat(sci2exp(this.C))],[strcat(sci2exp(this.D))],[strcat(sci2exp(this.x0))]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"DLSS_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([4,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     DLSS_f.prototype.details = function DLSS_f() {
@@ -34,9 +34,9 @@ function DLSS_f() {
         return options;
     }
     DLSS_f.prototype.set = function DLSS_f() {
-        this.exprs = this.graphics.exprs;
-        if (size(this.exprs,"*")==7) {
-            this.exprs = this.exprs[[1:4,7]-1];
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==7) {
+            var exprs = exprs[[1:4,7]-1];
         }
         while (true) {
             var ok = true;
@@ -68,7 +68,7 @@ function DLSS_f() {
                 this.graphics = tmpvar1[1];
                 var ok = tmpvar1[2];
                 if (ok) {
-                    this.graphics.exprs = new ScilabDouble([this.exprs]);
+                    this.graphics.exprs = new ScilabDouble([exprs]);
                     var rpar = [[this.A.slice()],[this.B.slice()],[this.C.slice()],[this.D.slice()]];
                     if (this.D.length!=0) {
                         if (norm(this.D,1)!=0) {

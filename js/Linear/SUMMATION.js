@@ -11,9 +11,9 @@ function SUMMATION() {
         this.model.ipar = new ScilabDouble(this.sgn);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = sci2exp(this.sgn);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUMMATION\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,3]),this.model,new ScilabString([this.exprs]),this.gr_i);
+        var exprs = sci2exp(this.sgn);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"SUMMATION\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,3]),this.model,new ScilabString([exprs]),gr_i);
         return new Summation(this.x);
     }
     SUMMATION.prototype.details = function SUMMATION() {
@@ -28,11 +28,11 @@ function SUMMATION() {
         return options;
     }
     SUMMATION.prototype.set = function SUMMATION() {
-        this.exprs = this.graphics.exprs;
-        if (size(this.exprs,1)==1) {
-            this.exprs = [[sci2exp(1)],[this.exprs],[sci2exp(0)]];
-        } else if (size(this.exprs,1)==2) {
-            this.exprs = [[this.exprs],[sci2exp(0)]];
+        var exprs = this.graphics.exprs;
+        if (size(exprs,1)==1) {
+            var exprs = [[sci2exp(1)],[exprs],[sci2exp(0)]];
+        } else if (size(exprs,1)==2) {
+            var exprs = [[exprs],[sci2exp(0)]];
         }
         while (true) {
             var ok = true;
@@ -142,7 +142,7 @@ function SUMMATION() {
             if (ok) {
                 this.model.rpar = new ScilabDouble([this.satur]);
                 this.model.ipar = new ScilabDouble([this.sgn]);
-                this.graphics.exprs = new ScilabDouble(this.exprs);
+                this.graphics.exprs = new ScilabDouble(exprs);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

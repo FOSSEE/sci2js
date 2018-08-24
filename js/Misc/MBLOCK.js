@@ -9,7 +9,7 @@ function MBLOCK() {
         var paramv = list(0.1,.0001);
         this.pprop = [[0],[0]];
         var nameF = "generic";
-        this.exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],sci2exp(this.in1.slice()),sci2exp(this.intype.slice()),sci2exp(this.out.slice()),sci2exp(this.outtype.slice()),sci2exp(param.slice()),list(string(0.1),string(.0001)),sci2exp(this.pprop.slice()),nameF,[]);
+        var exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],sci2exp(this.in1.slice()),sci2exp(this.intype.slice()),sci2exp(this.out.slice()),sci2exp(this.outtype.slice()),sci2exp(param.slice()),list(string(0.1),string(.0001)),sci2exp(this.pprop.slice()),nameF,[]);
         this.model = scicos_model();
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,true]);
@@ -26,8 +26,8 @@ function MBLOCK() {
         this.model.in = new ScilabDouble([ones(size(mo.inputs,"r"),1)]);
         this.model.out = new ScilabDouble([ones(size(mo.outputs,"r"),1)]);
         this.model.equations = mo;
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MBLOCK\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble([this.exprs]),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MBLOCK\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabDouble([exprs]),gr_i);
         this.x.graphics.in_implicit = this.intype;
         this.x.graphics.out_implicit = this.outtype;
         return new BasicBlock(this.x);
@@ -48,18 +48,18 @@ function MBLOCK() {
         return options;
     }
     MBLOCK.prototype.set = function MBLOCK() {
-        this.exprs = this.graphics.exprs;
-        if (this.type[this.exprs-1]==15) {
+        var exprs = this.graphics.exprs;
+        if (this.type[exprs-1]==15) {
             var paramv = list();
             this.pprop = [];
             for (i=1;i<=size(this.model.rpar,"*");i+=1) {
                 paramv[$+1-1] = string(this.model.rpar[i-1]);
                 this.pprop[$+1-1] = 0;
             }
-            this.exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],this.exprs[1-1][1-1],this.exprs[1-1][2-1],this.exprs[1-1][3-1],this.exprs[1-1][4-1],this.exprs[1-1][5-1],paramv,sci2exp(this.pprop.slice()),this.exprs[1-1][7-1],this.exprs[2-1]);
+            var exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],exprs[1-1][1-1],exprs[1-1][2-1],exprs[1-1][3-1],exprs[1-1][4-1],exprs[1-1][5-1],paramv,sci2exp(this.pprop.slice()),exprs[1-1][7-1],exprs[2-1]);
         }
-        this.lab_1 = list(this.exprs.in,this.exprs.intype,this.exprs.out,this.exprs.outtype,this.exprs.param,this.exprs.pprop,this.exprs.nameF);
-        var lab_2 = this.exprs.paramv;
+        this.lab_1 = list(exprs.in,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
+        var lab_2 = exprs.paramv;
         while (true) {
             var ok = true;
             this.Tin = arguments[0]["Tin"];
@@ -222,7 +222,7 @@ function MBLOCK() {
                     var getvalue_txt = "[ok,"+lhs_txt+",lab_2]=scicos_getvalue(\'Set parameters values\',["+lab_txt+"],"+"list("+rhs_txt+"),lab_2)";
                     execstr(getvalue_txt);
                     if (!ok) {
-                        var lab_2 = this.exprs.paramv;
+                        var lab_2 = exprs.paramv;
                     }
                 }
             }
@@ -236,7 +236,7 @@ function MBLOCK() {
                 if (extF==".mo"&&fileinfo(this.funam).length!=0) {
                     var tt = mgetl(this.funam);
                 } else {
-                    var tt = this.exprs.funtxt;
+                    var tt = exprs.funtxt;
                     var mo = this.model.equations;
                     if (mo.model!=nameF) {
                         var tt = [];
@@ -265,31 +265,31 @@ function MBLOCK() {
                     this.model.rpar = new ScilabDouble([this.model.rpar],[paramv[i-1].slice()]);
                 }
                 this.model.sim[1-1] = new ScilabDouble([this.funam]);
-                this.exprs.in = this.lab_1[1-1];
-                this.exprs.intype = this.lab_1[2-1];
-                this.exprs.out = this.lab_1[3-1];
-                this.exprs.outtype = this.lab_1[4-1];
-                this.exprs.param = this.lab_1[5-1];
-                this.exprs.paramv = list();
+                exprs.in = this.lab_1[1-1];
+                exprs.intype = this.lab_1[2-1];
+                exprs.out = this.lab_1[3-1];
+                exprs.outtype = this.lab_1[4-1];
+                exprs.param = this.lab_1[5-1];
+                exprs.paramv = list();
                 if (Tparam_sz!=0) {
                     if (this.type[lab_2-1]==15) {
                         for (i=1;i<=lstsize(lab_2);i+=1) {
-                            this.exprs.paramv[i-1] = lab_2[i-1];
+                            exprs.paramv[i-1] = lab_2[i-1];
                         }
                     } else {
                         for (i=1;i<=size(lab_2,"*");i+=1) {
-                            this.exprs.paramv[i-1] = lab_2[i-1];
+                            exprs.paramv[i-1] = lab_2[i-1];
                         }
                     }
                 }
-                this.exprs.pprop = this.lab_1[6-1];
-                this.exprs.nameF = this.lab_1[7-1];
-                this.exprs.funtxt = tt;
+                exprs.pprop = this.lab_1[6-1];
+                exprs.nameF = this.lab_1[7-1];
+                exprs.funtxt = tt;
                 this.x.model = this.model;
                 this.graphics.gr_i[1-1][1-1] = new ScilabString(["txt=[\'Modelica\';\' "+nameF+" \'];"]);
                 this.graphics.in_implicit = new ScilabString(this.intype);
                 this.graphics.out_implicit = new ScilabDouble(this.outtype);
-                this.graphics.exprs = this.exprs;
+                this.graphics.exprs = exprs;
                 this.x.graphics = this.graphics;
                 break;
             }

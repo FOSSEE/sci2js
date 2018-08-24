@@ -14,9 +14,9 @@ function HYSTHERESIS() {
         this.model.nmode = new ScilabDouble([1]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        this.exprs = [[string(rpar)],[string(sign(this.nzz))]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"HYSTHERESIS\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(this.exprs),this.gr_i);
+        var exprs = [[string(rpar)],[string(sign(this.nzz))]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"HYSTHERESIS\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
     }
     HYSTHERESIS.prototype.details = function HYSTHERESIS() {
@@ -33,7 +33,7 @@ function HYSTHERESIS() {
         return options;
     }
     HYSTHERESIS.prototype.set = function HYSTHERESIS() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.high_lim = arguments[0]["high_lim"];
@@ -48,7 +48,7 @@ function HYSTHERESIS() {
                 message("switch on value must be larger than switch off value");
                 throw "user error";
             } else {
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.model.rpar = new ScilabDouble(transpose([this.high_lim,this.low_lim,this.out_high,this.out_low]));
                 if (this.nzz>0) {
                     this.nzz = 2;

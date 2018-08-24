@@ -10,8 +10,8 @@ function MATMUL() {
         this.model.dep_ut = new ScilabBoolean([true,false]);
         this.model.ipar = new ScilabDouble([1]);
         var label = [sci2exp(this.model.ipar)];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATMUL\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabString(label),this.gr_i);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"MATMUL\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([3,2]),this.model,new ScilabString(label),gr_i);
         return new BasicBlock(this.x);
     }
     MATMUL.prototype.details = function MATMUL() {
@@ -152,7 +152,7 @@ function MATMUL() {
             this.graphics = tmpvar0[1];
             var ok = tmpvar0[2];
             if (ok) {
-                var label = this.exprs;
+                var label = exprs;
                 this.model.ipar = new ScilabDouble([this.rule]);
                 this.model.rpar = new ScilabDouble([kmin],[kmax]);
                 this.graphics.exprs = new ScilabDouble([label]);

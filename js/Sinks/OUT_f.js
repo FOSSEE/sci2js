@@ -11,9 +11,9 @@ function OUT_f() {
         this.model.ipar = new ScilabDouble([this.prt]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([false,false]);
-        this.exprs = string(this.prt);
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OUT_f\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([this.exprs]),this.gr_i);
+        var exprs = string(this.prt);
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"OUT_f\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([1,1]),this.model,new ScilabString([exprs]),gr_i);
         return new ExplicitOutBlock(this.x);
     }
     OUT_f.prototype.details = function OUT_f() {
@@ -26,9 +26,9 @@ function OUT_f() {
         return options;
     }
     OUT_f.prototype.set = function OUT_f() {
-        this.exprs = this.graphics.exprs;
-        if (size(this.exprs,"*")==2) {
-            this.exprs = this.exprs[1-1];
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==2) {
+            var exprs = exprs[1-1];
         }
         while (true) {
             var ok = true;
@@ -41,7 +41,7 @@ function OUT_f() {
                 block_parameter_error(msprintf("Wrong value for \'Port Number\' parameter: %d.",this.prt),"Strictly positive integer expected.");
             } else {
                 this.model.ipar = new ScilabDouble([this.prt]);
-                this.graphics.exprs = new ScilabDouble([this.exprs]);
+                this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

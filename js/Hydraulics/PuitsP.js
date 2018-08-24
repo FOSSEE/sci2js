@@ -16,9 +16,9 @@ function PuitsP() {
         mo.parameters = list([["P0"],["T0"],["H0"],["option_temperature"]],[[this.P0],[this.T0],[this.H0],[this.option_temperature]]);
         this.model.equations = new ScilabDouble([mo]);
         this.model.in = new ScilabDouble([ones(size(mo.inputs,"*"),1)]);
-        this.exprs = [[string(this.P0)],[string(this.T0)],[string(this.H0)],[string(this.option_temperature)]];
-        this.gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PuitsP\",sz(1),sz(2));"]);
-        this.x = new standard_define(new ScilabDouble([2.5,2]),this.model,new ScilabDouble(this.exprs),list(this.gr_i,0));
+        var exprs = [[string(this.P0)],[string(this.T0)],[string(this.H0)],[string(this.option_temperature)]];
+        var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"PuitsP\",sz(1),sz(2));"]);
+        this.x = new standard_define(new ScilabDouble([2.5,2]),this.model,new ScilabDouble(exprs),list(gr_i,0));
         this.x.graphics.in_implicit = ["I"];
         return new BasicBlock(this.x);
     }
@@ -35,7 +35,7 @@ function PuitsP() {
         return options;
     }
     PuitsP.prototype.set = function PuitsP() {
-        this.exprs = this.graphics.exprs;
+        var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
             this.P0 = parseFloat(arguments[0]["P0"]);
@@ -47,7 +47,7 @@ function PuitsP() {
             }
             this.model.rpar = new ScilabDouble([this.P0],[this.T0],[this.H0],[this.option_temperature]);
             this.model.equations.parameters[2-1] = list(new ScilabDouble([this.P0]), new ScilabDouble([this.T0]), new ScilabDouble([this.H0]), new ScilabDouble([this.option_temperature]));
-            this.graphics.exprs = new ScilabDouble([this.exprs]);
+            this.graphics.exprs = new ScilabDouble([exprs]);
             this.x.graphics = this.graphics;
             this.x.model = this.model;
             break;
