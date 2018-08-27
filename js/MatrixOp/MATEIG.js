@@ -44,11 +44,10 @@ function MATEIG() {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
             this.decomptyp = arguments[0]["decomptyp"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             if ((this.typ==1)) {
                 if ((this.decomptyp==1)) {
                     var function_name = "mat_vps";

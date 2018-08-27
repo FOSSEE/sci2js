@@ -42,11 +42,10 @@ function MATCATH() {
         while (true) {
             var ok = true;
             this.nin = arguments[0]["nin"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             var in1 = [-1*(ones(this.nin,1)),-(transpose([2:this.nin+1]))];
             var out = [-1,0];
             var it = -1*(ones(this.nin,1));

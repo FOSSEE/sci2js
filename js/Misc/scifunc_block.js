@@ -63,11 +63,10 @@ function scifunc_block() {
             this.rpar = inverse(arguments[0]["rpar"]);
             this.auto0 = arguments[0]["auto0"];
             this.deptime = arguments[0]["deptime"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            exprs[1-1] = this.lab;
+            exprs[1-1] = lab;
             this.xx = this.xx.slice();
             this.z = this.z.slice();
             this.rpar = this.rpar.slice();

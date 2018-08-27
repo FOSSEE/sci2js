@@ -66,11 +66,10 @@ function CBLOCK4() {
             this.auto0 = arguments[0]["auto0"];
             this.depu = parseBoolean(arguments[0]["depu"]);
             this.dept = parseBoolean(arguments[0]["dept"]);
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            label[1-1] = this.lab;
+            label[1-1] = lab;
             var funam = stripblanks(this.function_name);
             this.xx = this.xx.slice();
             this.z = this.z.slice();

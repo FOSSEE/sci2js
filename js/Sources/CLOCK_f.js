@@ -68,7 +68,6 @@ function CLOCK_f() {
             var ok = true;
             this.dt = arguments[0]["dt"];
             this.t0 = arguments[0]["t0"];
-            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }
@@ -78,14 +77,14 @@ function CLOCK_f() {
                 var ok = false;
             }
             if (ok) {
-                xx.graphics.exprs = this.exprs0;
+                xx.graphics.exprs = exprs0;
                 this.model.rpar = new ScilabDouble([this.dt]);
                 this.model.firing = new ScilabDouble([this.t0]);
                 xx.model = this.model;
                 break;
             }
         }
-        if (!and([t0_old,dt_old]==[this.t0,this.dt])||!and(this.exprs0==exprs)) {
+        if (!and([t0_old,dt_old]==[this.t0,this.dt])||!and(exprs0==exprs)) {
             newpar[size(newpar)+1-1] = path;
         }
         if (t0_old!=this.t0) {

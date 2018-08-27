@@ -42,11 +42,10 @@ function MATMAGPHI() {
         while (true) {
             var ok = true;
             this.decomptyp = arguments[0]["decomptyp"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             if ((this.decomptyp==1)) {
                 var function_name = "matz_abs";
                 var in1 = [-1,-2];

@@ -43,11 +43,10 @@ function MATCATV() {
         while (true) {
             var ok = true;
             this.nin = arguments[0]["nin"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             var in1 = [-(transpose([2:this.nin+1])),-ones(this.nin,1)];
             var it = -ones(this.nin,1);
             var ot = -1;

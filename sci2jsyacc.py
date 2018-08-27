@@ -565,13 +565,11 @@ def p_lterm_assignment_expression(p):
         VARCOUNT += 1
         var = var[1:-1]
         ltermvars = var.split(',')
-        idx = 0
-        for var in ltermvars:
+        for idx, var in enumerate(ltermvars):
             prefix = ''
             if var in LOCAL_VARS and '.' not in var:
                 prefix = 'var '
             p[0] += '%*s%s%s = %s[%d];\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, var, tmpvar, idx)
-            idx += 1
     else:
         prefix = ''
         value = p[3][0]
@@ -694,37 +692,39 @@ def p_modelexpression_expression(p):
 def p_getvalueassignment_getvalue_arguments(p):
     'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET getvaluearguments CLOSEBRACKET EOL'
     global OPTIONS_BLOCK
-    var = 'ok'
-    add_local_var(var)
-    p[0] = '%*svar %s = true;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', print_var(var))
     lterm = p[1]
     if lterm[0] == '[':
         lterm = lterm[1:-1]
         ltermvars = lterm.split(',')
-        idx = 0
-        for var in ltermvars:
+        lastidx = len(ltermvars) - 2
+        for idx, var in enumerate(ltermvars, -1):
             if var[:5] == 'this.':
                 basevar = var[5:]
             else:
                 basevar = var
-            if basevar in ('ok', 'exprs'):
-                continue
-            add_global_var(basevar, force=True)
-            var = print_var(basevar)
-            vartype = get_var_vartype(basevar, STRING_TYPE)
-            parsefunction = PARSE_MAP.get(vartype, '')
-            if parsefunction != '':
-                parsecall = '%s(arguments[%d][\"%s\"])' % (parsefunction, 0, basevar)
+            if idx in (-1, lastidx):
+                add_local_var(basevar)
             else:
-                parsecall = 'arguments[%d][\"%s\"]' % (0, basevar)
-            p[0] += "%*s%s = %s;\n" % (INDENT_LEVEL * INDENT_SIZE, ' ', var, parsecall)
-            if idx < len(LABELS):
-                if vartype == MATRIX_TYPE:
-                    showvar = var + '.toString().replace(/,/g," ")'
+                add_global_var(basevar, force=True)
+            var = print_var(basevar)
+            if idx == -1:
+                p[0] = '%*svar %s = true;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var)
+            elif idx == len(ltermvars) - 2:
+                pass
+            else:
+                vartype = get_var_vartype(basevar, STRING_TYPE)
+                parsefunction = PARSE_MAP.get(vartype, '')
+                if parsefunction != '':
+                    parsecall = '%s(arguments[%d][\"%s\"])' % (parsefunction, 0, basevar)
                 else:
-                    showvar = var
-                OPTIONS_BLOCK += '%*s%s:[%s,%s],\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', basevar, LABELS[idx], showvar)
-                idx += 1
+                    parsecall = 'arguments[%d][\"%s\"]' % (0, basevar)
+                p[0] += "%*s%s = %s;\n" % (INDENT_LEVEL * INDENT_SIZE, ' ', var, parsecall)
+                if idx < len(LABELS):
+                    if vartype == MATRIX_TYPE:
+                        showvar = var + '.toString().replace(/,/g," ")'
+                    else:
+                        showvar = var
+                    OPTIONS_BLOCK += '%*s%s:[%s,%s],\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', basevar, LABELS[idx], showvar)
 
 def p_getvaluearguments_arg1_arg2_arg3_arg4(p):
     'getvaluearguments : getvaluearg1 COMMA getvaluearg2 COMMA getvaluearg3 COMMA getvaluearg4'

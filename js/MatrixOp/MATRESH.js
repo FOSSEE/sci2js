@@ -46,7 +46,6 @@ function MATRESH() {
             this.typ = inverse(arguments[0]["typ"]);
             this.l1 = arguments[0]["l1"];
             this.out = arguments[0]["out"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -93,7 +92,7 @@ function MATRESH() {
                 var ok = false;
             }
             if (ok) {
-                var label = this.lab;
+                var label = lab;
                 var tmpvar0 = set_io(this.model,this.graphics,list(this.l1,it),list(this.out,ot),[],[]);
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];

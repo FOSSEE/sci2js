@@ -90,16 +90,15 @@ function PID() {
             this.p = arguments[0]["p"];
             this.i = arguments[0]["i"];
             this.d = arguments[0]["d"];
-            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }
             if (ok) {
-                xx1.graphics.exprs = this.exprs0[1-1];
+                xx1.graphics.exprs = exprs0[1-1];
                 xx1.model.rpar = this.p;
-                xx2.graphics.exprs = this.exprs0[2-1];
+                xx2.graphics.exprs = exprs0[2-1];
                 xx2.model.rpar = this.i;
-                xx3.graphics.exprs = this.exprs0[3-1];
+                xx3.graphics.exprs = exprs0[3-1];
                 xx3.model.rpar = this.d;
                 break;
             }

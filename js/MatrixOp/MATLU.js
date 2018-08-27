@@ -42,7 +42,6 @@ function MATLU() {
         while (true) {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -68,7 +67,7 @@ function MATLU() {
             if (ok) {
                 var funtyp = 4;
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-                this.graphics.exprs = new ScilabDouble([this.lab]);
+                this.graphics.exprs = new ScilabDouble([lab]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;

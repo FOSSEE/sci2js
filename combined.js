@@ -5933,7 +5933,6 @@ function JKFLIPFLOP() {
         while (true) {
             var ok = true;
             this.init = parseFloat(arguments[0]["init"]);
-            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }
@@ -5943,7 +5942,7 @@ function JKFLIPFLOP() {
                 this.init = int8(1);
             }
             if (ok) {
-                xx.graphics.exprs[1-1] = this.exprs0;
+                xx.graphics.exprs[1-1] = exprs0;
                 this.model.odstate[1-1] = new ScilabDouble([this.init]);
                 xx.model = this.model;
                 break;
@@ -6236,7 +6235,6 @@ function SRFLIPFLOP() {
         while (true) {
             var ok = true;
             this.init = parseFloat(arguments[0]["init"]);
-            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }
@@ -6246,7 +6244,7 @@ function SRFLIPFLOP() {
                 this.init = int8(1);
             }
             if (ok) {
-                xx.graphics.exprs[1-1] = this.exprs0;
+                xx.graphics.exprs[1-1] = exprs0;
                 this.model.odstate[1-1] = new ScilabDouble([this.init]);
                 xx.model = this.model;
                 break;
@@ -8409,16 +8407,15 @@ function PID() {
             this.p = arguments[0]["p"];
             this.i = arguments[0]["i"];
             this.d = arguments[0]["d"];
-            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }
             if (ok) {
-                xx1.graphics.exprs = this.exprs0[1-1];
+                xx1.graphics.exprs = exprs0[1-1];
                 xx1.model.rpar = this.p;
-                xx2.graphics.exprs = this.exprs0[2-1];
+                xx2.graphics.exprs = exprs0[2-1];
                 xx2.model.rpar = this.i;
-                xx3.graphics.exprs = this.exprs0[3-1];
+                xx3.graphics.exprs = exprs0[3-1];
                 xx3.model.rpar = this.d;
                 break;
             }
@@ -9351,11 +9348,10 @@ function CUMSUM() {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
             this.decomptyp = arguments[0]["decomptyp"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             if ((this.typ==1)) {
                 if ((this.decomptyp==0)) {
                     var function_name = "cumsum_m";
@@ -9569,11 +9565,10 @@ function EXTTRI() {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
             this.decomptyp = arguments[0]["decomptyp"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             if ((this.typ==1)) {
                 if ((this.decomptyp==1)) {
                     var function_name = "exttril";
@@ -9754,11 +9749,10 @@ function MATCATH() {
         while (true) {
             var ok = true;
             this.nin = arguments[0]["nin"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             var in1 = [-1*(ones(this.nin,1)),-(transpose([2:this.nin+1]))];
             var out = [-1,0];
             var it = -1*(ones(this.nin,1));
@@ -9826,11 +9820,10 @@ function MATCATV() {
         while (true) {
             var ok = true;
             this.nin = arguments[0]["nin"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             var in1 = [-(transpose([2:this.nin+1])),-ones(this.nin,1)];
             var it = -ones(this.nin,1);
             var ot = -1;
@@ -10142,11 +10135,10 @@ function MATEIG() {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
             this.decomptyp = arguments[0]["decomptyp"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             if ((this.typ==1)) {
                 if ((this.decomptyp==1)) {
                     var function_name = "mat_vps";
@@ -10409,7 +10401,6 @@ function MATLU() {
         while (true) {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -10435,7 +10426,7 @@ function MATLU() {
             if (ok) {
                 var funtyp = 4;
                 this.model.sim = list(new ScilabString([function_name]), new ScilabDouble([funtyp]));
-                this.graphics.exprs = new ScilabDouble([this.lab]);
+                this.graphics.exprs = new ScilabDouble([lab]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
                 break;
@@ -10492,11 +10483,10 @@ function MATMAGPHI() {
         while (true) {
             var ok = true;
             this.decomptyp = arguments[0]["decomptyp"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             if ((this.decomptyp==1)) {
                 var function_name = "matz_abs";
                 var in1 = [-1,-2];
@@ -10833,7 +10823,6 @@ function MATRESH() {
             this.typ = inverse(arguments[0]["typ"]);
             this.l1 = arguments[0]["l1"];
             this.out = arguments[0]["out"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
@@ -10880,7 +10869,7 @@ function MATRESH() {
                 var ok = false;
             }
             if (ok) {
-                var label = this.lab;
+                var label = lab;
                 var tmpvar0 = set_io(this.model,this.graphics,list(this.l1,it),list(this.out,ot),[],[]);
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];
@@ -10947,11 +10936,10 @@ function MATSING() {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
             this.decomptyp = arguments[0]["decomptyp"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             if ((this.typ==1)) {
                 if ((this.decomptyp==1)) {
                     var function_name = "mat_sing";
@@ -11057,11 +11045,10 @@ function MATSUM() {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
             this.decomptyp = arguments[0]["decomptyp"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             if ((this.typ==1)) {
                 if ((this.decomptyp==0)) {
                     var function_name = "mat_sum";
@@ -11282,11 +11269,10 @@ function MATZREIM() {
         while (true) {
             var ok = true;
             this.decomptyp = arguments[0]["decomptyp"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             if ((this.decomptyp==1)) {
                 var function_name = "matz_reim";
                 var in1 = [-1,-2];
@@ -12278,11 +12264,10 @@ function CBLOCK() {
             this.auto0 = arguments[0]["auto0"];
             this.depu = parseBoolean(arguments[0]["depu"]);
             this.dept = parseBoolean(arguments[0]["dept"]);
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            label[1-1] = this.lab;
+            label[1-1] = lab;
             var funam = stripblanks(this.function_name);
             this.xx = this.xx.slice();
             this.z = this.z.slice();
@@ -12443,11 +12428,10 @@ function CBLOCK4() {
             this.auto0 = arguments[0]["auto0"];
             this.depu = parseBoolean(arguments[0]["depu"]);
             this.dept = parseBoolean(arguments[0]["dept"]);
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            label[1-1] = this.lab;
+            label[1-1] = lab;
             var funam = stripblanks(this.function_name);
             this.xx = this.xx.slice();
             this.z = this.z.slice();
@@ -13632,7 +13616,7 @@ function MBLOCK() {
             }
             var exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],exprs[1-1][1-1],exprs[1-1][2-1],exprs[1-1][3-1],exprs[1-1][4-1],exprs[1-1][5-1],paramv,sci2exp(this.pprop.slice()),exprs[1-1][7-1],exprs[2-1]);
         }
-        this.lab_1 = list(exprs.in,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
+        var lab_1 = list(exprs.in,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
         var lab_2 = exprs.paramv;
         while (true) {
             var ok = true;
@@ -13643,7 +13627,6 @@ function MBLOCK() {
             this.Tparam = arguments[0]["Tparam"];
             this.pprop = inverse(arguments[0]["pprop"]);
             this.Tfunam = arguments[0]["Tfunam"];
-            this.lab_1 = arguments[0]["lab_1"];
             if (!ok) {
                 break;
             }
@@ -13839,11 +13822,11 @@ function MBLOCK() {
                     this.model.rpar = new ScilabDouble([this.model.rpar],[paramv[i-1].slice()]);
                 }
                 this.model.sim[1-1] = new ScilabDouble([this.funam]);
-                exprs.in = this.lab_1[1-1];
-                exprs.intype = this.lab_1[2-1];
-                exprs.out = this.lab_1[3-1];
-                exprs.outtype = this.lab_1[4-1];
-                exprs.param = this.lab_1[5-1];
+                exprs.in = lab_1[1-1];
+                exprs.intype = lab_1[2-1];
+                exprs.out = lab_1[3-1];
+                exprs.outtype = lab_1[4-1];
+                exprs.param = lab_1[5-1];
                 exprs.paramv = list();
                 if (Tparam_sz!=0) {
                     if (this.type[lab_2-1]==15) {
@@ -13856,8 +13839,8 @@ function MBLOCK() {
                         }
                     }
                 }
-                exprs.pprop = this.lab_1[6-1];
-                exprs.nameF = this.lab_1[7-1];
+                exprs.pprop = lab_1[6-1];
+                exprs.nameF = lab_1[7-1];
                 exprs.funtxt = tt;
                 this.x.model = this.model;
                 this.graphics.gr_i[1-1][1-1] = new ScilabString(["txt=[\'Modelica\';\' "+nameF+" \'];"]);
@@ -14716,14 +14699,13 @@ function c_block() {
             this.o = parseFloat(arguments[0]["o"]);
             this.rpar = inverse(arguments[0]["rpar"]);
             this.funam = arguments[0]["funam"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
             if (this.funam==" ") {
                 break;
             }
-            label[1-1] = this.lab;
+            label[1-1] = lab;
             this.rpar = this.rpar.slice();
             this.i = int(this.i.slice());
             var ni = size(this.i,1);
@@ -14802,14 +14784,13 @@ function fortran_block() {
             this.o = parseFloat(arguments[0]["o"]);
             this.rpar = inverse(arguments[0]["rpar"]);
             this.funam = arguments[0]["funam"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
             if (this.funam==" ") {
                 break;
             }
-            label[1-1] = this.lab;
+            label[1-1] = lab;
             this.rpar = this.rpar.slice();
             this.i = int(this.i.slice());
             var ni = size(this.i,1);
@@ -14950,11 +14931,10 @@ function generic_block() {
             this.auto0 = arguments[0]["auto0"];
             this.depu = parseBoolean(arguments[0]["depu"]);
             this.dept = parseBoolean(arguments[0]["dept"]);
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             this.function_name = stripblanks(this.function_name);
             this.xx = this.xx.slice();
             this.z = this.z.slice();
@@ -15087,11 +15067,10 @@ function generic_block2() {
             this.auto0 = arguments[0]["auto0"];
             this.depu = parseBoolean(arguments[0]["depu"]);
             this.dept = parseBoolean(arguments[0]["dept"]);
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             this.function_name = stripblanks(this.function_name);
             this.xx = this.xx.slice();
             this.z = this.z.slice();
@@ -15230,11 +15209,10 @@ function generic_block3() {
             this.auto0 = arguments[0]["auto0"];
             this.depu = parseBoolean(arguments[0]["depu"]);
             this.dept = parseBoolean(arguments[0]["dept"]);
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            var label = this.lab;
+            var label = lab;
             this.function_name = stripblanks(this.function_name);
             this.xx = this.xx.slice();
             this.z = this.z.slice();
@@ -15376,11 +15354,10 @@ function scifunc_block() {
             this.rpar = inverse(arguments[0]["rpar"]);
             this.auto0 = arguments[0]["auto0"];
             this.deptime = arguments[0]["deptime"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            exprs[1-1] = this.lab;
+            exprs[1-1] = lab;
             this.xx = this.xx.slice();
             this.z = this.z.slice();
             this.rpar = this.rpar.slice();
@@ -15502,11 +15479,10 @@ function scifunc_block_m() {
             this.rpar = inverse(arguments[0]["rpar"]);
             this.auto0 = arguments[0]["auto0"];
             this.deptime = arguments[0]["deptime"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
-            exprs[1-1] = this.lab;
+            exprs[1-1] = lab;
             this.xx = this.xx.slice();
             this.z = this.z.slice();
             this.rpar = this.rpar.slice();
@@ -17191,7 +17167,7 @@ function PDE() {
     }
     PDE.prototype.get = function PDE() {
         var options = {
-                okk:["New block\'s name :",this.okk],
+                rdnom:["New block\'s name :",this.rdnom],
         }
         return options;
     }
@@ -17276,19 +17252,17 @@ function PDE() {
                     var params_pde = tmpvar1[32];
                 }
             }
-            this.okk = false;
+            var okk = false;
             this.rdnom = "PDE";
             var ok1 = true;
             while (true) {
-                var ok = true;
-                this.okk = parseBoolean(arguments[0]["okk"]);
+                var okk = true;
                 this.rdnom = arguments[0]["rdnom"];
-                this.lab = arguments[0]["lab"];
-                if (this.okk==false) {
+                if (okk==false) {
                     var ok1 = false;
                     return;
                 }
-                label[3-1] = this.lab;
+                label[3-1] = lab;
                 this.rdnom = stripblanks(this.rdnom);
                 if (this.rdnom==emptystr()) {
                     var ok1 = false;
@@ -19672,7 +19646,6 @@ function CLOCK_c() {
             var ok = true;
             this.dt = arguments[0]["dt"];
             this.t0 = arguments[0]["t0"];
-            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }
@@ -19681,7 +19654,7 @@ function CLOCK_c() {
                 var ok = false;
             }
             if (ok) {
-                xx.graphics.exprs = this.exprs0;
+                xx.graphics.exprs = exprs0;
                 this.model.rpar = new ScilabDouble([this.dt],[this.t0]);
                 this.model.firing = new ScilabDouble([this.t0]);
                 xx.model = this.model;
@@ -19775,7 +19748,6 @@ function CLOCK_f() {
             var ok = true;
             this.dt = arguments[0]["dt"];
             this.t0 = arguments[0]["t0"];
-            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }
@@ -19785,14 +19757,14 @@ function CLOCK_f() {
                 var ok = false;
             }
             if (ok) {
-                xx.graphics.exprs = this.exprs0;
+                xx.graphics.exprs = exprs0;
                 this.model.rpar = new ScilabDouble([this.dt]);
                 this.model.firing = new ScilabDouble([this.t0]);
                 xx.model = this.model;
                 break;
             }
         }
-        if (!and([t0_old,dt_old]==[this.t0,this.dt])||!and(this.exprs0==exprs)) {
+        if (!and([t0_old,dt_old]==[this.t0,this.dt])||!and(exprs0==exprs)) {
             newpar[size(newpar)+1-1] = path;
         }
         if (t0_old!=this.t0) {

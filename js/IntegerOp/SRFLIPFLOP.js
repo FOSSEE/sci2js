@@ -54,7 +54,6 @@ function SRFLIPFLOP() {
         while (true) {
             var ok = true;
             this.init = parseFloat(arguments[0]["init"]);
-            this.exprs0 = arguments[0]["exprs0"];
             if (!ok) {
                 break;
             }
@@ -64,7 +63,7 @@ function SRFLIPFLOP() {
                 this.init = int8(1);
             }
             if (ok) {
-                xx.graphics.exprs[1-1] = this.exprs0;
+                xx.graphics.exprs[1-1] = exprs0;
                 this.model.odstate[1-1] = new ScilabDouble([this.init]);
                 xx.model = this.model;
                 break;

@@ -58,7 +58,7 @@ function MBLOCK() {
             }
             var exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],exprs[1-1][1-1],exprs[1-1][2-1],exprs[1-1][3-1],exprs[1-1][4-1],exprs[1-1][5-1],paramv,sci2exp(this.pprop.slice()),exprs[1-1][7-1],exprs[2-1]);
         }
-        this.lab_1 = list(exprs.in,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
+        var lab_1 = list(exprs.in,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
         var lab_2 = exprs.paramv;
         while (true) {
             var ok = true;
@@ -69,7 +69,6 @@ function MBLOCK() {
             this.Tparam = arguments[0]["Tparam"];
             this.pprop = inverse(arguments[0]["pprop"]);
             this.Tfunam = arguments[0]["Tfunam"];
-            this.lab_1 = arguments[0]["lab_1"];
             if (!ok) {
                 break;
             }
@@ -265,11 +264,11 @@ function MBLOCK() {
                     this.model.rpar = new ScilabDouble([this.model.rpar],[paramv[i-1].slice()]);
                 }
                 this.model.sim[1-1] = new ScilabDouble([this.funam]);
-                exprs.in = this.lab_1[1-1];
-                exprs.intype = this.lab_1[2-1];
-                exprs.out = this.lab_1[3-1];
-                exprs.outtype = this.lab_1[4-1];
-                exprs.param = this.lab_1[5-1];
+                exprs.in = lab_1[1-1];
+                exprs.intype = lab_1[2-1];
+                exprs.out = lab_1[3-1];
+                exprs.outtype = lab_1[4-1];
+                exprs.param = lab_1[5-1];
                 exprs.paramv = list();
                 if (Tparam_sz!=0) {
                     if (this.type[lab_2-1]==15) {
@@ -282,8 +281,8 @@ function MBLOCK() {
                         }
                     }
                 }
-                exprs.pprop = this.lab_1[6-1];
-                exprs.nameF = this.lab_1[7-1];
+                exprs.pprop = lab_1[6-1];
+                exprs.nameF = lab_1[7-1];
                 exprs.funtxt = tt;
                 this.x.model = this.model;
                 this.graphics.gr_i[1-1][1-1] = new ScilabString(["txt=[\'Modelica\';\' "+nameF+" \'];"]);

@@ -19,7 +19,7 @@ function PDE() {
     }
     PDE.prototype.get = function PDE() {
         var options = {
-                okk:["New block\'s name :",this.okk],
+                rdnom:["New block\'s name :",this.rdnom],
         }
         return options;
     }
@@ -104,19 +104,17 @@ function PDE() {
                     var params_pde = tmpvar1[32];
                 }
             }
-            this.okk = false;
+            var okk = false;
             this.rdnom = "PDE";
             var ok1 = true;
             while (true) {
-                var ok = true;
-                this.okk = parseBoolean(arguments[0]["okk"]);
+                var okk = true;
                 this.rdnom = arguments[0]["rdnom"];
-                this.lab = arguments[0]["lab"];
-                if (this.okk==false) {
+                if (okk==false) {
                     var ok1 = false;
                     return;
                 }
-                label[3-1] = this.lab;
+                label[3-1] = lab;
                 this.rdnom = stripblanks(this.rdnom);
                 if (this.rdnom==emptystr()) {
                     var ok1 = false;

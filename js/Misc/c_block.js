@@ -49,14 +49,13 @@ function c_block() {
             this.o = parseFloat(arguments[0]["o"]);
             this.rpar = inverse(arguments[0]["rpar"]);
             this.funam = arguments[0]["funam"];
-            this.lab = arguments[0]["lab"];
             if (!ok) {
                 break;
             }
             if (this.funam==" ") {
                 break;
             }
-            label[1-1] = this.lab;
+            label[1-1] = lab;
             this.rpar = this.rpar.slice();
             this.i = int(this.i.slice());
             var ni = size(this.i,1);
