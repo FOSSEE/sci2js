@@ -29,6 +29,7 @@ function ABS_VALUE() {
         while (true) {
             var ok = true;
             this.zcr = arguments[0]["zcr"];
+            var exprs = [arguments[0]["zcr"]];
             if (!ok) {
                 break;
             }

@@ -62,6 +62,7 @@ function CANIMXY() {
             this.ymin = parseFloat(arguments[0]["ymin"]);
             this.ymax = parseFloat(arguments[0]["ymax"]);
             this.N = parseFloat(arguments[0]["N"]);
+            var exprs = [arguments[0]["nbr_curves"], arguments[0]["clrs"], arguments[0]["siz"], arguments[0]["win"], arguments[0]["wpos"], arguments[0]["wdim"], arguments[0]["xmin"], arguments[0]["xmax"], arguments[0]["ymin"], arguments[0]["ymax"], arguments[0]["N"]];
             if (!ok) {
                 break;
             }

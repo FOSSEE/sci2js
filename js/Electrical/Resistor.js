@@ -36,6 +36,7 @@ function Resistor() {
         while (true) {
             var ok = true;
             this.R = parseFloat(arguments[0]["R"]);
+            var exprs = [arguments[0]["R"]];
             if (!ok) {
                 break;
             }

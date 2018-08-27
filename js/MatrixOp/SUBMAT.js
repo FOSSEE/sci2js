@@ -52,6 +52,7 @@ function SUBMAT() {
             this.c = arguments[0]["c"];
             this.d = arguments[0]["d"];
             this.inp = arguments[0]["inp"];
+            var exprs = [arguments[0]["typ"], arguments[0]["a"], arguments[0]["b"], arguments[0]["c"], arguments[0]["d"], arguments[0]["inp"]];
             if (!ok) {
                 break;
             }

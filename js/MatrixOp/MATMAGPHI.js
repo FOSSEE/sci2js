@@ -42,6 +42,7 @@ function MATMAGPHI() {
         while (true) {
             var ok = true;
             this.decomptyp = arguments[0]["decomptyp"];
+            var lab = [arguments[0]["decomptyp"]];
             if (!ok) {
                 break;
             }

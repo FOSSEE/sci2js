@@ -36,6 +36,7 @@ function Inductor() {
         while (true) {
             var ok = true;
             this.L = parseFloat(arguments[0]["L"]);
+            var exprs = [arguments[0]["L"]];
             if (!ok) {
                 break;
             }

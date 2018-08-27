@@ -51,6 +51,7 @@ function CFSCOPE() {
             this.per = parseFloat(arguments[0]["per"]);
             this.N = parseFloat(arguments[0]["N"]);
             this.wu = arguments[0]["wu"];
+            var exprs = [arguments[0]["clrs"], arguments[0]["win"], arguments[0]["wpos"], arguments[0]["wdim"], arguments[0]["ymin"], arguments[0]["ymax"], arguments[0]["per"], arguments[0]["N"], arguments[0]["wu"]];
             if (!ok) {
                 break;
             }

@@ -27,6 +27,7 @@ function SCALAR2VECTOR() {
         while (true) {
             var ok = true;
             this.nout = parseFloat(arguments[0]["nout"]);
+            var exprs = [arguments[0]["nout"]];
             if (!ok) {
                 break;
             }

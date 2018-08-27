@@ -64,6 +64,7 @@ function Flowmeter() {
         while (false) {
             var ok = true;
             this.Qini = arguments[0]["Qini"];
+            var exprs = [arguments[0]["Qini"]];
             if (!ok) {
                 break;
             }

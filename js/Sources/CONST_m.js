@@ -31,6 +31,7 @@ function CONST_m() {
         while (true) {
             var ok = true;
             this.C = inverse(arguments[0]["C"]);
+            var exprs = [arguments[0]["C"]];
             if (!ok) {
                 break;
             }

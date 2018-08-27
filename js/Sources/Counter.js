@@ -36,6 +36,7 @@ function Counter() {
             this.minim = parseFloat(arguments[0]["minim"]);
             this.maxim = parseFloat(arguments[0]["maxim"]);
             this.rule = parseFloat(arguments[0]["rule"]);
+            var exprs = [arguments[0]["minim"], arguments[0]["maxim"], arguments[0]["rule"]];
             if (!ok) {
                 break;
             }

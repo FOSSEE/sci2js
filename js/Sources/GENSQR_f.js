@@ -33,6 +33,7 @@ function GENSQR_f() {
         while (true) {
             var ok = true;
             this.Amplitude = parseFloat(arguments[0]["Amplitude"]);
+            var exprs = [arguments[0]["Amplitude"]];
             if (!ok) {
                 break;
             }

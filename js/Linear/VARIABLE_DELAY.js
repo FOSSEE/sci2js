@@ -37,6 +37,7 @@ function VARIABLE_DELAY() {
             this.T = parseFloat(arguments[0]["T"]);
             this.init = parseFloat(arguments[0]["init"]);
             this.N = parseFloat(arguments[0]["N"]);
+            var exprs = [arguments[0]["T"], arguments[0]["init"], arguments[0]["N"]];
             if (!ok) {
                 break;
             }

@@ -40,6 +40,7 @@ function WRITEAU_f() {
             var ok = true;
             this.N = parseFloat(arguments[0]["N"]);
             this.swap = parseFloat(arguments[0]["swap"]);
+            var exprs = [arguments[0]["N"], arguments[0]["swap"]];
             if (!ok) {
                 break;
             }

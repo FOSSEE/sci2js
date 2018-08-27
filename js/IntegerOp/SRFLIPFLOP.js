@@ -54,6 +54,7 @@ function SRFLIPFLOP() {
         while (true) {
             var ok = true;
             this.init = parseFloat(arguments[0]["init"]);
+            var exprs0 = [arguments[0]["init"]];
             if (!ok) {
                 break;
             }

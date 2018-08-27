@@ -46,6 +46,7 @@ function MATRESH() {
             this.typ = inverse(arguments[0]["typ"]);
             this.l1 = arguments[0]["l1"];
             this.out = arguments[0]["out"];
+            var lab = [arguments[0]["typ"], arguments[0]["l1"], arguments[0]["out"]];
             if (!ok) {
                 break;
             }

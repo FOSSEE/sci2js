@@ -78,6 +78,7 @@ function GEN_SQR() {
             this.scicos_context.Amax = arguments[0]["scicos_context.Amax"];
             this.scicos_context.rule = arguments[0]["scicos_context.rule"];
             this.scicos_context.F = arguments[0]["scicos_context.F"];
+            var exprs = [arguments[0]["scicos_context.Amin"], arguments[0]["scicos_context.Amax"], arguments[0]["scicos_context.rule"], arguments[0]["scicos_context.F"]];
             if (!ok) {
                 return;
             }

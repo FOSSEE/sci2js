@@ -34,6 +34,7 @@ function GENSIN_f() {
             this.M = arguments[0]["M"];
             this.F = arguments[0]["F"];
             this.P = arguments[0]["P"];
+            var exprs = [arguments[0]["M"], arguments[0]["F"], arguments[0]["P"]];
             if (!ok) {
                 break;
             }

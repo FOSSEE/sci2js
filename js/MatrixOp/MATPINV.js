@@ -42,6 +42,7 @@ function MATPINV() {
         while (true) {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
+            var exprs = [arguments[0]["typ"]];
             if (!ok) {
                 break;
             }

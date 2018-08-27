@@ -697,6 +697,7 @@ def p_getvalueassignment_getvalue_arguments(p):
         lterm = lterm[1:-1]
         ltermvars = lterm.split(',')
         lastidx = len(ltermvars) - 2
+        exprs = ''
         for idx, var in enumerate(ltermvars, -1):
             if var[:5] == 'this.':
                 basevar = var[5:]
@@ -710,7 +711,7 @@ def p_getvalueassignment_getvalue_arguments(p):
             if idx == -1:
                 p[0] = '%*svar %s = true;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var)
             elif idx == len(ltermvars) - 2:
-                pass
+                p[0] += "%*svar %s = [%s];\n" % (INDENT_LEVEL * INDENT_SIZE, ' ', var, exprs[:-2])
             else:
                 vartype = get_var_vartype(basevar, STRING_TYPE)
                 parsefunction = PARSE_MAP.get(vartype, '')
@@ -718,6 +719,7 @@ def p_getvalueassignment_getvalue_arguments(p):
                     parsecall = '%s(arguments[%d][\"%s\"])' % (parsefunction, 0, basevar)
                 else:
                     parsecall = 'arguments[%d][\"%s\"]' % (0, basevar)
+                exprs += 'arguments[%d][\"%s\"], ' % (0, basevar)
                 p[0] += "%*s%s = %s;\n" % (INDENT_LEVEL * INDENT_SIZE, ' ', var, parsecall)
                 if idx < len(LABELS):
                     if vartype == MATRIX_TYPE:

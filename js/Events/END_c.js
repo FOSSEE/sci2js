@@ -28,6 +28,7 @@ function END_c() {
         while (true) {
             var ok = true;
             this.tf = parseFloat(arguments[0]["tf"]);
+            var exprs = [arguments[0]["tf"]];
             if (!ok) {
                 break;
             }

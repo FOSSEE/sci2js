@@ -44,6 +44,7 @@ function RICC() {
             var ok = true;
             this.tpe = arguments[0]["tpe"];
             this.mod = arguments[0]["mod"];
+            var exprs = [arguments[0]["tpe"], arguments[0]["mod"]];
             if (!ok) {
                 break;
             }

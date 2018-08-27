@@ -41,6 +41,7 @@ function INTEGRAL_m() {
             this.satur = parseFloat(arguments[0]["satur"]);
             this.maxp = parseFloat(arguments[0]["maxp"]);
             this.lowp = parseFloat(arguments[0]["lowp"]);
+            var exprs = [arguments[0]["x0"], arguments[0]["reinit"], arguments[0]["satur"], arguments[0]["maxp"], arguments[0]["lowp"]];
             if (!ok) {
                 break;
             }

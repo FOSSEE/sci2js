@@ -35,6 +35,7 @@ function INTRP2BLK_f() {
             this.a = inverse(arguments[0]["a"]);
             this.b = inverse(arguments[0]["b"]);
             this.c = inverse(arguments[0]["c"]);
+            var exprs = [arguments[0]["a"], arguments[0]["b"], arguments[0]["c"]];
             if (!ok) {
                 break;
             }

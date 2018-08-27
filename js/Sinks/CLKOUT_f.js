@@ -28,6 +28,7 @@ function CLKOUT_f() {
         while (true) {
             var ok = true;
             this.prt = parseFloat(arguments[0]["prt"]);
+            var exprs = [arguments[0]["prt"]];
             if (!ok) {
                 break;
             }

@@ -34,6 +34,7 @@ function REGISTER() {
             var ok = true;
             this.z0 = parseFloat(arguments[0]["z0"]);
             this.it = arguments[0]["it"];
+            var exprs = [arguments[0]["z0"], arguments[0]["it"]];
             if (!ok) {
                 break;
             }

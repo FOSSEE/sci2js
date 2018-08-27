@@ -31,6 +31,7 @@ function M_freq() {
             var ok = true;
             this.frequ = inverse(arguments[0]["frequ"]);
             this.offset = inverse(arguments[0]["offset"]);
+            var exprs = [arguments[0]["frequ"], arguments[0]["offset"]];
             if (!ok) {
                 break;
             }

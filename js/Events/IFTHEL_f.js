@@ -40,6 +40,7 @@ function IFTHEL_f() {
             var ok = true;
             this.inh = inverse(arguments[0]["inh"]);
             this.nmod = parseFloat(arguments[0]["nmod"]);
+            var exprs = [arguments[0]["inh"], arguments[0]["nmod"]];
             if (!ok) {
                 break;
             }

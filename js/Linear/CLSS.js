@@ -46,6 +46,7 @@ function CLSS() {
             this.C = parseFloat(arguments[0]["C"]);
             this.D = parseFloat(arguments[0]["D"]);
             this.x0 = parseFloat(arguments[0]["x0"]);
+            var exprs = [arguments[0]["A"], arguments[0]["B"], arguments[0]["C"], arguments[0]["D"], arguments[0]["x0"]];
             if (!ok) {
                 break;
             }

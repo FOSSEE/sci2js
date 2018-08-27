@@ -44,6 +44,7 @@ function MATSUM() {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
             this.decomptyp = arguments[0]["decomptyp"];
+            var lab = [arguments[0]["typ"], arguments[0]["decomptyp"]];
             if (!ok) {
                 break;
             }

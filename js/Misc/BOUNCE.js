@@ -72,6 +72,7 @@ function BOUNCE() {
             this.yd = inverse(arguments[0]["yd"]);
             this.g = parseFloat(arguments[0]["g"]);
             this.C = parseFloat(arguments[0]["C"]);
+            var exprs = [arguments[0]["rpar1"], arguments[0]["rpar2"], arguments[0]["walls"], arguments[0]["xt"], arguments[0]["xd"], arguments[0]["y"], arguments[0]["yd"], arguments[0]["g"], arguments[0]["C"]];
             if (!ok) {
                 break;
             }

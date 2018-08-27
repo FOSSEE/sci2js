@@ -96,6 +96,7 @@ function PNP() {
             this.Gbe = arguments[0]["Gbe"];
             this.Vt = arguments[0]["Vt"];
             this.EMinMax = arguments[0]["EMinMax"];
+            var exprs = [arguments[0]["Bf"], arguments[0]["Br"], arguments[0]["Is"], arguments[0]["Vak"], arguments[0]["Tauf"], arguments[0]["Taur"], arguments[0]["Ccs"], arguments[0]["Cje"], arguments[0]["Cjc"], arguments[0]["Phie"], arguments[0]["Me"], arguments[0]["Phic"], arguments[0]["Mc"], arguments[0]["Gbc"], arguments[0]["Gbe"], arguments[0]["Vt"], arguments[0]["EMinMax"]];
             if (!ok) {
                 break;
             }

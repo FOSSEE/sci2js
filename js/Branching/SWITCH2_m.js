@@ -43,6 +43,7 @@ function SWITCH2_m() {
             this.rule = parseFloat(arguments[0]["rule"]);
             this.thra = arguments[0]["thra"];
             this.nzz = parseFloat(arguments[0]["nzz"]);
+            var exprs = [arguments[0]["ot"], arguments[0]["rule"], arguments[0]["thra"], arguments[0]["nzz"]];
             if (!ok) {
                 break;
             }

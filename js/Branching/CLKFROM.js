@@ -27,6 +27,7 @@ function CLKFROM() {
         while (true) {
             var ok = true;
             this.tag = arguments[0]["tag"];
+            var exprs = [arguments[0]["tag"]];
             if (!ok) {
                 break;
             }

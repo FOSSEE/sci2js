@@ -40,6 +40,7 @@ function fortran_block() {
             this.o = parseFloat(arguments[0]["o"]);
             this.rpar = inverse(arguments[0]["rpar"]);
             this.funam = arguments[0]["funam"];
+            var lab = [arguments[0]["i"], arguments[0]["o"], arguments[0]["rpar"], arguments[0]["funam"]];
             if (!ok) {
                 break;
             }

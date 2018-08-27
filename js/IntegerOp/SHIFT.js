@@ -38,6 +38,7 @@ function SHIFT() {
             this.Datatype = arguments[0]["Datatype"];
             this.nb = arguments[0]["nb"];
             this.np = arguments[0]["np"];
+            var exprs = [arguments[0]["Datatype"], arguments[0]["nb"], arguments[0]["np"]];
             if (!ok) {
                 break;
             }

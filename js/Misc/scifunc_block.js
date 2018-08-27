@@ -63,6 +63,7 @@ function scifunc_block() {
             this.rpar = inverse(arguments[0]["rpar"]);
             this.auto0 = arguments[0]["auto0"];
             this.deptime = arguments[0]["deptime"];
+            var lab = [arguments[0]["i"], arguments[0]["o"], arguments[0]["ci"], arguments[0]["co"], arguments[0]["xx"], arguments[0]["z"], arguments[0]["rpar"], arguments[0]["auto0"], arguments[0]["deptime"]];
             if (!ok) {
                 break;
             }

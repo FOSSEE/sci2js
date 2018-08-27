@@ -59,6 +59,7 @@ function RFILE_f() {
             this.fname1 = parseFloat(arguments[0]["fname1"]);
             this.frmt1 = parseFloat(arguments[0]["frmt1"]);
             this.N = parseFloat(arguments[0]["N"]);
+            var exprs = [arguments[0]["tmask1"], arguments[0]["outmask"], arguments[0]["fname1"], arguments[0]["frmt1"], arguments[0]["N"]];
             if (!ok) {
                 break;
             }

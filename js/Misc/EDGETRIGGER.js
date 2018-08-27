@@ -30,6 +30,7 @@ function EDGETRIGGER() {
         while (true) {
             var ok = true;
             this.edge = parseFloat(arguments[0]["edge"]);
+            var exprs = [arguments[0]["edge"]];
             if (!ok) {
                 break;
             }

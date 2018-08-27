@@ -36,6 +36,7 @@ function ConstantVoltage() {
         while (true) {
             var ok = true;
             this.V = parseFloat(arguments[0]["V"]);
+            var exprs = [arguments[0]["V"]];
             if (!ok) {
                 break;
             }

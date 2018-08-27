@@ -36,6 +36,7 @@ function STEP() {
             this.temps = arguments[0]["temps"];
             this.in1 = arguments[0]["in1"];
             this.fi = arguments[0]["fi"];
+            var exprs = [arguments[0]["temps"], arguments[0]["in1"], arguments[0]["fi"]];
             if (!ok) {
                 break;
             }

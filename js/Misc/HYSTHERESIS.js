@@ -41,6 +41,7 @@ function HYSTHERESIS() {
             this.out_high = arguments[0]["out_high"];
             this.out_low = arguments[0]["out_low"];
             this.nzz = parseFloat(arguments[0]["nzz"]);
+            var exprs = [arguments[0]["high_lim"], arguments[0]["low_lim"], arguments[0]["out_high"], arguments[0]["out_low"], arguments[0]["nzz"]];
             if (!ok) {
                 break;
             }

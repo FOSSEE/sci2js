@@ -37,6 +37,7 @@ function TEXT_f() {
             this.txt = arguments[0]["txt"];
             this.font = parseFloat(arguments[0]["font"]);
             this.siz = parseFloat(arguments[0]["siz"]);
+            var exprs = [arguments[0]["txt"], arguments[0]["font"], arguments[0]["siz"]];
             if (!ok) {
                 break;
             }

@@ -29,6 +29,7 @@ function EVTVARDLY() {
         while (true) {
             var ok = true;
             this.fir = arguments[0]["fir"];
+            var exprs = [arguments[0]["fir"]];
             if (!ok) {
                 break;
             }

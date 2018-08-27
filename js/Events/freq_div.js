@@ -138,6 +138,7 @@ function freq_div() {
             var ok = true;
             this.%ph = parseFloat(arguments[0]["%ph"]);
             this.%df = parseFloat(arguments[0]["%df"]);
+            var exprs = [arguments[0]["%ph"], arguments[0]["%df"]];
             if (!ok) {
                 break;
             }

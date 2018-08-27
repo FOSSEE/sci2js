@@ -37,6 +37,7 @@ function CONVERT() {
             this.it = parseFloat(arguments[0]["it"]);
             this.ot = parseFloat(arguments[0]["ot"]);
             this.np = arguments[0]["np"];
+            var exprs = [arguments[0]["it"], arguments[0]["ot"], arguments[0]["np"]];
             if (!ok) {
                 break;
             }

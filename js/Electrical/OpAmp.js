@@ -41,6 +41,7 @@ function OpAmp() {
             this.OLGain = arguments[0]["OLGain"];
             this.SatH = arguments[0]["SatH"];
             this.SatL = arguments[0]["SatL"];
+            var exprs = [arguments[0]["OLGain"], arguments[0]["SatH"], arguments[0]["SatL"]];
             if (!ok) {
                 break;
             }

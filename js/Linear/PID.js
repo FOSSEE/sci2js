@@ -90,6 +90,7 @@ function PID() {
             this.p = arguments[0]["p"];
             this.i = arguments[0]["i"];
             this.d = arguments[0]["d"];
+            var exprs0 = [arguments[0]["p"], arguments[0]["i"], arguments[0]["d"]];
             if (!ok) {
                 break;
             }

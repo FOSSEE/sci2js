@@ -28,6 +28,7 @@ function CLKIN_f() {
         while (true) {
             var ok = true;
             this.prt = parseFloat(arguments[0]["prt"]);
+            var exprs = [arguments[0]["prt"]];
             this.prt = int(this.prt);
             if (!ok) {
                 break;

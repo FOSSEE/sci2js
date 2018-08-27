@@ -55,6 +55,7 @@ function CSCOPE() {
             this.N = parseFloat(arguments[0]["N"]);
             this.heritance = arguments[0]["heritance"];
             this.nom = arguments[0]["nom"];
+            var exprs = [arguments[0]["clrs"], arguments[0]["win"], arguments[0]["wpos"], arguments[0]["wdim"], arguments[0]["ymin"], arguments[0]["ymax"], arguments[0]["per"], arguments[0]["N"], arguments[0]["heritance"], arguments[0]["nom"]];
             if (!ok) {
                 break;
             }

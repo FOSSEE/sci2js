@@ -39,6 +39,7 @@ function LOGICAL_OP() {
             this.rule = parseFloat(arguments[0]["rule"]);
             this.Datatype = arguments[0]["Datatype"];
             this.tp = parseFloat(arguments[0]["tp"]);
+            var exprs = [arguments[0]["nin"], arguments[0]["rule"], arguments[0]["Datatype"], arguments[0]["tp"]];
             if (!ok) {
                 break;
             }

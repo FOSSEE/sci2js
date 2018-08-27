@@ -40,6 +40,7 @@ function CMATVIEW() {
             this.colormap = parseFloat(arguments[0]["colormap"]);
             this.cmin = parseFloat(arguments[0]["cmin"]);
             this.cmax = parseFloat(arguments[0]["cmax"]);
+            var exprs = [arguments[0]["colormap"], arguments[0]["cmin"], arguments[0]["cmax"]];
             if (!ok) {
                 break;
             }

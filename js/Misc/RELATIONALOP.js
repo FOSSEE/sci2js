@@ -37,6 +37,7 @@ function RELATIONALOP() {
             this.rule = parseFloat(arguments[0]["rule"]);
             this.zcr = parseFloat(arguments[0]["zcr"]);
             this.Datatype = arguments[0]["Datatype"];
+            var exprs = [arguments[0]["rule"], arguments[0]["zcr"], arguments[0]["Datatype"]];
             if (!ok) {
                 break;
             }

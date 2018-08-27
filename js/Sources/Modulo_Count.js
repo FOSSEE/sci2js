@@ -32,6 +32,7 @@ function Modulo_Count() {
             var ok = true;
             this.ini_c = parseFloat(arguments[0]["ini_c"]);
             this.base = parseFloat(arguments[0]["base"]);
+            var exprs = [arguments[0]["ini_c"], arguments[0]["base"]];
             this.ini_c = int(this.ini_c);
             this.base = int(this.base);
             if (!ok) {

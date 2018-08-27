@@ -41,6 +41,7 @@ function VanneReglante() {
             var ok = true;
             this.Cvmax = parseFloat(arguments[0]["Cvmax"]);
             this.p_rho = parseFloat(arguments[0]["p_rho"]);
+            var exprs = [arguments[0]["Cvmax"], arguments[0]["p_rho"]];
             if (!ok) {
                 break;
             }

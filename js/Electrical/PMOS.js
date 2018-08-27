@@ -59,6 +59,7 @@ function PMOS() {
             this.dW = parseFloat(arguments[0]["dW"]);
             this.dL = parseFloat(arguments[0]["dL"]);
             this.RDS = parseFloat(arguments[0]["RDS"]);
+            var exprs = [arguments[0]["W"], arguments[0]["L"], arguments[0]["Beta"], arguments[0]["Vt"], arguments[0]["K2"], arguments[0]["K5"], arguments[0]["dW"], arguments[0]["dL"], arguments[0]["RDS"]];
             if (!ok) {
                 break;
             }

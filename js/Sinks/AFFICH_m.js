@@ -49,6 +49,7 @@ function AFFICH_m() {
             this.nt = parseFloat(arguments[0]["nt"]);
             this.nd = parseFloat(arguments[0]["nd"]);
             this.herit = arguments[0]["herit"];
+            var exprs = [arguments[0]["in1"], arguments[0]["font"], arguments[0]["fontsize"], arguments[0]["colr"], arguments[0]["nt"], arguments[0]["nd"], arguments[0]["herit"]];
             if (!ok) {
                 break;
             }

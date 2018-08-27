@@ -66,6 +66,7 @@ function Gyrator() {
             var ok = true;
             this.G1 = arguments[0]["G1"];
             this.G2 = arguments[0]["G2"];
+            var exprs = [arguments[0]["G1"], arguments[0]["G2"]];
             if (!ok) {
                 break;
             }

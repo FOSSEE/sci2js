@@ -53,6 +53,7 @@ function PerteDP() {
             this.z1 = parseFloat(arguments[0]["z1"]);
             this.z2 = parseFloat(arguments[0]["z2"]);
             this.p_rho = parseFloat(arguments[0]["p_rho"]);
+            var exprs = [arguments[0]["L"], arguments[0]["D"], arguments[0]["lambda"], arguments[0]["z1"], arguments[0]["z2"], arguments[0]["p_rho"]];
             if (!ok) {
                 break;
             }

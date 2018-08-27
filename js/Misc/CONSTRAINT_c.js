@@ -29,6 +29,7 @@ function CONSTRAINT_c() {
         while (true) {
             var ok = true;
             this.x0 = inverse(arguments[0]["x0"]);
+            var exprs = [arguments[0]["x0"]];
             if (!ok) {
                 break;
             }

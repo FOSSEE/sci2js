@@ -32,6 +32,7 @@ function LOGBLK_f() {
         while (true) {
             var ok = true;
             this.a = parseFloat(arguments[0]["a"]);
+            var exprs = [arguments[0]["a"]];
             if (!ok) {
                 break;
             }

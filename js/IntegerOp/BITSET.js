@@ -33,6 +33,7 @@ function BITSET() {
             var ok = true;
             this.Datatype = arguments[0]["Datatype"];
             this.bit = parseFloat(arguments[0]["bit"]);
+            var exprs = [arguments[0]["Datatype"], arguments[0]["bit"]];
             if (!ok) {
                 break;
             }

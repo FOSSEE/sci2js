@@ -64,6 +64,7 @@ function Bache() {
             this.z0 = parseFloat(arguments[0]["z0"]);
             this.T0 = parseFloat(arguments[0]["T0"]);
             this.p_rho = parseFloat(arguments[0]["p_rho"]);
+            var exprs = [arguments[0]["Patm"], arguments[0]["A"], arguments[0]["ze1"], arguments[0]["ze2"], arguments[0]["zs1"], arguments[0]["zs2"], arguments[0]["z0"], arguments[0]["T0"], arguments[0]["p_rho"]];
             if (!ok) {
                 break;
             }

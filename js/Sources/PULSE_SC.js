@@ -73,6 +73,7 @@ function PULSE_SC() {
             this.scicos_context.W = arguments[0]["scicos_context.W"];
             this.scicos_context.F = arguments[0]["scicos_context.F"];
             this.scicos_context.A = arguments[0]["scicos_context.A"];
+            var exprs = [arguments[0]["scicos_context.E"], arguments[0]["scicos_context.W"], arguments[0]["scicos_context.F"], arguments[0]["scicos_context.A"]];
             if (!ok) {
                 return;
             }

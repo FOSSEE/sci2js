@@ -70,6 +70,7 @@ function generic_block3() {
             this.auto0 = arguments[0]["auto0"];
             this.depu = parseBoolean(arguments[0]["depu"]);
             this.dept = parseBoolean(arguments[0]["dept"]);
+            var lab = [arguments[0]["function_name"], arguments[0]["funtyp"], arguments[0]["in1"], arguments[0]["it"], arguments[0]["out"], arguments[0]["ot"], arguments[0]["ci"], arguments[0]["co"], arguments[0]["xx"], arguments[0]["z"], arguments[0]["oz"], arguments[0]["rpar"], arguments[0]["ipar"], arguments[0]["opar"], arguments[0]["nmode"], arguments[0]["nzcr"], arguments[0]["auto0"], arguments[0]["depu"], arguments[0]["dept"]];
             if (!ok) {
                 break;
             }

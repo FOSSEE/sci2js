@@ -46,6 +46,7 @@ function RAND_f() {
             this.a = parseFloat(arguments[0]["a"]);
             this.b = parseFloat(arguments[0]["b"]);
             this.seed_c = arguments[0]["seed_c"];
+            var exprs = [arguments[0]["flag"], arguments[0]["a"], arguments[0]["b"], arguments[0]["seed_c"]];
             if (!ok) {
                 break;
             }

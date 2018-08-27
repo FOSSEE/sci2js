@@ -48,6 +48,7 @@ function CURVE_c() {
             this.yy = inverse(arguments[0]["yy"]);
             this.PeriodicOption = arguments[0]["PeriodicOption"];
             this.graf = arguments[0]["graf"];
+            var exprs = [arguments[0]["Method"], arguments[0]["xx"], arguments[0]["yy"], arguments[0]["PeriodicOption"], arguments[0]["graf"]];
             if (!ok) {
                 break;
             }

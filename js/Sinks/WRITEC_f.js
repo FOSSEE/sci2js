@@ -48,6 +48,7 @@ function WRITEC_f() {
             this.frmt1 = arguments[0]["frmt1"];
             this.N = parseFloat(arguments[0]["N"]);
             this.swap = parseFloat(arguments[0]["swap"]);
+            var exprs = [arguments[0]["in1"], arguments[0]["fname1"], arguments[0]["frmt1"], arguments[0]["N"], arguments[0]["swap"]];
             if (!ok) {
                 break;
             }

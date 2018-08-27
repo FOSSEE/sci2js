@@ -36,6 +36,7 @@ function SAT_f() {
             this.minp = parseFloat(arguments[0]["minp"]);
             this.maxp = parseFloat(arguments[0]["maxp"]);
             this.pente = arguments[0]["pente"];
+            var exprs = [arguments[0]["minp"], arguments[0]["maxp"], arguments[0]["pente"]];
             if (!ok) {
                 break;
             }

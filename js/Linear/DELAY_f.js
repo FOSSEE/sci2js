@@ -97,6 +97,7 @@ function DELAY_f() {
             var ok = true;
             this.dt = arguments[0]["dt"];
             this.z0 = arguments[0]["z0"];
+            var exprs = [arguments[0]["dt"], arguments[0]["z0"]];
             if (!ok) {
                 break;
             }

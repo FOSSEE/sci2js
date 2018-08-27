@@ -28,6 +28,7 @@ function HALT_f() {
         while (true) {
             var ok = true;
             this.n = parseFloat(arguments[0]["n"]);
+            var exprs = [arguments[0]["n"]];
             if (!ok) {
                 break;
             }

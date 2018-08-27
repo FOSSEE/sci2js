@@ -39,6 +39,7 @@ function SUMMATION() {
             this.Datatype = arguments[0]["Datatype"];
             this.sgn = inverse(arguments[0]["sgn"]);
             this.satur = arguments[0]["satur"];
+            var exprs = [arguments[0]["Datatype"], arguments[0]["sgn"], arguments[0]["satur"]];
             if (!ok) {
                 break;
             }

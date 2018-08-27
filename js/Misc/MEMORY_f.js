@@ -33,6 +33,7 @@ function MEMORY_f() {
             var ok = true;
             this.a = arguments[0]["a"];
             this.inh = parseFloat(arguments[0]["inh"]);
+            var exprs = [arguments[0]["a"], arguments[0]["inh"]];
             if (!ok) {
                 break;
             }

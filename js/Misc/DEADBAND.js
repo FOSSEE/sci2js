@@ -36,6 +36,7 @@ function DEADBAND() {
             this.maxp = parseFloat(arguments[0]["maxp"]);
             this.minp = parseFloat(arguments[0]["minp"]);
             this.zeroc = arguments[0]["zeroc"];
+            var exprs = [arguments[0]["maxp"], arguments[0]["minp"], arguments[0]["zeroc"]];
             if (!ok) {
                 break;
             }

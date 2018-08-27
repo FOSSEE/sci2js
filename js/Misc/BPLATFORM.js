@@ -48,6 +48,7 @@ function BPLATFORM() {
             this.xmax = parseFloat(arguments[0]["xmax"]);
             this.ymin = parseFloat(arguments[0]["ymin"]);
             this.ymax = parseFloat(arguments[0]["ymax"]);
+            var exprs = [arguments[0]["plen"], arguments[0]["csiz"], arguments[0]["phi"], arguments[0]["xmin"], arguments[0]["xmax"], arguments[0]["ymin"], arguments[0]["ymax"]];
             if (!ok) {
                 break;
             }

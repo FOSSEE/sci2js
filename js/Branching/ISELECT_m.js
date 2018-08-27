@@ -43,6 +43,7 @@ function ISELECT_m() {
             this.typ = inverse(arguments[0]["typ"]);
             this.nout = parseFloat(arguments[0]["nout"]);
             this.z0 = parseFloat(arguments[0]["z0"]);
+            var exprs = [arguments[0]["typ"], arguments[0]["nout"], arguments[0]["z0"]];
             if (!ok) {
                 break;
             }

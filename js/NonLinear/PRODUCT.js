@@ -28,6 +28,7 @@ function PRODUCT() {
         while (true) {
             var ok = true;
             this.sgn = inverse(arguments[0]["sgn"]);
+            var exprs = [arguments[0]["sgn"]];
             if (!ok) {
                 break;
             }

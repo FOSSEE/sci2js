@@ -38,6 +38,7 @@ function GOTOMO() {
             var ok = true;
             this.tag = arguments[0]["tag"];
             this.tagvis = parseFloat(arguments[0]["tagvis"]);
+            var exprs = [arguments[0]["tag"], arguments[0]["tagvis"]];
             if (!ok) {
                 break;
             }

@@ -42,6 +42,7 @@ function MATCATH() {
         while (true) {
             var ok = true;
             this.nin = arguments[0]["nin"];
+            var lab = [arguments[0]["nin"]];
             if (!ok) {
                 break;
             }

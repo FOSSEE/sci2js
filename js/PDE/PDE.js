@@ -110,6 +110,7 @@ function PDE() {
             while (true) {
                 var okk = true;
                 this.rdnom = arguments[0]["rdnom"];
+                var lab = [arguments[0]["rdnom"]];
                 if (okk==false) {
                     var ok1 = false;
                     return;

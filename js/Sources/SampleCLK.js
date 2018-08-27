@@ -28,6 +28,7 @@ function SampleCLK() {
             var ok = true;
             this.frequ = arguments[0]["frequ"];
             this.offset = arguments[0]["offset"];
+            var exprs = [arguments[0]["frequ"], arguments[0]["offset"]];
             if (!ok) {
                 break;
             }

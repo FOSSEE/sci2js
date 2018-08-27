@@ -68,6 +68,7 @@ function CLOCK_c() {
             var ok = true;
             this.dt = arguments[0]["dt"];
             this.t0 = arguments[0]["t0"];
+            var exprs0 = [arguments[0]["dt"], arguments[0]["t0"]];
             if (!ok) {
                 break;
             }

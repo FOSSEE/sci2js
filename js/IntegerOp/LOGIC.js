@@ -36,6 +36,7 @@ function LOGIC() {
             var ok = true;
             this.mat = inverse(arguments[0]["mat"]);
             this.herit = arguments[0]["herit"];
+            var exprs = [arguments[0]["mat"], arguments[0]["herit"]];
             if (!ok) {
                 break;
             }

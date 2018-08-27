@@ -62,6 +62,7 @@ function generic_block() {
             this.auto0 = arguments[0]["auto0"];
             this.depu = parseBoolean(arguments[0]["depu"]);
             this.dept = parseBoolean(arguments[0]["dept"]);
+            var lab = [arguments[0]["function_name"], arguments[0]["funtyp"], arguments[0]["i"], arguments[0]["o"], arguments[0]["ci"], arguments[0]["co"], arguments[0]["xx"], arguments[0]["z"], arguments[0]["rpar"], arguments[0]["ipar"], arguments[0]["auto0"], arguments[0]["depu"], arguments[0]["dept"]];
             if (!ok) {
                 break;
             }

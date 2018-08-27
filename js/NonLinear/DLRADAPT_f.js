@@ -47,6 +47,7 @@ function DLRADAPT_f() {
             this.g = inverse(arguments[0]["g"]);
             this.last_u = inverse(arguments[0]["last_u"]);
             this.last_y = inverse(arguments[0]["last_y"]);
+            var exprs = [arguments[0]["p"], arguments[0]["rn"], arguments[0]["rd"], arguments[0]["g"], arguments[0]["last_u"], arguments[0]["last_y"]];
             if (!ok) {
                 break;
             }

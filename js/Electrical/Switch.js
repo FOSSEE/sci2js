@@ -41,6 +41,7 @@ function Switch() {
             var ok = true;
             this.Ron = parseFloat(arguments[0]["Ron"]);
             this.Roff = parseFloat(arguments[0]["Roff"]);
+            var exprs = [arguments[0]["Ron"], arguments[0]["Roff"]];
             if (!ok) {
                 break;
             }

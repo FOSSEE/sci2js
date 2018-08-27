@@ -42,6 +42,7 @@ function MATLU() {
         while (true) {
             var ok = true;
             this.typ = inverse(arguments[0]["typ"]);
+            var lab = [arguments[0]["typ"]];
             if (!ok) {
                 break;
             }

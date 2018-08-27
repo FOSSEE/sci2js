@@ -51,6 +51,7 @@ function LOOKUP_c() {
             this.yy = inverse(arguments[0]["yy"]);
             this.extrapo = parseFloat(arguments[0]["extrapo"]);
             this.graf = arguments[0]["graf"];
+            var exprs = [arguments[0]["Method"], arguments[0]["xx"], arguments[0]["yy"], arguments[0]["extrapo"], arguments[0]["graf"]];
             if (!ok) {
                 break;
             }

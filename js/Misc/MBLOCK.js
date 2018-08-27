@@ -69,6 +69,7 @@ function MBLOCK() {
             this.Tparam = arguments[0]["Tparam"];
             this.pprop = inverse(arguments[0]["pprop"]);
             this.Tfunam = arguments[0]["Tfunam"];
+            var lab_1 = [arguments[0]["Tin"], arguments[0]["Tintype"], arguments[0]["Tout"], arguments[0]["Touttype"], arguments[0]["Tparam"], arguments[0]["pprop"], arguments[0]["Tfunam"]];
             if (!ok) {
                 break;
             }
