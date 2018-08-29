@@ -25,7 +25,6 @@ function NEGTOPOS_f() {
         return new BasicBlock(this.x);
     }
     NEGTOPOS_f.prototype.get_popup_title = function NEGTOPOS_f() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

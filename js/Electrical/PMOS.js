@@ -33,6 +33,8 @@ function PMOS() {
         return this.x;
     }
     PMOS.prototype.get = function PMOS() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set PMOS Transistor parameters";
         var options = {
             W:["Width [m]",this.W],
             L:["Length [m]",this.L],
@@ -72,7 +74,6 @@ function PMOS() {
         return new BasicBlock(this.x);
     }
     PMOS.prototype.get_popup_title = function PMOS() {
-        var set_param_popup_title = "Set PMOS Transistor parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

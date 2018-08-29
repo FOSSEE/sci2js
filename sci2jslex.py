@@ -198,6 +198,7 @@ UNKNOWN_FUNCTION_NAMES = {
     'test_increasing',
     'tlist',
     'translate',
+    'type',
     'typeof',
     'uint16',
     'uint32',

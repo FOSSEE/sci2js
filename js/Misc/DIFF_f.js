@@ -18,6 +18,8 @@ function DIFF_f() {
         return this.x;
     }
     DIFF_f.prototype.get = function DIFF_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set continuous linear system parameters";
         var options = {
             x0:["Initial state",this.x0.toString().replace(/,/g," ")],
             xd0:["Initial Derivative",this.xd0],
@@ -44,7 +46,6 @@ function DIFF_f() {
         return new BasicBlock(this.x);
     }
     DIFF_f.prototype.get_popup_title = function DIFF_f() {
-        var set_param_popup_title = "Set continuous linear system parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

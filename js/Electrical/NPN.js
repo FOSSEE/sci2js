@@ -53,6 +53,9 @@ function NPN() {
         return this.x;
     }
     NPN.prototype.get = function NPN() {
+        var exprs = this.graphics.exprs;
+        var exprs = this.x.graphics.exprs;
+        this.set_param_popup_title = "Set NPN block parameters:";
         var options = {
             Bf:["Bf  : Forward beta",this.Bf],
             Br:["Br  : Reverse beta",this.Br],
@@ -107,7 +110,6 @@ function NPN() {
         return new BasicBlock(this.x);
     }
     NPN.prototype.get_popup_title = function NPN() {
-        var set_param_popup_title = "Set NPN block parameters:";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

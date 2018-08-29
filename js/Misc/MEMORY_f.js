@@ -21,6 +21,8 @@ function MEMORY_f() {
         return this.x;
     }
     MEMORY_f.prototype.get = function MEMORY_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set memory block parameters";
         var options = {
             a:["initial condition",this.a],
             inh:["Inherit (1: no, 0: yes)",this.inh],
@@ -65,7 +67,6 @@ function MEMORY_f() {
         return new BasicBlock(this.x);
     }
     MEMORY_f.prototype.get_popup_title = function MEMORY_f() {
-        var set_param_popup_title = "Set memory block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

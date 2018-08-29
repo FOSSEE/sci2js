@@ -19,6 +19,11 @@ function POWBLK_f() {
         return this.x;
     }
     POWBLK_f.prototype.get = function POWBLK_f() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==2) {
+            var exprs = exprs[2-1];
+        }
+        this.set_param_popup_title = "Set u^a block parameters";
         var options = {
             a:["to the power of",this.a],
         }
@@ -52,7 +57,6 @@ function POWBLK_f() {
         return new BasicBlock(this.x);
     }
     POWBLK_f.prototype.get_popup_title = function POWBLK_f() {
-        var set_param_popup_title = "Set u^a block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

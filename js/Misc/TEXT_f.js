@@ -19,6 +19,12 @@ function TEXT_f() {
         return this.x;
     }
     TEXT_f.prototype.get = function TEXT_f() {
+        var orig = this.graphics.orig;
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==1) {
+            var exprs = [[exprs],["3"],["1"]];
+        }
+        this.set_param_popup_title = "Set Text block parameters";
         var options = {
             txt:["Text",this.txt],
             font:["Font number",this.font],
@@ -76,7 +82,6 @@ function TEXT_f() {
         return new TextBlock(this.x);
     }
     TEXT_f.prototype.get_popup_title = function TEXT_f() {
-        var set_param_popup_title = "Set Text block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

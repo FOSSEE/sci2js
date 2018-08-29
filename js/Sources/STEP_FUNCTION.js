@@ -119,7 +119,6 @@ function STEP_FUNCTION() {
         return new BasicBlock(this.x);
     }
     STEP_FUNCTION.prototype.get_popup_title = function STEP_FUNCTION() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

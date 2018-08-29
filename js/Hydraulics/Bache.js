@@ -38,6 +38,8 @@ function Bache() {
         return this.x;
     }
     Bache.prototype.get = function Bache() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Parametres de la bache";
         var options = {
             Patm:["Pression dans le ciel de la bache : Patm (Pa)",this.Patm],
             A:["Section de la bache : A (m2)",this.A],
@@ -78,7 +80,6 @@ function Bache() {
         return new BasicBlock(this.x);
     }
     Bache.prototype.get_popup_title = function Bache() {
-        var set_param_popup_title = "Parametres de la bache";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

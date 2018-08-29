@@ -42,7 +42,6 @@ function SELF_SWITCH() {
         return new BasicBlock(this.x);
     }
     SELF_SWITCH.prototype.get_popup_title = function SELF_SWITCH() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

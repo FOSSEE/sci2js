@@ -33,6 +33,17 @@ function READC_f() {
         return this.x;
     }
     READC_f.prototype.get = function READC_f() {
+        this.model = this.x.model;
+        var exprs = this.graphics.exprs;
+        var out = this.model.out;
+        var dstate = this.model.dstate;
+        var ipar = this.model.ipar;
+        var imask = 9+ipar[1-1];
+        var tmask = ipar[imask-1];
+        var lunit = dstate[3-1];
+        var fname = exprs[3-1];
+        var frmt = exprs[4-1];
+        this.set_param_popup_title = msprintf("Set %s block parameters","READC_f");
         var options = {
             tmask1:["Time Record Selection",this.tmask1],
             outmask:["Outputs Record Selection",this.outmask],
@@ -139,7 +150,6 @@ function READC_f() {
         return new BasicBlock(this.x);
     }
     READC_f.prototype.get_popup_title = function READC_f() {
-        var set_param_popup_title = msprintf("Set %s block parameters","READC_f");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

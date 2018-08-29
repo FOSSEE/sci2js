@@ -29,6 +29,11 @@ function MATSUM() {
         return this.x;
     }
     MATSUM.prototype.get = function MATSUM() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set MATSUM block parameters";
         var options = {
             typ:["Datatype(1=real double  2=Complex)",this.typ],
             decomptyp:["Sum along (0=all 1=lines  2=Columns)",this.decomptyp],
@@ -105,7 +110,6 @@ function MATSUM() {
         return new BasicBlock(this.x);
     }
     MATSUM.prototype.get_popup_title = function MATSUM() {
-        var set_param_popup_title = "Set MATSUM block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

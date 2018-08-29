@@ -21,6 +21,8 @@ function ZCROSS_f() {
         return this.x;
     }
     ZCROSS_f.prototype.get = function ZCROSS_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Zero-Crossing parameters";
         var options = {
             in1:["Input size",this.in1],
         }
@@ -57,7 +59,6 @@ function ZCROSS_f() {
         return new BasicBlock(this.x);
     }
     ZCROSS_f.prototype.get_popup_title = function ZCROSS_f() {
-        var set_param_popup_title = "Set Zero-Crossing parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

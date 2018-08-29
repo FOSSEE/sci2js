@@ -92,7 +92,6 @@ function MCLOCK_f() {
         return new BasicBlock(this.x);
     }
     MCLOCK_f.prototype.get_popup_title = function MCLOCK_f() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

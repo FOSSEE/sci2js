@@ -25,6 +25,8 @@ function BARXY() {
         return this.x;
     }
     BARXY.prototype.get = function BARXY() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Scope parameters";
         var options = {
             xmin:["Xmin",this.xmin],
             xmax:["Xmax",this.xmax],
@@ -75,7 +77,6 @@ function BARXY() {
         return new BasicBlock(this.x);
     }
     BARXY.prototype.get_popup_title = function BARXY() {
-        var set_param_popup_title = "Set Scope parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

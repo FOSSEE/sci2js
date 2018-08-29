@@ -22,7 +22,6 @@ function CLKSOM_f() {
         return new BasicBlock(this.x);
     }
     CLKSOM_f.prototype.get_popup_title = function CLKSOM_f() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

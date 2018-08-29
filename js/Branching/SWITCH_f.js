@@ -21,6 +21,9 @@ function SWITCH_f() {
         return this.x;
     }
     SWITCH_f.prototype.get = function SWITCH_f() {
+        var exprs = this.graphics.exprs;
+        var ipar = this.model.ipar;
+        this.set_param_popup_title = "Set switch parameters";
         var options = {
             nin:["number of inputs",this.nin],
             z0:["connected input",this.z0],
@@ -58,7 +61,6 @@ function SWITCH_f() {
         return new BasicBlock(this.x);
     }
     SWITCH_f.prototype.get_popup_title = function SWITCH_f() {
-        var set_param_popup_title = "Set switch parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

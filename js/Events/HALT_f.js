@@ -18,6 +18,8 @@ function HALT_f() {
         return this.x;
     }
     HALT_f.prototype.get = function HALT_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Halt block parameters";
         var options = {
             n:["State on halt",this.n],
         }
@@ -43,7 +45,6 @@ function HALT_f() {
         return new BasicBlock(this.x);
     }
     HALT_f.prototype.get_popup_title = function HALT_f() {
-        var set_param_popup_title = "Set Halt block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

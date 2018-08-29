@@ -54,6 +54,16 @@ function GEN_SQR() {
         return this.x;
     }
     GEN_SQR.prototype.get = function GEN_SQR() {
+        var y = this.needcompile;
+        var typ = list();
+        var exprs = this.graphics.exprs;
+        this.Btitre = "Set GEN_SQR parameters";
+        var Exprs0 = [["Amin"],["Amax"],["rule"],["F"]];
+        this.Bitems = [["Minimum Value"],["Maximum Value"],["Initial Value( 1= Minimum Value 2= Maximum Value)"],["Period (sec)"]];
+        var Ss = list("mat",[-1,-1],"mat",[-1,-1],"pol",-1,"pol",-1);
+        this.scicos_context = struct();
+        var ok = false;
+        this.set_param_popup_title = this.Btitre;
         var options = {
             scicos_context.Amin:["Minimum Value",this.scicos_context.Amin],
             scicos_context.Amax:["Maximum Value",this.scicos_context.Amax],
@@ -108,7 +118,6 @@ function GEN_SQR() {
         return new BasicBlock(this.x);
     }
     GEN_SQR.prototype.get_popup_title = function GEN_SQR() {
-        var set_param_popup_title = "Set GEN_SQR parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -18,6 +18,8 @@ function END_c() {
         return this.x;
     }
     END_c.prototype.get = function END_c() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set final simulation time";
         var options = {
             tf:["Final simulation time",this.tf],
         }
@@ -43,7 +45,6 @@ function END_c() {
         return new BasicBlock(this.x);
     }
     END_c.prototype.get_popup_title = function END_c() {
-        var set_param_popup_title = "Set final simulation time";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

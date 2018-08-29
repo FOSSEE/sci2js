@@ -29,6 +29,11 @@ function MATINV() {
         return this.x;
     }
     MATINV.prototype.get = function MATINV() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set MATINV Block";
         var options = {
             typ:["Datatype(1=real double  2=Complex)",this.typ],
         }
@@ -76,7 +81,6 @@ function MATINV() {
         return new BasicBlock(this.x);
     }
     MATINV.prototype.get_popup_title = function MATINV() {
-        var set_param_popup_title = "Set MATINV Block";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

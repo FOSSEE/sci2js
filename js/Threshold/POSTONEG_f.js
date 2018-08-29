@@ -26,7 +26,6 @@ function POSTONEG_f() {
         return new BasicBlock(this.x);
     }
     POSTONEG_f.prototype.get_popup_title = function POSTONEG_f() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

@@ -23,6 +23,15 @@ function CLR_f() {
         return this.x;
     }
     CLR_f.prototype.get = function CLR_f() {
+        var exprs = this.graphics.exprs;
+        var x0 = this.model.state;
+        var rpar = this.model.rpar;
+        var ns = prod(size(x0));
+        var nin = 1;
+        var nout = 1;
+        var PREVAR_scicos_context = PREVAR_scicos_context;
+        PREVAR_scicos_context.s = %s;
+        this.set_param_popup_title = "Set continuous SISO transfer parameters";
         var options = {
             num:["Numerator (s)",this.num],
             den:["Denominator (s)",this.den],
@@ -86,7 +95,6 @@ function CLR_f() {
         return new BasicBlock(this.x);
     }
     CLR_f.prototype.get_popup_title = function CLR_f() {
-        var set_param_popup_title = "Set continuous SISO transfer parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

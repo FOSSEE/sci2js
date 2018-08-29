@@ -46,6 +46,18 @@ function CLOCK_f() {
         return this.x;
     }
     CLOCK_f.prototype.get = function CLOCK_f() {
+            if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
+                var path = i;
+                break;
+            }
+        }
+        var newpar = list();
+        var exprs = xx.graphics.exprs;
+        this.model = xx.model;
+        var t0_old = this.model.firing;
+        var dt_old = this.model.rpar;
+        var model_n = this.model;
+        this.set_param_popup_title = "Set Clock  block parameters";
         var options = {
             dt:["Period",this.dt],
             t0:["Init time",this.t0],
@@ -98,7 +110,6 @@ function CLOCK_f() {
         return new BasicBlock(this.x);
     }
     CLOCK_f.prototype.get_popup_title = function CLOCK_f() {
-        var set_param_popup_title = "Set Clock  block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

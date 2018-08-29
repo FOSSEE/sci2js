@@ -36,6 +36,16 @@ function SRFLIPFLOP() {
         return this.x;
     }
     SRFLIPFLOP.prototype.get = function SRFLIPFLOP() {
+            if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
+                var path = i;
+                break;
+            }
+        }
+        var newpar = list();
+        var exprs = xx.graphics.exprs[1-1];
+        this.model = xx.model;
+        var init_old = this.model.odstate[1-1];
+        this.set_param_popup_title = msprintf("Set %s block parameters","SRFLIPFLOP");
         var options = {
             init:["Initial Value",this.init],
         }
@@ -80,7 +90,6 @@ function SRFLIPFLOP() {
         return new BasicBlock(this.x);
     }
     SRFLIPFLOP.prototype.get_popup_title = function SRFLIPFLOP() {
-        var set_param_popup_title = msprintf("Set %s block parameters","SRFLIPFLOP");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

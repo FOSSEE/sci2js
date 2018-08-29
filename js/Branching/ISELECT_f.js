@@ -21,6 +21,8 @@ function ISELECT_f() {
         return this.x;
     }
     ISELECT_f.prototype.get = function ISELECT_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             nout:["number of outputs",this.nout],
             z0:["initial connected output",this.z0],
@@ -57,7 +59,6 @@ function ISELECT_f() {
         return new BasicBlock(this.x);
     }
     ISELECT_f.prototype.get_popup_title = function ISELECT_f() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

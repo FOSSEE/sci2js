@@ -53,6 +53,9 @@ function Gyrator() {
         return this.x;
     }
     Gyrator.prototype.get = function Gyrator() {
+        var exprs = this.graphics.exprs;
+        var exprs = this.x.graphics.exprs;
+        this.set_param_popup_title = "Set Gyrator block parameters:";
         var options = {
             G1:["G1",this.G1],
             G2:["G2",this.G2],
@@ -77,7 +80,6 @@ function Gyrator() {
         return new BasicBlock(this.x);
     }
     Gyrator.prototype.get_popup_title = function Gyrator() {
-        var set_param_popup_title = "Set Gyrator block parameters:";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

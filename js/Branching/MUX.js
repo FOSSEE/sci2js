@@ -18,6 +18,8 @@ function MUX() {
         return this.x;
     }
     MUX.prototype.get = function MUX() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set MUX block parameters";
         var options = {
             in1:["number of input ports or vector of sizes",this.in1],
         }
@@ -74,7 +76,6 @@ function MUX() {
         return new BasicBlock(this.x);
     }
     MUX.prototype.get_popup_title = function MUX() {
-        var set_param_popup_title = "Set MUX block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

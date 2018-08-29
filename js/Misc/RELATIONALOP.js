@@ -20,6 +20,11 @@ function RELATIONALOP() {
         return this.x;
     }
     RELATIONALOP.prototype.get = function RELATIONALOP() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,1)==2) {
+            var exprs = [[exprs],[sci2exp(1)]];
+        }
+        this.set_param_popup_title = "Set parameters";
         var options = {
             rule:["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)",this.rule],
             zcr:["Use zero crossing (no: 0), (yes: 1)",this.zcr],
@@ -106,7 +111,6 @@ function RELATIONALOP() {
         return new BasicBlock(this.x);
     }
     RELATIONALOP.prototype.get_popup_title = function RELATIONALOP() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

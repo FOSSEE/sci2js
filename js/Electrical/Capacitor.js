@@ -27,6 +27,8 @@ function Capacitor() {
         return this.x;
     }
     Capacitor.prototype.get = function Capacitor() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Capacitor block parameter";
         var options = {
             C:["C (F)",this.C],
             v:["Initial Voltage",this.v],
@@ -53,7 +55,6 @@ function Capacitor() {
         return new BasicBlock(this.x);
     }
     Capacitor.prototype.get_popup_title = function Capacitor() {
-        var set_param_popup_title = "Set Capacitor block parameter";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

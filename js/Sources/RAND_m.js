@@ -33,6 +33,11 @@ function RAND_m() {
         return this.x;
     }
     RAND_m.prototype.get = function RAND_m() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==14) {
+            exprs[9-1] = [];
+        }
+        this.set_param_popup_title = "Set Random generator block parameters";
         var options = {
             typ:["Datatype(1=real double  2=complex)",this.typ],
             flag:["flag",this.flag],
@@ -97,7 +102,6 @@ function RAND_m() {
         return new BasicBlock(this.x);
     }
     RAND_m.prototype.get_popup_title = function RAND_m() {
-        var set_param_popup_title = "Set Random generator block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

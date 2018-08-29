@@ -23,6 +23,11 @@ function INIMPL_f() {
         return this.x;
     }
     INIMPL_f.prototype.get = function INIMPL_f() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==2) {
+            var exprs = exprs[1-1];
+        }
+        this.set_param_popup_title = msprintf("Set %s block parameters","INIMPL_f");
         var options = {
             prt:["Port Number",this.prt],
         }
@@ -58,7 +63,6 @@ function INIMPL_f() {
         return new ImplicitInBlock(this.x);
     }
     INIMPL_f.prototype.get_popup_title = function INIMPL_f() {
-        var set_param_popup_title = msprintf("Set %s block parameters","INIMPL_f");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

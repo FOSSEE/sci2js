@@ -19,6 +19,8 @@ function EVTVARDLY() {
         return this.x;
     }
     EVTVARDLY.prototype.get = function EVTVARDLY() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameter of variable event delay";
         var options = {
             fir:["Initial event firing time (<0 if absent)",this.fir],
         }
@@ -42,7 +44,6 @@ function EVTVARDLY() {
         return new BasicBlock(this.x);
     }
     EVTVARDLY.prototype.get_popup_title = function EVTVARDLY() {
-        var set_param_popup_title = "Set parameter of variable event delay";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -22,6 +22,8 @@ function SATURATION() {
         return this.x;
     }
     SATURATION.prototype.get = function SATURATION() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Saturation parameters";
         var options = {
             maxp:["Upper limit",this.maxp],
             minp:["Lower limit",this.minp],
@@ -62,7 +64,6 @@ function SATURATION() {
         return new BasicBlock(this.x);
     }
     SATURATION.prototype.get_popup_title = function SATURATION() {
-        var set_param_popup_title = "Set Saturation parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

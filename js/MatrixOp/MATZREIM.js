@@ -29,6 +29,11 @@ function MATZREIM() {
         return this.x;
     }
     MATZREIM.prototype.get = function MATZREIM() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set MATZREIM block parameters";
         var options = {
             decomptyp:["decomposition type (1=Complex2Real&Imag 2=Real&Imag2Complex)",this.decomptyp],
         }
@@ -80,7 +85,6 @@ function MATZREIM() {
         return new BasicBlock(this.x);
     }
     MATZREIM.prototype.get_popup_title = function MATZREIM() {
-        var set_param_popup_title = "Set MATZREIM block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

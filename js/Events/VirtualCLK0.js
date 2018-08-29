@@ -23,7 +23,6 @@ function VirtualCLK0() {
         return new BasicBlock(this.x);
     }
     VirtualCLK0.prototype.get_popup_title = function VirtualCLK0() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

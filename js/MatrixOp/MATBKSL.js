@@ -29,6 +29,11 @@ function MATBKSL() {
         return this.x;
     }
     MATBKSL.prototype.get = function MATBKSL() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set MATBKSL Block";
         var options = {
             typ:["Datatype (1=real double  2=Complex)",this.typ],
         }
@@ -76,7 +81,6 @@ function MATBKSL() {
         return new BasicBlock(this.x);
     }
     MATBKSL.prototype.get_popup_title = function MATBKSL() {
-        var set_param_popup_title = "Set MATBKSL Block";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

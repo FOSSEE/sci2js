@@ -18,6 +18,8 @@ function CONST_f() {
         return this.x;
     }
     CONST_f.prototype.get = function CONST_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Contant Block";
         var options = {
             C:["Constant",this.C],
         }
@@ -48,7 +50,6 @@ function CONST_f() {
         return new BasicBlock(this.x);
     }
     CONST_f.prototype.get_popup_title = function CONST_f() {
-        var set_param_popup_title = "Set Contant Block";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

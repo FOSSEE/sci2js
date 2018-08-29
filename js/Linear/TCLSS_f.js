@@ -27,6 +27,11 @@ function TCLSS_f() {
         return this.x;
     }
     TCLSS_f.prototype.get = function TCLSS_f() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==7) {
+            var exprs = exprs[[1:4,7]-1];
+        }
+        this.set_param_popup_title = "Set continuous linear system parameters";
         var options = {
             A:["A matrix",this.A],
             B:["B matrix",this.B],
@@ -102,7 +107,6 @@ function TCLSS_f() {
         return new BasicBlock(this.x);
     }
     TCLSS_f.prototype.get_popup_title = function TCLSS_f() {
-        var set_param_popup_title = "Set continuous linear system parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -29,6 +29,8 @@ function SELECT_m() {
         return this.x;
     }
     SELECT_m.prototype.get = function SELECT_m() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             typ:["Datatype(1= real double  2=Complex 3=int32 ..)",this.typ],
             nin:["number of inputs",this.nin],
@@ -77,7 +79,6 @@ function SELECT_m() {
         return new BasicBlock(this.x);
     }
     SELECT_m.prototype.get_popup_title = function SELECT_m() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -17,6 +17,8 @@ function EVTGEN_f() {
         return this.x;
     }
     EVTGEN_f.prototype.get = function EVTGEN_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Event time";
         var options = {
             tt:["Event Time",this.tt],
         }
@@ -42,7 +44,6 @@ function EVTGEN_f() {
         return new BasicBlock(this.x);
     }
     EVTGEN_f.prototype.get_popup_title = function EVTGEN_f() {
-        var set_param_popup_title = "Set Event time";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

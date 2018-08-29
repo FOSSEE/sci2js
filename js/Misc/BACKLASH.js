@@ -18,6 +18,9 @@ function BACKLASH() {
         return this.x;
     }
     BACKLASH.prototype.get = function BACKLASH() {
+        var exprs = this.graphics.exprs;
+        var rpar = this.model.rpar;
+        this.set_param_popup_title = "Set backlash parameters";
         var options = {
             ini:["initial output",this.ini],
             gap:["gap",this.gap],
@@ -55,7 +58,6 @@ function BACKLASH() {
         return new BasicBlock(this.x);
     }
     BACKLASH.prototype.get_popup_title = function BACKLASH() {
-        var set_param_popup_title = "Set backlash parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

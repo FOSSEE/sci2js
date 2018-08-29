@@ -27,6 +27,8 @@ function VsourceAC() {
         return this.x;
     }
     VsourceAC.prototype.get = function VsourceAC() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set voltage source parameter";
         var options = {
             VA:["Amplitude (Volt)",this.VA],
             FR:["Frequency (Hz)",this.FR],
@@ -53,7 +55,6 @@ function VsourceAC() {
         return new BasicBlock(this.x);
     }
     VsourceAC.prototype.get_popup_title = function VsourceAC() {
-        var set_param_popup_title = "Set voltage source parameter";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

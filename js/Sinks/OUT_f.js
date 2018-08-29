@@ -20,6 +20,11 @@ function OUT_f() {
         return this.x;
     }
     OUT_f.prototype.get = function OUT_f() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==2) {
+            var exprs = exprs[1-1];
+        }
+        this.set_param_popup_title = msprintf("Set %s block parameters","OUT_f");
         var options = {
             prt:["Port number",this.prt],
         }
@@ -51,7 +56,6 @@ function OUT_f() {
         return new ExplicitOutBlock(this.x);
     }
     OUT_f.prototype.get_popup_title = function OUT_f() {
-        var set_param_popup_title = msprintf("Set %s block parameters","OUT_f");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

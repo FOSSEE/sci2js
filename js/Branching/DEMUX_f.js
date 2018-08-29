@@ -19,6 +19,8 @@ function DEMUX_f() {
         return this.x;
     }
     DEMUX_f.prototype.get = function DEMUX_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set DEMUX block parameters";
         var options = {
             out:["number of output ports or vector of sizes",this.out],
         }
@@ -75,7 +77,6 @@ function DEMUX_f() {
         return new BasicBlock(this.x);
     }
     DEMUX_f.prototype.get_popup_title = function DEMUX_f() {
-        var set_param_popup_title = "Set DEMUX block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

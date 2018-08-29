@@ -20,6 +20,13 @@ function SUMMATION() {
         return this.x;
     }
     SUMMATION.prototype.get = function SUMMATION() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,1)==1) {
+            var exprs = [[sci2exp(1)],[exprs],[sci2exp(0)]];
+        } else if (size(exprs,1)==2) {
+            var exprs = [[exprs],[sci2exp(0)]];
+        }
+        this.set_param_popup_title = "Set sum block parameters";
         var options = {
             Datatype:["Datatype (1=real double  2=complex 3=int32 ...)",this.Datatype],
             sgn:["Number of inputs or sign vector (of +1, -1)",this.sgn.toString().replace(/,/g," ")],
@@ -152,7 +159,6 @@ function SUMMATION() {
         return new Summation(this.x);
     }
     SUMMATION.prototype.get_popup_title = function SUMMATION() {
-        var set_param_popup_title = "Set sum block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

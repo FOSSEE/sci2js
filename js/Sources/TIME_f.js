@@ -20,7 +20,6 @@ function TIME_f() {
         return new BasicBlock(this.x);
     }
     TIME_f.prototype.get_popup_title = function TIME_f() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

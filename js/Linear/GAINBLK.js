@@ -24,6 +24,11 @@ function GAINBLK() {
         return this.x;
     }
     GAINBLK.prototype.get = function GAINBLK() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==1) {
+            var exprs = [[exprs],[sci2exp(0)]];
+        }
+        this.set_param_popup_title = "Set gain block parameters";
         var options = {
             gain:["Gain",this.gain],
             over:["Do On Overflow(0=Nothing 1=Saturate 2=Error)",this.over],
@@ -167,7 +172,6 @@ function GAINBLK() {
         return new BasicBlock(this.x);
     }
     GAINBLK.prototype.get_popup_title = function GAINBLK() {
-        var set_param_popup_title = "Set gain block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -18,6 +18,8 @@ function MAXMIN() {
         return this.x;
     }
     MAXMIN.prototype.get = function MAXMIN() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Max/Min block parameters";
         var options = {
             mm:["Min (1) or Max (2) ",this.mm],
             nin:["Number of input vectors (1 or 2)",this.nin],
@@ -83,7 +85,6 @@ function MAXMIN() {
         return new BasicBlock(this.x);
     }
     MAXMIN.prototype.get_popup_title = function MAXMIN() {
-        var set_param_popup_title = "Set Max/Min block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

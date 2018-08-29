@@ -38,6 +38,9 @@ function scifunc_block_m() {
         return this.x;
     }
     scifunc_block_m.prototype.get = function scifunc_block_m() {
+        var needcompile = 0;
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set scifunc_block parameters";
         var options = {
             i:["input ports sizes",this.i],
             o:["output port sizes",this.o],
@@ -120,7 +123,6 @@ function scifunc_block_m() {
         return new BasicBlock(this.x);
     }
     scifunc_block_m.prototype.get_popup_title = function scifunc_block_m() {
-        var set_param_popup_title = "Set scifunc_block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

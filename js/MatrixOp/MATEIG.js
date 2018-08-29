@@ -29,6 +29,11 @@ function MATEIG() {
         return this.x;
     }
     MATEIG.prototype.get = function MATEIG() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set MATEIG block parameters";
         var options = {
             typ:["Datatype(1=real double  2=Complex)",this.typ],
             decomptyp:["decomposition type (1=eig values  2=eig values+eig vectors",this.decomptyp],
@@ -101,7 +106,6 @@ function MATEIG() {
         return new BasicBlock(this.x);
     }
     MATEIG.prototype.get_popup_title = function MATEIG() {
-        var set_param_popup_title = "Set MATEIG block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

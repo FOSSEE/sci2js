@@ -40,7 +40,7 @@ function MPBLOCK() {
     }
     MPBLOCK.prototype.set = function MPBLOCK() {
         var exprs = this.graphics.exprs;
-        if (this.type[exprs-1]==15) {
+        if (type(exprs)==15) {
             var paramv = list();
             var pprop = [];
             for (i=1;i<=size(this.model.rpar,"*");i+=1) {
@@ -254,7 +254,7 @@ function MPBLOCK() {
                 exprs.param = lab_1[5-1];
                 exprs.paramv = list();
                 if (Tparam_sz!=0) {
-                    if (this.type[lab_2-1]==15) {
+                    if (type(lab_2)==15) {
                         for (i=1;i<=lstsize(lab_2);i+=1) {
                             exprs.paramv[i-1] = lab_2[i-1];
                         }
@@ -279,7 +279,6 @@ function MPBLOCK() {
         return new BasicBlock(this.x);
     }
     MPBLOCK.prototype.get_popup_title = function MPBLOCK() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

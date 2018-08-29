@@ -22,6 +22,8 @@ function STEP() {
         return this.x;
     }
     STEP.prototype.get = function STEP() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = msprintf("Set %s block parameters","STEP_FUNCTION");
         var options = {
             temps:["Step Time",this.temps],
             in1:["Initial Value",this.in1],
@@ -77,7 +79,6 @@ function STEP() {
         return new BasicBlock(this.x);
     }
     STEP.prototype.get_popup_title = function STEP() {
-        var set_param_popup_title = msprintf("Set %s block parameters","STEP_FUNCTION");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -18,6 +18,8 @@ function PRODUCT() {
         return this.x;
     }
     PRODUCT.prototype.get = function PRODUCT() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "         Set multiplication block parameters";
         var options = {
             sgn:["Number of inputs or sign vector",this.sgn.toString().replace(/,/g," ")],
         }
@@ -74,7 +76,6 @@ function PRODUCT() {
         return new Product(this.x);
     }
     PRODUCT.prototype.get_popup_title = function PRODUCT() {
-        var set_param_popup_title = "         Set multiplication block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

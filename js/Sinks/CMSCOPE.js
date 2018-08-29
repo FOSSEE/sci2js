@@ -31,6 +31,8 @@ function CMSCOPE() {
         return this.x;
     }
     CMSCOPE.prototype.get = function CMSCOPE() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Scope parameters";
         var options = {
             in1:["Input ports sizes",this.in1.toString().replace(/,/g," ")],
             clrs:["Drawing colors (>0) or mark (<0)",this.clrs.toString().replace(/,/g," ")],
@@ -154,7 +156,6 @@ function CMSCOPE() {
         return new BasicBlock(this.x);
     }
     CMSCOPE.prototype.get_popup_title = function CMSCOPE() {
-        var set_param_popup_title = "Set Scope parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

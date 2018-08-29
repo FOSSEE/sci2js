@@ -22,6 +22,13 @@ function GENERAL_f() {
         return this.x;
     }
     GENERAL_f.prototype.get = function GENERAL_f() {
+        var exprs = this.graphics.exprs;
+        var rpar = this.model.rpar;
+        this.in1 = this.model.in;
+        this.out = this.model.evtout;
+        var nin = sum(this.in1);
+        var nout = sum(this.out);
+        this.set_param_popup_title = "Set General Zero-Crossing parameters";
         var options = {
         in1:["Input size",this.in1],
         out:["Number of event output",this.out],
@@ -68,7 +75,6 @@ function GENERAL_f() {
         return new BasicBlock(this.x);
     }
     GENERAL_f.prototype.get_popup_title = function GENERAL_f() {
-        var set_param_popup_title = "Set General Zero-Crossing parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -32,6 +32,8 @@ function CANIMXY3D() {
         return this.x;
     }
     CANIMXY3D.prototype.get = function CANIMXY3D() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Scope parameters";
         var options = {
             nbr_curves:["Number of curves",this.nbr_curves],
             clrs:["color (>0) or mark (<0)",this.clrs.toString().replace(/,/g," ")],
@@ -145,7 +147,6 @@ function CANIMXY3D() {
         return new BasicBlock(this.x);
     }
     CANIMXY3D.prototype.get_popup_title = function CANIMXY3D() {
-        var set_param_popup_title = "Set Scope parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

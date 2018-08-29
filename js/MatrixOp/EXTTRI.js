@@ -29,6 +29,11 @@ function EXTTRI() {
         return this.x;
     }
     EXTTRI.prototype.get = function EXTTRI() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set EXTTRI block parameters";
         var options = {
             typ:["Datatype(1=real double  2=Complex)",this.typ],
             decomptyp:["extraction type (1=lower  2=upper  3=diagonal)",this.decomptyp],
@@ -100,7 +105,6 @@ function EXTTRI() {
         return new BasicBlock(this.x);
     }
     EXTTRI.prototype.get_popup_title = function EXTTRI() {
-        var set_param_popup_title = "Set EXTTRI block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -46,6 +46,18 @@ function CLOCK_c() {
         return this.x;
     }
     CLOCK_c.prototype.get = function CLOCK_c() {
+            if (typeof(o)=="Block"&&o.gui=="EVTDLY_c") {
+                var path = i;
+                break;
+            }
+        }
+        var newpar = list();
+        var exprs = xx.graphics.exprs;
+        this.model = xx.model;
+        var t0_old = this.model.firing;
+        var dt_old = this.model.rpar[1-1];
+        var model_n = this.model;
+        this.set_param_popup_title = msprintf("Set %s block parameters","CLOCK_c");
         var options = {
             dt:["Period",this.dt],
             t0:["Initialisation Time",this.t0],
@@ -97,7 +109,6 @@ function CLOCK_c() {
         return new BasicBlock(this.x);
     }
     CLOCK_c.prototype.get_popup_title = function CLOCK_c() {
-        var set_param_popup_title = msprintf("Set %s block parameters","CLOCK_c");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

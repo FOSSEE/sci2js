@@ -27,6 +27,8 @@ function SWITCH2_m() {
         return this.x;
     }
     SWITCH2_m.prototype.get = function SWITCH2_m() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             ot:["Datatype (1=real double  2=complex 3=int32 ...)",this.ot],
             rule:["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)",this.rule],
@@ -89,7 +91,6 @@ function SWITCH2_m() {
         return new BasicBlock(this.x);
     }
     SWITCH2_m.prototype.get_popup_title = function SWITCH2_m() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

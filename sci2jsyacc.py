@@ -73,6 +73,8 @@ GLOBAL_VARS = {
 VAR_TYPES = {}
 VAR_DEFINITIONS = {}
 LAST_ARRAY = []
+AT_START = False
+INIT_VARS = ''
 
 TITLES = []
 LABELS = []
@@ -128,16 +130,18 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     blocktype = getblocktype(fname)
 
     jdefine = JOB_BLOCKS['"define"']
+    jtitle = JOB_BLOCKS['"title"']
     if OPTIONS_BLOCK != '':
-        jget = '%svar options = {\n%s%s}\n%sreturn options;\n' % (indent2, OPTIONS_BLOCK, indent2, indent2)
+        jget = '%s%sthis.set_param_popup_title = %s;\n%svar options = {\n%s%s}\n%sreturn options;\n' % (INIT_VARS, indent2, jtitle, indent2, OPTIONS_BLOCK, indent2, indent2)
+        jtitle = '%sreturn this.set_param_popup_title;\n' % (indent2)
     else:
         jget = '%salert("parameters cannot be modified");\n' % (indent2)
+        jtitle = '%sreturn;\n' % (indent2)
     jgetinputs = JOB_BLOCKS['"getinputs"']
     jgetorigin = JOB_BLOCKS['"getorigin"']
     jgetoutputs = JOB_BLOCKS['"getoutputs"']
     jplot = JOB_BLOCKS['"plot"']
     jset = JOB_BLOCKS['"set"']
-    jtitle = JOB_BLOCKS['"title"']
 
     jdefine = '%s%s.prototype.define = function %s() {\n%s%sreturn new %s(%s);\n%s}\n' % (indent, fname, fname, jdefine, indent2, blocktype, print_var('x'), indent)
     jdetails = '%s%s.prototype.details = function %s() {\n%sreturn %s;\n%s}\n' % (indent, fname, fname, indent2, print_var('x'), indent)
@@ -151,7 +155,7 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     if jplot != '':
         jplot = '%s%s.prototype.plot = function %s() {\n%s%s}\n' % (indent, fname, fname, jplot, indent)
     jset = '%s%s.prototype.set = function %s() {\n%s%sreturn new %s(%s);\n%s}\n' % (indent, fname, fname, jset, indent2, blocktype, print_var('x'), indent)
-    jtitle = '%s%s.prototype.get_popup_title = function %s() {\n%svar set_param_popup_title = %s;\n%sreturn set_param_popup_title;\n%s}\n' % (indent, fname, fname, indent2, jtitle, indent2, indent)
+    jtitle = '%s%s.prototype.get_popup_title = function %s() {\n%s%s}\n' % (indent, fname, fname, jtitle, indent)
 
     INDENT_LEVEL -= 1
     p[0] = 'function %s() {\n%s%s%s%s%s%s%s%s%s}' % (fname, jdefine, jdetails, jget, jset, jtitle, jgetinputs, jgetorigin, jgetoutputs, jplot)
@@ -355,7 +359,10 @@ def p_casejobstatementblock_casejobsetstatement_jobsetstatementblock(p):
 
 def p_forstatementblocks_forstatementblock(p):
     'forstatementblocks : forstatementblock endstatementblock'
+    global INIT_VARS
     p[0] = '%s%s' % (p[1], p[2])
+    if AT_START and INDENT_LEVEL == 2:
+        INIT_VARS += p[0]
 
 def p_forstatementblock_forstatement(p):
     'forstatementblock : forstatement statementblock'
@@ -363,19 +370,31 @@ def p_forstatementblock_forstatement(p):
 
 def p_ifstatementblocks_ifstatementblock(p):
     'ifstatementblocks : ifstatementblock endstatementblock'
+    global INIT_VARS
     p[0] = '%s%s' % (p[1], p[2])
+    if AT_START and INDENT_LEVEL == 2:
+        INIT_VARS += p[0]
 
 def p_ifstatementblocks_ifstatementblock_elsestatementblock(p):
     'ifstatementblocks : ifstatementblock elsestatementblock endstatementblock'
+    global INIT_VARS
     p[0] = '%s%s%s' % (p[1], p[2], p[3])
+    if AT_START and INDENT_LEVEL == 2:
+        INIT_VARS += p[0]
 
 def p_ifstatementblocks_ifstatementblock_elseifstatementblock(p):
     'ifstatementblocks : ifstatementblock elseifstatementblock endstatementblock'
+    global INIT_VARS
     p[0] = '%s%s%s' % (p[1], p[2], p[3])
+    if AT_START and INDENT_LEVEL == 2:
+        INIT_VARS += p[0]
 
 def p_ifstatementblocks_ifstatementblock_elseifstatementblock_elsestatementblock(p):
     'ifstatementblocks : ifstatementblock elseifstatementblock elsestatementblock endstatementblock'
+    global INIT_VARS
     p[0] = '%s%s%s%s' % (p[1], p[2], p[3], p[4])
+    if AT_START and INDENT_LEVEL == 2:
+        INIT_VARS += p[0]
 
 def p_ifstatementblock_ifstatement(p):
     'ifstatementblock : ifstatement statementblock'
@@ -513,17 +532,20 @@ def p_casejobstatement_case_job_define(p):
 def p_casejobsetstatement_case_job_set(p):
     '''casejobsetstatement : CASE JOB_SET THEN EOL
                            | CASE JOB_SET EOL'''
+    global AT_START
     LOCAL_VARS.clear()
     LOCAL_VARS.update(FUNCTION_VARS)
+    AT_START = True
     p[0] = '%s' % (p[2])
 
 def p_whilestatement_while_do(p):
     '''whilestatement : WHILE expression DO EOL
                       | WHILE expression THEN EOL
                       | WHILE expression EOL'''
-    global INDENT_LEVEL
+    global INDENT_LEVEL, AT_START
     p[0] = '%*swhile (%s) {\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', p[2][0])
     INDENT_LEVEL += 1
+    AT_START = False
 
 def p_ifstatement_if_then(p):
     '''ifstatement : IF expression THEN
@@ -556,7 +578,7 @@ VARCOUNT = 0
 def p_lterm_assignment_expression(p):
     '''assignment : lterm ASSIGNMENT expression EOL
                   | lterm ASSIGNMENT listcall EOL'''
-    global VARCOUNT, LAST_ARRAY
+    global VARCOUNT, LAST_ARRAY, INIT_VARS
     var = p[1]
     if var[0] == '[':
         prefix = 'var '
@@ -581,17 +603,20 @@ def p_lterm_assignment_expression(p):
         add_var_vartype(var, p[3][1])
         if len(LAST_ARRAY) > 0:
             VAR_DEFINITIONS[var] = LAST_ARRAY
-        elif p[3][1] == STRING_TYPE:
-            VAR_DEFINITIONS[var] = [ p[3][0] ]
+        if AT_START and INDENT_LEVEL == 2:
+            INIT_VARS += p[0]
     LAST_ARRAY = []
 
 def p_model_assignment_expression(p):
     '''assignment : GRAPHICS ASSIGNMENT expression EOL
                   | MODEL ASSIGNMENT expression EOL'''
+    global INIT_VARS
     var = p[1]
     add_global_var(var)
     p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', print_var(var), p[3][0])
     add_var_vartype(var, p[3][1])
+    if AT_START and INDENT_LEVEL == 2:
+        INIT_VARS += p[0]
 
 def p_modelvar_modelvar_var(p):
     'modelvar : modelvar DOT VAR'
@@ -613,11 +638,14 @@ def p_modelvar_modelvar_expression_expression(p):
 def p_assignment_model_modelvar_assignment_modelexpression(p):
     '''assignment : GRAPHICS DOT modelvar ASSIGNMENT modelexpression EOL
                   | MODEL DOT modelvar ASSIGNMENT modelexpression EOL'''
+    global INIT_VARS
     var = '%s.%s' % (print_var(p[1]), p[3])
     value = p[5][0]
     vartype = p[5][1]
     add_var_vartype(var, vartype)
     p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
+    if AT_START and INDENT_LEVEL == 2:
+        INIT_VARS += p[0]
 
 def p_modelexpression_list_modelexpressionlist(p):
     'modelexpression : LIST OPENBRACKET modelexpressionlist CLOSEBRACKET'
@@ -691,7 +719,8 @@ def p_modelexpression_expression(p):
 
 def p_getvalueassignment_getvalue_arguments(p):
     'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET getvaluearguments CLOSEBRACKET EOL'
-    global OPTIONS_BLOCK
+    global OPTIONS_BLOCK, AT_START
+    AT_START = False
     lterm = p[1]
     if lterm[0] == '[':
         lterm = lterm[1:-1]
@@ -756,15 +785,8 @@ def p_getvaluearg1_var(p):
     var = p[1]
     add_global_var(var, force=True)
     var = print_var(var)
-    if var in VAR_DEFINITIONS:
-        # replace variable with value of that variable
-        titles = VAR_DEFINITIONS[var]
-        for l in titles:
-            TITLES.append(l)
-        p[0] = '%s' % (titles[0])
-    else:
-        TITLES.append(var)
-        p[0] = '%s' % (var)
+    TITLES.append(var)
+    p[0] = '%s' % (var)
 
 def p_getvaluearg1arraylist_arraylist_arraylistitem(p):
     '''getvaluearg1arraylist : getvaluearg1arraylist SEMICOLON getvaluearg1arraylistitem
@@ -793,7 +815,6 @@ def p_getvaluearg1arraylistitem_string_string(p):
 
 def p_getvaluearg1arraylistitem_functionname_parameters(p):
     'getvaluearg1arraylistitem : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
-    # TODO: replace with value of that function
     p[0] = '%s(%s)' % (p[1][0], p[3])
     TITLES.append(p[0])
 

@@ -22,6 +22,8 @@ function Counter() {
         return this.x;
     }
     Counter.prototype.get = function Counter() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = msprintf("Set %s block parameters","Counter");
         var options = {
             minim:["Minimum",this.minim],
             maxim:["Maximum",this.maxim],
@@ -58,7 +60,6 @@ function Counter() {
         return new BasicBlock(this.x);
     }
     Counter.prototype.get_popup_title = function Counter() {
-        var set_param_popup_title = msprintf("Set %s block parameters","Counter");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

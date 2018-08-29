@@ -27,6 +27,8 @@ function AFFICH_m() {
         return this.x;
     }
     AFFICH_m.prototype.get = function AFFICH_m() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set  parameters";
         var options = {
             in1:["Input Size",this.in1],
             font:["Font number",this.font],
@@ -101,7 +103,6 @@ function AFFICH_m() {
         return new AfficheBlock(this.x);
     }
     AFFICH_m.prototype.get_popup_title = function AFFICH_m() {
-        var set_param_popup_title = "Set  parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -29,6 +29,11 @@ function ROOTCOEF() {
         return this.x;
     }
     ROOTCOEF.prototype.get = function ROOTCOEF() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set ROOTCOEF Block";
         var options = {
             typ:["Datatype(1=real double  2=Complex)",this.typ],
             inp:["input row size",this.inp],
@@ -78,7 +83,6 @@ function ROOTCOEF() {
         return new BasicBlock(this.x);
     }
     ROOTCOEF.prototype.get_popup_title = function ROOTCOEF() {
-        var set_param_popup_title = "Set ROOTCOEF Block";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

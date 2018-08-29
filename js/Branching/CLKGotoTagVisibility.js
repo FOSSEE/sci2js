@@ -23,6 +23,8 @@ function CLKGotoTagVisibility() {
         return this.x;
     }
     CLKGotoTagVisibility.prototype.get = function CLKGotoTagVisibility() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             tag:["GotoTag",this.tag],
         }
@@ -53,7 +55,6 @@ function CLKGotoTagVisibility() {
         return new BasicBlock(this.x);
     }
     CLKGotoTagVisibility.prototype.get_popup_title = function CLKGotoTagVisibility() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

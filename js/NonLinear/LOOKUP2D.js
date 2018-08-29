@@ -25,6 +25,10 @@ function LOOKUP2D() {
         return this.x;
     }
     LOOKUP2D.prototype.get = function LOOKUP2D() {
+        var exprs = this.graphics.exprs;
+        var ok = false;
+        var SaveExit = false;
+        this.set_param_popup_title = "2D Lookup table parameters";
         var options = {
             xx:["Row index input values",this.xx],
             yy:["Column index input values",this.yy],
@@ -118,7 +122,6 @@ function LOOKUP2D() {
         return new BasicBlock(this.x);
     }
     LOOKUP2D.prototype.get_popup_title = function LOOKUP2D() {
-        var set_param_popup_title = "2D Lookup table parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

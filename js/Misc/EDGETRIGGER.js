@@ -20,6 +20,8 @@ function EDGETRIGGER() {
         return this.x;
     }
     EDGETRIGGER.prototype.get = function EDGETRIGGER() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set edge trigger block parameters";
         var options = {
             edge:["rising (1), falling (-1), both (0)",this.edge],
         }
@@ -43,7 +45,6 @@ function EDGETRIGGER() {
         return new BasicBlock(this.x);
     }
     EDGETRIGGER.prototype.get_popup_title = function EDGETRIGGER() {
-        var set_param_popup_title = "Set edge trigger block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

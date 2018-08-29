@@ -29,6 +29,11 @@ function SUBMAT() {
         return this.x;
     }
     SUBMAT.prototype.get = function SUBMAT() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==5) {
+            label[6-1] = sci2exp([1,1]);
+        }
+        this.set_param_popup_title = "Set SUBMAT Block";
         var options = {
             typ:["Datatype (1=real double  2=Complex)",this.typ],
             a:["Starting Row Index",this.a],
@@ -112,7 +117,6 @@ function SUBMAT() {
         return new BasicBlock(this.x);
     }
     SUBMAT.prototype.get_popup_title = function SUBMAT() {
-        var set_param_popup_title = "Set SUBMAT Block";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

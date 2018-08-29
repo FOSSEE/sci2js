@@ -53,6 +53,9 @@ function Flowmeter() {
         return this.x;
     }
     Flowmeter.prototype.get = function Flowmeter() {
+        var exprs = this.graphics.exprs;
+        var exprs = this.x.graphics.exprs;
+        this.set_param_popup_title = "Set Flowmeter block parameters:";
         var options = {
             Qini:["Qini",this.Qini],
         }
@@ -75,7 +78,6 @@ function Flowmeter() {
         return new BasicBlock(this.x);
     }
     Flowmeter.prototype.get_popup_title = function Flowmeter() {
-        var set_param_popup_title = "Set Flowmeter block parameters:";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

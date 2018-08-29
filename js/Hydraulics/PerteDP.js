@@ -33,6 +33,8 @@ function PerteDP() {
         return this.x;
     }
     PerteDP.prototype.get = function PerteDP() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Parametres du tuyau";
         var options = {
             L:["Longueur du tube : L (m)",this.L],
             D:["Diamètre interne du tube : D (m)",this.D],
@@ -67,7 +69,6 @@ function PerteDP() {
         return new BasicBlock(this.x);
     }
     PerteDP.prototype.get_popup_title = function PerteDP() {
-        var set_param_popup_title = "Parametres du tuyau";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -23,6 +23,8 @@ function CEVENTSCOPE() {
         return this.x;
     }
     CEVENTSCOPE.prototype.get = function CEVENTSCOPE() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Scope parameters";
         var options = {
             nclock:["Number of event inputs",this.nclock],
             clrs:["colors c (>0) or mark (<0)",this.clrs.toString().replace(/,/g," ")],
@@ -104,7 +106,6 @@ function CEVENTSCOPE() {
         return new BasicBlock(this.x);
     }
     CEVENTSCOPE.prototype.get_popup_title = function CEVENTSCOPE() {
-        var set_param_popup_title = "Set Scope parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

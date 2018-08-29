@@ -35,7 +35,6 @@ function MATZCONJ() {
         return new BasicBlock(this.x);
     }
     MATZCONJ.prototype.get_popup_title = function MATZCONJ() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

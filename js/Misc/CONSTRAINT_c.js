@@ -19,6 +19,8 @@ function CONSTRAINT_c() {
         return this.x;
     }
     CONSTRAINT_c.prototype.get = function CONSTRAINT_c() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set solver block parameters";
         var options = {
             x0:["Initial guess values",this.x0.toString().replace(/,/g," ")],
         }
@@ -58,7 +60,6 @@ function CONSTRAINT_c() {
         return new BasicBlock(this.x);
     }
     CONSTRAINT_c.prototype.get_popup_title = function CONSTRAINT_c() {
-        var set_param_popup_title = "Set solver block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

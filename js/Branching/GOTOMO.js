@@ -26,6 +26,8 @@ function GOTOMO() {
         return this.x;
     }
     GOTOMO.prototype.get = function GOTOMO() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             tag:["Tag",this.tag],
             tagvis:["Tag Visibility(1=Local 2=scoped 3= global)",this.tagvis],
@@ -65,7 +67,6 @@ function GOTOMO() {
         return new BasicBlock(this.x);
     }
     GOTOMO.prototype.get_popup_title = function GOTOMO() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -26,6 +26,8 @@ function Resistor() {
         return this.x;
     }
     Resistor.prototype.get = function Resistor() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Resistor block parameter";
         var options = {
             R:["R (ohm)",this.R],
         }
@@ -50,7 +52,6 @@ function Resistor() {
         return new BasicBlock(this.x);
     }
     Resistor.prototype.get_popup_title = function Resistor() {
-        var set_param_popup_title = "Set Resistor block parameter";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

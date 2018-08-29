@@ -20,6 +20,11 @@ function GENSQR_f() {
         return this.x;
     }
     GENSQR_f.prototype.get = function GENSQR_f() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==2) {
+            var exprs = exprs[2-1];
+        }
+        this.set_param_popup_title = "Set Square generator block parameters";
         var options = {
             Amplitude:["Amplitude",this.Amplitude],
         }
@@ -48,7 +53,6 @@ function GENSQR_f() {
         return new BasicBlock(this.x);
     }
     GENSQR_f.prototype.get_popup_title = function GENSQR_f() {
-        var set_param_popup_title = "Set Square generator block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

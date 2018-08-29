@@ -23,6 +23,8 @@ function GOTO() {
         return this.x;
     }
     GOTO.prototype.get = function GOTO() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             tag:["Tag",this.tag],
             tagvis:["Tag Visibility(1=Local 2=scoped 3= global)",this.tagvis],
@@ -62,7 +64,6 @@ function GOTO() {
         return new BasicBlock(this.x);
     }
     GOTO.prototype.get_popup_title = function GOTO() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

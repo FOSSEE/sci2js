@@ -29,6 +29,11 @@ function MATDIV() {
         return this.x;
     }
     MATDIV.prototype.get = function MATDIV() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set MATDIV Block";
         var options = {
             typ:["Datatype(1=real double  2=Complex)",this.typ],
         }
@@ -76,7 +81,6 @@ function MATDIV() {
         return new BasicBlock(this.x);
     }
     MATDIV.prototype.get_popup_title = function MATDIV() {
-        var set_param_popup_title = "Set MATDIV Block";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

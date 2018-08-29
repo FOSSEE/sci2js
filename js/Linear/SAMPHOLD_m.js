@@ -21,6 +21,9 @@ function SAMPHOLD_m() {
         return this.x;
     }
     SAMPHOLD_m.prototype.get = function SAMPHOLD_m() {
+        this.x.model.firing = [];
+        var label = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters Block";
         var options = {
             it:["Datatype(1=real double 2=Complex 3=int32 ...)",this.it],
         }
@@ -56,7 +59,6 @@ function SAMPHOLD_m() {
         return new BasicBlock(this.x);
     }
     SAMPHOLD_m.prototype.get_popup_title = function SAMPHOLD_m() {
-        var set_param_popup_title = "Set parameters Block";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -30,6 +30,10 @@ function LOOKUP_c() {
         return this.x;
     }
     LOOKUP_c.prototype.get = function LOOKUP_c() {
+        var exprs = this.graphics.exprs;
+        var ok = false;
+        var SaveExit = false;
+        this.set_param_popup_title = "Lookup table parameters";
         var options = {
             Method:["Spline Interpolation method (0..9)",this.Method],
             xx:["x",this.xx.toString().replace(/,/g," ")],
@@ -177,7 +181,6 @@ function LOOKUP_c() {
         return new BasicBlock(this.x);
     }
     LOOKUP_c.prototype.get_popup_title = function LOOKUP_c() {
-        var set_param_popup_title = "Lookup table parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

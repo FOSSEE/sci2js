@@ -21,6 +21,11 @@ function generic_block3() {
         return this.x;
     }
     generic_block3.prototype.get = function generic_block3() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set GENERIC block parameters";
         var options = {
             function_name:["Simulation function",this.function_name],
             funtyp:["Function type (0,1,2,..)",this.funtyp],
@@ -95,12 +100,12 @@ function generic_block3() {
                     var ok = false;
                 }
             }
-            if (this.type[this.opar-1]!=15) {
+            if (type(this.opar)!=15) {
                 message("object parameter must be a list");
                 throw "user error";
                 var ok = false;
             }
-            if (this.type[this.oz-1]!=15) {
+            if (type(this.oz)!=15) {
                 message("discrete object state must be a list");
                 throw "user error";
                 var ok = false;
@@ -147,7 +152,6 @@ function generic_block3() {
         return new BasicBlock(this.x);
     }
     generic_block3.prototype.get_popup_title = function generic_block3() {
-        var set_param_popup_title = "Set GENERIC block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

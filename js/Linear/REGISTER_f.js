@@ -19,6 +19,8 @@ function REGISTER_f() {
         return this.x;
     }
     REGISTER_f.prototype.get = function REGISTER_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set delay parameters";
         var options = {
             z0:["Register initial condition",this.z0],
         }
@@ -49,7 +51,6 @@ function REGISTER_f() {
         return new BasicBlock(this.x);
     }
     REGISTER_f.prototype.get_popup_title = function REGISTER_f() {
-        var set_param_popup_title = "Set delay parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

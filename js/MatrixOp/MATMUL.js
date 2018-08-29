@@ -18,6 +18,19 @@ function MATMUL() {
         return this.x;
     }
     MATMUL.prototype.get = function MATMUL() {
+        this.graphics = this.x.graphics;
+        var label = this.graphics.exprs;
+        this.model = this.x.model;
+        if (this.model.ipar.length==0) {
+            this.model.ipar = new ScilabDouble([1]);
+        }
+        if (size(label,"*")==1) {
+            label[2-1] = sci2exp(1);
+        }
+        if (size(label,"*")==2) {
+            label[3-1] = sci2exp(1);
+        }
+        this.set_param_popup_title = "Set MATMUL parameter";
         var options = {
             dtype:["Datatype(1=real double 2=Complex 3=int32 ...)",this.dtype],
             rule:["Multiplication rule",this.rule],
@@ -165,7 +178,6 @@ function MATMUL() {
         return new BasicBlock(this.x);
     }
     MATMUL.prototype.get_popup_title = function MATMUL() {
-        var set_param_popup_title = "Set MATMUL parameter";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

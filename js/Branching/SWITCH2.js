@@ -24,6 +24,8 @@ function SWITCH2() {
         return this.x;
     }
     SWITCH2.prototype.get = function SWITCH2() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             rule:["pass first input if: u2>=a (0), u2>a (1), u2~=a (2)",this.rule],
             thra:["threshold a",this.thra],
@@ -66,7 +68,6 @@ function SWITCH2() {
         return new BasicBlock(this.x);
     }
     SWITCH2.prototype.get_popup_title = function SWITCH2() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

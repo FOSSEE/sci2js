@@ -96,7 +96,6 @@ function Extract_Activation() {
         return new BasicBlock(this.x);
     }
     Extract_Activation.prototype.get_popup_title = function Extract_Activation() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

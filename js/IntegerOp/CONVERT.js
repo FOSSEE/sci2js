@@ -23,6 +23,8 @@ function CONVERT() {
         return this.x;
     }
     CONVERT.prototype.get = function CONVERT() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = msprintf("Set %s block parameters","CONVERT");
         var options = {
             it:["Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)",this.it],
             ot:["Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)",this.ot],
@@ -381,7 +383,6 @@ function CONVERT() {
         return new BasicBlock(this.x);
     }
     CONVERT.prototype.get_popup_title = function CONVERT() {
-        var set_param_popup_title = msprintf("Set %s block parameters","CONVERT");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

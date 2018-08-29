@@ -26,6 +26,8 @@ function ConstantVoltage() {
         return this.x;
     }
     ConstantVoltage.prototype.get = function ConstantVoltage() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set ConstantVoltage block parameter";
         var options = {
             V:["V (volt)",this.V],
         }
@@ -50,7 +52,6 @@ function ConstantVoltage() {
         return new BasicBlock(this.x);
     }
     ConstantVoltage.prototype.get_popup_title = function ConstantVoltage() {
-        var set_param_popup_title = "Set ConstantVoltage block parameter";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

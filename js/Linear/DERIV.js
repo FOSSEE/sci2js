@@ -22,7 +22,6 @@ function DERIV() {
         return new BasicBlock(this.x);
     }
     DERIV.prototype.get_popup_title = function DERIV() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

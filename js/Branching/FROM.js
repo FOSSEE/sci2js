@@ -23,6 +23,8 @@ function FROM() {
         return this.x;
     }
     FROM.prototype.get = function FROM() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             tag:["Tag",this.tag],
         }
@@ -53,7 +55,6 @@ function FROM() {
         return new BasicBlock(this.x);
     }
     FROM.prototype.get_popup_title = function FROM() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

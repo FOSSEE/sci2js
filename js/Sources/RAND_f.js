@@ -24,6 +24,14 @@ function RAND_f() {
         return this.x;
     }
     RAND_f.prototype.get = function RAND_f() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==5) {
+            var exprs = exprs.slice(1-1,3);
+        }
+        if (size(exprs,"*")==3) {
+            var exprs = [[exprs],[string(this.model.dstate[1-1])]];
+        }
+        this.set_param_popup_title = "Set Random generator block parameters";
         var options = {
             flag:["flag",this.flag],
             a:["A",this.a],
@@ -68,7 +76,6 @@ function RAND_f() {
         return new BasicBlock(this.x);
     }
     RAND_f.prototype.get_popup_title = function RAND_f() {
-        var set_param_popup_title = "Set Random generator block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

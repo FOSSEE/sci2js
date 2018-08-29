@@ -21,6 +21,8 @@ function INTRP2BLK_f() {
         return this.x;
     }
     INTRP2BLK_f.prototype.get = function INTRP2BLK_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Interpolation block parameters";
         var options = {
             a:["X coord.",this.a.toString().replace(/,/g," ")],
             b:["Y coord.",this.b.toString().replace(/,/g," ")],
@@ -59,7 +61,6 @@ function INTRP2BLK_f() {
         return new BasicBlock(this.x);
     }
     INTRP2BLK_f.prototype.get_popup_title = function INTRP2BLK_f() {
-        var set_param_popup_title = "Set Interpolation block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

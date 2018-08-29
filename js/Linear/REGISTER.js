@@ -19,6 +19,11 @@ function REGISTER() {
         return this.x;
     }
     REGISTER.prototype.get = function REGISTER() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,1)==1) {
+            var exprs = [[exprs],[sci2exp(1)]];
+        }
+        this.set_param_popup_title = "Set delay parameters";
         var options = {
             z0:["Register initial condition",this.z0],
             it:["Datatype (1=double 3=int32 ...)",this.it],
@@ -92,7 +97,6 @@ function REGISTER() {
         return new BasicBlock(this.x);
     }
     REGISTER.prototype.get_popup_title = function REGISTER() {
-        var set_param_popup_title = "Set delay parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

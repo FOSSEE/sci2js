@@ -29,6 +29,15 @@ function READAU_f() {
         return this.x;
     }
     READAU_f.prototype.get = function READAU_f() {
+        var exprs = this.graphics.exprs;
+        var out = this.model.out;
+        var dstate = this.model.dstate;
+        var ipar = this.model.ipar;
+        var imask = 9+ipar[1-1];
+        var tmask = ipar[imask-1];
+        var lunit = dstate[3-1];
+        var fname = exprs[1-1];
+        this.set_param_popup_title = msprintf("Set %s block parameters","READAU_f");
         var options = {
             fname1:["Input File Name",this.fname1],
             N:["Buffer size",this.N],
@@ -94,7 +103,6 @@ function READAU_f() {
         return new BasicBlock(this.x);
     }
     READAU_f.prototype.get_popup_title = function READAU_f() {
-        var set_param_popup_title = msprintf("Set %s block parameters","READAU_f");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

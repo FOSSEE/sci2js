@@ -21,6 +21,8 @@ function CONST_m() {
         return this.x;
     }
     CONST_m.prototype.get = function CONST_m() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = msprintf("Set %s block parameters","CONST_m");
         var options = {
             C:["Constant Value",this.C],
         }
@@ -41,7 +43,7 @@ function CONST_m() {
             } else {
                 this.model.sim = list(new ScilabString(["cstblk4_m"]), new ScilabDouble([4]));
                 this.model.opar = list(this.C);
-                if ((this.type[this.C-1]==1)) {
+                if ((type(this.C)==1)) {
                     if (isreal(this.C)) {
                         var ot = 1;
                     } else {
@@ -79,7 +81,6 @@ function CONST_m() {
         return new BasicBlock(this.x);
     }
     CONST_m.prototype.get_popup_title = function CONST_m() {
-        var set_param_popup_title = msprintf("Set %s block parameters","CONST_m");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

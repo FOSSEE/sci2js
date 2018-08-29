@@ -21,6 +21,11 @@ function DOLLAR_f() {
         return this.x;
     }
     DOLLAR_f.prototype.get = function DOLLAR_f() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")<2) {
+            exprs[2-1] = "0";
+        }
+        this.set_param_popup_title = "Set 1/z block parameters";
         var options = {
             a:["initial condition",this.a],
             inh:["Inherit (no:0, yes:1)",this.inh],
@@ -64,7 +69,6 @@ function DOLLAR_f() {
         return new BasicBlock(this.x);
     }
     DOLLAR_f.prototype.get_popup_title = function DOLLAR_f() {
-        var set_param_popup_title = "Set 1/z block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

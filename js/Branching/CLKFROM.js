@@ -17,6 +17,8 @@ function CLKFROM() {
         return this.x;
     }
     CLKFROM.prototype.get = function CLKFROM() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set block parameters";
         var options = {
             tag:["Tag",this.tag],
         }
@@ -47,7 +49,6 @@ function CLKFROM() {
         return new BasicBlock(this.x);
     }
     CLKFROM.prototype.get_popup_title = function CLKFROM() {
-        var set_param_popup_title = "Set block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

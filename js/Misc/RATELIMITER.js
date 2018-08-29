@@ -20,6 +20,8 @@ function RATELIMITER() {
         return this.x;
     }
     RATELIMITER.prototype.get = function RATELIMITER() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set rate limiter parameters";
         var options = {
             maxp:["max slope",this.maxp],
             minp:["min slope",this.minp],
@@ -51,7 +53,6 @@ function RATELIMITER() {
         return new BasicBlock(this.x);
     }
     RATELIMITER.prototype.get_popup_title = function RATELIMITER() {
-        var set_param_popup_title = "Set rate limiter parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

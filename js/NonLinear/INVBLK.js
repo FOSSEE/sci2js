@@ -23,7 +23,6 @@ function INVBLK() {
         return new BasicBlock(this.x);
     }
     INVBLK.prototype.get_popup_title = function INVBLK() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

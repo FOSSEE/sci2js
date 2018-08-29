@@ -16,6 +16,8 @@ function SampleCLK() {
         return this.x;
     }
     SampleCLK.prototype.get = function SampleCLK() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set block parameters";
         var options = {
             frequ:["Sample time",this.frequ],
             offset:["Offset",this.offset],
@@ -60,7 +62,6 @@ function SampleCLK() {
         return new BasicBlock(this.x);
     }
     SampleCLK.prototype.get_popup_title = function SampleCLK() {
-        var set_param_popup_title = "Set block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

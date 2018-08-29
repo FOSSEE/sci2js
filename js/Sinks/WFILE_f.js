@@ -24,6 +24,15 @@ function WFILE_f() {
         return this.x;
     }
     WFILE_f.prototype.get = function WFILE_f() {
+        var warnMessage = msprintf("Feature %s is obsolete.","WFILE_f");
+        var warnAdvise = msprintf("Please use %s instead.","WRITEC_f");
+        var warnXcosMessage = msprintf("%s %s",warnMessage,warnAdvise);
+        var exprs = this.graphics.exprs;
+        var dstate = this.model.dstate;
+        var lunit = dstate[2-1];
+        var fname = exprs[2-1];
+        var frmt = exprs[3-1];
+        this.set_param_popup_title = msprintf("Set %s block parameters","WFILE_f");
         var options = {
             in1:["Input Size",this.in1],
             fname1:["Output File Name",this.fname1],
@@ -102,7 +111,6 @@ function WFILE_f() {
         return new BasicBlock(this.x);
     }
     WFILE_f.prototype.get_popup_title = function WFILE_f() {
-        var set_param_popup_title = msprintf("Set %s block parameters","WFILE_f");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

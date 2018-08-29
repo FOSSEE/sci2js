@@ -18,6 +18,9 @@ function PDE() {
         return this.x;
     }
     PDE.prototype.get = function PDE() {
+        var label = this.graphics.exprs;
+        var params_pde = label[1-1];
+        this.set_param_popup_title = "PLEASE, GIVE US THE BLOCK\'s NAME. ";
         var options = {
                 rdnom:["New block\'s name :",this.rdnom],
         }
@@ -210,7 +213,6 @@ function PDE() {
         return new BasicBlock(this.x);
     }
     PDE.prototype.get_popup_title = function PDE() {
-        var set_param_popup_title = "PLEASE, GIVE US THE BLOCK\'s NAME. ";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

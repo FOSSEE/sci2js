@@ -25,6 +25,13 @@ function WRITEC_f() {
         return this.x;
     }
     WRITEC_f.prototype.get = function WRITEC_f() {
+        var exprs = this.graphics.exprs;
+        var ipar = this.model.ipar;
+        var dstate = this.model.dstate;
+        var lunit = dstate[2-1];
+        var fname = exprs[2-1];
+        var frmt = exprs[3-1];
+        this.set_param_popup_title = msprintf("Set %s block parameters","WRITEC_f");
         var options = {
             in1:["Input Size",this.in1],
             fname1:["Output File Name",this.fname1],
@@ -105,7 +112,6 @@ function WRITEC_f() {
         return new BasicBlock(this.x);
     }
     WRITEC_f.prototype.get_popup_title = function WRITEC_f() {
-        var set_param_popup_title = msprintf("Set %s block parameters","WRITEC_f");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

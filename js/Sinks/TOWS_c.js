@@ -27,6 +27,8 @@ function TOWS_c() {
         return this.x;
     }
     TOWS_c.prototype.get = function TOWS_c() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Xcos buffer block";
         var options = {
             nz:["Size of buffer",this.nz],
             varnam:["Scilab variable name",this.varnam],
@@ -78,7 +80,6 @@ function TOWS_c() {
         return new BasicBlock(this.x);
     }
     TOWS_c.prototype.get_popup_title = function TOWS_c() {
-        var set_param_popup_title = "Set Xcos buffer block";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

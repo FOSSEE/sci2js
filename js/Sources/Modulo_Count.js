@@ -20,6 +20,8 @@ function Modulo_Count() {
         return this.x;
     }
     Modulo_Count.prototype.get = function Modulo_Count() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = msprintf("Set %s block parameters","Modulo_Count");
         var options = {
             ini_c:["Initial State (zero or positive number)",this.ini_c],
             base:["Upper Limit (positive number)",this.base],
@@ -54,7 +56,6 @@ function Modulo_Count() {
         return new BasicBlock(this.x);
     }
     Modulo_Count.prototype.get_popup_title = function Modulo_Count() {
-        var set_param_popup_title = msprintf("Set %s block parameters","Modulo_Count");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

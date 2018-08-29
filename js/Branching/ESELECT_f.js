@@ -23,6 +23,14 @@ function ESELECT_f() {
         return this.x;
     }
     ESELECT_f.prototype.get = function ESELECT_f() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==1) {
+            exprs[2-1] = string(1);
+        }
+        if (size(exprs,"*")==2) {
+            exprs[3-1] = string(0);
+        }
+        this.set_param_popup_title = "Set ESELECT block parameters";
         var options = {
             out:["number of output event ports",this.out],
             inh:["Inherit (1: no, 0: yes)",this.inh],
@@ -79,7 +87,6 @@ function ESELECT_f() {
         return new BasicBlock(this.x);
     }
     ESELECT_f.prototype.get_popup_title = function ESELECT_f() {
-        var set_param_popup_title = "Set ESELECT block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

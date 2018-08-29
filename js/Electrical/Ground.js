@@ -28,7 +28,6 @@ function Ground() {
         return new GroundBlock(this.x);
     }
     Ground.prototype.get_popup_title = function Ground() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

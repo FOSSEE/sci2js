@@ -29,6 +29,8 @@ function Switch() {
         return this.x;
     }
     Switch.prototype.get = function Switch() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set non-ideal electrical switch parameters";
         var options = {
             Ron:["Resistance in On state (Ohm)",this.Ron],
             Roff:["Resistance in Off state (Ohm)",this.Roff],
@@ -54,7 +56,6 @@ function Switch() {
         return new BasicBlock(this.x);
     }
     Switch.prototype.get_popup_title = function Switch() {
-        var set_param_popup_title = "Set non-ideal electrical switch parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

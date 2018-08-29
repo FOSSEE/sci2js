@@ -27,6 +27,8 @@ function DLRADAPT_f() {
         return this.x;
     }
     DLRADAPT_f.prototype.get = function DLRADAPT_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set block parameters";
         var options = {
             p:["Vector of p mesh points",this.p.toString().replace(/,/g," ")],
             rn:["Numerator roots (one line for each mesh)",this.rn],
@@ -76,7 +78,6 @@ function DLRADAPT_f() {
         return new BasicBlock(this.x);
     }
     DLRADAPT_f.prototype.get_popup_title = function DLRADAPT_f() {
-        var set_param_popup_title = "Set block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

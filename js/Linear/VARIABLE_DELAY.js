@@ -22,6 +22,9 @@ function VARIABLE_DELAY() {
         return this.x;
     }
     VARIABLE_DELAY.prototype.get = function VARIABLE_DELAY() {
+        var exprs = this.graphics.exprs;
+        var nin = this.model.in[1-1];
+        this.set_param_popup_title = "Set delay parameters";
         var options = {
             T:["Max delay",this.T],
             init:["initial input",this.init],
@@ -69,7 +72,6 @@ function VARIABLE_DELAY() {
         return new BasicBlock(this.x);
     }
     VARIABLE_DELAY.prototype.get_popup_title = function VARIABLE_DELAY() {
-        var set_param_popup_title = "Set delay parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

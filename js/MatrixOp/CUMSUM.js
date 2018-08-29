@@ -29,6 +29,11 @@ function CUMSUM() {
         return this.x;
     }
     CUMSUM.prototype.get = function CUMSUM() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set CUMSUM block parameters";
         var options = {
             typ:["Datatype(1=real double  2=Complex)",this.typ],
             decomptyp:["Sum along (0=the first non singleton dimension  1=Rows  2=Columns)",this.decomptyp],
@@ -103,7 +108,6 @@ function CUMSUM() {
         return new BasicBlock(this.x);
     }
     CUMSUM.prototype.get_popup_title = function CUMSUM() {
-        var set_param_popup_title = "Set CUMSUM block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

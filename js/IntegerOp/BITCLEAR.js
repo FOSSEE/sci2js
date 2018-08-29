@@ -21,6 +21,8 @@ function BITCLEAR() {
         return this.x;
     }
     BITCLEAR.prototype.get = function BITCLEAR() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = msprintf("Set %s block parameters","BITCLEAR");
         var options = {
             Datatype:[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),this.Datatype],
             bit:["Index of Bit (0 is least significant)",this.bit],
@@ -95,7 +97,6 @@ function BITCLEAR() {
         return new BasicBlock(this.x);
     }
     BITCLEAR.prototype.get_popup_title = function BITCLEAR() {
-        var set_param_popup_title = msprintf("Set %s block parameters","BITCLEAR");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

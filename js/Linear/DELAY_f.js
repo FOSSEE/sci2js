@@ -69,6 +69,24 @@ function DELAY_f() {
         return this.x;
     }
     DELAY_f.prototype.get = function DELAY_f() {
+        var ppath = list(0,0);
+            if (typeof(o)=="Block"&&o.gui=="REGISTER_f") {
+                ppath[1-1] = i;
+            }
+            if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
+                ppath[2-1] = i;
+            }
+            if (and(ppath!=list(0,0))) {
+                break;
+            }
+        }
+        var newpar = list();
+        var register = this.x.model.rpar.objs[ppath[1-1]-1];
+        var evtdly = this.x.model.rpar.objs[ppath[2-1]-1];
+        var register_exprs = register.graphics.exprs;
+        var evtdly_exprs = evtdly.graphics.exprs;
+        var exprs = [[evtdly_exprs[1-1]],[register_exprs]];
+        this.set_param_popup_title = "This block implements as a discretized delay";
         var options = {
             dt:["Discretization time step",this.dt],
             z0:["Register initial state",this.z0],
@@ -135,7 +153,6 @@ function DELAY_f() {
         return new BasicBlock(this.x);
     }
     DELAY_f.prototype.get_popup_title = function DELAY_f() {
-        var set_param_popup_title = "This block implements as a discretized delay";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

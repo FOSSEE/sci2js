@@ -28,6 +28,8 @@ function SourceP() {
         return this.x;
     }
     SourceP.prototype.get = function SourceP() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Paramètres du puits";
         var options = {
             P0:["Pression de la source : P0 (Pa)",this.P0],
             T0:["Temperature de la source : T0 (K)",this.T0],
@@ -58,7 +60,6 @@ function SourceP() {
         return new BasicBlock(this.x);
     }
     SourceP.prototype.get_popup_title = function SourceP() {
-        var set_param_popup_title = "Paramètres du puits";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

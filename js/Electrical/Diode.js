@@ -29,6 +29,8 @@ function Diode() {
         return this.x;
     }
     Diode.prototype.get = function Diode() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Diode block parameter";
         var options = {
             Ids:["Saturation cuurent (A)",this.Ids],
             Vt:["Voltage equivalent to temperature (Volt)",this.Vt],
@@ -59,7 +61,6 @@ function Diode() {
         return new BasicBlock(this.x);
     }
     Diode.prototype.get_popup_title = function Diode() {
-        var set_param_popup_title = "Set Diode block parameter";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

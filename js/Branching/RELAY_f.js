@@ -22,6 +22,9 @@ function RELAY_f() {
         return this.x;
     }
     RELAY_f.prototype.get = function RELAY_f() {
+        var exprs = this.graphics.exprs;
+        var ipar = this.model.ipar;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             nin:["number of inputs",this.nin],
             z0:["initial connected input",this.z0],
@@ -59,7 +62,6 @@ function RELAY_f() {
         return new BasicBlock(this.x);
     }
     RELAY_f.prototype.get_popup_title = function RELAY_f() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

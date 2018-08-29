@@ -29,6 +29,11 @@ function MATLU() {
         return this.x;
     }
     MATLU.prototype.get = function MATLU() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set MATLU block parameters";
         var options = {
             typ:["Datatype(1=real double  2=Complex)",this.typ],
         }
@@ -77,7 +82,6 @@ function MATLU() {
         return new BasicBlock(this.x);
     }
     MATLU.prototype.get_popup_title = function MATLU() {
-        var set_param_popup_title = "Set MATLU block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

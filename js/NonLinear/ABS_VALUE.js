@@ -19,6 +19,8 @@ function ABS_VALUE() {
         return this.x;
     }
     ABS_VALUE.prototype.get = function ABS_VALUE() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set block parameters";
         var options = {
             zcr:["use zero_crossing (1: yes) (0:no)",this.zcr],
         }
@@ -50,7 +52,6 @@ function ABS_VALUE() {
         return new BasicBlock(this.x);
     }
     ABS_VALUE.prototype.get_popup_title = function ABS_VALUE() {
-        var set_param_popup_title = "Set block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

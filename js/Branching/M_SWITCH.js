@@ -20,6 +20,8 @@ function M_SWITCH() {
         return this.x;
     }
     M_SWITCH.prototype.get = function M_SWITCH() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             nin:["number of inputs",this.nin],
             base:["zero base indexing (0), otherwise 1",this.base],
@@ -77,7 +79,6 @@ function M_SWITCH() {
         return new BasicBlock(this.x);
     }
     M_SWITCH.prototype.get_popup_title = function M_SWITCH() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

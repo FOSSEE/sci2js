@@ -53,6 +53,9 @@ function PNP() {
         return this.x;
     }
     PNP.prototype.get = function PNP() {
+        var exprs = this.graphics.exprs;
+        var exprs = this.x.graphics.exprs;
+        this.set_param_popup_title = "Set PNP block parameters:";
         var options = {
             Bf:["Bf  : Forward beta",this.Bf],
             Br:["Br  : Reverse beta",this.Br],
@@ -107,7 +110,6 @@ function PNP() {
         return new BasicBlock(this.x);
     }
     PNP.prototype.get_popup_title = function PNP() {
-        var set_param_popup_title = "Set PNP block parameters:";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

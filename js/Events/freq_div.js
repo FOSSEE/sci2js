@@ -111,6 +111,23 @@ function freq_div() {
         return this.x;
     }
     freq_div.prototype.get = function freq_div() {
+            if (typeof(o)=="Block"&&o.gui=="Modulo_Count") {
+                var path = i;
+                break;
+            }
+        }
+        var newpar = list();
+        var y = 0;
+        var spath = list();
+        spath[$+1-1] = "model";
+        spath[$+1-1] = "rpar";
+        spath[$+1-1] = "objs";
+        spath[$+1-1] = path;
+        var xxn = xx;
+        this.graphics = xx.graphics;
+        var exprs = this.graphics.exprs;
+        this.model = xx.model;
+        this.set_param_popup_title = "Set frequency division block parameters";
         var options = {
             %ph:["Phase (0 to division factor -1)",this.%ph],
             %df:["Division factor",this.%df],
@@ -202,7 +219,6 @@ function freq_div() {
         return new BasicBlock(this.x);
     }
     freq_div.prototype.get_popup_title = function freq_div() {
-        var set_param_popup_title = "Set frequency division block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

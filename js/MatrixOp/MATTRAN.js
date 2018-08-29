@@ -17,6 +17,11 @@ function MATTRAN() {
         return this.x;
     }
     MATTRAN.prototype.get = function MATTRAN() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==1) {
+            label[2-1] = sci2exp(1);
+        }
+        this.set_param_popup_title = "Set MATTRAN Block";
         var options = {
             typ:["Datatype(1=real double 2=Complex)",this.typ],
             rule:["rule (1=.\' 2=\')",this.rule],
@@ -70,7 +75,6 @@ function MATTRAN() {
         return new BasicBlock(this.x);
     }
     MATTRAN.prototype.get_popup_title = function MATTRAN() {
-        var set_param_popup_title = "Set MATTRAN Block";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

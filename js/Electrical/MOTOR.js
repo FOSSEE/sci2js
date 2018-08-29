@@ -24,7 +24,6 @@ function MOTOR() {
         return new BasicBlock(this.x);
     }
     MOTOR.prototype.get_popup_title = function MOTOR() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

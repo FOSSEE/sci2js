@@ -25,6 +25,12 @@ function DELAYV_f() {
         return this.x;
     }
     DELAYV_f.prototype.get = function DELAYV_f() {
+        var exprs = this.graphics.exprs;
+        this.nin = this.model.in[1-1];
+        var z0 = this.model.dstate;
+        this.zz0 = z0.slice(1-1,$-1);
+        var told = z0[$-1];
+        this.set_param_popup_title = "Set delay parameters";
         var options = {
             nin:["Number of inputs",this.nin],
             zz0:["Register initial condition",this.zz0],
@@ -75,7 +81,6 @@ function DELAYV_f() {
         return new BasicBlock(this.x);
     }
     DELAYV_f.prototype.get_popup_title = function DELAYV_f() {
-        var set_param_popup_title = "Set delay parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

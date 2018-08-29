@@ -29,6 +29,11 @@ function MATMAGPHI() {
         return this.x;
     }
     MATMAGPHI.prototype.get = function MATMAGPHI() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set MATMAGPHI block parameters";
         var options = {
             decomptyp:["decomposition type (1=Complex2MAG&PHI 2=MAG&PHI2Complex)",this.decomptyp],
         }
@@ -80,7 +85,6 @@ function MATMAGPHI() {
         return new BasicBlock(this.x);
     }
     MATMAGPHI.prototype.get_popup_title = function MATMAGPHI() {
-        var set_param_popup_title = "Set MATMAGPHI block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

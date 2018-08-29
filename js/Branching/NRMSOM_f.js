@@ -18,6 +18,8 @@ function NRMSOM_f() {
         return this.x;
     }
     NRMSOM_f.prototype.get = function NRMSOM_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             nin:["number of inputs",this.nin],
         }
@@ -46,7 +48,6 @@ function NRMSOM_f() {
         return new BasicBlock(this.x);
     }
     NRMSOM_f.prototype.get_popup_title = function NRMSOM_f() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

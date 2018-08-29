@@ -51,7 +51,6 @@ function DSUPER() {
         return new BasicBlock(this.x);
     }
     DSUPER.prototype.get_popup_title = function DSUPER() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

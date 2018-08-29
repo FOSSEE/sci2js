@@ -23,6 +23,8 @@ function HYSTHERESIS() {
         return this.x;
     }
     HYSTHERESIS.prototype.get = function HYSTHERESIS() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             high_lim:["switch on at",this.high_lim],
             low_lim:["switch off at",this.low_lim],
@@ -63,7 +65,6 @@ function HYSTHERESIS() {
         return new BasicBlock(this.x);
     }
     HYSTHERESIS.prototype.get_popup_title = function HYSTHERESIS() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

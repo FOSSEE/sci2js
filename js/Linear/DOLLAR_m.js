@@ -21,6 +21,11 @@ function DOLLAR_m() {
         return this.x;
     }
     DOLLAR_m.prototype.get = function DOLLAR_m() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")<2) {
+            exprs[2-1] = "0";
+        }
+        this.set_param_popup_title = "Set 1/z block parameters";
         var options = {
             a:["initial condition",this.a],
             inh:["Inherit (no:0, yes:1)",this.inh],
@@ -48,7 +53,7 @@ function DOLLAR_m() {
             this.model.sim = list(new ScilabString(["dollar4_m"]), new ScilabDouble([4]));
             this.model.odstate = list(new ScilabDouble([this.a]));
             this.model.dstate = new ScilabDouble([]);
-            if ((this.type[this.a-1]==1)) {
+            if ((type(this.a)==1)) {
                 if (isreal(this.a)) {
                     var it = 1;
                     var ot = 1;
@@ -100,7 +105,6 @@ function DOLLAR_m() {
         return new BasicBlock(this.x);
     }
     DOLLAR_m.prototype.get_popup_title = function DOLLAR_m() {
-        var set_param_popup_title = "Set 1/z block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

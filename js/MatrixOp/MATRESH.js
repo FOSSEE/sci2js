@@ -29,6 +29,11 @@ function MATRESH() {
         return this.x;
     }
     MATRESH.prototype.get = function MATRESH() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set MATRESH block parameters";
         var options = {
             typ:["Datatype(1=real double  2=Complex)",this.typ],
             l1:["input size",this.l1],
@@ -110,7 +115,6 @@ function MATRESH() {
         return new BasicBlock(this.x);
     }
     MATRESH.prototype.get_popup_title = function MATRESH() {
-        var set_param_popup_title = "Set MATRESH block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -19,6 +19,11 @@ function LOGBLK_f() {
         return this.x;
     }
     LOGBLK_f.prototype.get = function LOGBLK_f() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==2) {
+            var exprs = exprs[2-1];
+        }
+        this.set_param_popup_title = "Set log block parameters";
         var options = {
             a:["Basis (>1)",this.a],
         }
@@ -52,7 +57,6 @@ function LOGBLK_f() {
         return new BasicBlock(this.x);
     }
     LOGBLK_f.prototype.get_popup_title = function LOGBLK_f() {
-        var set_param_popup_title = "Set log block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

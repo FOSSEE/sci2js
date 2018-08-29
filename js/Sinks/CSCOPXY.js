@@ -31,6 +31,8 @@ function CSCOPXY() {
         return this.x;
     }
     CSCOPXY.prototype.get = function CSCOPXY() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Scope parameters";
         var options = {
             nbr_curves:["Number of Curves",this.nbr_curves],
             clrs:["color (>0) or mark (<0)",this.clrs],
@@ -127,7 +129,6 @@ function CSCOPXY() {
         return new BasicBlock(this.x);
     }
     CSCOPXY.prototype.get_popup_title = function CSCOPXY() {
-        var set_param_popup_title = "Set Scope parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -24,6 +24,8 @@ function LOGIC() {
         return this.x;
     }
     LOGIC.prototype.get = function LOGIC() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = msprintf("Set %s block parameters","LOGIC");
         var options = {
             mat:["Truth Table (matrix of outputs)",this.mat.toString().replace(/,/g," ")],
             herit:["Accepts Inherited Events (0:No, 1:Yes)",this.herit],
@@ -75,7 +77,6 @@ function LOGIC() {
         return new BasicBlock(this.x);
     }
     LOGIC.prototype.get_popup_title = function LOGIC() {
-        var set_param_popup_title = msprintf("Set %s block parameters","LOGIC");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

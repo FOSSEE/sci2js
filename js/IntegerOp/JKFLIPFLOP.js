@@ -52,6 +52,16 @@ function JKFLIPFLOP() {
         return this.x;
     }
     JKFLIPFLOP.prototype.get = function JKFLIPFLOP() {
+            if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
+                var path = i;
+                break;
+            }
+        }
+        var newpar = list();
+        var exprs = xx.graphics.exprs[1-1];
+        this.model = xx.model;
+        var init_old = this.model.odstate[1-1];
+        this.set_param_popup_title = msprintf("Set %s block parameters","JKFLIPFLOP");
         var options = {
             init:["Initial Value",this.init],
         }
@@ -96,7 +106,6 @@ function JKFLIPFLOP() {
         return new BasicBlock(this.x);
     }
     JKFLIPFLOP.prototype.get_popup_title = function JKFLIPFLOP() {
-        var set_param_popup_title = msprintf("Set %s block parameters","JKFLIPFLOP");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -36,6 +36,19 @@ function MBLOCK() {
         return this.x;
     }
     MBLOCK.prototype.get = function MBLOCK() {
+        var exprs = this.graphics.exprs;
+        if (type(exprs)==15) {
+            var paramv = list();
+            this.pprop = [];
+            for (i=1;i<=size(this.model.rpar,"*");i+=1) {
+                paramv[$+1-1] = string(this.model.rpar[i-1]);
+                this.pprop[$+1-1] = 0;
+            }
+            var exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],exprs[1-1][1-1],exprs[1-1][2-1],exprs[1-1][3-1],exprs[1-1][4-1],exprs[1-1][5-1],paramv,sci2exp(this.pprop.slice()),exprs[1-1][7-1],exprs[2-1]);
+        }
+        var lab_1 = list(exprs.in,exprs.intype,exprs.out,exprs.outtype,exprs.param,exprs.pprop,exprs.nameF);
+        var lab_2 = exprs.paramv;
+        this.set_param_popup_title = "Set Modelica generic block parameters";
         var options = {
             Tin:["Input variables:       ",this.Tin],
             Tintype:["Input variables types: ",this.Tintype],
@@ -49,7 +62,7 @@ function MBLOCK() {
     }
     MBLOCK.prototype.set = function MBLOCK() {
         var exprs = this.graphics.exprs;
-        if (this.type[exprs-1]==15) {
+        if (type(exprs)==15) {
             var paramv = list();
             this.pprop = [];
             for (i=1;i<=size(this.model.rpar,"*");i+=1) {
@@ -272,7 +285,7 @@ function MBLOCK() {
                 exprs.param = lab_1[5-1];
                 exprs.paramv = list();
                 if (Tparam_sz!=0) {
-                    if (this.type[lab_2-1]==15) {
+                    if (type(lab_2)==15) {
                         for (i=1;i<=lstsize(lab_2);i+=1) {
                             exprs.paramv[i-1] = lab_2[i-1];
                         }
@@ -297,7 +310,6 @@ function MBLOCK() {
         return new BasicBlock(this.x);
     }
     MBLOCK.prototype.get_popup_title = function MBLOCK() {
-        var set_param_popup_title = "Set Modelica generic block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

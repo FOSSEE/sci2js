@@ -23,6 +23,8 @@ function RAMP() {
         return this.x;
     }
     RAMP.prototype.get = function RAMP() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = msprintf("Set %s block parameters","RAMP");
         var options = {
             slope:["Slope",this.slope],
             stt:["Start Time",this.stt],
@@ -54,7 +56,6 @@ function RAMP() {
         return new BasicBlock(this.x);
     }
     RAMP.prototype.get_popup_title = function RAMP() {
-        var set_param_popup_title = msprintf("Set %s block parameters","RAMP");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -29,6 +29,11 @@ function RICC() {
         return this.x;
     }
     RICC.prototype.get = function RICC() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set RICC Block";
         var options = {
             tpe:["Type (1=Cont  2=Disc)",this.tpe],
             mod:["Model(1=Schr  2=sign(cont) inv(disc))",this.mod],
@@ -66,7 +71,6 @@ function RICC() {
         return new BasicBlock(this.x);
     }
     RICC.prototype.get_popup_title = function RICC() {
-        var set_param_popup_title = "Set RICC Block";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

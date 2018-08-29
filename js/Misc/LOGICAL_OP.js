@@ -20,6 +20,11 @@ function LOGICAL_OP() {
         return this.x;
     }
     LOGICAL_OP.prototype.get = function LOGICAL_OP() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,1)==2) {
+            var exprs = [[exprs],[sci2exp(1)],[sci2exp(0)]];
+        }
+        this.set_param_popup_title = "Set parameters";
         var options = {
             nin:["number of inputs",this.nin],
             rule:["Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)",this.rule],
@@ -133,7 +138,6 @@ function LOGICAL_OP() {
         return new BasicBlock(this.x);
     }
     LOGICAL_OP.prototype.get_popup_title = function LOGICAL_OP() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

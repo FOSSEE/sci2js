@@ -33,6 +33,8 @@ function NMOS() {
         return this.x;
     }
     NMOS.prototype.get = function NMOS() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set NMOS Transistor block parameters";
         var options = {
             W:["Width [m]",this.W],
             L:["Length [m]",this.L],
@@ -72,7 +74,6 @@ function NMOS() {
         return new BasicBlock(this.x);
     }
     NMOS.prototype.get_popup_title = function NMOS() {
-        var set_param_popup_title = "Set NMOS Transistor block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

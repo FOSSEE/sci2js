@@ -21,6 +21,8 @@ function CONSTRAINT2_c() {
         return this.x;
     }
     CONSTRAINT2_c.prototype.get = function CONSTRAINT2_c() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Constraint block parameters";
         var options = {
             x0:["Initial guess values of states x",this.x0],
             xd0:["Initial guess values of derivative x\'",this.xd0],
@@ -81,7 +83,6 @@ function CONSTRAINT2_c() {
         return new BasicBlock(this.x);
     }
     CONSTRAINT2_c.prototype.get_popup_title = function CONSTRAINT2_c() {
-        var set_param_popup_title = "Set Constraint block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

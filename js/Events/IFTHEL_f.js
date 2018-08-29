@@ -22,6 +22,14 @@ function IFTHEL_f() {
         return this.x;
     }
     IFTHEL_f.prototype.get = function IFTHEL_f() {
+        var exprs = this.graphics.exprs;
+        if (exprs.length==0) {
+            var exprs = string(1);
+        }
+        if (size(exprs,"*")==1) {
+            exprs[2-1] = string(1);
+        }
+        this.set_param_popup_title = "Set parameters";
         var options = {
             inh:["Inherit (1: no, 0: yes)",this.inh],
             nmod:["zero-crossing (0: no, 1: yes)",this.nmod],
@@ -69,7 +77,6 @@ function IFTHEL_f() {
         return new BasicBlock(this.x);
     }
     IFTHEL_f.prototype.get_popup_title = function IFTHEL_f() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

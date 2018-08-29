@@ -25,6 +25,9 @@ function PENDULUM_ANIM() {
         return this.x;
     }
     PENDULUM_ANIM.prototype.get = function PENDULUM_ANIM() {
+        var exprs = this.graphics.exprs;
+        var dstate = this.model.dstate;
+        this.set_param_popup_title = "Set Scope parameters";
         var options = {
             plen:["pendulum length",this.plen],
             csiz:["cart size (square side)",this.csiz],
@@ -80,7 +83,6 @@ function PENDULUM_ANIM() {
         return new BasicBlock(this.x);
     }
     PENDULUM_ANIM.prototype.get_popup_title = function PENDULUM_ANIM() {
-        var set_param_popup_title = "Set Scope parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

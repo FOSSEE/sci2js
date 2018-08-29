@@ -29,6 +29,11 @@ function MATDIAG() {
         return this.x;
     }
     MATDIAG.prototype.get = function MATDIAG() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set MATDIAG Block";
         var options = {
             typ:["Datatype (1=real double  2=Complex)",this.typ],
         }
@@ -76,7 +81,6 @@ function MATDIAG() {
         return new BasicBlock(this.x);
     }
     MATDIAG.prototype.get_popup_title = function MATDIAG() {
-        var set_param_popup_title = "Set MATDIAG Block";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

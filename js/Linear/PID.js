@@ -43,6 +43,41 @@ function PID() {
         return this.x;
     }
     PID.prototype.get = function PID() {
+        var ppath = list(0,0,0);
+            if (typeof(o)=="Link") {
+                if (from.gui=="GAINBLK") {
+                    switch (to.gui) {
+                    case "SUMMATION":
+                        ppath[1-1] = o.from[1-1];
+                    case "INTEGRAL_m":
+                        ppath[2-1] = o.from[1-1];
+                    case "DERIV":
+                        ppath[3-1] = o.from[1-1];
+                    }
+                } else if (to.gui=="GAINBLK") {
+                    switch (from.gui) {
+                    case "SUMMATION":
+                        ppath[1-1] = o.to[1-1];
+                    case "INTEGRAL_m":
+                        ppath[2-1] = o.to[1-1];
+                    case "DERIV":
+                        ppath[3-1] = o.to[1-1];
+                    }
+                }
+                if (and(ppath!=list(0,0,0))) {
+                    break;
+                }
+            }
+        }
+        var newpar = list();
+        exprs[1-1] = xx1.graphics.exprs[1-1];
+        var p_old = xx1.model.rpar;
+        exprs[2-1] = xx2.graphics.exprs[1-1];
+        var i_old = xx2.model.rpar;
+        exprs[3-1] = xx3.graphics.exprs[1-1];
+        var d_old = xx3.model.rpar;
+        var y = 0;
+        this.set_param_popup_title = "Set PID parameters";
         var options = {
             p:["Proportional",this.p],
             i:["Integral",this.i],
@@ -116,7 +151,6 @@ function PID() {
         return new BasicBlock(this.x);
     }
     PID.prototype.get_popup_title = function PID() {
-        var set_param_popup_title = "Set PID parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

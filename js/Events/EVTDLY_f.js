@@ -20,6 +20,8 @@ function EVTDLY_f() {
         return this.x;
     }
     EVTDLY_f.prototype.get = function EVTDLY_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Event Delay  block parameters";
         var options = {
             dt:["Delay",this.dt],
             ff:["Date of initial output event",this.ff],
@@ -53,7 +55,6 @@ function EVTDLY_f() {
         return new BasicBlock(this.x);
     }
     EVTDLY_f.prototype.get_popup_title = function EVTDLY_f() {
-        var set_param_popup_title = "Set Event Delay  block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -26,6 +26,8 @@ function Inductor() {
         return this.x;
     }
     Inductor.prototype.get = function Inductor() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Inductor block parameter";
         var options = {
             L:["L (H)",this.L],
         }
@@ -50,7 +52,6 @@ function Inductor() {
         return new BasicBlock(this.x);
     }
     Inductor.prototype.get_popup_title = function Inductor() {
-        var set_param_popup_title = "Set Inductor block parameter";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

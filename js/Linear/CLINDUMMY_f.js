@@ -22,7 +22,6 @@ function CLINDUMMY_f() {
         return new BasicBlock(this.x);
     }
     CLINDUMMY_f.prototype.get_popup_title = function CLINDUMMY_f() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

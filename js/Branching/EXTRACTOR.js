@@ -18,6 +18,8 @@ function EXTRACTOR() {
         return this.x;
     }
     EXTRACTOR.prototype.get = function EXTRACTOR() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set block parameters";
         var options = {
             ind:["indices to extract",this.ind],
         }
@@ -49,7 +51,6 @@ function EXTRACTOR() {
         return new BasicBlock(this.x);
     }
     EXTRACTOR.prototype.get_popup_title = function EXTRACTOR() {
-        var set_param_popup_title = "Set block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

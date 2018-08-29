@@ -36,6 +36,8 @@ function CBLOCK() {
         return this.x;
     }
     CBLOCK.prototype.get = function CBLOCK() {
+        var label = this.graphics.exprs;
+        this.set_param_popup_title = "Set C-Block2 block parameters";
         var options = {
             function_name:["simulation function",this.function_name],
             impli:["is block implicit? (y,n)",this.impli],
@@ -165,7 +167,6 @@ function CBLOCK() {
         return new BasicBlock(this.x);
     }
     CBLOCK.prototype.get_popup_title = function CBLOCK() {
-        var set_param_popup_title = "Set C-Block2 block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -29,7 +29,6 @@ function PotentialSensor() {
         return new BasicBlock(this.x);
     }
     PotentialSensor.prototype.get_popup_title = function PotentialSensor() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

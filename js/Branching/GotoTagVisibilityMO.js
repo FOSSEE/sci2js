@@ -23,6 +23,8 @@ function GotoTagVisibilityMO() {
         return this.x;
     }
     GotoTagVisibilityMO.prototype.get = function GotoTagVisibilityMO() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             tag:["GotoTag",this.tag],
         }
@@ -53,7 +55,6 @@ function GotoTagVisibilityMO() {
         return new BasicBlock(this.x);
     }
     GotoTagVisibilityMO.prototype.get_popup_title = function GotoTagVisibilityMO() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

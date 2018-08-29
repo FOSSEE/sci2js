@@ -21,7 +21,6 @@ function ABSBLK_f() {
         return new BasicBlock(this.x);
     }
     ABSBLK_f.prototype.get_popup_title = function ABSBLK_f() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

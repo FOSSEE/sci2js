@@ -27,6 +27,8 @@ function OpAmp() {
         return this.x;
     }
     OpAmp.prototype.get = function OpAmp() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set the Operational Amplifier parameters";
         var options = {
             OLGain:["Open Loop Gain",this.OLGain],
             SatH:["Positive saturation voltage",this.SatH],
@@ -54,7 +56,6 @@ function OpAmp() {
         return new BasicBlock(this.x);
     }
     OpAmp.prototype.get_popup_title = function OpAmp() {
-        var set_param_popup_title = "Set the Operational Amplifier parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

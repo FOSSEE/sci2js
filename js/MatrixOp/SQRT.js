@@ -19,6 +19,8 @@ function SQRT() {
         return this.x;
     }
     SQRT.prototype.get = function SQRT() {
+        var label = this.graphics.exprs;
+        this.set_param_popup_title = "Set SQRT Block";
         var options = {
             typ:["Datatype(1=real double  2=Complex)",this.typ],
         }
@@ -61,7 +63,6 @@ function SQRT() {
         return new BasicBlock(this.x);
     }
     SQRT.prototype.get_popup_title = function SQRT() {
-        var set_param_popup_title = "Set SQRT Block";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

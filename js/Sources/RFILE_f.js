@@ -29,6 +29,20 @@ function RFILE_f() {
         return this.x;
     }
     RFILE_f.prototype.get = function RFILE_f() {
+        var exprs = this.graphics.exprs;
+        var dstate = this.model.dstate;
+        var ipar = this.model.ipar;
+        var ievt = ipar[3-1];
+        this.N = ipar[4-1];
+        var imask = 5+ipar[1-1]+ipar[2-1];
+        var tmask = ipar[imask-1];
+        var lunit = dstate[3-1];
+        var fname = exprs[3-1];
+        var frmt = exprs[4-1];
+        if (size(exprs,"*")>5) {
+            exprs[6-1] = [];
+        }
+        this.set_param_popup_title = msprintf("Set %s block parameters","RFILE_f");
         var options = {
             tmask1:["Time Record Selection",this.tmask1],
             outmask:["Outputs Record Selection",this.outmask],
@@ -121,7 +135,6 @@ function RFILE_f() {
         return new BasicBlock(this.x);
     }
     RFILE_f.prototype.get_popup_title = function RFILE_f() {
-        var set_param_popup_title = msprintf("Set %s block parameters","RFILE_f");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

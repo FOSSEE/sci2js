@@ -20,6 +20,8 @@ function TKSCALE() {
         return this.x;
     }
     TKSCALE.prototype.get = function TKSCALE() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set scale block parameters";
         var options = {
         a:["Min value",this.a],
         b:["Max value",this.b],
@@ -43,7 +45,6 @@ function TKSCALE() {
         return new BasicBlock(this.x);
     }
     TKSCALE.prototype.get_popup_title = function TKSCALE() {
-        var set_param_popup_title = "Set scale block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

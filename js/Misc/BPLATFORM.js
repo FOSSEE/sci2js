@@ -25,6 +25,9 @@ function BPLATFORM() {
         return this.x;
     }
     BPLATFORM.prototype.get = function BPLATFORM() {
+        var exprs = this.graphics.exprs;
+        var dstate = this.model.dstate;
+        this.set_param_popup_title = "Set Scope parameters";
         var options = {
             plen:["pendulum length",this.plen],
             csiz:["cart size (square side)",this.csiz],
@@ -80,7 +83,6 @@ function BPLATFORM() {
         return new BasicBlock(this.x);
     }
     BPLATFORM.prototype.get_popup_title = function BPLATFORM() {
-        var set_param_popup_title = "Set Scope parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

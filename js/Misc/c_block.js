@@ -33,6 +33,8 @@ function c_block() {
         return this.x;
     }
     c_block.prototype.get = function c_block() {
+        var label = this.graphics.exprs;
+        this.set_param_popup_title = "Set C_block parameters";
         var options = {
             i:["input ports sizes",this.i],
             o:["output port sizes",this.o],
@@ -89,7 +91,6 @@ function c_block() {
         return new BasicBlock(this.x);
     }
     c_block.prototype.get_popup_title = function c_block() {
-        var set_param_popup_title = "Set C_block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

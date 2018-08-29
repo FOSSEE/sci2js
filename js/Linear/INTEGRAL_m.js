@@ -23,6 +23,8 @@ function INTEGRAL_m() {
         return this.x;
     }
     INTEGRAL_m.prototype.get = function INTEGRAL_m() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Integral block parameters";
         var options = {
             x0:["Initial Condition",this.x0],
             reinit:["With re-intialization (1:yes, 0:no)",this.reinit],
@@ -145,7 +147,6 @@ function INTEGRAL_m() {
         return new BasicBlock(this.x);
     }
     INTEGRAL_m.prototype.get_popup_title = function INTEGRAL_m() {
-        var set_param_popup_title = "Set Integral block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

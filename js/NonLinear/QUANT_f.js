@@ -20,6 +20,8 @@ function QUANT_f() {
         return this.x;
     }
     QUANT_f.prototype.get = function QUANT_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             pas:["Step",this.pas],
             meth:["Quantization Type (1-4)",this.meth],
@@ -62,7 +64,6 @@ function QUANT_f() {
         return new BasicBlock(this.x);
     }
     QUANT_f.prototype.get_popup_title = function QUANT_f() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

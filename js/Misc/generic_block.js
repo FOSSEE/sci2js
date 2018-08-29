@@ -25,6 +25,11 @@ function generic_block() {
         return this.x;
     }
     generic_block.prototype.get = function generic_block() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set GENERIC block parameters";
         var options = {
             function_name:["simulation function",this.function_name],
             funtyp:["function type (0,1,2,..)",this.funtyp],
@@ -127,7 +132,6 @@ function generic_block() {
         return new BasicBlock(this.x);
     }
     generic_block.prototype.get_popup_title = function generic_block() {
-        var set_param_popup_title = "Set GENERIC block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

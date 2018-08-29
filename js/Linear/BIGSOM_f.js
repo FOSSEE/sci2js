@@ -18,6 +18,8 @@ function BIGSOM_f() {
         return this.x;
     }
     BIGSOM_f.prototype.get = function BIGSOM_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set sum block parameters";
         var options = {
             sgn:["Inputs ports signs/gain",this.sgn.toString().replace(/,/g," ")],
         }
@@ -48,7 +50,6 @@ function BIGSOM_f() {
         return new BigSom(this.x);
     }
     BIGSOM_f.prototype.get_popup_title = function BIGSOM_f() {
-        var set_param_popup_title = "Set sum block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

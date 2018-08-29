@@ -22,6 +22,8 @@ function DEADBAND() {
         return this.x;
     }
     DEADBAND.prototype.get = function DEADBAND() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Deadband parameters";
         var options = {
             maxp:["End of dead band",this.maxp],
             minp:["Start of dead band",this.minp],
@@ -62,7 +64,6 @@ function DEADBAND() {
         return new BasicBlock(this.x);
     }
     DEADBAND.prototype.get_popup_title = function DEADBAND() {
-        var set_param_popup_title = "Set Deadband parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -34,7 +34,6 @@ function func_block() {
         return new BasicBlock(this.x);
     }
     func_block.prototype.get_popup_title = function func_block() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

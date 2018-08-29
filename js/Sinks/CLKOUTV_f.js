@@ -17,6 +17,8 @@ function CLKOUTV_f() {
         return this.x;
     }
     CLKOUTV_f.prototype.get = function CLKOUTV_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = msprintf("Set %s block parameters","CLKOUTV_f");
         var options = {
             prt:["Port number",this.prt],
         }
@@ -46,8 +48,7 @@ function CLKOUTV_f() {
         return new EventOutBlock(this.x);
     }
     CLKOUTV_f.prototype.get_popup_title = function CLKOUTV_f() {
-        var set_param_popup_title = msprintf("Set %s block parameters","CLKOUTV_f");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
     CLKOUTV_f.prototype.getinputs = function CLKOUTV_f() {
         this.x = orig[1-1]+sz[1-1]/2;
@@ -74,7 +75,7 @@ function CLKOUTV_f() {
         var y = orig[2-1]+sz[2-1]*[[0],[1/3],[1],[1],[1/3]];
         var xo = orig[1-1];
         var yo = orig[2-1]+sz[2-1]/3;
-        if (this.type[gr_i-1]==15) {
+        if (type(gr_i)==15) {
             var coli = gr_i[2-1];
             var pcoli = xget("pattern");
             xfpolys(this.x,y,coli);

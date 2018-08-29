@@ -26,6 +26,8 @@ function FROMMO() {
         return this.x;
     }
     FROMMO.prototype.get = function FROMMO() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set parameters";
         var options = {
             tag:["Tag",this.tag],
         }
@@ -56,7 +58,6 @@ function FROMMO() {
         return new BasicBlock(this.x);
     }
     FROMMO.prototype.get_popup_title = function FROMMO() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

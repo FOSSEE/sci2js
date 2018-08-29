@@ -16,6 +16,10 @@ function TrigFun() {
         return this.x;
     }
     TrigFun.prototype.get = function TrigFun() {
+        var exprs = this.graphics.exprs;
+        var PREVAR_FF = [["sin"],["cos"],["tan"],["asin"],["acos"],["atan"],["sinh"],["cosh"],["tanh"],["asinh"],["acosh"],["atanh"]];
+        this.PREVAR_GG = [["Choose among "+strcat(PREVAR_FF.slice(1-1,4),", ")],[strcat(PREVAR_FF.slice(5-1,$),", ")]];
+        this.set_param_popup_title = this.PREVAR_GG;
         var options = {
             fun:["Function",this.fun],
         }
@@ -46,7 +50,6 @@ function TrigFun() {
         return new BasicBlock(this.x);
     }
     TrigFun.prototype.get_popup_title = function TrigFun() {
-        var set_param_popup_title = "Choose among "+strcat(PREVAR_FF.slice(1-1,4),", ");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -22,6 +22,8 @@ function SAT_f() {
         return this.x;
     }
     SAT_f.prototype.get = function SAT_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Saturation parameters";
         var options = {
             minp:["Min",this.minp],
             maxp:["Max",this.maxp],
@@ -59,7 +61,6 @@ function SAT_f() {
         return new BasicBlock(this.x);
     }
     SAT_f.prototype.get_popup_title = function SAT_f() {
-        var set_param_popup_title = "Set Saturation parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

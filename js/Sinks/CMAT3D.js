@@ -28,6 +28,8 @@ function CMAT3D() {
         return this.x;
     }
     CMAT3D.prototype.get = function CMAT3D() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set Scope parameters";
         var options = {
             vec_x:["Bounds Vector X (-1 for standard)",this.vec_x],
             vec_y:["Bounds Vector Y (-1 for standard)",this.vec_y],
@@ -79,7 +81,6 @@ function CMAT3D() {
         return new BasicBlock(this.x);
     }
     CMAT3D.prototype.get_popup_title = function CMAT3D() {
-        var set_param_popup_title = "Set Scope parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -30,6 +30,11 @@ function MATCATV() {
         return this.x;
     }
     MATCATV.prototype.get = function MATCATV() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")>1) {
+            var label = "size(evstr("+label[2-1]+"),\'*\')";
+        }
+        this.set_param_popup_title = "Set MATCATV block parameters";
         var options = {
             nin:["Number od inputs",this.nin],
         }
@@ -66,7 +71,6 @@ function MATCATV() {
         return new BasicBlock(this.x);
     }
     MATCATV.prototype.get_popup_title = function MATCATV() {
-        var set_param_popup_title = "Set MATCATV block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

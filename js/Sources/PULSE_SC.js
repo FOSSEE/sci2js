@@ -49,6 +49,16 @@ function PULSE_SC() {
         return this.x;
     }
     PULSE_SC.prototype.get = function PULSE_SC() {
+        var y = this.needcompile;
+        var typ = list();
+        var exprs = this.graphics.exprs;
+        this.Btitre = "Set Pulse Generator parameters";
+        var Exprs0 = [["E"],["W"],["F"],["A"]];
+        this.Bitems = [["Phase delay (secs):"],["Pulse Width (% of period):"],["Period (secs):"],["Amplitude:"]];
+        var Ss = list("pol",-1,"pol",-1,"pol",-1,"mat",[-1,-1]);
+        this.scicos_context = struct();
+        var ok = false;
+        this.set_param_popup_title = this.Btitre;
         var options = {
             scicos_context.E:["Phase delay (secs):",this.scicos_context.E],
             scicos_context.W:["Pulse Width (% of period):",this.scicos_context.W],
@@ -104,7 +114,6 @@ function PULSE_SC() {
         return new BasicBlock(this.x);
     }
     PULSE_SC.prototype.get_popup_title = function PULSE_SC() {
-        var set_param_popup_title = "Set Pulse Generator parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

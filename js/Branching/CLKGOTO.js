@@ -18,6 +18,8 @@ function CLKGOTO() {
         return this.x;
     }
     CLKGOTO.prototype.get = function CLKGOTO() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set block parameters";
         var options = {
             tag:["Tag",this.tag],
             tagvis:["Tag Visibility (1=Local 2=Scoped 3=Global)",this.tagvis],
@@ -59,7 +61,6 @@ function CLKGOTO() {
         return new BasicBlock(this.x);
     }
     CLKGOTO.prototype.get_popup_title = function CLKGOTO() {
-        var set_param_popup_title = "Set block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -29,7 +29,6 @@ function VariableResistor() {
         return new BasicBlock(this.x);
     }
     VariableResistor.prototype.get_popup_title = function VariableResistor() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

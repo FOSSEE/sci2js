@@ -39,6 +39,9 @@ function BOUNCEXY() {
         return this.x;
     }
     BOUNCEXY.prototype.get = function BOUNCEXY() {
+        var exprs = this.graphics.exprs;
+        var dstate = this.model.dstate;
+        this.set_param_popup_title = "Set Scope parameters";
         var options = {
             clrs:["colors",this.clrs.toString().replace(/,/g," ")],
             siz:["radii",this.siz.toString().replace(/,/g," ")],
@@ -112,7 +115,6 @@ function BOUNCEXY() {
         return new BasicBlock(this.x);
     }
     BOUNCEXY.prototype.get_popup_title = function BOUNCEXY() {
-        var set_param_popup_title = "Set Scope parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

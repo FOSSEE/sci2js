@@ -29,6 +29,11 @@ function MATCATH() {
         return this.x;
     }
     MATCATH.prototype.get = function MATCATH() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")>1) {
+            var label = "size(evstr("+label[2-1]+"),\'*\')";
+        }
+        this.set_param_popup_title = "Set MATCATH block parameters";
         var options = {
             nin:["Number of input",this.nin],
         }
@@ -65,7 +70,6 @@ function MATCATH() {
         return new BasicBlock(this.x);
     }
     MATCATH.prototype.get_popup_title = function MATCATH() {
-        var set_param_popup_title = "Set MATCATH block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -53,6 +53,9 @@ function IdealTransformer() {
         return this.x;
     }
     IdealTransformer.prototype.get = function IdealTransformer() {
+        var exprs = this.graphics.exprs;
+        var exprs = this.x.graphics.exprs;
+        this.set_param_popup_title = "Set Transformer block parameters:";
         var options = {
             N:["N",this.N],
         }
@@ -75,7 +78,6 @@ function IdealTransformer() {
         return new BasicBlock(this.x);
     }
     IdealTransformer.prototype.get_popup_title = function IdealTransformer() {
-        var set_param_popup_title = "Set Transformer block parameters:";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

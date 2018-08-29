@@ -29,6 +29,11 @@ function EXTRACT() {
         return this.x;
     }
     EXTRACT.prototype.get = function EXTRACT() {
+        var label = this.graphics.exprs;
+        if (size(label,"*")==14) {
+            label[9-1] = [];
+        }
+        this.set_param_popup_title = "Set EXTRACT Block";
         var options = {
             typ:["Datatype (1=real double  2=Complex)",this.typ],
             a:["Lines to extract",this.a],
@@ -104,7 +109,6 @@ function EXTRACT() {
         return new BasicBlock(this.x);
     }
     EXTRACT.prototype.get_popup_title = function EXTRACT() {
-        var set_param_popup_title = "Set EXTRACT Block";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

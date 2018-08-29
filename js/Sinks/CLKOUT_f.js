@@ -17,6 +17,9 @@ function CLKOUT_f() {
         return this.x;
     }
     CLKOUT_f.prototype.get = function CLKOUT_f() {
+        var exprs = this.graphics.exprs;
+        var exprs = exprs[1-1];
+        this.set_param_popup_title = "Set Event Output block parameters";
         var options = {
             prt:["Port number",this.prt],
         }
@@ -49,7 +52,6 @@ function CLKOUT_f() {
         return new BasicBlock(this.x);
     }
     CLKOUT_f.prototype.get_popup_title = function CLKOUT_f() {
-        var set_param_popup_title = "Set Event Output block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

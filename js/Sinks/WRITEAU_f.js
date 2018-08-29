@@ -25,6 +25,11 @@ function WRITEAU_f() {
         return this.x;
     }
     WRITEAU_f.prototype.get = function WRITEAU_f() {
+        var exprs = this.graphics.exprs;
+        var ipar = this.model.ipar;
+        var dstate = this.model.dstate;
+        var lunit = dstate[2-1];
+        this.set_param_popup_title = msprintf("Set %s block parameters","WRITEAU_f");
         var options = {
             N:["Buffer Size",this.N],
             swap:["Swap Mode (0:No, 1:Yes)",this.swap],
@@ -75,7 +80,6 @@ function WRITEAU_f() {
         return new BasicBlock(this.x);
     }
     WRITEAU_f.prototype.get_popup_title = function WRITEAU_f() {
-        var set_param_popup_title = msprintf("Set %s block parameters","WRITEAU_f");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

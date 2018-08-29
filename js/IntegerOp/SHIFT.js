@@ -24,6 +24,8 @@ function SHIFT() {
         return this.x;
     }
     SHIFT.prototype.get = function SHIFT() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = msprintf("Set %s block parameters","SHIFT");
         var options = {
             Datatype:[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),this.Datatype],
             nb:["Number of Bits to Shift Left (Negative number to shift right)",this.nb],
@@ -132,7 +134,6 @@ function SHIFT() {
         return new BasicBlock(this.x);
     }
     SHIFT.prototype.get_popup_title = function SHIFT() {
-        var set_param_popup_title = msprintf("Set %s block parameters","SHIFT");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

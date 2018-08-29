@@ -16,12 +16,10 @@ aS'x'
 p7
 aS'model'
 p8
-aS'type'
-p9
 aS'out'
-p10
-atp11
-Rp12
+p9
+atp10
+Rp11
 .(dp0
 S'rhs_txt'
 p1

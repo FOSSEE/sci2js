@@ -30,6 +30,8 @@ function SineVoltage() {
         return this.x;
     }
     SineVoltage.prototype.get = function SineVoltage() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set voltage source parameter";
         var options = {
             V:["Amplitude (Volt)",this.V],
             ph:["phase (rad)",this.ph],
@@ -62,7 +64,6 @@ function SineVoltage() {
         return new BasicBlock(this.x);
     }
     SineVoltage.prototype.get_popup_title = function SineVoltage() {
-        var set_param_popup_title = "Set voltage source parameter";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

@@ -22,6 +22,8 @@ function EXTRACTBITS() {
         return this.x;
     }
     EXTRACTBITS.prototype.get = function EXTRACTBITS() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = msprintf("Set %s block parameters","EXTRACTBITS");
         var options = {
             Datatype:[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),this.Datatype],
             rule:["Bits to extract",this.rule],
@@ -242,7 +244,6 @@ function EXTRACTBITS() {
         return new BasicBlock(this.x);
     }
     EXTRACTBITS.prototype.get_popup_title = function EXTRACTBITS() {
-        var set_param_popup_title = msprintf("Set %s block parameters","EXTRACTBITS");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

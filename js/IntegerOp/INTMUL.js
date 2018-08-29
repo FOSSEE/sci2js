@@ -23,6 +23,8 @@ function INTMUL() {
         return this.x;
     }
     INTMUL.prototype.get = function INTMUL() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = msprintf("Set %s block parameters","INTMUL");
         var options = {
             Datatype:[msprintf("Data Type %s","(3:int32, 4:int16, 5:int8, ...)"),this.Datatype],
             np:["Do on Overflow (0:Nothing, 1:Saturate, 2:Error)",this.np],
@@ -115,7 +117,6 @@ function INTMUL() {
         return new BasicBlock(this.x);
     }
     INTMUL.prototype.get_popup_title = function INTMUL() {
-        var set_param_popup_title = msprintf("Set %s block parameters","INTMUL");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

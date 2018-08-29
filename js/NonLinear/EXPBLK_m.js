@@ -23,6 +23,11 @@ function EXPBLK_m() {
         return this.x;
     }
     EXPBLK_m.prototype.get = function EXPBLK_m() {
+        var exprs = this.graphics.exprs;
+        if (size(exprs,"*")==2) {
+            var exprs = exprs[2-1];
+        }
+        this.set_param_popup_title = "Set a^u  block parameters";
         var options = {
             a:["a (>0)",this.a],
         }
@@ -54,7 +59,6 @@ function EXPBLK_m() {
         return new BasicBlock(this.x);
     }
     EXPBLK_m.prototype.get_popup_title = function EXPBLK_m() {
-        var set_param_popup_title = "Set a^u  block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

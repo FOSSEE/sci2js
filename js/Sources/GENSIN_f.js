@@ -20,6 +20,8 @@ function GENSIN_f() {
         return this.x;
     }
     GENSIN_f.prototype.get = function GENSIN_f() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = msprintf("Set %s block parameters","GENSIN_f");
         var options = {
             M:["Magnitude",this.M],
             F:["Frequency (rad/s)",this.F],
@@ -59,7 +61,6 @@ function GENSIN_f() {
         return new BasicBlock(this.x);
     }
     GENSIN_f.prototype.get_popup_title = function GENSIN_f() {
-        var set_param_popup_title = msprintf("Set %s block parameters","GENSIN_f");
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

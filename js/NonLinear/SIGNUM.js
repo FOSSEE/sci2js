@@ -19,6 +19,8 @@ function SIGNUM() {
         return this.x;
     }
     SIGNUM.prototype.get = function SIGNUM() {
+        var exprs = this.graphics.exprs;
+        this.set_param_popup_title = "Set block parameters";
         var options = {
             zcr:["use zero_crossing (1: yes) (0:no)",this.zcr],
         }
@@ -50,7 +52,6 @@ function SIGNUM() {
         return new BasicBlock(this.x);
     }
     SIGNUM.prototype.get_popup_title = function SIGNUM() {
-        var set_param_popup_title = "Set block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

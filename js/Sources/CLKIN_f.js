@@ -17,6 +17,9 @@ function CLKIN_f() {
         return this.x;
     }
     CLKIN_f.prototype.get = function CLKIN_f() {
+        var exprs = this.graphics.exprs;
+        var exprs = exprs[1-1];
+        this.set_param_popup_title = "Set Event Input block parameters";
         var options = {
             prt:["Port number",this.prt],
         }
@@ -49,7 +52,6 @@ function CLKIN_f() {
         return new BasicBlock(this.x);
     }
     CLKIN_f.prototype.get_popup_title = function CLKIN_f() {
-        var set_param_popup_title = "Set Event Input block parameters";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }

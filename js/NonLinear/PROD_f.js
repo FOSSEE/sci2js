@@ -20,7 +20,6 @@ function PROD_f() {
         return new RoundBlock(this.x);
     }
     PROD_f.prototype.get_popup_title = function PROD_f() {
-        var set_param_popup_title = "Set parameters";
-        return set_param_popup_title;
+        return;
     }
 }

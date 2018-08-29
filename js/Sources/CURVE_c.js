@@ -27,6 +27,10 @@ function CURVE_c() {
         return this.x;
     }
     CURVE_c.prototype.get = function CURVE_c() {
+        var exprs = this.graphics.exprs;
+        var ok = false;
+        var SaveExit = false;
+        this.set_param_popup_title = "Spline data";
         var options = {
             Method:["Spline Method (0..7)",this.Method],
             xx:["x",this.xx],
@@ -165,7 +169,6 @@ function CURVE_c() {
         return new BasicBlock(this.x);
     }
     CURVE_c.prototype.get_popup_title = function CURVE_c() {
-        var set_param_popup_title = "Spline data";
-        return set_param_popup_title;
+        return this.set_param_popup_title;
     }
 }
