@@ -58,6 +58,8 @@ function STEP_FUNCTION() {
         alert("parameters cannot be modified");
     }
     STEP_FUNCTION.prototype.set = function STEP_FUNCTION() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="STEP") {
                 var ppath = list(i);
                 break;
@@ -73,6 +75,7 @@ function STEP_FUNCTION() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
+            var xx = getObjectFromKeyList(this, spath);
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (diffobjs(this.xxn,xx)) {
                 this.model = xx.model;
@@ -111,6 +114,7 @@ function STEP_FUNCTION() {
                         var needcompile = 4;
                     }
                 }
+                getObjectFromKeyList(this, spath) = this.xxn;
                 newpar[size(newpar)+1-1] = path;
             }
         }

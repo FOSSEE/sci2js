@@ -23,6 +23,8 @@ function Sigbuilder() {
     }
     Sigbuilder.prototype.set = function Sigbuilder() {
         var ppath = list(0);
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="CURVE_c") {
                 ppath[1-1] = i;
                 break;
@@ -39,6 +41,7 @@ function Sigbuilder() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
+            var xx = getObjectFromKeyList(this, spath);
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (diffobjs(this.xxn,xx)) {
                 this.model = xx.model;
@@ -80,6 +83,7 @@ function Sigbuilder() {
                         var needcompile = 4;
                     }
                 }
+                getObjectFromKeyList(this, spath) = this.xxn;
                 newpar[size(newpar)+1-1] = path;
                 this.y = max(this.y,needcompile);
             }

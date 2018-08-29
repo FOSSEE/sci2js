@@ -55,6 +55,7 @@ function GEN_SQR() {
     }
     GEN_SQR.prototype.get = function GEN_SQR() {
         var y = this.needcompile;
+        this.model.ipar = 1;
         var typ = list();
         var exprs = this.graphics.exprs;
         this.Btitre = "Set GEN_SQR parameters";
@@ -74,6 +75,7 @@ function GEN_SQR() {
     }
     GEN_SQR.prototype.set = function GEN_SQR() {
         var y = this.needcompile;
+        this.model.ipar = 1;
         var typ = list();
         var exprs = this.graphics.exprs;
         this.Btitre = "Set GEN_SQR parameters";

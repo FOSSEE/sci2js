@@ -46,6 +46,7 @@ function WFILE_f() {
         var warnMessage = msprintf("Feature %s is obsolete.","WFILE_f");
         var warnAdvise = msprintf("Please use %s instead.","WRITEC_f");
         var warnXcosMessage = msprintf("%s %s",warnMessage,warnAdvise);
+        warnBlockByUID(this.model.label,warnXcosMessage);
         var exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
         var lunit = dstate[2-1];

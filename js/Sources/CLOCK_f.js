@@ -46,12 +46,15 @@ function CLOCK_f() {
         return this.x;
     }
     CLOCK_f.prototype.get = function CLOCK_f() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
+        var xx = this.model.rpar.objs[path-1];
         var exprs = xx.graphics.exprs;
         this.model = xx.model;
         var t0_old = this.model.firing;
@@ -65,12 +68,15 @@ function CLOCK_f() {
         return options;
     }
     CLOCK_f.prototype.set = function CLOCK_f() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
+        var xx = this.model.rpar.objs[path-1];
         var exprs = xx.graphics.exprs;
         this.model = xx.model;
         var t0_old = this.model.firing;
@@ -94,6 +100,7 @@ function CLOCK_f() {
                 this.model.rpar = new ScilabDouble([this.dt]);
                 this.model.firing = new ScilabDouble([this.t0]);
                 xx.model = this.model;
+                this.model.rpar.objs[path-1] = xx;
                 break;
             }
         }

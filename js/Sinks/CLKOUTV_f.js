@@ -28,7 +28,7 @@ function CLKOUTV_f() {
         var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
-            this.prt = arguments[0]["prt"];
+            this.prt = parseFloat(arguments[0]["prt"]);
             var exprs = [arguments[0]["prt"]];
             if (!ok) {
                 break;
@@ -51,11 +51,14 @@ function CLKOUTV_f() {
         return this.set_param_popup_title;
     }
     CLKOUTV_f.prototype.getinputs = function CLKOUTV_f() {
+        var orig = this.graphics.orig;
+        var sz = this.graphics.sz;
         this.x = orig[1-1]+sz[1-1]/2;
         var y = orig[2-1]+sz[2-1];
         var typ = -ones(this.x);
     }
     CLKOUTV_f.prototype.getorigin = function CLKOUTV_f() {
+        var tmpvar0 = standard_origin(this);
         this.x = tmpvar0[0];
         var y = tmpvar0[1];
     }
@@ -67,6 +70,10 @@ function CLKOUTV_f() {
     CLKOUTV_f.prototype.plot = function CLKOUTV_f() {
         var xf = 60;
         var yf = 40;
+        var orig = this.graphics.orig;
+        var sz = this.graphics.sz;
+        var orient = this.graphics.flip;
+        this.prt = this.model.ipar;
         var pat = xget("pattern");
         xset("pattern",this.default_color[-1-1]);
         var thick = xget("thickness");
@@ -75,6 +82,7 @@ function CLKOUTV_f() {
         var y = orig[2-1]+sz[2-1]*[[0],[1/3],[1],[1],[1/3]];
         var xo = orig[1-1];
         var yo = orig[2-1]+sz[2-1]/3;
+        var gr_i = this.graphics.gr_i;
         if (type(gr_i)==15) {
             var coli = gr_i[2-1];
             var pcoli = xget("pattern");
@@ -91,6 +99,7 @@ function CLKOUTV_f() {
         xfpoly(in1.slice()[1-1]+ones(4,1)*(orig[1-1]+sz[1-1]/2),in1.slice()[2-1]+ones(4,1)*(orig[2-1]+sz[2-1]),1);
         xset("thickness",thick);
         xset("pattern",pat);
+        var ident = this.graphics.id;
         if (ident.length!=0&&ident!="") {
             var font = xget("font");
             xset("font",this.options.ID[1-1][1-1],this.options.ID[1-1][2-1]);

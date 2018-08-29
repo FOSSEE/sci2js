@@ -6,10 +6,12 @@ S'x'
 p2
 aS'model'
 p3
-aS'graphics'
+aS'gui'
 p4
-atp5
-Rp6
+aS'graphics'
+p5
+atp6
+Rp7
 .(dp0
 S'y'
 p1
@@ -19,7 +21,7 @@ sS'x'
 p3
 S'object'
 p4
-sS'arg1.gui'
+sS'gui'
 p5
 S'string'
 p6

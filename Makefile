@@ -29,7 +29,7 @@ js/%.pickle: macros/%.sci sci2jsyacc.py parsetab.py sci2jslex.py
 	./sci2jsyacc.py $< $@ 1 > js/$*.js.old 2> /dev/null && $(RM) js/$*.js.old
 
 js/%.js: macros/%.sci js/%.pickle sci2jsyacc.py parsetab.py sci2jslex.py
-	./sci2jsyacc.py $< js/$*.pickle 2 2> js/$*.yacc | fgrep -vw arg1 > $@
+	./sci2jsyacc.py $< js/$*.pickle 2 > $@ 2> js/$*.yacc
 
 parsetab.py: macros/Misc/DEBUG_SCICOS.sci sci2jsyacc.py sci2jslex.py
 	@rm -f $@* parser.out

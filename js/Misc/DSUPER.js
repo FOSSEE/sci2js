@@ -13,6 +13,7 @@ function DSUPER() {
         var y = this.needcompile;
         var typ = list();
         if ((length(this.graphics.exprs)==0)) {
+            warnBlockByUID(this.model.label,"Invalid masked block.");
             return;
         }
         var exprs = this.graphics.exprs[1-1];
@@ -22,6 +23,7 @@ function DSUPER() {
         if (exprs0.length==0) {
             return;
         }
+        var context = [this.model.rpar.props.context];
         var tmpvar0 = script2var(context,PREVAR_scicos_context);
         var PREVAR_scicos_context = tmpvar0[0];
         var ierr = tmpvar0[1];

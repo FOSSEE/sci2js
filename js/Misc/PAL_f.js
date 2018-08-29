@@ -22,10 +22,13 @@ function PAL_f() {
         alert("parameters cannot be modified");
     }
     PAL_f.prototype.set = function PAL_f() {
+        var tmpvar0 = scicos(this.model.rpar);
         this.x = tmpvar0[0];
         var newparameters = tmpvar0[1];
         var needcompile = tmpvar0[2];
         var edited = tmpvar0[3];
+        this.graphics.id = this.x.props.title[1-1];
+        this.model.rpar = this.x;
         var y = [];
         var typ = [];
         %exit = resume(false)

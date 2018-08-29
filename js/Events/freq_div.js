@@ -111,6 +111,8 @@ function freq_div() {
         return this.x;
     }
     freq_div.prototype.get = function freq_div() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="Modulo_Count") {
                 var path = i;
                 break;
@@ -123,6 +125,7 @@ function freq_div() {
         spath[$+1-1] = "rpar";
         spath[$+1-1] = "objs";
         spath[$+1-1] = path;
+        var xx = getObjectFromKeyList(this, spath);
         var xxn = xx;
         this.graphics = xx.graphics;
         var exprs = this.graphics.exprs;
@@ -135,6 +138,8 @@ function freq_div() {
         return options;
     }
     freq_div.prototype.set = function freq_div() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="Modulo_Count") {
                 var path = i;
                 break;
@@ -147,6 +152,7 @@ function freq_div() {
         spath[$+1-1] = "rpar";
         spath[$+1-1] = "objs";
         spath[$+1-1] = path;
+        var xx = getObjectFromKeyList(this, spath);
         var xxn = xx;
         this.graphics = xx.graphics;
         var exprs = this.graphics.exprs;
@@ -212,6 +218,7 @@ function freq_div() {
                     var needcompile = 4;
                 }
             }
+            getObjectFromKeyList(this, spath) = xxn;
             newpar[size(newpar)+1-1] = 1;
             var y = max(y,needcompile);
         }

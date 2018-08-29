@@ -36,12 +36,15 @@ function SRFLIPFLOP() {
         return this.x;
     }
     SRFLIPFLOP.prototype.get = function SRFLIPFLOP() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
+        var xx = this.model.rpar.objs[path-1];
         var exprs = xx.graphics.exprs[1-1];
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
@@ -52,12 +55,15 @@ function SRFLIPFLOP() {
         return options;
     }
     SRFLIPFLOP.prototype.set = function SRFLIPFLOP() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
+        var xx = this.model.rpar.objs[path-1];
         var exprs = xx.graphics.exprs[1-1];
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
@@ -77,6 +83,7 @@ function SRFLIPFLOP() {
                 xx.graphics.exprs[1-1] = exprs0;
                 this.model.odstate[1-1] = new ScilabDouble([this.init]);
                 xx.model = this.model;
+                this.model.rpar.objs[path-1] = xx;
                 break;
             }
         }

@@ -50,6 +50,7 @@ function PULSE_SC() {
     }
     PULSE_SC.prototype.get = function PULSE_SC() {
         var y = this.needcompile;
+        this.model.ipar = 1;
         var typ = list();
         var exprs = this.graphics.exprs;
         this.Btitre = "Set Pulse Generator parameters";
@@ -69,6 +70,7 @@ function PULSE_SC() {
     }
     PULSE_SC.prototype.set = function PULSE_SC() {
         var y = this.needcompile;
+        this.model.ipar = 1;
         var typ = list();
         var exprs = this.graphics.exprs;
         this.Btitre = "Set Pulse Generator parameters";

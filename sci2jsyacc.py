@@ -165,7 +165,7 @@ def p_functionblock_functionstatement_statementblock_endfunction(p):
     p[0] = ''
 
 def p_jobfunctionstatement_function_var(p):
-    'jobfunctionstatement : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL'
+    'jobfunctionstatement : FUNCTION lterm ASSIGNMENT VAR OPENBRACKET JOB COMMA ARG1 COMMA VAR CLOSEBRACKET EOL'
     global SCICOS_BLOCK_NAME
     SCICOS_BLOCK_NAME = p[4]
     for var in (p[6], p[8], p[10]):
@@ -173,7 +173,7 @@ def p_jobfunctionstatement_function_var(p):
     p[0] = SCICOS_BLOCK_NAME
 
 def p_jobfunctionstatement_function_functionname(p):
-    'jobfunctionstatement : FUNCTION lterm ASSIGNMENT FUNCTIONNAME OPENBRACKET JOB COMMA VAR COMMA VAR CLOSEBRACKET EOL'
+    'jobfunctionstatement : FUNCTION lterm ASSIGNMENT FUNCTIONNAME OPENBRACKET JOB COMMA ARG1 COMMA VAR CLOSEBRACKET EOL'
     global SCICOS_BLOCK_NAME
     SCICOS_BLOCK_NAME = p[4][0]
     for var in (p[6], p[8], p[10]):
@@ -599,8 +599,8 @@ def p_lterm_assignment_expression(p):
             value = 'new ScilabString(["xstringb(orig(1),orig(2),\\"%s\\",sz(1),sz(2));"])' % (SCICOS_BLOCK_NAME)
         if var in LOCAL_VARS and '.' not in var:
             prefix = 'var '
-        p[0] = '%*s%s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, var, value)
         add_var_vartype(var, p[3][1])
+        p[0] = '%*s%s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', prefix, var, value)
         if len(LAST_ARRAY) > 0:
             VAR_DEFINITIONS[var] = LAST_ARRAY
         if AT_START and INDENT_LEVEL == 2:
@@ -613,10 +613,38 @@ def p_model_assignment_expression(p):
     global INIT_VARS
     var = p[1]
     add_global_var(var)
-    p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', print_var(var), p[3][0])
     add_var_vartype(var, p[3][1])
+    p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', print_var(var), p[3][0])
     if AT_START and INDENT_LEVEL == 2:
         INIT_VARS += p[0]
+
+def p_lterm_assignment_arg1(p):
+    '''assignment : lterm ASSIGNMENT ARG1 EOL
+                  | ARG1 ASSIGNMENT expression'''
+    p[0] = ''
+
+def p_model_assignment_arg1_model(p):
+    '''assignment : GRAPHICS ASSIGNMENT ARG1 DOT GRAPHICS EOL
+                  | MODEL ASSIGNMENT ARG1 DOT MODEL EOL
+                  | ARG1 DOT GRAPHICS ASSIGNMENT GRAPHICS EOL
+                  | ARG1 DOT MODEL ASSIGNMENT MODEL EOL'''
+    p[0] = ''
+
+def p_arg1_var_assignment_expression(p):
+    'assignment : ARG1 DOT VAR ASSIGNMENT expression EOL'
+    global INIT_VARS
+    var = p[3]
+    add_global_var(var)
+    add_var_vartype(var, p[5][1])
+    p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', print_var(var), p[5][0])
+    if AT_START and INDENT_LEVEL == 2:
+        INIT_VARS += p[0]
+
+# arg1(['model', 'rpar', 'objs', 1])
+# TODO: need a method to set type of the variable
+def p_assignment_arg1_key_assignment_expression(p):
+    'assignment : ARG1 OPENBRACKET expression CLOSEBRACKET ASSIGNMENT expression EOL'
+    p[0] = '%*sgetObjectFromKeyList(%s, %s) = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', 'this', p[3][0], p[6][0])
 
 def p_modelvar_modelvar_var(p):
     'modelvar : modelvar DOT VAR'
@@ -646,6 +674,19 @@ def p_assignment_model_modelvar_assignment_modelexpression(p):
     p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
     if AT_START and INDENT_LEVEL == 2:
         INIT_VARS += p[0]
+
+def p_assignment_arg1_model_modelvar_assignment_expression(p):
+    '''assignment : ARG1 DOT GRAPHICS DOT modelvar ASSIGNMENT expression EOL
+                  | ARG1 DOT MODEL DOT modelvar ASSIGNMENT expression EOL'''
+    global INIT_VARS
+    var = '%s.%s' % (print_var(p[3]), p[5])
+    value = p[7][0]
+    vartype = p[7][1]
+    if var != value:
+        add_var_vartype(var, vartype)
+        p[0] = '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var, value)
+        if AT_START and INDENT_LEVEL == 2:
+            INIT_VARS += p[0]
 
 def p_modelexpression_list_modelexpressionlist(p):
     'modelexpression : LIST OPENBRACKET modelexpressionlist CLOSEBRACKET'
@@ -1004,6 +1045,10 @@ def p_list_list_expression(p):
             | list COMMA listcall'''
     p[0] = '%s,%s' % (p[1], p[3][0])
 
+def p_list_list_arg1(p):
+    'list : list COMMA ARG1'
+    p[0] = '%s,%s' % (p[1], 'this')
+
 def p_list_list_var_expression(p):
     '''list : list COMMA VAR ASSIGNMENT expression
             | list COMMA GRAPHICS ASSIGNMENT expression
@@ -1022,6 +1067,10 @@ def p_list_expression(p):
     '''list : expression
             | listcall'''
     p[0] = '%s' % (p[1][0])
+
+def p_list_arg1(p):
+    'list : ARG1'
+    p[0] = '%s' % ('this')
 
 def p_list_var_expression(p):
     '''list : VAR ASSIGNMENT expression
@@ -1356,6 +1405,12 @@ def p_term_function_parameters(p):
     'term : FUNCTIONNAME OPENBRACKET list CLOSEBRACKET'
     p[0] = ('%s(%s)' % (p[1][0], p[3]), p[1][1])
 
+# arg1(['model', 'rpar', 'objs', 1])
+# TODO: need a method to get type of the variable
+def p_term_arg1_key(p):
+    'term : ARG1 OPENBRACKET expression CLOSEBRACKET'
+    p[0] = ('getObjectFromKeyList(%s, %s)' % ('this', p[3][0]), DOUBLE_TYPE)
+
 # list(2,3)
 def p_listcall_list_parameters(p):
     'listcall : LIST OPENBRACKET list CLOSEBRACKET'
@@ -1448,6 +1503,17 @@ def p_termvar_var(p):
                | MODEL'''
     var = p[1]
     add_global_var(var)
+    vartype = get_var_vartype(var)
+    p[0] = ('%s' % (print_var(var)), vartype)
+
+# arg1.model.ipar
+def p_termvar_arg1_model_var(p):
+    '''termvar : ARG1 DOT GRAPHICS DOT VAR
+               | ARG1 DOT MODEL DOT VAR'''
+    var = p[3]
+    add_global_var(var)
+    add_object_var(var)
+    var = '%s.%s' % (var, p[5])
     vartype = get_var_vartype(var)
     p[0] = ('%s' % (print_var(var)), vartype)
 

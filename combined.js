@@ -4035,6 +4035,8 @@ function MCLOCK_f() {
         alert("parameters cannot be modified");
     }
     MCLOCK_f.prototype.set = function MCLOCK_f() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="MFCLCK_f") {
                 var path = i;
                 break;
@@ -4042,8 +4044,10 @@ function MCLOCK_f() {
         }
         var newpar = list();
         var spath = list("model","rpar","objs",path);
+        var xx = getObjectFromKeyList(this, spath);
         execstr("xxn="+xx.gui+"(\'set\',xx)");
         if (or(this.xxn!=xx)) {
+            getObjectFromKeyList(this, spath) = this.xxn;
             newpar[size(newpar)+1-1] = path;
         }
         var y = 0;
@@ -4340,6 +4344,8 @@ function freq_div() {
         return this.x;
     }
     freq_div.prototype.get = function freq_div() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="Modulo_Count") {
                 var path = i;
                 break;
@@ -4352,6 +4358,7 @@ function freq_div() {
         spath[$+1-1] = "rpar";
         spath[$+1-1] = "objs";
         spath[$+1-1] = path;
+        var xx = getObjectFromKeyList(this, spath);
         var xxn = xx;
         this.graphics = xx.graphics;
         var exprs = this.graphics.exprs;
@@ -4364,6 +4371,8 @@ function freq_div() {
         return options;
     }
     freq_div.prototype.set = function freq_div() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="Modulo_Count") {
                 var path = i;
                 break;
@@ -4376,6 +4385,7 @@ function freq_div() {
         spath[$+1-1] = "rpar";
         spath[$+1-1] = "objs";
         spath[$+1-1] = path;
+        var xx = getObjectFromKeyList(this, spath);
         var xxn = xx;
         this.graphics = xx.graphics;
         var exprs = this.graphics.exprs;
@@ -4441,6 +4451,7 @@ function freq_div() {
                     var needcompile = 4;
                 }
             }
+            getObjectFromKeyList(this, spath) = xxn;
             newpar[size(newpar)+1-1] = 1;
             var y = max(y,needcompile);
         }
@@ -6057,12 +6068,15 @@ function JKFLIPFLOP() {
         return this.x;
     }
     JKFLIPFLOP.prototype.get = function JKFLIPFLOP() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
+        var xx = this.model.rpar.objs[path-1];
         var exprs = xx.graphics.exprs[1-1];
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
@@ -6073,12 +6087,15 @@ function JKFLIPFLOP() {
         return options;
     }
     JKFLIPFLOP.prototype.set = function JKFLIPFLOP() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
+        var xx = this.model.rpar.objs[path-1];
         var exprs = xx.graphics.exprs[1-1];
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
@@ -6098,6 +6115,7 @@ function JKFLIPFLOP() {
                 xx.graphics.exprs[1-1] = exprs0;
                 this.model.odstate[1-1] = new ScilabDouble([this.init]);
                 xx.model = this.model;
+                this.model.rpar.objs[path-1] = xx;
                 break;
             }
         }
@@ -6373,12 +6391,15 @@ function SRFLIPFLOP() {
         return this.x;
     }
     SRFLIPFLOP.prototype.get = function SRFLIPFLOP() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
+        var xx = this.model.rpar.objs[path-1];
         var exprs = xx.graphics.exprs[1-1];
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
@@ -6389,12 +6410,15 @@ function SRFLIPFLOP() {
         return options;
     }
     SRFLIPFLOP.prototype.set = function SRFLIPFLOP() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="DOLLAR_m") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
+        var xx = this.model.rpar.objs[path-1];
         var exprs = xx.graphics.exprs[1-1];
         this.model = xx.model;
         var init_old = this.model.odstate[1-1];
@@ -6414,6 +6438,7 @@ function SRFLIPFLOP() {
                 xx.graphics.exprs[1-1] = exprs0;
                 this.model.odstate[1-1] = new ScilabDouble([this.init]);
                 xx.model = this.model;
+                this.model.rpar.objs[path-1] = xx;
                 break;
             }
         }
@@ -7090,6 +7115,8 @@ function DELAY_f() {
     }
     DELAY_f.prototype.get = function DELAY_f() {
         var ppath = list(0,0);
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="REGISTER_f") {
                 ppath[1-1] = i;
             }
@@ -7115,6 +7142,8 @@ function DELAY_f() {
     }
     DELAY_f.prototype.set = function DELAY_f() {
         var ppath = list(0,0);
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="REGISTER_f") {
                 ppath[1-1] = i;
             }
@@ -8633,7 +8662,11 @@ function PID() {
     }
     PID.prototype.get = function PID() {
         var ppath = list(0,0,0);
+        for (this.i=1;this.i<=length(this.model.rpar.objs);this.i+=1) {
+            var o = this.model.rpar.objs[this.i-1];
             if (typeof(o)=="Link") {
+                var from = this.model.rpar.objs[o.from[1-1]-1];
+                var to = this.model.rpar.objs[o.to[1-1]-1];
                 if (from.gui=="GAINBLK") {
                     switch (to.gui) {
                     case "SUMMATION":
@@ -8659,10 +8692,13 @@ function PID() {
             }
         }
         var newpar = list();
+        var xx1 = this.model.rpar.objs[ppath[1-1]-1];
         exprs[1-1] = xx1.graphics.exprs[1-1];
         var p_old = xx1.model.rpar;
+        var xx2 = this.model.rpar.objs[ppath[2-1]-1];
         exprs[2-1] = xx2.graphics.exprs[1-1];
         var i_old = xx2.model.rpar;
+        var xx3 = this.model.rpar.objs[ppath[3-1]-1];
         exprs[3-1] = xx3.graphics.exprs[1-1];
         var d_old = xx3.model.rpar;
         var y = 0;
@@ -8676,7 +8712,11 @@ function PID() {
     }
     PID.prototype.set = function PID() {
         var ppath = list(0,0,0);
+        for (this.i=1;this.i<=length(this.model.rpar.objs);this.i+=1) {
+            var o = this.model.rpar.objs[this.i-1];
             if (typeof(o)=="Link") {
+                var from = this.model.rpar.objs[o.from[1-1]-1];
+                var to = this.model.rpar.objs[o.to[1-1]-1];
                 if (from.gui=="GAINBLK") {
                     switch (to.gui) {
                     case "SUMMATION":
@@ -8702,10 +8742,13 @@ function PID() {
             }
         }
         var newpar = list();
+        var xx1 = this.model.rpar.objs[ppath[1-1]-1];
         exprs[1-1] = xx1.graphics.exprs[1-1];
         var p_old = xx1.model.rpar;
+        var xx2 = this.model.rpar.objs[ppath[2-1]-1];
         exprs[2-1] = xx2.graphics.exprs[1-1];
         var i_old = xx2.model.rpar;
+        var xx3 = this.model.rpar.objs[ppath[3-1]-1];
         exprs[3-1] = xx3.graphics.exprs[1-1];
         var d_old = xx3.model.rpar;
         var y = 0;
@@ -8725,6 +8768,9 @@ function PID() {
                 xx2.model.rpar = this.i;
                 xx3.graphics.exprs = exprs0[3-1];
                 xx3.model.rpar = this.d;
+                this.model.rpar.objs[ppath[1-1]-1] = xx1;
+                this.model.rpar.objs[ppath[2-1]-1] = xx2;
+                this.model.rpar.objs[ppath[3-1]-1] = xx3;
                 break;
             }
         }
@@ -13295,6 +13341,8 @@ function DEBUG_SCICOS() {
         alert("parameters cannot be modified");
     }
     DEBUG_SCICOS.prototype.set = function DEBUG_SCICOS() {
+        this.gui = "DEBUG";
+        var tmpvar0 = DEBUG("set",this);
         this.x = tmpvar0[0];
         var y = tmpvar0[1];
         var typ = tmpvar0[2];
@@ -13370,6 +13418,7 @@ function DSUPER() {
         var y = this.needcompile;
         var typ = list();
         if ((length(this.graphics.exprs)==0)) {
+            warnBlockByUID(this.model.label,"Invalid masked block.");
             return;
         }
         var exprs = this.graphics.exprs[1-1];
@@ -13379,6 +13428,7 @@ function DSUPER() {
         if (exprs0.length==0) {
             return;
         }
+        var context = [this.model.rpar.props.context];
         var tmpvar0 = script2var(context,PREVAR_scicos_context);
         var PREVAR_scicos_context = tmpvar0[0];
         var ierr = tmpvar0[1];
@@ -13551,6 +13601,8 @@ function EDGE_TRIGGER() {
         alert("parameters cannot be modified");
     }
     EDGE_TRIGGER.prototype.set = function EDGE_TRIGGER() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="EDGETRIGGER") {
                 var ppath = list(i);
                 break;
@@ -13567,6 +13619,7 @@ function EDGE_TRIGGER() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
+            var xx = getObjectFromKeyList(this, spath);
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (diffobjs(this.xxn,xx)) {
                 this.model = xx.model;
@@ -13608,6 +13661,7 @@ function EDGE_TRIGGER() {
                         var needcompile = 4;
                     }
                 }
+                getObjectFromKeyList(this, spath) = this.xxn;
                 newpar[size(newpar)+1-1] = path;
                 var y = max(y,needcompile);
             }
@@ -13637,6 +13691,8 @@ function ENDBLK() {
         alert("parameters cannot be modified");
     }
     ENDBLK.prototype.set = function ENDBLK() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="END_c") {
                 var ppath = list(i);
                 break;
@@ -13653,6 +13709,7 @@ function ENDBLK() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
+            var xx = getObjectFromKeyList(this, spath);
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (!isequalbitwise(this.xxn,xx)) {
                 this.model = xx.model;
@@ -13694,6 +13751,7 @@ function ENDBLK() {
                         var needcompile = 4;
                     }
                 }
+                getObjectFromKeyList(this, spath) = this.xxn;
                 newpar[size(newpar)+1-1] = path;
                 var y = max(y,needcompile);
             }
@@ -14744,10 +14802,13 @@ function PAL_f() {
         alert("parameters cannot be modified");
     }
     PAL_f.prototype.set = function PAL_f() {
+        var tmpvar0 = scicos(this.model.rpar);
         this.x = tmpvar0[0];
         var newparameters = tmpvar0[1];
         var needcompile = tmpvar0[2];
         var edited = tmpvar0[3];
+        this.graphics.id = this.x.props.title[1-1];
+        this.model.rpar = this.x;
         var y = [];
         var typ = [];
         %exit = resume(false)
@@ -15075,6 +15136,7 @@ function SUPER_f() {
         alert("parameters cannot be modified");
     }
     SUPER_f.prototype.set = function SUPER_f() {
+        xcos(this.model.rpar);
         return new SuperBlock(this.x);
     }
     SUPER_f.prototype.get_popup_title = function SUPER_f() {
@@ -18693,7 +18755,7 @@ function CLKOUTV_f() {
         var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
-            this.prt = arguments[0]["prt"];
+            this.prt = parseFloat(arguments[0]["prt"]);
             var exprs = [arguments[0]["prt"]];
             if (!ok) {
                 break;
@@ -18716,11 +18778,14 @@ function CLKOUTV_f() {
         return this.set_param_popup_title;
     }
     CLKOUTV_f.prototype.getinputs = function CLKOUTV_f() {
+        var orig = this.graphics.orig;
+        var sz = this.graphics.sz;
         this.x = orig[1-1]+sz[1-1]/2;
         var y = orig[2-1]+sz[2-1];
         var typ = -ones(this.x);
     }
     CLKOUTV_f.prototype.getorigin = function CLKOUTV_f() {
+        var tmpvar0 = standard_origin(this);
         this.x = tmpvar0[0];
         var y = tmpvar0[1];
     }
@@ -18732,6 +18797,10 @@ function CLKOUTV_f() {
     CLKOUTV_f.prototype.plot = function CLKOUTV_f() {
         var xf = 60;
         var yf = 40;
+        var orig = this.graphics.orig;
+        var sz = this.graphics.sz;
+        var orient = this.graphics.flip;
+        this.prt = this.model.ipar;
         var pat = xget("pattern");
         xset("pattern",this.default_color[-1-1]);
         var thick = xget("thickness");
@@ -18740,6 +18809,7 @@ function CLKOUTV_f() {
         var y = orig[2-1]+sz[2-1]*[[0],[1/3],[1],[1],[1/3]];
         var xo = orig[1-1];
         var yo = orig[2-1]+sz[2-1]/3;
+        var gr_i = this.graphics.gr_i;
         if (type(gr_i)==15) {
             var coli = gr_i[2-1];
             var pcoli = xget("pattern");
@@ -18756,6 +18826,7 @@ function CLKOUTV_f() {
         xfpoly(in1.slice()[1-1]+ones(4,1)*(orig[1-1]+sz[1-1]/2),in1.slice()[2-1]+ones(4,1)*(orig[2-1]+sz[2-1]),1);
         xset("thickness",thick);
         xset("pattern",pat);
+        var ident = this.graphics.id;
         if (ident.length!=0&&ident!="") {
             var font = xget("font");
             xset("font",this.options.ID[1-1][1-1],this.options.ID[1-1][2-1]);
@@ -19850,6 +19921,7 @@ function WFILE_f() {
         var warnMessage = msprintf("Feature %s is obsolete.","WFILE_f");
         var warnAdvise = msprintf("Please use %s instead.","WRITEC_f");
         var warnXcosMessage = msprintf("%s %s",warnMessage,warnAdvise);
+        warnBlockByUID(this.model.label,warnXcosMessage);
         var exprs = this.graphics.exprs;
         var dstate = this.model.dstate;
         var lunit = dstate[2-1];
@@ -20282,12 +20354,15 @@ function CLOCK_c() {
         return this.x;
     }
     CLOCK_c.prototype.get = function CLOCK_c() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="EVTDLY_c") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
+        var xx = this.model.rpar.objs[path-1];
         var exprs = xx.graphics.exprs;
         this.model = xx.model;
         var t0_old = this.model.firing;
@@ -20301,12 +20376,15 @@ function CLOCK_c() {
         return options;
     }
     CLOCK_c.prototype.set = function CLOCK_c() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="EVTDLY_c") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
+        var xx = this.model.rpar.objs[path-1];
         var exprs = xx.graphics.exprs;
         this.model = xx.model;
         var t0_old = this.model.firing;
@@ -20329,6 +20407,7 @@ function CLOCK_c() {
                 this.model.rpar = new ScilabDouble([this.dt],[this.t0]);
                 this.model.firing = new ScilabDouble([this.t0]);
                 xx.model = this.model;
+                this.model.rpar.objs[path-1] = xx;
                 break;
             }
         }
@@ -20396,12 +20475,15 @@ function CLOCK_f() {
         return this.x;
     }
     CLOCK_f.prototype.get = function CLOCK_f() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
+        var xx = this.model.rpar.objs[path-1];
         var exprs = xx.graphics.exprs;
         this.model = xx.model;
         var t0_old = this.model.firing;
@@ -20415,12 +20497,15 @@ function CLOCK_f() {
         return options;
     }
     CLOCK_f.prototype.set = function CLOCK_f() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="EVTDLY_f") {
                 var path = i;
                 break;
             }
         }
         var newpar = list();
+        var xx = this.model.rpar.objs[path-1];
         var exprs = xx.graphics.exprs;
         this.model = xx.model;
         var t0_old = this.model.firing;
@@ -20444,6 +20529,7 @@ function CLOCK_f() {
                 this.model.rpar = new ScilabDouble([this.dt]);
                 this.model.firing = new ScilabDouble([this.t0]);
                 xx.model = this.model;
+                this.model.rpar.objs[path-1] = xx;
                 break;
             }
         }
@@ -20994,6 +21080,8 @@ function FROMWSB() {
         alert("parameters cannot be modified");
     }
     FROMWSB.prototype.set = function FROMWSB() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="FROMWS_c") {
                 var ppath = list(i);
                 break;
@@ -21010,6 +21098,7 @@ function FROMWSB() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
+            var xx = getObjectFromKeyList(this, spath);
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (!isequalbitwise(this.xxn,xx)) {
                 this.model = xx.model;
@@ -21051,6 +21140,7 @@ function FROMWSB() {
                         var needcompile = 4;
                     }
                 }
+                getObjectFromKeyList(this, spath) = this.xxn;
                 newpar[size(newpar)+1-1] = path;
                 var y = max(y,needcompile);
             }
@@ -21334,6 +21424,7 @@ function GEN_SQR() {
     }
     GEN_SQR.prototype.get = function GEN_SQR() {
         var y = this.needcompile;
+        this.model.ipar = 1;
         var typ = list();
         var exprs = this.graphics.exprs;
         this.Btitre = "Set GEN_SQR parameters";
@@ -21353,6 +21444,7 @@ function GEN_SQR() {
     }
     GEN_SQR.prototype.set = function GEN_SQR() {
         var y = this.needcompile;
+        this.model.ipar = 1;
         var typ = list();
         var exprs = this.graphics.exprs;
         this.Btitre = "Set GEN_SQR parameters";
@@ -21687,6 +21779,7 @@ function PULSE_SC() {
     }
     PULSE_SC.prototype.get = function PULSE_SC() {
         var y = this.needcompile;
+        this.model.ipar = 1;
         var typ = list();
         var exprs = this.graphics.exprs;
         this.Btitre = "Set Pulse Generator parameters";
@@ -21706,6 +21799,7 @@ function PULSE_SC() {
     }
     PULSE_SC.prototype.set = function PULSE_SC() {
         var y = this.needcompile;
+        this.model.ipar = 1;
         var typ = list();
         var exprs = this.graphics.exprs;
         this.Btitre = "Set Pulse Generator parameters";
@@ -22578,6 +22672,8 @@ function STEP_FUNCTION() {
         alert("parameters cannot be modified");
     }
     STEP_FUNCTION.prototype.set = function STEP_FUNCTION() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="STEP") {
                 var ppath = list(i);
                 break;
@@ -22593,6 +22689,7 @@ function STEP_FUNCTION() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
+            var xx = getObjectFromKeyList(this, spath);
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (diffobjs(this.xxn,xx)) {
                 this.model = xx.model;
@@ -22631,6 +22728,7 @@ function STEP_FUNCTION() {
                         var needcompile = 4;
                     }
                 }
+                getObjectFromKeyList(this, spath) = this.xxn;
                 newpar[size(newpar)+1-1] = path;
             }
         }
@@ -22734,6 +22832,8 @@ function Sigbuilder() {
     }
     Sigbuilder.prototype.set = function Sigbuilder() {
         var ppath = list(0);
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="CURVE_c") {
                 ppath[1-1] = i;
                 break;
@@ -22750,6 +22850,7 @@ function Sigbuilder() {
                 spath[$+1-1] = "objs";
                 spath[$+1-1] = path[k-1];
             }
+            var xx = getObjectFromKeyList(this, spath);
             execstr("xxn="+xx.gui+"(\'set\',xx)");
             if (diffobjs(this.xxn,xx)) {
                 this.model = xx.model;
@@ -22791,6 +22892,7 @@ function Sigbuilder() {
                         var needcompile = 4;
                     }
                 }
+                getObjectFromKeyList(this, spath) = this.xxn;
                 newpar[size(newpar)+1-1] = path;
                 this.y = max(this.y,needcompile);
             }

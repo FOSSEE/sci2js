@@ -44,7 +44,11 @@ function PID() {
     }
     PID.prototype.get = function PID() {
         var ppath = list(0,0,0);
+        for (this.i=1;this.i<=length(this.model.rpar.objs);this.i+=1) {
+            var o = this.model.rpar.objs[this.i-1];
             if (typeof(o)=="Link") {
+                var from = this.model.rpar.objs[o.from[1-1]-1];
+                var to = this.model.rpar.objs[o.to[1-1]-1];
                 if (from.gui=="GAINBLK") {
                     switch (to.gui) {
                     case "SUMMATION":
@@ -70,10 +74,13 @@ function PID() {
             }
         }
         var newpar = list();
+        var xx1 = this.model.rpar.objs[ppath[1-1]-1];
         exprs[1-1] = xx1.graphics.exprs[1-1];
         var p_old = xx1.model.rpar;
+        var xx2 = this.model.rpar.objs[ppath[2-1]-1];
         exprs[2-1] = xx2.graphics.exprs[1-1];
         var i_old = xx2.model.rpar;
+        var xx3 = this.model.rpar.objs[ppath[3-1]-1];
         exprs[3-1] = xx3.graphics.exprs[1-1];
         var d_old = xx3.model.rpar;
         var y = 0;
@@ -87,7 +94,11 @@ function PID() {
     }
     PID.prototype.set = function PID() {
         var ppath = list(0,0,0);
+        for (this.i=1;this.i<=length(this.model.rpar.objs);this.i+=1) {
+            var o = this.model.rpar.objs[this.i-1];
             if (typeof(o)=="Link") {
+                var from = this.model.rpar.objs[o.from[1-1]-1];
+                var to = this.model.rpar.objs[o.to[1-1]-1];
                 if (from.gui=="GAINBLK") {
                     switch (to.gui) {
                     case "SUMMATION":
@@ -113,10 +124,13 @@ function PID() {
             }
         }
         var newpar = list();
+        var xx1 = this.model.rpar.objs[ppath[1-1]-1];
         exprs[1-1] = xx1.graphics.exprs[1-1];
         var p_old = xx1.model.rpar;
+        var xx2 = this.model.rpar.objs[ppath[2-1]-1];
         exprs[2-1] = xx2.graphics.exprs[1-1];
         var i_old = xx2.model.rpar;
+        var xx3 = this.model.rpar.objs[ppath[3-1]-1];
         exprs[3-1] = xx3.graphics.exprs[1-1];
         var d_old = xx3.model.rpar;
         var y = 0;
@@ -136,6 +150,9 @@ function PID() {
                 xx2.model.rpar = this.i;
                 xx3.graphics.exprs = exprs0[3-1];
                 xx3.model.rpar = this.d;
+                this.model.rpar.objs[ppath[1-1]-1] = xx1;
+                this.model.rpar.objs[ppath[2-1]-1] = xx2;
+                this.model.rpar.objs[ppath[3-1]-1] = xx3;
                 break;
             }
         }

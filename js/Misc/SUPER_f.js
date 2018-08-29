@@ -29,6 +29,7 @@ function SUPER_f() {
         alert("parameters cannot be modified");
     }
     SUPER_f.prototype.set = function SUPER_f() {
+        xcos(this.model.rpar);
         return new SuperBlock(this.x);
     }
     SUPER_f.prototype.get_popup_title = function SUPER_f() {

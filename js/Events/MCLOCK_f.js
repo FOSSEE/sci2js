@@ -76,6 +76,8 @@ function MCLOCK_f() {
         alert("parameters cannot be modified");
     }
     MCLOCK_f.prototype.set = function MCLOCK_f() {
+        for (i=1;i<=length(this.model.rpar.objs);i+=1) {
+            var o = this.model.rpar.objs[i-1];
             if (typeof(o)=="Block"&&o.gui=="MFCLCK_f") {
                 var path = i;
                 break;
@@ -83,8 +85,10 @@ function MCLOCK_f() {
         }
         var newpar = list();
         var spath = list("model","rpar","objs",path);
+        var xx = getObjectFromKeyList(this, spath);
         execstr("xxn="+xx.gui+"(\'set\',xx)");
         if (or(this.xxn!=xx)) {
+            getObjectFromKeyList(this, spath) = this.xxn;
             newpar[size(newpar)+1-1] = path;
         }
         var y = 0;

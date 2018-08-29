@@ -11,6 +11,8 @@ function DEBUG_SCICOS() {
         alert("parameters cannot be modified");
     }
     DEBUG_SCICOS.prototype.set = function DEBUG_SCICOS() {
+        this.gui = "DEBUG";
+        var tmpvar0 = DEBUG("set",this);
         this.x = tmpvar0[0];
         var y = tmpvar0[1];
         var typ = tmpvar0[2];
