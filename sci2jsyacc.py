@@ -19,6 +19,7 @@ import ply.yacc as yacc
 
 from sci2jslex import tokens, JOBTYPES
 from sci2jslex import BOOLEAN_TYPE, DOUBLE_TYPE, LIST_TYPE, MATRIX_TYPE, NULL_TYPE, OBJECT_TYPE, STRING_TYPE, VECTOR_TYPE, VECTOR_BOOLEAN_TYPE, VECTOR_STRING_TYPE
+from missingvariables import MISSING_VARIABLES_MAP
 
 # }}}
 
@@ -129,6 +130,16 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     indent2 = '%*s' % (INDENT_LEVEL * INDENT_SIZE, ' ')
     blocktype = getblocktype(fname)
 
+    missing_variables = MISSING_VARIABLES_MAP.get(fname, [ ])
+    jmissing = ''
+    for vardetails in missing_variables:
+        var = vardetails['var']
+        vartype = vardetails['vartype']
+        defvalue = vardetails['defvalue']
+        add_global_var(var)
+        add_var_vartype(var, vartype)
+        jmissing += '%*s%s = %s;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', print_var(var), defvalue)
+
     jdefine = JOB_BLOCKS['"define"']
     jtitle = JOB_BLOCKS['"title"']
     if OPTIONS_BLOCK != '':
@@ -143,7 +154,7 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     jplot = JOB_BLOCKS['"plot"']
     jset = JOB_BLOCKS['"set"']
 
-    jdefine = '%s%s.prototype.define = function %s() {\n%s%sreturn new %s(%s);\n%s}\n' % (indent, fname, fname, jdefine, indent2, blocktype, print_var('x'), indent)
+    jdefine = '%s%s.prototype.define = function %s() {\n%s%s%sreturn new %s(%s);\n%s}\n' % (indent, fname, fname, jmissing, jdefine, indent2, blocktype, print_var('x'), indent)
     jdetails = '%s%s.prototype.details = function %s() {\n%sreturn %s;\n%s}\n' % (indent, fname, fname, indent2, print_var('x'), indent)
     jget = '%s%s.prototype.get = function %s() {\n%s%s}\n' % (indent, fname, fname, jget, indent)
     if jgetinputs != '':
