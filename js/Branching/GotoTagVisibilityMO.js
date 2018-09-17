@@ -57,4 +57,10 @@ function GotoTagVisibilityMO() {
     GotoTagVisibilityMO.prototype.get_popup_title = function GotoTagVisibilityMO() {
         return this.set_param_popup_title;
     }
+    GotoTagVisibilityMO.prototype.importset = function GotoTagVisibilityMO() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.tag = ary[0];
+    }
+    GotoTagVisibilityMO.prototype.getContainer = function GotoTagVisibilityMO() { return new BasicBlock(this.x); }
 }

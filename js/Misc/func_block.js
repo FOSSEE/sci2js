@@ -36,4 +36,5 @@ function func_block() {
     func_block.prototype.get_popup_title = function func_block() {
         return;
     }
+    func_block.prototype.getContainer = function func_block() { return new BasicBlock(this.x); }
 }

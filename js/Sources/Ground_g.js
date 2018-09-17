@@ -30,4 +30,5 @@ function Ground_g() {
     Ground_g.prototype.get_popup_title = function Ground_g() {
         return;
     }
+    Ground_g.prototype.getContainer = function Ground_g() { return new BasicBlock(this.x); }
 }

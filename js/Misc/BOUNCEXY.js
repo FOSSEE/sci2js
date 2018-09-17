@@ -117,4 +117,17 @@ function BOUNCEXY() {
     BOUNCEXY.prototype.get_popup_title = function BOUNCEXY() {
         return this.set_param_popup_title;
     }
+    BOUNCEXY.prototype.importset = function BOUNCEXY() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.clrs = ary[0];
+        this.siz = ary[1];
+        this.win = ary[2];
+        this.imode = ary[3];
+        this.xmin = ary[4];
+        this.xmax = ary[5];
+        this.ymin = ary[6];
+        this.ymax = ary[7];
+    }
+    BOUNCEXY.prototype.getContainer = function BOUNCEXY() { return new BasicBlock(this.x); }
 }

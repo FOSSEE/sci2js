@@ -54,4 +54,10 @@ function SIGNUM() {
     SIGNUM.prototype.get_popup_title = function SIGNUM() {
         return this.set_param_popup_title;
     }
+    SIGNUM.prototype.importset = function SIGNUM() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.zcr = ary[0];
+    }
+    SIGNUM.prototype.getContainer = function SIGNUM() { return new BasicBlock(this.x); }
 }

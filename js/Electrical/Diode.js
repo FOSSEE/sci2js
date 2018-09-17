@@ -63,4 +63,13 @@ function Diode() {
     Diode.prototype.get_popup_title = function Diode() {
         return this.set_param_popup_title;
     }
+    Diode.prototype.importset = function Diode() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Ids = ary[0];
+        this.Vt = ary[1];
+        this.Maxexp = ary[2];
+        this.R = ary[3];
+    }
+    Diode.prototype.getContainer = function Diode() { return new BasicBlock(this.x); }
 }

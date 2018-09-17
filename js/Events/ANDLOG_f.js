@@ -24,4 +24,5 @@ function ANDLOG_f() {
     ANDLOG_f.prototype.get_popup_title = function ANDLOG_f() {
         return;
     }
+    ANDLOG_f.prototype.getContainer = function ANDLOG_f() { return new BasicBlock(this.x); }
 }

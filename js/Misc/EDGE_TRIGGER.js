@@ -159,4 +159,5 @@ function EDGE_TRIGGER() {
     EDGE_TRIGGER.prototype.get_popup_title = function EDGE_TRIGGER() {
         return;
     }
+    EDGE_TRIGGER.prototype.getContainer = function EDGE_TRIGGER() { return new BasicBlock(this.x); }
 }

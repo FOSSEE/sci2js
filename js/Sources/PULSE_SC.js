@@ -118,4 +118,13 @@ function PULSE_SC() {
     PULSE_SC.prototype.get_popup_title = function PULSE_SC() {
         return this.set_param_popup_title;
     }
+    PULSE_SC.prototype.importset = function PULSE_SC() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.scicos_context.E = ary[0];
+        this.scicos_context.W = ary[1];
+        this.scicos_context.F = ary[2];
+        this.scicos_context.A = ary[3];
+    }
+    PULSE_SC.prototype.getContainer = function PULSE_SC() { return new BasicBlock(this.x); }
 }

@@ -52,4 +52,10 @@ function BIGSOM_f() {
     BIGSOM_f.prototype.get_popup_title = function BIGSOM_f() {
         return this.set_param_popup_title;
     }
+    BIGSOM_f.prototype.importset = function BIGSOM_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.sgn = ary[0];
+    }
+    BIGSOM_f.prototype.getContainer = function BIGSOM_f() { return new BigSom(this.x); }
 }

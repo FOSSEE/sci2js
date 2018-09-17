@@ -57,4 +57,10 @@ function CLKGotoTagVisibility() {
     CLKGotoTagVisibility.prototype.get_popup_title = function CLKGotoTagVisibility() {
         return this.set_param_popup_title;
     }
+    CLKGotoTagVisibility.prototype.importset = function CLKGotoTagVisibility() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.tag = ary[0];
+    }
+    CLKGotoTagVisibility.prototype.getContainer = function CLKGotoTagVisibility() { return new BasicBlock(this.x); }
 }

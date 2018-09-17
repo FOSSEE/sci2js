@@ -27,4 +27,5 @@ function IMPSPLIT_f() {
     IMPSPLIT_f.prototype.get_popup_title = function IMPSPLIT_f() {
         return;
     }
+    IMPSPLIT_f.prototype.getContainer = function IMPSPLIT_f() { return new BasicBlock(this.x); }
 }

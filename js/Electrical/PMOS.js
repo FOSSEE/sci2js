@@ -76,4 +76,18 @@ function PMOS() {
     PMOS.prototype.get_popup_title = function PMOS() {
         return this.set_param_popup_title;
     }
+    PMOS.prototype.importset = function PMOS() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.W = ary[0];
+        this.L = ary[1];
+        this.Beta = ary[2];
+        this.Vt = ary[3];
+        this.K2 = ary[4];
+        this.K5 = ary[5];
+        this.dW = ary[6];
+        this.dL = ary[7];
+        this.RDS = ary[8];
+    }
+    PMOS.prototype.getContainer = function PMOS() { return new BasicBlock(this.x); }
 }

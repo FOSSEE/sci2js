@@ -140,4 +140,18 @@ function BOUNCE() {
     BOUNCE.prototype.get_popup_title = function BOUNCE() {
         return this.set_param_popup_title;
     }
+    BOUNCE.prototype.importset = function BOUNCE() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.rpar1 = ary[0];
+        this.rpar2 = ary[1];
+        this.walls = ary[2];
+        this.xt = ary[3];
+        this.xd = ary[4];
+        this.y = ary[5];
+        this.yd = ary[6];
+        this.g = ary[7];
+        this.C = ary[8];
+    }
+    BOUNCE.prototype.getContainer = function BOUNCE() { return new BasicBlock(this.x); }
 }

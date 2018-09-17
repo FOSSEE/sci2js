@@ -87,4 +87,10 @@ function MATZREIM() {
     MATZREIM.prototype.get_popup_title = function MATZREIM() {
         return this.set_param_popup_title;
     }
+    MATZREIM.prototype.importset = function MATZREIM() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.decomptyp = ary[0];
+    }
+    MATZREIM.prototype.getContainer = function MATZREIM() { return new BasicBlock(this.x); }
 }

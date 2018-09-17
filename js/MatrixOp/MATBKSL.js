@@ -83,4 +83,10 @@ function MATBKSL() {
     MATBKSL.prototype.get_popup_title = function MATBKSL() {
         return this.set_param_popup_title;
     }
+    MATBKSL.prototype.importset = function MATBKSL() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+    }
+    MATBKSL.prototype.getContainer = function MATBKSL() { return new BasicBlock(this.x); }
 }

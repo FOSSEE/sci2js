@@ -61,4 +61,10 @@ function ZCROSS_f() {
     ZCROSS_f.prototype.get_popup_title = function ZCROSS_f() {
         return this.set_param_popup_title;
     }
+    ZCROSS_f.prototype.importset = function ZCROSS_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.in1 = ary[0];
+    }
+    ZCROSS_f.prototype.getContainer = function ZCROSS_f() { return new BasicBlock(this.x); }
 }

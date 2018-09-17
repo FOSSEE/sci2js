@@ -37,4 +37,5 @@ function PAL_f() {
     PAL_f.prototype.get_popup_title = function PAL_f() {
         return;
     }
+    PAL_f.prototype.getContainer = function PAL_f() { return new BasicBlock(this.x); }
 }

@@ -60,4 +60,13 @@ function PuitsP() {
     PuitsP.prototype.get_popup_title = function PuitsP() {
         return this.set_param_popup_title;
     }
+    PuitsP.prototype.importset = function PuitsP() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.P0 = ary[0];
+        this.T0 = ary[1];
+        this.H0 = ary[2];
+        this.option_temperature = ary[3];
+    }
+    PuitsP.prototype.getContainer = function PuitsP() { return new BasicBlock(this.x); }
 }

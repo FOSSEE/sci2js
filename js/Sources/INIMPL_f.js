@@ -65,4 +65,10 @@ function INIMPL_f() {
     INIMPL_f.prototype.get_popup_title = function INIMPL_f() {
         return this.set_param_popup_title;
     }
+    INIMPL_f.prototype.importset = function INIMPL_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.prt = ary[0];
+    }
+    INIMPL_f.prototype.getContainer = function INIMPL_f() { return new ImplicitInBlock(this.x); }
 }

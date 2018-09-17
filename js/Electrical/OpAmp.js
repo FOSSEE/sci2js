@@ -58,4 +58,12 @@ function OpAmp() {
     OpAmp.prototype.get_popup_title = function OpAmp() {
         return this.set_param_popup_title;
     }
+    OpAmp.prototype.importset = function OpAmp() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.OLGain = ary[0];
+        this.SatH = ary[1];
+        this.SatL = ary[2];
+    }
+    OpAmp.prototype.getContainer = function OpAmp() { return new BasicBlock(this.x); }
 }

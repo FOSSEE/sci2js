@@ -82,4 +82,18 @@ function Bache() {
     Bache.prototype.get_popup_title = function Bache() {
         return this.set_param_popup_title;
     }
+    Bache.prototype.importset = function Bache() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Patm = ary[0];
+        this.A = ary[1];
+        this.ze1 = ary[2];
+        this.ze2 = ary[3];
+        this.zs1 = ary[4];
+        this.zs2 = ary[5];
+        this.z0 = ary[6];
+        this.T0 = ary[7];
+        this.p_rho = ary[8];
+    }
+    Bache.prototype.getContainer = function Bache() { return new BasicBlock(this.x); }
 }

@@ -31,4 +31,5 @@ function VariableResistor() {
     VariableResistor.prototype.get_popup_title = function VariableResistor() {
         return;
     }
+    VariableResistor.prototype.getContainer = function VariableResistor() { return new BasicBlock(this.x); }
 }

@@ -57,4 +57,11 @@ function EVTDLY_c() {
     EVTDLY_c.prototype.get_popup_title = function EVTDLY_c() {
         return this.set_param_popup_title;
     }
+    EVTDLY_c.prototype.importset = function EVTDLY_c() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.dt = ary[0];
+        this.ff = ary[1];
+    }
+    EVTDLY_c.prototype.getContainer = function EVTDLY_c() { return new BasicBlock(this.x); }
 }

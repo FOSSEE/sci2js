@@ -50,4 +50,10 @@ function NRMSOM_f() {
     NRMSOM_f.prototype.get_popup_title = function NRMSOM_f() {
         return this.set_param_popup_title;
     }
+    NRMSOM_f.prototype.importset = function NRMSOM_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nin = ary[0];
+    }
+    NRMSOM_f.prototype.getContainer = function NRMSOM_f() { return new BasicBlock(this.x); }
 }

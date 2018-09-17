@@ -78,4 +78,10 @@ function MUX_f() {
     MUX_f.prototype.get_popup_title = function MUX_f() {
         return this.set_param_popup_title;
     }
+    MUX_f.prototype.importset = function MUX_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.in1 = ary[0];
+    }
+    MUX_f.prototype.getContainer = function MUX_f() { return new BasicBlock(this.x); }
 }

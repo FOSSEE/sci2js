@@ -161,4 +161,12 @@ function SUMMATION() {
     SUMMATION.prototype.get_popup_title = function SUMMATION() {
         return this.set_param_popup_title;
     }
+    SUMMATION.prototype.importset = function SUMMATION() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Datatype = ary[0];
+        this.sgn = ary[1];
+        this.satur = ary[2];
+    }
+    SUMMATION.prototype.getContainer = function SUMMATION() { return new Summation(this.x); }
 }

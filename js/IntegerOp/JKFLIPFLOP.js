@@ -115,4 +115,10 @@ function JKFLIPFLOP() {
     JKFLIPFLOP.prototype.get_popup_title = function JKFLIPFLOP() {
         return this.set_param_popup_title;
     }
+    JKFLIPFLOP.prototype.importset = function JKFLIPFLOP() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.init = ary[0];
+    }
+    JKFLIPFLOP.prototype.getContainer = function JKFLIPFLOP() { return new BasicBlock(this.x); }
 }

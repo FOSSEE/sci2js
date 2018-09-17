@@ -54,4 +54,10 @@ function Resistor() {
     Resistor.prototype.get_popup_title = function Resistor() {
         return this.set_param_popup_title;
     }
+    Resistor.prototype.importset = function Resistor() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.R = ary[0];
+    }
+    Resistor.prototype.getContainer = function Resistor() { return new BasicBlock(this.x); }
 }

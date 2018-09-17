@@ -111,4 +111,11 @@ function MATSING() {
     MATSING.prototype.get_popup_title = function MATSING() {
         return this.set_param_popup_title;
     }
+    MATSING.prototype.importset = function MATSING() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+        this.decomptyp = ary[1];
+    }
+    MATSING.prototype.getContainer = function MATSING() { return new BasicBlock(this.x); }
 }

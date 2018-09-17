@@ -78,4 +78,13 @@ function RAND_f() {
     RAND_f.prototype.get_popup_title = function RAND_f() {
         return this.set_param_popup_title;
     }
+    RAND_f.prototype.importset = function RAND_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.flag = ary[0];
+        this.a = ary[1];
+        this.b = ary[2];
+        this.seed_c = ary[3];
+    }
+    RAND_f.prototype.getContainer = function RAND_f() { return new BasicBlock(this.x); }
 }

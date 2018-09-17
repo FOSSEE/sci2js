@@ -154,4 +154,28 @@ function generic_block3() {
     generic_block3.prototype.get_popup_title = function generic_block3() {
         return this.set_param_popup_title;
     }
+    generic_block3.prototype.importset = function generic_block3() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.function_name = ary[0];
+        this.funtyp = ary[1];
+        this.in1 = ary[2];
+        this.it = ary[3];
+        this.out = ary[4];
+        this.ot = ary[5];
+        this.ci = ary[6];
+        this.co = ary[7];
+        this.xx = ary[8];
+        this.z = ary[9];
+        this.oz = ary[10];
+        this.rpar = ary[11];
+        this.ipar = ary[12];
+        this.opar = ary[13];
+        this.nmode = ary[14];
+        this.nzcr = ary[15];
+        this.auto0 = ary[16];
+        this.depu = ary[17];
+        this.dept = ary[18];
+    }
+    generic_block3.prototype.getContainer = function generic_block3() { return new BasicBlock(this.x); }
 }

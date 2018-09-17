@@ -28,4 +28,5 @@ function POSTONEG_f() {
     POSTONEG_f.prototype.get_popup_title = function POSTONEG_f() {
         return;
     }
+    POSTONEG_f.prototype.getContainer = function POSTONEG_f() { return new BasicBlock(this.x); }
 }

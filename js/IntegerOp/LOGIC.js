@@ -79,4 +79,11 @@ function LOGIC() {
     LOGIC.prototype.get_popup_title = function LOGIC() {
         return this.set_param_popup_title;
     }
+    LOGIC.prototype.importset = function LOGIC() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.mat = ary[0];
+        this.herit = ary[1];
+    }
+    LOGIC.prototype.getContainer = function LOGIC() { return new BasicBlock(this.x); }
 }

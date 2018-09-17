@@ -24,4 +24,5 @@ function CLINDUMMY_f() {
     CLINDUMMY_f.prototype.get_popup_title = function CLINDUMMY_f() {
         return;
     }
+    CLINDUMMY_f.prototype.getContainer = function CLINDUMMY_f() { return new BasicBlock(this.x); }
 }

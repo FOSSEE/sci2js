@@ -54,4 +54,10 @@ function ConstantVoltage() {
     ConstantVoltage.prototype.get_popup_title = function ConstantVoltage() {
         return this.set_param_popup_title;
     }
+    ConstantVoltage.prototype.importset = function ConstantVoltage() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.V = ary[0];
+    }
+    ConstantVoltage.prototype.getContainer = function ConstantVoltage() { return new BasicBlock(this.x); }
 }

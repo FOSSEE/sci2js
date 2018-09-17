@@ -66,4 +66,11 @@ function DIFF_c() {
     DIFF_c.prototype.get_popup_title = function DIFF_c() {
         return this.set_param_popup_title;
     }
+    DIFF_c.prototype.importset = function DIFF_c() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.x0 = ary[0];
+        this.xd0 = ary[1];
+    }
+    DIFF_c.prototype.getContainer = function DIFF_c() { return new BasicBlock(this.x); }
 }

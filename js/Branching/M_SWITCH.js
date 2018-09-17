@@ -81,4 +81,12 @@ function M_SWITCH() {
     M_SWITCH.prototype.get_popup_title = function M_SWITCH() {
         return this.set_param_popup_title;
     }
+    M_SWITCH.prototype.importset = function M_SWITCH() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nin = ary[0];
+        this.base = ary[1];
+        this.rule = ary[2];
+    }
+    M_SWITCH.prototype.getContainer = function M_SWITCH() { return new BasicBlock(this.x); }
 }

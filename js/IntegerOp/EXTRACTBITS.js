@@ -246,4 +246,13 @@ function EXTRACTBITS() {
     EXTRACTBITS.prototype.get_popup_title = function EXTRACTBITS() {
         return this.set_param_popup_title;
     }
+    EXTRACTBITS.prototype.importset = function EXTRACTBITS() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Datatype = ary[0];
+        this.rule = ary[1];
+        this.bit = ary[2];
+        this.scal = ary[3];
+    }
+    EXTRACTBITS.prototype.getContainer = function EXTRACTBITS() { return new BasicBlock(this.x); }
 }

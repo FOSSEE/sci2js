@@ -21,4 +21,5 @@ function DEBUG_SCICOS() {
     DEBUG_SCICOS.prototype.get_popup_title = function DEBUG_SCICOS() {
         return;
     }
+    DEBUG_SCICOS.prototype.getContainer = function DEBUG_SCICOS() { return new BasicBlock(this.x); }
 }

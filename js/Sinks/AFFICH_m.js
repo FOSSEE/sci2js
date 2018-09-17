@@ -105,4 +105,16 @@ function AFFICH_m() {
     AFFICH_m.prototype.get_popup_title = function AFFICH_m() {
         return this.set_param_popup_title;
     }
+    AFFICH_m.prototype.importset = function AFFICH_m() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.in1 = ary[0];
+        this.font = ary[1];
+        this.fontsize = ary[2];
+        this.colr = ary[3];
+        this.nt = ary[4];
+        this.nd = ary[5];
+        this.herit = ary[6];
+    }
+    AFFICH_m.prototype.getContainer = function AFFICH_m() { return new AfficheBlock(this.x); }
 }

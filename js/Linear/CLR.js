@@ -97,4 +97,11 @@ function CLR() {
     CLR.prototype.get_popup_title = function CLR() {
         return this.set_param_popup_title;
     }
+    CLR.prototype.importset = function CLR() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.num = ary[0];
+        this.den = ary[1];
+    }
+    CLR.prototype.getContainer = function CLR() { return new BasicBlock(this.x); }
 }

@@ -83,4 +83,12 @@ function DELAYV_f() {
     DELAYV_f.prototype.get_popup_title = function DELAYV_f() {
         return this.set_param_popup_title;
     }
+    DELAYV_f.prototype.importset = function DELAYV_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nin = ary[0];
+        this.zz0 = ary[1];
+        this.T = ary[2];
+    }
+    DELAYV_f.prototype.getContainer = function DELAYV_f() { return new BasicBlock(this.x); }
 }

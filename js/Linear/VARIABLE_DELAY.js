@@ -74,4 +74,12 @@ function VARIABLE_DELAY() {
     VARIABLE_DELAY.prototype.get_popup_title = function VARIABLE_DELAY() {
         return this.set_param_popup_title;
     }
+    VARIABLE_DELAY.prototype.importset = function VARIABLE_DELAY() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.T = ary[0];
+        this.init = ary[1];
+        this.N = ary[2];
+    }
+    VARIABLE_DELAY.prototype.getContainer = function VARIABLE_DELAY() { return new BasicBlock(this.x); }
 }

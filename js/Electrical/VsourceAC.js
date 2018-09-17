@@ -57,4 +57,11 @@ function VsourceAC() {
     VsourceAC.prototype.get_popup_title = function VsourceAC() {
         return this.set_param_popup_title;
     }
+    VsourceAC.prototype.importset = function VsourceAC() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.VA = ary[0];
+        this.FR = ary[1];
+    }
+    VsourceAC.prototype.getContainer = function VsourceAC() { return new BasicBlock(this.x); }
 }

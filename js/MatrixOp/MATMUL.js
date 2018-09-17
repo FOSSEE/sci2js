@@ -180,4 +180,12 @@ function MATMUL() {
     MATMUL.prototype.get_popup_title = function MATMUL() {
         return this.set_param_popup_title;
     }
+    MATMUL.prototype.importset = function MATMUL() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.dtype = ary[0];
+        this.rule = ary[1];
+        this.np = ary[2];
+    }
+    MATMUL.prototype.getContainer = function MATMUL() { return new BasicBlock(this.x); }
 }

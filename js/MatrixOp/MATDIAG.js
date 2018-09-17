@@ -83,4 +83,10 @@ function MATDIAG() {
     MATDIAG.prototype.get_popup_title = function MATDIAG() {
         return this.set_param_popup_title;
     }
+    MATDIAG.prototype.importset = function MATDIAG() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+    }
+    MATDIAG.prototype.getContainer = function MATDIAG() { return new BasicBlock(this.x); }
 }

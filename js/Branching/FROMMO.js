@@ -60,4 +60,10 @@ function FROMMO() {
     FROMMO.prototype.get_popup_title = function FROMMO() {
         return this.set_param_popup_title;
     }
+    FROMMO.prototype.importset = function FROMMO() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.tag = ary[0];
+    }
+    FROMMO.prototype.getContainer = function FROMMO() { return new BasicBlock(this.x); }
 }

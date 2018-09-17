@@ -26,4 +26,5 @@ function MOTOR() {
     MOTOR.prototype.get_popup_title = function MOTOR() {
         return;
     }
+    MOTOR.prototype.getContainer = function MOTOR() { return new BasicBlock(this.x); }
 }

@@ -87,4 +87,5 @@ function ENDBLK() {
     ENDBLK.prototype.get_popup_title = function ENDBLK() {
         return;
     }
+    ENDBLK.prototype.getContainer = function ENDBLK() { return new BasicBlock(this.x); }
 }

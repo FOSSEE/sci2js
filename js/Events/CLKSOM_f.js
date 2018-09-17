@@ -24,4 +24,5 @@ function CLKSOM_f() {
     CLKSOM_f.prototype.get_popup_title = function CLKSOM_f() {
         return;
     }
+    CLKSOM_f.prototype.getContainer = function CLKSOM_f() { return new BasicBlock(this.x); }
 }

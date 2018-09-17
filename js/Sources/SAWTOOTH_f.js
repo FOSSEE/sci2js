@@ -25,4 +25,5 @@ function SAWTOOTH_f() {
     SAWTOOTH_f.prototype.get_popup_title = function SAWTOOTH_f() {
         return;
     }
+    SAWTOOTH_f.prototype.getContainer = function SAWTOOTH_f() { return new BasicBlock(this.x); }
 }

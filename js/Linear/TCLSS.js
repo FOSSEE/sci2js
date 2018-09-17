@@ -109,4 +109,14 @@ function TCLSS() {
     TCLSS.prototype.get_popup_title = function TCLSS() {
         return this.set_param_popup_title;
     }
+    TCLSS.prototype.importset = function TCLSS() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.A = ary[0];
+        this.B = ary[1];
+        this.C = ary[2];
+        this.D = ary[3];
+        this.x0 = ary[4];
+    }
+    TCLSS.prototype.getContainer = function TCLSS() { return new BasicBlock(this.x); }
 }

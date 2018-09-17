@@ -124,4 +124,14 @@ function LOOKUP2D() {
     LOOKUP2D.prototype.get_popup_title = function LOOKUP2D() {
         return this.set_param_popup_title;
     }
+    LOOKUP2D.prototype.importset = function LOOKUP2D() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.xx = ary[0];
+        this.yy = ary[1];
+        this.zz = ary[2];
+        this.Method = ary[3];
+        this.graf = ary[4];
+    }
+    LOOKUP2D.prototype.getContainer = function LOOKUP2D() { return new BasicBlock(this.x); }
 }

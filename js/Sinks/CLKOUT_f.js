@@ -54,4 +54,10 @@ function CLKOUT_f() {
     CLKOUT_f.prototype.get_popup_title = function CLKOUT_f() {
         return this.set_param_popup_title;
     }
+    CLKOUT_f.prototype.importset = function CLKOUT_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.prt = ary[0];
+    }
+    CLKOUT_f.prototype.getContainer = function CLKOUT_f() { return new BasicBlock(this.x); }
 }

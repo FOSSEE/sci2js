@@ -80,4 +80,10 @@ function Flowmeter() {
     Flowmeter.prototype.get_popup_title = function Flowmeter() {
         return this.set_param_popup_title;
     }
+    Flowmeter.prototype.importset = function Flowmeter() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Qini = ary[0];
+    }
+    Flowmeter.prototype.getContainer = function Flowmeter() { return new BasicBlock(this.x); }
 }

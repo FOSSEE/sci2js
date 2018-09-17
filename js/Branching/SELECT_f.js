@@ -61,4 +61,11 @@ function SELECT_f() {
     SELECT_f.prototype.get_popup_title = function SELECT_f() {
         return this.set_param_popup_title;
     }
+    SELECT_f.prototype.importset = function SELECT_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nin = ary[0];
+        this.z0 = ary[1];
+    }
+    SELECT_f.prototype.getContainer = function SELECT_f() { return new BasicBlock(this.x); }
 }

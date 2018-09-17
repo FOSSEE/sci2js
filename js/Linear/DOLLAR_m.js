@@ -107,4 +107,11 @@ function DOLLAR_m() {
     DOLLAR_m.prototype.get_popup_title = function DOLLAR_m() {
         return this.set_param_popup_title;
     }
+    DOLLAR_m.prototype.importset = function DOLLAR_m() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.a = ary[0];
+        this.inh = ary[1];
+    }
+    DOLLAR_m.prototype.getContainer = function DOLLAR_m() { return new BasicBlock(this.x); }
 }

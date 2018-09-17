@@ -110,4 +110,11 @@ function CUMSUM() {
     CUMSUM.prototype.get_popup_title = function CUMSUM() {
         return this.set_param_popup_title;
     }
+    CUMSUM.prototype.importset = function CUMSUM() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+        this.decomptyp = ary[1];
+    }
+    CUMSUM.prototype.getContainer = function CUMSUM() { return new BasicBlock(this.x); }
 }

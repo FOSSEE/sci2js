@@ -82,4 +82,11 @@ function WRITEAU_f() {
     WRITEAU_f.prototype.get_popup_title = function WRITEAU_f() {
         return this.set_param_popup_title;
     }
+    WRITEAU_f.prototype.importset = function WRITEAU_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.N = ary[0];
+        this.swap = ary[1];
+    }
+    WRITEAU_f.prototype.getContainer = function WRITEAU_f() { return new BasicBlock(this.x); }
 }

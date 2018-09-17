@@ -55,4 +55,10 @@ function GENSQR_f() {
     GENSQR_f.prototype.get_popup_title = function GENSQR_f() {
         return this.set_param_popup_title;
     }
+    GENSQR_f.prototype.importset = function GENSQR_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Amplitude = ary[0];
+    }
+    GENSQR_f.prototype.getContainer = function GENSQR_f() { return new BasicBlock(this.x); }
 }

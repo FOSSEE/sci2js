@@ -66,4 +66,14 @@ function SineVoltage() {
     SineVoltage.prototype.get_popup_title = function SineVoltage() {
         return this.set_param_popup_title;
     }
+    SineVoltage.prototype.importset = function SineVoltage() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.V = ary[0];
+        this.ph = ary[1];
+        this.frq = ary[2];
+        this.offset = ary[3];
+        this.start = ary[4];
+    }
+    SineVoltage.prototype.getContainer = function SineVoltage() { return new BasicBlock(this.x); }
 }

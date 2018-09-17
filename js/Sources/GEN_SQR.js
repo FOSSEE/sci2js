@@ -122,4 +122,13 @@ function GEN_SQR() {
     GEN_SQR.prototype.get_popup_title = function GEN_SQR() {
         return this.set_param_popup_title;
     }
+    GEN_SQR.prototype.importset = function GEN_SQR() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.scicos_context.Amin = ary[0];
+        this.scicos_context.Amax = ary[1];
+        this.scicos_context.rule = ary[2];
+        this.scicos_context.F = ary[3];
+    }
+    GEN_SQR.prototype.getContainer = function GEN_SQR() { return new BasicBlock(this.x); }
 }

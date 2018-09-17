@@ -117,4 +117,12 @@ function MATRESH() {
     MATRESH.prototype.get_popup_title = function MATRESH() {
         return this.set_param_popup_title;
     }
+    MATRESH.prototype.importset = function MATRESH() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+        this.l1 = ary[1];
+        this.out = ary[2];
+    }
+    MATRESH.prototype.getContainer = function MATRESH() { return new BasicBlock(this.x); }
 }

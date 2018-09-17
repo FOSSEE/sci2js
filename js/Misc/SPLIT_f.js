@@ -22,4 +22,5 @@ function SPLIT_f() {
     SPLIT_f.prototype.get_popup_title = function SPLIT_f() {
         return;
     }
+    SPLIT_f.prototype.getContainer = function SPLIT_f() { return new BasicBlock(this.x); }
 }

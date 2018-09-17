@@ -99,4 +99,11 @@ function BITCLEAR() {
     BITCLEAR.prototype.get_popup_title = function BITCLEAR() {
         return this.set_param_popup_title;
     }
+    BITCLEAR.prototype.importset = function BITCLEAR() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Datatype = ary[0];
+        this.bit = ary[1];
+    }
+    BITCLEAR.prototype.getContainer = function BITCLEAR() { return new BasicBlock(this.x); }
 }

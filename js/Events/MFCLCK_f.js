@@ -25,8 +25,8 @@ function MFCLCK_f() {
         var exprs = this.graphics.exprs;
         this.set_param_popup_title = "Set Multifrequency clock parameters";
         var options = {
-        dt:["basic period (1/f)",this.dt],
-        nn:["multiply by (n)",this.nn],
+            dt:["basic period (1/f)",this.dt],
+            nn:["multiply by (n)",this.nn],
         }
         return options;
     }
@@ -51,4 +51,11 @@ function MFCLCK_f() {
     MFCLCK_f.prototype.get_popup_title = function MFCLCK_f() {
         return this.set_param_popup_title;
     }
+    MFCLCK_f.prototype.importset = function MFCLCK_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.dt = ary[0];
+        this.nn = ary[1];
+    }
+    MFCLCK_f.prototype.getContainer = function MFCLCK_f() { return new BasicBlock(this.x); }
 }

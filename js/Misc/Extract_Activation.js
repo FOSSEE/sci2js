@@ -98,4 +98,5 @@ function Extract_Activation() {
     Extract_Activation.prototype.get_popup_title = function Extract_Activation() {
         return;
     }
+    Extract_Activation.prototype.getContainer = function Extract_Activation() { return new BasicBlock(this.x); }
 }

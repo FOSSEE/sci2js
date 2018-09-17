@@ -24,4 +24,5 @@ function SINBLK_f() {
     SINBLK_f.prototype.get_popup_title = function SINBLK_f() {
         return;
     }
+    SINBLK_f.prototype.getContainer = function SINBLK_f() { return new BasicBlock(this.x); }
 }

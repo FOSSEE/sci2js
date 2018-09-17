@@ -71,4 +71,15 @@ function PerteDP() {
     PerteDP.prototype.get_popup_title = function PerteDP() {
         return this.set_param_popup_title;
     }
+    PerteDP.prototype.importset = function PerteDP() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.L = ary[0];
+        this.D = ary[1];
+        this.lambda = ary[2];
+        this.z1 = ary[3];
+        this.z2 = ary[4];
+        this.p_rho = ary[5];
+    }
+    PerteDP.prototype.getContainer = function PerteDP() { return new BasicBlock(this.x); }
 }

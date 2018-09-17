@@ -65,4 +65,10 @@ function OUTIMPL_f() {
     OUTIMPL_f.prototype.get_popup_title = function OUTIMPL_f() {
         return this.set_param_popup_title;
     }
+    OUTIMPL_f.prototype.importset = function OUTIMPL_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.prt = ary[0];
+    }
+    OUTIMPL_f.prototype.getContainer = function OUTIMPL_f() { return new ImplicitOutBlock(this.x); }
 }

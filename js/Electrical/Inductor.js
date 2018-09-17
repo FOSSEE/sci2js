@@ -54,4 +54,10 @@ function Inductor() {
     Inductor.prototype.get_popup_title = function Inductor() {
         return this.set_param_popup_title;
     }
+    Inductor.prototype.importset = function Inductor() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.L = ary[0];
+    }
+    Inductor.prototype.getContainer = function Inductor() { return new BasicBlock(this.x); }
 }

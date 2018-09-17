@@ -84,4 +84,13 @@ function fortran_block() {
     fortran_block.prototype.get_popup_title = function fortran_block() {
         return this.set_param_popup_title;
     }
+    fortran_block.prototype.importset = function fortran_block() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.i = ary[0];
+        this.o = ary[1];
+        this.rpar = ary[2];
+        this.funam = ary[3];
+    }
+    fortran_block.prototype.getContainer = function fortran_block() { return new BasicBlock(this.x); }
 }

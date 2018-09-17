@@ -62,4 +62,5 @@ function CCS() {
     CCS.prototype.get_popup_title = function CCS() {
         return;
     }
+    CCS.prototype.getContainer = function CCS() { return new BasicBlock(this.x); }
 }

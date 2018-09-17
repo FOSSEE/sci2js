@@ -113,4 +113,12 @@ function RELATIONALOP() {
     RELATIONALOP.prototype.get_popup_title = function RELATIONALOP() {
         return this.set_param_popup_title;
     }
+    RELATIONALOP.prototype.importset = function RELATIONALOP() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.rule = ary[0];
+        this.zcr = ary[1];
+        this.Datatype = ary[2];
+    }
+    RELATIONALOP.prototype.getContainer = function RELATIONALOP() { return new BasicBlock(this.x); }
 }

@@ -23,9 +23,9 @@ function TKSCALE() {
         var exprs = this.graphics.exprs;
         this.set_param_popup_title = "Set scale block parameters";
         var options = {
-        a:["Min value",this.a],
-        b:["Max value",this.b],
-        f:["Normalization",this.f],
+            a:["Min value",this.a],
+            b:["Max value",this.b],
+            f:["Normalization",this.f],
         }
         return options;
     }
@@ -47,4 +47,12 @@ function TKSCALE() {
     TKSCALE.prototype.get_popup_title = function TKSCALE() {
         return this.set_param_popup_title;
     }
+    TKSCALE.prototype.importset = function TKSCALE() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.a = ary[0];
+        this.b = ary[1];
+        this.f = ary[2];
+    }
+    TKSCALE.prototype.getContainer = function TKSCALE() { return new BasicBlock(this.x); }
 }

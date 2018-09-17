@@ -104,4 +104,14 @@ function RAND_m() {
     RAND_m.prototype.get_popup_title = function RAND_m() {
         return this.set_param_popup_title;
     }
+    RAND_m.prototype.importset = function RAND_m() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+        this.flag = ary[1];
+        this.a = ary[2];
+        this.b = ary[3];
+        this.seed_c = ary[4];
+    }
+    RAND_m.prototype.getContainer = function RAND_m() { return new BasicBlock(this.x); }
 }

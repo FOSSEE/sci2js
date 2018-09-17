@@ -111,4 +111,12 @@ function EXTRACT() {
     EXTRACT.prototype.get_popup_title = function EXTRACT() {
         return this.set_param_popup_title;
     }
+    EXTRACT.prototype.importset = function EXTRACT() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+        this.a = ary[1];
+        this.b = ary[2];
+    }
+    EXTRACT.prototype.getContainer = function EXTRACT() { return new BasicBlock(this.x); }
 }

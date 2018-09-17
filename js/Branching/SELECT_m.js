@@ -81,4 +81,12 @@ function SELECT_m() {
     SELECT_m.prototype.get_popup_title = function SELECT_m() {
         return this.set_param_popup_title;
     }
+    SELECT_m.prototype.importset = function SELECT_m() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+        this.nin = ary[1];
+        this.z0 = ary[2];
+    }
+    SELECT_m.prototype.getContainer = function SELECT_m() { return new BasicBlock(this.x); }
 }

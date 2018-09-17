@@ -57,4 +57,10 @@ function SCALAR2VECTOR() {
     SCALAR2VECTOR.prototype.get_popup_title = function SCALAR2VECTOR() {
         return this.set_param_popup_title;
     }
+    SCALAR2VECTOR.prototype.importset = function SCALAR2VECTOR() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nout = ary[0];
+    }
+    SCALAR2VECTOR.prototype.getContainer = function SCALAR2VECTOR() { return new BasicBlock(this.x); }
 }

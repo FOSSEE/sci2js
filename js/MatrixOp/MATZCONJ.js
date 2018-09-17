@@ -37,4 +37,5 @@ function MATZCONJ() {
     MATZCONJ.prototype.get_popup_title = function MATZCONJ() {
         return;
     }
+    MATZCONJ.prototype.getContainer = function MATZCONJ() { return new BasicBlock(this.x); }
 }

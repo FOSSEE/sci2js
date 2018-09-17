@@ -52,4 +52,10 @@ function CONST_f() {
     CONST_f.prototype.get_popup_title = function CONST_f() {
         return this.set_param_popup_title;
     }
+    CONST_f.prototype.importset = function CONST_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.C = ary[0];
+    }
+    CONST_f.prototype.getContainer = function CONST_f() { return new BasicBlock(this.x); }
 }

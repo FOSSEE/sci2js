@@ -61,4 +61,10 @@ function SAMPHOLD_m() {
     SAMPHOLD_m.prototype.get_popup_title = function SAMPHOLD_m() {
         return this.set_param_popup_title;
     }
+    SAMPHOLD_m.prototype.importset = function SAMPHOLD_m() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.it = ary[0];
+    }
+    SAMPHOLD_m.prototype.getContainer = function SAMPHOLD_m() { return new BasicBlock(this.x); }
 }

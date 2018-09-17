@@ -104,4 +104,5 @@ function DFLIPFLOP() {
     DFLIPFLOP.prototype.get_popup_title = function DFLIPFLOP() {
         return;
     }
+    DFLIPFLOP.prototype.getContainer = function DFLIPFLOP() { return new BasicBlock(this.x); }
 }

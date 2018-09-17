@@ -114,4 +114,13 @@ function WFILE_f() {
     WFILE_f.prototype.get_popup_title = function WFILE_f() {
         return this.set_param_popup_title;
     }
+    WFILE_f.prototype.importset = function WFILE_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.in1 = ary[0];
+        this.fname1 = ary[1];
+        this.frmt1 = ary[2];
+        this.N = ary[3];
+    }
+    WFILE_f.prototype.getContainer = function WFILE_f() { return new BasicBlock(this.x); }
 }

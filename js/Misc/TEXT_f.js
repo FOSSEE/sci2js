@@ -84,4 +84,12 @@ function TEXT_f() {
     TEXT_f.prototype.get_popup_title = function TEXT_f() {
         return this.set_param_popup_title;
     }
+    TEXT_f.prototype.importset = function TEXT_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.txt = ary[0];
+        this.font = ary[1];
+        this.siz = ary[2];
+    }
+    TEXT_f.prototype.getContainer = function TEXT_f() { return new TextBlock(this.x); }
 }

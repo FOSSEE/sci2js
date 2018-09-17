@@ -59,4 +59,10 @@ function POWBLK_f() {
     POWBLK_f.prototype.get_popup_title = function POWBLK_f() {
         return this.set_param_popup_title;
     }
+    POWBLK_f.prototype.importset = function POWBLK_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.a = ary[0];
+    }
+    POWBLK_f.prototype.getContainer = function POWBLK_f() { return new BasicBlock(this.x); }
 }

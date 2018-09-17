@@ -75,4 +75,12 @@ function TIME_DELAY() {
     TIME_DELAY.prototype.get_popup_title = function TIME_DELAY() {
         return this.set_param_popup_title;
     }
+    TIME_DELAY.prototype.importset = function TIME_DELAY() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.T = ary[0];
+        this.init = ary[1];
+        this.N = ary[2];
+    }
+    TIME_DELAY.prototype.getContainer = function TIME_DELAY() { return new BasicBlock(this.x); }
 }

@@ -98,4 +98,5 @@ function MCLOCK_f() {
     MCLOCK_f.prototype.get_popup_title = function MCLOCK_f() {
         return;
     }
+    MCLOCK_f.prototype.getContainer = function MCLOCK_f() { return new BasicBlock(this.x); }
 }

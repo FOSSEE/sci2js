@@ -136,4 +136,12 @@ function SHIFT() {
     SHIFT.prototype.get_popup_title = function SHIFT() {
         return this.set_param_popup_title;
     }
+    SHIFT.prototype.importset = function SHIFT() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Datatype = ary[0];
+        this.nb = ary[1];
+        this.np = ary[2];
+    }
+    SHIFT.prototype.getContainer = function SHIFT() { return new BasicBlock(this.x); }
 }

@@ -93,4 +93,13 @@ function SWITCH2_m() {
     SWITCH2_m.prototype.get_popup_title = function SWITCH2_m() {
         return this.set_param_popup_title;
     }
+    SWITCH2_m.prototype.importset = function SWITCH2_m() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.ot = ary[0];
+        this.rule = ary[1];
+        this.thra = ary[2];
+        this.nzz = ary[3];
+    }
+    SWITCH2_m.prototype.getContainer = function SWITCH2_m() { return new BasicBlock(this.x); }
 }

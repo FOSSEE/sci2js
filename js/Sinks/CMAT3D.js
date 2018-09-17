@@ -83,4 +83,14 @@ function CMAT3D() {
     CMAT3D.prototype.get_popup_title = function CMAT3D() {
         return this.set_param_popup_title;
     }
+    CMAT3D.prototype.importset = function CMAT3D() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.vec_x = ary[0];
+        this.vec_y = ary[1];
+        this.colormap = ary[2];
+        this.cmin = ary[3];
+        this.cmax = ary[4];
+    }
+    CMAT3D.prototype.getContainer = function CMAT3D() { return new BasicBlock(this.x); }
 }

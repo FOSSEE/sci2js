@@ -47,4 +47,10 @@ function HALT_f() {
     HALT_f.prototype.get_popup_title = function HALT_f() {
         return this.set_param_popup_title;
     }
+    HALT_f.prototype.importset = function HALT_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.n = ary[0];
+    }
+    HALT_f.prototype.getContainer = function HALT_f() { return new BasicBlock(this.x); }
 }

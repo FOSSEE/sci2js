@@ -137,4 +137,14 @@ function RFILE_f() {
     RFILE_f.prototype.get_popup_title = function RFILE_f() {
         return this.set_param_popup_title;
     }
+    RFILE_f.prototype.importset = function RFILE_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.tmask1 = ary[0];
+        this.outmask = ary[1];
+        this.fname1 = ary[2];
+        this.frmt1 = ary[3];
+        this.N = ary[4];
+    }
+    RFILE_f.prototype.getContainer = function RFILE_f() { return new BasicBlock(this.x); }
 }

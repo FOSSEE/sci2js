@@ -152,4 +152,17 @@ function READC_f() {
     READC_f.prototype.get_popup_title = function READC_f() {
         return this.set_param_popup_title;
     }
+    READC_f.prototype.importset = function READC_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.tmask1 = ary[0];
+        this.outmask = ary[1];
+        this.fname1 = ary[2];
+        this.frmt1 = ary[3];
+        this.M = ary[4];
+        this.N = ary[5];
+        this.offset = ary[6];
+        this.swap = ary[7];
+    }
+    READC_f.prototype.getContainer = function READC_f() { return new BasicBlock(this.x); }
 }

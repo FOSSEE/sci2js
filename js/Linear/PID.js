@@ -170,4 +170,12 @@ function PID() {
     PID.prototype.get_popup_title = function PID() {
         return this.set_param_popup_title;
     }
+    PID.prototype.importset = function PID() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.p = ary[0];
+        this.i = ary[1];
+        this.d = ary[2];
+    }
+    PID.prototype.getContainer = function PID() { return new BasicBlock(this.x); }
 }

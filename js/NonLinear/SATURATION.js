@@ -66,4 +66,12 @@ function SATURATION() {
     SATURATION.prototype.get_popup_title = function SATURATION() {
         return this.set_param_popup_title;
     }
+    SATURATION.prototype.importset = function SATURATION() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.maxp = ary[0];
+        this.minp = ary[1];
+        this.zeroc = ary[2];
+    }
+    SATURATION.prototype.getContainer = function SATURATION() { return new BasicBlock(this.x); }
 }

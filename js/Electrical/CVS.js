@@ -62,4 +62,5 @@ function CVS() {
     CVS.prototype.get_popup_title = function CVS() {
         return;
     }
+    CVS.prototype.getContainer = function CVS() { return new BasicBlock(this.x); }
 }

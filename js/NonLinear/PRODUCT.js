@@ -78,4 +78,10 @@ function PRODUCT() {
     PRODUCT.prototype.get_popup_title = function PRODUCT() {
         return this.set_param_popup_title;
     }
+    PRODUCT.prototype.importset = function PRODUCT() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.sgn = ary[0];
+    }
+    PRODUCT.prototype.getContainer = function PRODUCT() { return new Product(this.x); }
 }

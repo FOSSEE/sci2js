@@ -57,4 +57,11 @@ function Capacitor() {
     Capacitor.prototype.get_popup_title = function Capacitor() {
         return this.set_param_popup_title;
     }
+    Capacitor.prototype.importset = function Capacitor() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.C = ary[0];
+        this.v = ary[1];
+    }
+    Capacitor.prototype.getContainer = function Capacitor() { return new BasicBlock(this.x); }
 }

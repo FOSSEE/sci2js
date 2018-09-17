@@ -107,4 +107,11 @@ function DOLLAR() {
     DOLLAR.prototype.get_popup_title = function DOLLAR() {
         return this.set_param_popup_title;
     }
+    DOLLAR.prototype.importset = function DOLLAR() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.a = ary[0];
+        this.inh = ary[1];
+    }
+    DOLLAR.prototype.getContainer = function DOLLAR() { return new BasicBlock(this.x); }
 }

@@ -26,4 +26,5 @@ function SAMPLEHOLD_f() {
     SAMPLEHOLD_f.prototype.get_popup_title = function SAMPLEHOLD_f() {
         return;
     }
+    SAMPLEHOLD_f.prototype.getContainer = function SAMPLEHOLD_f() { return new BasicBlock(this.x); }
 }

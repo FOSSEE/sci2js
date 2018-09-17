@@ -385,4 +385,12 @@ function CONVERT() {
     CONVERT.prototype.get_popup_title = function CONVERT() {
         return this.set_param_popup_title;
     }
+    CONVERT.prototype.importset = function CONVERT() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.it = ary[0];
+        this.ot = ary[1];
+        this.np = ary[2];
+    }
+    CONVERT.prototype.getContainer = function CONVERT() { return new BasicBlock(this.x); }
 }

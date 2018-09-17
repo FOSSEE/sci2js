@@ -125,4 +125,18 @@ function scifunc_block_m() {
     scifunc_block_m.prototype.get_popup_title = function scifunc_block_m() {
         return this.set_param_popup_title;
     }
+    scifunc_block_m.prototype.importset = function scifunc_block_m() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.i = ary[0];
+        this.o = ary[1];
+        this.ci = ary[2];
+        this.co = ary[3];
+        this.xx = ary[4];
+        this.z = ary[5];
+        this.rpar = ary[6];
+        this.auto0 = ary[7];
+        this.deptime = ary[8];
+    }
+    scifunc_block_m.prototype.getContainer = function scifunc_block_m() { return new BasicBlock(this.x); }
 }

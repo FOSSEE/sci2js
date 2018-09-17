@@ -31,4 +31,5 @@ function VoltageSensor() {
     VoltageSensor.prototype.get_popup_title = function VoltageSensor() {
         return;
     }
+    VoltageSensor.prototype.getContainer = function VoltageSensor() { return new VoltageSensorBlock(this.x); }
 }

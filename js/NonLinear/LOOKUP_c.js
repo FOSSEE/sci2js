@@ -183,4 +183,14 @@ function LOOKUP_c() {
     LOOKUP_c.prototype.get_popup_title = function LOOKUP_c() {
         return this.set_param_popup_title;
     }
+    LOOKUP_c.prototype.importset = function LOOKUP_c() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Method = ary[0];
+        this.xx = ary[1];
+        this.yy = ary[2];
+        this.extrapo = ary[3];
+        this.graf = ary[4];
+    }
+    LOOKUP_c.prototype.getContainer = function LOOKUP_c() { return new BasicBlock(this.x); }
 }

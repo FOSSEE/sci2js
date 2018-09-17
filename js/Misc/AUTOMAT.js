@@ -140,4 +140,5 @@ function AUTOMAT() {
     AUTOMAT.prototype.get_popup_title = function AUTOMAT() {
         return;
     }
+    AUTOMAT.prototype.getContainer = function AUTOMAT() { return new BasicBlock(this.x); }
 }

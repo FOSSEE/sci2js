@@ -75,4 +75,12 @@ function CMATVIEW() {
     CMATVIEW.prototype.get_popup_title = function CMATVIEW() {
         return this.set_param_popup_title;
     }
+    CMATVIEW.prototype.importset = function CMATVIEW() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.colormap = ary[0];
+        this.cmin = ary[1];
+        this.cmax = ary[2];
+    }
+    CMATVIEW.prototype.getContainer = function CMATVIEW() { return new BasicBlock(this.x); }
 }

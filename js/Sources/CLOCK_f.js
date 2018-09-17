@@ -119,4 +119,11 @@ function CLOCK_f() {
     CLOCK_f.prototype.get_popup_title = function CLOCK_f() {
         return this.set_param_popup_title;
     }
+    CLOCK_f.prototype.importset = function CLOCK_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.dt = ary[0];
+        this.t0 = ary[1];
+    }
+    CLOCK_f.prototype.getContainer = function CLOCK_f() { return new BasicBlock(this.x); }
 }

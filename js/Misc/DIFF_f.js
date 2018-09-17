@@ -48,4 +48,11 @@ function DIFF_f() {
     DIFF_f.prototype.get_popup_title = function DIFF_f() {
         return this.set_param_popup_title;
     }
+    DIFF_f.prototype.importset = function DIFF_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.x0 = ary[0];
+        this.xd0 = ary[1];
+    }
+    DIFF_f.prototype.getContainer = function DIFF_f() { return new BasicBlock(this.x); }
 }

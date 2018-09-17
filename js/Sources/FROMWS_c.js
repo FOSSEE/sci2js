@@ -88,4 +88,13 @@ function FROMWS_c() {
     FROMWS_c.prototype.get_popup_title = function FROMWS_c() {
         return this.set_param_popup_title;
     }
+    FROMWS_c.prototype.importset = function FROMWS_c() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.varnam = ary[0];
+        this.Method = ary[1];
+        this.ZC = ary[2];
+        this.OutEnd = ary[3];
+    }
+    FROMWS_c.prototype.getContainer = function FROMWS_c() { return new BasicBlock(this.x); }
 }

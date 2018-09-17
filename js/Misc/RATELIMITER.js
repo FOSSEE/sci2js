@@ -55,4 +55,11 @@ function RATELIMITER() {
     RATELIMITER.prototype.get_popup_title = function RATELIMITER() {
         return this.set_param_popup_title;
     }
+    RATELIMITER.prototype.importset = function RATELIMITER() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.maxp = ary[0];
+        this.minp = ary[1];
+    }
+    RATELIMITER.prototype.getContainer = function RATELIMITER() { return new BasicBlock(this.x); }
 }

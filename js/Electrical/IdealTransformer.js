@@ -80,4 +80,10 @@ function IdealTransformer() {
     IdealTransformer.prototype.get_popup_title = function IdealTransformer() {
         return this.set_param_popup_title;
     }
+    IdealTransformer.prototype.importset = function IdealTransformer() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.N = ary[0];
+    }
+    IdealTransformer.prototype.getContainer = function IdealTransformer() { return new BasicBlock(this.x); }
 }

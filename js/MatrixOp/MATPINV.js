@@ -83,4 +83,10 @@ function MATPINV() {
     MATPINV.prototype.get_popup_title = function MATPINV() {
         return this.set_param_popup_title;
     }
+    MATPINV.prototype.importset = function MATPINV() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+    }
+    MATPINV.prototype.getContainer = function MATPINV() { return new BasicBlock(this.x); }
 }

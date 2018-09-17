@@ -158,4 +158,20 @@ function CMSCOPE() {
     CMSCOPE.prototype.get_popup_title = function CMSCOPE() {
         return this.set_param_popup_title;
     }
+    CMSCOPE.prototype.importset = function CMSCOPE() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.in1 = ary[0];
+        this.clrs = ary[1];
+        this.win = ary[2];
+        this.wpos = ary[3];
+        this.wdim = ary[4];
+        this.ymin = ary[5];
+        this.ymax = ary[6];
+        this.per = ary[7];
+        this.N = ary[8];
+        this.heritance = ary[9];
+        this.nom = ary[10];
+    }
+    CMSCOPE.prototype.getContainer = function CMSCOPE() { return new BasicBlock(this.x); }
 }

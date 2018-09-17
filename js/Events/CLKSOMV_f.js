@@ -24,4 +24,5 @@ function CLKSOMV_f() {
     CLKSOMV_f.prototype.get_popup_title = function CLKSOMV_f() {
         return;
     }
+    CLKSOMV_f.prototype.getContainer = function CLKSOMV_f() { return new RoundBlock(this.x); }
 }

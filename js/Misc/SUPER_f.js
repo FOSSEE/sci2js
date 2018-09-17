@@ -35,4 +35,5 @@ function SUPER_f() {
     SUPER_f.prototype.get_popup_title = function SUPER_f() {
         return;
     }
+    SUPER_f.prototype.getContainer = function SUPER_f() { return new SuperBlock(this.x); }
 }

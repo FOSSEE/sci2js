@@ -24,4 +24,5 @@ function SUM_f() {
     SUM_f.prototype.get_popup_title = function SUM_f() {
         return;
     }
+    SUM_f.prototype.getContainer = function SUM_f() { return new RoundBlock(this.x); }
 }

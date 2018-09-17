@@ -81,4 +81,12 @@ function ISELECT_m() {
     ISELECT_m.prototype.get_popup_title = function ISELECT_m() {
         return this.set_param_popup_title;
     }
+    ISELECT_m.prototype.importset = function ISELECT_m() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+        this.nout = ary[1];
+        this.z0 = ary[2];
+    }
+    ISELECT_m.prototype.getContainer = function ISELECT_m() { return new BasicBlock(this.x); }
 }

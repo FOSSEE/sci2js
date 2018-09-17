@@ -31,4 +31,5 @@ function CurrentSensor() {
     CurrentSensor.prototype.get_popup_title = function CurrentSensor() {
         return;
     }
+    CurrentSensor.prototype.getContainer = function CurrentSensor() { return new BasicBlock(this.x); }
 }

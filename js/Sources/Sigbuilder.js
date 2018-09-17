@@ -94,4 +94,5 @@ function Sigbuilder() {
     Sigbuilder.prototype.get_popup_title = function Sigbuilder() {
         return;
     }
+    Sigbuilder.prototype.getContainer = function Sigbuilder() { return new BasicBlock(this.x); }
 }

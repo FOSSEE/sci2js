@@ -107,4 +107,11 @@ function EXTTRI() {
     EXTTRI.prototype.get_popup_title = function EXTTRI() {
         return this.set_param_popup_title;
     }
+    EXTTRI.prototype.importset = function EXTTRI() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+        this.decomptyp = ary[1];
+    }
+    EXTTRI.prototype.getContainer = function EXTTRI() { return new BasicBlock(this.x); }
 }

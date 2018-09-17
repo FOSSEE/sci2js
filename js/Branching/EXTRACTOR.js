@@ -53,4 +53,10 @@ function EXTRACTOR() {
     EXTRACTOR.prototype.get_popup_title = function EXTRACTOR() {
         return this.set_param_popup_title;
     }
+    EXTRACTOR.prototype.importset = function EXTRACTOR() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.ind = ary[0];
+    }
+    EXTRACTOR.prototype.getContainer = function EXTRACTOR() { return new BasicBlock(this.x); }
 }

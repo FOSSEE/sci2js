@@ -24,4 +24,5 @@ function COSBLK_f() {
     COSBLK_f.prototype.get_popup_title = function COSBLK_f() {
         return;
     }
+    COSBLK_f.prototype.getContainer = function COSBLK_f() { return new BasicBlock(this.x); }
 }

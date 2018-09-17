@@ -58,4 +58,11 @@ function Switch() {
     Switch.prototype.get_popup_title = function Switch() {
         return this.set_param_popup_title;
     }
+    Switch.prototype.importset = function Switch() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Ron = ary[0];
+        this.Roff = ary[1];
+    }
+    Switch.prototype.getContainer = function Switch() { return new BasicBlock(this.x); }
 }

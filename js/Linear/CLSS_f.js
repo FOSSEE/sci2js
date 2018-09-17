@@ -102,4 +102,14 @@ function CLSS_f() {
     CLSS_f.prototype.get_popup_title = function CLSS_f() {
         return this.set_param_popup_title;
     }
+    CLSS_f.prototype.importset = function CLSS_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.A = ary[0];
+        this.B = ary[1];
+        this.C = ary[2];
+        this.D = ary[3];
+        this.x0 = ary[4];
+    }
+    CLSS_f.prototype.getContainer = function CLSS_f() { return new BasicBlock(this.x); }
 }

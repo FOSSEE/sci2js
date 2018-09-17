@@ -99,4 +99,11 @@ function REGISTER() {
     REGISTER.prototype.get_popup_title = function REGISTER() {
         return this.set_param_popup_title;
     }
+    REGISTER.prototype.importset = function REGISTER() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.z0 = ary[0];
+        this.it = ary[1];
+    }
+    REGISTER.prototype.getContainer = function REGISTER() { return new BasicBlock(this.x); }
 }

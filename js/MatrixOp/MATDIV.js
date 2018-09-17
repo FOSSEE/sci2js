@@ -83,4 +83,10 @@ function MATDIV() {
     MATDIV.prototype.get_popup_title = function MATDIV() {
         return this.set_param_popup_title;
     }
+    MATDIV.prototype.importset = function MATDIV() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+    }
+    MATDIV.prototype.getContainer = function MATDIV() { return new BasicBlock(this.x); }
 }

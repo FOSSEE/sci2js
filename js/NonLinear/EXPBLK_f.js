@@ -57,4 +57,10 @@ function EXPBLK_f() {
     EXPBLK_f.prototype.get_popup_title = function EXPBLK_f() {
         return this.set_param_popup_title;
     }
+    EXPBLK_f.prototype.importset = function EXPBLK_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.a = ary[0];
+    }
+    EXPBLK_f.prototype.getContainer = function EXPBLK_f() { return new BasicBlock(this.x); }
 }

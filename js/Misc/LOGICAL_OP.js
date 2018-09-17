@@ -140,4 +140,13 @@ function LOGICAL_OP() {
     LOGICAL_OP.prototype.get_popup_title = function LOGICAL_OP() {
         return this.set_param_popup_title;
     }
+    LOGICAL_OP.prototype.importset = function LOGICAL_OP() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nin = ary[0];
+        this.rule = ary[1];
+        this.Datatype = ary[2];
+        this.tp = ary[3];
+    }
+    LOGICAL_OP.prototype.getContainer = function LOGICAL_OP() { return new BasicBlock(this.x); }
 }

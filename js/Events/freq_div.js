@@ -228,4 +228,11 @@ function freq_div() {
     freq_div.prototype.get_popup_title = function freq_div() {
         return this.set_param_popup_title;
     }
+    freq_div.prototype.importset = function freq_div() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.%ph = ary[0];
+        this.%df = ary[1];
+    }
+    freq_div.prototype.getContainer = function freq_div() { return new BasicBlock(this.x); }
 }

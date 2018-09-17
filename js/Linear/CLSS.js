@@ -112,4 +112,14 @@ function CLSS() {
     CLSS.prototype.get_popup_title = function CLSS() {
         return this.set_param_popup_title;
     }
+    CLSS.prototype.importset = function CLSS() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.A = ary[0];
+        this.B = ary[1];
+        this.C = ary[2];
+        this.D = ary[3];
+        this.x0 = ary[4];
+    }
+    CLSS.prototype.getContainer = function CLSS() { return new BasicBlock(this.x); }
 }

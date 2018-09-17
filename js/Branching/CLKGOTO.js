@@ -63,4 +63,11 @@ function CLKGOTO() {
     CLKGOTO.prototype.get_popup_title = function CLKGOTO() {
         return this.set_param_popup_title;
     }
+    CLKGOTO.prototype.importset = function CLKGOTO() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.tag = ary[0];
+        this.tagvis = ary[1];
+    }
+    CLKGOTO.prototype.getContainer = function CLKGOTO() { return new BasicBlock(this.x); }
 }

@@ -54,4 +54,10 @@ function CLKIN_f() {
     CLKIN_f.prototype.get_popup_title = function CLKIN_f() {
         return this.set_param_popup_title;
     }
+    CLKIN_f.prototype.importset = function CLKIN_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.prt = ary[0];
+    }
+    CLKIN_f.prototype.getContainer = function CLKIN_f() { return new BasicBlock(this.x); }
 }

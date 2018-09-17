@@ -72,4 +72,10 @@ function MATCATH() {
     MATCATH.prototype.get_popup_title = function MATCATH() {
         return this.set_param_popup_title;
     }
+    MATCATH.prototype.importset = function MATCATH() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nin = ary[0];
+    }
+    MATCATH.prototype.getContainer = function MATCATH() { return new BasicBlock(this.x); }
 }

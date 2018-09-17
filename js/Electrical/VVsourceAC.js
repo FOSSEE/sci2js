@@ -55,4 +55,10 @@ function VVsourceAC() {
     VVsourceAC.prototype.get_popup_title = function VVsourceAC() {
         return this.set_param_popup_title;
     }
+    VVsourceAC.prototype.importset = function VVsourceAC() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.FR = ary[0];
+    }
+    VVsourceAC.prototype.getContainer = function VVsourceAC() { return new BasicBlock(this.x); }
 }

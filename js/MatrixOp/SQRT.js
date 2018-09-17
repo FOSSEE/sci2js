@@ -65,4 +65,10 @@ function SQRT() {
     SQRT.prototype.get_popup_title = function SQRT() {
         return this.set_param_popup_title;
     }
+    SQRT.prototype.importset = function SQRT() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+    }
+    SQRT.prototype.getContainer = function SQRT() { return new BasicBlock(this.x); }
 }

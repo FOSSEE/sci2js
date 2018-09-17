@@ -80,4 +80,15 @@ function DLRADAPT_f() {
     DLRADAPT_f.prototype.get_popup_title = function DLRADAPT_f() {
         return this.set_param_popup_title;
     }
+    DLRADAPT_f.prototype.importset = function DLRADAPT_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.p = ary[0];
+        this.rn = ary[1];
+        this.rd = ary[2];
+        this.g = ary[3];
+        this.last_u = ary[4];
+        this.last_y = ary[5];
+    }
+    DLRADAPT_f.prototype.getContainer = function DLRADAPT_f() { return new BasicBlock(this.x); }
 }

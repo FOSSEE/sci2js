@@ -119,4 +119,11 @@ function INTMUL() {
     INTMUL.prototype.get_popup_title = function INTMUL() {
         return this.set_param_popup_title;
     }
+    INTMUL.prototype.importset = function INTMUL() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Datatype = ary[0];
+        this.np = ary[1];
+    }
+    INTMUL.prototype.getContainer = function INTMUL() { return new BasicBlock(this.x); }
 }

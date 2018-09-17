@@ -125,4 +125,5 @@ function STEP_FUNCTION() {
     STEP_FUNCTION.prototype.get_popup_title = function STEP_FUNCTION() {
         return;
     }
+    STEP_FUNCTION.prototype.getContainer = function STEP_FUNCTION() { return new BasicBlock(this.x); }
 }

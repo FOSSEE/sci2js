@@ -79,4 +79,5 @@ function ANDBLK() {
     ANDBLK.prototype.get_popup_title = function ANDBLK() {
         return;
     }
+    ANDBLK.prototype.getContainer = function ANDBLK() { return new BasicBlock(this.x); }
 }

@@ -61,4 +61,10 @@ function GAIN_f() {
     GAIN_f.prototype.get_popup_title = function GAIN_f() {
         return this.set_param_popup_title;
     }
+    GAIN_f.prototype.importset = function GAIN_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.gain = ary[0];
+    }
+    GAIN_f.prototype.getContainer = function GAIN_f() { return new BasicBlock(this.x); }
 }

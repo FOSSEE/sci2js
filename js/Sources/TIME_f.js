@@ -22,4 +22,5 @@ function TIME_f() {
     TIME_f.prototype.get_popup_title = function TIME_f() {
         return;
     }
+    TIME_f.prototype.getContainer = function TIME_f() { return new BasicBlock(this.x); }
 }

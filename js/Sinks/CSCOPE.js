@@ -127,4 +127,19 @@ function CSCOPE() {
     CSCOPE.prototype.get_popup_title = function CSCOPE() {
         return this.set_param_popup_title;
     }
+    CSCOPE.prototype.importset = function CSCOPE() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.clrs = ary[0];
+        this.win = ary[1];
+        this.wpos = ary[2];
+        this.wdim = ary[3];
+        this.ymin = ary[4];
+        this.ymax = ary[5];
+        this.per = ary[6];
+        this.N = ary[7];
+        this.heritance = ary[8];
+        this.nom = ary[9];
+    }
+    CSCOPE.prototype.getContainer = function CSCOPE() { return new BasicBlock(this.x); }
 }

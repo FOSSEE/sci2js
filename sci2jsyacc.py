@@ -103,6 +103,9 @@ BLOCK_TYPE = {
     'VoltageSensor': 'VoltageSensorBlock',
 }
 
+OPTIONS_BLOCK = ''
+RESTORE_BLOCK = ''
+
 # }}}
 
 # define functionblocks {{{
@@ -118,8 +121,6 @@ def p_functionblocks_jobfunctionblock(p):
 # }}}
 
 # define functionblock {{{
-
-OPTIONS_BLOCK = ''
 
 def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     'jobfunctionblock : jobfunctionstatement statementblock ENDFUNCTION EOL'
@@ -148,6 +149,11 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     else:
         jget = '%salert("parameters cannot be modified");\n' % (indent2)
         jtitle = '%sreturn;\n' % (indent2)
+    if RESTORE_BLOCK != '':
+        jimportset = '%s%s.prototype.importset = function %s() {\n%svar graphics = this.x.graphics;\n%svar ary = getData(graphics.exprs);\n%s%s}\n' % (indent, fname, fname, indent2, indent2, RESTORE_BLOCK, indent)
+    else:
+        jimportset = ''
+    jgetcontainer = '%s%s.prototype.getContainer = function %s() { return new %s(%s); }\n' % (indent, fname, fname, getblocktype(fname), print_var('x'))
     jgetinputs = JOB_BLOCKS['"getinputs"']
     jgetorigin = JOB_BLOCKS['"getorigin"']
     jgetoutputs = JOB_BLOCKS['"getoutputs"']
@@ -169,7 +175,7 @@ def p_jobfunctionblock_jobfunctionstatement_statementblock_endfunction(p):
     jtitle = '%s%s.prototype.get_popup_title = function %s() {\n%s%s}\n' % (indent, fname, fname, jtitle, indent)
 
     INDENT_LEVEL -= 1
-    p[0] = 'function %s() {\n%s%s%s%s%s%s%s%s%s}' % (fname, jdefine, jdetails, jget, jset, jtitle, jgetinputs, jgetorigin, jgetoutputs, jplot)
+    p[0] = 'function %s() {\n%s%s%s%s%s%s%s%s%s%s%s}' % (fname, jdefine, jdetails, jget, jset, jtitle, jgetinputs, jgetorigin, jgetoutputs, jplot, jimportset, jgetcontainer)
 
 def p_functionblock_functionstatement_statementblock_endfunction(p):
     'functionblock : functionstatement statementblock ENDFUNCTION EOL'
@@ -771,7 +777,10 @@ def p_modelexpression_expression(p):
 
 def p_getvalueassignment_getvalue_arguments(p):
     'getvalueassignment : lterm ASSIGNMENT SCICOS_GETVALUE OPENBRACKET getvaluearguments CLOSEBRACKET EOL'
-    global OPTIONS_BLOCK, AT_START
+    global OPTIONS_BLOCK, RESTORE_BLOCK, AT_START
+    indent = '%*s' % (2 * INDENT_SIZE, ' ')
+    indent2 = '%*s' % (3 * INDENT_SIZE, ' ')
+    indent3 = '%*s' % (INDENT_LEVEL * INDENT_SIZE, ' ')
     AT_START = False
     lterm = p[1]
     if lterm[0] == '[':
@@ -790,9 +799,9 @@ def p_getvalueassignment_getvalue_arguments(p):
                 add_global_var(basevar, force=True)
             var = print_var(basevar)
             if idx == -1:
-                p[0] = '%*svar %s = true;\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', var)
+                p[0] = '%svar %s = true;\n' % (indent3, var)
             elif idx == len(ltermvars) - 2:
-                p[0] += "%*svar %s = [%s];\n" % (INDENT_LEVEL * INDENT_SIZE, ' ', var, exprs[:-2])
+                p[0] += "%svar %s = [%s];\n" % (indent3, var, exprs[:-2])
             else:
                 vartype = get_var_vartype(basevar, STRING_TYPE)
                 parsefunction = PARSE_MAP.get(vartype, '')
@@ -801,13 +810,14 @@ def p_getvalueassignment_getvalue_arguments(p):
                 else:
                     parsecall = 'arguments[%d][\"%s\"]' % (0, basevar)
                 exprs += 'arguments[%d][\"%s\"], ' % (0, basevar)
-                p[0] += "%*s%s = %s;\n" % (INDENT_LEVEL * INDENT_SIZE, ' ', var, parsecall)
+                p[0] += "%s%s = %s;\n" % (indent3, var, parsecall)
                 if idx < len(LABELS):
                     if vartype == MATRIX_TYPE:
                         showvar = var + '.toString().replace(/,/g," ")'
                     else:
                         showvar = var
-                    OPTIONS_BLOCK += '%*s%s:[%s,%s],\n' % (INDENT_LEVEL * INDENT_SIZE, ' ', basevar, LABELS[idx], showvar)
+                    OPTIONS_BLOCK += '%s%s:[%s,%s],\n' % (indent2, basevar, LABELS[idx], showvar)
+                    RESTORE_BLOCK += '%s%s = ary[%d];\n' % (indent, var, idx)
 
 def p_getvaluearguments_arg1_arg2_arg3_arg4(p):
     'getvaluearguments : getvaluearg1 COMMA getvaluearg2 COMMA getvaluearg3 COMMA getvaluearg4'

@@ -83,4 +83,10 @@ function CONST_m() {
     CONST_m.prototype.get_popup_title = function CONST_m() {
         return this.set_param_popup_title;
     }
+    CONST_m.prototype.importset = function CONST_m() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.C = ary[0];
+    }
+    CONST_m.prototype.getContainer = function CONST_m() { return new BasicBlock(this.x); }
 }

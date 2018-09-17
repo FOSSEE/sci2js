@@ -62,4 +62,12 @@ function Counter() {
     Counter.prototype.get_popup_title = function Counter() {
         return this.set_param_popup_title;
     }
+    Counter.prototype.importset = function Counter() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.minim = ary[0];
+        this.maxim = ary[1];
+        this.rule = ary[2];
+    }
+    Counter.prototype.getContainer = function Counter() { return new BasicBlock(this.x); }
 }

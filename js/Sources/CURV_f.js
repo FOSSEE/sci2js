@@ -69,4 +69,5 @@ function CURV_f() {
     CURV_f.prototype.get_popup_title = function CURV_f() {
         return;
     }
+    CURV_f.prototype.getContainer = function CURV_f() { return new BasicBlock(this.x); }
 }

@@ -49,4 +49,5 @@ function DLATCH() {
     DLATCH.prototype.get_popup_title = function DLATCH() {
         return;
     }
+    DLATCH.prototype.getContainer = function DLATCH() { return new BasicBlock(this.x); }
 }

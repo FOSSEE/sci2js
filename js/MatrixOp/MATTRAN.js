@@ -77,4 +77,11 @@ function MATTRAN() {
     MATTRAN.prototype.get_popup_title = function MATTRAN() {
         return this.set_param_popup_title;
     }
+    MATTRAN.prototype.importset = function MATTRAN() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+        this.rule = ary[1];
+    }
+    MATTRAN.prototype.getContainer = function MATTRAN() { return new BasicBlock(this.x); }
 }

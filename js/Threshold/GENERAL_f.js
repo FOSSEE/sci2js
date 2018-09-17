@@ -30,8 +30,8 @@ function GENERAL_f() {
         var nout = sum(this.out);
         this.set_param_popup_title = "Set General Zero-Crossing parameters";
         var options = {
-        in1:["Input size",this.in1],
-        out:["Number of event output",this.out],
+            in1:["Input size",this.in1],
+            out:["Number of event output",this.out],
         }
         return options;
     }
@@ -77,4 +77,11 @@ function GENERAL_f() {
     GENERAL_f.prototype.get_popup_title = function GENERAL_f() {
         return this.set_param_popup_title;
     }
+    GENERAL_f.prototype.importset = function GENERAL_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.in1 = ary[0];
+        this.out = ary[1];
+    }
+    GENERAL_f.prototype.getContainer = function GENERAL_f() { return new BasicBlock(this.x); }
 }

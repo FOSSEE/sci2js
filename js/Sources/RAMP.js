@@ -58,4 +58,12 @@ function RAMP() {
     RAMP.prototype.get_popup_title = function RAMP() {
         return this.set_param_popup_title;
     }
+    RAMP.prototype.importset = function RAMP() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.slope = ary[0];
+        this.stt = ary[1];
+        this.iout = ary[2];
+    }
+    RAMP.prototype.getContainer = function RAMP() { return new BasicBlock(this.x); }
 }

@@ -120,4 +120,18 @@ function CFSCOPE() {
     CFSCOPE.prototype.get_popup_title = function CFSCOPE() {
         return this.set_param_popup_title;
     }
+    CFSCOPE.prototype.importset = function CFSCOPE() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.clrs = ary[0];
+        this.win = ary[1];
+        this.wpos = ary[2];
+        this.wdim = ary[3];
+        this.ymin = ary[4];
+        this.ymax = ary[5];
+        this.per = ary[6];
+        this.N = ary[7];
+        this.wu = ary[8];
+    }
+    CFSCOPE.prototype.getContainer = function CFSCOPE() { return new BasicBlock(this.x); }
 }

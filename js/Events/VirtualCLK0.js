@@ -25,4 +25,5 @@ function VirtualCLK0() {
     VirtualCLK0.prototype.get_popup_title = function VirtualCLK0() {
         return;
     }
+    VirtualCLK0.prototype.getContainer = function VirtualCLK0() { return new BasicBlock(this.x); }
 }

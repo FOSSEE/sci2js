@@ -47,4 +47,10 @@ function EDGETRIGGER() {
     EDGETRIGGER.prototype.get_popup_title = function EDGETRIGGER() {
         return this.set_param_popup_title;
     }
+    EDGETRIGGER.prototype.importset = function EDGETRIGGER() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.edge = ary[0];
+    }
+    EDGETRIGGER.prototype.getContainer = function EDGETRIGGER() { return new BasicBlock(this.x); }
 }

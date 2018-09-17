@@ -112,4 +112,11 @@ function MATSUM() {
     MATSUM.prototype.get_popup_title = function MATSUM() {
         return this.set_param_popup_title;
     }
+    MATSUM.prototype.importset = function MATSUM() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+        this.decomptyp = ary[1];
+    }
+    MATSUM.prototype.getContainer = function MATSUM() { return new BasicBlock(this.x); }
 }

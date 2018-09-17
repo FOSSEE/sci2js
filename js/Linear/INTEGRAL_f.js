@@ -46,4 +46,10 @@ function INTEGRAL_f() {
     INTEGRAL_f.prototype.get_popup_title = function INTEGRAL_f() {
         return this.set_param_popup_title;
     }
+    INTEGRAL_f.prototype.importset = function INTEGRAL_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.x0 = ary[0];
+    }
+    INTEGRAL_f.prototype.getContainer = function INTEGRAL_f() { return new BasicBlock(this.x); }
 }

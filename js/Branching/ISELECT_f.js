@@ -61,4 +61,11 @@ function ISELECT_f() {
     ISELECT_f.prototype.get_popup_title = function ISELECT_f() {
         return this.set_param_popup_title;
     }
+    ISELECT_f.prototype.importset = function ISELECT_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nout = ary[0];
+        this.z0 = ary[1];
+    }
+    ISELECT_f.prototype.getContainer = function ISELECT_f() { return new BasicBlock(this.x); }
 }

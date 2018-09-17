@@ -89,4 +89,5 @@ function FROMWSB() {
     FROMWSB.prototype.get_popup_title = function FROMWSB() {
         return;
     }
+    FROMWSB.prototype.getContainer = function FROMWSB() { return new BasicBlock(this.x); }
 }

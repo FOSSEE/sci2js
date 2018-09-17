@@ -63,4 +63,12 @@ function INTRP2BLK_f() {
     INTRP2BLK_f.prototype.get_popup_title = function INTRP2BLK_f() {
         return this.set_param_popup_title;
     }
+    INTRP2BLK_f.prototype.importset = function INTRP2BLK_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.a = ary[0];
+        this.b = ary[1];
+        this.c = ary[2];
+    }
+    INTRP2BLK_f.prototype.getContainer = function INTRP2BLK_f() { return new BasicBlock(this.x); }
 }

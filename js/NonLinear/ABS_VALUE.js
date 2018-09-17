@@ -54,4 +54,10 @@ function ABS_VALUE() {
     ABS_VALUE.prototype.get_popup_title = function ABS_VALUE() {
         return this.set_param_popup_title;
     }
+    ABS_VALUE.prototype.importset = function ABS_VALUE() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.zcr = ary[0];
+    }
+    ABS_VALUE.prototype.getContainer = function ABS_VALUE() { return new BasicBlock(this.x); }
 }

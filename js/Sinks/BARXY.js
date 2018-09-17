@@ -79,4 +79,14 @@ function BARXY() {
     BARXY.prototype.get_popup_title = function BARXY() {
         return this.set_param_popup_title;
     }
+    BARXY.prototype.importset = function BARXY() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.xmin = ary[0];
+        this.xmax = ary[1];
+        this.ymin = ary[2];
+        this.ymax = ary[3];
+        this.thickness = ary[4];
+    }
+    BARXY.prototype.getContainer = function BARXY() { return new BasicBlock(this.x); }
 }

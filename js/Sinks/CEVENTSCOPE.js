@@ -108,4 +108,15 @@ function CEVENTSCOPE() {
     CEVENTSCOPE.prototype.get_popup_title = function CEVENTSCOPE() {
         return this.set_param_popup_title;
     }
+    CEVENTSCOPE.prototype.importset = function CEVENTSCOPE() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nclock = ary[0];
+        this.clrs = ary[1];
+        this.win = ary[2];
+        this.wpos = ary[3];
+        this.wdim = ary[4];
+        this.per = ary[5];
+    }
+    CEVENTSCOPE.prototype.getContainer = function CEVENTSCOPE() { return new BasicBlock(this.x); }
 }

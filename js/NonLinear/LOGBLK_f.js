@@ -59,4 +59,10 @@ function LOGBLK_f() {
     LOGBLK_f.prototype.get_popup_title = function LOGBLK_f() {
         return this.set_param_popup_title;
     }
+    LOGBLK_f.prototype.importset = function LOGBLK_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.a = ary[0];
+    }
+    LOGBLK_f.prototype.getContainer = function LOGBLK_f() { return new BasicBlock(this.x); }
 }

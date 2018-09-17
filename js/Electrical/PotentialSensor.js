@@ -31,4 +31,5 @@ function PotentialSensor() {
     PotentialSensor.prototype.get_popup_title = function PotentialSensor() {
         return;
     }
+    PotentialSensor.prototype.getContainer = function PotentialSensor() { return new BasicBlock(this.x); }
 }

@@ -66,4 +66,12 @@ function DEADBAND() {
     DEADBAND.prototype.get_popup_title = function DEADBAND() {
         return this.set_param_popup_title;
     }
+    DEADBAND.prototype.importset = function DEADBAND() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.maxp = ary[0];
+        this.minp = ary[1];
+        this.zeroc = ary[2];
+    }
+    DEADBAND.prototype.getContainer = function DEADBAND() { return new BasicBlock(this.x); }
 }

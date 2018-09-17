@@ -64,4 +64,11 @@ function RELAY_f() {
     RELAY_f.prototype.get_popup_title = function RELAY_f() {
         return this.set_param_popup_title;
     }
+    RELAY_f.prototype.importset = function RELAY_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nin = ary[0];
+        this.z0 = ary[1];
+    }
+    RELAY_f.prototype.getContainer = function RELAY_f() { return new BasicBlock(this.x); }
 }

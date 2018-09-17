@@ -108,4 +108,11 @@ function MATEIG() {
     MATEIG.prototype.get_popup_title = function MATEIG() {
         return this.set_param_popup_title;
     }
+    MATEIG.prototype.importset = function MATEIG() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+        this.decomptyp = ary[1];
+    }
+    MATEIG.prototype.getContainer = function MATEIG() { return new BasicBlock(this.x); }
 }

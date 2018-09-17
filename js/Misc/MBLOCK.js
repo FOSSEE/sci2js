@@ -312,4 +312,16 @@ function MBLOCK() {
     MBLOCK.prototype.get_popup_title = function MBLOCK() {
         return this.set_param_popup_title;
     }
+    MBLOCK.prototype.importset = function MBLOCK() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Tin = ary[0];
+        this.Tintype = ary[1];
+        this.Tout = ary[2];
+        this.Touttype = ary[3];
+        this.Tparam = ary[4];
+        this.pprop = ary[5];
+        this.Tfunam = ary[6];
+    }
+    MBLOCK.prototype.getContainer = function MBLOCK() { return new BasicBlock(this.x); }
 }

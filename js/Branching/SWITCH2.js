@@ -70,4 +70,12 @@ function SWITCH2() {
     SWITCH2.prototype.get_popup_title = function SWITCH2() {
         return this.set_param_popup_title;
     }
+    SWITCH2.prototype.importset = function SWITCH2() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.rule = ary[0];
+        this.thra = ary[1];
+        this.nzz = ary[2];
+    }
+    SWITCH2.prototype.getContainer = function SWITCH2() { return new BasicBlock(this.x); }
 }

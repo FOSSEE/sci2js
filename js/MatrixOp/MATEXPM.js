@@ -83,4 +83,10 @@ function MATEXPM() {
     MATEXPM.prototype.get_popup_title = function MATEXPM() {
         return this.set_param_popup_title;
     }
+    MATEXPM.prototype.importset = function MATEXPM() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+    }
+    MATEXPM.prototype.getContainer = function MATEXPM() { return new BasicBlock(this.x); }
 }

@@ -93,4 +93,11 @@ function DLR() {
     DLR.prototype.get_popup_title = function DLR() {
         return this.set_param_popup_title;
     }
+    DLR.prototype.importset = function DLR() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.num = ary[0];
+        this.den = ary[1];
+    }
+    DLR.prototype.getContainer = function DLR() { return new BasicBlock(this.x); }
 }

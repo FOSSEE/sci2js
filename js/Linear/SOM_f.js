@@ -42,4 +42,5 @@ function SOM_f() {
     SOM_f.prototype.get_popup_title = function SOM_f() {
         return;
     }
+    SOM_f.prototype.getContainer = function SOM_f() { return new BasicBlock(this.x); }
 }

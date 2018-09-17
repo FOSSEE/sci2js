@@ -56,4 +56,5 @@ function LOOKUP_f() {
     LOOKUP_f.prototype.get_popup_title = function LOOKUP_f() {
         return;
     }
+    LOOKUP_f.prototype.getContainer = function LOOKUP_f() { return new BasicBlock(this.x); }
 }

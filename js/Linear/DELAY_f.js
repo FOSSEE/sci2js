@@ -159,4 +159,11 @@ function DELAY_f() {
     DELAY_f.prototype.get_popup_title = function DELAY_f() {
         return this.set_param_popup_title;
     }
+    DELAY_f.prototype.importset = function DELAY_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.dt = ary[0];
+        this.z0 = ary[1];
+    }
+    DELAY_f.prototype.getContainer = function DELAY_f() { return new BasicBlock(this.x); }
 }

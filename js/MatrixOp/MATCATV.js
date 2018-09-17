@@ -73,4 +73,10 @@ function MATCATV() {
     MATCATV.prototype.get_popup_title = function MATCATV() {
         return this.set_param_popup_title;
     }
+    MATCATV.prototype.importset = function MATCATV() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nin = ary[0];
+    }
+    MATCATV.prototype.getContainer = function MATCATV() { return new BasicBlock(this.x); }
 }

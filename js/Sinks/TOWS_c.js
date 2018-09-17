@@ -82,4 +82,12 @@ function TOWS_c() {
     TOWS_c.prototype.get_popup_title = function TOWS_c() {
         return this.set_param_popup_title;
     }
+    TOWS_c.prototype.importset = function TOWS_c() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nz = ary[0];
+        this.varnam = ary[1];
+        this.herit = ary[2];
+    }
+    TOWS_c.prototype.getContainer = function TOWS_c() { return new BasicBlock(this.x); }
 }

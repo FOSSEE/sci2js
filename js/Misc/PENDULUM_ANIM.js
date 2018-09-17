@@ -85,4 +85,16 @@ function PENDULUM_ANIM() {
     PENDULUM_ANIM.prototype.get_popup_title = function PENDULUM_ANIM() {
         return this.set_param_popup_title;
     }
+    PENDULUM_ANIM.prototype.importset = function PENDULUM_ANIM() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.plen = ary[0];
+        this.csiz = ary[1];
+        this.phi = ary[2];
+        this.xmin = ary[3];
+        this.xmax = ary[4];
+        this.ymin = ary[5];
+        this.ymax = ary[6];
+    }
+    PENDULUM_ANIM.prototype.getContainer = function PENDULUM_ANIM() { return new BasicBlock(this.x); }
 }

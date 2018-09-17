@@ -87,4 +87,10 @@ function MATMAGPHI() {
     MATMAGPHI.prototype.get_popup_title = function MATMAGPHI() {
         return this.set_param_popup_title;
     }
+    MATMAGPHI.prototype.importset = function MATMAGPHI() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.decomptyp = ary[0];
+    }
+    MATMAGPHI.prototype.getContainer = function MATMAGPHI() { return new BasicBlock(this.x); }
 }

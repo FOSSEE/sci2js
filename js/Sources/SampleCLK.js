@@ -64,4 +64,11 @@ function SampleCLK() {
     SampleCLK.prototype.get_popup_title = function SampleCLK() {
         return this.set_param_popup_title;
     }
+    SampleCLK.prototype.importset = function SampleCLK() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.frequ = ary[0];
+        this.offset = ary[1];
+    }
+    SampleCLK.prototype.getContainer = function SampleCLK() { return new BasicBlock(this.x); }
 }

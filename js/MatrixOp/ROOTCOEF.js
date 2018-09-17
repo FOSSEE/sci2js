@@ -85,4 +85,11 @@ function ROOTCOEF() {
     ROOTCOEF.prototype.get_popup_title = function ROOTCOEF() {
         return this.set_param_popup_title;
     }
+    ROOTCOEF.prototype.importset = function ROOTCOEF() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+        this.inp = ary[1];
+    }
+    ROOTCOEF.prototype.getContainer = function ROOTCOEF() { return new BasicBlock(this.x); }
 }

@@ -25,4 +25,5 @@ function FSV_f() {
     FSV_f.prototype.get_popup_title = function FSV_f() {
         return;
     }
+    FSV_f.prototype.getContainer = function FSV_f() { return new BasicBlock(this.x); }
 }

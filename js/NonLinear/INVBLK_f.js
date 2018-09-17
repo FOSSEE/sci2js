@@ -25,4 +25,5 @@ function INVBLK_f() {
     INVBLK_f.prototype.get_popup_title = function INVBLK_f() {
         return;
     }
+    INVBLK_f.prototype.getContainer = function INVBLK_f() { return new BasicBlock(this.x); }
 }

@@ -23,4 +23,5 @@ function ABSBLK_f() {
     ABSBLK_f.prototype.get_popup_title = function ABSBLK_f() {
         return;
     }
+    ABSBLK_f.prototype.getContainer = function ABSBLK_f() { return new BasicBlock(this.x); }
 }

@@ -112,4 +112,10 @@ function CLKOUTV_f() {
         this.x = [];
         var y = [];
     }
+    CLKOUTV_f.prototype.importset = function CLKOUTV_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.prt = ary[0];
+    }
+    CLKOUTV_f.prototype.getContainer = function CLKOUTV_f() { return new EventOutBlock(this.x); }
 }

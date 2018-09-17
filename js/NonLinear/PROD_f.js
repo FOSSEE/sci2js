@@ -22,4 +22,5 @@ function PROD_f() {
     PROD_f.prototype.get_popup_title = function PROD_f() {
         return;
     }
+    PROD_f.prototype.getContainer = function PROD_f() { return new RoundBlock(this.x); }
 }

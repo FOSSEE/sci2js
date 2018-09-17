@@ -51,4 +51,10 @@ function CLKFROM() {
     CLKFROM.prototype.get_popup_title = function CLKFROM() {
         return this.set_param_popup_title;
     }
+    CLKFROM.prototype.importset = function CLKFROM() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.tag = ary[0];
+    }
+    CLKFROM.prototype.getContainer = function CLKFROM() { return new BasicBlock(this.x); }
 }

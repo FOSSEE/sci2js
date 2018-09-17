@@ -102,4 +102,14 @@ function INTEGRAL() {
     INTEGRAL.prototype.get_popup_title = function INTEGRAL() {
         return this.set_param_popup_title;
     }
+    INTEGRAL.prototype.importset = function INTEGRAL() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.x0 = ary[0];
+        this.reinit = ary[1];
+        this.satur = ary[2];
+        this.maxp = ary[3];
+        this.lowp = ary[4];
+    }
+    INTEGRAL.prototype.getContainer = function INTEGRAL() { return new BasicBlock(this.x); }
 }

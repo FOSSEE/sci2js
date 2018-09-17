@@ -44,4 +44,5 @@ function SELF_SWITCH() {
     SELF_SWITCH.prototype.get_popup_title = function SELF_SWITCH() {
         return;
     }
+    SELF_SWITCH.prototype.getContainer = function SELF_SWITCH() { return new BasicBlock(this.x); }
 }

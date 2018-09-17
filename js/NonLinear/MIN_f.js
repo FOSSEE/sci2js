@@ -26,4 +26,5 @@ function MIN_f() {
     MIN_f.prototype.get_popup_title = function MIN_f() {
         return;
     }
+    MIN_f.prototype.getContainer = function MIN_f() { return new BasicBlock(this.x); }
 }

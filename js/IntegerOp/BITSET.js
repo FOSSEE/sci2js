@@ -97,4 +97,11 @@ function BITSET() {
     BITSET.prototype.get_popup_title = function BITSET() {
         return this.set_param_popup_title;
     }
+    BITSET.prototype.importset = function BITSET() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Datatype = ary[0];
+        this.bit = ary[1];
+    }
+    BITSET.prototype.getContainer = function BITSET() { return new BasicBlock(this.x); }
 }

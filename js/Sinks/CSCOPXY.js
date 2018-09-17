@@ -131,4 +131,20 @@ function CSCOPXY() {
     CSCOPXY.prototype.get_popup_title = function CSCOPXY() {
         return this.set_param_popup_title;
     }
+    CSCOPXY.prototype.importset = function CSCOPXY() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nbr_curves = ary[0];
+        this.clrs = ary[1];
+        this.siz = ary[2];
+        this.win = ary[3];
+        this.wpos = ary[4];
+        this.wdim = ary[5];
+        this.xmin = ary[6];
+        this.xmax = ary[7];
+        this.ymin = ary[8];
+        this.ymax = ary[9];
+        this.N = ary[10];
+    }
+    CSCOPXY.prototype.getContainer = function CSCOPXY() { return new BasicBlock(this.x); }
 }

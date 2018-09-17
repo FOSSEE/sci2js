@@ -85,4 +85,16 @@ function BPLATFORM() {
     BPLATFORM.prototype.get_popup_title = function BPLATFORM() {
         return this.set_param_popup_title;
     }
+    BPLATFORM.prototype.importset = function BPLATFORM() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.plen = ary[0];
+        this.csiz = ary[1];
+        this.phi = ary[2];
+        this.xmin = ary[3];
+        this.xmax = ary[4];
+        this.ymin = ary[5];
+        this.ymax = ary[6];
+    }
+    BPLATFORM.prototype.getContainer = function BPLATFORM() { return new BasicBlock(this.x); }
 }

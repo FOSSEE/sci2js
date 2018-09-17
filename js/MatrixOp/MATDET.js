@@ -83,4 +83,10 @@ function MATDET() {
     MATDET.prototype.get_popup_title = function MATDET() {
         return this.set_param_popup_title;
     }
+    MATDET.prototype.importset = function MATDET() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+    }
+    MATDET.prototype.getContainer = function MATDET() { return new BasicBlock(this.x); }
 }

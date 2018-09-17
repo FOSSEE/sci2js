@@ -52,4 +52,10 @@ function TrigFun() {
     TrigFun.prototype.get_popup_title = function TrigFun() {
         return this.set_param_popup_title;
     }
+    TrigFun.prototype.importset = function TrigFun() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.fun = ary[0];
+    }
+    TrigFun.prototype.getContainer = function TrigFun() { return new BasicBlock(this.x); }
 }

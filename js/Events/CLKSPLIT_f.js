@@ -23,4 +23,5 @@ function CLKSPLIT_f() {
     CLKSPLIT_f.prototype.get_popup_title = function CLKSPLIT_f() {
         return;
     }
+    CLKSPLIT_f.prototype.getContainer = function CLKSPLIT_f() { return new BasicBlock(this.x); }
 }

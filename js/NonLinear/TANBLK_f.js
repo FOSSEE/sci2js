@@ -26,4 +26,5 @@ function TANBLK_f() {
     TANBLK_f.prototype.get_popup_title = function TANBLK_f() {
         return;
     }
+    TANBLK_f.prototype.getContainer = function TANBLK_f() { return new BasicBlock(this.x); }
 }

@@ -79,4 +79,10 @@ function DEMUX() {
     DEMUX.prototype.get_popup_title = function DEMUX() {
         return this.set_param_popup_title;
     }
+    DEMUX.prototype.importset = function DEMUX() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.out = ary[0];
+    }
+    DEMUX.prototype.getContainer = function DEMUX() { return new BasicBlock(this.x); }
 }

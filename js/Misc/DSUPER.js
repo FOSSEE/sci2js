@@ -55,4 +55,5 @@ function DSUPER() {
     DSUPER.prototype.get_popup_title = function DSUPER() {
         return;
     }
+    DSUPER.prototype.getContainer = function DSUPER() { return new BasicBlock(this.x); }
 }

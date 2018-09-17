@@ -99,4 +99,10 @@ function SRFLIPFLOP() {
     SRFLIPFLOP.prototype.get_popup_title = function SRFLIPFLOP() {
         return this.set_param_popup_title;
     }
+    SRFLIPFLOP.prototype.importset = function SRFLIPFLOP() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.init = ary[0];
+    }
+    SRFLIPFLOP.prototype.getContainer = function SRFLIPFLOP() { return new BasicBlock(this.x); }
 }

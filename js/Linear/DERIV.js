@@ -24,4 +24,5 @@ function DERIV() {
     DERIV.prototype.get_popup_title = function DERIV() {
         return;
     }
+    DERIV.prototype.getContainer = function DERIV() { return new BasicBlock(this.x); }
 }

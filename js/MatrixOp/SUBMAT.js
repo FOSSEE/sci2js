@@ -119,4 +119,15 @@ function SUBMAT() {
     SUBMAT.prototype.get_popup_title = function SUBMAT() {
         return this.set_param_popup_title;
     }
+    SUBMAT.prototype.importset = function SUBMAT() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+        this.a = ary[1];
+        this.b = ary[2];
+        this.c = ary[3];
+        this.d = ary[4];
+        this.inp = ary[5];
+    }
+    SUBMAT.prototype.getContainer = function SUBMAT() { return new BasicBlock(this.x); }
 }

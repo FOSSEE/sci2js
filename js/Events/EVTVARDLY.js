@@ -46,4 +46,10 @@ function EVTVARDLY() {
     EVTVARDLY.prototype.get_popup_title = function EVTVARDLY() {
         return this.set_param_popup_title;
     }
+    EVTVARDLY.prototype.importset = function EVTVARDLY() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.fir = ary[0];
+    }
+    EVTVARDLY.prototype.getContainer = function EVTVARDLY() { return new BasicBlock(this.x); }
 }

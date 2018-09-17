@@ -66,4 +66,11 @@ function QUANT_f() {
     QUANT_f.prototype.get_popup_title = function QUANT_f() {
         return this.set_param_popup_title;
     }
+    QUANT_f.prototype.importset = function QUANT_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.pas = ary[0];
+        this.meth = ary[1];
+    }
+    QUANT_f.prototype.getContainer = function QUANT_f() { return new BasicBlock(this.x); }
 }

@@ -174,4 +174,11 @@ function GAINBLK() {
     GAINBLK.prototype.get_popup_title = function GAINBLK() {
         return this.set_param_popup_title;
     }
+    GAINBLK.prototype.importset = function GAINBLK() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.gain = ary[0];
+        this.over = ary[1];
+    }
+    GAINBLK.prototype.getContainer = function GAINBLK() { return new BasicBlock(this.x); }
 }

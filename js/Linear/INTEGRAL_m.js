@@ -149,4 +149,14 @@ function INTEGRAL_m() {
     INTEGRAL_m.prototype.get_popup_title = function INTEGRAL_m() {
         return this.set_param_popup_title;
     }
+    INTEGRAL_m.prototype.importset = function INTEGRAL_m() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.x0 = ary[0];
+        this.reinit = ary[1];
+        this.satur = ary[2];
+        this.maxp = ary[3];
+        this.lowp = ary[4];
+    }
+    INTEGRAL_m.prototype.getContainer = function INTEGRAL_m() { return new BasicBlock(this.x); }
 }

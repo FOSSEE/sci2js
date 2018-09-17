@@ -76,4 +76,18 @@ function NMOS() {
     NMOS.prototype.get_popup_title = function NMOS() {
         return this.set_param_popup_title;
     }
+    NMOS.prototype.importset = function NMOS() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.W = ary[0];
+        this.L = ary[1];
+        this.Beta = ary[2];
+        this.Vt = ary[3];
+        this.K2 = ary[4];
+        this.K5 = ary[5];
+        this.dW = ary[6];
+        this.dL = ary[7];
+        this.RDS = ary[8];
+    }
+    NMOS.prototype.getContainer = function NMOS() { return new BasicBlock(this.x); }
 }

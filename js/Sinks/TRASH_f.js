@@ -25,4 +25,5 @@ function TRASH_f() {
     TRASH_f.prototype.get_popup_title = function TRASH_f() {
         return;
     }
+    TRASH_f.prototype.getContainer = function TRASH_f() { return new BasicBlock(this.x); }
 }

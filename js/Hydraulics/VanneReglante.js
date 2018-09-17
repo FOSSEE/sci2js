@@ -59,4 +59,11 @@ function VanneReglante() {
     VanneReglante.prototype.get_popup_title = function VanneReglante() {
         return this.set_param_popup_title;
     }
+    VanneReglante.prototype.importset = function VanneReglante() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Cvmax = ary[0];
+        this.p_rho = ary[1];
+    }
+    VanneReglante.prototype.getContainer = function VanneReglante() { return new BasicBlock(this.x); }
 }

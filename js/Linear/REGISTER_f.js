@@ -53,4 +53,10 @@ function REGISTER_f() {
     REGISTER_f.prototype.get_popup_title = function REGISTER_f() {
         return this.set_param_popup_title;
     }
+    REGISTER_f.prototype.importset = function REGISTER_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.z0 = ary[0];
+    }
+    REGISTER_f.prototype.getContainer = function REGISTER_f() { return new BasicBlock(this.x); }
 }

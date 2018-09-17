@@ -112,4 +112,26 @@ function NPN() {
     NPN.prototype.get_popup_title = function NPN() {
         return this.set_param_popup_title;
     }
+    NPN.prototype.importset = function NPN() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.Bf = ary[0];
+        this.Br = ary[1];
+        this.Is = ary[2];
+        this.Vak = ary[3];
+        this.Tauf = ary[4];
+        this.Taur = ary[5];
+        this.Ccs = ary[6];
+        this.Cje = ary[7];
+        this.Cjc = ary[8];
+        this.Phie = ary[9];
+        this.Me = ary[10];
+        this.Phic = ary[11];
+        this.Mc = ary[12];
+        this.Gbc = ary[13];
+        this.Gbe = ary[14];
+        this.Vt = ary[15];
+        this.EMinMax = ary[16];
+    }
+    NPN.prototype.getContainer = function NPN() { return new BasicBlock(this.x); }
 }

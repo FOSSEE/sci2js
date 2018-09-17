@@ -149,4 +149,20 @@ function CANIMXY3D() {
     CANIMXY3D.prototype.get_popup_title = function CANIMXY3D() {
         return this.set_param_popup_title;
     }
+    CANIMXY3D.prototype.importset = function CANIMXY3D() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.nbr_curves = ary[0];
+        this.clrs = ary[1];
+        this.siz = ary[2];
+        this.win = ary[3];
+        this.wpos = ary[4];
+        this.wdim = ary[5];
+        this.vec_x = ary[6];
+        this.vec_y = ary[7];
+        this.vec_z = ary[8];
+        this.param3ds = ary[9];
+        this.N = ary[10];
+    }
+    CANIMXY3D.prototype.getContainer = function CANIMXY3D() { return new BasicBlock(this.x); }
 }

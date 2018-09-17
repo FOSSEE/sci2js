@@ -70,4 +70,5 @@ function IN_f() {
     IN_f.prototype.get_popup_title = function IN_f() {
         return;
     }
+    IN_f.prototype.getContainer = function IN_f() { return new ExplicitInBlock(this.x); }
 }

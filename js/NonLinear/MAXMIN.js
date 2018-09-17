@@ -87,4 +87,12 @@ function MAXMIN() {
     MAXMIN.prototype.get_popup_title = function MAXMIN() {
         return this.set_param_popup_title;
     }
+    MAXMIN.prototype.importset = function MAXMIN() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.mm = ary[0];
+        this.nin = ary[1];
+        this.zcr = ary[2];
+    }
+    MAXMIN.prototype.getContainer = function MAXMIN() { return new BasicBlock(this.x); }
 }

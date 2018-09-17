@@ -67,4 +67,14 @@ function HYSTHERESIS() {
     HYSTHERESIS.prototype.get_popup_title = function HYSTHERESIS() {
         return this.set_param_popup_title;
     }
+    HYSTHERESIS.prototype.importset = function HYSTHERESIS() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.high_lim = ary[0];
+        this.low_lim = ary[1];
+        this.out_high = ary[2];
+        this.out_low = ary[3];
+        this.nzz = ary[4];
+    }
+    HYSTHERESIS.prototype.getContainer = function HYSTHERESIS() { return new BasicBlock(this.x); }
 }

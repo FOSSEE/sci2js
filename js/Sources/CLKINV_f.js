@@ -54,4 +54,10 @@ function CLKINV_f() {
     CLKINV_f.prototype.get_popup_title = function CLKINV_f() {
         return this.set_param_popup_title;
     }
+    CLKINV_f.prototype.importset = function CLKINV_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.prt = ary[0];
+    }
+    CLKINV_f.prototype.getContainer = function CLKINV_f() { return new EventInBlock(this.x); }
 }

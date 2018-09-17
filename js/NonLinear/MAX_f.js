@@ -26,4 +26,5 @@ function MAX_f() {
     MAX_f.prototype.get_popup_title = function MAX_f() {
         return;
     }
+    MAX_f.prototype.getContainer = function MAX_f() { return new BasicBlock(this.x); }
 }

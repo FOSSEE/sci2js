@@ -88,4 +88,11 @@ function M_freq() {
     M_freq.prototype.get_popup_title = function M_freq() {
         return this.set_param_popup_title;
     }
+    M_freq.prototype.importset = function M_freq() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.frequ = ary[0];
+        this.offset = ary[1];
+    }
+    M_freq.prototype.getContainer = function M_freq() { return new BasicBlock(this.x); }
 }

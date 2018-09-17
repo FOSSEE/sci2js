@@ -60,4 +60,12 @@ function BACKLASH() {
     BACKLASH.prototype.get_popup_title = function BACKLASH() {
         return this.set_param_popup_title;
     }
+    BACKLASH.prototype.importset = function BACKLASH() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.ini = ary[0];
+        this.gap = ary[1];
+        this.zcr = ary[2];
+    }
+    BACKLASH.prototype.getContainer = function BACKLASH() { return new BasicBlock(this.x); }
 }

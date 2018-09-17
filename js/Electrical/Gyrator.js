@@ -82,4 +82,11 @@ function Gyrator() {
     Gyrator.prototype.get_popup_title = function Gyrator() {
         return this.set_param_popup_title;
     }
+    Gyrator.prototype.importset = function Gyrator() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.G1 = ary[0];
+        this.G2 = ary[1];
+    }
+    Gyrator.prototype.getContainer = function Gyrator() { return new BasicBlock(this.x); }
 }

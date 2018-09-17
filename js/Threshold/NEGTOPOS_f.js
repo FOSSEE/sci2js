@@ -27,4 +27,5 @@ function NEGTOPOS_f() {
     NEGTOPOS_f.prototype.get_popup_title = function NEGTOPOS_f() {
         return;
     }
+    NEGTOPOS_f.prototype.getContainer = function NEGTOPOS_f() { return new BasicBlock(this.x); }
 }

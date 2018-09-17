@@ -114,4 +114,14 @@ function WRITEC_f() {
     WRITEC_f.prototype.get_popup_title = function WRITEC_f() {
         return this.set_param_popup_title;
     }
+    WRITEC_f.prototype.importset = function WRITEC_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.in1 = ary[0];
+        this.fname1 = ary[1];
+        this.frmt1 = ary[2];
+        this.N = ary[3];
+        this.swap = ary[4];
+    }
+    WRITEC_f.prototype.getContainer = function WRITEC_f() { return new BasicBlock(this.x); }
 }

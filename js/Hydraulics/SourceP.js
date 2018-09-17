@@ -62,4 +62,13 @@ function SourceP() {
     SourceP.prototype.get_popup_title = function SourceP() {
         return this.set_param_popup_title;
     }
+    SourceP.prototype.importset = function SourceP() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.P0 = ary[0];
+        this.T0 = ary[1];
+        this.H0 = ary[2];
+        this.option_temperature = ary[3];
+    }
+    SourceP.prototype.getContainer = function SourceP() { return new BasicBlock(this.x); }
 }

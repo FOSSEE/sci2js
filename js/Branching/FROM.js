@@ -57,4 +57,10 @@ function FROM() {
     FROM.prototype.get_popup_title = function FROM() {
         return this.set_param_popup_title;
     }
+    FROM.prototype.importset = function FROM() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.tag = ary[0];
+    }
+    FROM.prototype.getContainer = function FROM() { return new BasicBlock(this.x); }
 }

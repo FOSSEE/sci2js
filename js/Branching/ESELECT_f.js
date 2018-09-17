@@ -89,4 +89,12 @@ function ESELECT_f() {
     ESELECT_f.prototype.get_popup_title = function ESELECT_f() {
         return this.set_param_popup_title;
     }
+    ESELECT_f.prototype.importset = function ESELECT_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.out = ary[0];
+        this.inh = ary[1];
+        this.nmod = ary[2];
+    }
+    ESELECT_f.prototype.getContainer = function ESELECT_f() { return new BasicBlock(this.x); }
 }

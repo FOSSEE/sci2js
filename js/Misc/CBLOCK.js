@@ -169,4 +169,23 @@ function CBLOCK() {
     CBLOCK.prototype.get_popup_title = function CBLOCK() {
         return this.set_param_popup_title;
     }
+    CBLOCK.prototype.importset = function CBLOCK() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.function_name = ary[0];
+        this.impli = ary[1];
+        this.i = ary[2];
+        this.o = ary[3];
+        this.ci = ary[4];
+        this.co = ary[5];
+        this.xx = ary[6];
+        this.ng = ary[7];
+        this.z = ary[8];
+        this.rpar = ary[9];
+        this.ipar = ary[10];
+        this.auto0 = ary[11];
+        this.depu = ary[12];
+        this.dept = ary[13];
+    }
+    CBLOCK.prototype.getContainer = function CBLOCK() { return new BasicBlock(this.x); }
 }

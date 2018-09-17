@@ -58,4 +58,11 @@ function Modulo_Count() {
     Modulo_Count.prototype.get_popup_title = function Modulo_Count() {
         return this.set_param_popup_title;
     }
+    Modulo_Count.prototype.importset = function Modulo_Count() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.ini_c = ary[0];
+        this.base = ary[1];
+    }
+    Modulo_Count.prototype.getContainer = function Modulo_Count() { return new BasicBlock(this.x); }
 }

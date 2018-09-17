@@ -84,4 +84,10 @@ function MATLU() {
     MATLU.prototype.get_popup_title = function MATLU() {
         return this.set_param_popup_title;
     }
+    MATLU.prototype.importset = function MATLU() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.typ = ary[0];
+    }
+    MATLU.prototype.getContainer = function MATLU() { return new BasicBlock(this.x); }
 }

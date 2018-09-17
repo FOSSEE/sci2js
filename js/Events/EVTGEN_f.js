@@ -46,4 +46,10 @@ function EVTGEN_f() {
     EVTGEN_f.prototype.get_popup_title = function EVTGEN_f() {
         return this.set_param_popup_title;
     }
+    EVTGEN_f.prototype.importset = function EVTGEN_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.tt = ary[0];
+    }
+    EVTGEN_f.prototype.getContainer = function EVTGEN_f() { return new BasicBlock(this.x); }
 }

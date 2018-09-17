@@ -79,4 +79,11 @@ function IFTHEL_f() {
     IFTHEL_f.prototype.get_popup_title = function IFTHEL_f() {
         return this.set_param_popup_title;
     }
+    IFTHEL_f.prototype.importset = function IFTHEL_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.inh = ary[0];
+        this.nmod = ary[1];
+    }
+    IFTHEL_f.prototype.getContainer = function IFTHEL_f() { return new BasicBlock(this.x); }
 }

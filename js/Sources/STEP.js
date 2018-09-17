@@ -81,4 +81,12 @@ function STEP() {
     STEP.prototype.get_popup_title = function STEP() {
         return this.set_param_popup_title;
     }
+    STEP.prototype.importset = function STEP() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.temps = ary[0];
+        this.in1 = ary[1];
+        this.fi = ary[2];
+    }
+    STEP.prototype.getContainer = function STEP() { return new BasicBlock(this.x); }
 }

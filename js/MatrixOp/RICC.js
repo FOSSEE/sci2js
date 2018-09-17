@@ -73,4 +73,11 @@ function RICC() {
     RICC.prototype.get_popup_title = function RICC() {
         return this.set_param_popup_title;
     }
+    RICC.prototype.importset = function RICC() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.tpe = ary[0];
+        this.mod = ary[1];
+    }
+    RICC.prototype.getContainer = function RICC() { return new BasicBlock(this.x); }
 }

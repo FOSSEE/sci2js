@@ -47,4 +47,10 @@ function END_c() {
     END_c.prototype.get_popup_title = function END_c() {
         return this.set_param_popup_title;
     }
+    END_c.prototype.importset = function END_c() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.tf = ary[0];
+    }
+    END_c.prototype.getContainer = function END_c() { return new BasicBlock(this.x); }
 }

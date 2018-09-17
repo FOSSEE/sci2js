@@ -63,4 +63,12 @@ function SAT_f() {
     SAT_f.prototype.get_popup_title = function SAT_f() {
         return this.set_param_popup_title;
     }
+    SAT_f.prototype.importset = function SAT_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.minp = ary[0];
+        this.maxp = ary[1];
+        this.pente = ary[2];
+    }
+    SAT_f.prototype.getContainer = function SAT_f() { return new BasicBlock(this.x); }
 }

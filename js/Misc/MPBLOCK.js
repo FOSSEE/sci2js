@@ -281,4 +281,5 @@ function MPBLOCK() {
     MPBLOCK.prototype.get_popup_title = function MPBLOCK() {
         return;
     }
+    MPBLOCK.prototype.getContainer = function MPBLOCK() { return new BasicBlock(this.x); }
 }

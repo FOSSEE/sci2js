@@ -58,4 +58,10 @@ function OUT_f() {
     OUT_f.prototype.get_popup_title = function OUT_f() {
         return this.set_param_popup_title;
     }
+    OUT_f.prototype.importset = function OUT_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.prt = ary[0];
+    }
+    OUT_f.prototype.getContainer = function OUT_f() { return new ExplicitOutBlock(this.x); }
 }

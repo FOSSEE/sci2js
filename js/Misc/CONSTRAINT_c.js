@@ -62,4 +62,10 @@ function CONSTRAINT_c() {
     CONSTRAINT_c.prototype.get_popup_title = function CONSTRAINT_c() {
         return this.set_param_popup_title;
     }
+    CONSTRAINT_c.prototype.importset = function CONSTRAINT_c() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.x0 = ary[0];
+    }
+    CONSTRAINT_c.prototype.getContainer = function CONSTRAINT_c() { return new BasicBlock(this.x); }
 }

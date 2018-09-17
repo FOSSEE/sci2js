@@ -101,4 +101,14 @@ function DLSS_f() {
     DLSS_f.prototype.get_popup_title = function DLSS_f() {
         return this.set_param_popup_title;
     }
+    DLSS_f.prototype.importset = function DLSS_f() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.A = ary[0];
+        this.B = ary[1];
+        this.C = ary[2];
+        this.D = ary[3];
+        this.x0 = ary[4];
+    }
+    DLSS_f.prototype.getContainer = function DLSS_f() { return new BasicBlock(this.x); }
 }

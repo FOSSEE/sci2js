@@ -66,4 +66,11 @@ function GOTO() {
     GOTO.prototype.get_popup_title = function GOTO() {
         return this.set_param_popup_title;
     }
+    GOTO.prototype.importset = function GOTO() {
+        var graphics = this.x.graphics;
+        var ary = getData(graphics.exprs);
+        this.tag = ary[0];
+        this.tagvis = ary[1];
+    }
+    GOTO.prototype.getContainer = function GOTO() { return new BasicBlock(this.x); }
 }

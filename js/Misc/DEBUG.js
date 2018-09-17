@@ -52,4 +52,5 @@ function DEBUG() {
     DEBUG.prototype.get_popup_title = function DEBUG() {
         return;
     }
+    DEBUG.prototype.getContainer = function DEBUG() { return new BasicBlock(this.x); }
 }
