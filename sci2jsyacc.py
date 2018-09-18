@@ -1620,6 +1620,8 @@ def print_var(var):
     l = var.find('.')
     basevar = var[:l] if l != -1 else var
     if basevar in GLOBAL_VARS:
+        if var == 'in1':
+            var = 'in'
         ret = 'this.%s' % (var)
     else:
         ret = '%s' % (var)

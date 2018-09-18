@@ -26,7 +26,7 @@ function STEP() {
         this.set_param_popup_title = msprintf("Set %s block parameters","STEP_FUNCTION");
         var options = {
             temps:["Step Time",this.temps],
-            in1:["Initial Value",this.in1],
+            in:["Initial Value",this.in],
             fi:["Final Value",this.fi],
         }
         return options;
@@ -36,21 +36,21 @@ function STEP() {
         while (true) {
             var ok = true;
             this.temps = arguments[0]["temps"];
-            this.in1 = arguments[0]["in1"];
+            this.in = arguments[0]["in"];
             this.fi = arguments[0]["fi"];
-            var exprs = [arguments[0]["temps"], arguments[0]["in1"], arguments[0]["fi"]];
+            var exprs = [arguments[0]["temps"], arguments[0]["in"], arguments[0]["fi"]];
             if (!ok) {
                 break;
             }
-            this.in1 = this.in1.slice();
+            this.in = this.in.slice();
             this.fi = this.fi.slice();
-            if (size(this.in1,"*")!=size(this.fi,"*")) {
-                if (size(this.in1,"*")==1) {
-                    this.in1 = this.in1*ones(this.fi);
+            if (size(this.in,"*")!=size(this.fi,"*")) {
+                if (size(this.in,"*")==1) {
+                    this.in = this.in*ones(this.fi);
                 } else if (size(this.fi,"*")==1) {
-                    this.fi = this.fi*ones(this.in1);
+                    this.fi = this.fi*ones(this.in);
                 } else {
-                    block_parameter_error(msprintf("\'Initial Value\' and \'Final Value\': incompatible sizes: %d and %d.",size(this.in1,"*"),size(this.fi,"*")),"Same sizes expected.");
+                    block_parameter_error(msprintf("\'Initial Value\' and \'Final Value\': incompatible sizes: %d and %d.",size(this.in,"*"),size(this.fi,"*")),"Same sizes expected.");
                     var ok = false;
                 }
             }
@@ -67,7 +67,7 @@ function STEP() {
                 if (this.temps==0) {
                     var rpar = [[this.fi],[this.fi]];
                 } else {
-                    var rpar = [[this.in1],[this.fi]];
+                    var rpar = [[this.in],[this.fi]];
                 }
                 this.model.rpar = new ScilabDouble(rpar);
                 this.graphics.exprs = new ScilabDouble([exprs]);
@@ -85,7 +85,7 @@ function STEP() {
         var graphics = this.x.graphics;
         var ary = getData(graphics.exprs);
         this.temps = ary[0];
-        this.in1 = ary[1];
+        this.in = ary[1];
         this.fi = ary[2];
     }
     STEP.prototype.getContainer = function STEP() { return new BasicBlock(this.x); }

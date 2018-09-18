@@ -6,14 +6,14 @@ function AFFICH_m() {
         this.colr = 1;
         this.nt = 5;
         this.nd = 1;
-        this.in1 = [1,1];
+        this.in = [1,1];
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["affich2"]), new ScilabDouble([4]));
-        this.model.in = new ScilabDouble([this.in1[1-1][1-1]]);
-        this.model.in2 = new ScilabDouble([this.in1[1-1][2-1]]);
+        this.model.in = new ScilabDouble([this.in[1-1][1-1]]);
+        this.model.in2 = new ScilabDouble([this.in[1-1][2-1]]);
         this.model.evtin = new ScilabDouble([1]);
-        this.model.dstate = new ScilabDouble([-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]);
-        this.model.ipar = new ScilabDouble([this.font],[this.fontsize],[this.colr],[1000],[this.nt],[this.nd],[this.in1[1-1][1-1]]);
+        this.model.dstate = new ScilabDouble([-1],[0],[0],[1],[1],[0],[zeros(this.in[1-1][1-1]*this.in[1-1][2-1],1)]);
+        this.model.ipar = new ScilabDouble([this.font],[this.fontsize],[this.colr],[1000],[this.nt],[this.nd],[this.in[1-1][1-1]]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.firing = new ScilabDouble([]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
@@ -30,7 +30,7 @@ function AFFICH_m() {
         var exprs = this.graphics.exprs;
         this.set_param_popup_title = "Set  parameters";
         var options = {
-            in1:["Input Size",this.in1],
+            in:["Input Size",this.in],
             font:["Font number",this.font],
             fontsize:["Font size",this.fontsize],
             colr:["Color",this.colr],
@@ -44,14 +44,14 @@ function AFFICH_m() {
         var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
-            this.in1 = inverse(arguments[0]["in1"]);
+            this.in = inverse(arguments[0]["in"]);
             this.font = parseFloat(arguments[0]["font"]);
             this.fontsize = parseFloat(arguments[0]["fontsize"]);
             this.colr = parseFloat(arguments[0]["colr"]);
             this.nt = parseFloat(arguments[0]["nt"]);
             this.nd = parseFloat(arguments[0]["nd"]);
             this.herit = arguments[0]["herit"];
-            var exprs = [arguments[0]["in1"], arguments[0]["font"], arguments[0]["fontsize"], arguments[0]["colr"], arguments[0]["nt"], arguments[0]["nd"], arguments[0]["herit"]];
+            var exprs = [arguments[0]["in"], arguments[0]["font"], arguments[0]["fontsize"], arguments[0]["colr"], arguments[0]["nt"], arguments[0]["nd"], arguments[0]["herit"]];
             if (!ok) {
                 break;
             }
@@ -85,14 +85,14 @@ function AFFICH_m() {
                 throw "user error";
             }
             if (ok) {
-                var tmpvar0 = set_io(this.model,this.graphics,list(this.in1,1),list(),ones(1-this.herit,1),[]);
+                var tmpvar0 = set_io(this.model,this.graphics,list(this.in,1),list(),ones(1-this.herit,1),[]);
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
             }
             if (ok) {
-                this.model.ipar = new ScilabDouble([this.font],[this.fontsize],[this.colr],[this.nt],[this.nd],[this.in1[1-1][1-1]]);
-                this.model.dstate = new ScilabDouble([-1],[0],[0],[1],[1],[0],[zeros(this.in1[1-1][1-1]*this.in1[1-1][2-1],1)]);
+                this.model.ipar = new ScilabDouble([this.font],[this.fontsize],[this.colr],[this.nt],[this.nd],[this.in[1-1][1-1]]);
+                this.model.dstate = new ScilabDouble([-1],[0],[0],[1],[1],[0],[zeros(this.in[1-1][1-1]*this.in[1-1][2-1],1)]);
                 this.model.evtin = new ScilabDouble([ones(1-this.herit,1)]);
                 this.graphics.exprs = new ScilabDouble([exprs]);
                 this.x.graphics = this.graphics;
@@ -108,7 +108,7 @@ function AFFICH_m() {
     AFFICH_m.prototype.importset = function AFFICH_m() {
         var graphics = this.x.graphics;
         var ary = getData(graphics.exprs);
-        this.in1 = ary[0];
+        this.in = ary[0];
         this.font = ary[1];
         this.fontsize = ary[2];
         this.colr = ary[3];

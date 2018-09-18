@@ -29,7 +29,7 @@ function generic_block3() {
         var options = {
             function_name:["Simulation function",this.function_name],
             funtyp:["Function type (0,1,2,..)",this.funtyp],
-            in1:["Input ports sizes",this.in1],
+            in:["Input ports sizes",this.in],
             it:["Input ports type",this.it],
             out:["Output port sizes",this.out],
             ot:["Output ports type",this.ot],
@@ -58,7 +58,7 @@ function generic_block3() {
             var ok = true;
             this.function_name = arguments[0]["function_name"];
             this.funtyp = parseFloat(arguments[0]["funtyp"]);
-            this.in1 = arguments[0]["in1"];
+            this.in = arguments[0]["in"];
             this.it = arguments[0]["it"];
             this.out = arguments[0]["out"];
             this.ot = arguments[0]["ot"];
@@ -75,7 +75,7 @@ function generic_block3() {
             this.auto0 = arguments[0]["auto0"];
             this.depu = parseBoolean(arguments[0]["depu"]);
             this.dept = parseBoolean(arguments[0]["dept"]);
-            var lab = [arguments[0]["function_name"], arguments[0]["funtyp"], arguments[0]["in1"], arguments[0]["it"], arguments[0]["out"], arguments[0]["ot"], arguments[0]["ci"], arguments[0]["co"], arguments[0]["xx"], arguments[0]["z"], arguments[0]["oz"], arguments[0]["rpar"], arguments[0]["ipar"], arguments[0]["opar"], arguments[0]["nmode"], arguments[0]["nzcr"], arguments[0]["auto0"], arguments[0]["depu"], arguments[0]["dept"]];
+            var lab = [arguments[0]["function_name"], arguments[0]["funtyp"], arguments[0]["in"], arguments[0]["it"], arguments[0]["out"], arguments[0]["ot"], arguments[0]["ci"], arguments[0]["co"], arguments[0]["xx"], arguments[0]["z"], arguments[0]["oz"], arguments[0]["rpar"], arguments[0]["ipar"], arguments[0]["opar"], arguments[0]["nmode"], arguments[0]["nzcr"], arguments[0]["auto0"], arguments[0]["depu"], arguments[0]["dept"]];
             if (!ok) {
                 break;
             }
@@ -124,7 +124,7 @@ function generic_block3() {
             }
             var dep_ut = [this.depu,this.dept];
             if (ok) {
-                var tmpvar0 = set_io(this.model,this.graphics,list(this.in1,this.it),list(this.out,this.ot),this.ci,this.co);
+                var tmpvar0 = set_io(this.model,this.graphics,list(this.in,this.it),list(this.out,this.ot),this.ci,this.co);
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
@@ -159,7 +159,7 @@ function generic_block3() {
         var ary = getData(graphics.exprs);
         this.function_name = ary[0];
         this.funtyp = ary[1];
-        this.in1 = ary[2];
+        this.in = ary[2];
         this.it = ary[3];
         this.out = ary[4];
         this.ot = ary[5];

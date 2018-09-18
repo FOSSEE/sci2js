@@ -2,7 +2,7 @@
 function CMSCOPE() {
     CMSCOPE.prototype.define = function CMSCOPE() {
         this.win = -1;
-        this.in1 = [[1],[1]];
+        this.in = [[1],[1]];
         this.wdim = [[-1],[-1]];
         this.wpos = [[-1],[-1]];
         this.clrs = [[1],[3],[5],[7],[9],[11],[13],[15]];
@@ -14,15 +14,15 @@ function CMSCOPE() {
         var period = transpose(this.per.slice());
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["cmscope"]), new ScilabDouble([4]));
-        this.model.in = new ScilabDouble(this.in1);
+        this.model.in = new ScilabDouble([this.in]);
         this.model.in2 = new ScilabDouble([1],[1]);
         this.model.intyp = new ScilabDouble([1],[1]);
         this.model.evtin = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([0],[period.slice()],[yy.slice()]);
-        this.model.ipar = new ScilabDouble([this.win],[size(this.in1,"*")],[this.N],[this.wpos.slice()],[this.wdim.slice()],[this.in1.slice()],[this.clrs.slice(1-1,sum(this.in1))]);
+        this.model.ipar = new ScilabDouble([this.win],[size(this.in,"*")],[this.N],[this.wpos.slice()],[this.wdim.slice()],[this.in.slice()],[this.clrs.slice(1-1,sum(this.in))]);
         this.model.blocktype = new ScilabString(["c"]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        var exprs = [[strcat(string(this.in1)," ")],[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp([])],[strcat(string(this.ymin)," ")],[strcat(string(this.ymax)," ")],[strcat(string(this.per)," ")],[string(this.N)],[string(0)],[emptystr()]];
+        var exprs = [[strcat(string(this.in)," ")],[strcat(string(this.clrs)," ")],[string(this.win)],[sci2exp([])],[sci2exp([])],[strcat(string(this.ymin)," ")],[strcat(string(this.ymax)," ")],[strcat(string(this.per)," ")],[string(this.N)],[string(0)],[emptystr()]];
         var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"CMSCOPE\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble(exprs),gr_i);
         return new BasicBlock(this.x);
@@ -34,7 +34,7 @@ function CMSCOPE() {
         var exprs = this.graphics.exprs;
         this.set_param_popup_title = "Set Scope parameters";
         var options = {
-            in1:["Input ports sizes",this.in1.toString().replace(/,/g," ")],
+            in:["Input ports sizes",this.in.toString().replace(/,/g," ")],
             clrs:["Drawing colors (>0) or mark (<0)",this.clrs.toString().replace(/,/g," ")],
             win:["Output window number (-1 for automatic)",this.win],
             wpos:["Output window position",this.wpos.toString().replace(/,/g," ")],
@@ -52,7 +52,7 @@ function CMSCOPE() {
         var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
-            this.in1 = inverse(arguments[0]["in1"]);
+            this.in = inverse(arguments[0]["in"]);
             this.clrs = inverse(arguments[0]["clrs"]);
             this.win = parseFloat(arguments[0]["win"]);
             this.wpos = inverse(arguments[0]["wpos"]);
@@ -63,21 +63,21 @@ function CMSCOPE() {
             this.N = parseFloat(arguments[0]["N"]);
             this.heritance = arguments[0]["heritance"];
             this.nom = arguments[0]["nom"];
-            var exprs = [arguments[0]["in1"], arguments[0]["clrs"], arguments[0]["win"], arguments[0]["wpos"], arguments[0]["wdim"], arguments[0]["ymin"], arguments[0]["ymax"], arguments[0]["per"], arguments[0]["N"], arguments[0]["heritance"], arguments[0]["nom"]];
+            var exprs = [arguments[0]["in"], arguments[0]["clrs"], arguments[0]["win"], arguments[0]["wpos"], arguments[0]["wdim"], arguments[0]["ymin"], arguments[0]["ymax"], arguments[0]["per"], arguments[0]["N"], arguments[0]["heritance"], arguments[0]["nom"]];
             if (!ok) {
                 break;
             }
             var mess = [];
-            if (size(this.in1,"*")<=0) {
+            if (size(this.in,"*")<=0) {
                 var mess = [[mess],["Block must have at least one input port"],[" "]];
                 var ok = false;
             }
-            if (min(this.in1)<=0) {
+            if (min(this.in)<=0) {
                 var mess = [[mess],["Port sizes must be positive"],[" "]];
                 var ok = false;
             }
-            if (size(this.clrs,"*")<sum(this.in1)) {
-                var mess = [[mess],["Not enough colors defined (at least "+string(sum(this.in1))+")"],[" "]];
+            if (size(this.clrs,"*")<sum(this.in)) {
+                var mess = [[mess],["Not enough colors defined (at least "+string(sum(this.in))+")"],[" "]];
                 var ok = false;
             }
             if (size(this.wpos,"*")!=0&&size(this.wpos,"*")!=2) {
@@ -119,10 +119,10 @@ function CMSCOPE() {
                 throw "user error";
             }
             if (ok) {
-                this.in1 = this.in1.slice();
-                var a = size(this.in1,1);
+                this.in = this.in.slice();
+                var a = size(this.in,1);
                 var in2 = ones(a,1);
-                var tmpvar0 = set_io(this.model,this.graphics,list([this.in1,in2],ones(a,1)),list(),ones(1-this.heritance,1),[]);
+                var tmpvar0 = set_io(this.model,this.graphics,list([this.in,in2],ones(a,1)),list(),ones(1-this.heritance,1),[]);
                 this.model = tmpvar0[0];
                 this.graphics = tmpvar0[1];
                 var ok = tmpvar0[2];
@@ -138,8 +138,8 @@ function CMSCOPE() {
                     var period = transpose(this.per.slice());
                     var yy = [[transpose(this.ymin.slice())],[transpose(this.ymax.slice())]];
                     var rpar = [[0],[period.slice()],[yy.slice()]];
-                    this.clrs = this.clrs.slice(1-1,sum(this.in1));
-                    var ipar = [[this.win],[size(this.in1,"*")],[this.N],[this.wpos.slice()],[this.wdim.slice()],[this.in1.slice()],[this.clrs.slice()],[this.heritance]];
+                    this.clrs = this.clrs.slice(1-1,sum(this.in));
+                    var ipar = [[this.win],[size(this.in,"*")],[this.N],[this.wpos.slice()],[this.wdim.slice()],[this.in.slice()],[this.clrs.slice()],[this.heritance]];
                     this.model.evtin = new ScilabDouble([ones(1-this.heritance,1)]);
                     this.model.dstate = new ScilabDouble([]);
                     this.model.rpar = new ScilabDouble(rpar);
@@ -161,7 +161,7 @@ function CMSCOPE() {
     CMSCOPE.prototype.importset = function CMSCOPE() {
         var graphics = this.x.graphics;
         var ary = getData(graphics.exprs);
-        this.in1 = ary[0];
+        this.in = ary[0];
         this.clrs = ary[1];
         this.win = ary[2];
         this.wpos = ary[3];

@@ -2,17 +2,17 @@
 function ZCROSS_f() {
     ZCROSS_f.prototype.define = function ZCROSS_f() {
         var rpar = [[-1],[-1],[0],[0]];
-        this.in1 = 1;
+        this.in = 1;
         this.model = scicos_model();
         this.model.sim = list(new ScilabString(["zcross"]), new ScilabDouble([1]));
-        this.model.in = new ScilabDouble([this.in1]);
-        this.model.nzcross = new ScilabDouble([this.in1]);
+        this.model.in = new ScilabDouble([this.in]);
+        this.model.nzcross = new ScilabDouble([this.in]);
         this.model.evtout = new ScilabDouble([1]);
         this.model.rpar = new ScilabDouble([-1],[-1],[0],[0]);
         this.model.blocktype = new ScilabString(["z"]);
         this.model.firing = new ScilabDouble([-1]);
         this.model.dep_ut = new ScilabBoolean([true,false]);
-        var exprs = strcat(sci2exp(this.in1));
+        var exprs = strcat(sci2exp(this.in));
         var gr_i = new ScilabString(["xstringb(orig(1),orig(2),\"ZCROSS_f\",sz(1),sz(2));"]);
         this.x = new standard_define(new ScilabDouble([2,2]),this.model,new ScilabDouble([exprs]),gr_i);
         return new BasicBlock(this.x);
@@ -24,7 +24,7 @@ function ZCROSS_f() {
         var exprs = this.graphics.exprs;
         this.set_param_popup_title = "Set Zero-Crossing parameters";
         var options = {
-            in1:["Input size",this.in1],
+            in:["Input size",this.in],
         }
         return options;
     }
@@ -32,24 +32,24 @@ function ZCROSS_f() {
         var exprs = this.graphics.exprs;
         while (true) {
             var ok = true;
-            this.in1 = parseFloat(arguments[0]["in1"]);
-            var exprs = [arguments[0]["in1"]];
+            this.in = parseFloat(arguments[0]["in"]);
+            var exprs = [arguments[0]["in"]];
             if (!ok) {
                 break;
             }
-            this.in1 = int(this.in1);
-            if (this.in1<=0) {
+            this.in = int(this.in);
+            if (this.in<=0) {
                 message("Block must have at least one input");
                 throw "user error";
             } else {
                 var kk = 0;
-                for (jj=1;jj<=this.in1;jj+=1) {
-                    var kk = kk+2^(this.in1+jj-1);
+                for (jj=1;jj<=this.in;jj+=1) {
+                    var kk = kk+2^(this.in+jj-1);
                 }
-                this.model.rpar = new ScilabDouble([-ones(kk,1)],[zeros(2^(2*this.in1)-kk,1)]);
+                this.model.rpar = new ScilabDouble([-ones(kk,1)],[zeros(2^(2*this.in)-kk,1)]);
                 this.graphics.exprs = new ScilabDouble([exprs]);
-                this.model.in = new ScilabDouble([this.in1]);
-                this.model.nzcross = new ScilabDouble([this.in1]);
+                this.model.in = new ScilabDouble([this.in]);
+                this.model.nzcross = new ScilabDouble([this.in]);
                 this.model.firing = new ScilabDouble([-1]);
                 this.x.graphics = this.graphics;
                 this.x.model = this.model;
@@ -64,7 +64,7 @@ function ZCROSS_f() {
     ZCROSS_f.prototype.importset = function ZCROSS_f() {
         var graphics = this.x.graphics;
         var ary = getData(graphics.exprs);
-        this.in1 = ary[0];
+        this.in = ary[0];
     }
     ZCROSS_f.prototype.getContainer = function ZCROSS_f() { return new BasicBlock(this.x); }
 }
